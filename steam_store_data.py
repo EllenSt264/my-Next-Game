@@ -101,8 +101,7 @@ def create_index():
     global steam_bestsellers
 
     game_index = []
-    for x in range(len(game_titles)):
-        game_index.append(x)
+    {game_index.append(x) for x in range(len(game_titles))}
 
     # ---------------------------------------- Add game indices
     for x in range(len(game_index)):
@@ -113,8 +112,8 @@ def add_to_dict():
     global steam_bestsellers
 
     # ---------------------------------------- Add game titles
-    for x in range(len(steam_bestsellers)):
-        steam_bestsellers[x] = {"title": game_titles[x]}
+    steam_bestsellers = {x: {"title": game_titles[x]}
+                         for x in range(len(steam_bestsellers))}
 
     # ---------------------------------------- Add game tags
     for x in range(len(steam_bestsellers)):
