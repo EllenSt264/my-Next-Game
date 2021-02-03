@@ -90,3 +90,52 @@ def scrape_data():
 
 
 scrape_data()
+
+
+# -------------------------------------------------- Dictionary
+
+steam_bestsellers = {}
+
+
+def create_index():
+    global steam_bestsellers
+
+    game_index = []
+    for x in range(len(game_titles)):
+        game_index.append(x)
+
+    # ---------------------------------------- Add game indices
+    for x in range(len(game_index)):
+        steam_bestsellers = dict.fromkeys(game_index, {})
+
+
+def add_to_dict():
+    global steam_bestsellers
+
+    # ---------------------------------------- Add game titles
+    for x in range(len(steam_bestsellers)):
+        steam_bestsellers[x] = {"title": game_titles[x]}
+
+    # ---------------------------------------- Add game tags
+    for x in range(len(steam_bestsellers)):
+        upd_dict = {"tags": game_tags[x]}
+        steam_bestsellers[x].update(upd_dict)
+
+    # ---------------------------------------- Add game images
+    for x in range(len(steam_bestsellers)):
+        upd_dict = {"image": game_images[x]}
+        steam_bestsellers[x].update(upd_dict)
+
+    # ---------------------------------------- Add game platform tags
+    for x in range(len(steam_bestsellers)):
+        upd_dict = {"pc_platform_tags": game_platform_tags[x]}
+        steam_bestsellers[x].update(upd_dict)
+
+    # ---------------------------------------- Add game links
+    for x in range(len(steam_bestsellers)):
+        upd_dict = {"game_link": game_links[x]}
+        steam_bestsellers[x].update(upd_dict)
+
+
+create_index()
+add_to_dict()
