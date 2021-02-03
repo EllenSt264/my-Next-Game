@@ -8,13 +8,21 @@ soup = BeautifulSoup(source.text, "html.parser")
 
 
 """
-Sources: "https://stackoverflow.com/questions/12616912/split-an-element-with-beautifulsoup"
+Some of the code is based upon the following sources:
+
+    Splitting elements with BeautifulSoup:
+    "https://stackoverflow.com/questions/12616912/split-an-element-with-beautifulsoup"
+
+    Getting href tags with BeautifulSoup:
+    "https://stackoverflow.com/questions/43814754/python-beautifulsoup-how-to-get-href-attribute-of-a-element/43814994"
 """
 
 # -------------------------------------------------- Data lists
 game_titles = []
 game_tags = []
 game_links = []
+game_images = []
+game_platform_tags = []
 
 
 def scrape_data():
@@ -54,10 +62,31 @@ def scrape_data():
 
             # -------------------------------------------------- Game Links
 
-            # Source: "https://stackoverflow.com/questions/43814754/python-beautifulsoup-how-to-get-href-attribute-of-a-element/43814994"
-
             link = a.attrs["href"]
             game_links.append(link)
+
+            # -------------------------------------------------- Game img src
+
+            game_image = a.select(".tab_item_cap_img")
+            for image in game_image:
+                game_images.append(image["src"])
+
+            # ---------------------------------------------- Game platform tags
+
+            pc_platforms = a.select(".tab_item_details .platform_img")
+
+            platforms = str(pc_platforms)
+
+            for i in range(len(platforms)):
+                platforms = platforms.replace(
+                    '<span class="platform_img win"></span>', 'win'
+                ).replace(
+                    '<span class="platform_img mac"></span>', 'mac'
+                ).replace(
+                    '<span class="platform_img linux"></span>', 'linux'
+                )
+
+            game_platform_tags.append(platforms)
 
 
 scrape_data()
