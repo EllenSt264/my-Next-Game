@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from flask_pymongo import PyMongo
-from scrape_steamstore import steam_bestsellers
+from scrape_steamstore import add_to_dict, steam_bestsellers
 if os.path.exists("env.py"):
     import env
 
@@ -44,4 +44,23 @@ def get_dict_items():
                 game_link.append(v1)
 
 
+def add_to_db():
+    for i in range(len(game_title)):
+        bestseller = {
+            "game_index": game_index[i],
+            "game_title": game_title[i],
+            "game_top_tags": game_tags[i],
+            "game_img_sm": game_img_sm[i],
+            "platform_tags_pc": platform_pc[i],
+            "game_link": game_link[i]
+        }
+        # Stop data from being re-added if it already exists
+        existing_data = mongo.db.steam_bestsellers.find_one(
+            {"game_title": game_title[i]}
+        )
+        if not existing_data:
+            mongo.db.steam_bestsellers.insert_one(bestseller)
+
+
 get_dict_items()
+add_to_db()
