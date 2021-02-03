@@ -14,6 +14,7 @@ Sources: "https://stackoverflow.com/questions/12616912/split-an-element-with-bea
 # -------------------------------------------------- Data lists
 game_titles = []
 game_tags = []
+game_links = []
 
 
 def scrape_data():
@@ -50,6 +51,13 @@ def scrape_data():
 
             for tag in tags:
                 game_tags.append(tag)
+
+            # -------------------------------------------------- Game Links
+
+            # Source: "https://stackoverflow.com/questions/43814754/python-beautifulsoup-how-to-get-href-attribute-of-a-element/43814994"
+
+            link = a.attrs["href"]
+            game_links.append(link)
 
 
 scrape_data()
