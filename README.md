@@ -15,3 +15,48 @@ The primary goal is to establish a community platform that would have the potent
 ### Target Audience 
 
 The target audience is gamers, coming from a wide range of platforms and backgrounds. However, the site is more catered to PC gamers as the game data that is used in the web application derives from a PC video game distrubtion service: Steam. Also, a majority of the games present on the site have an age rating that is only suitable for late teenage years and above.
+
+-----
+
+## User Stories
+
+### First Time User Goals
+
+- As a first time user I want to immediately understand the purpose of the application.
+
+- I want to be able to see an about page or an explanation to what this site is and what it can offer me. 
+
+- I want to be able to find games easily.
+
+- I want to be able to use a sort feature so that I only see the results I want.
+
+- I want to be able to register on the site and make a user profile.
+
+- I want to see reviews of games, and be able to search for particular game titles or genres of those reviews.
+
+- I want to be able to vote on games that I like.
+
+- I want to leave reviews of my own.
+
+- If I don't know what I'm looking for, I want a site feature that will help me decide what game to play next.
+
+- I want to see games that are recommended by the site.
+
+- I want to add games to my personal games list.
+
+
+### Returning User Goals
+
+- As a returning user, I want to be able to customize my profile. I want to add a bio to my profile and upload a custom profile image.
+
+- I want to be able to see all the reviews that I have made, and have the option to edit or delete them. 
+
+- I want to update my games list. I want to categories games into what I am currently playing, what I have played and want I want to play in the future.
+
+- I want to see profiles of other users.
+
+- I want to find the site's contact information so that I can get help on an issue.
+
+- I want to request new games to be added to the database.
+
+- I want to add games to a favourites list.
