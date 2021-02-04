@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: "BlenderPro-Bold";
+    background-color: #221424;
+    overflow: hidden;
 }
 
 /* ---------------------------------------------- Navbar */
@@ -36,7 +38,7 @@ nav {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 99.5%;
     width: 100%;
     background-color: #212529;
     opacity: .5;
@@ -49,6 +51,7 @@ nav {
     width: 100%;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     z-index: 1;
+    line-height: 50px;
 }
 
 .back-font {
@@ -64,4 +67,47 @@ nav {
     font-size: 75px;
     color: white;
     letter-spacing: 5px;
+}
+
+/* ---------------------------------------------- Media Queries */
+
+@media (max-width:905px) {
+    .nav-wrapper a {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .title {
+        margin-top: 250px;
+    }    
+    .back-font {
+        font-size: 60px;
+    }
+    .front-font {
+        font-size: 55px;
+    }
+}
+
+@media (max-width:640px) {
+    .back-font {
+        font-size: 50px;
+    }
+    .front-font {
+        font-size: 45px;
+    }
+}
+
+@media (max-width:540px) {
+    .back-font {
+        font-size: 40px;
+    }
+    .front-font {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 415px) {
+    /* To fix unmatched width with front face */
+    .back-font {
+        letter-spacing: 1px;
+    }
 }
