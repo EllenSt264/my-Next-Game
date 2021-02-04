@@ -21,3 +21,47 @@ nav {
     height: 55px; 
     margin-top: 5px;
 }
+
+/* ---------------------------------------------- Hero background video */
+
+#heroBg {
+    position: relative;
+}
+
+.hero-vid {
+    width: 100vw;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #212529;
+    opacity: .5;
+}
+
+/* ---------------------------------------------- Homepage title */
+
+.title {
+    position: absolute;
+    width: 100%;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.back-font {
+    font-family: "Cyberspace Raceway Back", sans-serif;
+    font-size: 80px;
+    color: black;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.front-font {
+    font-family: "Cyberspace Raceway Front", sans-serif;
+    font-size: 75px;
+    color: white;
+    letter-spacing: 5px;
+}

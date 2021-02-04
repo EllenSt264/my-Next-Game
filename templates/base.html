@@ -36,6 +36,17 @@
     </header>
     
     {% block content %}
+        <!-- Hero video background -->
+        <section id="heroBg" class="valign-wrapper">
+            <h1 class="center-align title back-font">myNext Game</h1>
+            <h1 class="center-align title front-font">myNext Game</h1>
+            <div class="overlay"></div>
+            <div class="col s12 ">
+                <video class="hero-vid" autoplay muted loop>
+                    <source src="static/video/synthwave.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
     {% endblock %}
 
     <!-- JQuery -->
