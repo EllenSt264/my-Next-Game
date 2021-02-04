@@ -24,6 +24,24 @@ nav {
     margin-top: 5px;
 }
 
+.sidenav {
+    background-color: #0e232f;
+}
+
+.sidenav li a {
+    font-size: 20px;
+    color: white;
+}
+
+#closeSideNav i {
+    color: white;
+}
+
+#closeSideNav a {
+    padding: 0;
+    margin: 0;
+}
+
 /* ---------------------------------------------- Hero background video */
 
 #heroBg {
