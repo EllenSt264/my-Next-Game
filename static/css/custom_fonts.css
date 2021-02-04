@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "BlenderPro-Bold";
+    src: url("../fonts/BlenderPro-Bold.ttf")
+}
+
+@font-face {
+    font-family: "BlenderPro-Book";
+    src: url("../fonts/BlenderPro-Book.ttf")
+}
+
+@font-face {
+    font-family: "BlenderPro-BookItalic";
+    src: url("../fonts/BlenderPro-BookItalic.ttf")
+}
+
+@font-face {
+    font-family: "BlenderPro-Heavy";
+    src: url("../fonts/BlenderPro-Heavy.ttf")
+}
+
+@font-face {
+    font-family: "BlenderPro-Medium";
+    src: url("../fonts/BlenderPro-Medium.ttf")
+}
+
+@font-face {
+    font-family: "BlenderPro-MediumItalic";
+    src: url("../fonts/BlenderPro-MediumItalic.ttf")
+}
+
+@font-face {
+    font-family: "BlenderPro-Thin";
+    src: url("../fonts/BlenderPro-Thin.ttf")
+}
+
+@font-face {
+    font-family: "BlenderPro-ThinItalic";
+    src: url("../fonts/BlenderPro-ThinItalic.ttf")
+}
+
+@font-face {
+    font-family: "Cyberspace Raceway Front";
+    src: url("../fonts/Cyberspace_Raceway_Front.otf") format("opentype");
+}
+ 
+@font-face {
+    font-family: "Cyberspace Raceway Back";
+    src: url("../fonts/Cyberspace_Raceway_Back.otf") format("opentype");
+}
