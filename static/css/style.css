@@ -126,6 +126,18 @@ nav {
     margin-right: 50px;
 }
 
+/* ---------------------------------------------- Register page */
+
+.account-title {
+    text-transform: uppercase;
+}
+
+@media(min-height: 1090px) {
+    .account-form {
+        margin-top: 15vh;
+    }
+}
+
 /* ---------------------------------------------- Global paddding */
 
 .py-5 {

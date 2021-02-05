@@ -18,6 +18,11 @@ def games():
     return render_template("games_template.html")
 
 
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
