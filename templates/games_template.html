@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+    <!-- Today's Picks Carousel -->
     <section class="py-5">
         <h3 class="title carousel-title center">Today's Picks</h3>
         <div class="carousel carousel-slider center">
@@ -15,6 +15,44 @@
                 <a href="#"><img src="https://images6.alphacoders.com/107/thumb-1920-1072573.jpg"></a>
             </div>
         </div>
+    </section>
+    
+    <!-- Secondary navbar -->
+    <section class="py-5">
+            <nav class="secondary-nav">
+                <div class="nav-wrapper">
+                    <a href="" class="dropdown-trigger left hide-on-large-only" data-target="dropdownNav"
+                    style="margin-left: 15px;">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                    <!-- Main nav -->
+                    <ul class="left hide-on-med-and-down">
+                        <li><a href="sass.html">Platform</a></li>
+                        <li><a href="badges.html">Genre</a></li>
+                        <li><a href="collapsible.html">Bestsellers</a></li>
+                        <li><a href="mobile.html">Award Winners</a></li>
+                        <li><a href="mobile.html">Our Favourites</a></li>
+                        <li><a href="mobile.html">Your List</a></li>
+                    </ul>
+                    <!-- Search bar -->
+                    <form>
+                        <div class="input-field right">
+                            <input id="search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+            <!-- Mobile navbar -->
+            <ul class="dropdown-content" id="dropdownNav">
+                <li><a href="sass.html">Platform</a></li>
+                <li><a href="badges.html">Genre</a></li>
+                <li><a href="collapsible.html">Bestsellers</a></li>
+                <li><a href="mobile.html">Award Winners</a></li>
+                <li><a href="mobile.html">Our Favourites</a></li>
+                <li><a href="mobile.html">Your List</a></li>
+            </ul>
     </section>
 
 {% endblock %}
