@@ -10,5 +10,6 @@ $(document).ready(function () {
         setInterval(function() {
             $('.carousel').carousel('next');
         }, 8000)
+        $('.dropdown-trigger').dropdown();
     })
 });
