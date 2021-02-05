@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from flask_pymongo import PyMongo
-from scrape_steamstore import add_to_dict, steam_bestsellers
+from scrape_steamstore import steam_bestsellers
 if os.path.exists("env.py"):
     import env
 
@@ -44,6 +44,8 @@ def get_dict_items():
                 game_link.append(v1)
 
 
+#  Need to create a function to update the database
+#  Index number should be updated.
 def add_to_db():
     for i in range(len(game_title)):
         bestseller = {
