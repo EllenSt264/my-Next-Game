@@ -52,16 +52,6 @@ nav {
     width: 100vw;
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 99.5%;
-    width: 100%;
-    background-color: #212529;
-    opacity: .5;
-}
-
 /* ---------------------------------------------- Homepage title */
 
 .title {
