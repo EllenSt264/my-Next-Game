@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" type="text/css" 
     integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <!-- Materialize CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_fonts.css') }}" type="text/css">
@@ -18,21 +19,25 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo center">
+                    <a href="{{ url_for('home') }}" class="brand-logo center">
                         <img src="static/img/odin_logo.png" alt="Website/navbar brand logo">
                     </a>
+                    <a href="#" data-target="mobile-nav-profile" class="sidenav-trigger right" 
+                    style="margin-right:20px;">
+                        <i class="fas fa-user fa-2x"></i>
+                    </a>
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger right" 
-                    style="margin-right:10px;">
+                    style="margin-right:25px;">
                         <i class="fas fa-bars fa-2x"></i>
                     </a>
                     <ul class="left hide-on-med-and-down">
-                        <li><a href="sass.html">Get Started</a></li>
-                        <li><a href="badges.html">Platfrom</a></li>
-                        <li><a href="collapsible.html">Genre</a></li>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('games') }}">Platfrom</a></li>
+                        <li><a href="{{ url_for('games') }}">Genre</a></li>
                     </ul>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="sass.html">Community Reviews</a></li>
-                        <li><a href="badges.html">Sign In</a></li>
+                        <li><a href="#">Community Reviews</a></li>
+                        <li><a href="{{ url_for('login') }}">Log In</a></li>
                     </ul>
                 </div>
             </nav>
@@ -43,10 +48,17 @@
             <li id="closeSideNav">
                 <a href="#!"><i class="fas fa-times sidenav-close right"></i></a>
             </li>
-            <li><a href="sass.html">Get Started</a></li>
-            <li><a href="badges.html">Platfrom</a></li>
-            <li><a href="collapsible.html">Genre</a></li>
-            <li><a href="sass.html">Community Reviews</a></li>
+            <li><a href="{{ url_for('games') }}">Platfrom</a></li>
+            <li><a href="{{ url_for('games') }}">Genre</a></li>
+            <li><a href="#">Community Reviews</a></li>
+        </ul>
+        <!-- Profile side-nav -->
+        <ul class="sidenav" id="mobile-nav-profile">
+            <li id="closeSideNav">
+                <a href="#!"><i class="fas fa-times sidenav-close right"></i></a>
+            </li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
         </ul>
     </header>
     
