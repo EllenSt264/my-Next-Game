@@ -13,6 +13,11 @@ def home():
     return render_template("base.html")
 
 
+@app.route("/games")
+def games():
+    return render_template("games_template.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
