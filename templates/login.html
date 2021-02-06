@@ -2,7 +2,7 @@
 {% block content %}
     
     <div class="row center-align account-form">
-        <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="{{ url_for('register') }}">
+        <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="{{ url_for('login') }}">
             <div class="card-panel blue-grey darken-4 grey-text text-lighten-2">
                 <!-- Logo -->
                 <div class="col s12">
@@ -31,14 +31,7 @@
                         <label for="password">Password</label>
                     </div>
                 </div>
-                <!-- Confirm Password -->
-                <div class="row">
-                    <div class="input-field col s10 offset-s1">
-                        <input id="confirmPassword" name="confirmPassword" type="password" class="validate" required>
-                        <label for="confirmPassword">Confirm Password</label>
-                    </div>
-                </div>
-                <!-- Register -->
+                <!-- Log In -->
                 <div class="row">
                     <button type="submit" class="btn btn-large waves-effect waves-light cyan accent-4"
                     style="border-radius: 5px;">
