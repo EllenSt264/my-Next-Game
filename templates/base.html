@@ -56,7 +56,9 @@
                     </ul>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="#">Community Reviews</a></li>
-                        <li><a href="{{ url_for('login') }}">Log In</a></li>
+                        {% if not session.user %}
+                            <li><a href="{{ url_for('login') }}">Log In</a></li>
+                        {% endif %}
                     </ul>
 
                 </div>
