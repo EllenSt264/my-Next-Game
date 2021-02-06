@@ -46,9 +46,33 @@ nav {
     top: 64px;
 }
 
+#desktop-profile {
+    top: -64px;
+    left: -15px;
+    background-color: #0e232f;
+    width: 150px;
+}
 
+#desktop-profile li a {
+    font-size: 18px;
+    padding: 5px 0;
+    color: #00e5ff;
+}
+
+#desktop-profile li:hover,
+#desktop-profile a:hover,
+#desktop-profile li:focus,
+#desktop-profile a:focus {
+    background-color: #0e232f;
+    color: purple;
+}
 
 /* ---------------------------------------------- Custom Side Nav */
+
+/*
+The following code is based upon this source: 
+"https://www.w3schools.com/cssref/pr_class_display.asp"
+*/
 
 .my-sidenav {
     height: 100%;

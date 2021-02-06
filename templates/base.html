@@ -24,7 +24,16 @@
                     <a href="{{ url_for('home') }}" class="brand-logo center">
                         <img src="{{ url_for('static', filename='img/odin_logo.png') }}" alt="Website/navbar brand logo">
                     </a>
-                    <!-- Mobile hamburger icon --> 
+
+                    {% if session.user %}
+                    <!-- Desktop profile dropdown -->
+                    <a href="#" data-target="desktop-profile" class="dropdown-trigger right hide-on-med-and-down" 
+                    style="margin-right:25px;">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    {% endif %}
+
+                    <!-- Mobile hamburger --> 
                     <a href="#" class="my-sidenav-trigger right hide-on-large-only"
                     style="margin-right:25px;">
                         <!-- <i class="fas fa-bars" style="font-size: 2.5rem"></i> -->
@@ -34,12 +43,12 @@
                             <span></span>
                         </div>
                     </a>
-                    <!-- Mobile profile icon -->
+                    <!-- Mobile profile -->
                     <a href="#" data-target="mobile-nav-profile" class="sidenav-trigger right" 
                     style="margin-right:20px;">
                         <i class="fas fa-user" style="font-size: 2.5rem"></i>
                     </a>
-                    
+                
                     <ul class="left hide-on-med-and-down">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li><a href="{{ url_for('games') }}">Platform</a></li>
@@ -49,10 +58,32 @@
                         <li><a href="#">Community Reviews</a></li>
                         <li><a href="{{ url_for('login') }}">Log In</a></li>
                     </ul>
+
                 </div>
             </nav>
         </div>
         
+        <!-- Desktop profile dropdown -->
+        <ul class="dropdown-content" id="desktop-profile"  data-constrainwidth="false">
+            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        </ul>
+    
+
+        <!-- Profile mobile side-nav -->
+        <ul class="sidenav" id="mobile-nav-profile">
+            <li id="closeSideNav">
+                <a href="#!"><i class="fas fa-times sidenav-close right"></i></a>
+            </li>
+            {% if session.user %}
+                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+
         <!-- Mobile side-navbar -->
         <ul class="my-sidenav" id="mobile-nav">
             <li><a href="{{ url_for('games') }}">Platform</a></li>
@@ -60,15 +91,6 @@
             <li><a href="#">Community Reviews</a></li>
         </ul>
 
-        <!-- Profile mobile side-nav -->
-        <ul class="sidenav" id="mobile-nav-profile">
-            <li id="closeSideNav">
-                <a href="#!"><i class="fas fa-times sidenav-close right"></i></a>
-            </li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        </ul>
     </header>
 
     <!-- Flash messages -->

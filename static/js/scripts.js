@@ -21,7 +21,7 @@ $(document).ready(function () {
         });
 
         $('.sidenav').sidenav({ edge: "right" });
-        
+
         $('.carousel.carousel-slider').carousel({
             fullWidth: true, 
             indicators: true,
@@ -31,6 +31,7 @@ $(document).ready(function () {
         setInterval(function() {
             $('.carousel').carousel('next');
         }, 8000)
-        $('.dropdown-trigger').dropdown();
+
+        $('.dropdown-trigger').dropdown({constrainWidth: false});
     })
 });
