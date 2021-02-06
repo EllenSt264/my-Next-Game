@@ -20,7 +20,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="{{ url_for('home') }}" class="brand-logo center">
-                        <img src="static/img/odin_logo.png" alt="Website/navbar brand logo">
+                        <img src="{{ url_for('static', filename='img/odin_logo.png') }}" alt="Website/navbar brand logo">
                     </a>
                     <a href="#" data-target="mobile-nav-profile" class="sidenav-trigger right" 
                     style="margin-right:20px;">
@@ -83,7 +83,7 @@
             <h1 class="center-align title front-font">myNext Game</h1>
             <div class="col s12 ">
                 <video class="hero-vid" autoplay muted loop>
-                    <source src="static/video/synthwave.mp4" type="video/mp4">
+                    <source src="{{ url_for('static', filename='video/synthwave.mp4') }}" type="video/mp4">
                 </video>
             </div>
         </section>
