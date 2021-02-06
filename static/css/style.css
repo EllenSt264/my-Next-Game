@@ -132,6 +132,58 @@ nav {
     }
 }
 
+
+/* ---------------------------------------------- Profile */
+
+@media(min-width: 601px) {
+    .profile-header {
+        display: flex;
+    }
+    .rank {
+        position: relative;
+    }
+    .rank h5 {
+        position: absolute; 
+        bottom: 20px; 
+        right: 5px;
+    }
+    ul li {
+        text-align: right;
+        margin: 5px 0;
+    }
+}
+
+@media(max-width: 601px) {
+    .profile-header {
+        text-align: right;
+    }
+    .profile-header h2 {
+        font-size: 36px;
+    }
+    .rank h5 {
+        font-size: 15px;
+    }
+    ul li {
+        display: inline;
+        text-align: center;
+    }
+    #firstItem {
+        margin-left: 8.3333333333%;
+    }
+}
+
+@media(max-width: 385px) {
+    ul .row li {
+        display: list-item;
+        width: 100% !important;
+        text-align: right;
+        margin: 5px 0;
+    }
+    #firstItem {
+        margin-left: 0;
+    }
+}
+
 /* ---------------------------------------------- Global paddding */
 
 .py-5 {
