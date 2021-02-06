@@ -122,6 +122,10 @@ nav {
     text-transform: uppercase;
 }
 
+.account-form p {
+    font-size: 18px;
+}
+
 @media(min-height: 1090px) {
     .account-form {
         margin-top: 15vh;
