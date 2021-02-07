@@ -32,7 +32,9 @@
                         <li><a href="collapsible.html">Bestsellers</a></li>
                         <li><a href="mobile.html">Award Winners</a></li>
                         <li><a href="mobile.html">Our Favourites</a></li>
-                        <li><a href="mobile.html">Your List</a></li>
+                        {% if session.user %}
+                            <li><a href="mobile.html">Your List</a></li>
+                        {% endif %}
                     </ul>
                     <!-- Search bar -->
                     <form>
