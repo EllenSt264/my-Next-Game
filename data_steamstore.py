@@ -44,8 +44,8 @@ def get_dict_items():
                 game_link.append(v1)
 
 
-#  Need to create a function to update the database
-#  Index number should be updated.
+# ------------------------------ Add data to database
+
 def add_to_db():
     for i in range(len(game_title)):
         bestseller = {
@@ -64,5 +64,31 @@ def add_to_db():
             mongo.db.steam_bestsellers.insert_one(bestseller)
 
 
+# ------------------------------ Update data in database
+
+def update_db():
+    for i in range(len(game_title)):
+        bestseller = {
+            "game_index": game_index[i],
+            "game_title": game_title[i],
+            "game_top_tags": game_tags[i],
+            "game_img_sm": game_img_sm[i],
+            "platform_tags_pc": platform_pc[i],
+            "game_link": game_link[i]
+        }
+
+        mongo.db.steam_bestsellers.update(
+            {"game_index": game_index[i]}, bestseller)
+
+
+# ------------------------------ Remove all data from database
+
+def remove_db_data():
+    mongo.db.steam_bestsellers.remove({})
+
+
 get_dict_items()
+update_db()
 add_to_db()
+remove_db_data()
+
