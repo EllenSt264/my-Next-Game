@@ -116,7 +116,7 @@ def add_to_dict():
                          for x in range(len(steam_bestsellers))}
 
     # ---------------------------------------- Add game tags
-    for x in range(len(steam_bestsellers)):
+    for x in range(len(game_tags)):
         upd_dict = {"tags": game_tags[x]}
         steam_bestsellers[x].update(upd_dict)
 
