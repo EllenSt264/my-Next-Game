@@ -3,7 +3,7 @@ body {
     padding: 0;
     font-family: "BlenderPro-Bold";
     background-color: #221424;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* ---------------------------------------------- Navbar */
@@ -191,6 +191,14 @@ The following code is based upon this source:
     letter-spacing: 5px;
 }
 
+.list-of-games .card-content {
+    padding: 0;
+}
+
+.list-of-games .card-content .card-title {
+    padding-top: 5px;
+}
+
 /* ---------------------------------------------- Games carousel */
 
 .carousel {
@@ -305,11 +313,24 @@ The following code is based upon this source:
     padding-bottom: 25px;
 }
 
+.px-5 {
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
 .flashes {
     line-height: 2;
 }
 
 /* ---------------------------------------------- Media Queries */
+
+@media (max-width: 1745px) and (min-width: 992px) {
+    #gameCard1,
+    #gameCard2 {
+        width: 50%;
+        margin-left: 0;
+    }
+}
 
 @media (max-width:905px) {
     .nav-wrapper a {
