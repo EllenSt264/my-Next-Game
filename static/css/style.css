@@ -390,6 +390,15 @@ The following code is based upon this source:
     line-height: 2;
 }
 
+.grow {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+    transform: scale(1.2);
+}
+
 /* ---------------------------------------------- Media Queries */
 
 @media (max-width: 1745px) and (min-width: 992px) {
