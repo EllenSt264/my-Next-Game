@@ -1,6 +1,8 @@
 $(document).ready(function () {
     $(window).on("load", function() {
 
+        $('.parallax').parallax();
+
         $('#hamburger').click(function(){
             $(this).toggleClass('open');
             $("#mobile-nav").css("width", "90%")
