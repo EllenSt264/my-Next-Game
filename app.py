@@ -21,7 +21,8 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("base.html")
+    bestsellers = list(mongo.db.steam_bestsellers.find())
+    return render_template("base.html", bestsellers=bestsellers)
 
 
 @app.route("/games")

@@ -152,32 +152,34 @@
         <!-- Games List -->
         <div class="section list-of-games">
             <div class="row">
+
                 <!-- Best Sellers -->
                 <div class="col s12 m6 l4 offset-l1">
                     <!-- Heading -->
                     <h3 class="center-align py-5">Best Sellers</h3>
                     <!-- Games -->
+                    {% for bestseller in bestsellers %}
                         <div class="card horizontal">
                             <div class="card-image">
-                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg" 
+                                <img src="{{ bestseller.game_img_sm }}" 
                                 alt="" class="responsive-img activator">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-content">
                                     <div class="card-title activator">
                                         <span>
-                                            Game Title
+                                            {{ bestseller.game_title }}
                                         </span>
                                         <i class="material-icons right">more_vert</i></span>
                                     </div>
                                     <p class="grey-text">
-                                        Action, Adventure
+                                        {{ bestseller.game_top_tags }}
                                     </p>
                                 </div>
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title">
-                                    <strong>Game Title</strong>
+                                    <strong>{{ bestseller.game_title }}</strong>
                                     <i class="material-icons right">close</i>
                                 </span>
                                 <p>
@@ -186,7 +188,9 @@
                                 </p>
                             </div>
                         </div>
+                    {% endfor %}
                 </div>
+                
                 <!-- Award Winners -->
                 <div class="col s12 m6 l4 offset-l2">
                     <!-- Heading -->
