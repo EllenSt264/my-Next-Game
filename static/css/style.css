@@ -191,12 +191,34 @@ The following code is based upon this source:
     letter-spacing: 5px;
 }
 
-.list-of-games .card-content {
-    padding: 0;
+.list-of-games h3 {
+    margin-top: 0;
+    padding-top: 0;
 }
 
-.list-of-games .card-content .card-title {
-    padding-top: 5px;
+.list-of-games .card.horizontal {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.list-of-games .card-content {
+    padding: 5px 0 0 5px;
+}
+
+.list-of-games .card-title {
+    font-size: 22px;
+    text-shadow: 1px 1px 1px rgba(34, 29, 29, 0.5);
+    margin: 0 !important;   /* remove margin */
+}
+
+@media (min-width: 601px) {
+    .list-of-games .row {
+        background: linear-gradient(
+            to right,
+            #352138 50%,
+            #2a1a2c 50%
+        )
+    }
 }
 
 /* ---------------------------------------------- Games carousel */
@@ -236,6 +258,52 @@ The following code is based upon this source:
 .secondary-nav input#search {
     width: 200px;
     margin-right: 50px;
+}
+
+/* ---------------------------------------------- Game Cards */
+
+.card.horizontal {
+    border: 3px solid #f608ea;
+}
+
+/* The code below is based upon this source:
+"https://codersblock.com/blog/creating-glow-effects-with-css/" */
+
+.glow {
+    width: 100%;
+    height: 100%;
+    box-shadow:
+        inset 0 0 50px #fff,      /* inner white */
+        inset 0 0 45px rgba(255, 0, 255, 0.596),   /* inner left magenta short */
+        inset 0 0 45px rgba(0, 255, 255, 0.432),  /* inner right cyan short */
+        inset 0 0 300px rgba(255, 0, 255, 0.596),  /* inner left magenta broad */
+        inset 0 0 300px rgba(0, 255, 255, 0.432), /* inner right cyan broad */
+        0 0 10px rgba(255, 255, 255, 0.658),            /* outer white */
+        0 0 25px #f0f,        /* outer left magenta */
+        0 0 45px rgba(230, 111, 0, 0.808);         /* outer right orange */
+}
+
+.purple-linear-gradient {
+    background: linear-gradient(
+        to bottom,
+        #3d1c8f48,
+        #3d1c8f48 50%,
+        #09072394 50%,
+        #09072394
+    );
+    background-size: 100% 15px;
+}
+
+.black-magenta {
+    background-color: #5e2e65;
+}
+
+.game-card-title {
+    font-family: "BlenderPro-Heavy";
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color:white;
+    font-size:18px;
 }
 
 /* ---------------------------------------------- Register page */

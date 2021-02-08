@@ -150,53 +150,40 @@
         </div>
 
         <!-- Games List -->
-        <div class="section list-of-games">
-            <div class="row">
-
+        <div class="section list-of-games" style="padding-top: 50px;">
+            <div class="row py-5">
                 <!-- Best Sellers -->
                 <div class="col s12 m6 l4 offset-l1">
                     <!-- Heading -->
-                    <h3 class="center-align py-5">Best Sellers</h3>
+                    <h3 class="center-align white-text">Best Sellers</h3>
                     <!-- Games -->
                     {% for bestseller in bestsellers %}
-                        <div class="card horizontal">
+                        <div class="card horizontal purple-linear-gradient glow">
                             <div class="card-image">
                                 <img src="{{ bestseller.game_img_sm }}" 
-                                alt="" class="responsive-img activator">
+                                alt="" class="responsive-img">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-content">
-                                    <div class="card-title activator">
+                                    <div class="card-title">
                                         <span>
                                             {{ bestseller.game_title }}
                                         </span>
-                                        <i class="material-icons right">more_vert</i></span>
                                     </div>
-                                    <p class="grey-text">
-                                        {{ bestseller.game_top_tags }}
+                                    <p>
+                                        {{ bestseller.game_top_tags|join('') }}
                                     </p>
                                 </div>
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title">
-                                    <strong>{{ bestseller.game_title }}</strong>
-                                    <i class="material-icons right">close</i>
-                                </span>
-                                <p>
-                                    Here is some more information about
-                                    this product that is only revealed once clicked on.
-                                </p>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-                
                 <!-- Award Winners -->
                 <div class="col s12 m6 l4 offset-l2">
                     <!-- Heading -->
-                    <h3 class="center-align py-5">Award Winners</h3>
+                    <h3 class="center-align white-text">Award Winners</h3>
                     <!-- Games -->
-                    <div class="card horizontal">
+                    <div class="card horizontal purple-linear-gradient glow">
                         <div class="card-image">
                             <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg" 
                             alt="" class="responsive-img activator">
