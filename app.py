@@ -1,7 +1,8 @@
 import os
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, pymongo
+from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
@@ -21,8 +22,26 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
-    bestsellers = list(mongo.db.steam_bestsellers.find())
-    return render_template("base.html", bestsellers=bestsellers)
+
+    # The following code is based of this source:
+    # "https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9"
+
+    # Grab bestsellers from db
+    bestsellers = mongo.db.steam_bestsellers.find().sort(
+        "game_index", pymongo.ASCENDING)
+
+    # Initalize pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 8
+    offset = ((page - 1) * per_page)
+    total = bestsellers.count()
+    pagination_bestsellers = bestsellers[offset: offset + per_page]
+    pagination = Pagination(page=page, per_page=per_page,
+                            total=total, css_framework='materialize')
+
+    return render_template(
+        "base.html", bestsellers=pagination_bestsellers, pagination=pagination)
 
 
 @app.route("/games")
