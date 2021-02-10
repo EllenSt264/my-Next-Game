@@ -178,43 +178,37 @@
                         </div>
                     {% endfor %}
                     <ul class="pagination center-align">
-                        {{ pagination.links }}
+                        {{ pagination_bs.links }}
                     </ul>
                 </div>
+
                 <!-- Award Winners -->
                 <div class="col s12 m6 l4 offset-l2">
                     <!-- Heading -->
                     <h3 class="center-align white-text">Award Winners</h3>
                     <!-- Games -->
-                    <div class="card horizontal purple-linear-gradient glow grow">
-                        <div class="card-image">
-                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg" 
-                            alt="" class="responsive-img activator">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <div class="card-title activator">
-                                    <span>
-                                        Game Title
-                                    </span>
-                                    <i class="material-icons right">more_vert</i></span>
+                    {% for awardwinner in awardwinners %}
+                        <div class="card horizontal purple-linear-gradient glow grow">
+                            <div class="card-image">
+                                <img src="{{ awardwinner.winner_img }}" alt="" class="responsive-img">
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-content">
+                                    <div class="card-title">
+                                        <span>
+                                            {{ awardwinner.winner }}
+                                        </span>
+                                    </div>
+                                    <p>
+                                        {{ awardwinner.award_title }}
+                                    </p>
                                 </div>
-                                <p class="grey-text">
-                                    Action, Adventure
-                                </p>
                             </div>
                         </div>
-                        <div class="card-reveal">
-                            <span class="card-title">
-                                <strong>Game Title</strong>
-                                <i class="material-icons right">close</i>
-                            </span>
-                            <p>
-                                Here is some more information about
-                                this product that is only revealed once clicked on.
-                            </p>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    <ul class="pagination center-align">
+                        {{ pagination_aw.links }}
+                    </ul>
                 </div>
             </div>
         </div>

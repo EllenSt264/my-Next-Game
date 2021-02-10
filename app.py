@@ -30,18 +30,37 @@ def home():
     bestsellers = mongo.db.steam_bestsellers.find().sort(
         "game_index", pymongo.ASCENDING)
 
+    # Grab award winners from db
+    awardwinners = mongo.db.steam_awardwinners.find().sort(
+        "game_index", pymongo.ASCENDING)
+
     # Initalize pagination
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 8
     offset = ((page - 1) * per_page)
-    total = bestsellers.count()
+
+    # Bestsellers
+    total_bestsellers = bestsellers.count()
     pagination_bestsellers = bestsellers[offset: offset + per_page]
-    pagination = Pagination(page=page, per_page=per_page,
-                            total=total, css_framework='materialize')
+
+    pagination_for_bestsellers = Pagination(
+        page=page, per_page=per_page, total=total_bestsellers, 
+        css_framework='materialize')
+
+    # Award winners
+    total_awards = awardwinners.count()
+    pagination_awardwinners = awardwinners[offset: offset + per_page]
+
+    pagination_for_awardwinners = Pagination(
+        page=page, per_page=per_page, total=total_awards,
+        css_framework='materialize')
 
     return render_template(
-        "base.html", bestsellers=pagination_bestsellers, pagination=pagination)
+        "base.html", bestsellers=pagination_bestsellers,
+        awardwinners=pagination_awardwinners,
+        pagination_bs=pagination_for_bestsellers, 
+        pagination_aw=pagination_for_awardwinners)
 
 
 @app.route("/games")

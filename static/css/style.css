@@ -4,6 +4,7 @@ body {
     font-family: "BlenderPro-Bold";
     background-color: #221424;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 /* ---------------------------------------------- Navbar */
@@ -203,6 +204,11 @@ The following code is based upon this source:
 
 .list-of-games .card-content {
     padding: 5px 0 0 5px;
+}
+
+.list-of-games .card-image img {
+    width: 184px;
+    height: 69px;
 }
 
 .list-of-games .card-title {
