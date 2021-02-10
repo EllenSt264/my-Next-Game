@@ -21,6 +21,13 @@ bs_game_links = []
 bs_game_images = []
 bs_game_platform_tags = []
 
+# -------------- Award Winners
+
+award_year = []
+award_title = []
+award_winner = []
+award_winner_img = []
+
 
 # ------------------------------------------- Scrape data function
 
@@ -99,11 +106,6 @@ def scrape_bestsellers():
 
 # --------------------------------------------------------------- AWARD WINNERS
 
-award_year = []
-award_title = []
-award_winner = []
-award_winner_img = []
-
 def scrape_awardwinners():
     awardwinners_url = "https://store.steampowered.com/steamawards"
 
@@ -159,6 +161,8 @@ scrape_awardwinners()
 
 steam_bestsellers = {}
 
+steam_award_winners = {}
+
 # ----------------------------------------------------------------- BESTSELLERS
 
 
@@ -201,8 +205,47 @@ def add_to_bestsellers_dict():
         steam_bestsellers[x].update(upd_dict)
 
 
+# --------------------------------------------------------------- AWARD WINNERS
+
+def create_awardwinners_index():
+    global steam_award_winners
+
+    game_index = []
+    {game_index.append(x) for x in range(len(award_title))}
+
+    # ---------------------------------------- Add game indices
+    for x in range(len(game_index)):
+        steam_award_winners = dict.fromkeys(game_index, {})
+
+
+def add_to_awardwinners_dict():
+    global steam_award_winners
+
+    # ---------------------------------------- Add award year
+    steam_award_winners = {x: {"year": award_year[x]}
+                           for x in range(len(steam_award_winners))}
+
+    # ---------------------------------------- Add award title
+    for x in range(len(steam_award_winners)):
+        upd_dict = {"award": award_title[x]}
+        steam_award_winners[x].update(upd_dict)
+
+    # ---------------------------------------- Add award winner
+    for x in range(len(steam_award_winners)):
+        upd_dict = {"winner": award_winner[x]}
+        steam_award_winners[x].update(upd_dict)
+
+        # ---------------------------------------- Add game img
+        for x in range(len(steam_award_winners)):
+            upd_dict = {"img": award_winner_img[x]}
+            steam_award_winners[x].update(upd_dict)
+
+
 # ------------------ Call add to dictionary functions
 
 
 create_bestsellers_index()
 add_to_bestsellers_dict()
+
+create_awardwinners_index()
+add_to_awardwinners_dict()
