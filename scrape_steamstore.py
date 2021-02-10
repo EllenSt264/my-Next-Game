@@ -99,13 +99,30 @@ def scrape_bestsellers():
 
 # --------------------------------------------------------------- AWARD WINNERS
 
-# new func goes here
+def scrape_awardwinners():
+    awardwinners_url = "https://store.steampowered.com/steamawards"
+
+    source = requests.get(awardwinners_url)
+    soup = BeautifulSoup(source.text, "html.parser")
+
+    for item in soup.select(".vote_category_bg"):
+        for div in item.select(".vote_category_ctn"):
+            for i in div.findAll("div"):
+
+                for category in i.select(".category_title_ctn"):
+
+                    award_year = category.select(".category_year")
+                    award_title = category.select(".category_title")
+
+                    print(award_year, award_title)
 
 
 # ------------------ Call scrape data functions
 
 
 scrape_bestsellers()
+
+scrape_awardwinners()
 
 
 # ------------------------------------------- Dictionaries
