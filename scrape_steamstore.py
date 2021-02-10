@@ -99,6 +99,10 @@ def scrape_bestsellers():
 
 # --------------------------------------------------------------- AWARD WINNERS
 
+award_year = []
+award_title = []
+award_winner = []
+
 def scrape_awardwinners():
     awardwinners_url = "https://store.steampowered.com/steamawards"
 
@@ -109,12 +113,30 @@ def scrape_awardwinners():
         for div in item.select(".vote_category_ctn"):
             for i in div.findAll("div"):
 
+                # ----------------------------------------- Award Category
+
                 for category in i.select(".category_title_ctn"):
 
-                    award_year = category.select(".category_year")
-                    award_title = category.select(".category_title")
+                    aw_year = category.select(".category_year")
+                    aw_title = category.select(".category_title")
 
-                    print(award_year, award_title)
+                    # Award Year
+                    for year in aw_year:
+                        award_year.append(year.text)
+
+                    # Award title
+                    for title in aw_title:
+                        award_title.append(title.text)
+
+                # ----------------------------------------- Winner Category
+
+                for category in i.select(".category_winner_ctn"):
+
+                    for winner in category.select(".winner_description_ctn"):
+
+                        winner = winner.select(".winner_name")
+                        for game in winner:
+                            award_winner.append(game.string)
 
 
 # ------------------ Call scrape data functions
@@ -124,6 +146,7 @@ scrape_bestsellers()
 
 scrape_awardwinners()
 
+print(award_winner)
 
 # ------------------------------------------- Dictionaries
 
