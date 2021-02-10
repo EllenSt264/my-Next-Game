@@ -28,6 +28,48 @@ award_title = []
 award_winner = []
 award_winner_img = []
 
+# -------------- Action Games
+
+action_titles = []
+action_tags = []
+action_links = []
+action_images = []
+action_platform_tags = []
+
+# -------------- Adventure Games
+
+adventure_titles = []
+adventure_tags = []
+adventure_links = []
+adventure_images = []
+adventure_platform_tags = []
+
+
+# -------------- RPG Games
+
+RPG_titles = []
+RPG_tags = []
+RPG_links = []
+RPG_images = []
+RPG_platform_tags = []
+
+
+# -------------- Strategy Games
+
+strategy_titles = []
+strategy_tags = []
+strategy_links = []
+strategy_images = []
+strategy_platform_tags = []
+
+# -------------- Multiplayer Games
+
+multiplayer_titles = []
+multiplayer_tags = []
+multiplayer_links = []
+multiplayer_images = []
+multiplayer_platform_tags = []
+
 
 # ------------------------------------------- Scrape data function
 
@@ -150,18 +192,402 @@ def scrape_awardwinners():
                             award_winner.append(game.string)
 
 
-# ------------------ Call scrape data functions
+# ----------------------------------------------------------------- GAME GENRES
 
+
+# ----------------------------------------------------------------- ACTION
+
+def scrape_action_games():
+    url = "https://store.steampowered.com/tags/en/Action/#p=0&tab=TopRated"
+
+    source = requests.get(url)
+    soup = BeautifulSoup(source.text, "html.parser")
+
+    # ---------- Page 1
+
+    for item in soup.select("#TopRatedRows"):
+        for a in item.findAll("a", href=True):
+
+            # -------------------------------------------------- Game Titles
+
+            title = a.select(".tab_item_name")
+            for i in title:
+                title_string = i.string
+                action_titles.append(title_string)
+
+            # -------------------------------------------------- Game Tags
+
+            top_tags = a.select(".tab_item_top_tags span")
+
+            tags = []
+            tags_inner = []
+
+            for items in top_tags:
+                for tag in items:
+                    tag_item = tag.string
+
+                    if tag_item[0] == ",":
+                        tags_inner.append(tag_item)
+                    else:
+                        tag_item = [tag_item]
+                        tags.append(tag_item)
+
+            for i in tags_inner:
+                tags[0].append(i)
+
+            for tag in tags:
+                action_tags.append(tag)
+
+            # -------------------------------------------------- Game Links
+
+            link = a.attrs["href"]
+            action_links.append(link)
+
+            # -------------------------------------------------- Game img src
+
+            game_image = a.select(".tab_item_cap_img")
+            for image in game_image:
+                action_images.append(image["src"])
+
+            # ---------------------------------------------- Game platform tags
+
+            pc_platforms = a.select(".tab_item_details .platform_img")
+
+            platforms = str(pc_platforms)
+
+            for i in range(len(platforms)):
+                platforms = platforms.replace(
+                    '<span class="platform_img win"></span>', 'win'
+                ).replace(
+                    '<span class="platform_img mac"></span>', 'mac'
+                ).replace(
+                    '<span class="platform_img linux"></span>', 'linux'
+                )
+
+            action_platform_tags.append(platforms)
+
+# ----------------------------------------------------------------- ADVENTURE
+
+
+def scrape_adventure_games():
+    url = "https://store.steampowered.com/tags/en/Adventure/#p=0&tab=TopRated"
+
+    source = requests.get(url)
+    soup = BeautifulSoup(source.text, "html.parser")
+
+    # ---------- Page 1
+
+    for item in soup.select("#TopRatedRows"):
+        for a in item.findAll("a", href=True):
+
+            # -------------------------------------------------- Game Titles
+
+            title = a.select(".tab_item_name")
+            for i in title:
+                title_string = i.string
+                adventure_titles.append(title_string)
+
+            # -------------------------------------------------- Game Tags
+
+            top_tags = a.select(".tab_item_top_tags span")
+
+            tags = []
+            tags_inner = []
+
+            for items in top_tags:
+                for tag in items:
+                    tag_item = tag.string
+
+                    if tag_item[0] == ",":
+                        tags_inner.append(tag_item)
+                    else:
+                        tag_item = [tag_item]
+                        tags.append(tag_item)
+
+            for i in tags_inner:
+                tags[0].append(i)
+
+            for tag in tags:
+                adventure_tags.append(tag)
+
+            # -------------------------------------------------- Game Links
+
+            link = a.attrs["href"]
+            adventure_links.append(link)
+
+            # -------------------------------------------------- Game img src
+
+            game_image = a.select(".tab_item_cap_img")
+            for image in game_image:
+                adventure_images.append(image["src"])
+
+            # ---------------------------------------------- Game platform tags
+
+            pc_platforms = a.select(".tab_item_details .platform_img")
+
+            platforms = str(pc_platforms)
+
+            for i in range(len(platforms)):
+                platforms = platforms.replace(
+                    '<span class="platform_img win"></span>', 'win'
+                ).replace(
+                    '<span class="platform_img mac"></span>', 'mac'
+                ).replace(
+                    '<span class="platform_img linux"></span>', 'linux'
+                )
+
+            adventure_platform_tags.append(platforms)
+
+# ----------------------------------------------------------------- RPG
+
+
+def scrape_RPG_games():
+    url = "https://store.steampowered.com/tags/en/RPG/#p=0&tab=TopRated"
+
+    source = requests.get(url)
+    soup = BeautifulSoup(source.text, "html.parser")
+
+    # ---------- Page 1
+
+    for item in soup.select("#TopRatedRows"):
+        for a in item.findAll("a", href=True):
+
+            # -------------------------------------------------- Game Titles
+
+            title = a.select(".tab_item_name")
+            for i in title:
+                title_string = i.string
+                RPG_titles.append(title_string)
+
+            # -------------------------------------------------- Game Tags
+
+            top_tags = a.select(".tab_item_top_tags span")
+
+            tags = []
+            tags_inner = []
+
+            for items in top_tags:
+                for tag in items:
+                    tag_item = tag.string
+
+                    if tag_item[0] == ",":
+                        tags_inner.append(tag_item)
+                    else:
+                        tag_item = [tag_item]
+                        tags.append(tag_item)
+
+            for i in tags_inner:
+                tags[0].append(i)
+
+            for tag in tags:
+                RPG_tags.append(tag)
+
+            # -------------------------------------------------- Game Links
+
+            link = a.attrs["href"]
+            RPG_links.append(link)
+
+            # -------------------------------------------------- Game img src
+
+            game_image = a.select(".tab_item_cap_img")
+            for image in game_image:
+                RPG_images.append(image["src"])
+
+            # ---------------------------------------------- Game platform tags
+
+            pc_platforms = a.select(".tab_item_details .platform_img")
+
+            platforms = str(pc_platforms)
+
+            for i in range(len(platforms)):
+                platforms = platforms.replace(
+                    '<span class="platform_img win"></span>', 'win'
+                ).replace(
+                    '<span class="platform_img mac"></span>', 'mac'
+                ).replace(
+                    '<span class="platform_img linux"></span>', 'linux'
+                )
+
+            RPG_platform_tags.append(platforms)
+
+# ----------------------------------------------------------------- STRATEGY
+
+
+def scrape_strategy_games():
+    url = "https://store.steampowered.com/tags/en/Strategy/#p=0&tab=TopRated"
+
+    source = requests.get(url)
+    soup = BeautifulSoup(source.text, "html.parser")
+
+    # ---------- Page 1
+
+    for item in soup.select("#TopRatedRows"):
+        for a in item.findAll("a", href=True):
+
+            # -------------------------------------------------- Game Titles
+
+            title = a.select(".tab_item_name")
+            for i in title:
+                title_string = i.string
+                strategy_titles.append(title_string)
+
+            # -------------------------------------------------- Game Tags
+
+            top_tags = a.select(".tab_item_top_tags span")
+
+            tags = []
+            tags_inner = []
+
+            for items in top_tags:
+                for tag in items:
+                    tag_item = tag.string
+
+                    if tag_item[0] == ",":
+                        tags_inner.append(tag_item)
+                    else:
+                        tag_item = [tag_item]
+                        tags.append(tag_item)
+
+            for i in tags_inner:
+                tags[0].append(i)
+
+            for tag in tags:
+                strategy_tags.append(tag)
+
+            # -------------------------------------------------- Game Links
+
+            link = a.attrs["href"]
+            strategy_links.append(link)
+
+            # -------------------------------------------------- Game img src
+
+            game_image = a.select(".tab_item_cap_img")
+            for image in game_image:
+                strategy_images.append(image["src"])
+
+            # ---------------------------------------------- Game platform tags
+
+            pc_platforms = a.select(".tab_item_details .platform_img")
+
+            platforms = str(pc_platforms)
+
+            for i in range(len(platforms)):
+                platforms = platforms.replace(
+                    '<span class="platform_img win"></span>', 'win'
+                ).replace(
+                    '<span class="platform_img mac"></span>', 'mac'
+                ).replace(
+                    '<span class="platform_img linux"></span>', 'linux'
+                )
+
+            strategy_platform_tags.append(platforms)
+
+# ----------------------------------------------------------------- MULTIPLAYER
+
+
+def scrape_multiplayer_games():
+    url = "https://store.steampowered.com/tags/en/Massively%20Multiplayer/#p=0&tab=TopRated"
+
+    source = requests.get(url)
+    soup = BeautifulSoup(source.text, "html.parser")
+
+    # ---------- Page 1
+
+    for item in soup.select("#TopRatedRows"):
+        for a in item.findAll("a", href=True):
+
+            # -------------------------------------------------- Game Titles
+
+            title = a.select(".tab_item_name")
+            for i in title:
+                title_string = i.string
+                multiplayer_titles.append(title_string)
+
+            # -------------------------------------------------- Game Tags
+
+            top_tags = a.select(".tab_item_top_tags span")
+
+            tags = []
+            tags_inner = []
+
+            for items in top_tags:
+                for tag in items:
+                    tag_item = tag.string
+
+                    if tag_item[0] == ",":
+                        tags_inner.append(tag_item)
+                    else:
+                        tag_item = [tag_item]
+                        tags.append(tag_item)
+
+            for i in tags_inner:
+                tags[0].append(i)
+
+            for tag in tags:
+                multiplayer_tags.append(tag)
+
+            # -------------------------------------------------- Game Links
+
+            link = a.attrs["href"]
+            multiplayer_links.append(link)
+
+            # -------------------------------------------------- Game img src
+
+            game_image = a.select(".tab_item_cap_img")
+            for image in game_image:
+                multiplayer_images.append(image["src"])
+
+            # ---------------------------------------------- Game platform tags
+
+            pc_platforms = a.select(".tab_item_details .platform_img")
+
+            platforms = str(pc_platforms)
+
+            for i in range(len(platforms)):
+                platforms = platforms.replace(
+                    '<span class="platform_img win"></span>', 'win'
+                ).replace(
+                    '<span class="platform_img mac"></span>', 'mac'
+                ).replace(
+                    '<span class="platform_img linux"></span>', 'linux'
+                )
+
+            multiplayer_platform_tags.append(platforms)
+
+
+# ------------------ Call scrape data functions
 
 scrape_bestsellers()
 
 scrape_awardwinners()
+
+scrape_action_games()
+
+scrape_adventure_games()
+
+scrape_RPG_games()
+
+scrape_strategy_games()
+
+scrape_multiplayer_games()
 
 # ------------------------------------------- Dictionaries
 
 steam_bestsellers = {}
 
 steam_award_winners = {}
+
+steam_action_games = {}
+
+steam_adventure_games = {}
+
+steam_RPG_games = {}
+
+steam_strategy_games = {}
+
+steam_multiplayer_games = {}
+
+# ------------------------------------------- Add to dictionaries
 
 # ----------------------------------------------------------------- BESTSELLERS
 
@@ -241,6 +667,216 @@ def add_to_awardwinners_dict():
             steam_award_winners[x].update(upd_dict)
 
 
+# ---------------------------------------------------------------- ACTION GAMES
+
+
+def create_action_games_index():
+    global steam_action_games
+
+    game_index = []
+    {game_index.append(x) for x in range(len(action_titles))}
+
+    # ---------------------------------------- Add game indices
+    for x in range(len(game_index)):
+        steam_action_games = dict.fromkeys(game_index, {})
+
+
+def add_to_action_games_dict():
+    global steam_action_games
+
+    # ---------------------------------------- Add game titles
+    steam_action_games = {x: {"title": action_titles[x]}
+                         for x in range(len(steam_action_games))}
+
+    # ---------------------------------------- Add game tags
+    for x in range(len(action_tags)):
+        upd_dict = {"tags": action_tags[x]}
+        steam_action_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game images
+    for x in range(len(steam_action_games)):
+        upd_dict = {"image": action_images[x]}
+        steam_action_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game platform tags
+    for x in range(len(steam_action_games)):
+        upd_dict = {"pc_platform_tags": action_platform_tags[x]}
+        steam_action_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game links
+    for x in range(len(steam_action_games)):
+        upd_dict = {"game_link": action_links[x]}
+        steam_action_games[x].update(upd_dict)
+
+
+# ------------------------------------------------------------- ADVENTURE GAMES
+
+
+def create_adventure_games_index():
+    global steam_adventure_games
+
+    game_index = []
+    {game_index.append(x) for x in range(len(adventure_titles))}
+
+    # ---------------------------------------- Add game indices
+    for x in range(len(game_index)):
+        steam_adventure_games = dict.fromkeys(game_index, {})
+
+
+def add_to_adventure_games_dict():
+    global steam_adventure_games
+
+    # ---------------------------------------- Add game titles
+    steam_adventure_games = {x: {"title": adventure_titles[x]}
+                         for x in range(len(steam_adventure_games))}
+
+    # ---------------------------------------- Add game tags
+    for x in range(len(adventure_tags)):
+        upd_dict = {"tags": adventure_tags[x]}
+        steam_adventure_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game images
+    for x in range(len(steam_adventure_games)):
+        upd_dict = {"image": adventure_images[x]}
+        steam_adventure_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game platform tags
+    for x in range(len(steam_adventure_games)):
+        upd_dict = {"pc_platform_tags": adventure_platform_tags[x]}
+        steam_adventure_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game links
+    for x in range(len(steam_adventure_games)):
+        upd_dict = {"game_link": adventure_links[x]}
+        steam_adventure_games[x].update(upd_dict)
+
+
+# ------------------------------------------------------------------- RPG GAMES
+
+
+def create_RPG_games_index():
+    global steam_RPG_games
+
+    game_index = []
+    {game_index.append(x) for x in range(len(RPG_titles))}
+
+    # ---------------------------------------- Add game indices
+    for x in range(len(game_index)):
+        steam_RPG_games = dict.fromkeys(game_index, {})
+
+
+def add_to_RPG_games_dict():
+    global steam_RPG_games
+
+    # ---------------------------------------- Add game titles
+    steam_RPG_games = {x: {"title": RPG_titles[x]}
+                         for x in range(len(steam_RPG_games))}
+
+    # ---------------------------------------- Add game tags
+    for x in range(len(RPG_tags)):
+        upd_dict = {"tags": RPG_tags[x]}
+        steam_RPG_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game images
+    for x in range(len(steam_RPG_games)):
+        upd_dict = {"image": RPG_images[x]}
+        steam_RPG_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game platform tags
+    for x in range(len(steam_RPG_games)):
+        upd_dict = {"pc_platform_tags": RPG_platform_tags[x]}
+        steam_RPG_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game links
+    for x in range(len(steam_RPG_games)):
+        upd_dict = {"game_link": RPG_links[x]}
+        steam_RPG_games[x].update(upd_dict)
+
+
+# ------------------------------------------------------------- STRATEGY GAMES
+
+
+def create_strategy_games_index():
+    global steam_strategy_games
+
+    game_index = []
+    {game_index.append(x) for x in range(len(strategy_titles))}
+
+    # ---------------------------------------- Add game indices
+    for x in range(len(game_index)):
+        steam_strategy_games = dict.fromkeys(game_index, {})
+
+
+def add_to_strategy_games_dict():
+    global steam_strategy_games
+
+    # ---------------------------------------- Add game titles
+    steam_strategy_games = {x: {"title": strategy_titles[x]}
+                         for x in range(len(steam_strategy_games))}
+
+    # ---------------------------------------- Add game tags
+    for x in range(len(strategy_tags)):
+        upd_dict = {"tags": strategy_tags[x]}
+        steam_strategy_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game images
+    for x in range(len(steam_strategy_games)):
+        upd_dict = {"image": strategy_images[x]}
+        steam_strategy_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game platform tags
+    for x in range(len(steam_strategy_games)):
+        upd_dict = {"pc_platform_tags": strategy_platform_tags[x]}
+        steam_strategy_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game links
+    for x in range(len(steam_strategy_games)):
+        upd_dict = {"game_link": strategy_links[x]}
+        steam_strategy_games[x].update(upd_dict)
+
+
+# ----------------------------------------------------------- MULTIPLAYER GAMES
+
+
+def create_multiplayer_games_index():
+    global steam_multiplayer_games
+
+    game_index = []
+    {game_index.append(x) for x in range(len(multiplayer_titles))}
+
+    # ---------------------------------------- Add game indices
+    for x in range(len(game_index)):
+        steam_multiplayer_games = dict.fromkeys(game_index, {})
+
+
+def add_to_multiplayer_games_dict():
+    global steam_multiplayer_games
+
+    # ---------------------------------------- Add game titles
+    steam_multiplayer_games = {x: {"title": multiplayer_titles[x]}
+                         for x in range(len(steam_multiplayer_games))}
+
+    # ---------------------------------------- Add game tags
+    for x in range(len(multiplayer_tags)):
+        upd_dict = {"tags": multiplayer_tags[x]}
+        steam_multiplayer_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game images
+    for x in range(len(steam_multiplayer_games)):
+        upd_dict = {"image": multiplayer_images[x]}
+        steam_multiplayer_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game platform tags
+    for x in range(len(steam_multiplayer_games)):
+        upd_dict = {"pc_platform_tags": multiplayer_platform_tags[x]}
+        steam_multiplayer_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add game links
+    for x in range(len(steam_multiplayer_games)):
+        upd_dict = {"game_link": multiplayer_links[x]}
+        steam_multiplayer_games[x].update(upd_dict)
+
+
 # ------------------ Call add to dictionary functions
 
 
@@ -249,3 +885,18 @@ add_to_bestsellers_dict()
 
 create_awardwinners_index()
 add_to_awardwinners_dict()
+
+create_action_games_index()
+add_to_action_games_dict()
+
+create_adventure_games_index()
+add_to_adventure_games_dict()
+
+create_RPG_games_index()
+add_to_RPG_games_dict()
+
+create_strategy_games_index()
+add_to_strategy_games_dict()
+
+create_multiplayer_games_index()
+add_to_multiplayer_games_dict()
