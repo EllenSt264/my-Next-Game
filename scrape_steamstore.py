@@ -102,6 +102,7 @@ def scrape_bestsellers():
 award_year = []
 award_title = []
 award_winner = []
+award_winner_img = []
 
 def scrape_awardwinners():
     awardwinners_url = "https://store.steampowered.com/steamawards"
@@ -132,6 +133,14 @@ def scrape_awardwinners():
 
                 for category in i.select(".category_winner_ctn"):
 
+                    # ------------------------------ Winner img
+
+                    winner_img = category.select(".category_winner_capsule")
+                    for img in winner_img:
+                        award_winner_img.append(img["src"])
+
+                    # ------------------------------ Winner name
+
                     for winner in category.select(".winner_description_ctn"):
 
                         winner = winner.select(".winner_name")
@@ -145,8 +154,6 @@ def scrape_awardwinners():
 scrape_bestsellers()
 
 scrape_awardwinners()
-
-print(award_winner)
 
 # ------------------------------------------- Dictionaries
 
