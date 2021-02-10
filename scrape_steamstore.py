@@ -1,12 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-bestsellers_url = "https://store.steampowered.com/games/#p=0&tab=TopSellers"
-
-source = requests.get(bestsellers_url)
-soup = BeautifulSoup(source.text, "html.parser")
-
-
 """
 Some of the code is based upon the following sources:
 
@@ -18,14 +12,28 @@ Some of the code is based upon the following sources:
 """
 
 # -------------------------------------------------- Data lists
-game_titles = []
-game_tags = []
-game_links = []
-game_images = []
-game_platform_tags = []
+
+# -------------- Bestsellers
+
+bs_game_titles = []
+bs_game_tags = []
+bs_game_links = []
+bs_game_images = []
+bs_game_platform_tags = []
 
 
-def scrape_data():
+# ------------------------------------------- Scrape data function
+
+
+# ----------------------------------------------------------------- BESTSELLERS
+
+
+def scrape_bestsellers():
+
+    bestsellers_url = "https://store.steampowered.com/games/#p=0&tab=TopSellers"
+
+    source = requests.get(bestsellers_url)
+    soup = BeautifulSoup(source.text, "html.parser")
 
     for item in soup.select("#TopSellersRows"):
         for a in item.findAll("a", href=True):
@@ -35,7 +43,7 @@ def scrape_data():
             title = a.select(".tab_item_name")
             for i in title:
                 title_string = i.string
-                game_titles.append(title_string)
+                bs_game_titles.append(title_string)
 
             # -------------------------------------------------- Game Tags
 
@@ -58,18 +66,18 @@ def scrape_data():
                 tags[0].append(i)
 
             for tag in tags:
-                game_tags.append(tag)
+                bs_game_tags.append(tag)
 
             # -------------------------------------------------- Game Links
 
             link = a.attrs["href"]
-            game_links.append(link)
+            bs_game_links.append(link)
 
             # -------------------------------------------------- Game img src
 
             game_image = a.select(".tab_item_cap_img")
             for image in game_image:
-                game_images.append(image["src"])
+                bs_game_images.append(image["src"])
 
             # ---------------------------------------------- Game platform tags
 
@@ -86,55 +94,68 @@ def scrape_data():
                     '<span class="platform_img linux"></span>', 'linux'
                 )
 
-            game_platform_tags.append(platforms)
+            bs_game_platform_tags.append(platforms)
 
 
-scrape_data()
+# --------------------------------------------------------------- AWARD WINNERS
+
+# new func goes here
 
 
-# -------------------------------------------------- Dictionary
+# ------------------ Call scrape data functions
+
+
+scrape_bestsellers()
+
+
+# ------------------------------------------- Dictionaries
 
 steam_bestsellers = {}
 
+# ----------------------------------------------------------------- BESTSELLERS
 
-def create_index():
+
+def create_bestsellers_index():
     global steam_bestsellers
 
     game_index = []
-    {game_index.append(x) for x in range(len(game_titles))}
+    {game_index.append(x) for x in range(len(bs_game_titles))}
 
     # ---------------------------------------- Add game indices
     for x in range(len(game_index)):
         steam_bestsellers = dict.fromkeys(game_index, {})
 
 
-def add_to_dict():
+def add_to_bestsellers_dict():
     global steam_bestsellers
 
     # ---------------------------------------- Add game titles
-    steam_bestsellers = {x: {"title": game_titles[x]}
+    steam_bestsellers = {x: {"title": bs_game_titles[x]}
                          for x in range(len(steam_bestsellers))}
 
     # ---------------------------------------- Add game tags
-    for x in range(len(game_tags)):
-        upd_dict = {"tags": game_tags[x]}
+    for x in range(len(bs_game_tags)):
+        upd_dict = {"tags": bs_game_tags[x]}
         steam_bestsellers[x].update(upd_dict)
 
     # ---------------------------------------- Add game images
     for x in range(len(steam_bestsellers)):
-        upd_dict = {"image": game_images[x]}
+        upd_dict = {"image": bs_game_images[x]}
         steam_bestsellers[x].update(upd_dict)
 
     # ---------------------------------------- Add game platform tags
     for x in range(len(steam_bestsellers)):
-        upd_dict = {"pc_platform_tags": game_platform_tags[x]}
+        upd_dict = {"pc_platform_tags": bs_game_platform_tags[x]}
         steam_bestsellers[x].update(upd_dict)
 
     # ---------------------------------------- Add game links
     for x in range(len(steam_bestsellers)):
-        upd_dict = {"game_link": game_links[x]}
+        upd_dict = {"game_link": bs_game_links[x]}
         steam_bestsellers[x].update(upd_dict)
 
 
-create_index()
-add_to_dict()
+# ------------------ Call add to dictionary functions
+
+
+create_bestsellers_index()
+add_to_bestsellers_dict()
