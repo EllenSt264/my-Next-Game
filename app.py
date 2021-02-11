@@ -76,6 +76,14 @@ def games():
     return render_template("games_template.html")
 
 
+# ===================
+# Game pages template
+# ===================
+
+@app.route("/pc-games")
+def pc_games():
+    return render_template("pc-games.html")
+
 # ==========
 # Register
 # ==========
