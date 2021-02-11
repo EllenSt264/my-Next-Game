@@ -353,6 +353,12 @@ The following code is based upon this source:
     font-size:18px;
 }
 
+#gameCard1 img,
+#gameCard2 img {
+    width: 432px;
+    height: 200px;
+}
+
 /* ---------------------------------------------- Register page */
 
 .account-title {

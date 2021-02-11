@@ -91,7 +91,24 @@ def pc_games():
 
 @app.route("/action-games")
 def action_games():
-    return render_template("action_games.html")
+
+    action_games = mongo.db.steam_action_games.find()
+
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 8
+    offset = ((page - 1) * per_page)
+
+    total = action_games.count()
+    pagination_action_games = action_games[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "action_games.html", action_games=pagination_action_games, 
+        pagination=pagination)
 
 
 # ==========
