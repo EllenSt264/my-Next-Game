@@ -48,11 +48,23 @@
                     style="margin-right:20px;">
                         <i class="fas fa-user" style="font-size: 2.5rem"></i>
                     </a>
+
+                    <!-- Genre Dropdown -->
+                    <ul class="dropdown-content" id="GenreDropdown">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Adventure</a></li>
+                        <li><a href="#">RPG</a></li>
+                        <li><a href="#">Strategy</a></li>
+                        <li><a href="#">Multiplayer</a></li>
+                    </ul>
                 
                     <ul class="left hide-on-med-and-down">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li><a href="{{ url_for('pc_games') }}">Platform</a></li>
-                        <li><a href="{{ url_for('games') }}">Genre</a></li>
+                        <li>
+                            <a href="{{ url_for('pc_games') }}" class="dropdown-trigger" 
+                            data-target="GenreDropdown">Genre</a>
+                        </li>
                     </ul>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="#">Community Reviews</a></li>

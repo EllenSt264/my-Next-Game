@@ -47,26 +47,28 @@ nav {
     top: 64px;
 }
 
-#desktop-profile {
-    top: -64px;
-    left: -15px;
+nav .dropdown-content {
     background-color: #0e232f;
-    width: 150px;
 }
 
-#desktop-profile li a {
+nav .dropdown-content a {
+    color: #00e5ff;
     font-size: 18px;
     padding: 5px 0;
-    color: #00e5ff;
 }
 
-#desktop-profile li:hover,
-#desktop-profile a:hover,
-#desktop-profile li:focus,
-#desktop-profile a:focus {
+nav .dropdown-content li:hover,
+nav .dropdown-content a:hover,
+nav .dropdown-content li:focus,
+nav .dropdown-content a:focus {
     background-color: #0e232f;
     color: purple;
 }
+
+#desktop-profile {
+    left: -50px;
+    width: 150px;
+} 
 
 /* ---------------------------------------------- Custom Side Nav */
 

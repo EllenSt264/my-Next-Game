@@ -34,6 +34,6 @@ $(document).ready(function () {
             $('.carousel').carousel('next');
         }, 8000)
 
-        $('.dropdown-trigger').dropdown({constrainWidth: false});
+        $('.dropdown-trigger').dropdown({constrainWidth: false, hover: true, coverTrigger: false});
     })
 });
