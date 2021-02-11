@@ -1,7 +1,114 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" type="text/css" 
+    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <!-- Materialize CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_fonts.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <title>my Next Game</title>
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <!-- Navbar logo -->
+                    <a href="{{ url_for('home') }}" class="brand-logo center">
+                        <img src="{{ url_for('static', filename='img/odin_logo.png') }}" alt="Website/navbar brand logo">
+                    </a>
 
-{% block content %}
-    <!-- Today's Picks Carousel -->
+                    {% if session.user %}
+                    <!-- Desktop profile dropdown -->
+                    <a href="#" data-target="desktop-profile" class="dropdown-trigger right hide-on-med-and-down" 
+                    style="margin-right:25px;">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    {% endif %}
+
+                    <!-- Mobile hamburger --> 
+                    <a href="#" class="my-sidenav-trigger right hide-on-large-only"
+                    style="margin-right:25px;">
+                        <!-- <i class="fas fa-bars" style="font-size: 2.5rem"></i> -->
+                        <div id="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                    <!-- Mobile profile -->
+                    <a href="#" data-target="mobile-nav-profile" class="sidenav-trigger right" 
+                    style="margin-right:20px;">
+                        <i class="fas fa-user" style="font-size: 2.5rem"></i>
+                    </a>
+                
+                    <ul class="left hide-on-med-and-down">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('pc_games') }}">Platform</a></li>
+                        <li><a href="{{ url_for('games') }}">Genre</a></li>
+                    </ul>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#">Community Reviews</a></li>
+                        {% if not session.user %}
+                            <li><a href="{{ url_for('login') }}">Log In</a></li>
+                        {% endif %}
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Desktop profile dropdown -->
+        <ul class="dropdown-content" id="desktop-profile"  data-constrainwidth="false">
+            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        </ul>
+    
+
+        <!-- Profile mobile side-nav -->
+        <ul class="sidenav" id="mobile-nav-profile">
+            <li id="closeSideNav">
+                <a href="#!"><i class="fas fa-times sidenav-close right"></i></a>
+            </li>
+            {% if session.user %}
+                <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+
+        <!-- Mobile side-navbar -->
+        <ul class="my-sidenav" id="mobile-nav">
+            <li><a href="{{ url_for('games') }}">Platform</a></li>
+            <li><a href="{{ url_for('games') }}">Genre</a></li>
+            <li><a href="#">Community Reviews</a></li>
+        </ul>
+
+    </header>
+
+    <!-- Flash messages -->
+    <section>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flashes">
+                        <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+
+    <!-- Carousel -->
     <section class="py-5">
         <h3 class="title carousel-title center">Today's Picks</h3>
         <div class="carousel carousel-slider center">
@@ -16,141 +123,70 @@
             </div>
         </div>
     </section>
-    
-    <!-- Secondary navbar -->
+
+    <!-- Secondary Navbar -->
     <section class="py-5">
-            <nav class="secondary-nav nav-extended">
-                <div class="nav-wrapper">
-                    <a href="" class="dropdown-trigger left hide-on-large-only" data-target="dropdownNav"
+        <nav class="secondary-nav nav-extended">
+            <div class="nav-wrapper">
+                <a href="" class="dropdown-trigger left hide-on-large-only" data-target="dropdownNav"
                     style="margin-left: 15px;">
-                        <i class="fas fa-bars"></i>
-                    </a>
-                    <!-- Main nav -->
-                    <ul class="left hide-on-med-and-down">
-                        <li><a href="sass.html">Platform</a></li>
-                        <li><a href="badges.html">Genre</a></li>
-                        <li><a href="collapsible.html">Bestsellers</a></li>
-                        <li><a href="mobile.html">Award Winners</a></li>
-                        <li><a href="mobile.html">Our Favourites</a></li>
-                        {% if session.user %}
-                            <li><a href="mobile.html">Your List</a></li>
-                        {% endif %}
-                    </ul>
-                    <!-- Search bar -->
-                    <div class="col s12 m6">
-                        <form>
-                            <div class="input-field right">
-                                <input id="search" type="search" required>
-                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                <i class="material-icons">close</i>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="nav-content">
-                    <div class="card-panel">
-                        <div class="valign-wrapper">
-                            <div class="valign">
-                                <span class="white-text">
-                                    Show 
-                                    <a href="#">all games</a>
-                                </span>
-                            </div>
+                    <i class="fas fa-bars"></i>
+                </a>
+                <!-- Main nav -->
+                <ul class="left hide-on-med-and-down">
+                    <li><a href="sass.html">Platform</a></li>
+                    <li><a href="badges.html">Genre</a></li>
+                    <li><a href="collapsible.html">Bestsellers</a></li>
+                    <li><a href="mobile.html">Award Winners</a></li>
+                    <li><a href="mobile.html">Our Favourites</a></li>
+                    {% if session.user %}
+                    <li><a href="mobile.html">Your List</a></li>
+                    {% endif %}
+                </ul>
+                <!-- Search bar -->
+                <div class="col s12 m6">
+                    <form>
+                        <div class="input-field right">
+                            <input id="search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </nav>
-            <!-- Mobile navbar -->
-            <ul class="dropdown-content" id="dropdownNav">
-                <li><a href="sass.html">Platform</a></li>
-                <li><a href="badges.html">Genre</a></li>
-                <li><a href="collapsible.html">Bestsellers</a></li>
-                <li><a href="mobile.html">Award Winners</a></li>
-                <li><a href="mobile.html">Our Favourites</a></li>
-                <li><a href="mobile.html">Your List</a></li>
-            </ul>
-
-    </section>
-
-    <!-- Game results -->
-    <section>
-        <div class="row">
-            <!-- Game 1 -->
-            <div class="col m12 l5 offset-l1" id="gameCard1">
+            </div>
+            <div class="nav-content">
                 <div class="card-panel">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg" alt=""
-                                class="responsive-img activator">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <div class="card-title activator">
-                                    <span>
-                                        Game Title
-                                    </span>
-                                    <i class="material-icons right">more_vert</i></span>
-                                </div>
-                                <p class="grey-text">
-                                    Windows
-                                </p>
-                                <p class="grey-text">
-                                    XBOX, Playstation
-                                </p>
-                                <p class="grey-text">
-                                    Action, Adventure
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title">
-                                <strong>Game Title</strong>
-                                <i class="material-icons right">close</i>
+                    <div class="valign-wrapper">
+                        <div class="valign">
+                            <span class="white-text">
+                                Show
+                                <a href="#">all games</a>
                             </span>
-                            <p>
-                                Here is some more information about
-                                this product that is only revealed once clicked on.
-                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Game 2 -->
-            <div class="col m12 l5" id="gameCard2">
-                <div class="card-panel">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/261550/header.jpg" alt=""
-                                class="responsive-img activator">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <div class="card-title activator">
-                                    <span>
-                                        Game Title
-                                    </span>
-                                    <i class="material-icons right">more_vert</i></span>
-                                </div>
-                                <p class="grey-text">
-                                    Windows
-                                </p>
-                                <p class="grey-text">
-                                    Action, RPG, Simulation, Strategy, Early Access
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Card Title<i
-                                    class="material-icons right">close</i></span>
-                            <p>
-                                Here is some more information about
-                                this product that is only revealed once clicked on.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </nav>
+        <!-- Mobile navbar -->
+        <ul class="dropdown-content" id="dropdownNav">
+            <li><a href="sass.html">Platform</a></li>
+            <li><a href="badges.html">Genre</a></li>
+            <li><a href="collapsible.html">Bestsellers</a></li>
+            <li><a href="mobile.html">Award Winners</a></li>
+            <li><a href="mobile.html">Our Favourites</a></li>
+            <li><a href="mobile.html">Your List</a></li>
+        </ul>
+    
     </section>
 
-{% endblock %}
+    {% block content %}
+    {% endblock %}
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
