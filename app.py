@@ -77,12 +77,22 @@ def games():
 
 
 # ===================
-# Game pages template
+# PC Games
 # ===================
 
 @app.route("/pc-games")
 def pc_games():
     return render_template("pc-games.html")
+
+
+# ===================
+# Action Games
+# ===================
+
+@app.route("/action-games")
+def action_games():
+    return render_template("action_games.html")
+
 
 # ==========
 # Register
