@@ -266,6 +266,45 @@ The following code is based upon this source:
     margin-right: 50px;
 }
 
+.secondary-nav .nav-content div.card-panel {
+    background-color: #261f33; 
+    height: 35px; 
+    margin: 0; 
+    padding:0;
+}
+
+.secondary-nav .nav-content div.valign-wrapper {
+    font-family: "BlenderPro-Book";
+    height:100%; 
+    width: 100%;
+}
+
+.secondary-nav .nav-content div.valign-wrapper a {
+    text-decoration: underline;
+    color: #66c0f4;
+    display: contents;
+}
+
+.secondary-nav .nav-content div.valign {
+    margin-left: 10px; 
+    margin-bottom: 10px;
+}
+
+@media (max-width: 992px) {
+    .secondary-nav .nav-content div.valign {
+        margin-bottom: 20px;
+    }
+    .secondary-nav .nav-content div.valign a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    .secondary-nav .nav-content div.valign {
+        margin-bottom: 30px;
+    }
+}
+
 /* ---------------------------------------------- Game Cards */
 
 .card.horizontal {
