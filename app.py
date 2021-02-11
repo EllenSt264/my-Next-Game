@@ -19,6 +19,10 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# ==========
+# Homepage
+# ==========
+
 @app.route("/")
 @app.route("/home")
 def home():
@@ -63,10 +67,18 @@ def home():
         pagination_aw=pagination_for_awardwinners)
 
 
+# ===================
+# Game pages template
+# ===================
+
 @app.route("/games")
 def games():
     return render_template("games_template.html")
 
+
+# ==========
+# Register
+# ==========
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -100,6 +112,10 @@ def register():
     return render_template("register.html")
 
 
+# ==========
+# Login
+# ==========
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -124,12 +140,20 @@ def login():
     return render_template("login.html")
 
 
+# ==========
+# Profile
+# ==========
+
 @app.route("/profile/<username>")
 def profile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     return render_template("profile.html", username=username)
 
+
+# ==========
+# Logout
+# ==========
 
 @app.route("/logout")
 def logout():
