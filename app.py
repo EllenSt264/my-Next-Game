@@ -112,7 +112,7 @@ def action_games():
 
 
 # ===================
-# Action Games
+# Adventure Games
 # ===================
 
 @app.route("/adventure-games")
@@ -133,6 +133,31 @@ def adventure_games():
 
     return render_template(
         "adventure_games.html", adventure_games=pagination_adventure_games, 
+        pagination=pagination)
+
+
+# ===================
+# Strategy Games
+# ===================
+
+@app.route("/strategy-games")
+def strategy_games():
+    strategy_games = mongo.db.steam_strategy_games.find()
+
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 8
+    offset = ((page - 1) * per_page)
+
+    total = strategy_games.count()
+    pagination_strategy_games = strategy_games[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "strategy_games.html", strategy_games=pagination_strategy_games, 
         pagination=pagination)
 
 
