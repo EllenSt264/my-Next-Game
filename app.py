@@ -137,6 +137,31 @@ def adventure_games():
 
 
 # ===================
+# RPG Games
+# ===================
+
+@app.route("/RPG-games")
+def RPG_games():
+    RPG_games = mongo.db.steam_RPG_games.find()
+
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 8
+    offset = ((page - 1) * per_page)
+
+    total = RPG_games.count()
+    pagination_RPG_games = RPG_games[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "RPG_games.html", RPG_games=pagination_RPG_games, 
+        pagination=pagination)
+
+
+# ===================
 # Strategy Games
 # ===================
 
