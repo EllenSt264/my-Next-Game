@@ -161,6 +161,31 @@ def strategy_games():
         pagination=pagination)
 
 
+# ===================
+# Multiplayer Games
+# ===================
+
+@app.route("/multiplayer-games")
+def multiplayer_games():
+    multiplayer_games = mongo.db.steam_multiplayer_games.find()
+
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 8
+    offset = ((page - 1) * per_page)
+
+    total = multiplayer_games.count()
+    pagination_multiplayer_games = multiplayer_games[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "multiplayer_games.html", multiplayer_games=pagination_multiplayer_games, 
+        pagination=pagination)
+
+
 # ==========
 # Register
 # ==========
