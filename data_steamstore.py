@@ -189,7 +189,7 @@ def add_awardwinners_to_db():
             "winner_img": award_winner_img[i]
         }
         # Stop data from being re-added if it already exists
-        existing_data = mongo.db.steam_bestsellers.find_one(
+        existing_data = mongo.db.steam_awardwinners.find_one(
             {"winner": award_winner[i]}
         )
         if not existing_data:
