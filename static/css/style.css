@@ -450,6 +450,7 @@ The following code is based upon this source:
 
 .grow:hover {
     transform: scale(1.2);
+    z-index: 10;
 }
 
 /* ---------------------------------------------- Media Queries */
