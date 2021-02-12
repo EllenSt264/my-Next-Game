@@ -9,6 +9,9 @@ Some of the code is based upon the following sources:
 
     Getting href tags with BeautifulSoup:
     "https://stackoverflow.com/questions/43814754/python-beautifulsoup-how-to-get-href-attribute-of-a-element/43814994"
+
+    Looping through a list or URLs with BeautifulSoup:
+    "https://stackoverflow.com/questions/44823278/how-to-loop-through-a-list-of-urls-for-web-scraping-with-beautifulsoup"
 """
 
 # -------------------------------------------------- Data lists
@@ -34,6 +37,7 @@ action_titles = []
 action_tags = []
 action_links = []
 action_images = []
+action_full_images = []
 action_platform_tags = []
 
 # -------------- Adventure Games
@@ -42,6 +46,7 @@ adventure_titles = []
 adventure_tags = []
 adventure_links = []
 adventure_images = []
+adventure_full_images = []
 adventure_platform_tags = []
 
 
@@ -51,6 +56,7 @@ RPG_titles = []
 RPG_tags = []
 RPG_links = []
 RPG_images = []
+RPG_full_images = []
 RPG_platform_tags = []
 
 
@@ -60,6 +66,7 @@ strategy_titles = []
 strategy_tags = []
 strategy_links = []
 strategy_images = []
+strategy_full_images = []
 strategy_platform_tags = []
 
 # -------------- Multiplayer Games
@@ -68,6 +75,7 @@ multiplayer_titles = []
 multiplayer_tags = []
 multiplayer_links = []
 multiplayer_images = []
+multiplayer_full_images = []
 multiplayer_platform_tags = []
 
 
@@ -266,6 +274,20 @@ def scrape_action_games():
 
             action_platform_tags.append(platforms)
 
+
+# Scrape data from the each game page
+def scrape_action_game_page():
+    url_list = action_links
+
+    for url in url_list:
+        source = requests.get(url)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        for item in soup.select("#game_highlights"):
+            image = item.select(".game_header_image_full")
+            for i in image:
+                action_full_images.append(i["src"])
+
 # ----------------------------------------------------------------- ADVENTURE
 
 
@@ -337,6 +359,20 @@ def scrape_adventure_games():
                 )
 
             adventure_platform_tags.append(platforms)
+
+
+# Scrape data from the each game page
+def scrape_adventure_game_page():
+    url_list = adventure_links
+
+    for url in url_list:
+        source = requests.get(url)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        for item in soup.select("#game_highlights"):
+            image = item.select(".game_header_image_full")
+            for i in image:
+                adventure_full_images.append(i["src"])
 
 # ----------------------------------------------------------------- RPG
 
@@ -410,6 +446,20 @@ def scrape_RPG_games():
 
             RPG_platform_tags.append(platforms)
 
+
+# Scrape data from the each game page
+def scrape_RPG_game_page():
+    url_list = RPG_links
+
+    for url in url_list:
+        source = requests.get(url)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        for item in soup.select("#game_highlights"):
+            image = item.select(".game_header_image_full")
+            for i in image:
+                RPG_full_images.append(i["src"])
+
 # ----------------------------------------------------------------- STRATEGY
 
 
@@ -481,6 +531,20 @@ def scrape_strategy_games():
                 )
 
             strategy_platform_tags.append(platforms)
+
+
+# Scrape data from the each game page
+def scrape_strategy_game_page():
+    url_list = strategy_links
+
+    for url in url_list:
+        source = requests.get(url)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        for item in soup.select("#game_highlights"):
+            image = item.select(".game_header_image_full")
+            for i in image:
+                strategy_full_images.append(i["src"])
 
 # ----------------------------------------------------------------- MULTIPLAYER
 
@@ -555,6 +619,20 @@ def scrape_multiplayer_games():
             multiplayer_platform_tags.append(platforms)
 
 
+# Scrape data from the each game page
+def scrape_multiplayer_game_page():
+    url_list = multiplayer_links
+
+    for url in url_list:
+        source = requests.get(url)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        for item in soup.select("#game_highlights"):
+            image = item.select(".game_header_image_full")
+            for i in image:
+                multiplayer_full_images.append(i["src"])
+
+
 # ------------------ Call scrape data functions
 
 scrape_bestsellers()
@@ -562,14 +640,19 @@ scrape_bestsellers()
 scrape_awardwinners()
 
 scrape_action_games()
+scrape_action_game_page()
 
 scrape_adventure_games()
+scrape_adventure_game_page()
 
 scrape_RPG_games()
+scrape_RPG_game_page()
 
 scrape_strategy_games()
+scrape_strategy_game_page()
 
 scrape_multiplayer_games()
+scrape_multiplayer_game_page()
 
 # ------------------------------------------- Dictionaries
 
@@ -686,16 +769,21 @@ def add_to_action_games_dict():
 
     # ---------------------------------------- Add game titles
     steam_action_games = {x: {"title": action_titles[x]}
-                         for x in range(len(steam_action_games))}
+                          for x in range(len(steam_action_games))}
 
     # ---------------------------------------- Add game tags
     for x in range(len(action_tags)):
         upd_dict = {"tags": action_tags[x]}
         steam_action_games[x].update(upd_dict)
 
-    # ---------------------------------------- Add game images
+    # ---------------------------------------- Add game image
     for x in range(len(steam_action_games)):
         upd_dict = {"image": action_images[x]}
+        steam_action_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add full game image
+    for x in range(len(steam_action_games)):
+        upd_dict = {"full_image": action_full_images[x]}
         steam_action_games[x].update(upd_dict)
 
     # ---------------------------------------- Add game platform tags
@@ -735,9 +823,14 @@ def add_to_adventure_games_dict():
         upd_dict = {"tags": adventure_tags[x]}
         steam_adventure_games[x].update(upd_dict)
 
-    # ---------------------------------------- Add game images
+    # ---------------------------------------- Add game image
     for x in range(len(steam_adventure_games)):
         upd_dict = {"image": adventure_images[x]}
+        steam_adventure_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add full game image
+    for x in range(len(steam_adventure_games)):
+        upd_dict = {"full_image": adventure_full_images[x]}
         steam_adventure_games[x].update(upd_dict)
 
     # ---------------------------------------- Add game platform tags
@@ -777,9 +870,14 @@ def add_to_RPG_games_dict():
         upd_dict = {"tags": RPG_tags[x]}
         steam_RPG_games[x].update(upd_dict)
 
-    # ---------------------------------------- Add game images
+    # ---------------------------------------- Add game image
     for x in range(len(steam_RPG_games)):
         upd_dict = {"image": RPG_images[x]}
+        steam_RPG_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add full game image
+    for x in range(len(steam_RPG_games)):
+        upd_dict = {"full_image": RPG_full_images[x]}
         steam_RPG_games[x].update(upd_dict)
 
     # ---------------------------------------- Add game platform tags
@@ -819,9 +917,14 @@ def add_to_strategy_games_dict():
         upd_dict = {"tags": strategy_tags[x]}
         steam_strategy_games[x].update(upd_dict)
 
-    # ---------------------------------------- Add game images
+    # ---------------------------------------- Add game image
     for x in range(len(steam_strategy_games)):
         upd_dict = {"image": strategy_images[x]}
+        steam_strategy_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add full game image
+    for x in range(len(steam_strategy_games)):
+        upd_dict = {"full_image": strategy_full_images[x]}
         steam_strategy_games[x].update(upd_dict)
 
     # ---------------------------------------- Add game platform tags
@@ -861,9 +964,14 @@ def add_to_multiplayer_games_dict():
         upd_dict = {"tags": multiplayer_tags[x]}
         steam_multiplayer_games[x].update(upd_dict)
 
-    # ---------------------------------------- Add game images
+    # ---------------------------------------- Add game image
     for x in range(len(steam_multiplayer_games)):
         upd_dict = {"image": multiplayer_images[x]}
+        steam_multiplayer_games[x].update(upd_dict)
+
+    # ---------------------------------------- Add full game image
+    for x in range(len(steam_multiplayer_games)):
+        upd_dict = {"full_image": multiplayer_full_images[x]}
         steam_multiplayer_games[x].update(upd_dict)
 
     # ---------------------------------------- Add game platform tags
