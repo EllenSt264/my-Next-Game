@@ -22,6 +22,7 @@ bs_game_titles = []
 bs_game_tags = []
 bs_game_links = []
 bs_game_images = []
+bs_game_images_full = []
 bs_game_platform_tags = []
 
 # -------------- Award Winners
@@ -153,6 +154,19 @@ def scrape_bestsellers():
 
             bs_game_platform_tags.append(platforms)
 
+
+# Scrape data from the each game page
+def scrape_bestseller_game_page():
+    url_list = bs_game_links
+
+    for url in url_list:
+        source = requests.get(url)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        for item in soup.select("#game_highlights"):
+            image = item.select(".game_header_image_full")
+            for i in image:
+                bs_game_images_full.append(i["src"])
 
 # --------------------------------------------------------------- AWARD WINNERS
 
@@ -636,6 +650,7 @@ def scrape_multiplayer_game_page():
 # ------------------ Call scrape data functions
 
 scrape_bestsellers()
+scrape_bestseller_game_page()
 
 scrape_awardwinners()
 
@@ -702,6 +717,11 @@ def add_to_bestsellers_dict():
     for x in range(len(steam_bestsellers)):
         upd_dict = {"image": bs_game_images[x]}
         steam_bestsellers[x].update(upd_dict)
+
+    # ---------------------------------------- Add full game image
+    for x in range(len(steam_bestsellers)):
+        upd_dict = {"full_image": bs_game_images_full[x]}
+        steam_action_games[x].update(upd_dict)
 
     # ---------------------------------------- Add game platform tags
     for x in range(len(steam_bestsellers)):
