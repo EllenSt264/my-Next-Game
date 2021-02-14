@@ -170,6 +170,7 @@ def scrape_bestseller_game_page():
 
 # --------------------------------------------------------------- AWARD WINNERS
 
+
 def scrape_awardwinners():
     awardwinners_url = "https://store.steampowered.com/steamawards"
 
@@ -685,6 +686,8 @@ steam_strategy_games = {}
 
 steam_multiplayer_games = {}
 
+pc_games = {}
+
 # ------------------------------------------- Add to dictionaries
 
 # ----------------------------------------------------------------- BESTSELLERS
@@ -836,7 +839,7 @@ def add_to_adventure_games_dict():
 
     # ---------------------------------------- Add game titles
     steam_adventure_games = {x: {"title": adventure_titles[x]}
-                         for x in range(len(steam_adventure_games))}
+                             for x in range(len(steam_adventure_games))}
 
     # ---------------------------------------- Add game tags
     for x in range(len(adventure_tags)):
@@ -883,7 +886,7 @@ def add_to_RPG_games_dict():
 
     # ---------------------------------------- Add game titles
     steam_RPG_games = {x: {"title": RPG_titles[x]}
-                         for x in range(len(steam_RPG_games))}
+                       for x in range(len(steam_RPG_games))}
 
     # ---------------------------------------- Add game tags
     for x in range(len(RPG_tags)):
@@ -930,7 +933,7 @@ def add_to_strategy_games_dict():
 
     # ---------------------------------------- Add game titles
     steam_strategy_games = {x: {"title": strategy_titles[x]}
-                         for x in range(len(steam_strategy_games))}
+                            for x in range(len(steam_strategy_games))}
 
     # ---------------------------------------- Add game tags
     for x in range(len(strategy_tags)):
@@ -977,7 +980,7 @@ def add_to_multiplayer_games_dict():
 
     # ---------------------------------------- Add game titles
     steam_multiplayer_games = {x: {"title": multiplayer_titles[x]}
-                         for x in range(len(steam_multiplayer_games))}
+                               for x in range(len(steam_multiplayer_games))}
 
     # ---------------------------------------- Add game tags
     for x in range(len(multiplayer_tags)):
@@ -1005,12 +1008,7 @@ def add_to_multiplayer_games_dict():
         steam_multiplayer_games[x].update(upd_dict)
 
 
-
 # -------------------------------------------------------------- ALL PC GAMES
-
-
-pc_games = {}
-
 
 # ------------------ Add all games to lists
 
@@ -1088,24 +1086,25 @@ pc_games_links.extend(strategy_links)
 pc_games_links.extend(multiplayer_links)
 
 
+# ------------------ Add to dictionary
 
 def create_pc_games_index():
-        global pc_games
-        game_index = []
+    global pc_games
+    game_index = []
 
-        bestsellers = len(steam_bestsellers)
-        action = len(steam_action_games)
-        adventure = len(steam_adventure_games)
-        rpg = len(steam_RPG_games)
-        strategy = len(steam_strategy_games)
-        multiplayer = len(steam_multiplayer_games)
+    bestsellers = len(steam_bestsellers)
+    action = len(steam_action_games)
+    adventure = len(steam_adventure_games)
+    rpg = len(steam_RPG_games)
+    strategy = len(steam_strategy_games)
+    multiplayer = len(steam_multiplayer_games)
 
-        total = int(
-            bestsellers + action + adventure + rpg + strategy + multiplayer
-        )
+    total = int(
+        bestsellers + action + adventure + rpg + strategy + multiplayer
+    )
 
-        for i in range(total):
-            game_index.append(i)
+    for i in range(total):
+        game_index.append(i)
 
 
 def add_to_pc_games_dict():
@@ -1113,7 +1112,7 @@ def add_to_pc_games_dict():
 
     # ---------------------------------------- Add game titles
     pc_games = {x: {"title": pc_games_titles[x]}
-                         for x in range(len(pc_games_titles))}
+                for x in range(len(pc_games_titles))}
 
     # ---------------------------------------- Add game tags
     for x in range(len(pc_games)):
@@ -1141,7 +1140,7 @@ def add_to_pc_games_dict():
         pc_games[x].update(upd_dict)
 
 
-# ------------------ Call add to dictionary functions
+# -------------------------------------------- Call add to dictionary functions
 
 
 create_bestsellers_index()
