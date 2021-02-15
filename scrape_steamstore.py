@@ -143,16 +143,20 @@ def scrape_bestsellers():
 
             platforms = str(pc_platforms)
 
-            for i in range(len(platforms)):
-                platforms = platforms.replace(
+            platforms = platforms.replace(
                     '<span class="platform_img win"></span>', 'win'
                 ).replace(
                     '<span class="platform_img mac"></span>', 'mac'
                 ).replace(
                     '<span class="platform_img linux"></span>', 'linux'
+                ).replace(
+                    '[', ''
+                ).replace(
+                    ']', ''
                 )
 
-            bs_game_platform_tags.append(platforms)
+            platform_lis = list(platforms.split(","))
+            bs_game_platform_tags.append(platform_lis)
 
 
 # Scrape data from the each game page
@@ -278,16 +282,20 @@ def scrape_action_games():
 
             platforms = str(pc_platforms)
 
-            for i in range(len(platforms)):
-                platforms = platforms.replace(
+            platforms = platforms.replace(
                     '<span class="platform_img win"></span>', 'win'
                 ).replace(
                     '<span class="platform_img mac"></span>', 'mac'
                 ).replace(
                     '<span class="platform_img linux"></span>', 'linux'
+                ).replace(
+                    '[', ''
+                ).replace(
+                    ']', ''
                 )
 
-            action_platform_tags.append(platforms)
+            platform_lis = list(platforms.split(","))
+            action_platform_tags.append(platform_lis)
 
 
 # Scrape data from the each game page
@@ -364,16 +372,20 @@ def scrape_adventure_games():
 
             platforms = str(pc_platforms)
 
-            for i in range(len(platforms)):
-                platforms = platforms.replace(
+            platforms = platforms.replace(
                     '<span class="platform_img win"></span>', 'win'
                 ).replace(
                     '<span class="platform_img mac"></span>', 'mac'
                 ).replace(
                     '<span class="platform_img linux"></span>', 'linux'
+                ).replace(
+                    '[', ''
+                ).replace(
+                    ']', ''
                 )
 
-            adventure_platform_tags.append(platforms)
+            platform_lis = list(platforms.split(","))
+            adventure_platform_tags.append(platform_lis)
 
 
 # Scrape data from the each game page
@@ -450,16 +462,20 @@ def scrape_RPG_games():
 
             platforms = str(pc_platforms)
 
-            for i in range(len(platforms)):
-                platforms = platforms.replace(
+            platforms = platforms.replace(
                     '<span class="platform_img win"></span>', 'win'
                 ).replace(
                     '<span class="platform_img mac"></span>', 'mac'
                 ).replace(
                     '<span class="platform_img linux"></span>', 'linux'
+                ).replace(
+                    '[', ''
+                ).replace(
+                    ']', ''
                 )
 
-            RPG_platform_tags.append(platforms)
+            platform_lis = list(platforms.split(","))
+            RPG_platform_tags.append(platform_lis)
 
 
 # Scrape data from the each game page
@@ -536,16 +552,20 @@ def scrape_strategy_games():
 
             platforms = str(pc_platforms)
 
-            for i in range(len(platforms)):
-                platforms = platforms.replace(
+            platforms = platforms.replace(
                     '<span class="platform_img win"></span>', 'win'
                 ).replace(
                     '<span class="platform_img mac"></span>', 'mac'
                 ).replace(
                     '<span class="platform_img linux"></span>', 'linux'
+                ).replace(
+                    '[', ''
+                ).replace(
+                    ']', ''
                 )
 
-            strategy_platform_tags.append(platforms)
+            platform_lis = list(platforms.split(","))
+            strategy_platform_tags.append(platform_lis)
 
 
 # Scrape data from the each game page
@@ -622,16 +642,20 @@ def scrape_multiplayer_games():
 
             platforms = str(pc_platforms)
 
-            for i in range(len(platforms)):
-                platforms = platforms.replace(
+            platforms = platforms.replace(
                     '<span class="platform_img win"></span>', 'win'
                 ).replace(
                     '<span class="platform_img mac"></span>', 'mac'
                 ).replace(
                     '<span class="platform_img linux"></span>', 'linux'
+                ).replace(
+                    '[', ''
+                ).replace(
+                    ']', ''
                 )
 
-            multiplayer_platform_tags.append(platforms)
+            platform_lis = list(platforms.split(","))
+            multiplayer_platform_tags.append(platform_lis)
 
 
 # Scrape data from the each game page
@@ -1175,3 +1199,6 @@ add_to_multiplayer_games_dict()
 create_pc_games_index()
 add_to_pc_games_dict()
 remove_duplicates(pc_games)
+
+create_bestsellers_index()
+add_to_bestsellers_dict()
