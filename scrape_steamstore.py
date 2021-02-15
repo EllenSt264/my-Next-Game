@@ -1,8 +1,5 @@
-import requests
-from bs4 import BeautifulSoup
-
 """
-Some of the code is based upon the following sources:
+** Attribution:
 
     Splitting elements with BeautifulSoup:
     "https://stackoverflow.com/questions/12616912/split-an-element-with-beautifulsoup"
@@ -12,7 +9,17 @@ Some of the code is based upon the following sources:
 
     Looping through a list or URLs with BeautifulSoup:
     "https://stackoverflow.com/questions/44823278/how-to-loop-through-a-list-of-urls-for-web-scraping-with-beautifulsoup"
+
+    Removing duplicate entries within a dictionary:
+    "https://stackoverflow.com/questions/4104957/remove-duplicate-entries-from-nested-dictionary-if-two-values-are-the-same-in"
+
+    Fix 'RuntimeError: dictionary changed size during iteration':
+    "https://stackoverflow.com/questions/11941817/how-to-avoid-runtimeerror-dictionary-changed-size-during-iteration-error"
+
 """
+
+import requests
+from bs4 import BeautifulSoup
 
 # -------------------------------------------------- Data lists
 
