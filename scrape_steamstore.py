@@ -1115,7 +1115,7 @@ def add_to_pc_games_dict():
                 for x in range(len(pc_games_titles))}
 
     # ---------------------------------------- Add game tags
-    for x in range(len(pc_games)):
+    for x in range(len(pc_games_tags)):
         upd_dict = {"tags": pc_games_tags[x]}
         pc_games[x].update(upd_dict)
 
@@ -1139,6 +1139,14 @@ def add_to_pc_games_dict():
         upd_dict = {"game_link": pc_games_links[x]}
         pc_games[x].update(upd_dict)
 
+
+def remove_duplicates(d):
+    encounted_entries = set()
+    for key, entry in list(d.items()):
+        if entry["title"] in encounted_entries:
+            del d[key]
+        else:
+            encounted_entries.add(entry["title"])
 
 # -------------------------------------------- Call add to dictionary functions
 
@@ -1166,3 +1174,4 @@ add_to_multiplayer_games_dict()
 
 create_pc_games_index()
 add_to_pc_games_dict()
+remove_duplicates(pc_games)
