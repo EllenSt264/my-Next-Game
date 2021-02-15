@@ -1,86 +1,104 @@
 {% extends "games_template.html" %}
 
 {% block content %}
-    
-    <!-- Games -->
     <section>
         <div class="row">
-            <!-- Game 1 -->
-            <div class="col m12 l5 offset-l1" id="gameCard1">
-                <div class="card-panel">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg" alt=""
-                                class="responsive-img activator">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <div class="card-title activator">
-                                    <span>
-                                        Game Title
-                                    </span>
-                                    <i class="material-icons right">more_vert</i></span>
+
+            {% for game in pc_games %}
+
+                {% if loop.index % 2 != 0 %}
+
+                    <div class="col m12 l5 offset-l1" id="gameCard1">
+                        <div class="card-panel black-magenta glow" style="padding: 20px">
+                            <div class="card horizontal purple-linear-gradient glow grow">
+                                <div class="card-image">
+                                    <img src="{{ game.game_img_full }}" alt=""
+                                        class="responsive-img activator">
                                 </div>
-                                <p class="grey-text">
-                                    Windows
-                                </p>
-                                <p class="grey-text">
-                                    XBOX, Playstation
-                                </p>
-                                <p class="grey-text">
-                                    Action, Adventure
-                                </p>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <div class="card-title activator">
+                                            <span>
+                                                {{ game.game_title }}
+                                            </span>
+                                            <i class="material-icons right">more_vert</i></span>
+                                        </div>
+                                        <p class="grey-text">
+                                            {{ game.platform_tags_pc|join('') }}
+                                        </p>
+                                        <p class="grey-text">
+                                            XBOX, Playstation
+                                        </p>
+                                        <p class="grey-text">
+                                            {{ game.game_top_tags|join('') }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title">
+                                        <strong>{{ game.game_title }}</strong>
+                                        <i class="material-icons right">close</i>
+                                    </span>
+                                    <p>
+                                        Here is some more information about
+                                        this product that is only revealed once clicked on.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-reveal">
-                            <span class="card-title">
-                                <strong>Game Title</strong>
-                                <i class="material-icons right">close</i>
-                            </span>
-                            <p>
-                                Here is some more information about
-                                this product that is only revealed once clicked on.
-                            </p>
-                        </div>
                     </div>
-                </div>
-            </div>
-            <!-- Game 2 -->
-            <div class="col m12 l5" id="gameCard2">
-                <div class="card-panel">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/261550/header.jpg" alt=""
-                                class="responsive-img activator">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <div class="card-title activator">
-                                    <span>
-                                        Game Title
-                                    </span>
-                                    <i class="material-icons right">more_vert</i></span>
+
+                {% else %}
+
+                    <div class="col m12 l5" id="gameCard2">
+                        <div class="card-panel black-magenta glow" style="padding: 20px">
+                            <div class="card horizontal purple-linear-gradient glow grow">
+                                <div class="card-image">
+                                    <img src="{{ game.game_img_full }}" alt=""
+                                        class="responsive-img activator">
                                 </div>
-                                <p class="grey-text">
-                                    Windows
-                                </p>
-                                <p class="grey-text">
-                                    Action, RPG, Simulation, Strategy, Early Access
-                                </p>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <div class="card-title activator">
+                                            <span>
+                                                {{ game.game_title }}
+                                            </span>
+                                            <i class="material-icons right">more_vert</i></span>
+                                        </div>
+                                        <p class="grey-text">
+                                            {{ game.platform_tags_pc|join('') }}
+                                        </p>
+                                        <p class="grey-text">
+                                            XBOX, Playstation
+                                        </p>
+                                        <p class="grey-text">
+                                            {{ game.game_top_tags|join('') }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title">
+                                        <strong>{{ game.game_title }}</strong>
+                                        <i class="material-icons right">close</i>
+                                    </span>
+                                    <p>
+                                        Here is some more information about
+                                        this product that is only revealed once clicked on.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Card Title<i
-                                    class="material-icons right">close</i></span>
-                            <p>
-                                Here is some more information about
-                                this product that is only revealed once clicked on.
-                            </p>
-                        </div>
                     </div>
-                </div>
-            </div>
+
+                {% endif %}
+            {% endfor %}
+
         </div>
+
+        <ul class="pagination center-align">
+            {{ pagination.links }}
+        </ul>
+
     </section>
 
 {% endblock %}
