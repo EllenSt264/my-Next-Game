@@ -41,30 +41,20 @@ def home():
     # Initalize pagination
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-    per_page = 8
+    per_page = 9
     offset = ((page - 1) * per_page)
 
-    # Bestsellers
-    total_bestsellers = bestsellers.count()
+    total = bestsellers.count()
     pagination_bestsellers = bestsellers[offset: offset + per_page]
 
-    pagination_for_bestsellers = Pagination(
-        page=page, per_page=per_page, total=total_bestsellers, 
-        css_framework='materialize')
-
-    # Award winners
-    total_awards = awardwinners.count()
-    pagination_awardwinners = awardwinners[offset: offset + per_page]
-
-    pagination_for_awardwinners = Pagination(
-        page=page, per_page=per_page, total=total_awards,
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
     return render_template(
         "base.html", bestsellers=pagination_bestsellers,
-        awardwinners=pagination_awardwinners,
-        pagination_bs=pagination_for_bestsellers, 
-        pagination_aw=pagination_for_awardwinners)
+        pagination=pagination, awardwinners=awardwinners
+    )
 
 
 # ===================
@@ -223,7 +213,8 @@ def multiplayer_games():
         css_framework='materialize')
 
     return render_template(
-        "multiplayer_games.html", multiplayer_games=pagination_multiplayer_games, 
+        "multiplayer_games.html",
+        multiplayer_games=pagination_multiplayer_games,
         pagination=pagination)
 
 
