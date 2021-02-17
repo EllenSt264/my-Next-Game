@@ -24,6 +24,7 @@ bs_game_index = []
 bs_game_title = []
 bs_game_tags = []
 bs_game_img_sm = []
+bs_game_img_full = []
 bs_platform_pc = []
 bs_game_link = []
 
@@ -115,6 +116,8 @@ def get_bestseller_dict():
                 bs_game_tags.append(v1)
             if k1 == "image":
                 bs_game_img_sm.append(v1)
+            if k1 == "full_image":
+                bs_game_img_full.append(v1)
             if k1 == "pc_platform_tags":
                 bs_platform_pc.append(v1)
             if k1 == "game_link":
@@ -130,6 +133,7 @@ def add_bestsellers_to_db():
             "game_title": bs_game_title[i],
             "game_top_tags": bs_game_tags[i],
             "game_img_sm": bs_game_img_sm[i],
+            "game_img_full": bs_game_img_full[i],
             "platform_tags_pc": bs_platform_pc[i],
             "game_link": bs_game_link[i]
         }
