@@ -171,13 +171,20 @@ def scrape_bestseller_game_page():
     url_list = bs_game_links
 
     for url in url_list:
+
         source = requests.get(url)
         soup = BeautifulSoup(source.text, "html.parser")
 
-        for item in soup.select("#game_highlights"):
-            image = item.select(".game_header_image_full")
-            for i in image:
-                bs_game_images_full.append(i["src"])
+        for item in soup.select(".page_content_ctn"):
+            if item.find("img", {"class": "package_header"}):
+                img = item.select(".package_header")
+                for i in img:
+                    bs_game_images_full.append(i["src"])
+
+            else:
+                img = item.select(".game_header_image_full")
+                for i in img:
+                    bs_game_images_full.append(i["src"])
 
 # --------------------------------------------------------------- AWARD WINNERS
 
@@ -313,10 +320,16 @@ def scrape_action_game_page():
         source = requests.get(url)
         soup = BeautifulSoup(source.text, "html.parser")
 
-        for item in soup.select("#game_highlights"):
-            image = item.select(".game_header_image_full")
-            for i in image:
-                action_full_images.append(i["src"])
+        for item in soup.select(".page_content_ctn"):
+            if item.find("img", {"class": "package_header"}):
+                img = item.select(".package_header")
+                for i in img:
+                    action_full_images.append(i["src"])
+
+            else:
+                img = item.select(".game_header_image_full")
+                for i in img:
+                    action_full_images.append(i["src"])
 
 # ----------------------------------------------------------------- ADVENTURE
 
@@ -403,11 +416,16 @@ def scrape_adventure_game_page():
         source = requests.get(url)
         soup = BeautifulSoup(source.text, "html.parser")
 
-        for item in soup.select("#game_highlights"):
-            image = item.select(".game_header_image_full")
-            for i in image:
-                adventure_full_images.append(i["src"])
+        for item in soup.select(".page_content_ctn"):
+            if item.find("img", {"class": "package_header"}):
+                img = item.select(".package_header")
+                for i in img:
+                    adventure_full_images.append(i["src"])
 
+            else:
+                img = item.select(".game_header_image_full")
+                for i in img:
+                    adventure_full_images.append(i["src"])
 # ----------------------------------------------------------------- RPG
 
 
@@ -493,10 +511,16 @@ def scrape_RPG_game_page():
         source = requests.get(url)
         soup = BeautifulSoup(source.text, "html.parser")
 
-        for item in soup.select("#game_highlights"):
-            image = item.select(".game_header_image_full")
-            for i in image:
-                RPG_full_images.append(i["src"])
+        for item in soup.select(".page_content_ctn"):
+            if item.find("img", {"class": "package_header"}):
+                img = item.select(".package_header")
+                for i in img:
+                    RPG_full_images.append(i["src"])
+
+            else:
+                img = item.select(".game_header_image_full")
+                for i in img:
+                    RPG_full_images.append(i["src"])
 
 # ----------------------------------------------------------------- STRATEGY
 
@@ -583,10 +607,16 @@ def scrape_strategy_game_page():
         source = requests.get(url)
         soup = BeautifulSoup(source.text, "html.parser")
 
-        for item in soup.select("#game_highlights"):
-            image = item.select(".game_header_image_full")
-            for i in image:
-                strategy_full_images.append(i["src"])
+        for item in soup.select(".page_content_ctn"):
+            if item.find("img", {"class": "package_header"}):
+                img = item.select(".package_header")
+                for i in img:
+                    strategy_full_images.append(i["src"])
+
+            else:
+                img = item.select(".game_header_image_full")
+                for i in img:
+                    strategy_full_images.append(i["src"])
 
 # ----------------------------------------------------------------- MULTIPLAYER
 
@@ -673,10 +703,16 @@ def scrape_multiplayer_game_page():
         source = requests.get(url)
         soup = BeautifulSoup(source.text, "html.parser")
 
-        for item in soup.select("#game_highlights"):
-            image = item.select(".game_header_image_full")
-            for i in image:
-                multiplayer_full_images.append(i["src"])
+        for item in soup.select(".page_content_ctn"):
+            if item.find("img", {"class": "package_header"}):
+                img = item.select(".package_header")
+                for i in img:
+                    multiplayer_full_images.append(i["src"])
+
+            else:
+                img = item.select(".game_header_image_full")
+                for i in img:
+                    multiplayer_full_images.append(i["src"])
 
 
 # ------------------ Call scrape data functions
@@ -1182,8 +1218,8 @@ def remove_duplicates(d):
 # -------------------------------------------- Call add to dictionary functions
 
 
-create_bestsellers_index()
-add_to_bestsellers_dict()
+#create_bestsellers_index()
+#add_to_bestsellers_dict()
 
 create_awardwinners_index()
 add_to_awardwinners_dict()
@@ -1203,9 +1239,9 @@ add_to_strategy_games_dict()
 create_multiplayer_games_index()
 add_to_multiplayer_games_dict()
 
+create_bestsellers_index()
+add_to_bestsellers_dict()
+
 create_pc_games_index()
 add_to_pc_games_dict()
 remove_duplicates(pc_games)
-
-create_bestsellers_index()
-add_to_bestsellers_dict()
