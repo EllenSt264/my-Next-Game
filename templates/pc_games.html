@@ -10,18 +10,24 @@
 
                     <div class="col m12 l5 offset-l1" id="gameCard1">
                         <div class="card-panel black-magenta glow" style="padding: 20px">
-                            <div class="card horizontal purple-linear-gradient glow grow">
+                            <div class="card horizontal purple-linear-gradient glow">
                                 <div class="card-image">
                                     <img src="{{ game.game_img_full }}" alt=""
                                         class="responsive-img activator">
                                 </div>
                                 <div class="card-stacked">
                                     <div class="card-content">
-                                        <div class="card-title activator">
-                                            <span>
+                                        {% if session.user %}
+                                        <div class="container right" style="width:40px;">
+                                            <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        <div class="card-title">
+                                            <span class="activator" style="cursor: pointer;">
                                                 {{ game.game_title }}
                                             </span>
-                                            <i class="material-icons right">more_vert</i></span>
                                         </div>
                                         <p class="grey-text">
                                             {{ game.platform_tags_pc|join('') }}
@@ -52,18 +58,24 @@
 
                     <div class="col m12 l5" id="gameCard2">
                         <div class="card-panel black-magenta glow" style="padding: 20px">
-                            <div class="card horizontal purple-linear-gradient glow grow">
+                            <div class="card horizontal purple-linear-gradient glow">
                                 <div class="card-image">
                                     <img src="{{ game.game_img_full }}" alt=""
                                         class="responsive-img activator">
                                 </div>
                                 <div class="card-stacked">
                                     <div class="card-content">
-                                        <div class="card-title activator">
-                                            <span>
+                                        {% if session.user %}
+                                        <div class="container right" style="width:40px;">
+                                            <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                        <div class="card-title">
+                                            <span class="activator" style="cursor: pointer;">
                                                 {{ game.game_title }}
                                             </span>
-                                            <i class="material-icons right">more_vert</i></span>
                                         </div>
                                         <p class="grey-text">
                                             {{ game.platform_tags_pc|join('') }}
