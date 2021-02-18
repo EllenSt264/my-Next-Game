@@ -514,13 +514,35 @@ The following code is based upon this source:
 
 /* ---------------------------------------------- Media Queries */
 
-/* @media (max-width: 1745px) and (min-width: 992px) {
+@media (max-width: 1795px) and (min-width: 992px) {
     #gameCard1,
     #gameCard2 {
         width: 50%;
         margin-left: 0;
     }
-} */
+}
+
+@media (max-width: 1620px) {
+    #gameCard1 .card-title,
+    #gameCard2 .card-title {
+        font-size: 20px;
+    }
+    .add-btn a {
+        width: 30px;
+        height: 30px;
+    }
+    .add-btn i {
+        height: 20px;
+        font-size: 18px;
+    }
+    i.fas.fa-plus::before {
+        position: absolute;
+        top: -5px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+}
 
 @media (max-width:905px) {
     .nav-wrapper a {
