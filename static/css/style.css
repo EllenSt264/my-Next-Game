@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "BlenderPro-Bold";
+    font-family: "BlenderPro-Book";
     background-color: #221424;
     overflow-x: hidden;
     scroll-behavior: smooth;
@@ -333,8 +333,8 @@ The following code is based upon this source:
 .purple-linear-gradient {
     background: linear-gradient(
         to bottom,
-        #3d1c8f48,
-        #3d1c8f48 50%,
+        #28031c,
+        #28031c 50%,
         #09072394 50%,
         #09072394
     );
@@ -345,18 +345,77 @@ The following code is based upon this source:
     background-color: #5e2e65;
 }
 
-.game-card-title {
-    font-family: "BlenderPro-Heavy";
+#gameCard1 .card,
+#gameCard2 .card {
+    border-radius: 10px;
+    height: 232px;
+}
+
+#gameCard1 .card-content,
+#gameCard2 .card-content {
+    padding-bottom: 0;
+}
+
+#gameCard1 .card-action,
+#gameCard2 .card-action {
+    font-family: "BlenderPro-Medium";
+    padding: 0 0 5px 0;
+}
+
+#gameCard1 .like,
+#gameCard2 .like {
+    height: 24px;
+}
+
+#gameCard1 .like-icon,
+#gameCard2 .like-icon {
+    padding-right: 5px;
+}
+
+#gameCard1 .like-icon:hover,
+#gameCard1 .like-icon:active,
+#gameCard2 .like-icon:hover,
+#gameCard2 .like-icon:active {
+    animation: pulse 1.5s infinite;
+    animation-timing-function: linear;   
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#gameCard1 .like-text,
+#gameCard2 .like-text {
+    padding-left: 0;
+}
+
+
+#gameCard1 .card-title,
+#gameCard2 .card-title {
+    font-family: "BlenderPro-Medium";
     letter-spacing: 1px;
-    text-transform: uppercase;
-    color:white;
-    font-size:18px;
 }
 
 #gameCard1 img,
 #gameCard2 img {
     width: 432px;
-    height: 200px;
+    height: 225px;
+    /* For the box shadow: "https://www.w3schools.com/css/css3_shadows_box.asp" */
+    box-shadow: 0 4px 8px 0 
+    rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+}
+
+.btn-floating.pulse:hover {
+    animation: none;
 }
 
 /* ---------------------------------------------- Register page */
@@ -455,13 +514,13 @@ The following code is based upon this source:
 
 /* ---------------------------------------------- Media Queries */
 
-@media (max-width: 1745px) and (min-width: 992px) {
+/* @media (max-width: 1745px) and (min-width: 992px) {
     #gameCard1,
     #gameCard2 {
         width: 50%;
         margin-left: 0;
     }
-}
+} */
 
 @media (max-width:905px) {
     .nav-wrapper a {

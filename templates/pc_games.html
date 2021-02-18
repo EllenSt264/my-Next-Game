@@ -9,8 +9,8 @@
                 {% if loop.index % 2 != 0 %}
 
                     <div class="col m12 l5 offset-l1" id="gameCard1">
-                        <div class="card-panel black-magenta glow" style="padding: 20px">
-                            <div class="card horizontal purple-linear-gradient glow">
+                        <div class="card-panel black-magenta glow" style="padding: 20px;">
+                            <div class="card horizontal purple-linear-gradient glow grow">
                                 <div class="card-image">
                                     <img src="{{ game.game_img_full }}" alt=""
                                         class="responsive-img activator">
@@ -24,20 +24,32 @@
                                             </a>
                                         </div>
                                         {% endif %}
-                                        <div class="card-title">
+                                        <div class="card-title white-text">
                                             <span class="activator" style="cursor: pointer;">
                                                 {{ game.game_title }}
                                             </span>
                                         </div>
-                                        <p class="grey-text">
+                                        <p class="grey-text text-lighten-2">
                                             {{ game.platform_tags_pc|join('') }}
                                         </p>
-                                        <p class="grey-text">
+                                        <p class="grey-text text-lighten-2">
                                             XBOX, Playstation
                                         </p>
-                                        <p class="grey-text">
+                                        <p class="grey-text text-lighten-2">
                                             {{ game.game_top_tags|join('') }}
                                         </p>
+                                    </div>
+                                    <div class="card-action">
+                                        <div class="like right">
+                                            <div class="col s6 like-icon">
+                                                <a href="#" class="black-text">
+                                                    <i class="material-icons right">thumb_up</i>
+                                                </a>
+                                            </div>
+                                            <div class="col s6 like-text">
+                                                Like <span>20</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-reveal">
@@ -58,7 +70,7 @@
 
                     <div class="col m12 l5" id="gameCard2">
                         <div class="card-panel black-magenta glow" style="padding: 20px">
-                            <div class="card horizontal purple-linear-gradient glow">
+                            <div class="card horizontal purple-linear-gradient glow grow">
                                 <div class="card-image">
                                     <img src="{{ game.game_img_full }}" alt=""
                                         class="responsive-img activator">
@@ -72,20 +84,32 @@
                                             </a>
                                         </div>
                                         {% endif %}
-                                        <div class="card-title">
+                                        <div class="card-title white-text">
                                             <span class="activator" style="cursor: pointer;">
                                                 {{ game.game_title }}
                                             </span>
                                         </div>
-                                        <p class="grey-text">
+                                        <p class="grey-text text-lighten-2">
                                             {{ game.platform_tags_pc|join('') }}
                                         </p>
-                                        <p class="grey-text">
+                                        <p class="grey-text text-lighten-2">
                                             XBOX, Playstation
                                         </p>
-                                        <p class="grey-text">
+                                        <p class="grey-text text-lighten-2">
                                             {{ game.game_top_tags|join('') }}
                                         </p>
+                                    </div>
+                                    <div class="card-action">
+                                        <div class="like right">
+                                            <div class="col s6 like-icon">
+                                                <a href="#" class="black-text">
+                                                    <i class="material-icons right">thumb_up</i>
+                                                </a>
+                                            </div>
+                                            <div class="col s6 like-text">
+                                                Like <span>20</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-reveal">
