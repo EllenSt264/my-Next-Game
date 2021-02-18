@@ -354,6 +354,8 @@ The following code is based upon this source:
 #gameCard1 .card-content,
 #gameCard2 .card-content {
     padding-bottom: 0;
+    padding-right: 5px;
+    overflow: hidden;
 }
 
 #gameCard1 .card-action,
@@ -402,6 +404,11 @@ The following code is based upon this source:
 #gameCard2 .card-title {
     font-family: "BlenderPro-Medium";
     letter-spacing: 1px;
+}
+
+#gameCard1 .add-btn,
+#gameCard2 .add-btn {
+    width: 40px;
 }
 
 #gameCard1 img,
@@ -541,6 +548,33 @@ The following code is based upon this source:
         right: 0;
         left: 0;
         bottom: 0;
+    }
+    #gameCard1 .card-image img,
+    #gameCard2 .card-image img {
+        height: 150px;
+        min-width: 218px;
+        z-index: 10;
+    }
+    #gameCard1 .card.horizontal,
+    #gameCard2 .card.horizontal {
+        height: 150px;
+        overflow-y: hidden;
+    }
+    #gameCard1 .card-content,
+    #gameCard2 .card-content {
+        padding-top: 5px;
+    }
+    #gameCard1 .card-title,
+    #gameCard2 .card-title {
+        letter-spacing: normal;
+        font-size: 18px;
+        line-height: normal;
+    }
+}
+
+@media (max-width: 1360px) {
+    .like {
+        float: left !important;
     }
 }
 
