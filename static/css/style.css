@@ -345,39 +345,32 @@ The following code is based upon this source:
     background-color: #5e2e65;
 }
 
-#gameCard1 .card,
-#gameCard2 .card {
+.game-cards .card {
     border-radius: 10px;
     height: 232px;
 }
 
-#gameCard1 .card-content,
-#gameCard2 .card-content {
+.game-cards .card-content {
     padding-bottom: 0;
     padding-right: 5px;
     overflow: hidden;
 }
 
-#gameCard1 .card-action,
-#gameCard2 .card-action {
+.game-cards .card-action {
     font-family: "BlenderPro-Medium";
     padding: 0 0 5px 0;
 }
 
-#gameCard1 .like,
-#gameCard2 .like {
+.like {
     height: 24px;
 }
 
-#gameCard1 .like-icon,
-#gameCard2 .like-icon {
+.like-icon {
     padding-right: 5px;
 }
 
-#gameCard1 .like-icon:hover,
-#gameCard1 .like-icon:active,
-#gameCard2 .like-icon:hover,
-#gameCard2 .like-icon:active {
+.like-icon:hover,
+.like-icon:active {
     animation: pulse 1.5s infinite;
     animation-timing-function: linear;   
 }
@@ -394,25 +387,21 @@ The following code is based upon this source:
     }
 }
 
-#gameCard1 .like-text,
-#gameCard2 .like-text {
+.like-text {
     padding-left: 0;
 }
 
 
-#gameCard1 .card-title,
-#gameCard2 .card-title {
+.game-cards .card-title {
     font-family: "BlenderPro-Medium";
     letter-spacing: 1px;
 }
 
-#gameCard1 .add-btn,
-#gameCard2 .add-btn {
+.game-cards .add-btn {
     width: 40px;
 }
 
-#gameCard1 img,
-#gameCard2 img {
+.game-cards img {
     width: 432px;
     height: 225px;
     /* For the box shadow: "https://www.w3schools.com/css/css3_shadows_box.asp" */
@@ -530,8 +519,7 @@ The following code is based upon this source:
 }
 
 @media (max-width: 1620px) {
-    #gameCard1 .card-title,
-    #gameCard2 .card-title {
+    .game-cards .card-title {
         font-size: 20px;
     }
     .add-btn a {
@@ -549,23 +537,19 @@ The following code is based upon this source:
         left: 0;
         bottom: 0;
     }
-    #gameCard1 .card-image img,
-    #gameCard2 .card-image img {
+    .game-cards .card-image img {
         height: 150px;
         min-width: 218px;
         z-index: 10;
     }
-    #gameCard1 .card.horizontal,
-    #gameCard2 .card.horizontal {
+    .game-cards .card.horizontal {
         height: 150px;
         overflow-y: hidden;
     }
-    #gameCard1 .card-content,
-    #gameCard2 .card-content {
+    .game-cards .card-content {
         padding-top: 5px;
     }
-    #gameCard1 .card-title,
-    #gameCard2 .card-title {
+    .game-cards .card-title {
         letter-spacing: normal;
         font-size: 18px;
         line-height: normal;
