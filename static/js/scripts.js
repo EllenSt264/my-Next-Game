@@ -35,5 +35,7 @@ $(document).ready(function () {
         }, 8000)
 
         $('.dropdown-trigger').dropdown({constrainWidth: false, hover: true, coverTrigger: false});
+
+        $('.collapsible').collapsible();
     })
 });

@@ -258,9 +258,32 @@ The following code is based upon this source:
     background-color: #442c4c;
 }
 
-.secondary-nav a {
+.secondary-nav .collapsible {
+    border: none;
+}
+
+.secondary-nav .collapsible a {
     font-size: 16px;
     margin: 2px;
+}
+
+.standard-link {
+    line-height: 54px;
+}
+
+.secondary-nav a:hover,
+.secondary-nav a:active {
+    color: #f608ea;
+    background-color: rgba(0, 0, 0, 0.1)
+}
+
+.secondary-nav .collapsible-header {
+    background-color: #442c4c;
+    border: none;
+} 
+
+.secondary-nav .collapsible-body {
+    width: 50vw;
 }
 
 .secondary-nav input#search {
@@ -268,28 +291,23 @@ The following code is based upon this source:
     margin-right: 50px;
 }
 
-.secondary-nav .nav-content div.card-panel {
-    background-color: #261f33; 
-    height: 35px; 
-    margin: 0; 
-    padding:0;
+.my-nav-extend .tabs {
+    background-color: #261f33;
+    height: 35px;
 }
 
-.secondary-nav .nav-content div.valign-wrapper {
-    font-family: "BlenderPro-Book";
-    height:100%; 
-    width: 100%;
+.my-nav-extend .tab a {
+    font-size: 14px;
+    line-height: 30px;
 }
 
-.secondary-nav .nav-content div.valign-wrapper a {
+.my-nav-extend .tab a {
     text-decoration: underline;
     color: #66c0f4;
-    display: contents;
 }
 
-.secondary-nav .nav-content div.valign {
-    margin-left: 10px; 
-    margin-bottom: 10px;
+.my-nav-extend .tab a:hover {
+    color: #f608ea;
 }
 
 @media (max-width: 992px) {

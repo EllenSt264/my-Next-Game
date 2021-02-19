@@ -138,61 +138,65 @@
 
     <!-- Secondary Navbar -->
     <section class="py-5">
-        <nav class="secondary-nav nav-extended">
-            <div class="nav-wrapper">
-                <a href="" class="dropdown-trigger left hide-on-large-only" data-target="dropdownNav"
-                    style="margin-left: 15px;">
-                    <i class="fas fa-bars"></i>
-                </a>
-                <!-- Main nav -->
-                <ul class="left hide-on-med-and-down">
-                    <li><a href="sass.html">Platform</a></li>
-                    <li><a href="badges.html">Genre</a></li>
-                    <li><a href="collapsible.html">Bestsellers</a></li>
-                    <li><a href="mobile.html">Award Winners</a></li>
-                    <li><a href="mobile.html">Our Favourites</a></li>
-                    {% if session.user %}
-                    <li><a href="mobile.html">Your List</a></li>
-                    {% endif %}
-                </ul>
-                <!-- Search bar -->
-                <div class="col s12 m6">
-                    <form>
-                        <div class="input-field right">
-                            <input id="search" type="search" required>
-                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons">close</i>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="nav-content">
-                <div class="card-panel">
-                    <div class="valign-wrapper">
-                        <div class="valign">
-                            <span class="white-text">
-                                Show
-                                <a href="#">all games</a>
-                            </span>
+        <nav class="secondary-nav">
+
+            <!-- Collapsible -->
+            <ul class="collapsible">
+                <!-- Platform-->
+                <li>
+                    <a class="collapsible-header">Platform</a>
+                    <div class="collapsible-body">
+                        <div class="nav-content"> 
+                            <ul class="tabs tabs-transparent">
+                              <li class="tab"><a href="{{ url_for('pc_games') }}">PC</a></li>
+                              <li class="tab"><a href="{{ url_for('pc_games') }}">XBOX</a></li>
+                              <li class="tab"><a href="{{ url_for('pc_games') }}">Playstation</a></li>
+                            </ul>
+                          </div>
+                    </div>
+                </li>
+
+                <!-- Genre -->
+                <li>
+                    <a class="collapsible-header">Genre</a>
+                    <div class="collapsible-body">
+                        <div class="nav-content"> 
+                            <ul class="tabs tabs-transparent">
+                                <li class="tab"><a href="{{ url_for('action_games') }}">Action</a></li>
+                                <li class="tab"><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
+                                <li class="tab"><a href="{{ url_for('RPG_games') }}">RPG</a></li>
+                                <li class="tab"><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
+                                <li class="tab"><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-        </nav>
-        <!-- Mobile navbar -->
-        <ul class="dropdown-content" id="dropdownNav">
-            <li><a href="sass.html">Platform</a></li>
-            <li><a href="badges.html">Genre</a></li>
-            <li><a href="collapsible.html">Bestsellers</a></li>
-            <li><a href="mobile.html">Award Winners</a></li>
-            <li><a href="mobile.html">Our Favourites</a></li>
-            <li><a href="mobile.html">Your List</a></li>
-        </ul>
-    
-    </section>
+                </li>
 
-    {% block content %}
-    {% endblock %}
+                <!-- Standard Links -->
+                <li><a href="{{ url_for('pc_games') }}" class="standard-link">Bestsellers</a></li>
+                <li><a href="#" class="standard-link">Award Winners</a></li>
+                <li><a href="#" class="standard-link">Our Favourites</a></li>
+                {% if session.user %}
+                <li><a href="#" class="standard-link">Your List</a></li>
+                {% endif %}
+
+                <!-- All games link -->
+                <div class="nav-content my-nav-extend"> 
+                    <ul class="tabs">
+                        <li class="tab"><a href="{{ url_for('pc_games') }}">All games</a></li>
+                    </ul>
+                </div>
+
+            </ul>
+        </nav>
+    </section>
+    
+    <!-- Games -->
+    <section style="padding-top: 5rem;">
+        {% block content %}
+        {% endblock %}
+    </section>
+    
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
