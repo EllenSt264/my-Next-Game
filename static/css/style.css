@@ -380,11 +380,17 @@ The following code is based upon this source:
 }
 
 .like {
+    padding: 0 !important;
     height: 24px;
 }
 
 .like-icon {
-    padding-right: 5px;
+    padding: 0 !important;
+    height: 24px;
+}
+
+.like-text {
+    padding: 0 0 0 5px !important;
 }
 
 .like-icon:hover,
@@ -410,16 +416,19 @@ The following code is based upon this source:
 }
 
 
-.game-cards .card-title {
+.game-cards .card-content .card-title,
+.sm-screen-card .card-title {
     font-family: "BlenderPro-Medium";
     letter-spacing: 1px;
+    line-height: 1;
 }
 
 .game-cards .add-btn {
     width: 40px;
 }
 
-.game-cards img {
+.game-cards img,
+.game-cards .card.card-image img {
     width: 432px;
     height: 225px;
     /* For the box shadow: "https://www.w3schools.com/css/css3_shadows_box.asp" */
@@ -428,8 +437,58 @@ The following code is based upon this source:
     border-radius: 10px;
 }
 
-.btn-floating.pulse:hover {
-    animation: none;
+.sm-screen-card .card-panel {
+    width:95%; 
+    margin: 32px auto; 
+    padding: 10px 24px;
+}
+
+.sm-screen-card .row {
+    margin-bottom: 0;
+}
+
+#gameImageCard {
+    height: 125px; 
+    background-color: #231424;
+    margin-left: 8.3333333333%;
+}
+
+#gameImageCard img {
+    height: 125px; 
+    width: auto; 
+    margin: auto; 
+    border-radius: 10px;
+}
+
+#btnCard {
+    height: 125px; 
+    background-color: #231424;
+}
+
+.sm-screen-card .like {
+    margin-top: 20px;
+}
+
+.thumbs-up-sm-screen {
+    font-size: 30px !important;
+}
+
+.like-text-sm {
+    margin-top: 5px;
+}
+
+#gameCardContent .card {
+    height: 100px; 
+    margin: 10px auto; 
+    border: 3px solid #f608ea;
+}
+
+#gameCardContent .card-title {
+    padding-top: 5px;
+}
+
+#gameCardContent .card-content {
+    padding: 5px;
 }
 
 /* ---------------------------------------------- Register page */
@@ -536,10 +595,7 @@ The following code is based upon this source:
     }
 }
 
-@media (max-width: 1620px) {
-    .game-cards .card-title {
-        font-size: 20px;
-    }
+@media (max-width: 1620px) and (min-width: 600px) {
     .add-btn a {
         width: 30px;
         height: 30px;
@@ -547,6 +603,12 @@ The following code is based upon this source:
     .add-btn i {
         height: 20px;
         font-size: 18px;
+    }
+}
+
+@media (max-width: 1620px) {
+    .game-cards .card-title {
+        font-size: 20px;
     }
     i.fas.fa-plus::before {
         position: absolute;
@@ -558,7 +620,7 @@ The following code is based upon this source:
     .game-cards .card-image img {
         height: 150px;
         min-width: 218px;
-        z-index: 10;
+        z-index: 1;
     }
     .game-cards .card.horizontal {
         height: 150px;
@@ -571,12 +633,6 @@ The following code is based upon this source:
         letter-spacing: normal;
         font-size: 18px;
         line-height: normal;
-    }
-}
-
-@media (max-width: 1360px) {
-    .like {
-        float: left !important;
     }
 }
 
@@ -602,6 +658,20 @@ The following code is based upon this source:
     }
     .front-font {
         font-size: 45px;
+    }
+}
+
+@media (max-width: 600px) {
+    .add-btn {
+        padding-top: 15px;
+        padding-bottom: 35px;
+    }
+    i.fas.fa-plus::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
     }
 }
 
