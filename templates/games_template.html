@@ -27,7 +27,7 @@
 
                     {% if session.user %}
                     <!-- Desktop profile dropdown -->
-                    <a href="#" data-target="desktop-profile" class="dropdown-trigger right hide-on-med-and-down" 
+                    <a href="{{ url_for('profile', username=session['user']) }}" data-target="desktop-profile" class="dropdown-trigger right hide-on-med-and-down" 
                     style="margin-right:25px;">
                         <i class="fas fa-user"></i>
                     </a>
