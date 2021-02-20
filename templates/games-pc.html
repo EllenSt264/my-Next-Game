@@ -1,13 +1,14 @@
-{% extends "games_template.html" %}
+{% extends "games-template.html" %}
 
 {% block games %}
     <section>
         <div class="row">
 
-            {% for game in adventure_games %}
+            {% for game in pc_games %}
 
                 {% if loop.index % 2 != 0 %}
 
+                    <!-- Medium screens and up -->
                     <div class="col m12 l5 offset-l1 game-cards hide-on-small-only" id="gameCard1">
                         <div class="card-panel black-magenta glow" style="padding: 20px;">
                             <div class="card horizontal purple-linear-gradient glow grow">
@@ -249,6 +250,12 @@
                 {% endif %}
             {% endfor %}
 
+        
+        
+        
+        
+        
+        
         </div>
 
         <ul class="pagination center-align">

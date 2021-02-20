@@ -63,7 +63,7 @@ def home():
 
 @app.route("/games")
 def games():
-    return render_template("games_template.html")
+    return render_template("games-template.html")
 
 
 # ===================
@@ -87,7 +87,7 @@ def pc_games():
         css_framework='materialize')
 
     return render_template(
-        "pc_games.html", pc_games=pagination_pc_games,
+        "games-pc.html", pc_games=pagination_pc_games,
         pagination=pagination)
 
 
@@ -113,7 +113,7 @@ def action_games():
         css_framework='materialize')
 
     return render_template(
-        "action_games.html", action_games=pagination_action_games, 
+        "games-action.html", action_games=pagination_action_games, 
         pagination=pagination)
 
 
@@ -138,7 +138,7 @@ def adventure_games():
         css_framework='materialize')
 
     return render_template(
-        "adventure_games.html", adventure_games=pagination_adventure_games, 
+        "games-adventure.html", adventure_games=pagination_adventure_games, 
         pagination=pagination)
 
 
@@ -163,7 +163,7 @@ def RPG_games():
         css_framework='materialize')
 
     return render_template(
-        "RPG_games.html", RPG_games=pagination_RPG_games, 
+        "games-rpg.html", RPG_games=pagination_RPG_games, 
         pagination=pagination)
 
 
@@ -188,7 +188,7 @@ def strategy_games():
         css_framework='materialize')
 
     return render_template(
-        "strategy_games.html", strategy_games=pagination_strategy_games, 
+        "games-strategy.html", strategy_games=pagination_strategy_games, 
         pagination=pagination)
 
 
@@ -213,7 +213,7 @@ def multiplayer_games():
         css_framework='materialize')
 
     return render_template(
-        "multiplayer_games.html",
+        "games-multiplayer.html",
         multiplayer_games=pagination_multiplayer_games,
         pagination=pagination)
 
