@@ -507,11 +507,7 @@ The following code is based upon this source:
     font-size: 18px;
 }
 
-@media(min-height: 1090px) {
-    .account-form {
-        margin-top: 15vh;
-    }
-}
+
 
 
 /* ---------------------------------------------- Profile */
@@ -579,157 +575,7 @@ The following code is based upon this source:
     margin: 15px;
 }
 
-@media (max-width: 1200px) and (min-width: 992px) {
-    #ProfileCard {
-        margin-left: 4.16666666665%;
-    }
-}
 
-@media (max-width: 1325px) and (min-width: 992px) {
-   #ProfileSidePanel {
-       width: 220px;
-   }
-}
-
-@media (max-width: 1650px) {
-    .profile-game-title h5 {
-        margin-left: 50px;
-    }
-}
-
-@media (max-width: 1541px) and (min-width: 1326px) {
-    #ProfileSidePanel {
-        width: 200px;
-    }
-    .profile-btns .btn {
-        margin-left: 5px;
-    }
-}
-
-@media (max-width: 1500px) {
-    .profile-game-title h5 {
-        font-size: 20px;
-        margin-left: 90px;
-    }
-}
-
-@media (max-width: 1375px) {
-    .profile-game-img img {
-        width: 400px;
-        height: auto;
-    }
-}
-
-@media (max-width: 992px) {
-    .profile-game-title h5 {
-        margin-left: 20px;
-        text-align: left;
-    }
-}
-
-
-@media (max-width: 864px) {
-    .profile-base-card {
-        width: 95% !important;
-        margin-left: 2.083333333325% !important;
-    }
-    .profile-game-img img {
-        width: 350px;
-        margin: auto;
-    }
-}
-
-@media (max-width: 764px) {
-    .profile-game-img img {
-        width: 300px;
-    }
-}
-
-@media (max-width: 706px) and (min-width: 600px) {
-    #ProfileSidePanel {
-        width: 180px;
-    }
-}
-
-@media (max-width: 664px) and (min-width: 600px) {
-    .profile-game-img img {
-        width: 250px;
-    }
-}
-
-@media(min-width: 601px) {
-    .profile-header {
-        display: flex;
-    }
-    .rank {
-        position: relative;
-    }
-    .rank h5 {
-        position: absolute; 
-        bottom: 20px; 
-        right: 5px;
-    }
-    .profile-btns li {
-        text-align: right;
-        margin: 5px 0;
-    }
-}
-
-@media(max-width: 600px) {
-    .profile-header {
-        text-align: right;
-    }
-    .profile-header h2 {
-        font-size: 36px;
-    }
-    .rank h5 {
-        font-size: 15px;
-    }
-    .profile-btns li {
-        display: inline;
-        text-align: center;
-    }
-    #firstItem {
-        margin-left: 8.3333333333%;
-    }
-    #editBtn {
-        margin-right: 15px;
-    }
-    .rank h5 {
-        margin-right: 15px;
-    }
-}
-
-@media(max-width: 385px) {
-    .profile-btns .row li {
-        display: list-item;
-        width: 100% !important;
-        text-align: right;
-        margin: 5px 0;
-    }
-    #firstItem {
-        margin-left: 0;
-    }
-    .profile-game-img img {
-        width: 225px;
-    }
-    .card-section-header h3 {
-        font-size: 32px;
-    }
-    .card-section-header .edit-btn {
-        margin-right: 20px;
-    }
-}
-
-@media (max-width: 295px) {
-    .profile-game-img {
-        padding: 10px 0;
-        margin: auto;
-    }
-    .profile-game-img img {
-        width: 200px;
-    }
-}
 
 /* ---------------------------------------------- Global */
 
@@ -808,6 +654,61 @@ The following code is based upon this source:
     }
 }
 
+@media (max-width: 1200px) and (min-width: 992px) {
+    #ProfileCard {
+        margin-left: 4.16666666665%;
+    }
+}
+
+@media (max-width: 1325px) and (min-width: 992px) {
+   #ProfileSidePanel {
+       width: 220px;
+   }
+}
+
+@media (max-width: 1650px) {
+    .profile-game-title h5 {
+        margin-left: 50px;
+    }
+}
+
+@media (max-width: 1541px) and (min-width: 1326px) {
+    #ProfileSidePanel {
+        width: 200px;
+    }
+    .profile-btns .btn {
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 1500px) {
+    .profile-game-title h5 {
+        font-size: 20px;
+        margin-left: 90px;
+    }
+}
+
+@media (max-width: 1375px) {
+    .profile-game-img img {
+        width: 400px;
+        height: auto;
+    }
+}
+
+@media(min-height: 1090px) {
+    .account-form {
+        margin-top: 15vh;
+    }
+}
+
+
+@media (max-width: 992px) {
+    .profile-game-title h5 {
+        margin-left: 20px;
+        text-align: left;
+    }
+}
+
 @media (max-width:905px) {
     .nav-wrapper a {
         margin-right: 0;
@@ -824,6 +725,36 @@ The following code is based upon this source:
     }
 }
 
+
+@media (max-width: 864px) {
+    .profile-base-card {
+        width: 95% !important;
+        margin-left: 2.083333333325% !important;
+    }
+    .profile-game-img img {
+        width: 350px;
+        margin: auto;
+    }
+}
+
+@media (max-width: 764px) {
+    .profile-game-img img {
+        width: 300px;
+    }
+}
+
+@media (max-width: 706px) and (min-width: 600px) {
+    #ProfileSidePanel {
+        width: 180px;
+    }
+}
+
+@media (max-width: 664px) and (min-width: 600px) {
+    .profile-game-img img {
+        width: 250px;
+    }
+}
+
 @media (max-width:640px) {
     .back-font {
         font-size: 50px;
@@ -833,7 +764,47 @@ The following code is based upon this source:
     }
 }
 
-@media (max-width: 600px) {
+@media(min-width: 601px) {
+    .profile-header {
+        display: flex;
+    }
+    .rank {
+        position: relative;
+    }
+    .rank h5 {
+        position: absolute; 
+        bottom: 20px; 
+        right: 5px;
+    }
+    .profile-btns li {
+        text-align: right;
+        margin: 5px 0;
+    }
+}
+
+@media(max-width: 600px) {
+    .profile-header {
+        text-align: right;
+    }
+    .profile-header h2 {
+        font-size: 36px;
+    }
+    .rank h5 {
+        font-size: 15px;
+    }
+    .profile-btns li {
+        display: inline;
+        text-align: center;
+    }
+    #firstItem {
+        margin-left: 8.3333333333%;
+    }
+    #editBtn {
+        margin-right: 15px;
+    }
+    .rank h5 {
+        margin-right: 15px;
+    }
     .add-btn {
         padding-top: 15px;
         padding-bottom: 28px;
@@ -872,5 +843,36 @@ The following code is based upon this source:
 @media (max-width: 405px) {
     #gameImageCard img {
         width: 250px;
+    }
+}
+
+@media(max-width: 385px) {
+    .profile-btns .row li {
+        display: list-item;
+        width: 100% !important;
+        text-align: right;
+        margin: 5px 0;
+    }
+    #firstItem {
+        margin-left: 0;
+    }
+    .profile-game-img img {
+        width: 225px;
+    }
+    .card-section-header h3 {
+        font-size: 32px;
+    }
+    .card-section-header .edit-btn {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 295px) {
+    .profile-game-img {
+        padding: 10px 0;
+        margin: auto;
+    }
+    .profile-game-img img {
+        width: 200px;
     }
 }
