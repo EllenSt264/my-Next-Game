@@ -1,61 +1,65 @@
 {% extends "base.html" %}
 {% block content %}
     
-
-    <div class="row py-5">
-        <!-- Profile Card -->
-        <div class="card-panel blue-grey darken-4 grey-text text-lighten-2 col s12 m10 offset-m1 l11 xl9 offset-xl2" id="Profile">
-            <!-- Header -->
-            <div class="row profile-header">
-                <!-- Username -->
-                <div class="col s12 m6">
-                    <h2>{{ username|capitalize }}'s Profile</h2>
-                </div>
-                <!-- Edit profile -->
-                <div class="row">
-                    <div class="col s12">
-                        <a href="#" class="btn hide-on-med-and-up">Edit Profile</a>
+    <section id="Profile">
+        <div class="row py-5">
+            <!-- Profile Card -->
+            <div class="card-panel profile-base-card grey-text text-lighten-4 col s12 m10 offset-m1 l11 xl9 offset-xl2" id="ProfileCard">
+                <!-- Header -->
+                <div class="row profile-header">
+                    <!-- Username -->
+                    <div class="col s12 m6 header-username">
+                        <h2>{{ username|capitalize }}'s Profile</h2>
                     </div>
-                </div>
-                <!-- Profile rank -->
-                <div class="col s12 m6 rank">
-                    <h5>Profile Rank 1</h5>
-                </div>
-            </div>
-            <!-- Divider -->
-            <div class="divider"></div>
-            <!-- Buttons -->
-            <div class="card-panel col s12 m3 l2 right">
-                <ul id="profile-btns">
+                    <!-- Edit profile -->
                     <div class="row">
-                        <!-- Edit profile -->
-                        <li class="col s12 hide-on-small-only">
-                            <a href="#" class="btn">Edit Profile</a>
-                        </li>
-                        <!-- Navigation -->
-                        <!-- Games-->
-                        <li class="col s3 m12" id="firstItem">
-                            <a class="btn" href="#">Games</a>
-                        </li>
-                        <!-- Favourites -->
-                        <li class="col s4 m12">
-                            <a class="btn" href="#">Favourites</a>
-                        </li>
-                        <!-- Reviews -->
-                        <li class="col s3 m12">
-                            <a class="btn" href="#">Reviews</a>
-                        </li>
+                        <div class="col s12">
+                            <a href="#" class="btn hide-on-med-and-up" id="editBtn">Edit Profile</a>
+                        </div>
                     </div>
-                </ul>
-            </div>
-            <!-- Profile Content -->
-            <div class="card-panel col s12 m8 l9">
-
-                {% block profile_content %}
-                {% endblock %}
-
+                    <!-- Profile rank -->
+                    <div class="col s12 m6 rank">
+                        <h5>Profile Rank 1</h5>
+                    </div>
+                </div>
+                <!-- Divider -->
+                <div class="divider"></div>
+                <!-- Buttons -->
+                <div class="card-panel profile-card-panel col s12 m3 l2 right" id="ProfileSidePanel">
+                    <ul class="profile-btns">
+                        <div class="row">
+                            <!-- Edit profile -->
+                            <li class="col s12 hide-on-small-only">
+                                <a href="#" class="btn">Edit Profile</a>
+                            </li>
+                            <div class="divider hide-on-small-only"></div>
+                            <!-- Navigation -->
+                            <!-- Games-->
+                            <li class="col s3 m12" id="firstItem">
+                                <a class="btn" href="#">Games</a>
+                            </li>
+                            <div class="divider hide-on-small-only"></div>
+                            <!-- Favourites -->
+                            <li class="col s4 m12">
+                                <a class="btn" href="#">Favourites</a>
+                            </li>
+                            <div class="divider hide-on-small-only"></div>
+                            <!-- Reviews -->
+                            <li class="col s3 m12">
+                                <a class="btn" href="#">Reviews</a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <!-- Profile Content -->
+                <div class="card-panel profile-card-panel col s12 m8 l9">
+    
+                    {% block profile_content %}
+                    {% endblock %}
+    
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
 {% endblock %}

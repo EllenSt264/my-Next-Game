@@ -516,6 +516,147 @@ The following code is based upon this source:
 
 /* ---------------------------------------------- Profile */
 
+#Profile {
+    background-image: url("https://wallpapercave.com/wp/wp6757645.jpg");
+    background-repeat: no-repeat;
+    background-size: 100vw auto;
+    background-position: center;
+}
+
+.profile-base-card {
+    background-color: #5b0bad;
+}
+
+.header-username h2 {
+    margin-left: 20px;
+}
+
+.rank {
+    margin-right: 20px;
+}
+
+.profile-card-panel {
+    background-color: #30134d;
+}
+
+.profile-card-header {
+    background-color: #c41cce;
+    width: 95%;
+    padding: 0;
+    margin: 50px auto 10px !important;
+}
+
+.profile-card-header h3 {
+    margin-top: 5px; 
+    margin-bottom: 5px;
+}
+
+.edit-btn a {
+    color: #8b0292;
+}
+
+.profile-card-content {
+    background-color: #622d83;
+    padding: 0; 
+    width: 95%; 
+    margin: 10px auto !important;
+}
+
+.profile-game-img {
+    padding: 10px;
+}
+
+.profile-game-img img {
+    border: 3px solid #f608ea;
+}
+
+.profile-btns .btn {
+    margin: 15px;
+}
+
+.profile-btns .divider {
+    border: 1px solid white; 
+    margin: 15px;
+}
+
+@media (max-width: 1200px) and (min-width: 992px) {
+    #ProfileCard {
+        margin-left: 4.16666666665%;
+    }
+}
+
+@media (max-width: 1325px) and (min-width: 992px) {
+   #ProfileSidePanel {
+       width: 220px;
+   }
+}
+
+@media (max-width: 1650px) {
+    .profile-game-title h5 {
+        margin-left: 50px;
+    }
+}
+
+@media (max-width: 1541px) and (min-width: 1326px) {
+    #ProfileSidePanel {
+        width: 200px;
+    }
+    .profile-btns .btn {
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 1500px) {
+    .profile-game-title h5 {
+        font-size: 20px;
+        margin-left: 90px;
+    }
+}
+
+@media (max-width: 1375px) {
+    .profile-game-img img {
+        width: 400px;
+        height: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .profile-game-title h5 {
+        margin-left: 20px;
+        text-align: left;
+    }
+}
+
+
+@media (max-width: 864px) {
+    .profile-base-card {
+        width: 95% !important;
+        margin-left: 2.083333333325% !important;
+    }
+    .profile-game-img img {
+        width: 350px;
+        margin: auto;
+    }
+}
+
+@media (max-width: 764px) {
+    .profile-game-img img {
+        width: 300px;
+    }
+}
+
+@media (max-width: 706px) and (min-width: 600px) {
+    #ProfileSidePanel {
+        width: 180px;
+    }
+}
+
+@media (max-width: 664px) and (min-width: 600px) {
+    .profile-game-img img {
+        width: 250px;
+    }
+}
+
 @media(min-width: 601px) {
     .profile-header {
         display: flex;
@@ -528,13 +669,13 @@ The following code is based upon this source:
         bottom: 20px; 
         right: 5px;
     }
-    #profile-btns li {
+    .profile-btns li {
         text-align: right;
         margin: 5px 0;
     }
 }
 
-@media(max-width: 601px) {
+@media(max-width: 600px) {
     .profile-header {
         text-align: right;
     }
@@ -544,17 +685,23 @@ The following code is based upon this source:
     .rank h5 {
         font-size: 15px;
     }
-    #profile-btns li {
+    .profile-btns li {
         display: inline;
         text-align: center;
     }
     #firstItem {
         margin-left: 8.3333333333%;
     }
+    #editBtn {
+        margin-right: 15px;
+    }
+    .rank h5 {
+        margin-right: 15px;
+    }
 }
 
 @media(max-width: 385px) {
-    #profile-btns .row li {
+    .profile-btns .row li {
         display: list-item;
         width: 100% !important;
         text-align: right;
@@ -562,6 +709,25 @@ The following code is based upon this source:
     }
     #firstItem {
         margin-left: 0;
+    }
+    .profile-game-img img {
+        width: 225px;
+    }
+    .card-section-header h3 {
+        font-size: 32px;
+    }
+    .card-section-header .edit-btn {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 295px) {
+    .profile-game-img {
+        padding: 10px 0;
+        margin: auto;
+    }
+    .profile-game-img img {
+        width: 200px;
     }
 }
 
