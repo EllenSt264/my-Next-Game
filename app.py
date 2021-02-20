@@ -286,11 +286,16 @@ def login():
 # Profile
 # ==========
 
+@app.route("/profile")
+def profile():
+    return render_template("profile-template.html")
+
+
 @app.route("/profile/<username>")
-def profile(username):
+def profile_games(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username)
+    return render_template("profile-games_list.html", username=username)
 
 
 # ==========
