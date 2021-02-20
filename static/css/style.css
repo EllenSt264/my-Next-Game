@@ -393,8 +393,7 @@ The following code is based upon this source:
     padding: 0 0 0 5px !important;
 }
 
-.like-icon:hover,
-.like-icon:active {
+.like-icon:hover {
     animation: pulse 1.5s infinite;
     animation-timing-function: linear;   
 }
@@ -455,14 +454,16 @@ The following code is based upon this source:
 
 #gameImageCard img {
     height: 125px; 
-    width: auto; 
+    width: 275px; 
     margin: auto; 
     border-radius: 10px;
 }
 
 #btnCard {
-    height: 125px; 
+    height: 125px;
+    width: 64px; 
     background-color: #231424;
+    z-index: 10;
 }
 
 .sm-screen-card .like {
@@ -471,10 +472,14 @@ The following code is based upon this source:
 
 .thumbs-up-sm-screen {
     font-size: 30px !important;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 .like-text-sm {
-    margin-top: 5px;
+    margin-top: 16px;
+    font-size: 15px;
 }
 
 #gameCardContent .card {
@@ -485,6 +490,7 @@ The following code is based upon this source:
 
 #gameCardContent .card-title {
     padding-top: 5px;
+    letter-spacing: 1px;
 }
 
 #gameCardContent .card-content {
@@ -664,7 +670,7 @@ The following code is based upon this source:
 @media (max-width: 600px) {
     .add-btn {
         padding-top: 15px;
-        padding-bottom: 35px;
+        padding-bottom: 28px;
     }
     i.fas.fa-plus::before {
         position: absolute;
@@ -684,9 +690,21 @@ The following code is based upon this source:
     }
 }
 
+@media (max-width: 450px) {
+    #gameImageCard.card {
+        margin-left: 0;
+    }
+}
+
 @media (max-width: 415px) {
     /* To fix unmatched width with front face */
     .back-font {
         letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 405px) {
+    #gameImageCard img {
+        width: 250px;
     }
 }

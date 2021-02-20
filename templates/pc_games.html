@@ -81,11 +81,13 @@
                                 </div>
                                 <!-- Buttons -->
                                 <div class="card col s2 right z-depth-5 center-align" id="btnCard">
-                                    <div class="container add-btn">
-                                        <a class="btn-floating pulse right waves-effect waves-light red accent-3">
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-                                    </div>
+                                    {% if session.user %}
+                                        <div class="container add-btn">
+                                            <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    {% endif %} 
                                     <div class="like white-text">
                                         <div class="col s12 like-icon">
                                             <a href="#" class="black-text">
@@ -199,11 +201,13 @@
                                 </div>
                                 <!-- Buttons -->
                                 <div class="card col s2 right z-depth-5 center-align" id="btnCard">
-                                    <div class="container add-btn">
-                                        <a class="btn-floating pulse right waves-effect waves-light red accent-3">
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-                                    </div>
+                                    {% if session.user %}
+                                        <div class="container add-btn">
+                                            <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    {% endif %} 
                                     <div class="like white-text">
                                         <div class="col s12 like-icon">
                                             <a href="#" class="black-text">
