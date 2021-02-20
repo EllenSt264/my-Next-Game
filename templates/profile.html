@@ -1,44 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
     
+
     <div class="row py-5">
-        <div class="col s12 m8 offset-m2 l6 offset-l3">
-            <div class="card-panel blue-grey darken-4 grey-text text-lighten-2">
-                <!-- Profile header -->
-                <div class="row profile-header">
-                    <div class="col s12 m6">
-                        <h2>{{ username|capitalize }}'s Profile</h2>
-                    </div>
-                    <!-- Edit profile -->
-                    <div class="row">
-                        <div class="col s12">
-                            <a href="#" class="btn hide-on-med-and-up">Edit Profile</a>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 rank">
-                        <h5>Profile Rank 1</h5>
+        <!-- Profile Card -->
+        <div class="card-panel blue-grey darken-4 grey-text text-lighten-2 col s12 m8 offset-m2 l6 offset-l3">
+            <!-- Header -->
+            <div class="row profile-header">
+                <!-- Username -->
+                <div class="col s12 m6">
+                    <h2>{{ username|capitalize }}'s Profile</h2>
+                </div>
+                <!-- Edit profile -->
+                <div class="row">
+                    <div class="col s12">
+                        <a href="#" class="btn hide-on-med-and-up">Edit Profile</a>
                     </div>
                 </div>
-                <div class="divider"></div>
-                <!-- Buttons -->
+                <!-- Profile rank -->
+                <div class="col s12 m6 rank">
+                    <h5>Profile Rank 1</h5>
+                </div>
+            </div>
+            <!-- Divider -->
+            <div class="divider"></div>
+            <!-- Buttons -->
+            <div class="card-panel col s12 m5 l4 right">
                 <ul id="profile-btns">
-                    <!-- Edit profile -->
                     <div class="row">
+                        <!-- Edit profile -->
                         <li class="col s12 hide-on-small-only">
                             <a href="#" class="btn">Edit Profile</a>
                         </li>
-                    <!-- Nav links -->
+                        <!-- Navigation -->
+                        <!-- Games-->
                         <li class="col s3 m12" id="firstItem">
                             <a class="btn" href="#">Games</a>
                         </li>
+                        <!-- Favourites -->
                         <li class="col s4 m12">
                             <a class="btn" href="#">Favourites</a>
                         </li>
+                        <!-- Reviews -->
                         <li class="col s3 m12">
                             <a class="btn" href="#">Reviews</a>
                         </li>
                     </div>
                 </ul>
+            </div>
+            <!-- Profile Content -->
+            <div class="card-panel col s12 m6 l7">
+
             </div>
         </div>
     </div>
