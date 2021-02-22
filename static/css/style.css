@@ -653,6 +653,15 @@ The following code is based upon this source:
 
 /* ---------------------------------------------- Media Queries */
 
+@media (max-width: 1839px) {
+    .profile-game-title h5 {
+        margin-left: 50px;
+    }
+    .btn-link,
+    .btn-review  {
+        margin-left: 50px !important;
+    }
+}
 
 @media (max-width: 1795px) and (min-width: 992px) {
     #gameCard1,
@@ -662,6 +671,16 @@ The following code is based upon this source:
     }
 }
 
+@media (max-width: 1675px) {
+    .profile-game-title h5 {
+        margin-left: 80px;
+    }
+    .btn-link,
+    .btn-review  {
+        margin-left: 80px !important;
+        padding-top: 10px !important;
+    }
+}
 
 @media (max-width: 1620px) and (min-width: 600px) {
     .add-btn a {
@@ -704,17 +723,14 @@ The following code is based upon this source:
     }
 }
 
-
-@media (max-width: 1200px) and (min-width: 992px) {
-    #ProfileCard {
-        margin-left: 4.16666666665%;
+@media (max-width: 1545px) {
+    .profile-game-title h5 {
+        margin-left: 125px;
     }
-}
-
-@media (max-width: 1325px) and (min-width: 992px) {
-   #ProfileSidePanel {
-       width: 220px;
-   }
+    .btn-link,
+    .btn-review  {
+        margin-left: 125px !important;
+    }
 }
 
 @media (max-width: 1541px) and (min-width: 1326px) {
@@ -739,17 +755,32 @@ The following code is based upon this source:
     }
 }
 
+@media (max-width: 1325px) and (min-width: 992px) {
+    #ProfileSidePanel {
+        width: 220px;
+    }
+}
+
+@media (max-width: 1200px) and (min-width: 992px) {
+    #ProfileCard {
+        margin-left: 4.16666666665%;
+    }
+}
+
 @media(min-height: 1090px) {
     .account-form {
         margin-top: 15vh;
     }
 }
 
-
 @media (max-width: 992px) {
     .profile-game-title h5 {
         margin-left: 20px;
         text-align: left;
+    }
+    .btn-link,
+    .btn-review  {
+        margin-left: 20px !important;
     }
 }
 
