@@ -27,7 +27,8 @@
 
                     {% if session.user %}
                     <!-- Desktop profile dropdown -->
-                    <a href="{{ url_for('profile_games', username=session['user']) }}" data-target="desktop-profile" class="dropdown-trigger right hide-on-med-and-down" 
+                    <a href="{{ url_for('profile_games', username=session['user']) }}" data-target="desktop-profile" 
+                    class="dropdown-trigger right hide-on-med-and-down nav-dropdown-trigger"
                     style="margin-right:25px;">
                         <i class="fas fa-user"></i>
                     </a>
@@ -36,7 +37,6 @@
                     <!-- Mobile hamburger --> 
                     <a href="#" class="my-sidenav-trigger right hide-on-large-only"
                     style="margin-right:25px;">
-                        <!-- <i class="fas fa-bars" style="font-size: 2.5rem"></i> -->
                         <div id="hamburger">
                             <span></span>
                             <span></span>
@@ -62,7 +62,7 @@
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li><a href="{{ url_for('pc_games') }}">Platform</a></li>
                         <li>
-                            <a href="{{ url_for('pc_games') }}" class="dropdown-trigger" 
+                            <a href="{{ url_for('pc_games') }}" class="dropdown-trigger nav-dropdown-trigger" 
                             data-target="GenreDropdown">Genre</a>
                         </li>
                     </ul>

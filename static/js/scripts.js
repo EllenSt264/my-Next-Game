@@ -34,7 +34,9 @@ $(document).ready(function () {
             $('.carousel').carousel('next');
         }, 8000)
 
-        $('.dropdown-trigger').dropdown({constrainWidth: false, hover: true, coverTrigger: false});
+        $('.dropdown-trigger').dropdown({constrainWidth: false, coverTrigger: false});
+
+        $('.nav-dropdown-trigger').dropdown({constrainWidth: false, coverTrigger: false, hover: true})
 
         $('.collapsible').collapsible();
     })
