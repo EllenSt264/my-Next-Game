@@ -503,30 +503,85 @@ The following code is based upon this source:
     margin-left: 12.49999999995% !important;
 }
 
-.review-card-panel {
-    position: relative;
-    padding-top: 10px;
+.review-card-game-title {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-family: "BlenderPro-Heavy";
+    letter-spacing: 1px;
+    font-size: 18px;
+    color: #ffd1f2; 
 }
 
 .review-card-username {
-    margin-top: 0; 
-    margin-bottom: 0; 
+    margin: 0;
+    font-family: "BlenderPro-Thin";
+    font-size: 15px;
+    color: #e8eaf6; 
+}
+
+.review-card-panel {
+    position: relative;
+    padding-top: 0;
+    background-color: #30134d;
+    border: 2px solid #c41cce;
+}
+
+.review-card-panel .card-content {
+    padding: 0 10px 10px;
+}
+
+.review-card-panel .content {
+    padding: 5px;
+}
+
+.review-card-panel .content p {
+    padding-left: 15px;
+    padding-right: 15px;
+    color: white;
 }
 
 .review-card-panel .card-image {
-    padding-top: 10px;
+    padding: 10px;
+}
+
+.review-card-panel .card-image img {
+    border: 2px solid #f608ea;
+}
+
+.review-card-panel .summary {
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.review-card-panel .collapsible,
+.review-card-panel .collapsible-header,
+.review-card-panel .collapsible-body {
+    background-color: #a842d4 ;
+    box-shadow: none;
+    border: none;
+    color: white;
+}
+
+.review-card-panel .collapsible-header {
+    font-family: "BlenderPro-Heavy";
+    letter-spacing: 1px;
+}
+
+.review-card-sticker .collapsible-body p {
+    font-size: 16px;
 }
 
 .review-card-sticker {
     position: absolute;
-    top: 4%;
+    top: 2%;
     bottom: 0;
     left: 80%;
     right: 0;
     width: 105px;
-    height: 56px;
-    padding: 10px;
+    height: 45px;
+    padding: 2px 10px;
     border-radius: 0;
+    color: white;
 }
 
 .review-card-sticker .material-icons,
