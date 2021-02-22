@@ -28,6 +28,9 @@ $(document).ready(function () {
 
         /* Side nav */
         $('.sidenav').sidenav({ edge: "right" });
+        
+        /* Dropdown */
+        $('.dropdown-trigger').dropdown({constrainWidth: false, coverTrigger: false});
 
         /* Dropdown - Navbar */
         $('.nav-dropdown-trigger').dropdown({constrainWidth: false, coverTrigger: false, hover: true})
@@ -38,10 +41,6 @@ $(document).ready(function () {
 
         /* Parallax */
         $('.parallax').parallax();
-        
-
-        /* Dropdown */
-        $('.dropdown-trigger').dropdown({constrainWidth: false, coverTrigger: false});
 
 
         /* Carousel */
