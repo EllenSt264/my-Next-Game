@@ -497,6 +497,46 @@ The following code is based upon this source:
     padding: 5px;
 }
 
+/* ---------------------------------------------- Community reviews page */
+
+.left-review-card {
+    margin-left: 12.49999999995% !important;
+}
+
+.review-card-panel {
+    position: relative;
+    padding-top: 10px;
+}
+
+.review-card-username {
+    margin-top: 0; 
+    margin-bottom: 0; 
+}
+
+.review-card-panel .card-image {
+    padding-top: 10px;
+}
+
+.review-card-sticker {
+    position: absolute;
+    top: 4%;
+    bottom: 0;
+    left: 80%;
+    right: 0;
+    width: 105px;
+    height: 56px;
+    padding: 10px;
+    border-radius: 0;
+}
+
+.review-card-sticker .material-icons,
+.review-card-sticker .fa-blender {
+    vertical-align: bottom;
+    font-size: 17px;
+}
+
+
+
 /* ---------------------------------------------- Register page */
 
 .account-title {

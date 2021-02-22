@@ -67,7 +67,7 @@
                         </li>
                     </ul>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="#">Community Reviews</a></li>
+                        <li><a href="{{ url_for('reviews') }}">Community Reviews</a></li>
                         {% if not session.user %}
                             <li><a href="{{ url_for('login') }}">Log In</a></li>
                         {% endif %}
@@ -102,7 +102,7 @@
         <ul class="my-sidenav" id="mobile-nav">
             <li><a href="{{ url_for('games') }}">Platform</a></li>
             <li><a href="{{ url_for('games') }}">Genre</a></li>
-            <li><a href="#">Community Reviews</a></li>
+            <li><a href="{{ url_for('reviews') }}">Community Reviews</a></li>
         </ul>
 
     </header>

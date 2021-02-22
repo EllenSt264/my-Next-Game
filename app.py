@@ -299,6 +299,15 @@ def profile_games(username):
 
 
 # ==========
+# Reviews
+# ==========
+
+@app.route("/community-reviews")
+def reviews():
+    return render_template("games-reviews.html")
+
+
+# ==========
 # Logout
 # ==========
 
