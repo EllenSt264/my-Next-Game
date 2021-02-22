@@ -1,8 +1,12 @@
 $(document).ready(function () {
     $(window).on("load", function() {
 
-        $('.parallax').parallax();
+        /* --------------------------------------- Materialize Initialization */
 
+
+        /* --------------------------------------- Navbar */
+
+        // Hamburger
         $('#hamburger').click(function(){
             $(this).toggleClass('open');
             $("#mobile-nav").css("width", "90%")
@@ -22,22 +26,40 @@ $(document).ready(function () {
             }
         });
 
+        /* Side nav */
         $('.sidenav').sidenav({ edge: "right" });
 
+        /* Dropdown - Navbar */
+        $('.nav-dropdown-trigger').dropdown({constrainWidth: false, coverTrigger: false, hover: true})
+
+
+        
+        /* --------------------------------------- Other */
+
+        /* Parallax */
+        $('.parallax').parallax();
+        
+
+        /* Dropdown */
+        $('.dropdown-trigger').dropdown({constrainWidth: false, coverTrigger: false});
+
+
+        /* Carousel */
         $('.carousel.carousel-slider').carousel({
             fullWidth: true, 
             indicators: true,
             duration: 600
         });
-        // https://stackoverflow.com/questions/36581504/materialize-carousel-slider-autoplay
+
+            /* To initiate autoplay on the carousel, I looked to this source:
+            "https://stackoverflow.com/questions/36581504/materialize-carousel-slider-autoplay" */
+
         setInterval(function() {
             $('.carousel').carousel('next');
         }, 8000)
 
-        $('.dropdown-trigger').dropdown({constrainWidth: false, coverTrigger: false});
-
-        $('.nav-dropdown-trigger').dropdown({constrainWidth: false, coverTrigger: false, hover: true})
-
+        
+        /* Collapsible */
         $('.collapsible').collapsible();
     })
 });
