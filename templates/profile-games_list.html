@@ -115,38 +115,40 @@
     {% for game in user_games %}
 
         {% if game.username == session.user %}
-            <div class="row card-panel profile-card-content">
-                <div class="valigin-wrapper">
-                    <!-- Image -->
-                    <div class="row">
-                        <div class="col s12 m12 l6">
-                            <div class="card-image profile-game-img">
-                                <img src="{{ game.game_img_full }}" alt="">
+
+            {% if game.stage == "next" %}
+                <div class="row card-panel profile-card-content">
+                    <div class="valigin-wrapper">
+                        <!-- Image -->
+                        <div class="row">
+                            <div class="col s12 m12 l6">
+                                <div class="card-image profile-game-img">
+                                    <img src="{{ game.game_img_full }}" alt="">
+                                </div>
                             </div>
-                        </div>
-                        <!-- Title -->
-                        <div class="col m12 l6 profile-game-title" id=>
-                            <h5 class="center-align">{{ game.game_title }}</h5>
-                        </div>
-                        <div class="card-content game-btns col m12 l6 left">
-                            <div class="col s4 btn-link">
-                                <a href="#" class="btn-large">
-                                    <i class="material-icons btn-icon-left">http</i>
-                                    <span style="font-size: 14px;">Links</span>
-                                    <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                                </a>
+                            <!-- Title -->
+                            <div class="col m12 l6 profile-game-title" id=>
+                                <h5 class="center-align">{{ game.game_title }}</h5>
                             </div>
-                            <div class="col s4 btn-review">
-                                <a href="#" class="btn-large">
-                                    <i class="material-icons btn-icon-left">thumb_up</i>
-                                    <span>Review</span>
-                                </a>
+                            <div class="card-content game-btns col m12 l6 left">
+                                <div class="col s4 btn-link">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">http</i>
+                                        <span style="font-size: 14px;">Links</span>
+                                        <i class="material-icons btn-icon-right">arrow_drop_down</i>
+                                    </a>
+                                </div>
+                                <div class="col s4 btn-review">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">thumb_up</i>
+                                        <span>Review</span>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>
-                    
                 </div>
-            </div>    
+            {% endif %}    
         {% endif %}
 
     {% endfor %}

@@ -352,7 +352,8 @@ def add_game(game_id):
             "game_tags": tags[0],
             "platform_pc": platform[0],
             "game_link": link[0],
-            "username": session["user"]
+            "username": session["user"],
+            "stage": "next"
         }
 
     # Check if a user has already added a game with the same to the db
