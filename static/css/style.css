@@ -670,6 +670,8 @@ The following code is based upon this source:
 
 .profile-game-img img {
     border: 3px solid #f608ea;
+    width: 466px;
+    height: 221px;
 }
 
 .profile-game-title h5 {

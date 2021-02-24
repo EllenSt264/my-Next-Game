@@ -298,7 +298,8 @@ def profile_games(username):
 
     user_games = mongo.db.user_games.find()
 
-    return render_template("profile-games_list.html", username=username, user_games=user_games)
+    return render_template("profile-games_list.html", username=username,
+    user_games=user_games)
 
 
 # ==========

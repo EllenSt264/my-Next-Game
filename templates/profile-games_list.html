@@ -111,39 +111,47 @@
     </div>
 
     <!-- Games -->
-    <div class="row card-panel profile-card-content">
-        <div class="valigin-wrapper">
-            <!-- Image -->
-            <div class="row">
-                <div class="col s12 m12 l6">
-                    <div class="card-image profile-game-img">
-                        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/header.jpg?t=1608719152" alt="">
-                    </div>
-                </div>
-                <!-- Title -->
-                <div class="col m12 l6 profile-game-title" id=>
-                    <h5 class="center-align">Red Dead Redemption 2</h5>
-                </div>
-                <div class="card-content game-btns col m12 l6 left">
-                    <div class="col s4 btn-link">
-                        <a href="#" class="btn-large">
-                            <i class="material-icons btn-icon-left">http</i>
-                            <span style="font-size: 14px;">Links</span>
-                            <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                        </a>
-                    </div>
-                    <div class="col s4 btn-review">
-                        <a href="#" class="btn-large">
-                            <i class="material-icons btn-icon-left">thumb_up</i>
-                            <span>Review</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
+    
+    {% for game in user_games %}
 
+        {% if game.username == session.user %}
+            <div class="row card-panel profile-card-content">
+                <div class="valigin-wrapper">
+                    <!-- Image -->
+                    <div class="row">
+                        <div class="col s12 m12 l6">
+                            <div class="card-image profile-game-img">
+                                <img src="{{ game.game_img_full }}" alt="">
+                            </div>
+                        </div>
+                        <!-- Title -->
+                        <div class="col m12 l6 profile-game-title" id=>
+                            <h5 class="center-align">{{ game.game_title }}</h5>
+                        </div>
+                        <div class="card-content game-btns col m12 l6 left">
+                            <div class="col s4 btn-link">
+                                <a href="#" class="btn-large">
+                                    <i class="material-icons btn-icon-left">http</i>
+                                    <span style="font-size: 14px;">Links</span>
+                                    <i class="material-icons btn-icon-right">arrow_drop_down</i>
+                                </a>
+                            </div>
+                            <div class="col s4 btn-review">
+                                <a href="#" class="btn-large">
+                                    <i class="material-icons btn-icon-left">thumb_up</i>
+                                    <span>Review</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>    
+        {% endif %}
+
+    {% endfor %}
+    
+    
     <!-- Completed -->
 
     <!-- Title -->
