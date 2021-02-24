@@ -295,7 +295,10 @@ def profile():
 def profile_games(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile-games_list.html", username=username)
+
+    user_games = mongo.db.user_games.find()
+
+    return render_template("profile-games_list.html", username=username, user_games=user_games)
 
 
 # ==========
@@ -305,6 +308,69 @@ def profile_games(username):
 @app.route("/community-reviews")
 def reviews():
     return render_template("games-reviews.html")
+
+
+# ==========
+# Add game
+# ==========
+
+@app.route("/add_game/<game_id>")
+def add_game(game_id):
+    # Grab game data from database
+    game = mongo.db.pc_games.find_one({"_id": ObjectId(game_id)})
+
+    # Create empty lists to add dict data into
+    title = []
+    tags = []
+    img_sm = []
+    img_full = []
+    platform = []
+    link = []
+
+    # Sift through dictionary data and add to lists
+    for k, v in game.items():
+        if k == "game_title":
+            title.append(v)
+            dict_game_title = v
+        if k == "game_top_tags":
+            tags.append(v)
+        if k == "game_img_sm":
+            img_sm.append(v)
+        if k == "game_img_full":
+            img_full.append(v)
+        if k == "platform_tags_pc":
+            platform.append(v)
+        if k == "game_link":
+            link.append(v)
+
+    # Construct new dicitonary
+    data = {
+            "game_title": title[0],
+            "game_img_sm": img_sm[0],
+            "game_img_full": img_full[0],
+            "game_tags": tags[0],
+            "platform_pc": platform[0],
+            "game_link": link[0],
+            "username": session["user"]
+        }
+
+    # Check if a user has already added a game with the same to the db
+    existing_data = mongo.db.user_games.find_one(
+        {"$and": [{"username": session["user"]},
+                  {"game_title": dict_game_title}]})
+
+    if existing_data is None:
+        mongo.db.user_games.insert_one(data)
+        flash("Game Successfully Added to List")
+
+    elif existing_data:
+        flash("You've Already Added This Game")
+
+    else:
+        mongo.db.user_games.insert_one(data)
+        flash("Game Successfully Added to List")
+
+    return redirect(url_for("pc_games", game_id=game_id))
 
 
 # ==========

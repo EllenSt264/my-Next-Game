@@ -20,7 +20,7 @@
                                     <div class="card-content">
                                         {% if session.user %}
                                         <div class="container right add-btn">
-                                            <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                            <a  href="{{ url_for('add_game', game_id=game._id) }}" class="btn-floating pulse right waves-effect waves-light red accent-3">
                                                 <i class="fas fa-plus"></i>
                                             </a>
                                         </div>
@@ -83,7 +83,8 @@
                                 <div class="card col s2 right z-depth-5 center-align" id="btnCard">
                                     {% if session.user %}
                                         <div class="container add-btn">
-                                            <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                            <a href="{{ url_for('add_game', game_id=game._id) }}"
+                                            class="btn-floating pulse right waves-effect waves-light red accent-3">
                                                 <i class="fas fa-plus"></i>
                                             </a>
                                         </div>
@@ -140,7 +141,8 @@
                                     <div class="card-content">
                                         {% if session.user %}
                                         <div class="container right add-btn">
-                                            <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                            <a href="{{ url_for('add_game', game_id=game._id) }}"
+                                            class="btn-floating pulse right waves-effect waves-light red accent-3 modal-trigger">
                                                 <i class="fas fa-plus"></i>
                                             </a>
                                         </div>
@@ -203,7 +205,8 @@
                                 <div class="card col s2 right z-depth-5 center-align" id="btnCard">
                                     {% if session.user %}
                                         <div class="container add-btn">
-                                            <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                            <a href="{{ url_for('add_game', game_id=game._id) }}"
+                                            class="btn-floating pulse right waves-effect waves-light red accent-3">
                                                 <i class="fas fa-plus"></i>
                                             </a>
                                         </div>
@@ -249,13 +252,6 @@
 
                 {% endif %}
             {% endfor %}
-
-        
-        
-        
-        
-        
-        
         </div>
 
         <ul class="pagination center-align">
