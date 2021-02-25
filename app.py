@@ -312,6 +312,15 @@ def reviews():
 
 
 # ==========
+# Reviews
+# ==========
+
+@app.route("/submit-review")
+def submit_review():
+    return render_template("games-review_form.html")    
+
+
+# ==========
 # Add game
 # ==========
 

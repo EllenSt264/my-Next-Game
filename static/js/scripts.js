@@ -60,5 +60,9 @@ $(document).ready(function () {
         
         /* Collapsible */
         $('.collapsible').collapsible();
+
+        $('select').formSelect();
+
+        $('textarea#summary, textarea#gameplay, textarea#visuals, textarea#sound').characterCounter();
     })
 });

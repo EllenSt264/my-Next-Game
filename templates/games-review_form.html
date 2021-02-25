@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <div class="row">
+        <form class="col s12 m10 offset-m1 l6 offset-l3" method="" action="">
+            <!-- Outer card -->
+            <div class="card-panel" style="background-color: #5b0bad;">
+                <!-- Inner card -->
+                <div class="card-panel grey-text text-lighten-2" style="background-color: #30134d;">
+                    <!-- Site logo -->
+                    <div class="col s12 center-align">
+                        <img src="../static/img/odin_logo.png" alt="" style="width:100px; height:100px;">
+                    </div>
+                    <!-- Form title -->
+                    <h3 class="text-lighten-1 account-title py-5 center-align">Submit Your Review</h3>
+    
+                    <!-- General -->
+                    <div class="card-panel" style="background-color: #622d83;">
+                        <!-- Game title search -->
+                        <div class="row">
+                            <div class="input-field col s12 m8 offset-m2">
+                                <i class="material-icons prefix">search</i>
+                                <input type="text" id="search-game-title" class="autocomplete" required>
+                                <label for="search-game-title" style="font-size: 18px;">Game Title</label>
+                            </div>
+                        </div>
+                        <!-- Platform select -->
+                        <div class="row">
+                            <div class="col s12 m8 offset-m2 input-field">
+                                
+                                <i class="fab fa-playstation prefix"></i>
+                                <select id="platform-select" name="platform-select" required>
+                                    <optgroup label="PC">
+                                        <option value="1">Windows</option>
+                                        <option value="1">Mac</option>
+                                        <option value="2">Linux</option>
+                                        <option value="2">Steam</option>
+                                    </optgroup>
+                                    <optgroup label="Console">
+                                        <option value="3">XBOX</option>
+                                        <option value="4" selected>Playstation</option>
+                                        <option value="4">Nintendo</option>
+                                    </optgroup>
+                                </select>
+                                <label for="platform-select" style="font-size: 18px;">Platform</label>
+                            </div>
+                        </div>
+                        <!-- Summary -->
+                        <div class="row">
+                            <div class="col s12 m8 offset-m2 input-field">
+                                <i class="material-icons prefix">mode_edit</i>
+                                <textarea id="summary" name="summary" class="materialize-textarea"
+                                data-length="145" minlength="10" maxlength="145" required></textarea>
+                                <label for="summary">Review Summary</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Gameplay -->
+                    <div class="card-panel" style="background-color: #622d83;">
+                        <div class="row">
+                            <!-- Title -->
+                            <div class="col s12 m8 offset-m2">
+                                <h5>How Does It Play?</h5>
+                            </div>
+                            <!-- Star rating -->
+                            <div class="col s12 m8 offset-m2">
+                                <!-- 
+                                    The code for the star rating is taken from following source:
+                                    "https://embed.plnkr.co/plunk/C42MBE"
+                                -->
+                                <fieldset class="rating">
+                                    <input id="gameplay-stars-1" type="radio" name="gameplay-stars" value="1" required> 
+                                    <label for="gameplay-stars-1">1 star</label>
+                                    <input id="gameplay-stars-2" type="radio" name="gameplay-stars" value="2">
+                                    <label for="gameplay-stars-2">2 stars</label>
+                                    <input id="gameplay-stars-3" type="radio" name="gameplay-stars" value="3">
+                                    <label for="gameplay-stars-3">3 stars</label>
+                                    <input id="gameplay-stars-4" type="radio" name="gameplay-stars" value="4">
+                                    <label for="gameplay-stars-4">4 stars</label>
+                                    <input id="gameplay-stars-5" type="radio" name="gameplay-stars" value="5">
+                                    <label for="gameplay-stars-5">5 stars</label>
+                                    
+                                    <div class="stars">
+                                        <label for="gameplay-stars-1" aria-label="1 star" title="1 star"></label>
+                                        <label for="gameplay-stars-2" aria-label="2 stars" title="2 stars"></label>
+                                        <label for="gameplay-stars-3" aria-label="3 stars" title="3 stars"></label>
+                                        <label for="gameplay-stars-4" aria-label="4 stars" title="4 stars"></label>
+                                        <label for="gameplay-stars-5" aria-label="5 stars" title="5 stars"></label>   
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!-- Input -->
+                            <div class="col s12 m8 offset-m2">
+                                <!-- Helper -->
+                                <p>(Eg: Mechanics, AI, Difficulty, Performance, Bugs...)</p>
+                                <!-- Input field -->
+                                <div class="input-field">
+                                    <i class="fas fa-gamepad prefix"></i>
+                                    <textarea id="gameplay" name="gameplay" class="materialize-textarea"
+                                    data-length="145" minlength="10" maxlength="1500" required></textarea>
+                                    <label for="gameplay">Gameplay</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Visuals -->
+                    <div class="card-panel" style="background-color: #622d83;">
+                        <div class="row">
+                            <!-- Title -->
+                            <div class="col s12 m8 offset-m2">
+                                <h5>How Does It Look?</h5>
+                            </div>
+                            <!-- Star rating -->
+                            <div class="col s12 m8 offset-m2">
+                                <fieldset class="rating">
+                                    <input id="visuals-stars-1" type="radio" name="visuals-stars" value="1" required> 
+                                    <label for="visuals-stars-1">1 star</label>
+                                    <input id="visuals-stars-2" type="radio" name="visuals-stars" value="2">
+                                    <label for="visuals-stars-2">2 stars</label>
+                                    <input id="visuals-stars-3" type="radio" name="visuals-stars" value="3">
+                                    <label for="visuals-stars-3">3 stars</label>
+                                    <input id="visuals-stars-4" type="radio" name="visuals-stars" value="4">
+                                    <label for="visuals-stars-4">4 stars</label>
+                                    <input id="visuals-stars-5" type="radio" name="visuals-stars" value="5">
+                                    <label for="visuals-stars-5">5 stars</label>
+                                    
+                                    <div class="stars">
+                                        <label for="visuals-stars-1" aria-label="1 star" title="1 star"></label>
+                                        <label for="visuals-stars-2" aria-label="2 stars" title="2 stars"></label>
+                                        <label for="visuals-stars-3" aria-label="3 stars" title="3 stars"></label>
+                                        <label for="visuals-stars-4" aria-label="4 stars" title="4 stars"></label>
+                                        <label for="visuals-stars-5" aria-label="5 stars" title="5 stars"></label>   
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!-- Input -->
+                            <div class="col s12 m8 offset-m2">
+                                <!-- Helper -->
+                                <p>(Eg: Textures, Models, Lighting, VFX, Animation...)</p>
+                                <!-- Input field -->
+                                <div class="input-field">
+                                    <i class="fas fa-eye prefix"></i>
+                                    <textarea id="visuals" name="visuals" class="materialize-textarea"
+                                    data-length="145" minlength="10" maxlength="1500" required></textarea>
+                                    <label for="visuals">Visuals</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sound -->
+                    <div class="card-panel" style="background-color: #622d83;">
+                        <div class="row">
+                            <!-- Title -->
+                            <div class="col s12 m8 offset-m2">
+                                <h5>How Does It Sound?</h5>
+                            </div>
+                            <!-- Star rating -->
+                            <div class="col s12 m8 offset-m2">
+                                <fieldset class="rating">
+                                    <input id="sound-stars-1" type="radio" name="sound-stars" value="1" required> 
+                                    <label for="sound-stars-1">1 star</label>
+                                    <input id="sound-stars-2" type="radio" name="sound-stars" value="2">
+                                    <label for="sound-stars-2">2 stars</label>
+                                    <input id="sound-stars-3" type="radio" name="sound-stars" value="3">
+                                    <label for="sound-stars-3">3 stars</label>
+                                    <input id="sound-stars-4" type="radio" name="sound-stars" value="4">
+                                    <label for="sound-stars-4">4 stars</label>
+                                    <input id="sound-stars-5" type="radio" name="sound-stars" value="5">
+                                    <label for="sound-stars-5">5 stars</label>
+                                    
+                                    <div class="stars">
+                                        <label for="sound-stars-1" aria-label="1 star" title="1 star"></label>
+                                        <label for="sound-stars-2" aria-label="2 stars" title="2 stars"></label>
+                                        <label for="sound-stars-3" aria-label="3 stars" title="3 stars"></label>
+                                        <label for="sound-stars-4" aria-label="4 stars" title="4 stars"></label>
+                                        <label for="sound-stars-5" aria-label="5 stars" title="5 stars"></label>   
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <!-- Input -->
+                            <div class="col s12 m8 offset-m2">
+                                <!-- Helper -->
+                                <p>(Eg: Sound Design, Music, Audio Quality...)</p>
+                                <!-- Input field -->
+                                <div class="input-field">
+                                    <i class="fas fa-music prefix"></i>
+                                    <textarea id="sound" name="sound" class="materialize-textarea"
+                                    data-length="145" minlength="10" maxlength="1500" required></textarea>
+                                    <label for="sound">Sound</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit -->
+                    <div class="row center-align">
+                        <button type="submit" class="btn btn-large waves-effect waves-light" id="submit-review"
+                        style="border-radius: 5px; background-color: #c41cce;">
+                            Submit
+                        </button>
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
