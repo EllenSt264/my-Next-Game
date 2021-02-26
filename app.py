@@ -299,7 +299,18 @@ def profile_games(username):
     user_games = mongo.db.user_games.find()
 
     return render_template("profile-games_list.html", username=username,
-    user_games=user_games)
+                           user_games=user_games)
+
+
+# ==========
+# Add game
+# ==========
+
+@app.route("/games/<username>")
+def user_list(username):
+    user_games = mongo.db.user_games.find()
+    return render_template("games-user_list.html", username=session["user"],
+                           user_games=user_games)
 
 
 # ==========

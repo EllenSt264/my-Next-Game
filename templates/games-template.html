@@ -58,7 +58,7 @@
                 <li><a href="#" class="standard-link">Award Winners</a></li>
                 <li><a href="#" class="standard-link">Our Favourites</a></li>
                 {% if session.user %}
-                <li><a href="#" class="standard-link">Your List</a></li>
+                <li><a href="{{ url_for('user_list', username=session['user']) }}" class="standard-link">Your List</a></li>
                 {% endif %}
 
                 <!-- All games link -->
