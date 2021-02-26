@@ -302,9 +302,9 @@ def profile_games(username):
                            user_games=user_games)
 
 
-# ==========
-# Add game
-# ==========
+# ================
+# User Games List
+# ================
 
 @app.route("/games/<username>")
 def user_list(username):
@@ -393,6 +393,16 @@ def add_game(game_id):
         flash("Game Successfully Added to List")
 
     return redirect(url_for("pc_games", game_id=game_id))
+
+
+# ====================
+# Edit User Games List
+# ====================
+
+@app.route("/profile/<username>/edit-games")
+def edit_user_games_list(username):
+    return render_template(
+        "profile-games_list_form.html", username=session["user"])
 
 
 # ==========
