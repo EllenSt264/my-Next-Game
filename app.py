@@ -67,6 +67,21 @@ def games():
 
 
 # ===================
+# Search
+# ===================
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+
+    mongo.db.pc_games.create_index([("game_title", 1)])
+    games = mongo.db.pc_games.find(
+        {"$text": {"$search": query}})
+
+    return render_template("games-search_results.html", games=games)
+
+
+# ===================
 # PC Games
 # ===================
 
@@ -326,9 +341,9 @@ def reviews():
 # Reviews
 # ==========
 
-@app.route("/submit-review")
+@app.route("/submit-review", methods=["GET", "POST"])
 def submit_review():
-    return render_template("games-review_form.html")    
+    return render_template("games-review_form.html")
 
 
 # ==========
