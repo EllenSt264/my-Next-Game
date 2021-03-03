@@ -2,7 +2,7 @@
 {% block content %}
     
     <div class="row">
-        <form class="col s12 m10 offset-m1 l6 offset-l3" method="" action="">
+        <form class="col s12 m10 offset-m1 l6 offset-l3" id="reviewForm" method="post" action="{{ url_for('submit_review') }}">
             <!-- Outer card -->
             <div class="card-panel" style="background-color: #5b0bad;">
                 <!-- Inner card -->
@@ -18,10 +18,12 @@
                     <div class="card-panel" style="background-color: #622d83;">
                         <!-- Game title search -->
                         <div class="row">
-                            <div class="input-field col s12 m8 offset-m2">
+                            <div class="input-field ui-widget col s12 m8 offset-m2">
                                 <i class="material-icons prefix">search</i>
-                                <input type="text" id="search-game-title" class="autocomplete" required>
-                                <label for="search-game-title" style="font-size: 18px;">Game Title</label>
+                                <label for="query" style="font-size: 18px;">Game Title</label>
+                                <input type="text" id="query" name="query" class="validate" required
+                                oninvalid="this.setCustomValidity('Enter Game Title')"
+                                oninput="this.setCustomValidity('')"/>
                             </div>
                         </div>
                         <!-- Platform select -->

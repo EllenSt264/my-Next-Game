@@ -593,6 +593,28 @@ The following code is based upon this source:
 
 /* ---------------------------------------------- Review Form */
 
+/* JQuery UI Autocomplete */
+
+ul.ui-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    max-height: 500px;
+    z-index: 10;
+    padding:0 .5em;
+    line-height:2em;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    overflow-y: scroll;
+    cursor: pointer;
+}
+
+ul.ui-autocomplete .highlight {
+    color: #f608ea;
+}
+
+/* Star rating */
+
 /* 
     The code for the star rating is based upon the following source:
     "https://embed.plnkr.co/plunk/C42MBE"
@@ -677,9 +699,6 @@ label[for]:hover {
 .account-form p {
     font-size: 18px;
 }
-
-
-
 
 /* ---------------------------------------------- Profile */
 
