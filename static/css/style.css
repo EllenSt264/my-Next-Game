@@ -499,6 +499,10 @@ The following code is based upon this source:
 
 /* ---------------------------------------------- Community reviews page */
 
+.review-card {
+    margin: 25px 5px;
+}
+
 .left-review-card {
     margin-left: 12.49999999995% !important;
 }

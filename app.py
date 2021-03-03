@@ -335,7 +335,9 @@ def user_list(username):
 
 @app.route("/community-reviews")
 def reviews():
-    return render_template("games-reviews.html")
+    game_reviews = mongo.db.user_reviews.find({})
+    return render_template(
+        "games-reviews.html", game_reviews=game_reviews)
 
 
 # ==========
