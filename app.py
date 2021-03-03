@@ -4,6 +4,7 @@ from flask import (
 from flask_pymongo import PyMongo, pymongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
+from bson.json_util import dumps
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -341,9 +342,30 @@ def reviews():
 # Reviews
 # ==========
 
-@app.route("/submit-review", methods=["GET", "POST"])
+@app.route("/submit-review")
 def submit_review():
     return render_template("games-review_form.html")
+
+
+# ==============
+# Export to JS
+# ==============
+
+def export_data():
+    games = mongo.db.pc_games.find({})
+
+    def writeToJS():
+        file = open("static/js/data.js", "w")
+        file.write('const gameData = [')
+        for game in games:
+            file.write(dumps(game["game_title"]))
+            file.write(', ')
+        file.write(']')
+
+    writeToJS()
+
+
+export_data()
 
 
 # ==========
