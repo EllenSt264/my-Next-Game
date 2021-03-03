@@ -342,9 +342,49 @@ def reviews():
 # Reviews
 # ==========
 
-@app.route("/submit-review")
+@app.route("/submit-review", methods=["GET", "POST"])
 def submit_review():
-    return render_template("games-review_form.html")
+    if request.method == "POST":
+
+        title = request.form.get("query")
+        game = mongo.db.pc_games.find_one({"game_title": title})
+        img_sm = game["game_img_sm"]
+        img_full = game["game_img_full"]
+
+        review = {
+            "game_title": title,
+            "game_img_sm": img_sm,
+            "game_img_full": img_full,
+            "platform": request.form.get("platform-select").lower(),
+            "summary": request.form.get("summary"),
+            "gameplay_rating": request.form.get("gameplay-stars"),
+            "gameplay": request.form.get("gameplay"),
+            "visuals_rating": request.form.get("visuals-stars"),
+            "visuals": request.form.get("visuals"),
+            "sound_rating": request.form.get("sound-stars"),
+            "sound": request.form.get("sound"),
+            "username": session["user"]
+        }
+
+        # Check if a user has already added a game with the same to the db
+        existing_review = mongo.db.user_reviews.find_one(
+            {"$and": [{"username": session["user"]},
+                      {"game_title": title}]})
+
+        if existing_review is None:
+            mongo.db.user_reviews.insert_one(review)
+            flash("Review Successfully Submitted")
+
+        elif existing_review:
+            flash("You've Already Submitted a Review for this Game")
+
+        else:
+            mongo.db.user_reviews.insert_one(review)
+            flash("Review Successfully Submitted")
+
+        return redirect(url_for('reviews'))
+
+    return render_template("games-review_form.html", matching_results=games)
 
 
 # ==============
