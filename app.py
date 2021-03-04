@@ -1,4 +1,5 @@
 import os
+from re import S
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo, pymongo
@@ -322,6 +323,54 @@ def profile_games(username):
         "profile-games_list.html", username=username,
         games_playing=games_playing, games_next=games_next,
         games_completed=games_completed)
+
+
+# ========================
+# Edit Game List - Playing
+# ========================
+
+@app.route("/play-now/<game_id>", methods=["GET", "POST"])
+def game_to_playing(game_id):
+    if request.method == "POST":
+        update = {"$set": {"stage": "playing"}}
+        mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
+        flash("Game Successfully Moved to Playing")
+
+    game = mongo.db.user_games.find_one({"_id": str(ObjectId(game_id))})
+    return redirect(url_for(
+        "profile_games", username=session["user"], game=game))
+
+
+# =====================
+# Edit Game List - Next
+# =====================
+
+@app.route("/play-next/<game_id>", methods=["GET", "POST"])
+def game_to_next(game_id):
+    if request.method == "POST":
+        update = {"$set": {"stage": "next"}}
+        mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
+        flash("Game Successfully Moved to Next In Line")
+
+    game = mongo.db.user_games.find_one({"_id": str(ObjectId(game_id))})
+    return redirect(url_for(
+        "profile_games", username=session["user"], game=game))
+
+
+# ==========================
+# Edit Game List - Completed
+# ==========================
+
+@app.route("/complected/<game_id>", methods=["GET", "POST"])
+def game_to_completed(game_id):
+    if request.method == "POST":
+        update = {"$set": {"stage": "completed"}}
+        mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
+        flash("Game Successfully Moved to Completed")
+
+    game = mongo.db.user_games.find_one({"_id": ObjectId(game_id)})
+    return redirect(url_for(
+        "profile_games", username=session["user"], game=game))
 
 
 # ================

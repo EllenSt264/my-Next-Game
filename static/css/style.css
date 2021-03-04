@@ -777,22 +777,22 @@ label[for]:hover {
     text-align: left;
 }
 
-.btn-link,
-.btn-review {
+.profile-game-btn {
     padding-left: 0 !important;
     min-width: 131px;
 }
 
-.btn-link .btn-large,
-.btn-review .btn-large {
+.profile-game-btn .btn-large {
+    font-family: "BlenderPro-Book";
+    font-size: 14px;
     padding: 0 15px; 
     min-width: 131px;
     background-color: #431d5a;
     color: white;
 }
 
-.btn-link a:hover,
-.btn-review a:hover {
+.profile-game-btn a:hover,
+.profile-game-btn span:hover {
     color: #f600ff;
 }
 
@@ -804,10 +804,6 @@ label[for]:hover {
 .btn-icon-right {
     vertical-align: bottom; 
     padding-left: 5px;
-}
-
-.btn-review .btn-icon-left {
-    font-size: 18px;
 }
 
 .profile-btns .btn {

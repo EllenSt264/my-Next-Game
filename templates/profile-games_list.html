@@ -36,14 +36,14 @@
                         </div>
                         <div class="card-content game-btns col m12 l6 left">
                             <div class="row">
-                                <div class="col s4 btn-link">
+                                <div class="col s4 profile-game-btn">
                                     <a href="#" class="btn-large">
                                         <i class="material-icons btn-icon-left">http</i>
                                         <span style="font-size: 14px;">Links</span>
                                         <i class="material-icons btn-icon-right">arrow_drop_down</i>
                                     </a>
                                 </div>
-                                <div class="col s4 btn-review">
+                                <div class="col s4 profile-game-btn">
                                     <a href="#" class="btn-large">
                                         <i class="material-icons btn-icon-left">thumb_up</i>
                                         <span>Review</span>
@@ -51,17 +51,23 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s4 btn-link">
-                                    <a href="#" class="btn-large">
-                                        <i class="material-icons btn-icon-left">videogame_asset</i>
-                                        <span style="font-size: 14px;">Playing</span>
-                                    </a>
+                                <!-- Move to Next In Line -->
+                                <div class="col s4 profile-game-btn">
+                                    <form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
+                                        <button type="submit" class="btn-large">
+                                            <i class="material-icons btn-icon-left">queue_play_next</i>
+                                            <span style="font-size: 14px;">Play Later</span>
+                                        </button>
+                                    </form>
                                 </div>
-                                <div class="col s4 btn-review">
-                                    <a href="#" class="btn-large">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span style="font-size: 14px;">Completed</span>
-                                    </a>
+                                <!-- Move to completed -->
+                                <div class="col s4 profile-game-btn">
+                                    <form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
+                                        <button type="submit" class="btn-large">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span style="font-size: 14px;">Completed</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -108,14 +114,14 @@
                         </div>
                         <div class="card-content game-btns col m12 l6 left">
                             <div class="row">
-                                <div class="col s4 btn-link">
+                                <div class="col s4 profile-game-btn">
                                     <a href="#" class="btn-large">
                                         <i class="material-icons btn-icon-left">http</i>
                                         <span style="font-size: 14px;">Links</span>
                                         <i class="material-icons btn-icon-right">arrow_drop_down</i>
                                     </a>
                                 </div>
-                                <div class="col s4 btn-review">
+                                <div class="col s4 profile-game-btn">
                                     <a href="#" class="btn-large">
                                         <i class="material-icons btn-icon-left">thumb_up</i>
                                         <span>Review</span>
@@ -123,17 +129,23 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s4 btn-link">
-                                    <a href="#" class="btn-large">
-                                        <i class="material-icons btn-icon-left">videogame_asset</i>
-                                        <span style="font-size: 14px;">Playing</span>
-                                    </a>
+                                <!-- Move to playing -->
+                                <div class="col s4 profile-game-btn">
+                                    <form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
+                                        <button type="submit" class="btn-large">
+                                            <i class="material-icons btn-icon-left">videogame_asset</i>
+                                            <span style="font-size: 14px;">Playing</span>
+                                        </button>
+                                    </form>
                                 </div>
-                                <div class="col s4 btn-review">
-                                    <a href="#" class="btn-large">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span style="font-size: 14px;">Completed</span>
-                                    </a>
+                                <!-- Move to completed -->
+                                <div class="col s4 profile-game-btn">
+                                    <form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
+                                        <button type="submit" class="btn-large">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span style="font-size: 14px;">Completed</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -180,14 +192,14 @@
                         </div>
                         <div class="card-content game-btns col m12 l6 left">
                             <div class="row">
-                                <div class="col s4 btn-link">
+                                <div class="col s4 profile-game-btn">
                                     <a href="#" class="btn-large">
                                         <i class="material-icons btn-icon-left">http</i>
                                         <span style="font-size: 14px;">Links</span>
                                         <i class="material-icons btn-icon-right">arrow_drop_down</i>
                                     </a>
                                 </div>
-                                <div class="col s4 btn-review">
+                                <div class="col s4 profile-game-btn">
                                     <a href="#" class="btn-large">
                                         <i class="material-icons btn-icon-left">thumb_up</i>
                                         <span>Review</span>
@@ -195,17 +207,23 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s4 btn-link">
-                                    <a href="#" class="btn-large">
-                                        <i class="material-icons btn-icon-left">videogame_asset</i>
-                                        <span style="font-size: 14px;">Playing</span>
-                                    </a>
+                                <!-- Move to playing -->
+                                <div class="col s4 profile-game-btn">
+                                    <form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
+                                        <button type="submit" class="btn-large">
+                                            <i class="material-icons btn-icon-left">videogame_asset</i>
+                                            <span style="font-size: 14px;">Playing</span>
+                                        </button>
+                                    </form>
                                 </div>
-                                <div class="col s4 btn-review">
-                                    <a href="#" class="btn-large">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span style="font-size: 14px;">Completed</span>
-                                    </a>
+                                <!-- Move to Next In Line -->
+                                <div class="col s4 profile-game-btn">
+                                    <form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
+                                        <button type="submit" class="btn-large">
+                                            <i class="material-icons btn-icon-left">queue_play_next</i>
+                                            <span style="font-size: 14px;">Play Later</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
