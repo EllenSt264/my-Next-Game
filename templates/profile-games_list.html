@@ -18,64 +18,59 @@
     </div>
 
     <!-- Games -->
-    <div class="row card-panel profile-card-content">
-        <div class="valigin-wrapper">
-            <!-- Image -->
-            <div class="row">
-                <div class="col s12 m12 l6">
-                    <div class="card-image profile-game-img">
-                        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg?t=1606935465" alt="">
-                    </div>
-                </div>
-                <!-- Title -->
-                <div class="col m12 l6 profile-game-title">
-                    <h5 class="center-align">Red Dead Redemption 2</h5>
-                </div>
-                <!-- Buttons -->
-                <div class="card-content game-btns col m12 l6 left">
-                    <div class="row">
-                        <!-- Links -->
-                        <div class="col s4 btn-link">
-                            <a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks1">
-                                <i class="material-icons btn-icon-left">http</i>
-                                <span style="font-size: 14px;">Links</span>
-                                <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                            </a>
-                        </div>
-                        <!-- Review -->
-                        <div class="col s4 btn-review">
-                            <a href="#" class="btn-large">
-                                <i class="material-icons btn-icon-left">thumb_up</i>
-                                <span>Review</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s4 btn-link">
-                            <a href="#" class="btn-large">
-                                <i class="material-icons btn-icon-left">queue_play_next</i>
-                                <span style="font-size: 14px;">Play Later</span>
-                            </a>
-                        </div>
-                        <div class="col s4 btn-review">
-                            <a href="#" class="btn-large">
-                                <i class="fas fa-check-circle"></i>
-                                <span style="font-size: 14px;">Completed</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    {% for game in games_playing %}
 
-                <!-- Dropdown -->
-                <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks1">
-                    <li><a href="#">Visit Game Page</a></li>
-                    <li><a href="#">Visit Official Website</a></li>
-                    <li><a href="#">Visit Steam Store Page</a></li>
-                    <li><a href="#">Read Related Reviews</a></li>
-                </ul>
+        {% if game.username == session.user %}
+            <div class="row card-panel profile-card-content">
+                <div class="valigin-wrapper">
+                    <!-- Image -->
+                    <div class="row">
+                        <div class="col s12 m12 l6">
+                            <div class="card-image profile-game-img">
+                                <img src="{{ game.game_img_full }}" alt="">
+                            </div>
+                        </div>
+                        <!-- Title -->
+                        <div class="col m12 l6 profile-game-title" id=>
+                            <h5 class="center-align">{{ game.game_title }}</h5>
+                        </div>
+                        <div class="card-content game-btns col m12 l6 left">
+                            <div class="row">
+                                <div class="col s4 btn-link">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">http</i>
+                                        <span style="font-size: 14px;">Links</span>
+                                        <i class="material-icons btn-icon-right">arrow_drop_down</i>
+                                    </a>
+                                </div>
+                                <div class="col s4 btn-review">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">thumb_up</i>
+                                        <span>Review</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4 btn-link">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">videogame_asset</i>
+                                        <span style="font-size: 14px;">Playing</span>
+                                    </a>
+                                </div>
+                                <div class="col s4 btn-review">
+                                    <a href="#" class="btn-large">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span style="font-size: 14px;">Completed</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
             </div>
-        </div>
-    </div>
+        {% endif %}
+
+    {% endfor %}
 
     <!-- Next in Line -->
 
@@ -95,59 +90,56 @@
 
     <!-- Games -->
     
-    {% for game in user_games %}
+    {% for game in games_next %}
 
         {% if game.username == session.user %}
-
-            {% if game.stage == "next" %}
-                <div class="row card-panel profile-card-content">
-                    <div class="valigin-wrapper">
-                        <!-- Image -->
-                        <div class="row">
-                            <div class="col s12 m12 l6">
-                                <div class="card-image profile-game-img">
-                                    <img src="{{ game.game_img_full }}" alt="">
+            <div class="row card-panel profile-card-content">
+                <div class="valigin-wrapper">
+                    <!-- Image -->
+                    <div class="row">
+                        <div class="col s12 m12 l6">
+                            <div class="card-image profile-game-img">
+                                <img src="{{ game.game_img_full }}" alt="">
+                            </div>
+                        </div>
+                        <!-- Title -->
+                        <div class="col m12 l6 profile-game-title" id=>
+                            <h5 class="center-align">{{ game.game_title }}</h5>
+                        </div>
+                        <div class="card-content game-btns col m12 l6 left">
+                            <div class="row">
+                                <div class="col s4 btn-link">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">http</i>
+                                        <span style="font-size: 14px;">Links</span>
+                                        <i class="material-icons btn-icon-right">arrow_drop_down</i>
+                                    </a>
+                                </div>
+                                <div class="col s4 btn-review">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">thumb_up</i>
+                                        <span>Review</span>
+                                    </a>
                                 </div>
                             </div>
-                            <!-- Title -->
-                            <div class="col m12 l6 profile-game-title" id=>
-                                <h5 class="center-align">{{ game.game_title }}</h5>
-                            </div>
-                            <div class="card-content game-btns col m12 l6 left">
-                                <div class="row">
-                                    <div class="col s4 btn-link">
-                                        <a href="#" class="btn-large">
-                                            <i class="material-icons btn-icon-left">http</i>
-                                            <span style="font-size: 14px;">Links</span>
-                                            <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                                        </a>
-                                    </div>
-                                    <div class="col s4 btn-review">
-                                        <a href="#" class="btn-large">
-                                            <i class="material-icons btn-icon-left">thumb_up</i>
-                                            <span>Review</span>
-                                        </a>
-                                    </div>
+                            <div class="row">
+                                <div class="col s4 btn-link">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">videogame_asset</i>
+                                        <span style="font-size: 14px;">Playing</span>
+                                    </a>
                                 </div>
-                                <div class="row">
-                                    <div class="col s4 btn-link">
-                                        <a href="#" class="btn-large">
-                                            <i class="material-icons btn-icon-left">videogame_asset</i>
-                                            <span style="font-size: 14px;">Playing</span>
-                                        </a>
-                                    </div>
-                                    <div class="col s4 btn-review">
-                                        <a href="#" class="btn-large">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span style="font-size: 14px;">Completed</span>
-                                        </a>
-                                    </div>
+                                <div class="col s4 btn-review">
+                                    <a href="#" class="btn-large">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span style="font-size: 14px;">Completed</span>
+                                    </a>
                                 </div>
                             </div>
-                        </div> 
-                    </div>
+                        </div>
+                    </div> 
                 </div>
-            {% endif %}    
+            </div>
         {% endif %}
 
     {% endfor %}
@@ -170,54 +162,59 @@
     </div>
 
     <!-- Games -->
-    <div class="row card-panel profile-card-content">
-        <div class="valigin-wrapper">
-            <!-- Image -->
-            <div class="row">
-                <div class="col s12 m12 l6">
-                    <div class="card-image profile-game-img">
-                        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg?t=1592866696" alt="">
-                    </div>
-                </div>
-                <!-- Title -->
-                <div class="col m12 l6 profile-game-title" id=>
-                    <h5 class="center-align">Red Dead Redemption 2</h5>
-                </div>
-                <div class="card-content game-btns col m12 l6 left">
+    {% for game in games_completed %}
+
+        {% if game.username == session.user %}
+            <div class="row card-panel profile-card-content">
+                <div class="valigin-wrapper">
+                    <!-- Image -->
                     <div class="row">
-                        <div class="col s4 btn-link">
-                            <a href="#" class="btn-large">
-                                <i class="material-icons btn-icon-left">http</i>
-                                <span style="font-size: 14px;">Links</span>
-                                <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                            </a>
+                        <div class="col s12 m12 l6">
+                            <div class="card-image profile-game-img">
+                                <img src="{{ game.game_img_full }}" alt="">
+                            </div>
                         </div>
-                        <div class="col s4 btn-review">
-                            <a href="#" class="btn-large">
-                                <i class="material-icons btn-icon-left">thumb_up</i>
-                                <span>Review</span>
-                            </a>
+                        <!-- Title -->
+                        <div class="col m12 l6 profile-game-title" id=>
+                            <h5 class="center-align">{{ game.game_title }}</h5>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s4 btn-link">
-                            <a href="#" class="btn-large">
-                                <i class="material-icons btn-icon-left">videogame_asset</i>
-                                <span style="font-size: 14px;">Play Again</span>
-                            </a>
+                        <div class="card-content game-btns col m12 l6 left">
+                            <div class="row">
+                                <div class="col s4 btn-link">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">http</i>
+                                        <span style="font-size: 14px;">Links</span>
+                                        <i class="material-icons btn-icon-right">arrow_drop_down</i>
+                                    </a>
+                                </div>
+                                <div class="col s4 btn-review">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">thumb_up</i>
+                                        <span>Review</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4 btn-link">
+                                    <a href="#" class="btn-large">
+                                        <i class="material-icons btn-icon-left">videogame_asset</i>
+                                        <span style="font-size: 14px;">Playing</span>
+                                    </a>
+                                </div>
+                                <div class="col s4 btn-review">
+                                    <a href="#" class="btn-large">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span style="font-size: 14px;">Completed</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col s4 btn-review">
-                            <a href="#" class="btn-large">
-                                <i class="material-icons btn-icon-left">queue_play_next</i>
-                                <span style="font-size: 14px;">Play Later</span>
-                            </a>
-                        </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
-            
-        </div>
-    </div>
+        {% endif %}
+
+    {% endfor %}
     
 
 

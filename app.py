@@ -312,10 +312,16 @@ def profile_games(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
-    user_games = mongo.db.user_games.find()
+    user_games = mongo.db.user_games
 
-    return render_template("profile-games_list.html", username=username,
-                           user_games=user_games)
+    games_playing = list(user_games.find({"stage": "playing"}))
+    games_next = list(user_games.find({"stage": "next"}))
+    games_completed = list(user_games.find({"stage": "completed"}))
+
+    return render_template(
+        "profile-games_list.html", username=username,
+        games_playing=games_playing, games_next=games_next,
+        games_completed=games_completed)
 
 
 # ================
