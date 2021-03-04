@@ -1,5 +1,4 @@
 import os
-from re import S
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo, pymongo
@@ -299,175 +298,9 @@ def login():
     return render_template("login.html")
 
 
-# ==========
-# Profile
-# ==========
-
-@app.route("/profile")
-def profile():
-    return render_template("profile-template.html")
-
-
-@app.route("/profile/<username>")
-def profile_games(username):
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
-    user_games = mongo.db.user_games
-
-    games_playing = list(user_games.find({"stage": "playing"}))
-    games_next = list(user_games.find({"stage": "next"}))
-    games_completed = list(user_games.find({"stage": "completed"}))
-
-    return render_template(
-        "profile-games_list.html", username=username,
-        games_playing=games_playing, games_next=games_next,
-        games_completed=games_completed)
-
-
-# ========================
-# Edit Game List - Playing
-# ========================
-
-@app.route("/play-now/<game_id>", methods=["GET", "POST"])
-def game_to_playing(game_id):
-    if request.method == "POST":
-        update = {"$set": {"stage": "playing"}}
-        mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
-        flash("Game Successfully Moved to Playing")
-
-    game = mongo.db.user_games.find_one({"_id": str(ObjectId(game_id))})
-    return redirect(url_for(
-        "profile_games", username=session["user"], game=game))
-
-
-# =====================
-# Edit Game List - Next
-# =====================
-
-@app.route("/play-next/<game_id>", methods=["GET", "POST"])
-def game_to_next(game_id):
-    if request.method == "POST":
-        update = {"$set": {"stage": "next"}}
-        mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
-        flash("Game Successfully Moved to Next In Line")
-
-    game = mongo.db.user_games.find_one({"_id": str(ObjectId(game_id))})
-    return redirect(url_for(
-        "profile_games", username=session["user"], game=game))
-
-
-# ==========================
-# Edit Game List - Completed
-# ==========================
-
-@app.route("/complected/<game_id>", methods=["GET", "POST"])
-def game_to_completed(game_id):
-    if request.method == "POST":
-        update = {"$set": {"stage": "completed"}}
-        mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
-        flash("Game Successfully Moved to Completed")
-
-    game = mongo.db.user_games.find_one({"_id": ObjectId(game_id)})
-    return redirect(url_for(
-        "profile_games", username=session["user"], game=game))
-
-
-# ================
-# User Games List
-# ================
-
-@app.route("/games/<username>")
-def user_list(username):
-    user_games = mongo.db.user_games.find()
-    return render_template("games-user_list.html", username=session["user"],
-                           user_games=user_games)
-
-
-# ==========
-# Reviews
-# ==========
-
-@app.route("/community-reviews")
-def reviews():
-    game_reviews = mongo.db.user_reviews.find({})
-    return render_template(
-        "games-reviews.html", game_reviews=game_reviews)
-
-
-# ==========
-# Reviews
-# ==========
-
-@app.route("/submit-review", methods=["GET", "POST"])
-def submit_review():
-    if request.method == "POST":
-
-        title = request.form.get("query")
-        game = mongo.db.pc_games.find_one({"game_title": title})
-        img_sm = game["game_img_sm"]
-        img_full = game["game_img_full"]
-
-        review = {
-            "game_title": title,
-            "game_img_sm": img_sm,
-            "game_img_full": img_full,
-            "platform": request.form.get("platform-select").lower(),
-            "summary": request.form.get("summary"),
-            "gameplay_rating": request.form.get("gameplay-stars"),
-            "gameplay": request.form.get("gameplay"),
-            "visuals_rating": request.form.get("visuals-stars"),
-            "visuals": request.form.get("visuals"),
-            "sound_rating": request.form.get("sound-stars"),
-            "sound": request.form.get("sound"),
-            "username": session["user"]
-        }
-
-        # Check if a user has already added a game with the same to the db
-        existing_review = mongo.db.user_reviews.find_one(
-            {"$and": [{"username": session["user"]},
-                      {"game_title": title}]})
-
-        if existing_review is None:
-            mongo.db.user_reviews.insert_one(review)
-            flash("Review Successfully Submitted")
-
-        elif existing_review:
-            flash("You've Already Submitted a Review for this Game")
-
-        else:
-            mongo.db.user_reviews.insert_one(review)
-            flash("Review Successfully Submitted")
-
-        return redirect(url_for('reviews'))
-
-    return render_template("games-review_form.html", matching_results=games)
-
-
-# ==============
-# Export to JS
-# ==============
-
-def export_data():
-    games = mongo.db.pc_games.find({})
-
-    def writeToJS():
-        file = open("static/js/data.js", "w")
-        file.write('const gameData = [')
-        for game in games:
-            file.write(dumps(game["game_title"]))
-            file.write(', ')
-        file.write(']')
-
-    writeToJS()
-
-
-export_data()
-
-
-# ==========
-# Add game
-# ==========
+# =============================
+# Add game to Profile Game List
+# =============================
 
 @app.route("/add_game/<game_id>")
 def add_game(game_id):
@@ -537,6 +370,177 @@ def add_game(game_id):
 def edit_user_games_list(username):
     return render_template(
         "profile-games_list_form.html", username=session["user"])
+
+
+# ================
+# Profile Template
+# ================
+
+@app.route("/profile")
+def profile():
+    return render_template("profile-template.html")
+
+
+# ====================
+# Profile - Games List
+# ====================
+
+
+@app.route("/profile/<username>")
+def profile_games(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+
+    user_games = mongo.db.user_games
+
+    games_playing = list(user_games.find({"stage": "playing"}))
+    games_next = list(user_games.find({"stage": "next"}))
+    games_completed = list(user_games.find({"stage": "completed"}))
+
+    return render_template(
+        "profile-games_list.html", username=username,
+        games_playing=games_playing, games_next=games_next,
+        games_completed=games_completed)
+
+
+# =========================
+# Profile - Move to Playing
+# =========================
+
+@app.route("/play-now/<game_id>", methods=["GET", "POST"])
+def game_to_playing(game_id):
+    if request.method == "POST":
+        update = {"$set": {"stage": "playing"}}
+        mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
+        flash("Game Successfully Moved to Playing")
+
+    game = mongo.db.user_games.find_one({"_id": str(ObjectId(game_id))})
+    return redirect(url_for(
+        "profile_games", username=session["user"], game=game))
+
+
+# ==============================
+# Profile - Move to Next In Line
+# ==============================
+
+@app.route("/play-next/<game_id>", methods=["GET", "POST"])
+def game_to_next(game_id):
+    if request.method == "POST":
+        update = {"$set": {"stage": "next"}}
+        mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
+        flash("Game Successfully Moved to Next In Line")
+
+    game = mongo.db.user_games.find_one({"_id": str(ObjectId(game_id))})
+    return redirect(url_for(
+        "profile_games", username=session["user"], game=game))
+
+
+# ===========================
+# Profile - Move to Completed
+# ===========================
+
+@app.route("/complected/<game_id>", methods=["GET", "POST"])
+def game_to_completed(game_id):
+    if request.method == "POST":
+        update = {"$set": {"stage": "completed"}}
+        mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
+        flash("Game Successfully Moved to Completed")
+
+    game = mongo.db.user_games.find_one({"_id": ObjectId(game_id)})
+    return redirect(url_for(
+        "profile_games", username=session["user"], game=game))
+
+
+# ============================
+# Games Page - User Games List
+# ============================
+
+@app.route("/games/<username>")
+def user_list(username):
+    user_games = mongo.db.user_games.find()
+    return render_template("games-user_list.html", username=session["user"],
+                           user_games=user_games)
+
+
+# ==============
+# Export to JS
+# ==============
+
+def export_data():
+    games = mongo.db.pc_games.find({})
+
+    def writeToJS():
+        file = open("static/js/data.js", "w")
+        file.write('const gameData = [')
+        for game in games:
+            file.write(dumps(game["game_title"]))
+            file.write(', ')
+        file.write(']')
+
+    writeToJS()
+
+
+export_data()
+
+
+# ==========
+# Reviews
+# ==========
+
+@app.route("/community-reviews")
+def reviews():
+    game_reviews = mongo.db.user_reviews.find({})
+    return render_template(
+        "games-reviews.html", game_reviews=game_reviews)
+
+
+# =============
+# Submit Review
+# =============
+
+@app.route("/submit-review", methods=["GET", "POST"])
+def submit_review():
+    if request.method == "POST":
+
+        title = request.form.get("query")
+        game = mongo.db.pc_games.find_one({"game_title": title})
+        img_sm = game["game_img_sm"]
+        img_full = game["game_img_full"]
+
+        review = {
+            "game_title": title,
+            "game_img_sm": img_sm,
+            "game_img_full": img_full,
+            "platform": request.form.get("platform-select").lower(),
+            "summary": request.form.get("summary"),
+            "gameplay_rating": request.form.get("gameplay-stars"),
+            "gameplay": request.form.get("gameplay"),
+            "visuals_rating": request.form.get("visuals-stars"),
+            "visuals": request.form.get("visuals"),
+            "sound_rating": request.form.get("sound-stars"),
+            "sound": request.form.get("sound"),
+            "username": session["user"]
+        }
+
+        # Check if a user has already added a game with the same to the db
+        existing_review = mongo.db.user_reviews.find_one(
+            {"$and": [{"username": session["user"]},
+                      {"game_title": title}]})
+
+        if existing_review is None:
+            mongo.db.user_reviews.insert_one(review)
+            flash("Review Successfully Submitted")
+
+        elif existing_review:
+            flash("You've Already Submitted a Review for this Game")
+
+        else:
+            mongo.db.user_reviews.insert_one(review)
+            flash("Review Successfully Submitted")
+
+        return redirect(url_for('reviews'))
+
+    return render_template("games-review_form.html", matching_results=games)
 
 
 # ==========

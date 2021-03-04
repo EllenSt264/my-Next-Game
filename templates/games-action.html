@@ -3,9 +3,8 @@
 {% block games %}
     <section>
         <div class="row">
-
+            <!-- Game results -->
             {% for game in action_games %}
-
                 {% if loop.index % 2 != 0 %}
 
                     <div class="col m12 l5 offset-l1 game-cards hide-on-small-only" id="gameCard1">
@@ -248,13 +247,11 @@
 
                 {% endif %}
             {% endfor %}
-
         </div>
-
+        <!-- Pagination -->
         <ul class="pagination center-align">
             {{ pagination.links }}
         </ul>
-
     </section>
 
 {% endblock %}

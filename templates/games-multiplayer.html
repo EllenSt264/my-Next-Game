@@ -3,10 +3,9 @@
 {% block games %}
     <section>
         <div class="row">
-
-                {% for game in multiplayer_games %}
-
-                    {% if loop.index % 2 != 0 %}
+            <!-- Game results -->
+            {% for game in multiplayer_games %}
+                {% if loop.index % 2 != 0 %}
 
                     <div class="col m12 l5 offset-l1 game-cards hide-on-small-only" id="gameCard1">
                         <div class="card-panel black-magenta glow" style="padding: 20px;">
@@ -248,9 +247,8 @@
 
                 {% endif %}
             {% endfor %}
-
         </div>
-
+        <!-- Pagination -->
         <ul class="pagination center-align">
             {{ pagination.links }}
         </ul>

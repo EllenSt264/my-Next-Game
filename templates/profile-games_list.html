@@ -19,7 +19,6 @@
 
     <!-- Games -->
     {% for game in games_playing %}
-
         {% if game.username == session.user %}
             <div class="row card-panel profile-card-content">
                 <div class="valigin-wrapper">
@@ -75,8 +74,8 @@
                 </div>
             </div>
         {% endif %}
-
     {% endfor %}
+
 
     <!-- Next in Line -->
 
@@ -95,9 +94,7 @@
     </div>
 
     <!-- Games -->
-    
     {% for game in games_next %}
-
         {% if game.username == session.user %}
             <div class="row card-panel profile-card-content">
                 <div class="valigin-wrapper">
@@ -153,7 +150,6 @@
                 </div>
             </div>
         {% endif %}
-
     {% endfor %}
     
     
@@ -175,7 +171,6 @@
 
     <!-- Games -->
     {% for game in games_completed %}
-
         {% if game.username == session.user %}
             <div class="row card-panel profile-card-content">
                 <div class="valigin-wrapper">
@@ -231,9 +226,7 @@
                 </div>
             </div>
         {% endif %}
-
     {% endfor %}
     
-
 
 {% endblock %}

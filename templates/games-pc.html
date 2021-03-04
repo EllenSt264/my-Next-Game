@@ -3,9 +3,8 @@
 {% block games %}
     <section>
         <div class="row">
-
+            <!-- Game results -->
             {% for game in pc_games %}
-
                 {% if loop.index % 2 != 0 %}
 
                     <!-- Medium screens and up -->
@@ -253,11 +252,10 @@
                 {% endif %}
             {% endfor %}
         </div>
-
+        <!-- Pagination -->
         <ul class="pagination center-align">
             {{ pagination.links }}
         </ul>
-
     </section>
 
 {% endblock %}
