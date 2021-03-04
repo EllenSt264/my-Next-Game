@@ -43,10 +43,10 @@
                                     </a>
                                 </div>
                                 <div class="col s4 profile-game-btn">
-                                    <a href="#" class="btn-large">
+                                    <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn-large">
                                         <i class="material-icons btn-icon-left">thumb_up</i>
                                         <span>Review</span>
-                                    </a>
+                                    </a>    
                                 </div>
                             </div>
                             <div class="row">
@@ -119,7 +119,7 @@
                                     </a>
                                 </div>
                                 <div class="col s4 profile-game-btn">
-                                    <a href="#" class="btn-large">
+                                    <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn-large">
                                         <i class="material-icons btn-icon-left">thumb_up</i>
                                         <span>Review</span>
                                     </a>
@@ -195,7 +195,7 @@
                                     </a>
                                 </div>
                                 <div class="col s4 profile-game-btn">
-                                    <a href="#" class="btn-large">
+                                    <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn-large">
                                         <i class="material-icons btn-icon-left">thumb_up</i>
                                         <span>Review</span>
                                     </a>
