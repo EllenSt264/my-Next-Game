@@ -32,7 +32,9 @@
                                 <!-- Card content -->
                                 <div class="card-content">
                                     <!-- Username -->
-                                    <p class="review-card-username">{{ review.username }}</p>
+                                    <p class="review-card-username">
+                                        {{ review.username|capitalize }} | <span style="color: #ff3d00">{{ review.date_submitted }}</span>
+                                    </p>
                                     <!-- Summary -->
                                     <p class="summary">
                                         {{ review.summary }}
@@ -78,7 +80,7 @@
                                 <!-- Card content -->
                                 <div class="card-content">
                                     <!-- Username -->
-                                    <p class="review-card-username">{{ review.username }}</p>
+                                    <p class="review-card-username">{{ review.username|capitalize }} | <span style="color: #ff3d00">{{ review.date_submitted }}</span></p>
                                     <!-- Summary -->
                                     <p class="summary">
                                         {{ review.summary }}

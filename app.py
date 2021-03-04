@@ -1,4 +1,5 @@
 import os
+import datetime
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo, pymongo
@@ -507,6 +508,8 @@ def submit_review():
         img_sm = game["game_img_sm"]
         img_full = game["game_img_full"]
 
+        date = datetime.datetime.now()
+
         review = {
             "game_title": title,
             "game_img_sm": img_sm,
@@ -519,6 +522,7 @@ def submit_review():
             "visuals": request.form.get("visuals"),
             "sound_rating": request.form.get("sound-stars"),
             "sound": request.form.get("sound"),
+            "date_submitted": date.strftime("%x"),
             "username": session["user"]
         }
 
@@ -556,6 +560,8 @@ def profile_submit_review(game_id):
         img_sm = game["game_img_sm"]
         img_full = game["game_img_full"]
 
+        date = datetime.datetime.now()
+
         review = {
             "game_title": title,
             "game_img_sm": img_sm,
@@ -568,6 +574,7 @@ def profile_submit_review(game_id):
             "visuals": request.form.get("visuals"),
             "sound_rating": request.form.get("sound-stars"),
             "sound": request.form.get("sound"),
+            "date_submitted": date.strftime("%x"),
             "username": session["user"]
         }
 
