@@ -54,11 +54,19 @@
                                             <div class="collapsible-body"><span>{{ review.sound }}</span></div>
                                         </li>
                                     </ul>
-                                    <div class="card-panel light-blue accent-3 review-card-sticker">
-                                        <span>
-                                            <h6>Postive <i class="material-icons">thumb_up</i></h6>
-                                        </span>
-                                    </div>
+                                    {% if review.recommended == "yes" %}
+                                        <div class="card-panel light-blue accent-3 review-card-sticker">
+                                            <span>
+                                                <h6>Postive <i class="material-icons">thumb_up</i></h6>
+                                            </span>
+                                        </div>
+                                    {% elif review.recommended == "no" %}
+                                        <div class="card-panel red accent-4 darken-3 review-card-sticker">
+                                            <span>
+                                                <h6>Negative <i class="material-icons">thumb_down</i></h6>
+                                            </span>
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -100,11 +108,19 @@
                                             <div class="collapsible-body"><span>{{ review.sound }}</span></div>
                                         </li>
                                     </ul>
-                                    <div class="card-panel light-blue accent-3 review-card-sticker">
-                                        <span>
-                                            <h6>Postive <i class="material-icons">thumb_up</i></h6>
-                                        </span>
-                                    </div>
+                                    {% if review.recommended == "yes" %}
+                                        <div class="card-panel light-blue accent-3 review-card-sticker">
+                                            <span>
+                                                <h6>Postive <i class="material-icons">thumb_up</i></h6>
+                                            </span>
+                                        </div>
+                                    {% elif review.recommended == "no" %}
+                                        <div class="card-panel red accent-4 darken-3 review-card-sticker">
+                                            <span>
+                                                <h6>Negative <i class="material-icons">thumb_down</i></h6>
+                                            </span>
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

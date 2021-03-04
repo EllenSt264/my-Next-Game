@@ -2,7 +2,7 @@
 {% block content %}
     
     <div class="row">
-        <form class="col s12 m10 offset-m1 l6 offset-l3" id="reviewForm" method="post" action="{{ url_for('profile_submit_review', game_id=game._id, username=sessiion) }}">
+        <form class="col s12 m10 offset-m1 l6 offset-l3" method="post" action="{{ url_for('profile_submit_review', game_id=game._id, username=sessiion) }}" id="reviewForm">
             <!-- Outer card -->
             <div class="card-panel" style="background-color: #5b0bad;">
                 <!-- Inner card -->
@@ -54,6 +54,34 @@
                                 <textarea id="summary" name="summary" class="materialize-textarea"
                                 data-length="145" minlength="10" maxlength="145" required></textarea>
                                 <label for="summary">Review Summary</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommend -->
+                    <div class="card-panel" style="background-color: #622d83;">
+                        <div class="row">
+                            <!-- Title -->
+                            <div class="col s12 m8 offset-m2 center-align">
+                                <h5>Would You Recommend This Game?</h5>
+                            </div>
+                            <div class="col s12 m8 offset-m2">
+                                <div class="radio-toolbar center-align">
+                                    <div class="col s12 m6" id="radio-yes">
+                                        <input type="radio" id="recommend-yes" name="radioRecommend" value="yes" required>
+                                        <label for="recommend-yes">
+                                            <i class="material-icons">thumb_up</i> 
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="col s12 m6" id="radio-no">
+                                        <input type="radio" id="recommend-no" name="radioRecommend" value="no">
+                                    <label for="recommend-no">
+                                        <i class="material-icons">thumb_down</i> 
+                                        No
+                                    </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

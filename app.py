@@ -522,6 +522,7 @@ def submit_review():
             "visuals": request.form.get("visuals"),
             "sound_rating": request.form.get("sound-stars"),
             "sound": request.form.get("sound"),
+            "recommended": request.form.get("radioRecommend"),
             "date_submitted": date.strftime("%x"),
             "username": session["user"]
         }
@@ -574,6 +575,7 @@ def profile_submit_review(game_id):
             "visuals": request.form.get("visuals"),
             "sound_rating": request.form.get("sound-stars"),
             "sound": request.form.get("sound"),
+            "recommended": request.form.get("radioRecommend"),
             "date_submitted": date.strftime("%x"),
             "username": session["user"]
         }
