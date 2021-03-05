@@ -636,10 +636,37 @@ def edit_review(game_id):
     game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
 
     game_title = game["game_title"]
+    img_sm = game["game_img_sm"]
+    img_full = game["game_img_full"]
 
     review = mongo.db.user_reviews.find_one(
             {"$and": [{"username": session["user"]},
-                    {"game_title": game_title}]})
+                      {"game_title": game_title}]})
+
+    review_id = review["_id"]
+
+    if request.method == "POST":
+        date = datetime.datetime.now()
+
+        update = {
+            "game_title": game_title,
+            "game_img_sm": img_sm,
+            "game_img_full": img_full,
+            "platform": request.form.get("platform-select").lower(),
+            "summary": request.form.get("summary"),
+            "gameplay_rating": request.form.get("gameplay-stars"),
+            "gameplay": request.form.get("gameplay"),
+            "visuals_rating": request.form.get("visuals-stars"),
+            "visuals": request.form.get("visuals"),
+            "sound_rating": request.form.get("sound-stars"),
+            "sound": request.form.get("sound"),
+            "recommended": request.form.get("radioRecommend"),
+            "date_submitted": date.strftime("%x"),
+            "username": session["user"]
+        }
+        mongo.db.user_reviews.update({"_id": review_id}, update)
+        flash("Review Successfully Updated")
+        return redirect(url_for('reviews'))
 
     return render_template("games-edit_review.html", game=game, review=review)
 
