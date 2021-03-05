@@ -2,111 +2,144 @@
 {% block profile_content %}
 
     <!--Review card -->
-    <section class="user-review-card py-5">
-        <div class="row card-panel profile-card-content">
-            <div class="valigin-wrapper">
-                <div class="row review-card-row">
-                    <!-- Image -->
-                    <div class="col m12 l5">
-                        <div class="card-image">
-                            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1606935465" alt="">
-                        </div>
-                    </div>
-                    <!-- Review verdict -->
-                    <div class="col m12 l5">
-                        <div class="card-panel review-verdict">
-                            <div class="card-title">
-                                <h3>Review Verdict</h3>
+    {% for review in reviews %}
+        {% if review.username == session.user %}
+            <section class="user-review-card py-5">
+                <div class="row card-panel profile-card-content">
+                    <div class="valigin-wrapper">
+                        <!-- Review card header -->
+                        <div class="row review-card-row">
+                            <!-- Image -->
+                            <div class="col m12 l5">
+                                <div class="card-image">
+                                    <img src="{{ review.game_img_full }}" alt="Game image for the user's review">
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Submission date -->
-                    <div class="row review-card-row">
-                        <div class="col m12 l5">
-                            <div class="card-panel submission-date">
-                                <div class="card-title">
-                                    <h6>Date of Submission</h6>
+                            <!-- Review verdict -->
+                            <div class="col m12 l5">
+                                <div class="card-panel review-verdict">
+                                    {% if review.recommended == "yes" %}
+                                    <div class="card-panel light-blue accent-3">
+                                        <h3 class="center-align">
+                                            Postive
+                                            <i class="material-icons">thumb_up</i>
+                                        </h3>
+                                    </div>
+                                    {% elif review.recommended == "no" %}
+                                    <div class="card-panel red accent-4 darken-3">
+                                        <h3 class="center-align">
+                                            Negative
+                                            <i class="material-icons">thumb_down</i>
+                                        </h3>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!-- Submission date -->
+                            <div class="row review-card-row">
+                                <div class="col m12 l5">
+                                    <div class="card-panel submission-date">
+                                        <div class="card-title">
+                                            <h6>Posted:
+                                                <span>{{ review.date_submitted }}</span> |
+                                                Last Edited:
+                                                <span></span>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Content-->
+
+                            <!-- Collapsible content -->
+                            <div class="row" style="margin: 5px 45px 25px;">
+                                <div class="col s12 l10" style="padding: 0;">
+                                    <ul class="collapsible">
+                                        <li>
+                                            <!-- Game title -->
+                                            <div class="row review-card-row">
+                                                <div class="col s12 collapsible-header">
+                                                    <div class="valign-wrapper">
+                                                        <div class="col s8">
+                                                            <div class="game-title">
+                                                                <h5>{{ review.game_title }}</h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col s5">
+                                                            <div class="game-title dropdown-indicator">
+                                                                <span>Read Review</span>
+                                                                <i class="material-icons">arrow_drop_down</i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Collapsible body -->
+                                            <div class="collapsible-body">
+                                                <!-- Summary -->
+                                                <div class="row review-card-row">
+                                                    <div class="col s12">
+                                                        <div class="card-panel review-content">
+                                                            <h6>Summary</h6>
+                                                            <p>{{ review.summary }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Gameplay -->
+                                                <div class="row review-card-row">
+                                                    <div class="col s12">
+                                                        <div class="card-panel review-content">
+                                                            <h6><i class="fas fa-gamepad"></i> Gameplay</h6>
+                                                            <p>{{ review.gameplay }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Visuals -->
+                                                <div class="row review-card-row">
+                                                    <div class="col s12">
+                                                        <div class="card-panel review-content">
+                                                            <h6><i class="fas fa-eye"></i> Visuals</h6>
+                                                            <p>{{ review.visuals }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Sound -->
+                                                <div class="row review-card-row">
+                                                    <div class="col s12">
+                                                        <div class="card-panel review-content last">
+                                                            <h6><i class="fas fa-music"></i> Sound</h6>
+                                                            <p>{{ review.sound }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="row review-card-row center-align" style="margin-bottom: 25px;">
+                                <!-- Delete -->
+                                <div class="col s6 m2 l2">
+                                    <a href="#" class="btn">
+                                        <i class="fas fa-trash"></i>
+                                        <span>Delete</span>
+                                    </a>
+                                </div>
+                                <!-- Edit -->
+                                <div class="col s6 m2 l2">
+                                    <a href="#" class="btn">
+                                        <i class="fas fa-pen-square"></i>
+                                        <span>Edit</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Game title -->
-                <div class="row review-card-row">
-                    <div class="col s12 l10">
-                        <div class="card-panel game-title">
-                            <h5>Game Title</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Summary -->
-                <div class="row review-card-row">
-                    <div class="col m12 l10">
-                        <div class="card-panel review-content">
-                            <h6>Summary</h6>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae saepe doloremque voluptatibus. Molestiae, impedit
-                                saepe. Debitis nostrum nam, error non, soluta nemo iure dignissimos enim laboriosam exercitationem ea, dolor animi.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Gameplay -->
-                <div class="row review-card-row">
-                    <div class="col m12 l10">
-                        <div class="card-panel review-content">
-                            <h6>Gameplay</h6>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae saepe doloremque voluptatibus. Molestiae, impedit
-                                saepe. Debitis nostrum nam, error non, soluta nemo iure dignissimos enim laboriosam exercitationem ea, dolor animi.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Visuals -->
-                <div class="row review-card-row">
-                    <div class="col m12 l10">
-                        <div class="card-panel review-content">
-                            <h6>Visuals</h6>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae saepe doloremque voluptatibus. Molestiae, impedit
-                                saepe. Debitis nostrum nam, error non, soluta nemo iure dignissimos enim laboriosam exercitationem ea, dolor animi.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Sound -->
-                <div class="row review-card-row">
-                    <div class="col m12 l10">
-                        <div class="card-panel review-content last">
-                            <h6>Sound</h6>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae saepe doloremque voluptatibus. Molestiae, impedit
-                                saepe. Debitis nostrum nam, error non, soluta nemo iure dignissimos enim laboriosam exercitationem ea, dolor animi.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Buttons -->
-                <div class="row">
-                    <!-- Delete -->
-                    <div class="col s6 m3 l2">
-                        <a href="#" class="btn-large">
-                            <i class="fas fa-trash"></i>
-                            <span>Delete</span>
-                        </a>
-                    </div>
-                    <!-- Edit -->
-                    <div class="col s6 m3 l2">
-                        <a href="#" class="btn-large">
-                            <i class="fas fa-pen-square"></i>
-                            <span>Edit</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+            </section>
+        {% endif %}
+    {% endfor %}
 
 {% endblock %}

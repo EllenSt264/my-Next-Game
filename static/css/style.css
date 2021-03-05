@@ -945,9 +945,58 @@ label[for]:hover {
 }
 
 .user-review-card .game-title {
-    margin: 5px 25px; 
-    padding: 5px 24px; 
     background-color: #431d5a;
+    width: 100%;
+}
+
+.user-review-card .game-title h5 {
+    margin: 5px 25px; 
+    padding: 5px 24px;
+}
+
+.user-review-card .collapsible,
+.user-review-card .collapsible-header,
+.user-review-card .collapsible-body {
+    border: none;
+    background-color: #431d5a;
+}
+
+/* Taken from the following source: 
+"https://stackoverflow.com/questions/45869545/how-to-remove-the-border-of-a-collapsible-div-li-in-materialize-css" */
+
+.user-review-card .collapsible-header,
+.user-review-card .collapsible-body,
+.user-review-card .collapsible,
+.user-review-card ul.collapsible>li {
+    margin: 0!important;;
+    padding: 0!important;
+    border: 0!important;
+    box-shadow: none!important;
+    background: #431d5a;
+}
+
+.user-review-card .collapsible-header .valign-wrapper {
+    width: 100%;
+}
+
+.dropdown-indicator {
+    text-align: right;
+}
+
+.dropdown-indicator span {
+    font-size: 18px;
+}
+
+.dropdown-indicator i {
+    vertical-align: middle; 
+    margin-bottom: 5px;
+}
+
+.user-review-card .collapsible-body {
+    background-color: #622d83;
+    box-shadow: none !important;
+    padding: 25px 0;
+    width: inherit;
 }
 
 .review-card-row {
@@ -959,6 +1008,15 @@ label[for]:hover {
     background-color: #431d5a;
 }
 
+.review-verdict .card-panel {
+    padding:0 5px;
+}
+
+.review-verdict h3 {
+    margin: 0;
+    padding: 12px;
+}
+
 .submission-date {
     margin: 0 25px; 
     padding: 5px; 
@@ -966,12 +1024,11 @@ label[for]:hover {
 }
 
 .review-content {
-    margin: 5px 25px; 
     background-color: #431d5a;
 }
 
 .review-content.last {
-    margin: 5px 25px 25px;
+    margin: 5px 0 25px;
 }
 
 .user-review-card .btn-large {
