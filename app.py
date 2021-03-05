@@ -1,5 +1,6 @@
 import os
 import datetime
+from re import match
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo, pymongo
@@ -392,16 +393,37 @@ def profile_games(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
-    user_games = mongo.db.user_games
+    # Separate games into categories
+    games_playing = list(mongo.db.user_games.find({"stage": "playing"}))
+    games_next = list(mongo.db.user_games.find({"stage": "next"}))
+    games_completed = list(mongo.db.user_games.find({"stage": "completed"}))
 
-    games_playing = list(user_games.find({"stage": "playing"}))
-    games_next = list(user_games.find({"stage": "next"}))
-    games_completed = list(user_games.find({"stage": "completed"}))
+    # Find game titles for user_reviews and user_games
+    fetch = {"game_title": 1}
+    user_games = mongo.db.user_games.find({"username": username}, fetch)
+    user_reviews = mongo.db.user_reviews.find({"username": username}, fetch)
+
+    profile_games = []
+    review_games = []
+    matches = []
+
+    # Sort through data and add to empty arrays
+    for i in list(user_games):
+        profile_games.append(i["game_title"])
+
+    for i in list(user_reviews):
+        review_games.append(i["game_title"])
+
+    # Find title matches
+    for i in profile_games:
+        for x in review_games:
+            if i == x:
+                matches.append(x)
 
     return render_template(
         "profile-games_list.html", username=username,
         games_playing=games_playing, games_next=games_next,
-        games_completed=games_completed)
+        games_completed=games_completed, matches=matches)
 
 
 # =========================

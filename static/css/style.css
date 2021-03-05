@@ -764,12 +764,12 @@ label[for]:hover {
 
 @keyframes star-glow {
     from {
-      text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #e60073, 0 0 4px #e60073, 0 0 5px #e60073, 0 0 6px #e60073, 0 0 7px #e60073;
+        text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #e60073, 0 0 4px #e60073, 0 0 5px #e60073, 0 0 6px #e60073, 0 0 7px #e60073;
     }
     to {
-      text-shadow: 0 0 2px #fff, 0 0 3px #ff4da6, 0 0 4px #ff4da6, 0 0 5px #ff4da6, 0 0 6px #ff4da6, 0 0 7px #ff4da6, 0 0 8px #ff4da6;
+        text-shadow: 0 0 2px #fff, 0 0 3px #ff4da6, 0 0 4px #ff4da6, 0 0 5px #ff4da6, 0 0 6px #ff4da6, 0 0 7px #ff4da6, 0 0 8px #ff4da6;
     }
-  }
+}
 
 /* ---------------------------------------------- Register page */
 
@@ -892,6 +892,45 @@ label[for]:hover {
     margin: 15px;
 }
 
+/* Review buttons */
+
+.reviewed {
+    background-color: #431d5a; 
+    padding:0 !important; 
+    width: 150px !important;
+}
+
+.reviewed .material-icons {
+    font-size: 18px; 
+    padding:0;
+}
+
+.reviewed span {
+    font-size: 14px; 
+    margin: 0px 2px 0px 5px;
+}
+
+.reviewed a {
+    padding: 0 5px; 
+    background-color: #a54aff;
+}
+
+.profile-game-btn.btn-large:hover {
+    background-color: #431d5a;
+}
+
+.profile-game-btn.reviewed a.btn:hover {
+    background-color: #c41cce;
+}
+
+.profile-game-btn.reviewed a:hover,
+.profile-game-btn.reviewed span:hover {
+    color: white;
+}
+
+.profile-game-btn.reviewed:hover {
+    cursor: default;
+}
 
 
 /* ---------------------------------------------- Global */
