@@ -627,6 +627,23 @@ def profile_submit_review(game_id):
         username=session["user"])
 
 
+# ====================
+# Profile- Edit Review
+# ====================
+
+@app.route("/edit-review/<game_id>", methods=["GET", "POST"])
+def edit_review(game_id):
+    game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
+
+    game_title = game["game_title"]
+
+    review = mongo.db.user_reviews.find_one(
+            {"$and": [{"username": session["user"]},
+                    {"game_title": game_title}]})
+
+    return render_template("games-edit_review.html", game=game, review=review)
+
+
 # ==========
 # Logout
 # ==========
