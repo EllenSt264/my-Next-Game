@@ -1,8 +1,8 @@
 import os
 import datetime
-from re import match
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
+from flask.globals import g
 from flask_pymongo import PyMongo, pymongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
@@ -523,7 +523,10 @@ def reviews():
 
 @app.route("/profile/<username>/reviews")
 def profile_reviews(username):
-    return render_template("profile-reviews.html", username=session["user"])
+    reviews = mongo.db.user_reviews.find({})
+    return render_template(
+        "profile-reviews.html", username=session["user"],
+        reviews=reviews)
 
 
 # =============
@@ -678,6 +681,17 @@ def edit_review(game_id):
         return redirect(url_for('reviews'))
 
     return render_template("games-edit_review.html", game=game, review=review)
+
+
+# ======================
+# Profile- Delete Review
+# ======================
+
+@app.route("/delete-review/<review_id>")
+def delete_review(review_id):
+    mongo.db.user_reviews.remove({"_id": ObjectId(review_id)})
+    flash("Review Successfully Deleted")
+    return redirect(url_for("profile_reviews", username=session["user"]))
 
 
 # ==========

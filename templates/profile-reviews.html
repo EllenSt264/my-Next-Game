@@ -122,7 +122,7 @@
                             <div class="row review-card-row center-align" style="margin-bottom: 25px;">
                                 <!-- Delete -->
                                 <div class="col s6 m2 l2">
-                                    <a href="#" class="btn">
+                                    <a href="{{ url_for('delete_review', review_id=review._id) }}" class="btn">
                                         <i class="fas fa-trash"></i>
                                         <span>Delete</span>
                                     </a>
