@@ -57,6 +57,10 @@ $(document).ready(function () {
             $('.carousel').carousel('next');
         }, 8000)
 
+        /* Modal */
+        $('.modal').modal({
+            endingTop: "25%"
+        });
         
         /* Collapsible */
         $('.collapsible').collapsible();

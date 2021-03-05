@@ -122,7 +122,7 @@
                             <div class="row review-card-row center-align" style="margin-bottom: 25px;">
                                 <!-- Delete -->
                                 <div class="col s6 m2 l2">
-                                    <a href="{{ url_for('delete_review', review_id=review._id) }}" class="btn">
+                                    <a href="#deleteWarning" class="btn modal-trigger">
                                         <i class="fas fa-trash"></i>
                                         <span>Delete</span>
                                     </a>
@@ -139,6 +139,22 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Modal warning -->
+            <div id="deleteWarning" class="modal center-align">
+                <div class="modal-content">
+                <h5><span>warning</span></h5>
+                <h4>Are You Sure You Want to Delete Your Review?</h4>
+                <p>
+                    If you delete your review, you cannot undo this action.
+                </p>
+                </div>
+                <div class="modal-footer center-align">
+                    <a href="{{ url_for('delete_review', review_id=review._id) }}" 
+                    class="modal-close btn-flat" id="deleteReview">Yes, Delete</a>
+                    <a href="#!" class="modal-close btn-flat">Cancel</a>
+                </div>
+            </div>
         {% endif %}
     {% endfor %}
 
