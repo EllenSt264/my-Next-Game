@@ -919,7 +919,8 @@ label[for]:hover {
     background-color: #431d5a;
 }
 
-.profile-game-btn.reviewed a.btn:hover {
+.profile-game-btn.reviewed a.btn:hover,
+.profile-game-btn.reviewed a.btn:focus {
     background-color: #c41cce;
 }
 
@@ -932,6 +933,58 @@ label[for]:hover {
     cursor: default;
 }
 
+
+/* ---------------------------------------------- Profile Reviews */
+
+.user-review-card .card-image {
+    padding: 25px;
+}
+
+.user-review-card .card-title {
+    margin-left: 25px;
+}
+
+.user-review-card .game-title {
+    margin: 5px 25px; 
+    padding: 5px 24px; 
+    background-color: #431d5a;
+}
+
+.review-card-row {
+    margin-bottom: 0;
+}
+
+.review-verdict {
+    margin: 25px; 
+    background-color: #431d5a;
+}
+
+.submission-date {
+    margin: 0 25px; 
+    padding: 5px; 
+    background-color: #431d5a;
+}
+
+.review-content {
+    margin: 5px 25px; 
+    background-color: #431d5a;
+}
+
+.review-content.last {
+    margin: 5px 25px 25px;
+}
+
+.user-review-card .btn-large {
+    margin: 5px 25px 25px;
+}
+
+.user-review-card .btn-large i {
+    font-size: 20px;
+}
+
+.user-review-card .btn-large span {
+    margin-left: 5px;
+}
 
 /* ---------------------------------------------- Global */
 

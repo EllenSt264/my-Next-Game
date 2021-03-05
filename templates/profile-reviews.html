@@ -1,6 +1,112 @@
 {% extends "profile-template.html" %}
 {% block profile_content %}
 
-    <h3>Reviews</h3>
+    <!--Review card -->
+    <section class="user-review-card py-5">
+        <div class="row card-panel profile-card-content">
+            <div class="valigin-wrapper">
+                <div class="row review-card-row">
+                    <!-- Image -->
+                    <div class="col m12 l5">
+                        <div class="card-image">
+                            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1606935465" alt="">
+                        </div>
+                    </div>
+                    <!-- Review verdict -->
+                    <div class="col m12 l5">
+                        <div class="card-panel review-verdict">
+                            <div class="card-title">
+                                <h3>Review Verdict</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submission date -->
+                    <div class="row review-card-row">
+                        <div class="col m12 l5">
+                            <div class="card-panel submission-date">
+                                <div class="card-title">
+                                    <h6>Date of Submission</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Game title -->
+                <div class="row review-card-row">
+                    <div class="col s12 l10">
+                        <div class="card-panel game-title">
+                            <h5>Game Title</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Summary -->
+                <div class="row review-card-row">
+                    <div class="col m12 l10">
+                        <div class="card-panel review-content">
+                            <h6>Summary</h6>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae saepe doloremque voluptatibus. Molestiae, impedit
+                                saepe. Debitis nostrum nam, error non, soluta nemo iure dignissimos enim laboriosam exercitationem ea, dolor animi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gameplay -->
+                <div class="row review-card-row">
+                    <div class="col m12 l10">
+                        <div class="card-panel review-content">
+                            <h6>Gameplay</h6>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae saepe doloremque voluptatibus. Molestiae, impedit
+                                saepe. Debitis nostrum nam, error non, soluta nemo iure dignissimos enim laboriosam exercitationem ea, dolor animi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Visuals -->
+                <div class="row review-card-row">
+                    <div class="col m12 l10">
+                        <div class="card-panel review-content">
+                            <h6>Visuals</h6>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae saepe doloremque voluptatibus. Molestiae, impedit
+                                saepe. Debitis nostrum nam, error non, soluta nemo iure dignissimos enim laboriosam exercitationem ea, dolor animi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sound -->
+                <div class="row review-card-row">
+                    <div class="col m12 l10">
+                        <div class="card-panel review-content last">
+                            <h6>Sound</h6>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae saepe doloremque voluptatibus. Molestiae, impedit
+                                saepe. Debitis nostrum nam, error non, soluta nemo iure dignissimos enim laboriosam exercitationem ea, dolor animi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Buttons -->
+                <div class="row">
+                    <!-- Delete -->
+                    <div class="col s6 m3 l2">
+                        <a href="#" class="btn-large">
+                            <i class="fas fa-trash"></i>
+                            <span>Delete</span>
+                        </a>
+                    </div>
+                    <!-- Edit -->
+                    <div class="col s6 m3 l2">
+                        <a href="#" class="btn-large">
+                            <i class="fas fa-pen-square"></i>
+                            <span>Edit</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 
 {% endblock %}
