@@ -517,6 +517,15 @@ def reviews():
         "games-reviews.html", game_reviews=game_reviews)
 
 
+# ======================
+# Profile - User Reviews
+# ======================
+
+@app.route("/profile/<username>/reviews")
+def profile_reviews(username):
+    return render_template("profile-reviews.html", username=session["user"])
+
+
 # =============
 # Submit Review
 # =============

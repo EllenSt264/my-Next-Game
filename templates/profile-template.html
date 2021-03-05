@@ -36,7 +36,7 @@
                             <!-- Navigation -->
                             <!-- Games-->
                             <li class="col s3 m12" id="firstItem">
-                                <a class="btn" href="#">Games</a>
+                                <a class="btn" href="{{ url_for('profile_games', username=session['user']) }}">Games</a>
                             </li>
                             <div class="divider hide-on-small-only"></div>
                             <!-- Favourites -->
@@ -46,7 +46,7 @@
                             <div class="divider hide-on-small-only"></div>
                             <!-- Reviews -->
                             <li class="col s3 m12">
-                                <a class="btn" href="#">Reviews</a>
+                                <a class="btn" href="{{ url_for('profile_reviews', username=session['user']) }}">Reviews</a>
                             </li>
                         </div>
                     </ul>
