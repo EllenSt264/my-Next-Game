@@ -1046,24 +1046,24 @@ label[for]:hover {
 
 /* ---------------------------------------------- Delete review modal */
 
-#deleteWarning .modal-content,
-#deleteWarning .modal-footer {
+.delete-review .modal-content,
+.delete-review .modal-footer {
     background-color: #30134d;
 }
 
-#deleteWarning span {
+.delete-review span {
     font-family: "BlenderPro-Heavy";
     color: red;
     letter-spacing: 1px;
 }
 
-#deleteWarning .modal-close {
+.delete-review .modal-close {
     font-family: "BlenderPro-Medium";
     background-color: white;
     margin: 5px;
 }
 
-#deleteWarning .btn-flat:hover {
+.delete-review .btn-flat:hover {
     background-color: #ffccbc;
     font-family: "BlenderPro-Heavy";
 }
