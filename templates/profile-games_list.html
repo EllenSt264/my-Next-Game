@@ -4,7 +4,7 @@
     <!-- Currently Playing -->
 
     <!-- Title -->
-    <div class="row card-panel profile-card-header" >
+    <div class="row card-panel profile-card-header" id="ProfileHeader_first">
         <div class="valign-wrapper card-section-header">
             <div class="col s8">
                 <h3>Currently Playing</h3>
@@ -30,14 +30,14 @@
                             </div>
                         </div>
                         <!-- Title -->
-                        <div class="col m12 l6 profile-game-title" id=>
+                        <div class="col m12 l6 profile-game-title">
                             <h5 class="center-align">{{ game.game_title }}</h5>
                         </div>
                         <!-- Content -->
-                        <div class="card-content game-btns col m12 l6 left">
+                        <div class="card-content game-btns col s12 m12 l6 left">
                             <div class="row">
                                 <!-- Move to Next In Line -->
-                                <div class="col s4 profile-game-btn">
+                                <div class="col s4 profile-game-btn left-side">
                                     <form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
                                         <button type="submit" class="btn-large">
                                             <i class="material-icons btn-icon-left">queue_play_next</i>
@@ -58,7 +58,7 @@
                             <!-- Link and Review -->
                             <div class="row">
                                 <!-- Link -->
-                                <div class="col s4 profile-game-btn">
+                                <div class="col s4 profile-game-btn left-side">
                                     <a href="#" class="btn-large">
                                         <i class="material-icons btn-icon-left">http</i>
                                         <span style="font-size: 14px;">Links</span>

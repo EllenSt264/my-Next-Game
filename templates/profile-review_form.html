@@ -2,7 +2,7 @@
 {% block content %}
     
     <div class="row">
-        <form class="col s12 m10 offset-m1 l6 offset-l3" method="post" action="{{ url_for('profile_submit_review', game_id=game._id, username=sessiion) }}" id="reviewForm">
+        <form class="col s12 m10 offset-m1 l6 offset-l3" method="post" action="{{ url_for('profile_submit_review', game_id=game._id, username=session['user']) }}" id="reviewForm">
             <!-- Outer card -->
             <div class="card-panel" style="background-color: #5b0bad;">
                 <!-- Inner card -->

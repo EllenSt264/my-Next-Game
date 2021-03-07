@@ -8,51 +8,51 @@
                 <!-- Header -->
                 <div class="row profile-header">
                     <!-- Username -->
-                    <div class="col s12 m6 header-username">
+                    <div class="col s12 l6 header-username">
                         <h2>{{ username|capitalize }}'s Profile</h2>
                     </div>
                     <!-- Edit profile -->
                     <div class="row">
                         <div class="col s12">
-                            <a href="#" class="btn hide-on-med-and-up" id="editBtn">Edit Profile</a>
+                            <a href="#" class="btn hide-on-large-only" id="editBtn">Edit Profile</a>
                         </div>
                     </div>
                     <!-- Profile rank -->
-                    <div class="col s12 m6 rank">
+                    <div class="col s12 l6 rank">
                         <h5>Profile Rank 1</h5>
                     </div>
                 </div>
                 <!-- Divider -->
                 <div class="divider"></div>
                 <!-- Buttons -->
-                <div class="card-panel profile-card-panel col s12 m3 l2 right" id="ProfileSidePanel">
+                <div class="card-panel profile-card-panel col s12 l2 right" id="ProfileSidePanel">
                     <ul class="profile-btns">
                         <div class="row">
                             <!-- Edit profile -->
-                            <li class="col s12 hide-on-small-only">
+                            <li class="col s12 hide-on-med-and-down">
                                 <a href="#" class="btn">Edit Profile</a>
                             </li>
-                            <div class="divider hide-on-small-only"></div>
+                            <div class="divider hide-on-med-and-down"></div>
                             <!-- Navigation -->
                             <!-- Games-->
-                            <li class="col s3 m12" id="firstItem">
+                            <li class="col s3 l12" id="firstItem">
                                 <a class="btn" href="{{ url_for('profile_games', username=session['user']) }}">Games</a>
                             </li>
-                            <div class="divider hide-on-small-only"></div>
+                            <div class="divider hide-on-med-and-down"></div>
                             <!-- Favourites -->
-                            <li class="col s4 m12">
+                            <li class="col s4 l12">
                                 <a class="btn" href="#">Favourites</a>
                             </li>
-                            <div class="divider hide-on-small-only"></div>
+                            <div class="divider hide-on-med-and-down"></div>
                             <!-- Reviews -->
-                            <li class="col s3 m12">
+                            <li class="col s3 l12">
                                 <a class="btn" href="{{ url_for('profile_reviews', username=session['user']) }}">Reviews</a>
                             </li>
                         </div>
                     </ul>
                 </div>
                 <!-- Profile Content -->
-                <div class="card-panel profile-card-panel col s12 m8 l9">
+                <div class="card-panel profile-card-panel col s12 l9" id="ProfileContentCard">
     
                     {% block profile_content %}
                     {% endblock %}
