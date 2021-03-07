@@ -1043,6 +1043,10 @@ label[for]:hover {
     margin-left: 5px;
 }
 
+.review-edit-left-btn {
+    margin-left: 25px !important;
+}
+
 
 /* ---------------------------------------------- Delete review modal */
 
@@ -1191,6 +1195,16 @@ label[for]:hover {
     .profile-game-btn {
         margin-left: 10px !important;
     }
+    .review-verdict h3 {
+        font-size: 32px;
+    }
+    .review-card-row img {
+        width: 400px;
+        height: auto;
+    }
+    .submission-date h6 {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 1455px) and (min-width: 1300px) {
@@ -1237,6 +1251,9 @@ label[for]:hover {
     }
     .profile-game-btn.left-side {
         margin-left: 27px !important;
+    }
+    .review-edit-left-btn {
+        margin-left: 32px !important;
     }
 }
 
@@ -1344,6 +1361,20 @@ label[for]:hover {
     #ProfileHeader_first {
         margin-top: 15px !important;
     }
+    .submission-date {
+        width: 90%;
+        margin-left: 35px;
+    }
+    .review-edit-left-btn {
+        margin-left: 35px !important;
+    }
+    .submission-date .card-title {
+        margin-left: 5px;
+    }
+    .review-card-row .game-title h5 {
+        margin-left: 0;
+        padding-left: 0;
+    }
 }
 
 @media (max-width: 992px) and (min-width: 510px) {
@@ -1391,12 +1422,72 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 785px) {
+    .review-card-row img {
+        width: 350px;
+    }
+    .review-verdict h3 {
+        font-size: 26px;
+    }
+    .review-verdict h3 i {
+        font-size: 20px;
+    }
+    .review-card-edit-btns .btn {
+        width: 100px;
+    }
+    .review-card-edit-btns div {
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 698px) {
+    .review-card-row img {
+        width: 300px;
+    }
+    .review-verdict h3 {
+        font-size: 22px;
+    }
+    .review-verdict h3 i {
+        font-size: 18px;
+    }
+}
+
 @media (max-width:640px) {
     .back-font {
         font-size: 50px;
     }
     .front-font {
         font-size: 45px;
+    }
+}
+
+@media (max-width: 600px) {
+    .review-card-row .card-image {
+        text-align: center;
+    }
+    .review-card-row img {
+        width: 350px;
+    }
+    .review-card-row .card-image {
+        padding: 15px 5px 5px;
+    }
+    .review-verdict {
+        margin-top: 0;
+    }
+    .review-card-row h5 {
+        font-size: 18px;
+    }
+    .review-card-row .game-title span {
+        font-size: 16px;
+    }
+    .review-edit-left-btn {
+        margin-left: 0 !important;
+    }
+    .review-card-edit-btns {
+        text-align: left;
+    }
+    .review-card-edit-btns .btn {
+        margin: 5px 35px 0;
     }
 }
 
@@ -1419,6 +1510,12 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 480px) {
+    .review-card-row img {
+        width: 300px;
+    }
+}
+
 @media (max-width: 460px) {
     .profile-game-img img {
         width: 300px;
@@ -1432,6 +1529,9 @@ label[for]:hover {
 @media (max-width: 430px) {
     #firstItem {
         margin-left: 0;
+    }
+    .review-card-row img {
+        width: 285px;
     }
 }
 
@@ -1469,6 +1569,9 @@ label[for]:hover {
         margin-left: 25px !important;
         margin-top: 0 !important;
     }
+    .review-card-row img {
+        width: 250px;
+    }
 }
 
 @media (max-width: 370px) {
@@ -1496,6 +1599,9 @@ label[for]:hover {
         text-align: center;
         margin: 5px 5px 10px;
     }
+    .review-card-row img {
+        width: 225px;
+    }
 }
 
 @media (max-width: 354px) and (min-width: 310px) {
@@ -1508,6 +1614,9 @@ label[for]:hover {
     .game-btns {
         margin-left: 35px !important;
    }
+    .review-card-row img {
+        width: 200px;
+    }
 }
 
 /* @media(max-width: 385px) {

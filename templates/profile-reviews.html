@@ -10,13 +10,13 @@
                         <!-- Review card header -->
                         <div class="row review-card-row">
                             <!-- Image -->
-                            <div class="col m12 l5">
+                            <div class="col s12 m7 l7">
                                 <div class="card-image">
                                     <img src="{{ review.game_img_full }}" alt="Game image for the user's review">
                                 </div>
                             </div>
                             <!-- Review verdict -->
-                            <div class="col m12 l5">
+                            <div class="col s12 m5 l5">
                                 <div class="card-panel review-verdict">
                                     {% if review.recommended == "yes" %}
                                     <div class="card-panel light-blue accent-3">
@@ -53,7 +53,7 @@
 
                             <!-- Collapsible content -->
                             <div class="row" style="margin: 5px 45px 25px;">
-                                <div class="col s12 l10" style="padding: 0;">
+                                <div class="col s12 l12" style="padding: 0;">
                                     <ul class="collapsible">
                                         <li>
                                             <!-- Game title -->
@@ -119,9 +119,9 @@
                             </div>
 
                             <!-- Buttons -->
-                            <div class="row review-card-row center-align" style="margin-bottom: 25px;">
+                            <div class="row review-card-row center-align review-card-edit-btns" style="margin-bottom: 25px;">
                                 <!-- Delete -->
-                                <div class="col s6 m2 l2">
+                                <div class="col s6 m2 l2 review-edit-left-btn">
                                     <a href="#deleteReview{{loop.index}}" class="btn modal-trigger">
                                         <i class="fas fa-trash"></i>
                                         <span>Delete</span>
