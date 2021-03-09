@@ -13,11 +13,11 @@
 
     <!-- Games -->
     <section>
-        <div class="row">
+        <div class="row" id="reviewCards">
             {% for review in game_reviews %}
                 {% if loop.index0 % 3 == 0 %}
                     <!-- Review card -->
-                    <div class="col s12 m6 l3 left-review-card review-card">
+                    <div class="col s12 m6 l4 left-review-card review-card" id="left-review-card">
                         <div class="card-panel center-align review-card-panel">
                             <!-- Game title -->
                             <p class="review-card-game-title">{{ review.game_title }}</p>
@@ -73,7 +73,7 @@
                     </div>
                 {% else %}
                     <!-- Review card -->
-                    <div class="col s12 m6 l3 review-card">
+                    <div class="col s12 m6 l4 review-card">
                         <div class="card-panel center-align review-card-panel">
                             <!-- Game title -->
                             <p class="review-card-game-title">{{ review.game_title }}</p>
