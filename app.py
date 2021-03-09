@@ -2,8 +2,8 @@ import os
 import datetime
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
-from flask.globals import g
 from flask_pymongo import PyMongo, pymongo
+from pymongo import TEXT
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from bson.json_util import dumps
@@ -83,6 +83,16 @@ def search():
 
     return render_template("games-search_results.html", games=games)
 
+
+@app.route("/community-reviews/search", methods=["GET", "POST"])
+def search_reviews():
+    query = request.form.get("review-query")
+
+    mongo.db.user_reviews.create_index([("game_title", "text")])
+    reviews = mongo.db.user_reviews.find(
+        {"$text": {"$search": query}})
+
+    return render_template("games-reviews.html", game_reviews=reviews)
 
 # ===================
 # PC Games
