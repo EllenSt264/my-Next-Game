@@ -11,6 +11,12 @@
                     <div class="col s12 l6 header-username">
                         <h2>{{ username|capitalize }}'s Profile</h2>
                     </div>
+                    <!-- Avatar -->
+                    <div class="row hide-on-large-only">
+                        <div class="col s12">
+                            <img src="{{ url_for('static', filename='img/avatars/arthur-avatar.jpg') }}" alt="user's avatar" class="profile-avatar">
+                        </div>
+                    </div>
                     <!-- Edit profile -->
                     <div class="row">
                         <div class="col s12">
@@ -26,6 +32,21 @@
                 <div class="divider"></div>
                 <!-- Buttons -->
                 <div class="card-panel profile-card-panel col s12 l2 right" id="ProfileSidePanel">
+                    <!-- Avatar and username -->
+                    <div class="row hide-on-med-and-down side-panel-avatar">
+                        <div class="row">
+                            <div class="col right">
+                                <img src="{{ url_for('static', filename='img/avatars/arthur-avatar.jpg') }}" alt="user's avatar" class="profile-avatar">
+                            </div>
+                        </div>
+                       <div class="row">
+                            <div class="col right">
+                                <h5 style="margin-top: 0; margin-right: 10px; font-size: 18px;">{{ username|capitalize }}</h5>
+                            </div>
+                       </div>
+                    </div>
+                    <div class="divider hide-on-med-and-down"></div>
+                    <!-- Navigation buttons -->
                     <ul class="profile-btns">
                         <div class="row">
                             <!-- Edit profile -->

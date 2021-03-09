@@ -815,6 +815,16 @@ label[for]:hover {
     margin-bottom: 5px;
 }
 
+.profile-avatar {
+    width: 150px; 
+    height: 150px; 
+    padding: 10px;
+}
+
+.side-panel-avatar {
+    margin-right: 5px !important;
+}
+
 .cog-icon {
     color: #8b0292;
 }
@@ -884,7 +894,7 @@ label[for]:hover {
     margin: 15px;
 }
 
-.profile-btns .divider {
+#ProfileSidePanel .divider {
     border: 1px solid white; 
     margin: 15px;
 }
@@ -1106,7 +1116,7 @@ label[for]:hover {
         margin-left: 12.49999999995% !important;
     }
     .review-card {
-        margin-left: 25px !important;
+        margin-left: 80px !important;
         width: 500px !important;
     }    
 }
@@ -1286,6 +1296,11 @@ label[for]:hover {
     .profile-btns a.btn {
         font-size: 12px;
         padding: 0 10px;
+    }
+    .profile-avatar {
+        width: 125px; 
+        height: 125px; 
+        padding: 10px;
     }
 }
 
@@ -1594,6 +1609,21 @@ label[for]:hover {
     #reviewCards {
         margin-left: 5%;
     }
+    .profile-avatar {
+        width: 125px; 
+        height: 125px;
+    }
+    .header-username h2 {
+        font-size: 26px;
+        margin-bottom: 0;
+        margin-top: 15px;
+    }
+    .profile-card-header h3 {
+        font-size: 32px;
+    }
+    .profile-card-header .cog-icon {
+        font-size: 2.5em;
+    }
 }
 
 @media (max-width: 565px) {
@@ -1637,16 +1667,6 @@ label[for]:hover {
     }
     .front-font {
         font-size: 35px;
-    }
-    .header-username h2 {
-        margin: 15px 0 10px 20px;
-        font-size: 28px;
-    }
-    .profile-card-header h3 {
-        font-size: 32px;
-    }
-    .profile-card-header .cog-icon {
-        font-size: 2.5em;
     }
 }
 
@@ -1730,6 +1750,10 @@ label[for]:hover {
     }
     .review-card-row img {
         width: 250px;
+    }
+    .profile-avatar {
+        width: 100px; 
+        height: 100px;
     }
 }
 
