@@ -6,9 +6,8 @@
             <!-- Game results -->
             {% for game in user_games %}
                 {% if game.username == session.user %}
-                    {% if loop.index % 2 != 0 %}
+                    {% if loop.index % 2 == 0 %}
 
-                        <!-- Medium screens and up -->
                         <div class="col m12 l5 offset-l1 game-cards hide-on-small-only" id="gameCard1">
                             <div class="card-panel black-magenta glow" style="padding: 20px;">
                                 <div class="card horizontal purple-linear-gradient glow grow">
@@ -18,6 +17,13 @@
                                     </div>
                                     <div class="card-stacked">
                                         <div class="card-content">
+                                            {% if session.user %}
+                                            <div class="container right add-btn">
+                                                <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                            {% endif %}
                                             <div class="card-title white-text">
                                                 <span class="activator" style="cursor: pointer;">
                                                     {{ game.game_title }}
@@ -74,6 +80,13 @@
                                     </div>
                                     <!-- Buttons -->
                                     <div class="card col s2 right z-depth-5 center-align" id="btnCard">
+                                        {% if session.user %}
+                                            <div class="container add-btn">
+                                                <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        {% endif %} 
                                         <div class="like white-text">
                                             <div class="col s12 like-icon">
                                                 <a href="#" class="black-text">
@@ -124,6 +137,13 @@
                                     </div>
                                     <div class="card-stacked">
                                         <div class="card-content">
+                                            {% if session.user %}
+                                            <div class="container right add-btn">
+                                                <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                            {% endif %}
                                             <div class="card-title white-text">
                                                 <span class="activator" style="cursor: pointer;">
                                                     {{ game.game_title }}
@@ -180,6 +200,13 @@
                                     </div>
                                     <!-- Buttons -->
                                     <div class="card col s2 right z-depth-5 center-align" id="btnCard">
+                                        {% if session.user %}
+                                            <div class="container add-btn">
+                                                <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        {% endif %} 
                                         <div class="like white-text">
                                             <div class="col s12 like-icon">
                                                 <a href="#" class="black-text">
