@@ -393,6 +393,16 @@ def profile():
     return render_template("profile-template.html")
 
 
+# ================
+# Edit Profile
+# ================
+
+@app.route("/edit-profile/<username>")
+def edit_profile(username):
+    return render_template(
+        "profile-edit_template.html", username=session["user"])
+
+
 # ====================
 # Profile - Games List
 # ====================

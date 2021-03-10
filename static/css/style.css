@@ -1449,6 +1449,11 @@ label[for]:hover {
     #editBtn {
         margin-right: 15px;
     }
+    #return-to-profile-btn {
+        margin-top: 0;
+        margin-right: 15px;
+        font-size: 18px;
+    }
     .rank h5 {
         margin-right: 15px;
     }
@@ -1624,6 +1629,18 @@ label[for]:hover {
     .profile-card-header .cog-icon {
         font-size: 2.5em;
     }
+    #return-to-profile-btn {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 590px) {
+    .edit-profile-card .profile-btns a {
+        font-size: 12px;
+    }
+    .edit-profile-card .profile-btns li {
+        padding: 0;
+    }
 }
 
 @media (max-width: 565px) {
@@ -1670,6 +1687,15 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 500px) {
+    .edit-profile-card .profile-btns {
+        margin: auto;
+    }
+    .edit-profile-card .profile-btns li {
+        max-width: 90px;
+    }
+}
+
 @media (max-width: 480px) {
     .review-card-row img {
         width: 300px;
@@ -1705,6 +1731,10 @@ label[for]:hover {
     }
     .review-card-row img {
         width: 285px;
+    }
+    .edit-profile-card .profile-btns a.btn {
+        margin: 15px 0;
+        padding: 0 8px;
     }
 }
 

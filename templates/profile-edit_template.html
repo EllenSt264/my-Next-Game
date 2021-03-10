@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <section id="Profile">
+        <div class="row py-5">
+            <!-- Profile Card -->
+            <div class="card-panel profile-base-card edit-profile-card grey-text text-lighten-4 col s12 m10 offset-m1 l11 xl9 offset-xl2" id="ProfileCard">
+                <!-- Header -->
+                <div class="row profile-header">
+                    <!-- Edit Profile title (links) -->
+                    <div class="col s12 header-username">
+                        <h2>
+                            <a href="#">{{ username|capitalize }}</a>
+                            <span>»</span>
+                            <a href="#">Edit Profile</a>
+                        </h2>
+                    </div>
+                    <!-- Back to profile -->
+                    <div class="row">
+                        <div class="col s12">
+                            <h5 class="hide-on-large-only" id="return-to-profile-btn">
+                                <a href="{{ url_for('profile_games', username=session['user']) }}">Back to Profile</a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Divider -->
+                <div class="divider"></div>
+                <!-- Buttons -->
+                <div class="card-panel profile-card-panel col s12 l2 right" id="ProfileSidePanel">
+                    <!-- Navigation buttons -->
+                    <ul class="profile-btns">
+                        <div class="row">
+                            <!-- Edit profile -->
+                            <li class="col s3 l12">
+                                <a href="{{ url_for('edit_profile', username=session['user']) }}" class="btn">General</a>
+                            </li>
+                            <div class="divider hide-on-med-and-down"></div>
+                            <!-- Navigation -->
+                            <!-- Games-->
+                            <li class="col s3 l12">
+                                <a class="btn" href="#">Avatar</a>
+                            </li>
+                            <div class="divider hide-on-med-and-down"></div>
+                            <!-- Favourites -->
+                            <li class="col s3 l12">
+                                <a class="btn" href="#">Theme</a>
+                            </li>
+                            <div class="divider hide-on-med-and-down"></div>
+                            <!-- Reviews -->
+                            <li class="col s3 l12">
+                                <a class="btn" href="#">Password</a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <!-- Profile Content -->
+                <div class="card-panel profile-card-panel col s12 l9" id="ProfileContentCard">
+                    {% block edit_profile_content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

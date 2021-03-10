@@ -51,7 +51,7 @@
                         <div class="row">
                             <!-- Edit profile -->
                             <li class="col s12 hide-on-med-and-down">
-                                <a href="#" class="btn">Edit Profile</a>
+                                <a href="{{ url_for('edit_profile', username=session['user']) }}" class="btn">Edit Profile</a>
                             </li>
                             <div class="divider hide-on-med-and-down"></div>
                             <!-- Navigation -->
