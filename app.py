@@ -403,6 +403,16 @@ def edit_profile(username):
         "profile-edit_template.html", username=session["user"])
 
 
+# =====================
+# Edit Profile - Avatar
+# =====================
+
+@app.route("/edit-profile/<username>/avatar")
+def edit_profile_avatar(username):
+    return render_template(
+        "profile-edit_avatar.html", username=session["user"])
+
+
 # ====================
 # Profile - Games List
 # ====================
