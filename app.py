@@ -266,11 +266,21 @@ def register():
         confirm_password = request.form.get("confirmPassword")
 
         if password == confirm_password:
+            # Generate random avatar for the new user
+            random_avatar = mongo.db.avatars.aggregate(
+                [{"$sample": {"size": 1}}]
+            )
+            for i in list(random_avatar):
+                img_path = i["img_path"]
+                img_alt = i["img_alt"]
+
             # Add new user to db
             register = {
                 "username": request.form.get("username").lower(),
                 "email": request.form.get("email").lower(),
-                "password": generate_password_hash(password)
+                "password": generate_password_hash(password),
+                "avatar": img_path,
+                "avatar_desc": img_alt
             }
             mongo.db.users.insert_one(register)
 
