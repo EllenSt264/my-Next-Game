@@ -941,6 +941,41 @@ label[for]:hover {
 }
 
 
+/* ---------------------------------------------- Edit Profile */
+
+#current-avatar img {
+    width: 240px; 
+    height: 240px; 
+    padding: 15px;
+}
+
+#avatar-text-indicator {
+    position: relative;
+}
+
+#avatar-text-indicator h6 {
+    position: absolute; 
+    top: 195px; 
+    bottom: 0; 
+    right: 0; 
+    left: 0;
+}
+
+#avatar-selection .heading {
+    margin-left: 15px;
+}
+
+#avatar-selection .heading {
+    margin-top: 0;
+}
+
+.avatars {
+    width: 184px; 
+    height: 184px;
+    padding: 15px;
+}
+
+
 /* ---------------------------------------------- Profile Reviews */
 
 .user-review-card .card-image {
