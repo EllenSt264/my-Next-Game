@@ -1,5 +1,39 @@
 {% extends "profile-edit_template.html" %}
 {% block edit_profile_content %}
-    <h4>Avatar</h4>
-    <p>Choose an Avatar image for your Profile</p>
+    <!-- Outer card -->
+    <div class="row card-panel profile-card-content py-5">
+        <!-- Current avatar -->
+        <div class="row card-panel profile-card-content" id="current-avatar">
+            <div class="col s12 m6 l4">
+                <div class="card-image">
+                    {% for user in user_data %}
+                        {% if user.username == session.user %}
+                            <img src="{{ user.avatar }}" alt="User's current avatar">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col s12 m6 l8" id="avatar-text-indicator">
+                <h6>Current Avatar</h6>
+            </div>
+        </div>
+        <!-- New avatar selection -->
+        <div class="row card-panel profile-card-content" id="avatar-selection">
+            <!-- Heading -->
+            <div class="row">
+                <div class="col heading">
+                    <h4>Available Avatars</h4>
+                    <p>Select a new avatar for your profile</p>
+                </div>
+            </div>
+            <!-- Avatars -->
+            <div class="row">
+                {% for avatar in avatars %}
+                    <div class="col s6 m4 l3 center-align">
+                        <img src="{{ avatar.img_path }}" alt="{{ avatar.img_alt }}" class="avatars">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

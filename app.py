@@ -409,8 +409,11 @@ def edit_profile(username):
 
 @app.route("/edit-profile/<username>/avatar")
 def edit_profile_avatar(username):
+    user_data = mongo.db.users.find()
+    avatars = mongo.db.avatars.find().sort("img_alt", 1)
     return render_template(
-        "profile-edit_avatar.html", username=session["user"])
+        "profile-edit_avatar.html", username=session["user"],
+        user_data=user_data, avatars=avatars)
 
 
 # ====================
