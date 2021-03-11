@@ -969,12 +969,24 @@ label[for]:hover {
     margin-top: 0;
 }
 
+.all-avatars {
+    padding-right: 15px;
+}
+
+.all-avatars button {
+    padding: 5px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+.all-avatars button:hover {
+    background-color: #c41cce;
+}
+
 .avatars {
     width: 184px; 
     height: 184px;
-    padding: 15px;
 }
-
 
 /* ---------------------------------------------- Profile Reviews */
 

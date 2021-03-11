@@ -27,10 +27,14 @@
                 </div>
             </div>
             <!-- Avatars -->
-            <div class="row">
+            <div class="row all-avatars">
                 {% for avatar in avatars %}
                     <div class="col s6 m4 l3 center-align">
-                        <img src="{{ avatar.img_path }}" alt="{{ avatar.img_alt }}" class="avatars">
+                        <form action="{{ url_for('update_avatar', avatar_id=avatar._id) }}" method="POST">
+                            <button type="submit" class="grow">
+                                <img src="{{ avatar.img_path }}" alt="{{ avatar.img_alt }}" class="avatars">
+                            </button>
+                        </form>
                     </div>
                 {% endfor %}
             </div>

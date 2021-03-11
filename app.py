@@ -416,6 +416,31 @@ def edit_profile_avatar(username):
         user_data=user_data, avatars=avatars)
 
 
+# ============================
+# Edit Profile - Update Avatar
+# ============================
+
+@app.route("/update-avatar/<avatar_id>", methods=["GET", "POST"])
+def update_avatar(avatar_id):
+    if request.method == "POST":    
+        user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
+        avatar = mongo.db.avatars.find({"_id": ObjectId(avatar_id)})
+
+        for i in list(avatar):
+            img_path = i["img_path"]
+            img_alt = i["img_alt"]
+
+        update = {"$set": {
+            "avatar": img_path,
+            "avatar_desc": img_alt
+        }}
+
+        mongo.db.users.update({"_id": user_id}, update)
+        flash("Avatar Successfully Updated")
+
+    return redirect(url_for("edit_profile_avatar", username=session["user"]))
+
+
 # ====================
 # Profile - Games List
 # ====================
