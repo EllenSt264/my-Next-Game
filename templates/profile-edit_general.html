@@ -7,7 +7,7 @@
     </div>
 
     <div class="card-panel py-5" style="background-color: #210d35;">
-        <form action="" method="POST" id="edit-profile--general">
+        <form action="{{ url_for('edit_profile', username=session['user'], user=user) }}" method="POST" id="edit-profile--general">
         <!-- Account Information-->
             <!-- Title -->
             <h4>Account Information</h4>
@@ -16,7 +16,7 @@
             <div class="user-id py-5">
                 <h6>
                     <strong>ID:</strong>
-                    <span>12345678790</span>
+                    <span>{{ user._id }}</span>
                 </h6>
             </div>
             <!-- Form inputs -->
@@ -27,7 +27,7 @@
                             <div class="col s10 input-field input-field--displayName">
                                 <i class="material-icons prefix">account_circle</i>
                                 <input id="edit-displayName" name="edit-displayName" type="text" class="validate"
-                                    placeholder="Username" disabled>
+                                    {% if user.display_name is none %} value="{{ user.username }}" {% else %} value="{{ user.display_name }}" {% endif %} disabled required>
                                 <label for="edit-displayName">Display Name</label>
                             </div>
                             <div class="valign-wrapper col s2">
@@ -39,8 +39,7 @@
                         <div class="col s12">
                             <div class="col s10 input-field input-field--email">
                                 <i class="material-icons prefix">email</i>
-                                <input id="edit-email" name="edit-email" type="email" class="validate" placeholder="email@mail.com"
-                                    disabled>
+                                <input id="edit-email" name="edit-email" type="email" class="validate" value="{{ user.email }}" disabled required>
                                 <label for="edit-email">Email Address</label>
                             </div>
                             <div class="valign-wrapper col s2">
@@ -62,7 +61,8 @@
                     <div class="row">
                         <div class="col s12 l6">
                             <div class="col s10 input-field input-field--fname">
-                                <input id="edit-fname" name="edit-fname" type="text" class="validate" disabled>
+                                <input id="edit-fname" name="edit-fname" type="text" class="validate" 
+                                    {% if user.first_name is not none %} value="{{ user.first_name|capitalize }}" {% endif %} disabled>
                                 <label for="edit-fname" id="edit-fname--label">First Name</label>
                             </div>
                             <div class="valign-wrapper col s2">
@@ -73,7 +73,8 @@
                         </div>
                         <div class="col s12 l6">
                             <div class="col s10 input-field input-field--lname">
-                                <input id="edit-lname" name="edit-lname" type="text" class="validate" disabled>
+                                <input id="edit-lname" name="edit-lname" type="text" class="validate" 
+                                    {% if user.last_name is not none %} value="{{ user.last_name|capitalize }}" {% endif %} disabled>
                                 <label for="edit-lname">Last Name</label>
                             </div>
                             <div class="valign-wrapper col s2">

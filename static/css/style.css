@@ -965,7 +965,7 @@ label[for]:hover {
 }
 
 #edit-profile--general input {
-    color: white;
+    color: rgb(92, 92, 92);
 }
 
 #edit-profile--general .input-field > input {

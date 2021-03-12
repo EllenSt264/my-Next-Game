@@ -417,9 +417,34 @@ def edit_profile_template(username):
 # Edit Profile
 # ================
 
-@app.route("/edit-profile/<username>/general")
+@app.route("/edit-profile/<username>/general", methods=["GET", "POST"])
 def edit_profile(username):
-    return render_template("profile-edit_general.html", username=session["user"])
+    user = mongo.db.users.find_one({"username": session["user"]})
+    if request.method == "POST":
+        user_id = user["_id"]
+
+        # Check password
+        if check_password_hash(user["password"], request.form.get("password")):
+            # Update db
+            update = {"$set": {
+                "email": request.values.get("edit-email"),
+                "display_name": request.values.get("edit-displayName"),
+                "first_name": request.values.get("edit-fname"),
+                "last_name": request.values.get("edit-lname")
+            }}
+
+            mongo.db.users.update({"_id": user_id}, update)
+            flash("Profile Setting Successfully Updated")
+            return redirect(url_for('profile_games', username=session["user"]))
+
+        else:
+            # Invalid password
+            flash("Incorrect Password")
+            return redirect(url_for('edit_profile', username=session["user"]))
+
+    return render_template(
+        "profile-edit_general.html", username=session["user"], user=user)
+
 
 # =====================
 # Edit Profile - Avatar
