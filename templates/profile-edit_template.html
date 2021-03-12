@@ -10,9 +10,9 @@
                     <!-- Edit Profile title (links) -->
                     <div class="col s12 header-username">
                         <h2>
-                            <a href="#">{{ username|capitalize }}</a>
+                            <a href="{{ url_for('profile_games', username=session['user']) }}">{{ username|capitalize }}</a>
                             <span>»</span>
-                            <a href="#">Edit Profile</a>
+                            <a href="{{ url_for('edit_profile', username=session['user']) }}">Edit Profile</a>
                         </h2>
                     </div>
                     <!-- Back to profile -->
