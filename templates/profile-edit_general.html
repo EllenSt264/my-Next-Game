@@ -90,9 +90,27 @@
                     <button type="button" id="reset-edits" class="btn">Cancel</button>
                 </div>
                 <div class="col s6 m4 l3">
-                    <button type="submit" class="btn">Save Changes</button>
+                    <a href="#passwordRequest-modal" class="btn modal-trigger">Save Changes</a>
                 </div>
             </div>
+
+            <!-- Modal password request -->
+            <div id="passwordRequest-modal" class="modal center-align profile-edit-modal">
+                <div class="modal-content">
+                <h5>Please confirm your <span>password</span>  to save these changes</h5>
+                <!-- Password -->
+                <div class="row py-5">
+                    <div class="input-field col s10 offset-s1 l6 offset-l3">
+                        <input id="password" name="password" type="password" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <div class="modal-footer center-align">
+                    <a href="#!" class="modal-close btn-flat">Cancel</a>
+                    <button type="submit" class="btn" id="saveChanges">Save Changes</button>
+                </div>
+            </div>
+
         </form>
     </div>
 {% endblock %}

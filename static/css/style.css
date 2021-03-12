@@ -1051,6 +1051,38 @@ label[for]:hover {
     height: 184px;
 }
 
+/* ---------------------------------------------- Edit Profile password request odal */
+
+.profile-edit-modal .modal-content,
+.profile-edit-modal .modal-footer {
+    background-color: #30134d;
+}
+
+.profile-edit-modal span {
+    font-family: "BlenderPro-Heavy";
+    color: #c41cce;
+    letter-spacing: 1px;
+}
+
+.profile-edit-modal .modal-close {
+    font-family: "BlenderPro-Medium";
+    background-color: white;
+    margin: 5px;
+}
+
+.profile-edit-modal .btn-flat:hover {
+    background-color: #ffecec;
+    font-family: "BlenderPro-Heavy";
+}
+
+#saveChanges {
+    background-color: #c41cce;
+}
+
+#saveChanges:hover {
+    background-color: #ff6cf8;
+}
+
 /* ---------------------------------------------- Profile Reviews */
 
 .user-review-card .card-image {
