@@ -1,0 +1,100 @@
+{% extends "profile-edit_template.html" %}
+{% block edit_profile_content %}
+    <!-- Outer card -->
+    <div class="settings-title" style="margin-left: 10px;"> 
+        <h3>General Settings</h3>
+        <p>Manage your account details, such as your display name and email</p>
+    </div>
+
+    <div class="card-panel py-5" style="background-color: #210d35;">
+        <form action="" method="POST" id="edit-profile--general">
+        <!-- Account Information-->
+            <!-- Title -->
+            <h4>Account Information</h4>
+            <p>Manage your account display name and email. The display name will be displayed to others instead of your username. Your username, which you registered with, will remain the same.</p>
+            <!-- ID -->
+            <div class="user-id py-5">
+                <h6>
+                    <strong>ID:</strong>
+                    <span>12345678790</span>
+                </h6>
+            </div>
+            <!-- Form inputs -->
+            <div class="row py-5">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col s12 l6">
+                            <div class="input-field col s10">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="edit-displayName" name="edit-displayName" type="text" class="validate"
+                                    placeholder="Username" disabled>
+                                <label for="edit-displayName">Display Name</label>
+                            </div>
+                            <div class="valign-wrapper col s2">
+                                <button type="button" id="allow-edit--displayName" class="btn">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col s12 l6">
+                            <div class="input-field col s10">
+                                <i class="material-icons prefix">email</i>
+                                <input id="edit-email" name="edit-email" type="tel" class="validate" placeholder="Email@mail.com"
+                                    disabled>
+                                <label for="edit-email">Email Address</label>
+                            </div>
+                            <div class="valign-wrapper col s2">
+                                <button type="button" id="allow-edit--email" class="btn">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- Personal Details -->
+            <!-- Title -->
+            <h4>Personal Details</h4>
+            <p>We respect your right to privacy. Your personal details are private and will not be displayed to other users.</p>
+            <!-- Form inputs -->
+            <div class="row py-5">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col s12 l6">
+                            <div class="input-field col s10">
+                                <input id="edit-fname" name="edit-fname" type="text" class="validate" placeholder="First Name"
+                                    disabled>
+                                <label for="edit-fname" id="edit-fname--label">First Name</label>
+                            </div>
+                            <div class="valign-wrapper col s2">
+                                <button type="button" id="allow-edit--fname" class="btn">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col s12 l6">
+                            <div class="input-field col s10">
+                                <input id="edit-lname" name="edit-lname" type="text" class="validate" placeholder="Last Name"
+                                    disabled>
+                                <label for="edit-lname">First Name</label>
+                            </div>
+                            <div class="valign-wrapper col s2">
+                                <button type="button" id="allow-edit--lname" class="btn">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="col s6 m4 l3">
+                    <button type="button" id="reset-edits" class="btn">Cancel</button>
+                </div>
+                <div class="col s6 m4 l3">
+                    <button type="submit" class="btn">Save Changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

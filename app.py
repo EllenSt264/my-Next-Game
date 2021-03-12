@@ -403,15 +403,23 @@ def profile():
     return render_template("profile-template.html")
 
 
+# =====================
+# Edit Profile Template
+# =====================
+
+@app.route("/edit-profile/<username>")
+def edit_profile_template(username):
+    return render_template(
+        "profile-edit_template.html", username=session["user"])
+
+
 # ================
 # Edit Profile
 # ================
 
-@app.route("/edit-profile/<username>")
+@app.route("/edit-profile/<username>/general")
 def edit_profile(username):
-    return render_template(
-        "profile-edit_template.html", username=session["user"])
-
+    return render_template("profile-edit_general.html", username=session["user"])
 
 # =====================
 # Edit Profile - Avatar

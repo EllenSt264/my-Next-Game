@@ -61,6 +61,8 @@ $(document).ready(function () {
         $('.modal').modal({
             endingTop: "25%"
         });
+
+        /* --------------------------------------- Materialize forms */
         
         /* Collapsible */
         $('.collapsible').collapsible();
@@ -74,6 +76,37 @@ $(document).ready(function () {
         $('textarea#summary, textarea#gameplay, textarea#visuals, textarea#sound').characterCounter();
 
 
+        /* --------------------------------------- Enable input form button */
+
+            /* Based upon the following source:
+            "https://stackoverflow.com/questions/40404375/materialize-css-remove-disabled-input-field-not-working" */
+
+        $('#allow-edit--displayName').on('click', function() {
+            event.preventDefault();
+            $('#edit-displayName').prop('disabled', false)
+        });
+
+        $('#allow-edit--email').on('click', function() {
+            event.preventDefault();
+            $('#edit-email').prop('disabled', false)
+        });
+
+        $('#allow-edit--fname').on('click', function() {
+            event.preventDefault();
+            $('#edit-fname').prop('disabled', false)
+        });
+        
+        $('#allow-edit--lname').on('click', function() {
+            event.preventDefault();
+            $('#edit-fname').prop('disabled', false)
+        });
+
+        /*  Reset button */
+        $('#reset-edits').on('click', function() {
+            window.location.reload()
+        });
+
+        
         /* --------------------------------------- JQuery UI Initialization */
 
         /*
