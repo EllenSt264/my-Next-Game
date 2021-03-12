@@ -943,11 +943,68 @@ label[for]:hover {
 
 /* ---------------------------------------------- Edit Profile */
 
-#edit-profile--general .input-field>label {
-    color: #cacaca;
+#edit-profile--general .input-field > label {
+    /* color: #cacaca; */
+    font-family: "BlenderPro-Medium";
+    color: rgb(32, 32, 32);
     font-size: 16px;
     text-transform: uppercase;
 }
+
+#edit-profile--general .input-field {
+    margin-top: 0;
+    padding-top: 15px;
+    border: 2px solid #221424;
+    background-color: rgb(170, 170, 170);
+    border-radius: 3px;
+    color: rgb(92, 92, 92);
+}
+
+#edit-profile--general .input-field > input::placeholder {
+    color: rgb(92, 92, 92);
+}
+
+#edit-profile--general input {
+    color: white;
+}
+
+#edit-profile--general .input-field > input {
+    margin-bottom: 5px;
+}
+
+#edit-profile--general .prefix {
+    top: 20px;
+}
+
+#edit-profile--general label,
+#edit-profile--general label.active {
+    top: 15px;
+}
+
+#edit-profile--general .input-field input[type=text]:focus,
+#edit-profile-general  .input-field input[type=text]:active,
+#edit-profile--general .input-field input[type=text].valid,
+#edit-profile--general .input-field input[type=email]:focus,
+#edit-profile-general  .input-field input[type=email]:active,
+#edit-profile--general .input-field input[type=email].valid  {
+    border-bottom: 1px solid #f608ea !important;
+    box-shadow: 0 1px 0 0 #f608ea !important;
+}
+
+#edit-profile--general .input-field .prefix.active {
+    color: #f608ea;
+}
+
+.allow-input-btn {
+    margin-top: 15px;
+    background-color: #c41cce;
+}
+
+.allow-input-btn:focus,
+.allow-input-btn:hover {
+    background-color: #f608ea;
+}
+
 
 #current-avatar img {
     width: 240px; 

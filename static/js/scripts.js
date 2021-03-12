@@ -81,24 +81,40 @@ $(document).ready(function () {
             /* Based upon the following source:
             "https://stackoverflow.com/questions/40404375/materialize-css-remove-disabled-input-field-not-working" */
 
+        /* Display name input field */
         $('#allow-edit--displayName').on('click', function() {
             event.preventDefault();
-            $('#edit-displayName').prop('disabled', false)
+            $('#edit-displayName').prop('disabled', false);
+            $('.input-field--displayName').css({'background-color': 'rgb(170 170 170 / 0%)', 'border': 'none', 'color': 'rgb(210 210 210)'})
+            $('.input-field--displayName > input::placeholder').css('color', 'rgb(175 175 175)')
+            $('.input-field--displayName > label').css('color', 'rgb(175 175 175)')
         });
 
+        /* Email input field */
         $('#allow-edit--email').on('click', function() {
             event.preventDefault();
-            $('#edit-email').prop('disabled', false)
+            $('#edit-email').prop('disabled', false);
+            $('.input-field--email').css({'background-color': 'rgb(170 170 170 / 0%)', 'border': 'none', 'color': 'rgb(210 210 210)'})
+            $('.input-field--email > input::placeholder').css('color', 'rgb(175 175 175)')
+            $('.input-field--email > label').css('color', 'rgb(175 175 175)')
         });
 
+        /* First name input field */
         $('#allow-edit--fname').on('click', function() {
             event.preventDefault();
-            $('#edit-fname').prop('disabled', false)
+            $('#edit-fname').prop('disabled', false);
+            $('.input-field--fname').css({'background-color': 'rgb(170 170 170 / 0%)', 'border': 'none', 'color': 'rgb(210 210 210)'})
+            $('.input-field--fname > input::placeholder').css('color', 'rgb(175 175 175)')
+            $('.input-field--fname > label').css('color', 'rgb(175 175 175)')
         });
         
+        /* Last name input field */
         $('#allow-edit--lname').on('click', function() {
             event.preventDefault();
-            $('#edit-fname').prop('disabled', false)
+            $('#edit-lname').prop('disabled', false);
+            $('.input-field--lname').css({'background-color': 'rgb(170 170 170 / 0%)', 'border': 'none', 'color': 'rgb(210 210 210)'})
+            $('.input-field--lname > input::placeholder').css('color', 'rgb(175 175 175)')
+            $('.input-field--lname > label').css('color', 'rgb(175 175 175)')
         });
 
         /*  Reset button */
