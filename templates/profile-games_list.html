@@ -1,4 +1,24 @@
 {% extends "profile-template.html" %}
+
+<!-- Current workaround -->
+<section>
+    {% block avatar_small_screen %}
+        {% for user in users_1 %}
+            {% if user.username == session.user %}
+                <img src="{{ user.avatar }}" alt="User's current avatar" class="profile-avatar">
+            {% endif %}
+        {% endfor %}
+    {% endblock %}
+
+    {% block avatar %}
+        {% for user in users_2 %}
+            {% if user.username == session.user %}
+                <img src="{{ user.avatar }}" alt="User's current avatar" class="profile-avatar">
+            {% endif %}
+        {% endfor %}
+    {% endblock %}
+</section>
+
 {% block profile_content %}
 
     <!-- Currently Playing -->

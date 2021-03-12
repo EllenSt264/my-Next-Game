@@ -14,7 +14,8 @@
                     <!-- Avatar -->
                     <div class="row hide-on-large-only">
                         <div class="col s12">
-                            <img src="{{ url_for('static', filename='img/avatars/arthur-avatar.jpg') }}" alt="user's avatar" class="profile-avatar">
+                            {% block avatar_small_screen %}
+                            {% endblock %}
                         </div>
                     </div>
                     <!-- Edit profile -->
@@ -36,7 +37,8 @@
                     <div class="row hide-on-med-and-down side-panel-avatar">
                         <div class="row">
                             <div class="col right">
-                                <img src="{{ url_for('static', filename='img/avatars/arthur-avatar.jpg') }}" alt="user's avatar" class="profile-avatar">
+                                {% block avatar %}
+                                {% endblock %}
                             </div>
                         </div>
                        <div class="row">

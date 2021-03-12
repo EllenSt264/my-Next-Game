@@ -461,6 +461,9 @@ def profile_games(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
+    users_1 = mongo.db.users.find()
+    users_2 = mongo.db.users.find()
+
     # Separate games into categories
     games_playing = list(mongo.db.user_games.find({"stage": "playing"}))
     games_next = list(mongo.db.user_games.find({"stage": "next"}))
@@ -491,7 +494,8 @@ def profile_games(username):
     return render_template(
         "profile-games_list.html", username=username,
         games_playing=games_playing, games_next=games_next,
-        games_completed=games_completed, matches=matches)
+        games_completed=games_completed, matches=matches,
+        users_1=users_1, users_2=users_2)
 
 
 # =========================
