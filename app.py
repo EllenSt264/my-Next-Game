@@ -3,7 +3,6 @@ import datetime
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo, pymongo
-from pymongo import TEXT
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from bson.json_util import dumps
@@ -29,6 +28,8 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
 
     # The following code is based of this source:
     # "https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9"
@@ -56,8 +57,8 @@ def home():
 
     return render_template(
         "base.html", bestsellers=pagination_bestsellers,
-        pagination=pagination, awardwinners=awardwinners
-    )
+        pagination=pagination, awardwinners=awardwinners,
+        admin=admin)
 
 
 # ===================
@@ -75,13 +76,17 @@ def games():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     query = request.form.get("query")
 
     mongo.db.pc_games.create_index([("game_title", 1)])
     games = mongo.db.pc_games.find(
         {"$text": {"$search": query}})
 
-    return render_template("games-search_results.html", games=games)
+    return render_template(
+        "games-search_results.html", games=games, admin=admin)
 
 
 @app.route("/community-reviews/search", methods=["GET", "POST"])
@@ -94,12 +99,16 @@ def search_reviews():
 
     return render_template("games-reviews.html", game_reviews=reviews)
 
+
 # ===================
 # PC Games
 # ===================
 
 @app.route("/pc-games")
 def pc_games():
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     pc_games = mongo.db.pc_games.find()
 
     page, per_page, offset = get_page_args(
@@ -116,7 +125,7 @@ def pc_games():
 
     return render_template(
         "games-pc.html", pc_games=pagination_pc_games,
-        pagination=pagination)
+        pagination=pagination, admin=admin)
 
 
 # ===================
@@ -125,6 +134,8 @@ def pc_games():
 
 @app.route("/action-games")
 def action_games():
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
 
     action_games = mongo.db.steam_action_games.find()
 
@@ -142,7 +153,7 @@ def action_games():
 
     return render_template(
         "games-action.html", action_games=pagination_action_games, 
-        pagination=pagination)
+        pagination=pagination, admin=admin)
 
 
 # ===================
@@ -151,6 +162,9 @@ def action_games():
 
 @app.route("/adventure-games")
 def adventure_games():
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     adventure_games = mongo.db.steam_adventure_games.find()
 
     page, per_page, offset = get_page_args(
@@ -167,7 +181,7 @@ def adventure_games():
 
     return render_template(
         "games-adventure.html", adventure_games=pagination_adventure_games, 
-        pagination=pagination)
+        pagination=pagination, admin=admin)
 
 
 # ===================
@@ -176,6 +190,9 @@ def adventure_games():
 
 @app.route("/RPG-games")
 def RPG_games():
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     RPG_games = mongo.db.steam_RPG_games.find()
 
     page, per_page, offset = get_page_args(
@@ -192,7 +209,7 @@ def RPG_games():
 
     return render_template(
         "games-rpg.html", RPG_games=pagination_RPG_games, 
-        pagination=pagination)
+        pagination=pagination, admin=admin)
 
 
 # ===================
@@ -201,6 +218,9 @@ def RPG_games():
 
 @app.route("/strategy-games")
 def strategy_games():
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     strategy_games = mongo.db.steam_strategy_games.find()
 
     page, per_page, offset = get_page_args(
@@ -217,7 +237,7 @@ def strategy_games():
 
     return render_template(
         "games-strategy.html", strategy_games=pagination_strategy_games, 
-        pagination=pagination)
+        pagination=pagination, admin=admin)
 
 
 # ===================
@@ -226,6 +246,9 @@ def strategy_games():
 
 @app.route("/multiplayer-games")
 def multiplayer_games():
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     multiplayer_games = mongo.db.steam_multiplayer_games.find()
 
     page, per_page, offset = get_page_args(
@@ -243,7 +266,7 @@ def multiplayer_games():
     return render_template(
         "games-multiplayer.html",
         multiplayer_games=pagination_multiplayer_games,
-        pagination=pagination)
+        pagination=pagination, admin=admin)
 
 
 # ==========
@@ -419,6 +442,9 @@ def edit_profile_template(username):
 
 @app.route("/edit-profile/<username>/general", methods=["GET", "POST"])
 def edit_profile(username):
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     user = mongo.db.users.find_one({"username": session["user"]})
     if request.method == "POST":
         user_id = user["_id"]
@@ -443,7 +469,8 @@ def edit_profile(username):
             return redirect(url_for('edit_profile', username=session["user"]))
 
     return render_template(
-        "profile-edit_general.html", username=session["user"], user=user)
+        "profile-edit_general.html", username=session["user"], user=user,
+        admin=admin)
 
 
 # =====================
@@ -452,11 +479,14 @@ def edit_profile(username):
 
 @app.route("/edit-profile/<username>/avatar")
 def edit_profile_avatar(username):
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     user_data = mongo.db.users.find()
     avatars = mongo.db.avatars.find().sort("img_alt", 1)
     return render_template(
         "profile-edit_avatar.html", username=session["user"],
-        user_data=user_data, avatars=avatars)
+        user_data=user_data, avatars=avatars, admin=admin)
 
 
 # ============================
@@ -465,7 +495,7 @@ def edit_profile_avatar(username):
 
 @app.route("/update-avatar/<avatar_id>", methods=["GET", "POST"])
 def update_avatar(avatar_id):
-    if request.method == "POST":    
+    if request.method == "POST":
         user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
         avatar = mongo.db.avatars.find({"_id": ObjectId(avatar_id)})
 
@@ -491,6 +521,9 @@ def update_avatar(avatar_id):
 
 @app.route("/profile/<username>")
 def profile_games(username):
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
@@ -528,7 +561,7 @@ def profile_games(username):
         "profile-games_list.html", username=username,
         games_playing=games_playing, games_next=games_next,
         games_completed=games_completed, matches=matches,
-        users_1=users_1, users_2=users_2)
+        users_1=users_1, users_2=users_2, admin=admin)
 
 
 # =========================
@@ -616,10 +649,13 @@ export_data()
 # ==========
 
 @app.route("/community-reviews")
-def reviews():
+def reviews():# Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     game_reviews = mongo.db.user_reviews.find({})
     return render_template(
-        "games-reviews.html", game_reviews=game_reviews)
+        "games-reviews.html", game_reviews=game_reviews,
+        admin=admin)
 
 
 # ======================
@@ -628,10 +664,13 @@ def reviews():
 
 @app.route("/profile/<username>/reviews")
 def profile_reviews(username):
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     reviews = mongo.db.user_reviews.find({})
     return render_template(
         "profile-reviews.html", username=session["user"],
-        reviews=reviews)
+        reviews=reviews, admin=admin)
 
 
 # =============
@@ -640,6 +679,9 @@ def profile_reviews(username):
 
 @app.route("/submit-review", methods=["GET", "POST"])
 def submit_review():
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     if request.method == "POST":
 
         title = request.form.get("query")
@@ -684,7 +726,8 @@ def submit_review():
 
         return redirect(url_for('reviews'))
 
-    return render_template("games-review_form.html", matching_results=games)
+    return render_template(
+        "games-review_form.html", matching_results=games, admin=admin)
 
 
 # ======================
@@ -693,6 +736,9 @@ def submit_review():
 
 @app.route("/submit-review/<game_id>", methods=["GET", "POST"])
 def profile_submit_review(game_id):
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     if request.method == "POST":
 
         title = request.form.get("query")
@@ -741,7 +787,7 @@ def profile_submit_review(game_id):
 
     return render_template(
         "profile-review_form.html", matching_results=games, game=game,
-        username=session["user"])
+        username=session["user"], admin=admin)
 
 
 # ====================
@@ -750,6 +796,9 @@ def profile_submit_review(game_id):
 
 @app.route("/edit-review/<game_id>", methods=["GET", "POST"])
 def edit_review(game_id):
+    # Admin
+    admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
+
     game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
 
     game_title = game["game_title"]
@@ -785,7 +834,8 @@ def edit_review(game_id):
         flash("Review Successfully Updated")
         return redirect(url_for('reviews'))
 
-    return render_template("games-edit_review.html", game=game, review=review)
+    return render_template(
+        "games-edit_review.html", game=game, review=review, admin=admin)
 
 
 # ======================
