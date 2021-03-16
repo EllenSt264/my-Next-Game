@@ -821,8 +821,6 @@ steam_strategy_games = {}
 
 steam_multiplayer_games = {}
 
-pc_games = {}
-
 # ------------------------------------------- Add to dictionaries
 
 # ----------------------------------------------------------------- BESTSELLERS
@@ -1158,146 +1156,6 @@ def add_to_multiplayer_games_dict():
         steam_multiplayer_games[x].update(upd_dict)
 
 
-# -------------------------------------------------------------- ALL PC GAMES
-
-# ------------------ Add all games to lists
-
-pc_games_titles = []
-pc_games_tags = []
-pc_games_img_sm = []
-pc_games_img_full = []
-pc_games_platform = []
-pc_games_links = []
-
-# ----- Game Titles
-
-for i in bs_game_titles:
-    pc_games_titles.append(i)
-
-pc_games_titles.extend(action_titles)
-pc_games_titles.extend(adventure_titles)
-pc_games_titles.extend(RPG_titles)
-pc_games_titles.extend(strategy_titles)
-pc_games_titles.extend(multiplayer_titles)
-
-# ----- Game Tags
-
-for i in bs_game_tags:
-    pc_games_tags.append(i)
-
-pc_games_tags.extend(action_tags)
-pc_games_tags.extend(adventure_tags)
-pc_games_tags.extend(RPG_tags)
-pc_games_tags.extend(strategy_tags)
-pc_games_tags.extend(multiplayer_tags)
-
-# ----- Game Images
-
-for i in bs_game_images:
-    pc_games_img_sm.append(i)
-
-pc_games_img_sm.extend(action_images)
-pc_games_img_sm.extend(adventure_images)
-pc_games_img_sm.extend(RPG_images)
-pc_games_img_sm.extend(strategy_images)
-pc_games_img_sm.extend(multiplayer_images)
-
-# ----- Game Full Images
-
-for i in bs_game_images_full:
-    pc_games_img_full.append(i)
-
-pc_games_img_full.extend(action_full_images)
-pc_games_img_full.extend(adventure_full_images)
-pc_games_img_full.extend(RPG_full_images)
-pc_games_img_full.extend(strategy_full_images)
-pc_games_img_full.extend(multiplayer_full_images)
-
-# ----- Game Platform
-
-for i in bs_game_platform_tags:
-    pc_games_platform.append(i)
-
-pc_games_platform.extend(action_platform_tags)
-pc_games_platform.extend(adventure_platform_tags)
-pc_games_platform.extend(RPG_platform_tags)
-pc_games_platform.extend(strategy_platform_tags)
-pc_games_platform.extend(multiplayer_platform_tags)
-
-# ----- Game Links
-
-for i in bs_game_links:
-    pc_games_links.append(i)
-
-pc_games_links.extend(action_links)
-pc_games_links.extend(adventure_links)
-pc_games_links.extend(RPG_links)
-pc_games_links.extend(strategy_links)
-pc_games_links.extend(multiplayer_links)
-
-
-# ------------------ Add to dictionary
-
-def create_pc_games_index():
-    global pc_games
-    game_index = []
-
-    bestsellers = len(steam_bestsellers)
-    action = len(steam_action_games)
-    adventure = len(steam_adventure_games)
-    rpg = len(steam_RPG_games)
-    strategy = len(steam_strategy_games)
-    multiplayer = len(steam_multiplayer_games)
-
-    total = int(
-        bestsellers + action + adventure + rpg + strategy + multiplayer
-    )
-
-    for i in range(total):
-        game_index.append(i)
-
-
-def add_to_pc_games_dict():
-    global pc_games
-
-    # ---------------------------------------- Add game titles
-    pc_games = {x: {"title": pc_games_titles[x]}
-                for x in range(len(pc_games_titles))}
-
-    # ---------------------------------------- Add game tags
-    for x in range(len(pc_games_tags)):
-        upd_dict = {"tags": pc_games_tags[x]}
-        pc_games[x].update(upd_dict)
-
-    # ---------------------------------------- Add game image
-    for x in range(len(pc_games)):
-        upd_dict = {"image": pc_games_img_sm[x]}
-        pc_games[x].update(upd_dict)
-
-    # ---------------------------------------- Add full game image
-    for x in range(len(pc_games_img_full)):
-        upd_dict = {"full_image": pc_games_img_full[x]}
-        pc_games[x].update(upd_dict)
-
-    # ---------------------------------------- Add game platform tags
-    for x in range(len(pc_games)):
-        upd_dict = {"pc_platform_tags": pc_games_platform[x]}
-        pc_games[x].update(upd_dict)
-
-    # ---------------------------------------- Add game links
-    for x in range(len(pc_games)):
-        upd_dict = {"game_link": pc_games_links[x]}
-        pc_games[x].update(upd_dict)
-
-
-def remove_duplicates(d):
-    encounted_entries = set()
-    for key, entry in list(d.items()):
-        if entry["title"] in encounted_entries:
-            del d[key]
-        else:
-            encounted_entries.add(entry["title"])
-
 # -------------------------------------------- Call add to dictionary functions
 
 
@@ -1324,7 +1182,3 @@ add_to_multiplayer_games_dict()
 
 create_bestsellers_index()
 add_to_bestsellers_dict()
-
-create_pc_games_index()
-add_to_pc_games_dict()
-remove_duplicates(pc_games)

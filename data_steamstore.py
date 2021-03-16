@@ -438,47 +438,6 @@ def add_multiplayer_games_to_db():
         if not existing_data:
             mongo.db.steam_multiplayer_games.insert_one(game)
 
-
-# ----------------------------------------------------------- ALL PC GAMES
-
-
-def get_pc_games():
-    for k, v in pc_games.items():
-        pc_game_index.append(k)
-
-        for k1, v1 in v.items():
-            if k1 == "title":
-                pc_game_title.append(v1)
-            if k1 == "tags":
-                pc_game_tags.append(v1)
-            if k1 == "image":
-                pc_game_img_sm.append(v1)
-            if k1 == "full_image":
-                pc_game_img_full.append(v1)
-            if k1 == "pc_platform_tags":
-                pc_platform_pc.append(v1)
-            if k1 == "game_link":
-                pc_game_link.append(v1)
-
-
-def add_pc_games_to_db():
-    for i in range(len(pc_game_title)):
-        game = {
-            "game_index": pc_game_index[i],
-            "game_title": pc_game_title[i],
-            "game_top_tags": pc_game_tags[i],
-            "game_img_sm": pc_game_img_sm[i],
-            "game_img_full": pc_game_img_full[i],
-            "platform_tags_pc": pc_platform_pc[i],
-            "game_link": pc_game_link[i]
-        }
-        # Stop data from being re-added if it already exists
-        existing_data = mongo.db.pc_games.find_one(
-            {"game_title": pc_game_title[i]}
-        )
-        if not existing_data:
-            mongo.db.pc_games.insert_one(game)
-
 # ------------------ Call dictionary functions
 
 
@@ -511,7 +470,3 @@ add_strategy_games_to_db()
 # Multiplayer games
 get_multiplayer_games_dict()
 add_multiplayer_games_to_db()
-
-# PC games
-get_pc_games()
-add_pc_games_to_db()
