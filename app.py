@@ -35,12 +35,10 @@ def home():
     # "https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9"
 
     # Grab bestsellers from db
-    bestsellers = mongo.db.steam_bestsellers.find().sort(
-        "game_index", pymongo.ASCENDING)
+    bestsellers = mongo.db.all_pc_games.find({"category": "bestseller"})
 
     # Grab award winners from db
-    awardwinners = mongo.db.steam_awardwinners.find().sort(
-        "game_index", pymongo.ASCENDING)
+    awardwinners = mongo.db.all_pc_games.find({"category": "awardwinner"})
 
     # Initalize pagination
     page, per_page, offset = get_page_args(
@@ -81,8 +79,8 @@ def search():
 
     query = request.form.get("query")
 
-    mongo.db.pc_games.create_index([("game_title", 1)])
-    games = mongo.db.pc_games.find(
+    mongo.db.all_pc_games.create_index([("game_title", 1)])
+    games = mongo.db.all_pc_games.find(
         {"$text": {"$search": query}})
 
     return render_template(
@@ -109,7 +107,8 @@ def pc_games():
     # Admin
     admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
 
-    pc_games = mongo.db.pc_games.find()
+    #pc_games = mongo.db.pc_games.find()
+    pc_games = mongo.db.all_pc_games.find()
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -137,22 +136,23 @@ def action_games():
     # Admin
     admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
 
-    action_games = mongo.db.steam_action_games.find()
+    pc_games = mongo.db.all_pc_games.find(
+        {"category": "action"})
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 8
     offset = ((page - 1) * per_page)
 
-    total = action_games.count()
-    pagination_action_games = action_games[offset: offset + per_page]
+    total = pc_games.count()
+    pagination_pc_games = pc_games[offset: offset + per_page]
 
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-
+    
     return render_template(
-        "games-action.html", action_games=pagination_action_games, 
+        "games-action.html", pc_games=pagination_pc_games, 
         pagination=pagination, admin=admin)
 
 
@@ -165,22 +165,23 @@ def adventure_games():
     # Admin
     admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
 
-    adventure_games = mongo.db.steam_adventure_games.find()
+    pc_games = mongo.db.all_pc_games.find(
+        {"category": "adventure"})
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 8
     offset = ((page - 1) * per_page)
 
-    total = adventure_games.count()
-    pagination_adventure_games = adventure_games[offset: offset + per_page]
+    total = pc_games.count()
+    pagination_pc_games = pc_games[offset: offset + per_page]
 
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-
+    
     return render_template(
-        "games-adventure.html", adventure_games=pagination_adventure_games, 
+        "games-adventure.html", pc_games=pagination_pc_games, 
         pagination=pagination, admin=admin)
 
 
@@ -193,22 +194,23 @@ def RPG_games():
     # Admin
     admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
 
-    RPG_games = mongo.db.steam_RPG_games.find()
+    pc_games = mongo.db.all_pc_games.find(
+        {"category": "RPG"})
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 8
     offset = ((page - 1) * per_page)
 
-    total = RPG_games.count()
-    pagination_RPG_games = RPG_games[offset: offset + per_page]
+    total = pc_games.count()
+    pagination_pc_games = pc_games[offset: offset + per_page]
 
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-
+    
     return render_template(
-        "games-rpg.html", RPG_games=pagination_RPG_games, 
+        "games-rpg.html", pc_games=pagination_pc_games, 
         pagination=pagination, admin=admin)
 
 
@@ -221,22 +223,23 @@ def strategy_games():
     # Admin
     admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
 
-    strategy_games = mongo.db.steam_strategy_games.find()
+    pc_games = mongo.db.all_pc_games.find(
+        {"category": "strategy"})
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 8
     offset = ((page - 1) * per_page)
 
-    total = strategy_games.count()
-    pagination_strategy_games = strategy_games[offset: offset + per_page]
+    total = pc_games.count()
+    pagination_pc_games = pc_games[offset: offset + per_page]
 
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-
+    
     return render_template(
-        "games-strategy.html", strategy_games=pagination_strategy_games, 
+        "games-strategy.html", pc_games=pagination_pc_games, 
         pagination=pagination, admin=admin)
 
 
@@ -249,23 +252,23 @@ def multiplayer_games():
     # Admin
     admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
 
-    multiplayer_games = mongo.db.steam_multiplayer_games.find()
+    pc_games = mongo.db.all_pc_games.find(
+        {"category": "multiplayer"})
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 8
     offset = ((page - 1) * per_page)
 
-    total = multiplayer_games.count()
-    pagination_multiplayer_games = multiplayer_games[offset: offset + per_page]
+    total = pc_games.count()
+    pagination_pc_games = pc_games[offset: offset + per_page]
 
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-
+    
     return render_template(
-        "games-multiplayer.html",
-        multiplayer_games=pagination_multiplayer_games,
+        "games-multiplayer.html", pc_games=pagination_pc_games, 
         pagination=pagination, admin=admin)
 
 
@@ -343,7 +346,7 @@ def login():
     return render_template("login.html")
 
 
-# =============================
+# =============================``
 # Add game to Profile Game List
 # =============================
 
