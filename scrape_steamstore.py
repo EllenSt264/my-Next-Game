@@ -101,7 +101,7 @@ multiplayer_platform_tags = []
 def scrape_bestsellers():
 
     bestsellers_url = "https://store.steampowered.com/games/#p=0&tab=TopSellers"
-
+    
     source = requests.get(bestsellers_url)
     soup = BeautifulSoup(source.text, "html.parser")
 
@@ -177,7 +177,8 @@ def scrape_bestseller_game_page():
 
     for url in url_list:
 
-        source = requests.get(url)
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
 
         for item in soup.select(".page_content_ctn"):
@@ -250,7 +251,8 @@ def scrape_awardwinner_game_page():
 
     for url in url_list:
 
-        source = requests.get(url)
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
         
         # ------------------------------ Game genre tags
@@ -372,7 +374,9 @@ def scrape_action_game_page():
     url_list = action_links
 
     for url in url_list:
-        source = requests.get(url)
+
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
 
         for item in soup.select(".page_content_ctn"):
@@ -468,7 +472,9 @@ def scrape_adventure_game_page():
     url_list = adventure_links
 
     for url in url_list:
-        source = requests.get(url)
+        
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
 
         for item in soup.select(".page_content_ctn"):
@@ -563,7 +569,9 @@ def scrape_RPG_game_page():
     url_list = RPG_links
 
     for url in url_list:
-        source = requests.get(url)
+        
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
 
         for item in soup.select(".page_content_ctn"):
@@ -659,7 +667,9 @@ def scrape_strategy_game_page():
     url_list = strategy_links
 
     for url in url_list:
-        source = requests.get(url)
+        
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
 
         for item in soup.select(".page_content_ctn"):
@@ -755,7 +765,9 @@ def scrape_multiplayer_game_page():
     url_list = multiplayer_links
 
     for url in url_list:
-        source = requests.get(url)
+        
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
 
         for item in soup.select(".page_content_ctn"):
@@ -1316,5 +1328,3 @@ add_to_bestsellers_dict()
 create_pc_games_index()
 add_to_pc_games_dict()
 remove_duplicates(pc_games)
-
-print(steam_award_winners)
