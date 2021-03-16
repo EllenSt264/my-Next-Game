@@ -18,6 +18,8 @@
 
 """
 
+from re import A
+from bs4.element import NavigableString
 import requests
 from bs4 import BeautifulSoup
 
@@ -38,6 +40,9 @@ award_year = []
 award_title = []
 award_winner = []
 award_winner_img = []
+award_game_links = []
+award_game_tags = []
+award_game_platform_tags = []
 
 # -------------- Action Games
 
@@ -218,6 +223,12 @@ def scrape_awardwinners():
 
                 for category in i.select(".category_winner_ctn"):
 
+                    # -------------------------------------------------- Game Links
+
+                    for a in category.select("a", href=True):
+                        link = a.attrs["href"]
+                        award_game_links.append(link)
+
                     # ------------------------------ Winner img
 
                     winner_img = category.select(".category_winner_capsule")
@@ -231,6 +242,50 @@ def scrape_awardwinners():
                         winner = winner.select(".winner_name")
                         for game in winner:
                             award_winner.append(game.string)
+                    
+
+# Scrape data from the each game page
+def scrape_awardwinner_game_page():
+    url_list = award_game_links
+
+    for url in url_list:
+
+        source = requests.get(url)
+        soup = BeautifulSoup(source.text, "html.parser")
+        
+        # ------------------------------ Game genre tags
+        # To remove whitespace: "https://stackoverflow.com/questions/53424179/beautifulsoup-stripping-whitespace"
+
+        tags_inner = []
+
+        for item in soup.select(".glance_tags.popular_tags"):
+            for a in item.select("a", href=True, limit=5):
+                tag = a.text.strip()
+                tags_inner.append(tag)
+
+        award_game_tags.append(tags_inner)
+    
+        # ------------------------------ Game platform tags
+
+        for item in soup.select(".game_area_purchase_platform"):
+            pc_platforms = item.select(".platform_img")
+
+            platforms = str(pc_platforms)
+
+            platforms = platforms.replace(
+                    '<span class="platform_img win"></span>', 'win'
+                ).replace(
+                    '<span class="platform_img mac"></span>', 'mac'
+                ).replace(
+                    '<span class="platform_img linux"></span>', 'linux'
+                ).replace(
+                    '[', ''
+                ).replace(
+                    ']', ''
+                )
+
+            platform_lis = list(platforms.split(","))
+            award_game_platform_tags.append(platform_lis)
 
 
 # ----------------------------------------------------------------- GAME GENRES
@@ -721,6 +776,7 @@ scrape_bestsellers()
 scrape_bestseller_game_page()
 
 scrape_awardwinners()
+scrape_awardwinner_game_page()
 
 scrape_action_games()
 scrape_action_game_page()
@@ -834,10 +890,25 @@ def add_to_awardwinners_dict():
         upd_dict = {"winner": award_winner[x]}
         steam_award_winners[x].update(upd_dict)
 
-        # ---------------------------------------- Add game img
-        for x in range(len(steam_award_winners)):
-            upd_dict = {"img": award_winner_img[x]}
-            steam_award_winners[x].update(upd_dict)
+    # ---------------------------------------- Add game img
+    for x in range(len(steam_award_winners)):
+        upd_dict = {"img": award_winner_img[x]}
+        steam_award_winners[x].update(upd_dict)
+    
+    # ---------------------------------------- Add game tags
+    for x in range(len(steam_award_winners)):
+        upd_dict = {"tags": award_game_tags[x]}
+        steam_award_winners[x].update(upd_dict)
+
+    # ---------------------------------------- Add game platform tags
+    for x in range(len(steam_award_winners)):
+        upd_dict = {"pc_platform_tags": award_game_platform_tags[x]}
+        steam_award_winners[x].update(upd_dict)
+
+    # ---------------------------------------- Add game links
+    for x in range(len(steam_award_winners)):
+        upd_dict = {"game_link": award_game_links[x]}
+        steam_award_winners[x].update(upd_dict)
 
 
 # ---------------------------------------------------------------- ACTION GAMES
@@ -1218,8 +1289,8 @@ def remove_duplicates(d):
 # -------------------------------------------- Call add to dictionary functions
 
 
-#create_bestsellers_index()
-#add_to_bestsellers_dict()
+create_bestsellers_index()
+add_to_bestsellers_dict()
 
 create_awardwinners_index()
 add_to_awardwinners_dict()
@@ -1245,3 +1316,5 @@ add_to_bestsellers_dict()
 create_pc_games_index()
 add_to_pc_games_dict()
 remove_duplicates(pc_games)
+
+print(steam_award_winners)
