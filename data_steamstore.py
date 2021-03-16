@@ -259,3 +259,145 @@ get_adventure_games_dict()
 get_RPG_games_dict()
 get_strategy_games_dict()
 get_multiplayer_games_dict()
+
+
+# ----------------------------------------------------------- ADD TO DATABASE
+
+def add_to_db():
+    # ---------------------------------------- Bestsellers
+    for i in range(len(bs_game_title)):
+        bestseller = {
+            "category": "bestseller",
+            "game_title": bs_game_title[i],
+            "game_top_tags": bs_game_tags[i],
+            "game_img_full": bs_game_img_full[i],
+            "platform_tags_pc": bs_platform_pc[i],
+            "game_link": bs_game_link[i]
+        }
+        # Stop data from being re-added if it already exists
+        existing_bestseller = mongo.db.all_pc_games.find_one(
+        {"$and": [{"category": "bestseller"},
+                  {"game_title": bs_game_title[i]}]})
+
+        #Add to db
+        if not existing_bestseller:
+            mongo.db.all_pc_games.insert_one(bestseller)
+
+    # ---------------------------------------- Award winners
+    for i in range(len(award_title)):
+        awardwinner = {
+            "category": "awardwinner",
+            "game_title": award_winner[i],
+            "game_img_full": award_winner_img[i],
+            "game_top_tags": award_game_tags[i],
+            "platform_tags_pc": award_platform_pc[i],
+            "game_link": award_game_link[i],
+            "award_year": award_year[i],
+            "award_title": award_title[i]
+        }
+        # Stop data from being re-added if it already exists
+        existing_awardwinner = mongo.db.all_pc_games.find_one(
+        {"$and": [{"category": "awardwinner"},
+                  {"game_title": award_winner[i]}]})
+        
+        # Add to db
+        if not existing_awardwinner:
+            mongo.db.all_pc_games.insert_one(awardwinner)
+
+    # ---------------------------------------- Action
+    for i in range(len(action_game_title)):
+        action = {
+            "category": "action",
+            "game_title": action_game_title[i],
+            "game_top_tags": action_game_tags[i],
+            "game_img_full": action_game_img_full[i],
+            "platform_tags_pc": action_platform_pc[i],
+            "game_link": action_game_link[i]
+        }
+        # Stop data from being re-added if it already exists
+        existing_action = mongo.db.all_pc_games.find_one(
+        {"$and": [{"category": "action"},
+                  {"game_title": action_game_title[i]}]})
+
+        #Add to db
+        if not existing_action:
+            mongo.db.all_pc_games.insert_one(action)
+    
+    # ---------------------------------------- Adventure
+    for i in range(len(adventure_game_title)):
+        adventure = {
+            "category": "adventure",
+            "game_title": adventure_game_title[i],
+            "game_top_tags": adventure_game_tags[i],
+            "game_img_full": adventure_game_img_full[i],
+            "platform_tags_pc": adventure_platform_pc[i],
+            "game_link": adventure_game_link[i]
+        }
+        # Stop data from being re-added if it already exists
+        existing_adventure = mongo.db.all_pc_games.find_one(
+        {"$and": [{"category": "adventure"},
+                  {"game_title": adventure_game_title[i]}]})
+
+        #Add to db
+        if not existing_adventure:
+            mongo.db.all_pc_games.insert_one(adventure)
+    
+    # ---------------------------------------- RPG
+    for i in range(len(RPG_game_title)):
+        RPG = {
+            "category": "RPG",
+            "game_title": RPG_game_title[i],
+            "game_top_tags": RPG_game_tags[i],
+            "game_img_full": RPG_game_img_full[i],
+            "platform_tags_pc": RPG_platform_pc[i],
+            "game_link": RPG_game_link[i]
+        }
+        # Stop data from being re-added if it already exists
+        existing_RPG = mongo.db.all_pc_games.find_one(
+        {"$and": [{"category": "RPG"},
+                  {"game_title": RPG_game_title[i]}]})
+
+        #Add to db
+        if not existing_RPG:
+            mongo.db.all_pc_games.insert_one(RPG)
+    
+    # ---------------------------------------- Strategy
+    for i in range(len(strategy_game_title)):
+        strategy = {
+            "category": "strategy",
+            "game_title": strategy_game_title[i],
+            "game_top_tags": strategy_game_tags[i],
+            "game_img_full": strategy_game_img_full[i],
+            "platform_tags_pc": strategy_platform_pc[i],
+            "game_link": strategy_game_link[i]
+        }
+        # Stop data from being re-added if it already exists
+        existing_strategy = mongo.db.all_pc_games.find_one(
+        {"$and": [{"category": "strategy"},
+                  {"game_title": strategy_game_title[i]}]})
+
+        #Add to db
+        if not existing_strategy:
+            mongo.db.all_pc_games.insert_one(strategy)
+
+    # ---------------------------------------- Multiplayer
+    for i in range(len(multiplayer_game_title)):
+        multiplayer = {
+            "category": "multiplayer",
+            "game_title": multiplayer_game_title[i],
+            "game_top_tags": multiplayer_game_tags[i],
+            "game_img_full": multiplayer_game_img_full[i],
+            "platform_tags_pc": multiplayer_platform_pc[i],
+            "game_link": multiplayer_game_link[i]
+        }
+        # Stop data from being re-added if it already exists
+        existing_multiplayer = mongo.db.all_pc_games.find_one(
+        {"$and": [{"category": "multiplayer"},
+                  {"game_title": multiplayer_game_title[i]}]})
+
+        #Add to db
+        if not existing_multiplayer:
+            mongo.db.all_pc_games.insert_one(multiplayer)
+
+
+add_to_db()
