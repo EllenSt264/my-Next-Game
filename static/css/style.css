@@ -209,7 +209,7 @@ The following code is based upon this source:
 }
 
 .list-of-games .card-image img {
-    width: 184px;
+    width: 148px !important;
     height: 69px;
 }
 

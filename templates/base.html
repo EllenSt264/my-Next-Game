@@ -161,7 +161,7 @@
             <div class="parallax">
             <!--
                 The image was not showing,
-                To fix this I used code from this source:
+                To fix this I used code from the following source:
                 "https://stackoverflow.com/questions/43896410/parallax-from-materialize-no-showing-image/43963949"
             -->
                 <img src="https://i.redd.it/p1ed58yua3h51.png"
@@ -178,10 +178,10 @@
                     <h3 class="center-align white-text">Best Sellers</h3>
                     <!-- Games -->
                     {% for bestseller in bestsellers %}
-                        <div class="card horizontal purple-linear-gradient glow grow">
+                        <div class="card horizontal purple-linear-gradient glow">
                             <div class="card-image">
-                                <img src="{{ bestseller.game_img_sm }}" 
-                                alt="" class="responsive-img">
+                                <img src="{{ bestseller.game_img_full }}" 
+                                alt="Image for {{ bestseller.game_title }}" class="responsive-img   ">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-content">
@@ -208,18 +208,19 @@
                     <h3 class="center-align white-text">Award Winners</h3>
                     <!-- Games -->
                     {% for awardwinner in awardwinners %}
-                        <div class="card horizontal purple-linear-gradient glow grow">
+                        <div class="card horizontal purple-linear-gradient glow">
                             <div class="card-image">
-                                <img src="{{ awardwinner.winner_img }}" alt="" class="responsive-img">
+                                <img src="{{ awardwinner.game_img_full }}" alt="Image for {{ awardwinner.game_title }}" class="responsive-img">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-content">
                                     <div class="card-title">
                                         <span>
-                                            {{ awardwinner.winner }}
+                                            {{ awardwinner.game_title }}
                                         </span>
                                     </div>
                                     <p>
+                                        {{ awardwinner.award_year }}
                                         {{ awardwinner.award_title }}
                                     </p>
                                 </div>
