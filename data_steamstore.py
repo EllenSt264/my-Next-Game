@@ -35,6 +35,9 @@ award_year = []
 award_title = []
 award_winner = []
 award_winner_img = []
+award_game_tags = []
+award_platform_pc = []
+award_game_link = []
 
 # ------------------------------ Steam games - lists
 
