@@ -1,0 +1,19 @@
+{% extends "games-template.html" %}
+
+{% block searchbar %}
+    <li class="right">
+        <form action="{{ url_for('search') }}" method="post">
+            <div class="input-field" style="padding-right: 25px; width: 500px;">
+                <i class="material-icons prefix">search</i>
+                <input type="text" id="query" name="query" class="autocomplete validate" required>
+                <label for="query" style="font-size: 18px;">Game Title</label>
+            </div>
+        </form>
+    </li>
+{% endblock %}
+
+{% block games %}
+   
+    <h4>Our Favourites</h4>
+
+{% endblock %}

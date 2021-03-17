@@ -272,6 +272,15 @@ def multiplayer_games():
         pagination=pagination, admin=admin)
 
 
+# ===================
+# Our Favourite Games
+# ===================
+
+@app.route("/our-favourites")
+def favourites():
+    return render_template("games-favourites.html")
+
+
 # ==========
 # Register
 # ==========
@@ -346,7 +355,7 @@ def login():
     return render_template("login.html")
 
 
-# =============================``
+# =============================
 # Add game to Profile Game List
 # =============================
 

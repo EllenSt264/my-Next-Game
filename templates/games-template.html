@@ -56,7 +56,7 @@
                 <!-- Standard Links -->
                 <li><a href="{{ url_for('pc_games') }}" class="standard-link">Bestsellers</a></li>
                 <li><a href="#" class="standard-link">Award Winners</a></li>
-                <li><a href="#" class="standard-link">Our Favourites</a></li>
+                <li><a href="{{ url_for('favourites') }}" class="standard-link">Our Favourites</a></li>
                 {% if session.user %}
                 <li><a href="{{ url_for('user_list', username=session['user']) }}" class="standard-link">Your List</a></li>
                 {% endif %}
