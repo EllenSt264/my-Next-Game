@@ -16,12 +16,17 @@
     Fix 'RuntimeError: dictionary changed size during iteration':
     "https://stackoverflow.com/questions/11941817/how-to-avoid-runtimeerror-dictionary-changed-size-during-iteration-error"
 
+    Remove whitespace:
+    "https://stackoverflow.com/questions/53424179/beautifulsoup-stripping-whitespace"
+
+    To get past the website's age check:
+    "https://stackoverflow.com/questions/33603416/python-beautiful-soup-getting-past-steams-age-check"
+
 """
 
-from re import A
-from bs4.element import NavigableString
 import requests
 from bs4 import BeautifulSoup
+from bs4.element import NavigableString
 
 # -------------------------------------------------- Data lists
 
@@ -92,7 +97,7 @@ multiplayer_full_images = []
 multiplayer_platform_tags = []
 
 
-# ------------------------------------------- Scrape data function
+# ------------------------------------------- Scrape data functions
 
 
 # ----------------------------------------------------------------- BESTSELLERS
@@ -256,7 +261,6 @@ def scrape_awardwinner_game_page():
         soup = BeautifulSoup(source.text, "html.parser")
         
         # ------------------------------ Game genre tags
-        # To remove whitespace: "https://stackoverflow.com/questions/53424179/beautifulsoup-stripping-whitespace"
 
         tags_inner = []
 
