@@ -24,6 +24,7 @@
 
 """
 
+import re
 import requests
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString
@@ -106,7 +107,7 @@ multiplayer_platform_tags = []
 def scrape_bestsellers():
 
     bestsellers_url = "https://store.steampowered.com/games/#p=0&tab=TopSellers"
-    
+
     source = requests.get(bestsellers_url)
     soup = BeautifulSoup(source.text, "html.parser")
 
@@ -229,7 +230,7 @@ def scrape_awardwinners():
 
                 for category in i.select(".category_winner_ctn"):
 
-                    # -------------------------------------------------- Game Links
+                    # ---------------------------------------------- Game Links
 
                     for a in category.select("a", href=True):
                         link = a.attrs["href"]
@@ -248,7 +249,7 @@ def scrape_awardwinners():
                         winner = winner.select(".winner_name")
                         for game in winner:
                             award_winner.append(game.string)
-                    
+
 
 # Scrape data from the each game page
 def scrape_awardwinner_game_page():
@@ -259,7 +260,7 @@ def scrape_awardwinner_game_page():
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
-        
+
         # ------------------------------ Game genre tags
 
         tags_inner = []
@@ -270,7 +271,7 @@ def scrape_awardwinner_game_page():
                 tags_inner.append(tag)
 
         award_game_tags.append(tags_inner)
-    
+
         # ------------------------------ Game platform tags
 
         for item in soup.select(".game_area_purchase_platform"):
@@ -476,7 +477,7 @@ def scrape_adventure_game_page():
     url_list = adventure_links
 
     for url in url_list:
-        
+
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
@@ -573,7 +574,7 @@ def scrape_RPG_game_page():
     url_list = RPG_links
 
     for url in url_list:
-        
+
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
@@ -671,7 +672,7 @@ def scrape_strategy_game_page():
     url_list = strategy_links
 
     for url in url_list:
-        
+
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
@@ -769,7 +770,7 @@ def scrape_multiplayer_game_page():
     url_list = multiplayer_links
 
     for url in url_list:
-        
+
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
@@ -784,6 +785,125 @@ def scrape_multiplayer_game_page():
                 img = item.select(".game_header_image_full")
                 for i in img:
                     multiplayer_full_images.append(i["src"])
+
+
+# ------------------------------------------------------------- FAVOURITES
+
+# Links have been added manually
+favourite_links = [
+    "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
+    "https://store.steampowered.com/app/1404210/Red_Dead_Online/",
+    "https://store.steampowered.com/app/379430/Kingdom_Come_Deliverance/",
+    "https://store.steampowered.com/app/261550/Mount__Blade_II_Bannerlord/",
+    "https://store.steampowered.com/app/1158310/Crusader_Kings_III/",
+    "https://store.steampowered.com/app/629760/MORDHAU/",
+    "https://store.steampowered.com/app/427290/Vampyr/",
+    "https://store.steampowered.com/app/752590/A_Plague_Tale_Innocence/",
+    "https://store.steampowered.com/app/409710/BioShock_Remastered/",
+    "https://store.steampowered.com/app/1328670/Mass_Effect_Legendary_Edition/",
+    "https://store.steampowered.com/app/703080/Planet_Zoo/",
+    "https://store.steampowered.com/app/493340/Planet_Coaster/",
+    "https://store.steampowered.com/app/1237950/STAR_WARS_Battlefront_II/",
+    "https://store.steampowered.com/app/281990/Stellaris/",
+    "https://store.steampowered.com/app/238320/Outlast/",
+    "https://store.steampowered.com/app/480490/Prey/",
+    "https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/",
+    "https://store.steampowered.com/app/362890/Black_Mesa/",
+    "https://store.steampowered.com/app/1190460/DEATH_STRANDING/",
+    "https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/",
+    "https://store.steampowered.com/app/900883/The_Elder_Scrolls_IV_Oblivion_Game_of_the_Year_Edition_Deluxe/",
+    "https://store.steampowered.com/app/306130/The_Elder_Scrolls_Online/",
+    "https://store.steampowered.com/app/379720/DOOM/"
+]
+
+favourites_game_title = []
+favourites_game_img = []
+favourites_game_tags = []
+favourites_platform_pc = []
+favourite_game_summary = []
+
+
+def scrape_favourites_data():
+    url_list = favourite_links
+
+    for url in url_list:
+
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game title
+        for item in soup.select(".page_title_area.game_title_area"):
+            for title in item.select(".apphub_AppName"):
+                favourites_game_title.append(title.text)
+
+        # ------------------------------ Game image
+
+        for item in soup.select(".page_content_ctn"):
+            if item.find("img", {"class": "package_header"}):
+                img = item.select(".package_header")
+                for i in img:
+                    favourites_game_img.append(i["src"])
+
+            else:
+                img = item.select(".game_header_image_full")
+                for i in img:
+                    favourites_game_img.append(i["src"])
+
+        # ------------------------------ Game genre tags
+
+        tags_inner = []
+
+        for item in soup.select(".glance_tags.popular_tags"):
+            for a in item.select("a", href=True, limit=5):
+                tag = a.text.strip()
+                tags_inner.append(tag)
+
+        favourites_game_tags.append(tags_inner)
+
+        # ------------------------------ Game platform tags
+
+        for item in soup.select(".game_area_purchase_platform"):
+            pc_platforms = item.select(".platform_img")
+
+            platforms = str(pc_platforms)
+
+            platforms = platforms.replace(
+                    '<span class="platform_img win"></span>', 'win'
+                ).replace(
+                    '<span class="platform_img mac"></span>', 'mac'
+                ).replace(
+                    '<span class="platform_img linux"></span>', 'linux'
+                ).replace(
+                    '[', ''
+                ).replace(
+                    ']', ''
+                )
+
+            platform_lis = list(platforms.split(","))
+            favourites_platform_pc.append(platform_lis)
+
+        # ------------------------------ Game summary
+
+        for item in soup.select("#game_area_description"):
+            res = item.text
+
+            regex = re.compile(r"[\n\r\t]")
+            text = regex.sub(" ", res)
+
+            summary = []
+
+            sentences = text.split(".")
+
+            for i in sentences:
+                summary.append(i)
+
+            shortended = summary[:4]
+            summary_str = ".".join(shortended)
+            summary_str = summary_str.replace("About This Game ", "").replace(
+                "Game: ", "").replace("         ", "").replace("   ", " ")
+
+            favourite_game_summary.append(summary_str)
 
 
 # ------------------ Call scrape data functions
@@ -809,6 +929,8 @@ scrape_strategy_game_page()
 scrape_multiplayer_games()
 scrape_multiplayer_game_page()
 
+scrape_favourites_data()
+
 # ------------------------------------------- Dictionaries
 
 steam_bestsellers = {}
@@ -824,6 +946,8 @@ steam_RPG_games = {}
 steam_strategy_games = {}
 
 steam_multiplayer_games = {}
+
+favourites = {}
 
 # ------------------------------------------- Add to dictionaries
 
@@ -908,7 +1032,7 @@ def add_to_awardwinners_dict():
     for x in range(len(steam_award_winners)):
         upd_dict = {"img": award_winner_img[x]}
         steam_award_winners[x].update(upd_dict)
-    
+
     # ---------------------------------------- Add game tags
     for x in range(len(steam_award_winners)):
         upd_dict = {"tags": award_game_tags[x]}
@@ -1160,6 +1284,52 @@ def add_to_multiplayer_games_dict():
         steam_multiplayer_games[x].update(upd_dict)
 
 
+# --------------------------------------------------------------- FAVOURITES
+
+def create_favourites_index():
+    global favourites
+
+    game_index = []
+    {game_index.append(x) for x in range(len(favourites_game_title))}
+
+    # ---------------------------------------- Add game indices
+    for x in range(len(game_index)):
+        favourites = dict.fromkeys(game_index, {})
+
+
+def add_to_favourites_dict():
+    global favourites
+
+    # ---------------------------------------- Add game title
+    favourites = {x: {"title": favourites_game_title[x]}
+                  for x in range(len(favourites))}
+
+    # ---------------------------------------- Add game img
+    for x in range(len(favourites)):
+        upd_dict = {"image": favourites_game_img[x]}
+        favourites[x].update(upd_dict)
+
+    # ---------------------------------------- Add game tags
+    for x in range(len(favourites)):
+        upd_dict = {"tags": favourites_game_tags[x]}
+        favourites[x].update(upd_dict)
+
+    # ---------------------------------------- Add game platform tags
+    for x in range(len(favourites)):
+        upd_dict = {"pc_platform_tags": favourites_platform_pc[x]}
+        favourites[x].update(upd_dict)
+
+    # ---------------------------------------- Add game links
+    for x in range(len(favourites)):
+        upd_dict = {"game_link": favourite_links[x]}
+        favourites[x].update(upd_dict)
+
+    # ---------------------------------------- Add game summary
+    for x in range(len(favourites)):
+        upd_dict = {"game_summary": favourite_game_summary[x]}
+        favourites[x].update(upd_dict)
+
+
 # -------------------------------------------- Call add to dictionary functions
 
 
@@ -1186,3 +1356,6 @@ add_to_multiplayer_games_dict()
 
 create_bestsellers_index()
 add_to_bestsellers_dict()
+
+create_favourites_index()
+add_to_favourites_dict()
