@@ -4,8 +4,7 @@ from flask_pymongo import PyMongo
 from scrape_steamstore import (
     steam_bestsellers, steam_award_winners, steam_action_games,
     steam_adventure_games, steam_RPG_games,
-    steam_strategy_games, steam_multiplayer_games,
-    pc_games)
+    steam_strategy_games, steam_multiplayer_games, favourites)
 if os.path.exists("env.py"):
     import env
 
@@ -91,16 +90,14 @@ multiplayer_game_img_full = []
 multiplayer_platform_pc = []
 multiplayer_game_link = []
 
-# --- PC games
+# --- Game favourites
 
-pc_game_index = []
-pc_game_title = []
-pc_game_tags = []
-pc_game_img_sm = []
-pc_game_img_full = []
-pc_platform_pc = []
-pc_game_link = []
-
+favourite_links = []
+favourites_game_title = []
+favourites_game_img = []
+favourites_game_tags = []
+favourites_platform_pc = []
+favourite_game_summary = []
 
 # ----------------------------------------------------------------- BESTSELLERS
 
@@ -186,7 +183,6 @@ def get_adventure_games_dict():
                 adventure_game_link.append(v1)
 
 
-
 # --------------------------------------------------------------- RPG GAMES
 
 def get_RPG_games_dict():
@@ -202,7 +198,7 @@ def get_RPG_games_dict():
             if k1 == "image":
                 RPG_game_img_sm.append(v1)
             if k1 == "full_image":
-               RPG_game_img_full.append(v1)
+                RPG_game_img_full.append(v1)
             if k1 == "pc_platform_tags":
                 RPG_platform_pc.append(v1)
             if k1 == "game_link":
@@ -253,6 +249,25 @@ def get_multiplayer_games_dict():
                 multiplayer_game_link.append(v1)
 
 
+# ----------------------------------------------------------- GAME FAVOURITES
+
+def get_favourites_games_dict():
+    for k, v in favourites.items():
+        for k1, v1 in v.items():
+            if k1 == "title":
+                favourites_game_title.append(v1)
+            if k1 == "tags":
+                favourites_game_tags.append(v1)
+            if k1 == "image":
+                favourites_game_img.append(v1)
+            if k1 == "pc_platform_tags":
+                favourites_platform_pc.append(v1)
+            if k1 == "game_link":
+                favourite_links.append(v1)
+            if k1 == "game_summary":
+                favourite_game_summary.append(v1)
+
+
 # ------------------ Call dictionary functions
 
 get_bestseller_dict()
@@ -262,6 +277,7 @@ get_adventure_games_dict()
 get_RPG_games_dict()
 get_strategy_games_dict()
 get_multiplayer_games_dict()
+get_favourites_games_dict()
 
 
 # ----------------------------------------------------------- ADD TO DATABASE
@@ -282,7 +298,7 @@ def add_to_db():
         {"$and": [{"category": "bestseller"},
                   {"game_title": bs_game_title[i]}]})
 
-        #Add to db
+        # Add to db
         if not existing_bestseller:
             mongo.db.all_pc_games.insert_one(bestseller)
 
@@ -302,7 +318,7 @@ def add_to_db():
         existing_awardwinner = mongo.db.all_pc_games.find_one(
         {"$and": [{"category": "awardwinner"},
                   {"game_title": award_winner[i]}]})
-        
+
         # Add to db
         if not existing_awardwinner:
             mongo.db.all_pc_games.insert_one(awardwinner)
@@ -322,10 +338,10 @@ def add_to_db():
         {"$and": [{"category": "action"},
                   {"game_title": action_game_title[i]}]})
 
-        #Add to db
+        # Add to db
         if not existing_action:
             mongo.db.all_pc_games.insert_one(action)
-    
+
     # ---------------------------------------- Adventure
     for i in range(len(adventure_game_title)):
         adventure = {
@@ -338,13 +354,13 @@ def add_to_db():
         }
         # Stop data from being re-added if it already exists
         existing_adventure = mongo.db.all_pc_games.find_one(
-        {"$and": [{"category": "adventure"},
-                  {"game_title": adventure_game_title[i]}]})
+            {"$and": [{"category": "adventure"},
+                      {"game_title": adventure_game_title[i]}]})
 
-        #Add to db
+        # Add to db
         if not existing_adventure:
             mongo.db.all_pc_games.insert_one(adventure)
-    
+
     # ---------------------------------------- RPG
     for i in range(len(RPG_game_title)):
         RPG = {
@@ -357,13 +373,13 @@ def add_to_db():
         }
         # Stop data from being re-added if it already exists
         existing_RPG = mongo.db.all_pc_games.find_one(
-        {"$and": [{"category": "RPG"},
-                  {"game_title": RPG_game_title[i]}]})
+            {"$and": [{"category": "RPG"},
+                      {"game_title": RPG_game_title[i]}]})
 
-        #Add to db
+        # Add to db
         if not existing_RPG:
             mongo.db.all_pc_games.insert_one(RPG)
-    
+
     # ---------------------------------------- Strategy
     for i in range(len(strategy_game_title)):
         strategy = {
@@ -376,10 +392,10 @@ def add_to_db():
         }
         # Stop data from being re-added if it already exists
         existing_strategy = mongo.db.all_pc_games.find_one(
-        {"$and": [{"category": "strategy"},
-                  {"game_title": strategy_game_title[i]}]})
+            {"$and": [{"category": "strategy"},
+                      {"game_title": strategy_game_title[i]}]})
 
-        #Add to db
+        # Add to db
         if not existing_strategy:
             mongo.db.all_pc_games.insert_one(strategy)
 
@@ -395,12 +411,33 @@ def add_to_db():
         }
         # Stop data from being re-added if it already exists
         existing_multiplayer = mongo.db.all_pc_games.find_one(
-        {"$and": [{"category": "multiplayer"},
-                  {"game_title": multiplayer_game_title[i]}]})
+            {"$and": [{"category": "multiplayer"},
+                      {"game_title": multiplayer_game_title[i]}]})
 
-        #Add to db
+        # Add to db
         if not existing_multiplayer:
             mongo.db.all_pc_games.insert_one(multiplayer)
 
 
+def add_to_favourites():
+    # ---------------------------------------- Favourites
+    for i in range(len(favourites_game_title)):
+        favourite = {
+            "game_title": favourites_game_title[i],
+            "game_top_tags": favourites_game_tags[i],
+            "game_img_full": favourites_game_img[i],
+            "platform_tags_pc": favourites_platform_pc[i],
+            "game_link": favourite_links[i],
+            "game_summary": favourite_game_summary[i]
+        }
+        # Stop data from being re-added if it already exists
+        existing_favourite = mongo.db.site_favourites.find_one(
+            {"game_title": favourites_game_title[i]})
+
+        # Add to db
+        if not existing_favourite:
+            mongo.db.site_favourites.insert_one(favourite)
+
+
 add_to_db()
+add_to_favourites()
