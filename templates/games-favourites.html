@@ -1,19 +1,172 @@
 {% extends "games-template.html" %}
 
-{% block searchbar %}
-    <li class="right">
-        <form action="{{ url_for('search') }}" method="post">
-            <div class="input-field" style="padding-right: 25px; width: 500px;">
-                <i class="material-icons prefix">search</i>
-                <input type="text" id="query" name="query" class="autocomplete validate" required>
-                <label for="query" style="font-size: 18px;">Game Title</label>
-            </div>
-        </form>
-    </li>
-{% endblock %}
-
 {% block games %}
    
-    <h4>Our Favourites</h4>
+    <!-- For larger screens -->
+    <div class="col m12 l5 offset-l1 hide-on-med-and-down favourites">
+        <div class="card-panel black-magenta glow">
+            <div class="card horizontal purple-linear-gradient glow">
+                <!-- Game image -->
+                <div class="card-image">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1615608871" alt=""
+                        class="responsive-img activator">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <div class="card-title white-text">
+                            <h4>
+                                Red Dead Redemption
+                            </h4>
+                        </div>
+                        <p class="grey-text text-lighten-2">
+                            windows
+                        </p>
+                        <p class="grey-text text-lighten-2">
+                            XBOX, Playstation
+                        </p>
+                        <p class="grey-text text-lighten-2 game-tags">
+                            Action, Adventure
+                        </p>
+                        <div class="divider"></div>
+                        <p class="grey-text text-lighten-2 game-summary">
+                            <span>
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta, dolor dolores molestiae consequatur ipsa,
+                                repellendus facere aliquid cupiditate corrupti inventore incidunt quidem mollitia assumenda similique ad itaque
+                                recusandae fugiat soluta?
+                            </span>
+                        </p>
+                    </div>
+                    <!-- Buttons and tags -->
+                    <div class="buttons-and-tags">
+                        <!-- See reviews -->
+                        <div class="see-review-btn">
+                            <a href="#" class="btn-large">See Reviews</a>
+                        </div>
+                        <!-- Add to list -->
+                        <div class="floating-add-btn">
+                            {% if session.user %}
+                            <div class="container">
+                                <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- Likes -->
+                        <div class="like-outer">
+                            <div class="like-inner">
+                                <i class="material-icons right">thumb_up</i>
+                                <span>Like</span>
+                                <strong>100</strong>
+                            </div>
+                        </div>
+                        <!-- Recommended tag -->
+                        <div class="favourite-tag">
+                            <div class="btn-large">
+                                <div class="stars">
+                                    <i class="material-icons left">star</i>
+                                    <i class="material-icons left">star</i>
+                                    <i class="material-icons left">star</i>
+                                    <i class="material-icons left">star</i>
+                                    <i class="material-icons left">star</i>
+                                </div>
+                                <div class="recommended-text">
+                                    <i class="material-icons right">thumb_up</i>
+                                    <span>Recommended By Us</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- For smaller screens -->
+    <div class="hide-on-large-only favourites-sm py-5">
+        <div class="card-panel black-magenta glow">
+            <div class="card purple-linear-gradient glow">
+                <!-- Game image -->
+                <div class="card-image">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1615608871" alt="">
+                </div>
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col s7">
+                            <!-- Game title -->
+                            <div class="card-title white-text">
+                                <h4>Red Dead Redemption</h4>
+                            </div>
+                            <!-- Platform tags -->
+                            <div class="row" style="margin-bottom: 0;">
+                                <div class="col s12">
+                                    <p class="grey-text text-lighten-2">
+                                        windows
+                                        XBOX, Playstation
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Genre tags -->
+                            <div class="row">
+                                <div class="col s12">
+                                    <p class="grey-text text-lighten-2 game-tags">
+                                        Action, Adventure
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                        </div>
+                        <div class="col s5">
+                            <!-- Recommended tag -->
+                            <div class="favourite-tag-sm">
+                                <div class="btn-large">
+                                    <div class="stars-sm">
+                                        <i class="material-icons left">star</i>
+                                        <i class="material-icons left">star</i>
+                                        <i class="material-icons left">star</i>
+                                        <i class="material-icons left">star</i>
+                                        <i class="material-icons left">star</i>
+                                    </div>
+                                    <div class="recommended-text-sm">
+                                        <i class="material-icons right">thumb_up</i>
+                                        <span>Recommended By Us</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Game summary -->
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="grey-text text-lighten-2 game-summary">
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta, dolor dolores molestiae consequatur ipsa,
+                                repellendus facere aliquid cupiditate corrupti inventore incidunt quidem mollitia assumenda similique ad itaque
+                                recusandae fugiat soluta?
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="row">
+                        <!-- Like -->
+                        <div class="col s6 m4">
+                            <div class="like-outer-sm">
+                                <div class="like-inner-sm">
+                                    <i class="material-icons right">thumb_up</i>
+                                    <span>Like</span>
+                                    <strong>100</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- See reviews -->
+                        <div class="col s6 m4">
+                            <div class="see-review-btn-sm">
+                                <a href="#" class="btn-large">See Reviews</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
