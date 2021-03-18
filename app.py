@@ -272,13 +272,14 @@ def multiplayer_games():
         pagination=pagination, admin=admin)
 
 
-# ===================
-# Our Favourite Games
-# ===================
+# =================
+# Site's Favourites
+# =================
 
 @app.route("/our-favourites")
 def favourites():
-    return render_template("games-favourites.html")
+    favourites = mongo.db.site_favourites.find()
+    return render_template("games-favourites.html", favourites=favourites)
 
 
 # ==========
