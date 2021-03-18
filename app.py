@@ -2,7 +2,7 @@ import os
 import datetime
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
-from flask_pymongo import PyMongo, pymongo
+from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from bson.json_util import dumps
@@ -150,9 +150,9 @@ def action_games():
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-    
+
     return render_template(
-        "games-action.html", pc_games=pagination_pc_games, 
+        "games-action.html", pc_games=pagination_pc_games,
         pagination=pagination, admin=admin)
 
 
@@ -179,9 +179,9 @@ def adventure_games():
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-    
+
     return render_template(
-        "games-adventure.html", pc_games=pagination_pc_games, 
+        "games-adventure.html", pc_games=pagination_pc_games,
         pagination=pagination, admin=admin)
 
 
@@ -208,9 +208,9 @@ def RPG_games():
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-    
+
     return render_template(
-        "games-rpg.html", pc_games=pagination_pc_games, 
+        "games-rpg.html", pc_games=pagination_pc_games,
         pagination=pagination, admin=admin)
 
 
@@ -237,9 +237,9 @@ def strategy_games():
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-    
+
     return render_template(
-        "games-strategy.html", pc_games=pagination_pc_games, 
+        "games-strategy.html", pc_games=pagination_pc_games,
         pagination=pagination, admin=admin)
 
 
@@ -266,9 +266,9 @@ def multiplayer_games():
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-    
+
     return render_template(
-        "games-multiplayer.html", pc_games=pagination_pc_games, 
+        "games-multiplayer.html", pc_games=pagination_pc_games,
         pagination=pagination, admin=admin)
 
 
@@ -661,7 +661,8 @@ export_data()
 # ==========
 
 @app.route("/community-reviews")
-def reviews():# Admin
+def reviews():
+    # Admin
     admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
 
     game_reviews = mongo.db.user_reviews.find({})
