@@ -362,6 +362,46 @@ def login():
     return render_template("login.html")
 
 
+# ==========
+# Game Likes
+# ==========
+
+@app.route("/like/<game_id>")
+def like(game_id):
+    # Grab game data from database
+    game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})["_id"]
+
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+
+    # Check if a user has already liked the game
+    existing_like = mongo.db.all_pc_games.find_one(
+        {"$and": [{"_id": game},
+                  {"liked_by": session["user"]}]})
+
+    like_num = mongo.db.all_pc_games.find_one(
+        {"_id": ObjectId(game_id)})["likes"]
+
+    new_like_num = int(like_num) + 1
+
+    """
+        I used the following source to redirect users back to the same page:
+        "https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission/41272173"
+    """
+
+    if existing_like:
+        flash("Sorry, but you've already liked this game.")
+        return redirect(request.referrer)
+    else:
+        like = {"$set": {
+            "likes": new_like_num,
+            "liked_by": username
+        }}
+        mongo.db.all_pc_games.update({"_id": game}, like)
+        flash("Liked added!")
+        return redirect(request.referrer)
+
+
 # =============================
 # Add game to Profile Game List
 # =============================
@@ -369,7 +409,7 @@ def login():
 @app.route("/add_game/<game_id>")
 def add_game(game_id):
     # Grab game data from database
-    game = mongo.db.pc_games.find_one({"_id": ObjectId(game_id)})
+    game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
 
     # Create empty lists to add dict data into
     title = []
