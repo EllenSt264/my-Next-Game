@@ -107,7 +107,6 @@ def pc_games():
     # Admin
     admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
 
-    #pc_games = mongo.db.pc_games.find()
     pc_games = mongo.db.all_pc_games.find()
 
     page, per_page, offset = get_page_args(
@@ -122,9 +121,16 @@ def pc_games():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    """
+    Find site favourites
+    Based of the following source:
+    "https://stackoverflow.com/questions/34861949/how-to-find-all-values-for-a-specific-key-in-pymongo"
+    """
+    favourites = mongo.db.site_favourites.distinct("game_title")
+
     return render_template(
         "games-pc.html", pc_games=pagination_pc_games,
-        pagination=pagination, admin=admin)
+        pagination=pagination, admin=admin, favourites=favourites)
 
 
 # ===================

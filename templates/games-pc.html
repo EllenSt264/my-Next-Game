@@ -21,7 +21,7 @@
 
                     <!-- Medium screens and up -->
                     <div class="col m12 l5 offset-l1 game-cards hide-on-small-only" id="gameCard1">
-                        <div class="card-panel black-magenta glow" style="padding: 20px;">
+                        <div class="card-panel black-magenta glow">
                             <div class="card horizontal purple-linear-gradient glow">
                                 <div class="card-image">
                                     <img src="{{ game.game_img_full }}" alt=""
@@ -75,6 +75,25 @@
                                     </p>
                                 </div>
                             </div>
+                            {% for fav in favourites %}
+                                {% if fav == game.game_title %}
+                                    <div class="favourite-tag--games-page">
+                                        <div class="btn-large">
+                                            <div class="stars">
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                            </div>
+                                            <div class="recommended-text">
+                                                <i class="material-icons right">thumb_up</i>
+                                                <p>Recommended By Us</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
 
@@ -135,14 +154,34 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
+                            {% for fav in favourites %}
+                                {% if fav == game.game_title %}
+                                    <div class="favourite-tag--games-page-sm">
+                                        <div class="btn-large">
+                                            <div class="stars">
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                            </div>
+                                            <div class="recommended-text">
+                                                <i class="material-icons right">thumb_up</i>
+                                                <p>Recommended By Us</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %} 
                         </div>   
                     </div>
 
                 {% else %}
 
+                    <!-- Medium screens and up -->
                     <div class="col m12 l5 game-cards hide-on-small-only" id="gameCard2">
-                        <div class="card-panel black-magenta glow" style="padding: 20px">
+                        <div class="card-panel black-magenta glow">
                             <div class="card horizontal purple-linear-gradient glow">
                                 <div class="card-image">
                                     <img src="{{ game.game_img_full }}" alt=""
@@ -197,13 +236,32 @@
                                     </p>
                                 </div>
                             </div>
+                            {% for fav in favourites %}
+                                {% if fav == game.game_title %}
+                                    <div class="favourite-tag--games-page">
+                                        <div class="btn-large">
+                                            <div class="stars">
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                            </div>
+                                            <div class="recommended-text">
+                                                <i class="material-icons right">thumb_up</i>
+                                                <p>Recommended By Us</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
 
                     <!-- Small screens only -->
                     <div class="col s12 hide-on-med-and-up game-cards sm-screen-card">
 
-                        <div class="card-panel black-magenta glow">
+                        <div class="card-panel black-magenta glow" style="position: relative;">
 
                             <div class="row">
                                 <!-- Game image -->
@@ -258,6 +316,25 @@
                                     </div>
                                 </div>
                             </div> 
+                            {% for fav in favourites %}
+                                {% if fav == game.game_title %}
+                                    <div class="favourite-tag--games-page-sm">
+                                        <div class="btn-large">
+                                            <div class="stars">
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                            </div>
+                                            <div class="recommended-text">
+                                                <i class="material-icons right">thumb_up</i>
+                                                <p>Recommended By Us</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %} s 
                         </div>   
                     </div>
 

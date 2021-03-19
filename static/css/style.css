@@ -497,6 +497,117 @@ The following code is based upon this source:
     padding: 5px;
 }
 
+/* ---------------------------------------------- Game Cards - Favourite tag */
+
+.game-cards .card-panel {
+    position: relative;
+}
+
+.game-card.hide-on-small-only .card-panel {
+    padding: 20px;
+}
+
+.favourite-tag--games-page {
+    position: absolute; 
+    top: 5%; 
+    bottom: 0; 
+    left: 1%; 
+    right: 0; 
+    z-index: 20;
+}
+
+.favourite-tag--games-page .btn-large {
+    position: relative; 
+    width: 165px; 
+    height: 65px; 
+    padding: 0 15px;
+}
+
+.favourite-tag--games-page .stars {
+    position: absolute; 
+    top: -10px; 
+    bottom: 0; 
+    left: 15px; 
+    right: 0; 
+    height: 35px;
+}
+
+.favourite-tag--games-page .stars i {
+    font-size: 14px; 
+    height: 35px;
+}
+
+.favourite-tag--games-page .recommended-text {
+    position: relative;
+}
+
+.favourite-tag--games-page .recommended-text i {
+    font-size: 16px; 
+    line-height: 40px; 
+    margin-left: 5px;
+}
+
+.favourite-tag--games-page .recommended-text p {
+    position: absolute; 
+    top: -5px; 
+    bottom: 0; 
+    height: 35px; 
+    margin: 0;
+    font-family: 'BlenderPro-Medium';
+    font-size: 12px; 
+}
+
+.favourite-tag--games-page-sm {
+    position: absolute; 
+    top: 2%; 
+    bottom: 0; 
+    left: 1%; 
+    right: 0; 
+    z-index: 20;
+}
+
+.favourite-tag--games-page-sm .btn-large {
+    position: relative; 
+    width: 150px; 
+    height: 50px; 
+    padding: 0 15px;
+}
+
+.favourite-tag--games-page-sm .stars {
+    position: absolute; 
+    top: -15px; 
+    bottom: 0; 
+    left: 15px; 
+    right: 0; 
+    height: 35px;
+}
+
+.favourite-tag--games-page-sm .stars i {
+    height: 25px;
+    font-size: 12px; 
+}
+
+.favourite-tag--games-page-sm .recommended-text {
+    position: relative;
+}
+
+.favourite-tag--games-page-sm .recommended-text i {
+    font-size: 14px; 
+    line-height: 20px; 
+    margin-left: 0; 
+    margin-right: 3px;
+}
+
+.favourite-tag--games-page-sm .recommended-text p {
+    position: absolute; 
+    top: -15px; 
+    bottom: 0; 
+    height: 35px; 
+    margin: 0;
+    font-family: 'BlenderPro-Medium'; 
+    font-size: 10px; 
+}
+
 /* ---------------------------------------------- Favourites page */
 
 .favourites {
