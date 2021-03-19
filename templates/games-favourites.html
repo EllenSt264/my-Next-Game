@@ -35,7 +35,7 @@
         </div>
         <div class="section white-text">
             <div class="row container">
-                <h2 class="header">Something Missing?</h2>
+                <h3 class="header">Something Missing?</h3>
                 <div class="col s12 m6">
                     <p>
                         Do you want to see <em>your</em> favourite games added to Our Favourites and/or our site? 
@@ -56,168 +56,178 @@
 {% endblock %}
 
 {% block games %}
-    <!-- For larger screens -->
-    {% for game in favourites %}
-    <div class="col m12 l5 offset-l1 hide-on-med-and-down favourites py-5">
-        <div class="card-panel black-magenta glow">
-            <div class="card horizontal purple-linear-gradient glow">
-                <!-- Game image -->
-                <div class="card-image">
-                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}"
-                        class="responsive-img activator">
-                </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <div class="card-title white-text">
-                            <h4>
-                                {{ game.game_title }}
-                            </h4>
+
+    <section>
+        {% for game in favourites %}
+            <!-- For larger screens -->
+            <div class="col m12 l5 offset-l1 hide-on-med-and-down favourites py-5">
+                <div class="card-panel black-magenta glow">
+                    <div class="card horizontal purple-linear-gradient glow">
+                        <!-- Game image -->
+                        <div class="card-image">
+                            <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}"
+                                class="responsive-img activator">
                         </div>
-                        <p class="grey-text text-lighten-2">
-                            {{ game.platform_tags_pc|join('') }}
-                        </p>
-                        <p class="grey-text text-lighten-2">
-                            XBOX, Playstation
-                        </p>
-                        <p class="grey-text text-lighten-2 game-tags">
-                            {{ game.game_top_tags|join(', ') }}
-                        </p>
-                        <div class="divider"></div>
-                        <p class="grey-text text-lighten-2 game-summary">
-                            <span>
-                                {{ game.game_summary }}
-                            </span>
-                        </p>
-                    </div>
-                    <!-- Buttons and tags -->
-                    <div class="buttons-and-tags">
-                        <!-- See reviews -->
-                        <div class="see-review-btn">
-                            <a href="#" class="btn-large">See Reviews</a>
-                        </div>
-                        <!-- Add to list -->
-                        <div class="floating-add-btn">
-                            {% if session.user %}
-                            <div class="container">
-                                <a class="btn-floating pulse right waves-effect waves-light red accent-3">
-                                    <i class="fas fa-plus"></i>
-                                </a>
-                            </div>
-                            {% endif %}
-                        </div>
-                        <!-- Likes -->
-                        <div class="like-outer">
-                            <div class="like-inner">
-                                <i class="material-icons right">thumb_up</i>
-                                <span>Like</span>
-                                <strong>100</strong>
-                            </div>
-                        </div>
-                        <!-- Recommended tag -->
-                        <div class="favourite-tag">
-                            <div class="btn-large">
-                                <div class="stars">
-                                    <i class="material-icons left">star</i>
-                                    <i class="material-icons left">star</i>
-                                    <i class="material-icons left">star</i>
-                                    <i class="material-icons left">star</i>
-                                    <i class="material-icons left">star</i>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <div class="card-title white-text">
+                                    <h4>
+                                        {{ game.game_title }}
+                                    </h4>
                                 </div>
-                                <div class="recommended-text">
-                                    <i class="material-icons right">thumb_up</i>
-                                    <span>Recommended By Us</span>
+                                <p class="grey-text text-lighten-2">
+                                    {{ game.platform_tags_pc|join('') }}
+                                </p>
+                                <p class="grey-text text-lighten-2">
+                                    XBOX, Playstation
+                                </p>
+                                <p class="grey-text text-lighten-2 game-tags">
+                                    {{ game.game_top_tags|join(', ') }}
+                                </p>
+                                <div class="divider"></div>
+                                <p class="grey-text text-lighten-2 game-summary">
+                                    <span>
+                                        {{ game.game_summary }}
+                                    </span>
+                                </p>
+                            </div>
+                            <!-- Buttons and tags -->
+                            <div class="buttons-and-tags">
+                                <!-- See reviews -->
+                                <div class="see-review-btn">
+                                    <a href="#" class="btn-large">See Reviews</a>
+                                </div>
+                                <!-- Add to list -->
+                                <div class="floating-add-btn">
+                                    {% if session.user %}
+                                    <div class="container">
+                                        <a class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <!-- Likes -->
+                                <div class="like-outer">
+                                    <div class="like-inner">
+                                        <i class="material-icons right">thumb_up</i>
+                                        <span>Like</span>
+                                        <strong>100</strong>
+                                    </div>
+                                </div>
+                                <!-- Recommended tag -->
+                                <div class="favourite-tag">
+                                    <div class="btn-large">
+                                        <div class="stars">
+                                            <i class="material-icons left">star</i>
+                                            <i class="material-icons left">star</i>
+                                            <i class="material-icons left">star</i>
+                                            <i class="material-icons left">star</i>
+                                            <i class="material-icons left">star</i>
+                                        </div>
+                                        <div class="recommended-text">
+                                            <i class="material-icons right">thumb_up</i>
+                                            <span>Recommended By Us</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- For smaller screens -->
-    <div class="hide-on-large-only favourites-sm py-5">
-        <div class="card-panel black-magenta glow">
-            <div class="card purple-linear-gradient glow">
-                <!-- Game image -->
-                <div class="card-image">
-                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-                </div>
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col s7">
-                            <!-- Game title -->
-                            <div class="card-title white-text">
-                                <h4>{{ game.game_title }}</h4>
-                            </div>
-                            <!-- Platform tags -->
-                            <div class="row" style="margin-bottom: 0;">
-                                <div class="col s12">
-                                    <p class="grey-text text-lighten-2">
-                                        {{ game.platform_tags_pc|join('') }}
-                                        XBOX, Playstation
-                                    </p>
+            <!-- For smaller screens -->
+            <div class="hide-on-large-only favourites-sm py-5">
+                <div class="card-panel black-magenta glow">
+                    <div class="card purple-linear-gradient glow">
+                        <!-- Game image -->
+                        <div class="card-image">
+                            <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                        </div>
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col s7">
+                                    <!-- Game title -->
+                                    <div class="card-title white-text">
+                                        <h4>{{ game.game_title }}</h4>
+                                    </div>
+                                    <!-- Platform tags -->
+                                    <div class="row" style="margin-bottom: 0;">
+                                        <div class="col s12">
+                                            <p class="grey-text text-lighten-2">
+                                                {{ game.platform_tags_pc|join('') }}
+                                                XBOX, Playstation
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Genre tags -->
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <p class="grey-text text-lighten-2 game-tags">
+                                                {{ game.game_top_tags|join(', ') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="divider"></div>
+                                </div>
+                                <div class="col s5">
+                                    <!-- Recommended tag -->
+                                    <div class="favourite-tag-sm">
+                                        <div class="btn-large">
+                                            <div class="stars-sm">
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                                <i class="material-icons left">star</i>
+                                            </div>
+                                            <div class="recommended-text-sm">
+                                                <i class="material-icons right">thumb_up</i>
+                                                <span>Recommended By Us</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Genre tags -->
+                            <!-- Game summary -->
                             <div class="row">
                                 <div class="col s12">
-                                    <p class="grey-text text-lighten-2 game-tags">
-                                        {{ game.game_top_tags|join(', ') }}
+                                    <p class="grey-text text-lighten-2 game-summary">
+                                        {{ game.game_summary }}
                                     </p>
                                 </div>
                             </div>
-                            <div class="divider"></div>
-                        </div>
-                        <div class="col s5">
-                            <!-- Recommended tag -->
-                            <div class="favourite-tag-sm">
-                                <div class="btn-large">
-                                    <div class="stars-sm">
-                                        <i class="material-icons left">star</i>
-                                        <i class="material-icons left">star</i>
-                                        <i class="material-icons left">star</i>
-                                        <i class="material-icons left">star</i>
-                                        <i class="material-icons left">star</i>
-                                    </div>
-                                    <div class="recommended-text-sm">
-                                        <i class="material-icons right">thumb_up</i>
-                                        <span>Recommended By Us</span>
+                            <!-- Buttons -->
+                            <div class="row">
+                                <!-- Like -->
+                                <div class="col s6 m4">
+                                    <div class="like-outer-sm">
+                                        <div class="like-inner-sm">
+                                            <i class="material-icons right">thumb_up</i>
+                                            <span>Like</span>
+                                            <strong>100</strong>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Game summary -->
-                    <div class="row">
-                        <div class="col s12">
-                            <p class="grey-text text-lighten-2 game-summary">
-                                {{ game.game_summary }}
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Buttons -->
-                    <div class="row">
-                        <!-- Like -->
-                        <div class="col s6 m4">
-                            <div class="like-outer-sm">
-                                <div class="like-inner-sm">
-                                    <i class="material-icons right">thumb_up</i>
-                                    <span>Like</span>
-                                    <strong>100</strong>
+                                <!-- See reviews -->
+                                <div class="col s6 m4">
+                                    <div class="see-review-btn-sm">
+                                        <a href="#" class="btn-large">See Reviews</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- See reviews -->
-                        <div class="col s6 m4">
-                            <div class="see-review-btn-sm">
-                                <a href="#" class="btn-large">See Reviews</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
+    </section>
+    
+    <!-- Scroll to top -->
+    <div class="fixed-action-btn bounce">
+        <a href="#" class="btn-floating btn-large">
+            <i class="fas fa-chevron-up"></i>   
+        </a>
     </div>
-    {% endfor %}
 {% endblock %}

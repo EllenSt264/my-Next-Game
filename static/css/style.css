@@ -1,10 +1,13 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: "BlenderPro-Book";
     background-color: #221424;
     overflow-x: hidden;
-    scroll-behavior: smooth;
 }
 
 /* ---------------------------------------------- Navbar */
@@ -1547,6 +1550,24 @@ label[for]:hover {
 .grow:hover {
     transform: scale(1.2);
     z-index: 10;
+}
+
+/* The following code was taken from: "https://codepen.io/bisaillonyannick/pen/pvZeGg"  */
+
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
 }
 
 /* ---------------------------------------------- Media Queries */
