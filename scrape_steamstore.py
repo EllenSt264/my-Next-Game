@@ -22,6 +22,12 @@
     To get past the website's age check:
     "https://stackoverflow.com/questions/33603416/python-beautiful-soup-getting-past-steams-age-check"
 
+    Remove string control characters:
+    "https://moonbooks.org/Articles/How-to-remove-string-control-characters-n-t-r-in-python/"
+
+    Help with the join method to return the first few sentences of a paragraph:
+    "https://runestone.academy/runestone/books/published/fopp/Sequences/SplitandJoin.html"
+
 """
 
 import re
