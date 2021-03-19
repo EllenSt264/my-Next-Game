@@ -95,9 +95,11 @@ multiplayer_game_link = []
 favourite_links = []
 favourites_game_title = []
 favourites_game_img = []
+favourites_game_screenshots = []
 favourites_game_tags = []
 favourites_platform_pc = []
 favourite_game_summary = []
+
 
 # ----------------------------------------------------------------- BESTSELLERS
 
@@ -260,6 +262,8 @@ def get_favourites_games_dict():
                 favourites_game_tags.append(v1)
             if k1 == "image":
                 favourites_game_img.append(v1)
+            if k1 == "screenshots":
+                favourites_game_screenshots.append(v1)
             if k1 == "pc_platform_tags":
                 favourites_platform_pc.append(v1)
             if k1 == "game_link":
@@ -269,7 +273,7 @@ def get_favourites_games_dict():
 
 
 # ------------------ Call dictionary functions
-
+"""
 get_bestseller_dict()
 get_awardwinners_dict()
 get_action_games_dict()
@@ -277,6 +281,7 @@ get_adventure_games_dict()
 get_RPG_games_dict()
 get_strategy_games_dict()
 get_multiplayer_games_dict()
+"""
 get_favourites_games_dict()
 
 
@@ -291,12 +296,14 @@ def add_to_db():
             "game_top_tags": bs_game_tags[i],
             "game_img_full": bs_game_img_full[i],
             "platform_tags_pc": bs_platform_pc[i],
-            "game_link": bs_game_link[i]
+            "game_link": bs_game_link[i],
+            "liked_by": None,
+            "likes": 0
         }
         # Stop data from being re-added if it already exists
         existing_bestseller = mongo.db.all_pc_games.find_one(
-        {"$and": [{"category": "bestseller"},
-                  {"game_title": bs_game_title[i]}]})
+            {"$and": [{"category": "bestseller"},
+                      {"game_title": bs_game_title[i]}]})
 
         # Add to db
         if not existing_bestseller:
@@ -312,12 +319,14 @@ def add_to_db():
             "platform_tags_pc": award_platform_pc[i],
             "game_link": award_game_link[i],
             "award_year": award_year[i],
-            "award_title": award_title[i]
+            "award_title": award_title[i],
+            "liked_by": None,
+            "likes": 0
         }
         # Stop data from being re-added if it already exists
         existing_awardwinner = mongo.db.all_pc_games.find_one(
-        {"$and": [{"category": "awardwinner"},
-                  {"game_title": award_winner[i]}]})
+            {"$and": [{"category": "awardwinner"},
+                      {"game_title": award_winner[i]}]})
 
         # Add to db
         if not existing_awardwinner:
@@ -331,12 +340,14 @@ def add_to_db():
             "game_top_tags": action_game_tags[i],
             "game_img_full": action_game_img_full[i],
             "platform_tags_pc": action_platform_pc[i],
-            "game_link": action_game_link[i]
+            "game_link": action_game_link[i],
+            "liked_by": None,
+            "likes": 0
         }
         # Stop data from being re-added if it already exists
         existing_action = mongo.db.all_pc_games.find_one(
-        {"$and": [{"category": "action"},
-                  {"game_title": action_game_title[i]}]})
+            {"$and": [{"category": "action"},
+                      {"game_title": action_game_title[i]}]})
 
         # Add to db
         if not existing_action:
@@ -350,7 +361,9 @@ def add_to_db():
             "game_top_tags": adventure_game_tags[i],
             "game_img_full": adventure_game_img_full[i],
             "platform_tags_pc": adventure_platform_pc[i],
-            "game_link": adventure_game_link[i]
+            "game_link": adventure_game_link[i],
+            "liked_by": None,
+            "likes": 0
         }
         # Stop data from being re-added if it already exists
         existing_adventure = mongo.db.all_pc_games.find_one(
@@ -369,7 +382,9 @@ def add_to_db():
             "game_top_tags": RPG_game_tags[i],
             "game_img_full": RPG_game_img_full[i],
             "platform_tags_pc": RPG_platform_pc[i],
-            "game_link": RPG_game_link[i]
+            "game_link": RPG_game_link[i],
+            "liked_by": None,
+            "likes": 0
         }
         # Stop data from being re-added if it already exists
         existing_RPG = mongo.db.all_pc_games.find_one(
@@ -388,7 +403,9 @@ def add_to_db():
             "game_top_tags": strategy_game_tags[i],
             "game_img_full": strategy_game_img_full[i],
             "platform_tags_pc": strategy_platform_pc[i],
-            "game_link": strategy_game_link[i]
+            "game_link": strategy_game_link[i],
+            "liked_by": None,
+            "likes": 0
         }
         # Stop data from being re-added if it already exists
         existing_strategy = mongo.db.all_pc_games.find_one(
@@ -407,7 +424,9 @@ def add_to_db():
             "game_top_tags": multiplayer_game_tags[i],
             "game_img_full": multiplayer_game_img_full[i],
             "platform_tags_pc": multiplayer_platform_pc[i],
-            "game_link": multiplayer_game_link[i]
+            "game_link": multiplayer_game_link[i],
+            "liked_by": None,
+            "likes": 0
         }
         # Stop data from being re-added if it already exists
         existing_multiplayer = mongo.db.all_pc_games.find_one(
@@ -426,9 +445,12 @@ def add_to_favourites():
             "game_title": favourites_game_title[i],
             "game_top_tags": favourites_game_tags[i],
             "game_img_full": favourites_game_img[i],
+            "game_screenshots": favourites_game_screenshots[i],
             "platform_tags_pc": favourites_platform_pc[i],
             "game_link": favourite_links[i],
-            "game_summary": favourite_game_summary[i]
+            "game_summary": favourite_game_summary[i],
+            "liked_by": None,
+            "likes": 0
         }
         # Stop data from being re-added if it already exists
         existing_favourite = mongo.db.site_favourites.find_one(
