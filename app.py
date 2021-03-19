@@ -631,17 +631,6 @@ def game_to_completed(game_id):
         "profile_games", username=session["user"], game=game))
 
 
-# ============================
-# Games Page - User Games List
-# ============================
-
-@app.route("/games/<username>")
-def user_list(username):
-    user_games = mongo.db.user_games.find()
-    return render_template("games-user_list.html", username=session["user"],
-                           user_games=user_games)
-
-
 # ==============
 # Export to JS
 # ==============
