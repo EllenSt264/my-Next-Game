@@ -824,6 +824,7 @@ favourite_links = [
 
 favourites_game_title = []
 favourites_game_img = []
+favourites_game_screenshots = []
 favourites_game_tags = []
 favourites_platform_pc = []
 favourite_game_summary = []
@@ -855,6 +856,18 @@ def scrape_favourites_data():
                 img = item.select(".game_header_image_full")
                 for i in img:
                     favourites_game_img.append(i["src"])
+
+        # ------------------------------ Game image - screenshots
+
+        screenshots = []
+
+        for item in soup.select(".highlight_player_item.highlight_screenshot"):
+            for i in item.select(".screenshot_holder"):
+                images = i.select(".highlight_screenshot_link", href=True)
+                for img in images:
+                    screenshots.append(img.attrs["href"])
+
+        favourites_game_screenshots.append(screenshots)
 
         # ------------------------------ Game genre tags
 
@@ -1315,6 +1328,11 @@ def add_to_favourites_dict():
         upd_dict = {"image": favourites_game_img[x]}
         favourites[x].update(upd_dict)
 
+    # ---------------------------------------- Add game screenshots
+    for x in range(len(favourites)):
+        upd_dict = {"screenshots": favourites_game_screenshots[x]}
+        favourites[x].update(upd_dict)
+
     # ---------------------------------------- Add game tags
     for x in range(len(favourites)):
         upd_dict = {"tags": favourites_game_tags[x]}
@@ -1338,7 +1356,7 @@ def add_to_favourites_dict():
 
 # -------------------------------------------- Call add to dictionary functions
 
-
+"""
 create_bestsellers_index()
 add_to_bestsellers_dict()
 
@@ -1362,6 +1380,7 @@ add_to_multiplayer_games_dict()
 
 create_bestsellers_index()
 add_to_bestsellers_dict()
+"""
 
 create_favourites_index()
 add_to_favourites_dict()
