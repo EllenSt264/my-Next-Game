@@ -1,3 +1,23 @@
+"""
+    ** Attribution:
+
+    * Adding Pagination:
+    "https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9"#
+
+    * Finding all the values of a specific key within a collection:
+    "https://stackoverflow.com/questions/34861949/how-to-find-all-values-for-a-specific-key-in-pymongo"
+
+    * To redirect users back to the same page:
+    "https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission/41272173"
+
+    * Returning a random document from MongoDB collection:
+    "https://stackoverflow.com/questions/2824157/random-record-from-mongodb"
+
+    * Selecting a random item from a list:
+    "https://stackoverflow.com/questions/306400/how-to-randomly-select-an-item-from-a-list"
+
+"""
+
 import os
 import datetime
 import random
@@ -31,9 +51,6 @@ mongo = PyMongo(app)
 def home():
     # Admin
     admin = mongo.db.users.find_one({"username": session["user"]})["admin"]
-
-    # The following code is based of this source:
-    # "https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9"
 
     # Grab bestsellers from db
     bestsellers = mongo.db.all_pc_games.find({"category": "bestseller"})
@@ -122,11 +139,7 @@ def pc_games():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
-    """
-    Find site favourites
-    Based of the following source:
-    "https://stackoverflow.com/questions/34861949/how-to-find-all-values-for-a-specific-key-in-pymongo"
-    """
+    # Find site favourites
     favourites = mongo.db.site_favourites.distinct("game_title")
 
     return render_template(
@@ -408,11 +421,6 @@ def like(game_id):
         {"_id": ObjectId(game_id)})["likes"]
 
     new_like_num = int(like_num) + 1
-
-    """
-        I used the following source to redirect users back to the same page:
-        "https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission/41272173"
-    """
 
     if existing_like:
         flash("Sorry, but you've already liked this game.")
