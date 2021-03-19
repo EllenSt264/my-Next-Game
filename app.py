@@ -1,5 +1,6 @@
 import os
 import datetime
+import random
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -284,8 +285,32 @@ def multiplayer_games():
 
 @app.route("/our-favourites")
 def favourites():
+    # Favourites db
     favourites = mongo.db.site_favourites.find()
-    return render_template("games-favourites.html", favourites=favourites)
+
+    # Random game
+
+    random_game = mongo.db.site_favourites.aggregate(
+        [{"$sample": {"size": 1}}]
+    )
+
+    screenshots = []
+    rand_game_title = []
+    rand_game_summary = []
+
+    for data in random_game:
+        rand_game_title.append(data["game_title"])
+        rand_game_summary.append(data["game_summary"])
+
+        for img in data["game_screenshots"]:
+            screenshots.append(img)
+
+    rand_game_imgs = random.sample(screenshots, 3)
+
+    return render_template(
+        "games-favourites.html", favourites=favourites,
+        rand_game_title=rand_game_title, rand_game_imgs=rand_game_imgs,
+        rand_game_summary=rand_game_summary)
 
 
 # ==========
