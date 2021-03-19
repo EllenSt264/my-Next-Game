@@ -42,7 +42,15 @@
                                             </span>
                                         </div>
                                         <p class="grey-text text-lighten-2">
-                                            {{ game.platform_tags_pc|join('') }}
+                                            {% for platform in game.platform_tags_pc %}
+                                                {% if "win" in platform %}
+                                                    <i class="fab fa-windows"></i>
+                                                {% elif "linux" in platform %}
+                                                    <i class="fab fa-linux"></i>
+                                                {% elif "mac" in platform %}
+                                                    <i class="fab fa-apple"></i>
+                                                {% endif %}
+                                            {% endfor %}
                                         </p>
                                         <p class="grey-text text-lighten-2">
                                             XBOX, Playstation
@@ -144,7 +152,15 @@
                                     <div class="card-content">
                                         <div class="tags">
                                             <p class="grey-text text-lighten-2">
-                                                {{ game.platform_tags_pc|join('') }}
+                                                {% for platform in game.platform_tags_pc %}
+                                                    {% if "win" in platform %}
+                                                        <i class="fab fa-windows"></i>
+                                                    {% elif "linux" in platform %}
+                                                        <i class="fab fa-linux"></i>
+                                                    {% elif "mac" in platform %}
+                                                        <i class="fab fa-apple"></i>
+                                                    {% endif %}
+                                                {% endfor %}
                                                  XBOX, Playstation
                                             </p>
                                             <p class="grey-text text-lighten-2 game-tags"
@@ -203,7 +219,15 @@
                                             </span>
                                         </div>
                                         <p class="grey-text text-lighten-2">
-                                            {{ game.platform_tags_pc|join('') }}
+                                            {% for platform in game.platform_tags_pc %}
+                                                {% if "win" in platform %}
+                                                    <i class="fab fa-windows"></i>
+                                                {% elif "linux" in platform %}
+                                                    <i class="fab fa-linux"></i>
+                                                {% elif "mac" in platform %}
+                                                    <i class="fab fa-apple"></i>
+                                                {% endif %}
+                                            {% endfor %}
                                         </p>
                                         <p class="grey-text text-lighten-2">
                                             XBOX, Playstation
@@ -305,7 +329,15 @@
                                     <div class="card-content">
                                         <div class="tags">
                                             <p class="grey-text text-lighten-2">
-                                                {{ game.platform_tags_pc|join('') }}
+                                                {% for platform in game.platform_tags_pc %}
+                                                    {% if "win" in platform %}
+                                                        <i class="fab fa-windows"></i>
+                                                    {% elif "linux" in platform %}
+                                                        <i class="fab fa-linux"></i>
+                                                    {% elif "mac" in platform %}
+                                                        <i class="fab fa-apple"></i>
+                                                    {% endif %}
+                                                {% endfor %}
                                                  XBOX, Playstation
                                             </p>
                                             <p class="grey-text text-lighten-2 game-tags"

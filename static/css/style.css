@@ -497,6 +497,13 @@ The following code is based upon this source:
     padding: 5px;
 }
 
+.fab.fa-linux,
+.fab.fa-windows,
+.fab.fa-apple {
+    font-size: 18px;
+    padding: 5px;
+}
+
 /* ---------------------------------------------- Game Cards - Favourite tag */
 
 .game-cards .card-panel {
@@ -2184,6 +2191,12 @@ label[for]:hover {
     }
     #return-to-profile-btn {
         margin-top: 10px;
+    }
+    .fab.fa-linux,
+    .fab.fa-windows,
+    .fab.fa-apple {
+        font-size: 16px;
+        padding: 5px 3px 0 0;
     }
 }
 
