@@ -1,7 +1,64 @@
 {% extends "games-template.html" %}
 
+{% block media %}
+    <section>
+        <div class="parallax-container">
+            <div class="parallax">
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/ss_bac60bacbf5da8945103648c08d27d5e202444ca.1920x1080.jpg?t=1615608871" alt="">
+            </div>
+        </div>
+        <div class="section white-text">
+            <div class="row container">
+                <h4 class="header">Today's Favourite:</h4>
+                <h2 class="header" style="margin-top: 0;">Red Dead Redemption 2</h2>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga vitae tempore id accusamus nisi ducimus perspiciatis
+                            facere illo, reiciendis est dolorum harum vel reprehenderit quisquam maiores vero, quod temporibus quia.
+                            Doloribus, excepturi fuga impedit optio ea nam modi, consectetur culpa id odit ut tempore dolores iure nihil eius,
+                            cum quas aspernatur. Amet neque provident, accusamus consequuntur velit repellendus accusantium ab?
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6 m4 l2">
+                        <a href="#" class="btn">See Reviews</a>
+                    </div>
+                    <div class="col s6 m4 l2">
+                        <a href="#" class="btn">Like This Game</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax">
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/ss_66b553f4c209476d3e4ce25fa4714002cc914c4f.1920x1080.jpg?t=1615608871" alt="">
+            </div>
+        </div>
+        <div class="section white-text">
+            <div class="row container">
+                <h2 class="header">Something Missing?</h2>
+                <div class="col s12 m6">
+                    <p>
+                        Do you want to see <em>your</em> favourite games added to Our Favourites and/or our site? 
+                        If your answer is yes, then click the button here to request a game to be added to our database.
+                    </p>
+                    <a href="#" class="btn">Request A Game</a>
+                </div>
+                
+            </div>
+        </div>
+        <div class="parallax-container">
+            <div class="parallax">
+                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/ss_4ce07ae360b166f0f650e9a895a3b4b7bf15e34f.1920x1080.jpg?t=1615608871" alt="">
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
+
 {% block games %}
-   
     <!-- For larger screens -->
     {% for game in favourites %}
     <div class="col m12 l5 offset-l1 hide-on-med-and-down favourites py-5">
@@ -166,5 +223,4 @@
         </div>
     </div>
     {% endfor %}
-
 {% endblock %}

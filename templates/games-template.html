@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
     
-    <!-- Carousel -->
-    <section class="py-5">
-        <h3 class="title carousel-title center">Today's Picks</h3>
-        <div class="carousel carousel-slider center">
-            <div class="carousel-item">
-                <a href="#"><img src="https://www.rockstargames.com/reddeadredemption2/dist/img/global/social/ea95b42f4d8029ac2510571cc8dbdae4.jpg"></a>
+    <!-- Media -->
+    {% block media %}
+        <section class="py-5">
+            <h3 class="title carousel-title center">Today's Picks</h3>
+            <div class="carousel carousel-slider center">
+                <div class="carousel-item">
+                    <a href="#"><img src="https://www.rockstargames.com/reddeadredemption2/dist/img/global/social/ea95b42f4d8029ac2510571cc8dbdae4.jpg"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fkingdom-come-deliverance%2Fhome%2FEGS_WarhorseStudios_KingdomComeDeliverance_S3-1360x766-1e8502930c6282cb34acf7add01c6832a5bc217e.jpg"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img src="https://images6.alphacoders.com/107/thumb-1920-1072573.jpg"></a>
+                </div>
             </div>
-            <div class="carousel-item">
-                <a href="#"><img src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fkingdom-come-deliverance%2Fhome%2FEGS_WarhorseStudios_KingdomComeDeliverance_S3-1360x766-1e8502930c6282cb34acf7add01c6832a5bc217e.jpg"></a>
-            </div>
-            <div class="carousel-item">
-                <a href="#"><img src="https://images6.alphacoders.com/107/thumb-1920-1072573.jpg"></a>
-            </div>
-        </div>
-    </section>
+        </section>
+    {% endblock %}
 
     <!-- Secondary Navbar -->
     <section class="py-5">
