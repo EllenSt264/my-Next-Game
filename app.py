@@ -90,7 +90,7 @@ def games():
 def search():
     query = request.form.get("query")
 
-    mongo.db.all_pc_games.create_index([("game_title", 1)])
+    mongo.db.all_pc_games.create_index([("game_title", "text")])
     games = mongo.db.all_pc_games.find(
         {"$text": {"$search": query}})
 
@@ -690,13 +690,13 @@ def game_to_completed(game_id):
 # ==============
 
 def export_data():
-    games = mongo.db.pc_games.find({})
+    games = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     def writeToJS():
         file = open("static/js/data.js", "w")
         file.write('const gameData = [')
         for game in games:
-            file.write(dumps(game["game_title"]))
+            file.write(dumps(game))
             file.write(', ')
         file.write(']')
 
@@ -738,7 +738,7 @@ def submit_review():
     if request.method == "POST":
 
         title = request.form.get("query")
-        game = mongo.db.pc_games.find_one({"game_title": title})
+        game = mongo.db.all_pc_games.find_one({"game_title": title})
         img_sm = game["game_img_sm"]
         img_full = game["game_img_full"]
 
@@ -792,7 +792,7 @@ def profile_submit_review(game_id):
     if request.method == "POST":
 
         title = request.form.get("query")
-        game = mongo.db.pc_games.find_one({"game_title": title})
+        game = mongo.db.all_pc_games.find_one({"game_title": title})
         img_sm = game["game_img_sm"]
         img_full = game["game_img_full"]
 
