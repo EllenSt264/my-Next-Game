@@ -7,7 +7,7 @@
     * Finding all the values of a specific key within a collection:
     "https://stackoverflow.com/questions/34861949/how-to-find-all-values-for-a-specific-key-in-pymongo"
 
-    * To redirect users back to the same page:
+    * Redirecting users back to the same page:
     "https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission/41272173"
 
     * Returning a random document from MongoDB collection:
@@ -15,6 +15,12 @@
 
     * Selecting a random item from a list:
     "https://stackoverflow.com/questions/306400/how-to-randomly-select-an-item-from-a-list"
+
+    * Exporting MongoDB collection to local JSON/JS file:
+    "https://stackoverflow.com/questions/60584148/export-pymongo-collection-to-a-json-file"
+
+    * Returning documents from MongoDB without duplicates:
+    "https://stackoverflow.com/questions/11470614/mongodb-return-all-documents-by-field-without-duplicates"
 
 """
 

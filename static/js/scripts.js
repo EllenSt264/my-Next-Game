@@ -140,7 +140,7 @@ $(document).ready(function () {
             This code is based of the following sources:
             * "https://stackoverflow.com/questions/2909077/autocomplete-disallow-free-text-entry"
             * "https://www.encodedna.com/jquery/how-to-highlight-input-words-using-jqueryui-autocomplete-widget.htm"
-            *  "https://www.encodedna.com/2013/08/jquery-autocomplete-dropdown-list-on-focus.htm"
+            * "https://www.encodedna.com/2013/08/jquery-autocomplete-dropdown-list-on-focus.htm"
         */
 
         /* Autocomplete */
