@@ -62,6 +62,22 @@ $(document).ready(function () {
             endingTop: "25%"
         });
 
+        /* To trigger Materialize tooltip on mouse click, rather than hover,
+            I used the following source:
+            "https://stackoverflow.com/questions/42524435/materialize-css-tooltip-shows-only-when-onclick" */
+
+        /* Tooltip */
+        $('.tooltipped').on('click', function() {
+            $(this).tooltip();
+            $(this).tooltip('open');
+        })
+
+        $('.tooltipped').on('mouseleave', function() {
+            if ($(this).tooltip()) {
+                $(this).tooltip('destroy');
+            }
+        })
+
         /* --------------------------------------- Materialize forms */
         
         /* Collapsible */
@@ -132,8 +148,8 @@ $(document).ready(function () {
             $('#edit-email').prop('disabled', false);
             $('#edit-fname').prop('disabled', false);
             $('#edit-lname').prop('disabled', false);
-        })
-        
+        });
+
         /* --------------------------------------- JQuery UI Initialization */
 
         /*

@@ -62,9 +62,15 @@
                                     <div class="card-action">
                                         <div class="like right">
                                             <div class="col s6 like-icon">
+                                                {% if session.user %}
                                                 <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
                                                     <i class="material-icons right">thumb_up</i>
                                                 </a>
+                                                {% else %}
+                                                    <a href="#!" class="black-text tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to leave likes on games">
+                                                        <i class="material-icons right">thumb_up</i>
+                                                    </a>
+                                                {% endif %}
                                             </div>
                                             <div class="col s6 like-text">
                                                 Like <span>{{ game.likes }}</span>
@@ -129,9 +135,15 @@
                                     {% endif %} 
                                     <div class="like white-text">
                                         <div class="col s12 like-icon">
-                                            <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
-                                                <i class="material-icons thumbs-up-sm-screen">thumb_up</i>
-                                            </a>
+                                            {% if session.user %}
+                                                <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
+                                                    <i class="material-icons thumbs-up-sm-screen">thumb_up</i>
+                                                </a>
+                                            {% else %}
+                                                <a href="#!" class="black-text tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to leave likes on games">
+                                                    <i class="material-icons thumbs-up-sm-screen">thumb_up</i>
+                                                </a>
+                                            {% endif %}
                                         </div>
                                         <div class="col s12 like-text-sm">
                                             <span>{{ game.likes }}</span>
@@ -239,9 +251,15 @@
                                     <div class="card-action">
                                         <div class="like right">
                                             <div class="col s6 like-icon">
-                                                <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
-                                                    <i class="material-icons right">thumb_up</i>
-                                                </a>
+                                                {% if session.user %}
+                                                    <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
+                                                        <i class="material-icons right">thumb_up</i>
+                                                    </a>
+                                                {% else %}
+                                                    <a href="#!" class="black-text tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to leave likes on games">
+                                                        <i class="material-icons right">thumb_up</i>
+                                                    </a>
+                                                {% endif %}
                                             </div>
                                             <div class="col s6 like-text">
                                                 Like <span>{{ game.likes }}</span>
@@ -306,9 +324,15 @@
                                     {% endif %} 
                                     <div class="like white-text">
                                         <div class="col s12 like-icon">
-                                            <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
-                                                <i class="material-icons thumbs-up-sm-screen">thumb_up</i>
-                                            </a>
+                                            {% if session.user %}
+                                                <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
+                                                    <i class="material-icons thumbs-up-sm-screen">thumb_up</i>
+                                                </a>
+                                            {% else %}
+                                                <a href="#!" class="black-text tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to leave likes on games">
+                                                    <i class="material-icons thumbs-up-sm-screen">thumb_up</i>
+                                                </a>
+                                            {% endif %}
                                         </div>
                                         <div class="col s12 like-text-sm">
                                             <span>{{ game.likes }}</span>
