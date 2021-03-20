@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" type="text/css" 
     integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <!-- JQuery UI Themes -->
-    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.theme.min.css') }}" type="text/css">
     <!-- Materialize CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
@@ -240,7 +240,7 @@
     <!-- Data JS file -->
     <script src="{{ url_for('static', filename='js/data.js') }}"></script>
     <!-- JQuery UI -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
