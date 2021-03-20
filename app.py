@@ -401,8 +401,18 @@ def login():
 @app.route("/like/<game_id>")
 def like(game_id):
     # Grab game data from database
-    game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})["_id"]
+    game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
+    gameid = game["_id"]
+    game_title = game["game_title"]
 
+    # Find ids of other games with the same game title
+    other_games = mongo.db.all_pc_games.find({"game_title": game_title})
+    other_game_ids = []
+
+    for game in other_games:
+        other_game_ids.append(game["_id"])
+
+    # Find username
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
@@ -411,11 +421,13 @@ def like(game_id):
         {"$and": [{"_id": game},
                   {"liked_by": session["user"]}]})
 
+    # Find game likes total
     like_num = mongo.db.all_pc_games.find_one(
         {"_id": ObjectId(game_id)})["likes"]
 
     new_like_num = int(like_num) + 1
 
+    # Increment game likes
     if existing_like:
         flash("Sorry, but you've already liked this game.")
         return redirect(request.referrer)
@@ -424,7 +436,9 @@ def like(game_id):
             "likes": new_like_num,
             "liked_by": username
         }}
-        mongo.db.all_pc_games.update({"_id": game}, like)
+        for games in other_game_ids:
+            mongo.db.all_pc_games.update({"_id": games}, like)
+
         flash("Liked added!")
         return redirect(request.referrer)
 
