@@ -402,7 +402,6 @@ def login():
 def like(game_id):
     # Grab game data from database
     game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
-    gameid = game["_id"]
     game_title = game["game_title"]
 
     # Find ids of other games with the same game title
@@ -479,7 +478,6 @@ def add_game(game_id):
     # Construct new dicitonary
     data = {
             "game_title": title[0],
-            "game_img_sm": img_sm[0],
             "game_img_full": img_full[0],
             "game_tags": tags[0],
             "platform_pc": platform[0],
@@ -504,7 +502,7 @@ def add_game(game_id):
         mongo.db.user_games.insert_one(data)
         flash("Game Successfully Added to List")
 
-    return redirect(url_for("pc_games", game_id=game_id))
+    return redirect(request.referrer)
 
 
 # ====================
