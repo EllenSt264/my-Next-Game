@@ -16,6 +16,10 @@
 
 - [User Stories](#user-stories)
 
+- [Design](#design)
+
+    - [Wireframes](#wireframes)
+
 
 -----
 
@@ -79,3 +83,42 @@ The target audience is gamers, coming from a wide range of platforms and backgro
 - I want to request new games to be added to the database.
 
 - I want to add games to a favourites list.
+
+
+-----
+
+## Design
+
+-----
+
+### Wireframes
+
+I used [Balsamiq](https://balsamiq.com/) to construct the surface plane. After delving into writing the code for the application, some design alterations were made. This included using a separate page for the Log In and Register process rather than using a modal, which may have been obstructive on smaller and/or touchscreen devices.
+
+Each page has a wireframe for both desktop and mobile devices. I did not include a tablet wireframe in the design phase because I wanted the site to look nearly identical on larger tablet and desktop devices. Particularly as many laptops now can also function as a touchscreen tablet, I thought it was important that there were no stark differences between the two as this may have compromised good UX design. Nevertheless, the mobile wireframe can represent tablet devices with smaller screens.
+
+Each wireframe can be viewed via the links below:
+
+- Homepage:
+    - [Desktop](static/wireframes/homepage_1.png)
+    - [Log In, Register and Profile](static/wireframes/homepage_2.png)
+    - [Mobile](static/wireframes/homepage_3.png)
+
+- Game Page:
+    - [Desktop and Mobile](static/wireframes/games_page.png)
+
+- Favourites Page:
+    - [Desktop and Mobile](static/wireframes/favourites_page.png)
+
+- Reviews Page:
+    - [Desktop and Mobile](static/wireframes/reviews_page.png)
+
+- Profile Page:
+    - [Profile Games List](static/wireframes/profile.png)
+    - [Profile Games List Version 2](static/wireframes/profile_games_list.png)
+    - [Profile Reviews](static/wireframes/profile_reviews.png)
+
+- Site Navigation Mindmap:
+    - [Site navigation mindmap](static/wireframes/navigation_mindmap.png)
+    - [Site navbar navigation links](static/wireframes/navbar_mindmap.png)
+    
