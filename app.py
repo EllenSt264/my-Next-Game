@@ -416,8 +416,8 @@ def like(game_id):
         {"username": session["user"]})["username"]
 
     # Check if a user has already liked the game
-    existing_like = mongo.db.all_pc_games.find_one(
-        {"$and": [{"_id": game},
+    already_liked = mongo.db.all_pc_games.find_one(
+        {"$and": [{"game_title": game_title},
                   {"liked_by": session["user"]}]})
 
     # Find game likes total
@@ -427,7 +427,7 @@ def like(game_id):
     new_like_num = int(like_num) + 1
 
     # Increment game likes
-    if existing_like:
+    if already_liked:
         flash("Sorry, but you've already liked this game.")
         return redirect(request.referrer)
     else:
