@@ -113,96 +113,61 @@
 
                     <!-- Small screens only -->
                     <div class="col s12 hide-on-med-and-up game-cards sm-screen-card">
-
                         <div class="card-panel black-magenta glow">
-
-                            <div class="row">
-                                <!-- Game image -->
-                                <div class="card col s6 z-depth-5" id="gameImageCard">
-                                    <div class="card-image z-depth-5">
-                                        <img src="{{ game.game_img_full }}" alt="game image">
+                            <div class="card purple-linear-gradient glow">
+                                <div class="card-image">
+                                    <img src="{{ game.game_img_full }}" alt="" class="responsive-img activator">
+                                </div>
+                                <div class="card-title white-text">
+                                    <div class="col s10">
+                                        <span>{{ game.game_title }}</span>
+                                    </div>
+                                    <div class="col s2">
+                                        {% if session.user %}
+                                            <div class="container add-btn">
+                                                <a href="{{ url_for('add_game', game_id=game._id) }}"
+                                                class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
-                                <!-- Buttons -->
-                                <div class="card col s2 right z-depth-5 center-align" id="btnCard">
-                                    {% if session.user %}
-                                        <div class="container add-btn">
-                                            <a href="{{ url_for('add_game', game_id=game._id) }}"
-                                            class="btn-floating pulse right waves-effect waves-light red accent-3">
-                                                <i class="fas fa-plus"></i>
-                                            </a>
+                                <div class="card-content">
+                                    <p class="grey-text text-lighten-2">
+                                        {% for platform in game.platform_tags_pc %}
+                                            {% if "win" in platform %}
+                                                <i class="fab fa-windows"></i>
+                                            {% elif "linux" in platform %}
+                                                <i class="fab fa-linux"></i>
+                                            {% elif "mac" in platform %}
+                                                <i class="fab fa-apple"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                        XBOX, Playstation
+                                    </p>
+                                    <p class="grey-text text-lighten-2 game-tags">
+                                        {{ game.game_top_tags|join('') }}
+                                    </p>
+                                    <div class="like right">
+                                        <div class="col s6 like-text">
+                                            <span>{{ game.likes }}</span>
                                         </div>
-                                    {% endif %} 
-                                    <div class="like white-text">
-                                        <div class="col s12 like-icon">
+                                        <div class="col s6 like-icon">
                                             {% if session.user %}
-                                                <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
-                                                    <i class="material-icons thumbs-up-sm-screen">thumb_up</i>
-                                                </a>
+                                            <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
+                                                <i class="material-icons right">thumb_up</i>
+                                            </a>
                                             {% else %}
                                                 <a href="#!" class="black-text tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to leave likes on games">
-                                                    <i class="material-icons thumbs-up-sm-screen">thumb_up</i>
+                                                    <i class="material-icons right">thumb_up</i>
                                                 </a>
                                             {% endif %}
                                         </div>
-                                        <div class="col s12 like-text-sm">
-                                            <span>{{ game.likes }}</span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Game content -->
-                            <div class="row" id="gameCardContent">
-                                <div class="card col s12 purple-linear-gradient glow">
-                                    <!-- Game title -->
-                                    <div class="card-title white-text center-align">
-                                        <span>
-                                            {{ game.game_title }}
-                                        </span>
-                                    </div>
-                                    <!-- Game tags -->
-                                    <div class="card-content">
-                                        <div class="tags">
-                                            <p class="grey-text text-lighten-2">
-                                                {% for platform in game.platform_tags_pc %}
-                                                    {% if "win" in platform %}
-                                                        <i class="fab fa-windows"></i>
-                                                    {% elif "linux" in platform %}
-                                                        <i class="fab fa-linux"></i>
-                                                    {% elif "mac" in platform %}
-                                                        <i class="fab fa-apple"></i>
-                                                    {% endif %}
-                                                {% endfor %}
-                                                 XBOX, Playstation
-                                            </p>
-                                            <p class="grey-text text-lighten-2 game-tags"
-                                            style="white-space: nowrap; text-overflow: ellipsis;">
-                                                {{ game.game_top_tags|join('') }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% for fav in favourites %}
-                                {% if fav == game.game_title %}
-                                    <div class="favourite-tag--games-page-sm">
-                                        <div class="btn-large">
-                                            <div class="stars">
-                                                <i class="material-icons left">star</i>
-                                                <i class="material-icons left">star</i>
-                                                <i class="material-icons left">star</i>
-                                                <i class="material-icons left">star</i>
-                                                <i class="material-icons left">star</i>
-                                            </div>
-                                            <div class="recommended-text">
-                                                <i class="material-icons right">thumb_up</i>
-                                                <p>Recommended By Us</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %} 
-                        </div>   
+                        </div>
                     </div>
 
                 {% else %}
@@ -302,96 +267,61 @@
 
                     <!-- Small screens only -->
                     <div class="col s12 hide-on-med-and-up game-cards sm-screen-card">
-
-                        <div class="card-panel black-magenta glow" style="position: relative;">
-
-                            <div class="row">
-                                <!-- Game image -->
-                                <div class="card col s6 z-depth-5" id="gameImageCard">
-                                    <div class="card-image z-depth-5">
-                                        <img src="{{ game.game_img_full }}" alt="game image">
+                        <div class="card-panel black-magenta glow">
+                            <div class="card purple-linear-gradient glow">
+                                <div class="card-image">
+                                    <img src="{{ game.game_img_full }}" alt="" class="responsive-img activator">
+                                </div>
+                                <div class="card-title white-text">
+                                    <div class="col s10">
+                                        <span>{{ game.game_title }}</span>
+                                    </div>
+                                    <div class="col s2">
+                                        {% if session.user %}
+                                            <div class="container add-btn">
+                                                <a href="{{ url_for('add_game', game_id=game._id) }}"
+                                                class="btn-floating pulse right waves-effect waves-light red accent-3">
+                                                    <i class="fas fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
-                                <!-- Buttons -->
-                                <div class="card col s2 right z-depth-5 center-align" id="btnCard">
-                                    {% if session.user %}
-                                        <div class="container add-btn">
-                                            <a href="{{ url_for('add_game', game_id=game._id) }}"
-                                            class="btn-floating pulse right waves-effect waves-light red accent-3">
-                                                <i class="fas fa-plus"></i>
-                                            </a>
+                                <div class="card-content">
+                                    <p class="grey-text text-lighten-2">
+                                        {% for platform in game.platform_tags_pc %}
+                                            {% if "win" in platform %}
+                                                <i class="fab fa-windows"></i>
+                                            {% elif "linux" in platform %}
+                                                <i class="fab fa-linux"></i>
+                                            {% elif "mac" in platform %}
+                                                <i class="fab fa-apple"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                        XBOX, Playstation
+                                    </p>
+                                    <p class="grey-text text-lighten-2 game-tags">
+                                        {{ game.game_top_tags|join('') }}
+                                    </p>
+                                    <div class="like right">
+                                        <div class="col s6 like-text">
+                                            <span>{{ game.likes }}</span>
                                         </div>
-                                    {% endif %} 
-                                    <div class="like white-text">
-                                        <div class="col s12 like-icon">
+                                        <div class="col s6 like-icon">
                                             {% if session.user %}
-                                                <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
-                                                    <i class="material-icons thumbs-up-sm-screen">thumb_up</i>
-                                                </a>
+                                            <a href="{{ url_for('like', game_id=game._id) }}" class="black-text">
+                                                <i class="material-icons right">thumb_up</i>
+                                            </a>
                                             {% else %}
                                                 <a href="#!" class="black-text tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to leave likes on games">
-                                                    <i class="material-icons thumbs-up-sm-screen">thumb_up</i>
+                                                    <i class="material-icons right">thumb_up</i>
                                                 </a>
                                             {% endif %}
-                                        </div>
-                                        <div class="col s12 like-text-sm">
-                                            <span>{{ game.likes }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Game content -->
-                            <div class="row" id="gameCardContent">
-                                <div class="card col s12 purple-linear-gradient glow">
-                                    <!-- Game title -->
-                                    <div class="card-title white-text center-align">
-                                        <span>
-                                            {{ game.game_title }}
-                                        </span>
-                                    </div>
-                                    <!-- Game tags -->
-                                    <div class="card-content">
-                                        <div class="tags">
-                                            <p class="grey-text text-lighten-2">
-                                                {% for platform in game.platform_tags_pc %}
-                                                    {% if "win" in platform %}
-                                                        <i class="fab fa-windows"></i>
-                                                    {% elif "linux" in platform %}
-                                                        <i class="fab fa-linux"></i>
-                                                    {% elif "mac" in platform %}
-                                                        <i class="fab fa-apple"></i>
-                                                    {% endif %}
-                                                {% endfor %}
-                                                 XBOX, Playstation
-                                            </p>
-                                            <p class="grey-text text-lighten-2 game-tags"
-                                            style="white-space: nowrap; text-overflow: ellipsis;">
-                                                {{ game.game_top_tags|join('') }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                            {% for fav in favourites %}
-                                {% if fav == game.game_title %}
-                                    <div class="favourite-tag--games-page-sm">
-                                        <div class="btn-large">
-                                            <div class="stars">
-                                                <i class="material-icons left">star</i>
-                                                <i class="material-icons left">star</i>
-                                                <i class="material-icons left">star</i>
-                                                <i class="material-icons left">star</i>
-                                                <i class="material-icons left">star</i>
-                                            </div>
-                                            <div class="recommended-text">
-                                                <i class="material-icons right">thumb_up</i>
-                                                <p>Recommended By Us</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>   
+                        </div>
                     </div>
 
                 {% endif %}

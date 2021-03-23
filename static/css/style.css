@@ -330,7 +330,15 @@ The following code is based upon this source:
 
 /* ---------------------------------------------- Game Cards */
 
-.card.horizontal {
+.game-cards {
+    margin-bottom: 25px;
+}
+
+.game-cards .card-panel {
+    height: 200px;
+}
+.game-cards .card.horizontal {
+    height: 125px;
     border: 3px solid #f608ea;
 }
 
@@ -372,9 +380,9 @@ The following code is based upon this source:
 }
 
 .game-cards .card-content {
-    padding-bottom: 0;
-    padding-right: 5px;
+    padding: 10px 8px 0;
     overflow: hidden;
+    font-family: "BlenderPro-Thin";
 }
 
 .game-cards .card-action {
@@ -417,12 +425,16 @@ The following code is based upon this source:
     padding-left: 0;
 }
 
-
 .game-cards .card-content .card-title,
 .sm-screen-card .card-title {
-    font-family: "BlenderPro-Medium";
+    font-family: "BlenderPro-Book";
     letter-spacing: 1px;
     line-height: 1;
+    font-size: 18px;
+}
+
+.game-cards .card-title.white-text {
+    margin-bottom: 0;
 }
 
 .game-cards .add-btn {
@@ -431,12 +443,12 @@ The following code is based upon this source:
 
 .game-cards img,
 .game-cards .card.card-image img {
-    width: 432px;
-    height: 225px;
+    width: 250px;
+    height: 120px;
     /* For the box shadow: "https://www.w3schools.com/css/css3_shadows_box.asp" */
     box-shadow: 0 4px 8px 0 
     rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .sm-screen-card .card-panel {
@@ -503,8 +515,8 @@ The following code is based upon this source:
 .fab.fa-linux,
 .fab.fa-windows,
 .fab.fa-apple {
-    font-size: 18px;
-    padding: 5px;
+    font-size: 14px;
+    padding: 2px;
 }
 
 /* ---------------------------------------------- Game Cards - Favourite tag */
@@ -1589,6 +1601,37 @@ label[for]:hover {
     }
 }
 
+@media (min-width: 1980px) {
+    .game-cards {
+        margin-bottom: 25px;
+    }
+    .game-cards .card-panel {
+        height: 200px;
+    }
+    .game-cards .card.horizontal {
+        height: 125px;
+        border: 3px solid #f608ea;
+    }
+    .game-cards img,
+    .game-cards .card.card-image img {
+        width: 250px !important;
+        height: 120px;
+    }
+    .game-cards .card-content .card-title,
+    .sm-screen-card .card-title {
+        font-size: 18px;
+    }
+    .fab.fa-linux,
+    .fab.fa-windows,
+    .fab.fa-apple {
+        font-size: 14px;
+        padding: 2px;
+    }
+    .game-cards .card-action {
+        padding-bottom: 2px;
+    }
+}
+
 @media (min-width: 1965px) {
     #left-review-card {
         margin-left: 12.49999999995% !important;
@@ -1698,9 +1741,6 @@ label[for]:hover {
 }
 
 @media (max-width: 1620px) {
-    .game-cards .card-title {
-        font-size: 20px;
-    }
     i.fas.fa-plus::before {
         position: absolute;
         top: -5px;
@@ -1708,24 +1748,7 @@ label[for]:hover {
         left: 0;
         bottom: 0;
     }
-    .game-cards .card-image img {
-        height: 150px;
-        min-width: 218px;
-        z-index: 1;
-    }
-    .game-cards .card.horizontal {
-        height: 150px;
-        overflow-y: hidden;
-    }
-    .game-cards .card-content {
-        padding-top: 5px;
-    }
-    .game-cards .card-title {
-        letter-spacing: normal;
-        font-size: 18px;
-        line-height: normal;
-    }
-}
+} 
 
 @media (max-width: 1605px) {
     .review-card {
@@ -2213,11 +2236,52 @@ label[for]:hover {
     #return-to-profile-btn {
         margin-top: 10px;
     }
-    .fab.fa-linux,
-    .fab.fa-windows,
-    .fab.fa-apple {
-        font-size: 16px;
-        padding: 5px 3px 0 0;
+    .game-cards .card-panel {
+        height: 100%;
+    }
+    .game-cards .card {
+        height: 90%;
+    }
+    .game-cards .card-image img {
+        width: 100%;
+        height: auto;
+    }
+    .game-cards .card-title {
+        height: 30px;
+    }
+    .game-cards .card-title .col.s10 {
+        font-family: "BlenderPro-Thin"; 
+        font-size: 18px; 
+        padding: 8px 15px 0;
+    }
+    .game-cards .card-title .col.s2 {
+        position: relative;
+        padding: 0;
+    }
+    .game-cards .add-btn {
+        position: absolute;
+        top: -25px; 
+        bottom: 0; 
+        left: 15%; 
+        right: 0;
+    }
+    .game-cards .card-content {
+        padding: 5px 15px;
+    }
+    .game-cards .like {
+        margin-top: 0;
+    }
+    .game-cards .like-text {
+        width: 60px; 
+        text-align: right; 
+        font-size: 18px; 
+        font-family: "BlenderPro-Medium";
+    }
+    .game-cards .like-icon {
+        width: 30px;
+    }
+    .game-cards .like-icon i {
+        font-size: 22px;
     }
 }
 
