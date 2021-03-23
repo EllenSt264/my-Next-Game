@@ -125,7 +125,7 @@ def pc_games():
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-    per_page = 8
+    per_page = 6
     offset = ((page - 1) * per_page)
 
     total = pc_games.count()
@@ -154,7 +154,7 @@ def action_games():
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-    per_page = 8
+    per_page = 6
     offset = ((page - 1) * per_page)
 
     total = pc_games.count()
@@ -180,7 +180,7 @@ def adventure_games():
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-    per_page = 8
+    per_page = 6
     offset = ((page - 1) * per_page)
 
     total = pc_games.count()
@@ -206,7 +206,7 @@ def RPG_games():
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-    per_page = 8
+    per_page = 6
     offset = ((page - 1) * per_page)
 
     total = pc_games.count()
@@ -232,7 +232,7 @@ def strategy_games():
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-    per_page = 8
+    per_page = 6
     offset = ((page - 1) * per_page)
 
     total = pc_games.count()
@@ -258,7 +258,7 @@ def multiplayer_games():
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-    per_page = 8
+    per_page = 6
     offset = ((page - 1) * per_page)
 
     total = pc_games.count()
