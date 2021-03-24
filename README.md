@@ -18,6 +18,8 @@
 
 - [Design](#design)
 
+    - [Typography](#typography)
+
     - [Wireframes](#wireframes)
 
 - [Technologies Used](#technologies-used)
@@ -103,6 +105,47 @@ The target audience is gamers, coming from a wide range of platforms and backgro
 -----
 
 ## Design
+
+
+### Typography
+
+The two fonts, and their variants, that are used throughout the site are [BlenderPro]() and [Cyberspace Raceway](). Both are clean and readable fonts that correlate well with the site's visual aesethic. [BlenderPro]() especially suited both the visual and contextually theme of the website, as it is same font used for the [Cyberpunk Website](), of which I took some visual inspiration from. Cyberpunk is a sci-fi game that was released in late 2020, and has both a sci-fi and synthwave theme running throughout the game. Many gamers who would would use this site may notice this visual reference, which makes the design choice more than suitable.
+
+[BlenderPro] comes a variety of font styles, including:
+
+- BlenderPro-Bold
+
+- BlenderPro-Book, which was used for the following:
+    - The navlinks in the navbar
+    - The navlinks in the secondary navbar for all of the Game pages
+    - The majority of text content on the Homepage
+    - Log In and Register page
+    - The game titles within the game cards on all of the Game pages
+    - The review verdict stickers on the Community Reviews page
+    - The paragraph tags for the review cards on the Community Reviews page
+    - Flash messages
+    - Profile page (all text content)
+
+- BlenderPro-BookItalic
+
+- BlenderPro-Heavy
+    - The carousel header
+    - The game title for the review cards on the Community Reviews page
+    - The collapsible header for the review cards on the Community Reviews page
+
+- BlenderPro-Medium
+    - The like button on the Game pages
+
+- BlenderPro-MediumItalic
+
+- BlenderPro-Thin
+    - The card content of the game cards on all of the Games pages
+    - The username and review date for the review cards on the Community Reviews page
+
+- BlenderPro-ThinItalic
+
+- [Cyberspace Raceway]() was only used for the site's title on the Homepage
+
 
 -----
 
