@@ -150,7 +150,13 @@ def pc_games():
 @app.route("/action-games")
 def action_games():
     pc_games = mongo.db.all_pc_games.find(
-        {"category": "action"})
+        {
+            "$or": [
+                {"category": "action"},
+                {"game_top_tags": "Action"}
+            ]
+        }
+    )
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -176,7 +182,13 @@ def action_games():
 @app.route("/adventure-games")
 def adventure_games():
     pc_games = mongo.db.all_pc_games.find(
-        {"category": "adventure"})
+        {
+            "$or": [
+                {"category": "adventure"},
+                {"game_top_tags": "Adventure"}
+            ]
+        }
+    )
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -202,7 +214,13 @@ def adventure_games():
 @app.route("/RPG-games")
 def RPG_games():
     pc_games = mongo.db.all_pc_games.find(
-        {"category": "RPG"})
+        {
+            "$or": [
+                {"category": "RPG"},
+                {"game_top_tags": "RPG"}
+            ]
+        }
+    )
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -228,7 +246,13 @@ def RPG_games():
 @app.route("/strategy-games")
 def strategy_games():
     pc_games = mongo.db.all_pc_games.find(
-        {"category": "strategy"})
+        {
+            "$or": [
+                {"category": "strategy"},
+                {"game_top_tags": "Strategy"}
+            ]
+        }
+    )
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -254,7 +278,13 @@ def strategy_games():
 @app.route("/multiplayer-games")
 def multiplayer_games():
     pc_games = mongo.db.all_pc_games.find(
-        {"category": "multiplayer"})
+        {
+            "$or": [
+                {"category": "multiplayer"},
+                {"game_top_tags": "Multiplayer"}
+            ]
+        }
+    )
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
