@@ -1550,6 +1550,11 @@ label[for]:hover {
     padding-left: 25px;
 }
 
+.input-field textarea,
+.input-field input {
+    color: whitesmoke;
+}
+
 .flashes {
     line-height: 2;
 }
