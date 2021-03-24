@@ -22,6 +22,10 @@
 
     - [Wireframes](#wireframes)
 
+- [Implemented Features](#implemented-features)
+
+    - [List of Pages](#list-of-pages)
+
 - [Technologies Used](#technologies-used)
 
     - [Languages](#languages)
@@ -111,7 +115,7 @@ The target audience is gamers, coming from a wide range of platforms and backgro
 
 The two fonts, and their variants, that are used throughout the site are [BlenderPro]() and [Cyberspace Raceway](). Both are clean and readable fonts that correlate well with the site's visual aesethic. [BlenderPro]() especially suited both the visual and contextually theme of the website, as it is same font used for the [Cyberpunk Website](), of which I took some visual inspiration from. Cyberpunk is a sci-fi game that was released in late 2020, and has both a sci-fi and synthwave theme running throughout the game. Many gamers who would would use this site may notice this visual reference, which makes the design choice more than suitable.
 
-[BlenderPro] comes a variety of font styles, including:
+[BlenderPro]() comes a variety of font styles, including:
 
 - BlenderPro-Bold
 
@@ -159,7 +163,7 @@ Each wireframe can be viewed via the links below:
 
 - Homepage:
     - [Desktop](static/wireframes/homepage_1.png)
-    - [Log In, Register and Profile](static/wireframes/homepage_2.png)
+    - [Login, Register and Profile](static/wireframes/homepage_2.png)
     - [Mobile](static/wireframes/homepage_3.png)
 
 - Game Page:
@@ -182,6 +186,39 @@ Each wireframe can be viewed via the links below:
     
 
 -----
+
+## Implemented Features
+
+### List of Pages
+
+**Note** This does not include an entire list of all the HTML files
+
+- Homepage
+
+- Game Pages
+    - All Games 
+    - Action
+    - Adventure
+    - RPG
+    - Strategy
+    - Multiplayer
+
+- Favourites Page 
+
+- Community Reviews
+
+- Login page
+
+- Register page
+
+- Profile Page
+    - Profile - Game List 
+    - Profile - User Reviews
+    - Edit Profile
+
+
+-----
+
 
 ## Technologies Used
 
