@@ -528,6 +528,28 @@ The following code is based upon this source:
     padding: 2px;
 }
 
+/* ---------------------------------------------- Search query - no results */
+
+#noResults img {
+    width: 150px;
+    height: 150px;
+}
+
+#noResults .divider {
+    width:50%; 
+    margin: 25px auto;
+}
+
+#noResults p {
+    width: 80%; 
+    margin: auto;
+}
+
+#noResults .btn {
+    margin-top: 25px;
+}
+
+
 /* ---------------------------------------------- Game Cards - Favourite tag */
 
 .game-cards .card-panel {
