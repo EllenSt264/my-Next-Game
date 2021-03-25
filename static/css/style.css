@@ -301,6 +301,7 @@ The following code is based upon this source:
 
 #searchbar label {
     font-size: 18px;
+    width: 200px;
 }
 
 .my-nav-extend .tabs {
@@ -1970,6 +1971,24 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 11875px) and (min-width: 992px) {
+    .secondary-nav li {
+        padding: 0;
+    }
+    .secondary-nav .standard-link {
+        padding: 0 5px;
+    }
+    .secondary-nav .collapsible-header {
+        padding: 15px 5px;
+    }
+    .secondary-nav li a:first-child {
+        padding-left: 15px;
+    }
+    .secondary-nav #searchbar label {
+        line-height: 52px;
+    }
+}
+
 @media (max-width: 1160px) {
     .profile-game-img img {
         width: 350px;
@@ -1987,11 +2006,24 @@ label[for]:hover {
     #reviewCards {
         margin-left: 12.49999999995%;
     }
+    .secondary-nav #searchbar .input-field {
+        width: 350px;
+    }
 }
 
 @media (max-width: 1160px) and (min-width: 1065px) {
     #ProfileContentCard {
         width: 800px;
+    }
+}
+
+@media (max-width: 1112px) {
+    .favourites .card-image {
+        height: 165px;
+    }
+    .favourites img {
+        width: 350px;
+        height: 162px;
     }
 }
 
@@ -2013,16 +2045,6 @@ label[for]:hover {
     }
     .review-card {
         width: 400px !important;
-    }
-}
-
-@media (max-width: 1112px) {
-    .favourites .card-image {
-        height: 165px;
-    }
-    .favourites img {
-        width: 350px;
-        height: 162px;
     }
 }
 
@@ -2063,6 +2085,12 @@ label[for]:hover {
 }
 
 @media(max-width: 992px) {
+    .secondary-nav #searchbar .input-field {
+        width: 600px;
+    }
+    .secondary-nav .sidenav-trigger i {
+        font-size: 32px;
+    }
     .rank h5 {
         margin: 0 10px;
     }
@@ -2207,6 +2235,12 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 726px) {
+    .secondary-nav #searchbar .input-field {
+        width: 500px;
+    }
+}
+
 @media (max-width: 698px) {
     .review-card-row img {
         width: 300px;
@@ -2237,6 +2271,9 @@ label[for]:hover {
     .front-font {
         font-size: 45px;
         margin-bottom: 120px;
+    }
+    .secondary-nav #searchbar .input-field {
+        width: 400px;
     }
 }
 
@@ -2441,6 +2478,14 @@ label[for]:hover {
     .edit-profile-card .profile-btns li {
         max-width: 90px;
     }
+    .secondary-nav {
+        width: 98%;
+        margin: auto;
+    }
+    .secondary-nav #searchbar .input-field {
+        width: 300px;
+        padding-right: 5px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2586,6 +2631,20 @@ label[for]:hover {
     }
     .see-review-btn-sm a {
         font-size: 12px;
+    }
+}
+
+@media (max-width: 376px) {
+    .secondary-nav #searchbar .input-field {
+        width: 200px;
+        padding-right: 5px;
+    }
+    .secondary-nav #searchbar i {
+        font-size: 18px;
+    }
+    .secondary-nav #searchbar label,
+    .secondary-nav #searchbar input#query {
+        margin-left: 25px;
     }
 }
 
