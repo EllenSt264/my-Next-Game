@@ -294,6 +294,15 @@ The following code is based upon this source:
     margin-right: 50px;
 }
 
+#searchbar .input-field {
+    padding-right: 25px; 
+    width: 500px;
+}
+
+#searchbar label {
+    font-size: 18px;
+}
+
 .my-nav-extend .tabs {
     background-color: #261f33;
     height: 35px;
