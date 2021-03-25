@@ -2,11 +2,11 @@
 
 {% block searchbar %}
     <li class="right">
-        <form action="{{ url_for('search_reviews') }}" method="post">
-            <div class="input-field" style="padding-right: 25px; width: 500px;">
+        <form action="{{ url_for('search_reviews') }}" method="post" id="searchbar">
+            <div class="input-field">
                 <i class="material-icons prefix">search</i>
-                <input type="text" id="query" name="review-query" class="autocomplete validate" required>
-                <label for="query" style="font-size: 18px;">Game Title</label>
+                <input type="text" id="review-query" name="review-query" class="autocomplete validate" required>
+                <label for="review-query">Game Title</label>
             </div>
         </form>
     </li>
