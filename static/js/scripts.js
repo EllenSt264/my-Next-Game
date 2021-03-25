@@ -27,7 +27,7 @@ $(document).ready(function () {
         });
 
         /* Side nav */
-        $('.sidenav').sidenav({ edge: "right" });
+        $('.sidenav').sidenav({ edge: "left" });
         
         /* Dropdown */
         $('.dropdown-trigger').dropdown({constrainWidth: false, coverTrigger: false});
