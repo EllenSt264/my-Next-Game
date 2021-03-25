@@ -2194,6 +2194,9 @@ label[for]:hover {
         width: 95% !important;
         margin-left: 2.083333333325% !important;
     }
+    .carousel-title {
+        margin-top: 20px;
+    }
 }
 
 @media (max-width: 905px) and (min-width: 860px) {
@@ -2280,6 +2283,9 @@ label[for]:hover {
 @media (max-width: 600px) {
     #homepageBtns .btn-large {
         margin: 10px;
+    }
+    .carousel-item a img {
+        width: 550px !important;
     }
     .review-card-row .card-image {
         text-align: center;
@@ -2472,6 +2478,13 @@ label[for]:hover {
 }
 
 @media (max-width: 500px) {
+    .carousel-item a img {
+        width: 450px !important;
+    }
+    .carousel-title {
+        font-size: 32px;
+        margin-top: 0;
+    }
     .edit-profile-card .profile-btns {
         margin: auto;
     }
@@ -2546,6 +2559,9 @@ label[for]:hover {
 }
 
 @media (max-width: 430px) {
+    .carousel-item a img {
+        width: 350px !important;
+    }
     #firstItem {
         margin-left: 0;
     }
@@ -2635,6 +2651,13 @@ label[for]:hover {
 }
 
 @media (max-width: 376px) {
+    .carousel-item a img {
+        width: 280px !important;
+    }
+    .carousel-title {
+        font-size: 22px;
+        margin-top: 150px;
+    }
     .secondary-nav #searchbar .input-field {
         width: 200px;
         padding-right: 5px;
@@ -2645,6 +2668,7 @@ label[for]:hover {
     .secondary-nav #searchbar label,
     .secondary-nav #searchbar input#query {
         margin-left: 25px;
+        width: 180px;
     }
 }
 
