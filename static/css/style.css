@@ -1769,6 +1769,13 @@ label[for]:hover {
     }
 }
 
+@media (min-width: 992px) and (max-width: 1640px) {
+    .list-of-games .col {
+        width: 50% !important;
+        margin: 0 !important;
+    }
+}
+
 @media (max-width: 1620px) and (min-width: 600px) {
     .add-btn a {
         width: 30px;
@@ -2210,6 +2217,10 @@ label[for]:hover {
     .review-verdict h3 i {
         font-size: 18px;
     }
+    #homepageBtns .btn-large {
+        font-size: 13px;
+        padding: 0 15px;
+    }
 }
 
 @media (max-width: 675px) {
@@ -2221,13 +2232,18 @@ label[for]:hover {
 @media (max-width:640px) {
     .back-font {
         font-size: 50px;
+        margin-bottom: 120px;
     }
     .front-font {
         font-size: 45px;
+        margin-bottom: 120px;
     }
 }
 
 @media (max-width: 600px) {
+    #homepageBtns .btn-large {
+        margin: 10px;
+    }
     .review-card-row .card-image {
         text-align: center;
     }
@@ -2504,9 +2520,14 @@ label[for]:hover {
 }
 
 @media (max-width: 415px) {
-    /* To fix unmatched width with front face */
     .back-font {
-        letter-spacing: 1px;
+        letter-spacing: 1px;    /* To fix unmatched width with front face */
+        font-size: 29px;
+        margin-bottom: 200px;
+    }
+    .front-font {
+        font-size: 24px;
+        margin-bottom: 200px;
     }
 }
 
@@ -2640,6 +2661,14 @@ label[for]:hover {
 }
 
 @media (max-width: 310px) {
+    .back-font {
+        font-size: 23px;
+        margin-bottom: 200px;
+    }
+    .front-font {
+        font-size: 20px;
+        margin-bottom: 200px;
+    }
     .game-btns {
         margin-left: 35px !important;
    }
