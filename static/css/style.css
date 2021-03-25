@@ -339,6 +339,10 @@ The following code is based upon this source:
 
 /* ---------------------------------------------- Game Cards */
 
+.list-of-games p {
+    font-family: "BlenderPro-Thin";
+}
+
 .game-cards {
     margin-bottom: 25px;
 }
