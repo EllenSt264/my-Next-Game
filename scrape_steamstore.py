@@ -268,10 +268,11 @@ def scrape_bestseller_game_page():
 
     # Replace game tags list bundle' item with list item from bundle tags
     bundleIndex = 0
-    for lis in bs_game_tags:
-        while "bundle" in lis:
-            lis[lis.index("bundle")] = bs_bundle_game_tags[bundleIndex]
-            bundleIndex += 1
+    for lis in range(len(bs_game_tags)):
+        for item in bs_game_tags[lis]:
+            if item == "bundle":
+                bs_game_tags[lis] = bs_bundle_game_tags[bundleIndex]
+                bundleIndex += 1
 
 
 # --------------------------------------------------------------- AWARD WINNERS
@@ -494,10 +495,11 @@ def scrape_action_game_page():
 
     # Replace game tags list bundle' item with list item from bundle tags
     bundleIndex = 0
-    for lis in action_tags:
-        while "bundle" in lis:
-            lis[lis.index("bundle")] = action_bundle_game_tags[bundleIndex]
-            bundleIndex += 1
+    for lis in range(len(action_tags)):
+        for item in action_tags[lis]:
+            if item == "bundle":
+                action_tags[lis] = action_bundle_game_tags[bundleIndex]
+                bundleIndex += 1
 
 
 # -------------------------------------------------------------------- AVENTURE
@@ -624,10 +626,11 @@ def scrape_adventure_game_page():
 
     # Replace game tags list bundle' item with list item from bundle tags
     bundleIndex = 0
-    for lis in adventure_tags:
-        while "bundle" in lis:
-            lis[lis.index("bundle")] = adventure_bundle_game_tags[bundleIndex]
-            bundleIndex += 1
+    for lis in range(len(adventure_tags)):
+        for item in adventure_tags[lis]:
+            if item == "bundle":
+                adventure_tags[lis] = adventure_bundle_game_tags[bundleIndex]
+                bundleIndex += 1
 
 
 # -------------------------------------------------------------------- RPG
@@ -754,10 +757,11 @@ def scrape_RPG_game_page():
 
     # Replace game tags list bundle' item with list item from bundle tags
     bundleIndex = 0
-    for lis in RPG_tags:
-        while "bundle" in lis:
-            lis[lis.index("bundle")] = RPG_bundle_game_tags[bundleIndex]
-            bundleIndex += 1
+    for lis in range(len(RPG_tags)):
+        for item in RPG_tags[lis]:
+            if item == "bundle":
+                RPG_tags[lis] = RPG_bundle_game_tags[bundleIndex]
+                bundleIndex += 1
 
 
 # -------------------------------------------------------------------- STRATEGY
@@ -884,10 +888,11 @@ def scrape_strategy_game_page():
 
     # Replace game tags list bundle' item with list item from bundle tags
     bundleIndex = 0
-    for lis in strategy_tags:
-        while "bundle" in lis:
-            lis[lis.index("bundle")] = strategy_bundle_game_tags[bundleIndex]
-            bundleIndex += 1
+    for lis in range(len(strategy_tags)):
+        for item in strategy_tags[lis]:
+            if item == "bundle":
+                strategy_tags[lis] = strategy_bundle_game_tags[bundleIndex]
+                bundleIndex += 1
 
 
 # ----------------------------------------------------------------- MULTIPLAYER
@@ -1014,10 +1019,11 @@ def scrape_multiplayer_game_page():
 
     # Replace game tags list bundle' item with list item from bundle tags
     bundleIndex = 0
-    for lis in multiplayer_tags:
-        while "bundle" in lis:
-            lis[lis.index("bundle")] = multiplayer_bundle_game_tags[bundleIndex]
-            bundleIndex += 1
+    for lis in range(len(multiplayer_tags)):
+        for item in multiplayer_tags[lis]:
+            if item == "bundle":
+                multiplayer_tags[lis] = multiplayer_bundle_game_tags[bundleIndex]
+                bundleIndex += 1
 
 
 # ----------------------------------------------------------------- FAVOURITES
