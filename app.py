@@ -310,13 +310,14 @@ def multiplayer_games():
 @app.route("/our-favourites")
 def favourites():
     # Favourites db
-    favourites = mongo.db.site_favourites.find()
+    favourites = mongo.db.all_pc_games.find({"favourite": True})
 
     # Random game
 
-    random_game = mongo.db.site_favourites.aggregate(
-        [{"$sample": {"size": 1}}]
-    )
+    random_game = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 1}}
+    ])
 
     screenshots = []
     rand_game_title = []
@@ -328,7 +329,7 @@ def favourites():
         rand_game_summary.append(data["game_summary"])
         rand_game_id = data["_id"]
 
-        for img in data["game_screenshots"]:
+        for img in data["screenshots"]:
             screenshots.append(img)
 
     rand_game_imgs = random.sample(screenshots, 3)
