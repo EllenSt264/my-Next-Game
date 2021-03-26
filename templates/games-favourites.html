@@ -22,9 +22,15 @@
                     <div class="col s6 m4 l2">
                         <a href="#" class="btn">See Reviews</a>
                     </div>
-                    <div class="col s6 m4 l2">
-                        <a href="#" class="btn">Like This Game</a>
-                    </div>
+                    {% if session.user %}
+                        <div class="col s6 m4 l2">
+                            <a href="{{ url_for('like', game_id=rand_game_id) }}" class="btn">Like This Game</a>
+                        </div>
+                    {% else %}
+                        <div class="col s6 m4 l2">
+                            <a href="#" class="btn">Like This Game</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
