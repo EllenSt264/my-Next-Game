@@ -10,9 +10,6 @@
     Looping through a list or URLs with BeautifulSoup:
     "https://stackoverflow.com/questions/44823278/how-to-loop-through-a-list-of-urls-for-web-scraping-with-beautifulsoup"
 
-    Removing duplicate entries within a dictionary:
-    "https://stackoverflow.com/questions/4104957/remove-duplicate-entries-from-nested-dictionary-if-two-values-are-the-same-in"
-
     Fix 'RuntimeError: dictionary changed size during iteration':
     "https://stackoverflow.com/questions/11941817/how-to-avoid-runtimeerror-dictionary-changed-size-during-iteration-error"
 
@@ -33,13 +30,13 @@
 import re
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import NavigableString
 
 # -------------------------------------------------- Data lists
 
 # -------------- Bestsellers
 
 bs_game_titles = []
+bs_bundle_game_tags = []
 bs_game_tags = []
 bs_game_links = []
 bs_game_images = []
@@ -59,6 +56,7 @@ award_game_platform_tags = []
 # -------------- Action Games
 
 action_titles = []
+action_bundle_game_tags = []
 action_tags = []
 action_links = []
 action_images = []
@@ -68,26 +66,27 @@ action_platform_tags = []
 # -------------- Adventure Games
 
 adventure_titles = []
+adventure_bundle_game_tags = []
 adventure_tags = []
 adventure_links = []
 adventure_images = []
 adventure_full_images = []
 adventure_platform_tags = []
 
-
 # -------------- RPG Games
 
 RPG_titles = []
+RPG_bundle_game_tags = []
 RPG_tags = []
 RPG_links = []
 RPG_images = []
 RPG_full_images = []
 RPG_platform_tags = []
 
-
 # -------------- Strategy Games
 
 strategy_titles = []
+strategy_bundle_game_tags = []
 strategy_tags = []
 strategy_links = []
 strategy_images = []
@@ -97,18 +96,54 @@ strategy_platform_tags = []
 # -------------- Multiplayer Games
 
 multiplayer_titles = []
+multiplayer_bundle_game_tags = []
 multiplayer_tags = []
 multiplayer_links = []
 multiplayer_images = []
 multiplayer_full_images = []
 multiplayer_platform_tags = []
 
+# -------------- Favourites
+
+# Links have been added manually
+favourite_links = [
+    "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
+    "https://store.steampowered.com/app/1404210/Red_Dead_Online/",
+    "https://store.steampowered.com/app/379430/Kingdom_Come_Deliverance/",
+    "https://store.steampowered.com/app/261550/Mount__Blade_II_Bannerlord/",
+    "https://store.steampowered.com/app/1158310/Crusader_Kings_III/",
+    "https://store.steampowered.com/app/629760/MORDHAU/",
+    "https://store.steampowered.com/app/427290/Vampyr/",
+    "https://store.steampowered.com/app/752590/A_Plague_Tale_Innocence/",
+    "https://store.steampowered.com/app/409710/BioShock_Remastered/",
+    "https://store.steampowered.com/app/1328670/Mass_Effect_Legendary_Edition/",
+    "https://store.steampowered.com/app/703080/Planet_Zoo/",
+    "https://store.steampowered.com/app/493340/Planet_Coaster/",
+    "https://store.steampowered.com/app/1237950/STAR_WARS_Battlefront_II/",
+    "https://store.steampowered.com/app/281990/Stellaris/",
+    "https://store.steampowered.com/app/238320/Outlast/",
+    "https://store.steampowered.com/app/480490/Prey/",
+    "https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/",
+    "https://store.steampowered.com/app/362890/Black_Mesa/",
+    "https://store.steampowered.com/app/1190460/DEATH_STRANDING/",
+    "https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/",
+    "https://store.steampowered.com/app/900883/The_Elder_Scrolls_IV_Oblivion_Game_of_the_Year_Edition_Deluxe/",
+    "https://store.steampowered.com/app/306130/The_Elder_Scrolls_Online/",
+    "https://store.steampowered.com/app/379720/DOOM/"
+]
+
+favourites_game_title = []
+favourites_game_img = []
+favourites_game_screenshots = []
+favourites_game_tags = []
+favourites_platform_pc = []
+favourite_game_summary = []
+
 
 # ------------------------------------------- Scrape data functions
 
 
 # ----------------------------------------------------------------- BESTSELLERS
-
 
 def scrape_bestsellers():
 
@@ -126,29 +161,6 @@ def scrape_bestsellers():
             for i in title:
                 title_string = i.string
                 bs_game_titles.append(title_string)
-
-            # -------------------------------------------------- Game Tags
-
-            top_tags = a.select(".tab_item_top_tags span")
-
-            tags = []
-            tags_inner = []
-
-            for items in top_tags:
-                for tag in items:
-                    tag_item = tag.string
-
-                    if tag_item[0] == ",":
-                        tags_inner.append(tag_item)
-                    else:
-                        tag_item = [tag_item]
-                        tags.append(tag_item)
-
-            for i in tags_inner:
-                tags[0].append(i)
-
-            for tag in tags:
-                bs_game_tags.append(tag)
 
             # -------------------------------------------------- Game Links
 
@@ -187,11 +199,15 @@ def scrape_bestsellers():
 def scrape_bestseller_game_page():
     url_list = bs_game_links
 
-    for url in url_list:
+    bundle_url_list = []
 
+    for url in url_list:
+        # Define cookies in order to bypass age check
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game full image
 
         for item in soup.select(".page_content_ctn"):
             if item.find("img", {"class": "package_header"}):
@@ -204,8 +220,61 @@ def scrape_bestseller_game_page():
                 for i in img:
                     bs_game_images_full.append(i["src"])
 
-# --------------------------------------------------------------- AWARD WINNERS
+        # ------------------------------ Game genre tags
 
+        bundle = soup.select("#package_header_container")
+
+        if bundle:
+            a = soup.find("a", {"class": "tab_item_overlay"})
+            if a is None:
+                continue
+            else:
+                link = a.attrs["href"]
+                bundle_url_list.append(link)
+                bs_game_tags.append(["bundle"])
+        else:
+            # ------------------------------ Game genre tags
+
+            tags_inner = []
+
+            for item in soup.select(".glance_tags.popular_tags"):
+                for a in item.select("a", href=True):
+                    tag = a.text.strip()
+                    tags_inner.append(tag)
+
+            bs_game_tags.append(tags_inner)
+
+    # Grab data from the links acquired on the bundle page
+
+    bundle_tags = []
+
+    for url in bundle_url_list:
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game genre tags
+        tags_inner = []
+
+        for item in soup.select(".glance_tags.popular_tags"):
+            for a in item.select("a", href=True):
+                tag = a.text.strip()
+                tags_inner.append(tag)
+
+        bundle_tags.append(tags_inner)
+
+    global bs_bundle_game_tags
+    bs_bundle_game_tags = bundle_tags
+
+    # Replace game tags list bundle' item with list item from bundle tags
+    bundleIndex = 0
+    for lis in bs_game_tags:
+        while "bundle" in lis:
+            lis[lis.index("bundle")] = bs_bundle_game_tags[bundleIndex]
+            bundleIndex += 1
+
+
+# --------------------------------------------------------------- AWARD WINNERS
 
 def scrape_awardwinners():
     awardwinners_url = "https://store.steampowered.com/steamawards"
@@ -301,18 +370,13 @@ def scrape_awardwinner_game_page():
             award_game_platform_tags.append(platform_lis)
 
 
-# ----------------------------------------------------------------- GAME GENRES
-
-
-# ----------------------------------------------------------------- ACTION
+# -------------------------------------------------------------------- ACTION
 
 def scrape_action_games():
     url = "https://store.steampowered.com/tags/en/Action/#p=0&tab=TopRated"
 
     source = requests.get(url)
     soup = BeautifulSoup(source.text, "html.parser")
-
-    # ---------- Page 1
 
     for item in soup.select("#TopRatedRows"):
         for a in item.findAll("a", href=True):
@@ -323,29 +387,6 @@ def scrape_action_games():
             for i in title:
                 title_string = i.string
                 action_titles.append(title_string)
-
-            # -------------------------------------------------- Game Tags
-
-            top_tags = a.select(".tab_item_top_tags span")
-
-            tags = []
-            tags_inner = []
-
-            for items in top_tags:
-                for tag in items:
-                    tag_item = tag.string
-
-                    if tag_item[0] == ",":
-                        tags_inner.append(tag_item)
-                    else:
-                        tag_item = [tag_item]
-                        tags.append(tag_item)
-
-            for i in tags_inner:
-                tags[0].append(i)
-
-            for tag in tags:
-                action_tags.append(tag)
 
             # -------------------------------------------------- Game Links
 
@@ -384,11 +425,15 @@ def scrape_action_games():
 def scrape_action_game_page():
     url_list = action_links
 
-    for url in url_list:
+    bundle_url_list = []
 
+    for url in url_list:
+        # Define cookies in order to bypass age check
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game full image
 
         for item in soup.select(".page_content_ctn"):
             if item.find("img", {"class": "package_header"}):
@@ -401,16 +446,67 @@ def scrape_action_game_page():
                 for i in img:
                     action_full_images.append(i["src"])
 
-# ----------------------------------------------------------------- ADVENTURE
+        # ------------------------------ Game genre tags
 
+        bundle = soup.select("#package_header_container")
+
+        if bundle:
+            a = soup.find("a", {"class": "tab_item_overlay"})
+            if a is None:
+                continue
+            else:
+                link = a.attrs["href"]
+                bundle_url_list.append(link)
+                action_tags.append(["bundle"])
+        else:
+            # ------------------------------ Game genre tags
+
+            tags_inner = []
+
+            for item in soup.select(".glance_tags.popular_tags"):
+                for a in item.select("a", href=True):
+                    tag = a.text.strip()
+                    tags_inner.append(tag)
+
+            action_tags.append(tags_inner)
+
+    # Grab data from the links acquired on the bundle page
+
+    bundle_tags = []
+
+    for url in bundle_url_list:
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game genre tags
+        tags_inner = []
+
+        for item in soup.select(".glance_tags.popular_tags"):
+            for a in item.select("a", href=True):
+                tag = a.text.strip()
+                tags_inner.append(tag)
+
+        bundle_tags.append(tags_inner)
+
+    global action_bundle_game_tags
+    action_bundle_game_tags = bundle_tags
+
+    # Replace game tags list bundle' item with list item from bundle tags
+    bundleIndex = 0
+    for lis in action_tags:
+        while "bundle" in lis:
+            lis[lis.index("bundle")] = action_bundle_game_tags[bundleIndex]
+            bundleIndex += 1
+
+
+# -------------------------------------------------------------------- AVENTURE
 
 def scrape_adventure_games():
     url = "https://store.steampowered.com/tags/en/Adventure/#p=0&tab=TopRated"
 
     source = requests.get(url)
     soup = BeautifulSoup(source.text, "html.parser")
-
-    # ---------- Page 1
 
     for item in soup.select("#TopRatedRows"):
         for a in item.findAll("a", href=True):
@@ -421,29 +517,6 @@ def scrape_adventure_games():
             for i in title:
                 title_string = i.string
                 adventure_titles.append(title_string)
-
-            # -------------------------------------------------- Game Tags
-
-            top_tags = a.select(".tab_item_top_tags span")
-
-            tags = []
-            tags_inner = []
-
-            for items in top_tags:
-                for tag in items:
-                    tag_item = tag.string
-
-                    if tag_item[0] == ",":
-                        tags_inner.append(tag_item)
-                    else:
-                        tag_item = [tag_item]
-                        tags.append(tag_item)
-
-            for i in tags_inner:
-                tags[0].append(i)
-
-            for tag in tags:
-                adventure_tags.append(tag)
 
             # -------------------------------------------------- Game Links
 
@@ -482,11 +555,15 @@ def scrape_adventure_games():
 def scrape_adventure_game_page():
     url_list = adventure_links
 
-    for url in url_list:
+    bundle_url_list = []
 
+    for url in url_list:
+        # Define cookies in order to bypass age check
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game full image
 
         for item in soup.select(".page_content_ctn"):
             if item.find("img", {"class": "package_header"}):
@@ -498,16 +575,68 @@ def scrape_adventure_game_page():
                 img = item.select(".game_header_image_full")
                 for i in img:
                     adventure_full_images.append(i["src"])
-# ----------------------------------------------------------------- RPG
 
+        # ------------------------------ Game genre tags
+
+        bundle = soup.select("#package_header_container")
+
+        if bundle:
+            a = soup.find("a", {"class": "tab_item_overlay"})
+            if a is None:
+                continue
+            else:
+                link = a.attrs["href"]
+                bundle_url_list.append(link)
+                adventure_tags.append(["bundle"])
+        else:
+            # ------------------------------ Game genre tags
+
+            tags_inner = []
+
+            for item in soup.select(".glance_tags.popular_tags"):
+                for a in item.select("a", href=True):
+                    tag = a.text.strip()
+                    tags_inner.append(tag)
+
+            adventure_tags.append(tags_inner)
+
+    # Grab data from the links acquired on the bundle page
+
+    bundle_tags = []
+
+    for url in bundle_url_list:
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game genre tags
+        tags_inner = []
+
+        for item in soup.select(".glance_tags.popular_tags"):
+            for a in item.select("a", href=True):
+                tag = a.text.strip()
+                tags_inner.append(tag)
+
+        bundle_tags.append(tags_inner)
+
+    global adventure_bundle_game_tags
+    adventure_bundle_game_tags = bundle_tags
+
+    # Replace game tags list bundle' item with list item from bundle tags
+    bundleIndex = 0
+    for lis in adventure_tags:
+        while "bundle" in lis:
+            lis[lis.index("bundle")] = adventure_bundle_game_tags[bundleIndex]
+            bundleIndex += 1
+
+
+# -------------------------------------------------------------------- RPG
 
 def scrape_RPG_games():
     url = "https://store.steampowered.com/tags/en/RPG/#p=0&tab=TopRated"
 
     source = requests.get(url)
     soup = BeautifulSoup(source.text, "html.parser")
-
-    # ---------- Page 1
 
     for item in soup.select("#TopRatedRows"):
         for a in item.findAll("a", href=True):
@@ -518,29 +647,6 @@ def scrape_RPG_games():
             for i in title:
                 title_string = i.string
                 RPG_titles.append(title_string)
-
-            # -------------------------------------------------- Game Tags
-
-            top_tags = a.select(".tab_item_top_tags span")
-
-            tags = []
-            tags_inner = []
-
-            for items in top_tags:
-                for tag in items:
-                    tag_item = tag.string
-
-                    if tag_item[0] == ",":
-                        tags_inner.append(tag_item)
-                    else:
-                        tag_item = [tag_item]
-                        tags.append(tag_item)
-
-            for i in tags_inner:
-                tags[0].append(i)
-
-            for tag in tags:
-                RPG_tags.append(tag)
 
             # -------------------------------------------------- Game Links
 
@@ -579,11 +685,15 @@ def scrape_RPG_games():
 def scrape_RPG_game_page():
     url_list = RPG_links
 
-    for url in url_list:
+    bundle_url_list = []
 
+    for url in url_list:
+        # Define cookies in order to bypass age check
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game full image
 
         for item in soup.select(".page_content_ctn"):
             if item.find("img", {"class": "package_header"}):
@@ -596,16 +706,67 @@ def scrape_RPG_game_page():
                 for i in img:
                     RPG_full_images.append(i["src"])
 
-# ----------------------------------------------------------------- STRATEGY
+        # ------------------------------ Game genre tags
 
+        bundle = soup.select("#package_header_container")
+
+        if bundle:
+            a = soup.find("a", {"class": "tab_item_overlay"})
+            if a is None:
+                continue
+            else:
+                link = a.attrs["href"]
+                bundle_url_list.append(link)
+                RPG_tags.append(["bundle"])
+        else:
+            # ------------------------------ Game genre tags
+
+            tags_inner = []
+
+            for item in soup.select(".glance_tags.popular_tags"):
+                for a in item.select("a", href=True):
+                    tag = a.text.strip()
+                    tags_inner.append(tag)
+
+            RPG_tags.append(tags_inner)
+
+    # Grab data from the links acquired on the bundle page
+
+    bundle_tags = []
+
+    for url in bundle_url_list:
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game genre tags
+        tags_inner = []
+
+        for item in soup.select(".glance_tags.popular_tags"):
+            for a in item.select("a", href=True):
+                tag = a.text.strip()
+                tags_inner.append(tag)
+
+        bundle_tags.append(tags_inner)
+
+    global RPG_bundle_game_tags
+    RPG_bundle_game_tags = bundle_tags
+
+    # Replace game tags list bundle' item with list item from bundle tags
+    bundleIndex = 0
+    for lis in RPG_tags:
+        while "bundle" in lis:
+            lis[lis.index("bundle")] = RPG_bundle_game_tags[bundleIndex]
+            bundleIndex += 1
+
+
+# -------------------------------------------------------------------- STRATEGY
 
 def scrape_strategy_games():
     url = "https://store.steampowered.com/tags/en/Strategy/#p=0&tab=TopRated"
 
     source = requests.get(url)
     soup = BeautifulSoup(source.text, "html.parser")
-
-    # ---------- Page 1
 
     for item in soup.select("#TopRatedRows"):
         for a in item.findAll("a", href=True):
@@ -616,29 +777,6 @@ def scrape_strategy_games():
             for i in title:
                 title_string = i.string
                 strategy_titles.append(title_string)
-
-            # -------------------------------------------------- Game Tags
-
-            top_tags = a.select(".tab_item_top_tags span")
-
-            tags = []
-            tags_inner = []
-
-            for items in top_tags:
-                for tag in items:
-                    tag_item = tag.string
-
-                    if tag_item[0] == ",":
-                        tags_inner.append(tag_item)
-                    else:
-                        tag_item = [tag_item]
-                        tags.append(tag_item)
-
-            for i in tags_inner:
-                tags[0].append(i)
-
-            for tag in tags:
-                strategy_tags.append(tag)
 
             # -------------------------------------------------- Game Links
 
@@ -677,11 +815,15 @@ def scrape_strategy_games():
 def scrape_strategy_game_page():
     url_list = strategy_links
 
-    for url in url_list:
+    bundle_url_list = []
 
+    for url in url_list:
+        # Define cookies in order to bypass age check
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game full image
 
         for item in soup.select(".page_content_ctn"):
             if item.find("img", {"class": "package_header"}):
@@ -694,16 +836,67 @@ def scrape_strategy_game_page():
                 for i in img:
                     strategy_full_images.append(i["src"])
 
-# ----------------------------------------------------------------- MULTIPLAYER
+        # ------------------------------ Game genre tags
 
+        bundle = soup.select("#package_header_container")
+
+        if bundle:
+            a = soup.find("a", {"class": "tab_item_overlay"})
+            if a is None:
+                continue
+            else:
+                link = a.attrs["href"]
+                bundle_url_list.append(link)
+                strategy_tags.append(["bundle"])
+        else:
+            # ------------------------------ Game genre tags
+
+            tags_inner = []
+
+            for item in soup.select(".glance_tags.popular_tags"):
+                for a in item.select("a", href=True):
+                    tag = a.text.strip()
+                    tags_inner.append(tag)
+
+            strategy_tags.append(tags_inner)
+
+    # Grab data from the links acquired on the bundle page
+
+    bundle_tags = []
+
+    for url in bundle_url_list:
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game genre tags
+        tags_inner = []
+
+        for item in soup.select(".glance_tags.popular_tags"):
+            for a in item.select("a", href=True):
+                tag = a.text.strip()
+                tags_inner.append(tag)
+
+        bundle_tags.append(tags_inner)
+
+    global strategy_bundle_game_tags
+    strategy_bundle_game_tags = bundle_tags
+
+    # Replace game tags list bundle' item with list item from bundle tags
+    bundleIndex = 0
+    for lis in strategy_tags:
+        while "bundle" in lis:
+            lis[lis.index("bundle")] = strategy_bundle_game_tags[bundleIndex]
+            bundleIndex += 1
+
+
+# ----------------------------------------------------------------- MULTIPLAYER
 
 def scrape_multiplayer_games():
     url = "https://store.steampowered.com/tags/en/Massively%20Multiplayer/#p=0&tab=TopRated"
 
     source = requests.get(url)
     soup = BeautifulSoup(source.text, "html.parser")
-
-    # ---------- Page 1
 
     for item in soup.select("#TopRatedRows"):
         for a in item.findAll("a", href=True):
@@ -714,29 +907,6 @@ def scrape_multiplayer_games():
             for i in title:
                 title_string = i.string
                 multiplayer_titles.append(title_string)
-
-            # -------------------------------------------------- Game Tags
-
-            top_tags = a.select(".tab_item_top_tags span")
-
-            tags = []
-            tags_inner = []
-
-            for items in top_tags:
-                for tag in items:
-                    tag_item = tag.string
-
-                    if tag_item[0] == ",":
-                        tags_inner.append(tag_item)
-                    else:
-                        tag_item = [tag_item]
-                        tags.append(tag_item)
-
-            for i in tags_inner:
-                tags[0].append(i)
-
-            for tag in tags:
-                multiplayer_tags.append(tag)
 
             # -------------------------------------------------- Game Links
 
@@ -775,11 +945,15 @@ def scrape_multiplayer_games():
 def scrape_multiplayer_game_page():
     url_list = multiplayer_links
 
-    for url in url_list:
+    bundle_url_list = []
 
+    for url in url_list:
+        # Define cookies in order to bypass age check
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
         source = requests.get(url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game full image
 
         for item in soup.select(".page_content_ctn"):
             if item.find("img", {"class": "package_header"}):
@@ -792,43 +966,61 @@ def scrape_multiplayer_game_page():
                 for i in img:
                     multiplayer_full_images.append(i["src"])
 
+        # ------------------------------ Game genre tags
 
-# ------------------------------------------------------------- FAVOURITES
+        bundle = soup.select("#package_header_container")
 
-# Links have been added manually
-favourite_links = [
-    "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
-    "https://store.steampowered.com/app/1404210/Red_Dead_Online/",
-    "https://store.steampowered.com/app/379430/Kingdom_Come_Deliverance/",
-    "https://store.steampowered.com/app/261550/Mount__Blade_II_Bannerlord/",
-    "https://store.steampowered.com/app/1158310/Crusader_Kings_III/",
-    "https://store.steampowered.com/app/629760/MORDHAU/",
-    "https://store.steampowered.com/app/427290/Vampyr/",
-    "https://store.steampowered.com/app/752590/A_Plague_Tale_Innocence/",
-    "https://store.steampowered.com/app/409710/BioShock_Remastered/",
-    "https://store.steampowered.com/app/1328670/Mass_Effect_Legendary_Edition/",
-    "https://store.steampowered.com/app/703080/Planet_Zoo/",
-    "https://store.steampowered.com/app/493340/Planet_Coaster/",
-    "https://store.steampowered.com/app/1237950/STAR_WARS_Battlefront_II/",
-    "https://store.steampowered.com/app/281990/Stellaris/",
-    "https://store.steampowered.com/app/238320/Outlast/",
-    "https://store.steampowered.com/app/480490/Prey/",
-    "https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/",
-    "https://store.steampowered.com/app/362890/Black_Mesa/",
-    "https://store.steampowered.com/app/1190460/DEATH_STRANDING/",
-    "https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/",
-    "https://store.steampowered.com/app/900883/The_Elder_Scrolls_IV_Oblivion_Game_of_the_Year_Edition_Deluxe/",
-    "https://store.steampowered.com/app/306130/The_Elder_Scrolls_Online/",
-    "https://store.steampowered.com/app/379720/DOOM/"
-]
+        if bundle:
+            a = soup.find("a", {"class": "tab_item_overlay"})
+            if a is None:
+                continue
+            else:
+                link = a.attrs["href"]
+                bundle_url_list.append(link)
+                multiplayer_tags.append(["bundle"])
+        else:
+            # ------------------------------ Game genre tags
 
-favourites_game_title = []
-favourites_game_img = []
-favourites_game_screenshots = []
-favourites_game_tags = []
-favourites_platform_pc = []
-favourite_game_summary = []
+            tags_inner = []
 
+            for item in soup.select(".glance_tags.popular_tags"):
+                for a in item.select("a", href=True):
+                    tag = a.text.strip()
+                    tags_inner.append(tag)
+
+            multiplayer_tags.append(tags_inner)
+
+    # Grab data from the links acquired on the bundle page
+
+    bundle_tags = []
+
+    for url in bundle_url_list:
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        # ------------------------------ Game genre tags
+        tags_inner = []
+
+        for item in soup.select(".glance_tags.popular_tags"):
+            for a in item.select("a", href=True):
+                tag = a.text.strip()
+                tags_inner.append(tag)
+
+        bundle_tags.append(tags_inner)
+
+    global multiplayer_bundle_game_tags
+    multiplayer_bundle_game_tags = bundle_tags
+
+    # Replace game tags list bundle' item with list item from bundle tags
+    bundleIndex = 0
+    for lis in multiplayer_tags:
+        while "bundle" in lis:
+            lis[lis.index("bundle")] = multiplayer_bundle_game_tags[bundleIndex]
+            bundleIndex += 1
+
+
+# ----------------------------------------------------------------- FAVOURITES
 
 def scrape_favourites_data():
     url_list = favourite_links
@@ -950,6 +1142,7 @@ scrape_multiplayer_game_page()
 
 scrape_favourites_data()
 
+
 # ------------------------------------------- Dictionaries
 
 steam_bestsellers = {}
@@ -968,10 +1161,8 @@ steam_multiplayer_games = {}
 
 favourites = {}
 
-# ------------------------------------------- Add to dictionaries
 
 # ----------------------------------------------------------------- BESTSELLERS
-
 
 def create_bestsellers_index():
     global steam_bestsellers
@@ -1070,7 +1261,6 @@ def add_to_awardwinners_dict():
 
 # ---------------------------------------------------------------- ACTION GAMES
 
-
 def create_action_games_index():
     global steam_action_games
 
@@ -1116,7 +1306,6 @@ def add_to_action_games_dict():
 
 
 # ------------------------------------------------------------- ADVENTURE GAMES
-
 
 def create_adventure_games_index():
     global steam_adventure_games
@@ -1164,7 +1353,6 @@ def add_to_adventure_games_dict():
 
 # ------------------------------------------------------------------- RPG GAMES
 
-
 def create_RPG_games_index():
     global steam_RPG_games
 
@@ -1211,7 +1399,6 @@ def add_to_RPG_games_dict():
 
 # ------------------------------------------------------------- STRATEGY GAMES
 
-
 def create_strategy_games_index():
     global steam_strategy_games
 
@@ -1257,7 +1444,6 @@ def add_to_strategy_games_dict():
 
 
 # ----------------------------------------------------------- MULTIPLAYER GAMES
-
 
 def create_multiplayer_games_index():
     global steam_multiplayer_games
@@ -1356,7 +1542,6 @@ def add_to_favourites_dict():
 
 # -------------------------------------------- Call add to dictionary functions
 
-"""
 create_bestsellers_index()
 add_to_bestsellers_dict()
 
@@ -1380,7 +1565,6 @@ add_to_multiplayer_games_dict()
 
 create_bestsellers_index()
 add_to_bestsellers_dict()
-"""
 
 create_favourites_index()
 add_to_favourites_dict()
