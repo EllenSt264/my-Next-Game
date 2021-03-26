@@ -56,10 +56,10 @@ mongo = PyMongo(app)
 @app.route("/home")
 def home():
     # Grab bestsellers from db
-    bestsellers = mongo.db.all_pc_games.find({"category": "bestseller"})
+    bestsellers = mongo.db.all_pc_games.find({"bestseller": True})
 
     # Grab award winners from db
-    awardwinners = mongo.db.all_pc_games.find({"category": "awardwinner"})
+    awardwinners = mongo.db.all_pc_games.find({"awardwinner": True})
 
     # Initalize pagination
     page, per_page, offset = get_page_args(
@@ -152,7 +152,7 @@ def action_games():
     pc_games = mongo.db.all_pc_games.find(
         {
             "$or": [
-                {"category": "action"},
+                {"action": True},
                 {"game_top_tags": "Action"}
             ]
         }
@@ -216,7 +216,7 @@ def RPG_games():
     pc_games = mongo.db.all_pc_games.find(
         {
             "$or": [
-                {"category": "RPG"},
+                {"RPG": True},
                 {"game_top_tags": "RPG"}
             ]
         }
@@ -248,7 +248,7 @@ def strategy_games():
     pc_games = mongo.db.all_pc_games.find(
         {
             "$or": [
-                {"category": "strategy"},
+                {"strategy": True},
                 {"game_top_tags": "Strategy"}
             ]
         }
@@ -280,7 +280,7 @@ def multiplayer_games():
     pc_games = mongo.db.all_pc_games.find(
         {
             "$or": [
-                {"category": "multiplayer"},
+                {"multiplayer": True},
                 {"game_top_tags": "Multiplayer"}
             ]
         }
@@ -321,10 +321,12 @@ def favourites():
     screenshots = []
     rand_game_title = []
     rand_game_summary = []
+    rand_game_id = ""
 
     for data in random_game:
         rand_game_title.append(data["game_title"])
         rand_game_summary.append(data["game_summary"])
+        rand_game_id = data["_id"]
 
         for img in data["game_screenshots"]:
             screenshots.append(img)
@@ -334,7 +336,7 @@ def favourites():
     return render_template(
         "games-favourites.html", favourites=favourites,
         rand_game_title=rand_game_title, rand_game_imgs=rand_game_imgs,
-        rand_game_summary=rand_game_summary)
+        rand_game_summary=rand_game_summary, rand_game_id=rand_game_id)
 
 
 # ==========
