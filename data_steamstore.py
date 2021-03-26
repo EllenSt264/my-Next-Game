@@ -127,9 +127,6 @@ def get_bestseller_dict():
 
 def get_awardwinners_dict():
     for k, v in steam_award_winners.items():
-        award_index.append(k)
-
-    for k, v in steam_award_winners.items():
         for k1, v1 in v.items():
             if k1 == "year":
                 award_year.append(v1)
@@ -139,14 +136,17 @@ def get_awardwinners_dict():
                 award_winner.append(v1)
             if k1 == "img":
                 award_winner_img.append(v1)
+            if k1 == "tags":
+                award_game_tags.append(v1)
+            if k1 == "pc_platform_tags":
+                award_platform_pc.append(v1)
+            if k1 == "game_link":
+                award_game_link.append(v1)
 
 
 # --------------------------------------------------------------- ACTION GAMES
 
 def get_action_games_dict():
-    for k, v in steam_action_games.items():
-        action_game_index.append(k)
-
     for k, v in steam_action_games.items():
         for k1, v1 in v.items():
             if k1 == "title":
@@ -273,7 +273,7 @@ def get_favourites_games_dict():
 
 
 # ------------------ Call dictionary functions
-"""
+
 get_bestseller_dict()
 get_awardwinners_dict()
 get_action_games_dict()
@@ -281,38 +281,41 @@ get_adventure_games_dict()
 get_RPG_games_dict()
 get_strategy_games_dict()
 get_multiplayer_games_dict()
-"""
 get_favourites_games_dict()
 
 
 # ----------------------------------------------------------- ADD TO DATABASE
 
+
 def add_to_db():
-    # ---------------------------------------- Bestsellers
+    # ---------------------------------------- Bestseller
     for i in range(len(bs_game_title)):
         bestseller = {
-            "category": "bestseller",
             "game_title": bs_game_title[i],
             "game_top_tags": bs_game_tags[i],
             "game_img_full": bs_game_img_full[i],
             "platform_tags_pc": bs_platform_pc[i],
             "game_link": bs_game_link[i],
             "liked_by": None,
-            "likes": 0
+            "likes": 0,
+            "bestseller": True
         }
-        # Stop data from being re-added if it already exists
-        existing_bestseller = mongo.db.all_pc_games.find_one(
-            {"$and": [{"category": "bestseller"},
-                      {"game_title": bs_game_title[i]}]})
+        # Check game title already exists in db
+        existing_bestseller_title = mongo.db.all_pc_games.find_one(
+            {"game_title": bs_game_title[i]})
 
-        # Add to db
-        if not existing_bestseller:
+        # Update rather than replace or duplicate the existing game
+        if existing_bestseller_title:
+            bestseller_id = existing_bestseller_title["_id"]
+            mongo.db.all_pc_games.update_one(
+                {"_id": bestseller_id}, {"$set": {"bestseller": True}})
+        # Otherwise, add new document to db
+        else:
             mongo.db.all_pc_games.insert_one(bestseller)
 
     # ---------------------------------------- Award winners
     for i in range(len(award_title)):
         awardwinner = {
-            "category": "awardwinner",
             "game_title": award_winner[i],
             "game_img_full": award_winner_img[i],
             "game_top_tags": award_game_tags[i],
@@ -321,145 +324,189 @@ def add_to_db():
             "award_year": award_year[i],
             "award_title": award_title[i],
             "liked_by": None,
-            "likes": 0
+            "likes": 0,
+            "awardwinner": True
         }
-        # Stop data from being re-added if it already exists
-        existing_awardwinner = mongo.db.all_pc_games.find_one(
-            {"$and": [{"category": "awardwinner"},
-                      {"game_title": award_winner[i]}]})
+        # Check game title already exists in db
+        existing_awardwinner_title = mongo.db.all_pc_games.find_one(
+            {"game_title": award_winner[i]})
 
-        # Add to db
-        if not existing_awardwinner:
+        # Update rather than replace or duplicate the existing game
+        if existing_awardwinner_title:
+            awardwinner_id = existing_awardwinner_title["_id"]
+            # If the game has multiple awards that need to be added
+            if existing_awardwinner_title["awardwinner"]:
+                mongo.db.all_pc_games.update_one(
+                    {"_id": awardwinner_id},
+                    {"$set": {"award_title_2": award_title[i]}})
+            else:
+                mongo.db.all_pc_games.update_one(
+                    {"_id": awardwinner_id},
+                    {"$set": {
+                        "award_year": award_year[i],
+                        "award_title": award_title[i],
+                        "awardwinner": True
+                    }})
+        # Otherwise, add new document to db
+        else:
             mongo.db.all_pc_games.insert_one(awardwinner)
 
     # ---------------------------------------- Action
     for i in range(len(action_game_title)):
         action = {
-            "category": "action",
             "game_title": action_game_title[i],
             "game_top_tags": action_game_tags[i],
             "game_img_full": action_game_img_full[i],
             "platform_tags_pc": action_platform_pc[i],
             "game_link": action_game_link[i],
             "liked_by": None,
-            "likes": 0
+            "likes": 0,
+            "action": True
         }
-        # Stop data from being re-added if it already exists
-        existing_action = mongo.db.all_pc_games.find_one(
-            {"$and": [{"category": "action"},
-                      {"game_title": action_game_title[i]}]})
+        # Check game title already exists in db
+        existing_action_title = mongo.db.all_pc_games.find_one(
+            {"game_title": action_game_title[i]})
 
-        # Add to db
-        if not existing_action:
+        # Update rather than replace or duplicate the existing game
+        if existing_action_title:
+            action_id = existing_action_title["_id"]
+            mongo.db.all_pc_games.update_one(
+                {"_id": action_id}, {"$set": {"action": True}})
+        # Otherwise, add new document to db
+        else:
             mongo.db.all_pc_games.insert_one(action)
 
     # ---------------------------------------- Adventure
     for i in range(len(adventure_game_title)):
         adventure = {
-            "category": "adventure",
             "game_title": adventure_game_title[i],
             "game_top_tags": adventure_game_tags[i],
             "game_img_full": adventure_game_img_full[i],
             "platform_tags_pc": adventure_platform_pc[i],
             "game_link": adventure_game_link[i],
             "liked_by": None,
-            "likes": 0
+            "likes": 0,
+            "adventure": True
         }
-        # Stop data from being re-added if it already exists
-        existing_adventure = mongo.db.all_pc_games.find_one(
-            {"$and": [{"category": "adventure"},
-                      {"game_title": adventure_game_title[i]}]})
+        # Check game title already exists in db
+        existing_adventure_title = mongo.db.all_pc_games.find_one(
+            {"game_title": adventure_game_title[i]})
 
-        # Add to db
-        if not existing_adventure:
+        # Update rather than replace or duplicate the existing game
+        if existing_adventure_title:
+            adventure_id = existing_adventure_title["_id"]
+            mongo.db.all_pc_games.update_one(
+                {"_id": adventure_id}, {"$set": {"adventure": True}})
+        # Otherwise, add new document to db
+        else:
             mongo.db.all_pc_games.insert_one(adventure)
 
     # ---------------------------------------- RPG
     for i in range(len(RPG_game_title)):
         RPG = {
-            "category": "RPG",
             "game_title": RPG_game_title[i],
             "game_top_tags": RPG_game_tags[i],
             "game_img_full": RPG_game_img_full[i],
             "platform_tags_pc": RPG_platform_pc[i],
             "game_link": RPG_game_link[i],
             "liked_by": None,
-            "likes": 0
+            "likes": 0,
+            "RPG": True
         }
-        # Stop data from being re-added if it already exists
-        existing_RPG = mongo.db.all_pc_games.find_one(
-            {"$and": [{"category": "RPG"},
-                      {"game_title": RPG_game_title[i]}]})
+        # Check game title already exists in db
+        existing_RPG_title = mongo.db.all_pc_games.find_one(
+            {"game_title": RPG_game_title[i]})
 
-        # Add to db
-        if not existing_RPG:
+        # Update rather than replace or duplicate the existing game
+        if existing_RPG_title:
+            RPG_id = existing_RPG_title["_id"]
+            mongo.db.all_pc_games.update_one(
+                {"_id": RPG_id}, {"$set": {"RPG": True}})
+        # Otherwise, add new document to db
+        else:
             mongo.db.all_pc_games.insert_one(RPG)
 
     # ---------------------------------------- Strategy
     for i in range(len(strategy_game_title)):
         strategy = {
-            "category": "strategy",
             "game_title": strategy_game_title[i],
             "game_top_tags": strategy_game_tags[i],
             "game_img_full": strategy_game_img_full[i],
             "platform_tags_pc": strategy_platform_pc[i],
             "game_link": strategy_game_link[i],
             "liked_by": None,
-            "likes": 0
+            "likes": 0,
+            "strategy": True
         }
-        # Stop data from being re-added if it already exists
-        existing_strategy = mongo.db.all_pc_games.find_one(
-            {"$and": [{"category": "strategy"},
-                      {"game_title": strategy_game_title[i]}]})
+        # Check game title already exists in db
+        existing_strategy_title = mongo.db.all_pc_games.find_one(
+            {"game_title": strategy_game_title[i]})
 
-        # Add to db
-        if not existing_strategy:
+        # Update rather than replace or duplicate the existing game
+        if existing_strategy_title:
+            strategy_id = existing_strategy_title["_id"]
+            mongo.db.all_pc_games.update_one(
+                {"_id": strategy_id}, {"$set": {"strategy": True}})
+        # Otherwise, add new document to db
+        else:
             mongo.db.all_pc_games.insert_one(strategy)
 
     # ---------------------------------------- Multiplayer
     for i in range(len(multiplayer_game_title)):
         multiplayer = {
-            "category": "multiplayer",
             "game_title": multiplayer_game_title[i],
             "game_top_tags": multiplayer_game_tags[i],
             "game_img_full": multiplayer_game_img_full[i],
             "platform_tags_pc": multiplayer_platform_pc[i],
             "game_link": multiplayer_game_link[i],
             "liked_by": None,
-            "likes": 0
+            "likes": 0,
+            "multiplayer": True
         }
-        # Stop data from being re-added if it already exists
-        existing_multiplayer = mongo.db.all_pc_games.find_one(
-            {"$and": [{"category": "multiplayer"},
-                      {"game_title": multiplayer_game_title[i]}]})
+        # Check game title already exists in db
+        existing_multiplayer_title = mongo.db.all_pc_games.find_one(
+            {"game_title": multiplayer_game_title[i]})
 
-        # Add to db
-        if not existing_multiplayer:
+        # Update rather than replace or duplicate the existing game
+        if existing_multiplayer_title:
+            multiplayer_id = existing_multiplayer_title["_id"]
+            mongo.db.all_pc_games.update_one(
+                {"_id": multiplayer_id}, {"$set": {"multiplayer": True}})
+        # Otherwise, add new document to db
+        else:
             mongo.db.all_pc_games.insert_one(multiplayer)
 
-
-def add_to_favourites():
     # ---------------------------------------- Favourites
     for i in range(len(favourites_game_title)):
         favourite = {
             "game_title": favourites_game_title[i],
             "game_top_tags": favourites_game_tags[i],
             "game_img_full": favourites_game_img[i],
-            "game_screenshots": favourites_game_screenshots[i],
             "platform_tags_pc": favourites_platform_pc[i],
             "game_link": favourite_links[i],
-            "game_summary": favourite_game_summary[i],
+            "screenshots": favourites_game_screenshots,
+            "game_summary": favourite_game_summary,
             "liked_by": None,
-            "likes": 0
+            "likes": 0,
+            "favourite": True
         }
-        # Stop data from being re-added if it already exists
-        existing_favourite = mongo.db.site_favourites.find_one(
+        # Check game title already exists in db
+        existing_favourites_title = mongo.db.all_pc_games.find_one(
             {"game_title": favourites_game_title[i]})
 
-        # Add to db
-        if not existing_favourite:
-            mongo.db.site_favourites.insert_one(favourite)
+        # Update rather than replace or duplicate the existing game
+        if existing_favourites_title:
+            favourites_id = existing_favourites_title["_id"]
+            mongo.db.all_pc_games.update_one(
+                    {"_id": favourites_id},
+                    {"$set": {
+                        "screenshots": favourites_game_screenshots[i],
+                        "game_summary": favourite_game_summary[i],
+                        "favourite": True
+                    }})
+        # Otherwise, add new document to db
+        else:
+            mongo.db.all_pc_games.insert_one(favourite)
 
 
 add_to_db()
-add_to_favourites()
