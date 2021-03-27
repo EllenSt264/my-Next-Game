@@ -412,6 +412,7 @@ The following code is based upon this source:
 .like-icon {
     padding: 0 !important;
     height: 24px;
+    width: 24px;
 }
 
 .like-text {
@@ -434,6 +435,7 @@ The following code is based upon this source:
         transform: scale(1);
     }
 }
+
 
 .like-text {
     padding-left: 0;
