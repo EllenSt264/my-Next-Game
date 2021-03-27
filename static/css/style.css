@@ -567,20 +567,27 @@ The following code is based upon this source:
     padding: 20px;
 }
 
+.favourite-tag--games-page .disabled,
+.favourite-tag .disabled {
+    color: white !important;
+    background-color: #2ed2bc  !important;
+    border: 4px solid white;
+}
+
 .favourite-tag--games-page {
     position: absolute; 
     top: 5%; 
     bottom: 0; 
     left: 1%; 
     right: 0;
-    width: 165px; 
+    width: 170px; 
     height: 65px;  
     z-index: 20;
 }
 
 .favourite-tag--games-page .btn-large {
     position: relative; 
-    width: 165px; 
+    width: 170px; 
     height: 65px; 
     padding: 0 15px;
 }
