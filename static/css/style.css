@@ -568,6 +568,7 @@ The following code is based upon this source:
 }
 
 .favourite-tag--games-page .disabled,
+.favourite-tag-sm .disabled,
 .favourite-tag .disabled {
     color: white !important;
     background-color: #2ed2bc  !important;
@@ -726,6 +727,7 @@ The following code is based upon this source:
     position: absolute; 
     top: 25%; 
     bottom: 0; 
+    
     right: 0; 
     left: 75%;
 }
@@ -806,6 +808,11 @@ The following code is based upon this source:
     width: 560px; 
     height: 260px;
     padding: 10px;
+}
+
+.favourite-tag-sm {
+    width: 145px;
+    height: 75px;
 }
 
 .favourites-sm .card-title h4 {
@@ -2537,14 +2544,15 @@ label[for]:hover {
         margin-top: 0;
         width: 300px;
     }
-    .favourites-sm .divider {
-        margin-top: 125px;
+    .favourites-sm .col.s7 {
+        width: 100%;
+        height: 95px;
     }
     .favourite-tag-sm {
         position: absolute;
-        top: 45%;
+        top: -2.5%;
         bottom: 0;
-        left: 20px;
+        left: 70%;
         right: 0;
     }
     .favourites-sm .card-content p {
@@ -2644,11 +2652,28 @@ label[for]:hover {
         margin: auto;
     }
     .favourite-tag-sm {
-        top: 42%;
-        height: 100px;
+        position: absolute;
+        top: -2.5%;
+        bottom: 0;
+        left: 65%;
+        right: 0;
+        width: 130px;
     }
-    .favourites-sm .divider {
-        margin-top: 95px;
+    .favourite-tag-sm .btn-large {
+        width: 130px;
+        height: 50px;
+    }
+    .stars-sm i {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .recommended-text-sm span {
+        font-size: 10px;
+        line-height: 25px;
+    }
+    .recommended-text-sm i {
+        font-size: 10px;
+        line-height: 42px;
     }
     .see-review-btn-sm .btn-large {
         width: 100px !important;
@@ -2724,6 +2749,14 @@ label[for]:hover {
     }
     .review-card-row img {
         width: 225px;
+    }
+    .favourite-tag-sm {
+        position: absolute;
+        top: -2.5%;
+        bottom: 0;
+        left: 60%;
+        right: 0;
+        width: 130px;
     }
 }
 
