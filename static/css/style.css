@@ -863,6 +863,15 @@ The following code is based upon this source:
     width: 120px;
 }
 
+.game-cards.sm-screen-card .like-icon i {
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.game-cards.sm-screen-card .like-text {
+    font-size: 16px;
+}
+
 /* ---------------------------------------------- Community reviews page */
 
 .review-card {
@@ -1707,6 +1716,12 @@ label[for]:hover {
     }
     #left-review-card {
         margin-left: 12.49999999995% !important;
+    }
+    .like-icon i {
+        font-size: 18px;
+    }
+    .like-text {
+        font-size: 14px;
     }
 }
 
@@ -2611,6 +2626,9 @@ label[for]:hover {
 }
 
 @media (max-width: 412px) {
+    .game-cards.sm-screen-card .card-title {
+        height: 45px;
+    }
     .profile-card-header h3 {
         font-size: 24px;
     }
