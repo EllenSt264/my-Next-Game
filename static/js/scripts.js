@@ -78,6 +78,22 @@ $(document).ready(function () {
             }
         })
 
+        /* Navbar floating button */
+        $('.fixed-action-btn').floatingActionButton({
+            direction: 'right',
+            hoverEnabled: false
+        });
+
+        $('#PlatformLink').on('click', function() {
+            $('#GenreLink .fixed-action-btn').css('left', '135px')
+        })
+
+        $('#searchbar').on('click', function() {
+            $('#searchbar .input-field').css('background-color', '#442c4c');
+            $('#searchbar .input-field').css('z-index', '200');
+        })
+
+
         /* --------------------------------------- Materialize forms */
         
         /* Collapsible */

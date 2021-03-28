@@ -30,43 +30,44 @@
             <ul class="collapsible">
 
                 <div class="hide-on-med-and-down">
-                    <!-- Platform-->
-                    <li>
-                        <a class="collapsible-header">Platform</a>
-                        <div class="collapsible-body">
-                            <div class="nav-content"> 
-                                <ul class="tabs tabs-transparent">
-                                <li class="tab"><a href="{{ url_for('pc_games') }}">PC</a></li>
-                                <li class="tab"><a href="{{ url_for('pc_games') }}">XBOX</a></li>
-                                <li class="tab"><a href="{{ url_for('pc_games') }}">Playstation</a></li>
-                                </ul>
-                            </div>
+
+                    <!-- Standard Links -->
+                    <li><a href="{{ url_for('favourites') }}" class="standard-link">Our Favourites</a></li>
+                    <li><a href="#" class="standard-link">Award Winners</a></li>
+                    {% if session.user %}
+                    <li><a href="{{ url_for('profile_games', username=session['user']) }}" class="standard-link">Your List</a></li>
+                    {% endif %}
+                    
+                    <!-- Platform -->
+                    <li id="PlatformLink">
+                        <div class="fixed-action-btn click-to-toggle">
+                            <a class="standard-link">Platform</a>
+                            <ul class="floating-nav">
+                                <div class="items">
+                                    <li class="tab"><a href="{{ url_for('pc_games') }}">PC</a></li>
+                                    <li class="tab"><a href="{{ url_for('pc_games') }}">XBOX</a></li>
+                                    <li class="tab"><a href="{{ url_for('pc_games') }}">Playstation</a></li>
+                                </div>
+                            </ul>
                         </div>
                     </li>
 
                     <!-- Genre -->
-                    <li>
-                        <a class="collapsible-header">Genre</a>
-                        <div class="collapsible-body">
-                            <div class="nav-content"> 
-                                <ul class="tabs tabs-transparent">
+                    <li id="GenreLink">
+                        <div class="fixed-action-btn click-to-toggle">
+                            <a class="standard-link">Genre</a>
+                            <ul class="floating-nav">
+                                <div class="items">
                                     <li class="tab"><a href="{{ url_for('action_games') }}">Action</a></li>
                                     <li class="tab"><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
                                     <li class="tab"><a href="{{ url_for('RPG_games') }}">RPG</a></li>
                                     <li class="tab"><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
                                     <li class="tab"><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
-                                </ul>
-                            </div>
+                                </div>
+                            </ul>
                         </div>
                     </li>
 
-                    <!-- Standard Links -->
-                    <li><a href="{{ url_for('pc_games') }}" class="standard-link">Bestsellers</a></li>
-                    <li><a href="#" class="standard-link">Award Winners</a></li>
-                    <li><a href="{{ url_for('favourites') }}" class="standard-link">Our Favourites</a></li>
-                    {% if session.user %}
-                    <li><a href="{{ url_for('profile_games', username=session['user']) }}" class="standard-link">Your List</a></li>
-                    {% endif %}
                 </div>
 
                 <!-- Search bar -->
@@ -90,7 +91,6 @@
             <li><a href="#!" class="sidenav-close right"><i class="material-icons white-text" style="margin: 0;">close</i></a></li>
             <li><a href="{{ url_for('pc_games') }}">Platform</a></li>
             <li><a href="{{ url_for('pc_games') }}">Genre</a></li>
-            <li><a href="{{ url_for('pc_games') }}">Bestsellers</a></li>
             <li><a href="{{ url_for('pc_games') }}">Award Winners</a></li>
             <li><a href="{{ url_for('pc_games') }}">Our Favourites</a></li>
             <li><a href="{{ url_for('pc_games') }}">Your List</a></li>

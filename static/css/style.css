@@ -323,6 +323,92 @@ The following code is based upon this source:
     color: #f608ea;
 }
 
+#PlatformLink {
+    position: relative; 
+    width: 75px; 
+    height: 54px; 
+    padding: 15px; 
+    display: list-item;
+}
+
+#PlatformLink .fixed-action-btn {
+    position: absolute; 
+    top: 0;
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: 1;
+}
+
+#PlatformLink .standard-link {
+    width: 75px; 
+    height: 54px; 
+    opacity: 1;
+}
+
+#PlatformLink .floating-nav {
+    position: relative;  
+    width: 160px; 
+    padding-right: 0; 
+    z-index: 20;
+}
+
+#PlatformLink .items {
+    position: absolute; 
+    top: -107%;
+    bottom: 0; 
+    right: 0; 
+    left: -40%; 
+    height: 54px; 
+    background: #442c4c;
+}
+
+#GenreLink {
+    position: relative; 
+    width: 58px; 
+    height: 54px; 
+    padding: 15px; 
+    display: list-item;
+}
+
+#GenreLink .fixed-action-btn {
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: 1;
+}
+
+#GenreLink .standard-link {
+    width: 58px; 
+    height: 54px; 
+    opacity: 1;
+}
+
+#GenreLink .floating-nav {
+    position: relative; 
+    width: 370px; 
+    padding-right: 0; 
+    z-index: 20;
+}
+
+#GenreLink .items {
+    position: absolute; 
+    top: -107%; 
+    bottom: 0; 
+    right: 0; 
+    left: -18%; 
+    height: 54px; 
+    background: #442c4c;
+}
+
+#GenreLink .tab a,
+#PlatformLink .tab a {
+    padding: 0 5px; 
+    line-height: 40px;
+}
+
 @media (max-width: 992px) {
     .secondary-nav .nav-content div.valign {
         margin-bottom: 20px;
