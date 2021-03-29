@@ -9,13 +9,16 @@
                 <div class="row profile-header">
                     <!-- Username -->
                     <div class="col s12 l6 header-username">
-                        <h2>{{ username|capitalize }}'s Profile</h2>
+                        {% if "display_name" in user %}
+                        <h2>{{ user.display_name }}'s Profile</h2>
+                        {% else %}
+                            <h2>{{ user.username|capitalize }}'s Profile</h2>
+                        {% endif %}
                     </div>
                     <!-- Avatar -->
                     <div class="row hide-on-large-only">
                         <div class="col s12">
-                            {% block avatar_small_screen %}
-                            {% endblock %}
+                            <img src="{{ user.avatar }}" alt="User's current avatar" class="profile-avatar">
                         </div>
                     </div>
                     <!-- Edit profile -->
@@ -37,13 +40,18 @@
                     <div class="row hide-on-med-and-down side-panel-avatar">
                         <div class="row">
                             <div class="col right">
-                                {% block avatar %}
-                                {% endblock %}
+                                <img src="{{ user.avatar }}" alt="User's current avatar" class="profile-avatar">
                             </div>
                         </div>
                        <div class="row">
                             <div class="col right">
-                                <h5 style="margin-top: 0; margin-right: 10px; font-size: 18px;">{{ username|capitalize }}</h5>
+                                <h5 style="margin-top: 0; margin-right: 10px; font-size: 18px;">
+                                    {% if "display_name" in user %}
+                                        {{ user.display_name }}
+                                    {% else %}
+                                        {{ user.username|capitalize }}
+                                    {% endif %}
+                                </h5>
                             </div>
                        </div>
                     </div>

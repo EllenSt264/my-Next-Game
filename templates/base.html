@@ -29,7 +29,7 @@
 
                     {% if session.user %}
                     <!-- Desktop profile dropdown -->
-                    <a href="{{ url_for('profile_games', username=session['user'], admin=session['admin']) }}" data-target="desktop-profile" 
+                    <a href="{{ url_for('profile_games', user=user, username=session['user'], admin=session['admin']) }}" data-target="desktop-profile" 
                     class="dropdown-trigger right hide-on-med-and-down nav-dropdown-trigger"
                     style="margin-right:25px;">
                         <i class="fas fa-user"></i>
@@ -84,7 +84,7 @@
         
         <!-- Desktop profile dropdown -->
         <ul class="dropdown-content" id="desktop-profile"  data-constrainwidth="false">
-            <li><a href="{{ url_for('profile_games', username=session['user'], admin=session['admin']) }}">Profile</a></li>
+            <li><a href="{{ url_for('profile_games', user=user, username=session['user'], admin=session['admin']) }}">Profile</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
         </ul>
     
