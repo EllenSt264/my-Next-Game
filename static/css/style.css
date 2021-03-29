@@ -1686,6 +1686,29 @@ label[for]:hover {
     background-color: red !important;
 }
 
+/* ---------------------------------------------- Edit Profile Game List */
+
+#editGameList #outer-card {
+    background-color: #5b0bad;
+}
+
+#editGameList #inner-card {
+    background-color: #30134d;
+}
+
+#editGameList .card-panel {
+    background-color: #622d83;
+}
+
+#editGameList .back-btn {
+    background-color: #c41cce;
+}
+
+#editGameList img {
+    width:100px; 
+    height:100px;
+}
+
 /* ---------------------------------------------- Global */
 
 .py-5 {
