@@ -375,6 +375,7 @@ def register():
                 "password": generate_password_hash(password),
                 "avatar": img_path,
                 "avatar_desc": img_alt,
+                "display_name": None,
                 "admin": False
             }
             mongo.db.users.insert_one(register)
@@ -789,6 +790,9 @@ def submit_review():
         game = mongo.db.all_pc_games.find_one({"game_title": title})
         img_full = game["game_img_full"]
 
+        display_name = mongo.db.users.find_one(
+            {"username": session["user"]})["display_name"]
+
         date = datetime.datetime.now()
 
         review = {
@@ -804,7 +808,8 @@ def submit_review():
             "sound": request.form.get("sound"),
             "recommended": request.form.get("radioRecommend"),
             "date_submitted": date.strftime("%x"),
-            "username": session["user"]
+            "username": session["user"],
+            "display_name": display_name
         }
 
         # Check if a user has already added a game with the same to the db
@@ -843,6 +848,9 @@ def profile_submit_review(game_id):
 
         date = datetime.datetime.now()
 
+        display_name = mongo.db.users.find_one(
+            {"username": session["user"]})["display_name"]
+
         review = {
             "game_title": title,
             "game_img_full": img_full,
@@ -856,7 +864,8 @@ def profile_submit_review(game_id):
             "sound": request.form.get("sound"),
             "recommended": request.form.get("radioRecommend"),
             "date_submitted": date.strftime("%x"),
-            "username": session["user"]
+            "username": session["user"],
+            "display_name": display_name
         }
 
         # Check if a user has already added a game with the same to the db

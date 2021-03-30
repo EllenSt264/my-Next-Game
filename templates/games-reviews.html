@@ -45,7 +45,12 @@
                                 <div class="card-content">
                                     <!-- Username -->
                                     <p class="review-card-username">
-                                        {{ review.username|capitalize }} | <span style="color: #ff3d00">{{ review.date_submitted }}</span>
+                                        {% if review.display_name %}
+                                            {{ review.display_name }}
+                                        {% else %}
+                                            {{ review.username|capitalize }}
+                                        {% endif %}
+                                         | <span style="color: #ff3d00">{{ review.date_submitted }}</span>
                                     </p>
                                     <!-- Summary -->
                                     <p class="summary">
@@ -100,7 +105,14 @@
                                 <!-- Card content -->
                                 <div class="card-content">
                                     <!-- Username -->
-                                    <p class="review-card-username">{{ review.username|capitalize }} | <span style="color: #ff3d00">{{ review.date_submitted }}</span></p>
+                                    <p class="review-card-username">
+                                        {% if review.display_name %}
+                                            {{ review.display_name }}
+                                        {% else %}
+                                            {{ review.username|capitalize }}
+                                        {% endif %}
+                                        | <span style="color: #ff3d00">{{ review.date_submitted }}</span>
+                                    </p>
                                     <!-- Summary -->
                                     <p class="summary">
                                         {{ review.summary }}
