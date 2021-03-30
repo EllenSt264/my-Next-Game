@@ -88,7 +88,7 @@
                 <!-- Remove button -->
                 <div class="row">
                     <div class="col s12 m12 l6 profile-game-btn">
-                        <a href="#" class="btn remove-btn">
+                        <a href="{{ url_for('remove_game', game_id=game._id) }}" class="btn remove-btn">
                             <i class="material-icons  btn-icon-left">delete</i> 
                             Remove Game
                         </a>

@@ -722,7 +722,7 @@ def game_to_next(game_id):
 # Profile - Move to Completed
 # ===========================
 
-@app.route("/complected/<game_id>", methods=["GET", "POST"])
+@app.route("/completed/<game_id>", methods=["GET", "POST"])
 def game_to_completed(game_id):
     if request.method == "POST":
         update = {"$set": {"stage": "completed"}}
@@ -732,6 +732,17 @@ def game_to_completed(game_id):
     game = mongo.db.user_games.find_one({"_id": ObjectId(game_id)})
     return redirect(url_for(
         "profile_games", username=session["user"], game=game))
+
+
+# ===============================
+# Profile - Remove Game from List
+# ===============================
+
+@app.route("/remove-game/<game_id>")
+def remove_game(game_id):
+    mongo.db.user_games.remove({"_id": ObjectId(game_id)})
+    flash("Game Successfully Removed from Your List")
+    return redirect(url_for("profile_games", username=session["user"]))
 
 
 # ==============
