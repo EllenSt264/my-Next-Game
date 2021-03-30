@@ -788,9 +788,10 @@ def reviews():
 @app.route("/profile/<username>/reviews")
 def profile_reviews(username):
     reviews = mongo.db.user_reviews.find({})
+    user = mongo.db.users.find_one({"username": session["user"]})
     return render_template(
         "profile-reviews.html", username=session["user"],
-        reviews=reviews)
+        reviews=reviews, user=user)
 
 
 # =============
