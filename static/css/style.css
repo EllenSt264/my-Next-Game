@@ -1308,6 +1308,10 @@ label[for]:hover {
     margin: 10px auto !important;
 }
 
+.profile-card-content .main-row {
+    margin-bottom: 0;
+}
+
 .profile-game-img {
     padding: 10px;
 }
@@ -1327,13 +1331,18 @@ label[for]:hover {
     min-width: 131px;
 }
 
-.profile-game-btn .btn-large {
+.profile-game-btn .btn-large,
+.profile-game-btn .remove-btn {
     font-family: "BlenderPro-Book";
     font-size: 14px;
     padding: 0 15px; 
     min-width: 131px;
     background-color: #431d5a;
     color: white;
+}
+
+.remove-btn {
+    margin-left: 25px;
 }
 
 .profile-game-btn a:hover,
@@ -2263,6 +2272,9 @@ label[for]:hover {
         margin-left: 20px;
         text-align: left;
     }
+    .remove-btn {
+        margin-left: 20px;
+    }
     #firstItem {
         margin-left: 8.3333333333%;
     }
@@ -2770,6 +2782,9 @@ label[for]:hover {
     .profile-avatar {
         width: 100px; 
         height: 100px;
+    }
+    .remove-btn {
+        margin-left: 0;
     }
 }
 
