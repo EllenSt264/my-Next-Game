@@ -50,7 +50,14 @@
                                         {% else %}
                                             {{ review.username|capitalize }}
                                         {% endif %}
-                                         | <span style="color: #ff3d00">{{ review.date_submitted }}</span>
+                                        | 
+                                        <span style="color: #ff3d00">
+                                            {% if review.last_updated %}
+                                                Last Updated: {{ review.last_updated }}
+                                            {% else %}
+                                                {{ review.date_submitted }}
+                                            {% endif %}
+                                        </span>
                                     </p>
                                     <!-- Summary -->
                                     <p class="summary">
@@ -111,7 +118,14 @@
                                         {% else %}
                                             {{ review.username|capitalize }}
                                         {% endif %}
-                                        | <span style="color: #ff3d00">{{ review.date_submitted }}</span>
+                                        |
+                                        <span style="color: #ff3d00">
+                                            {% if review.last_updated %}
+                                                Last Updated: {{ review.last_updated }}
+                                            {% else %}
+                                                {{ review.date_submitted }}
+                                            {% endif %}
+                                        </span>
                                     </p>
                                     <!-- Summary -->
                                     <p class="summary">

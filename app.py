@@ -27,6 +27,7 @@
 import os
 import datetime
 import random
+from re import sub
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -927,6 +928,7 @@ def edit_review(game_id):
                       {"game_title": game_title}]})
 
     review_id = review["_id"]
+    submission_date = review["date_submitted"]
 
     if request.method == "POST":
         date = datetime.datetime.now()
@@ -944,7 +946,8 @@ def edit_review(game_id):
             "sound_rating": request.form.get("sound-stars"),
             "sound": request.form.get("sound"),
             "recommended": request.form.get("radioRecommend"),
-            "date_submitted": date.strftime("%x"),
+            "date_submitted": submission_date,
+            "last_updated": date.strftime("%x"),
             "username": session["user"]
         }
         mongo.db.user_reviews.update({"_id": review_id}, update)
@@ -966,6 +969,7 @@ def profile_edit_review(review_id):
     game_title = review["game_title"]
     img_sm = review["game_img_sm"]
     img_full = review["game_img_full"]
+    submission_date = review["date_submitted"]
 
     if request.method == "POST":
         date = datetime.datetime.now()
@@ -983,7 +987,8 @@ def profile_edit_review(review_id):
             "sound_rating": request.form.get("sound-stars"),
             "sound": request.form.get("sound"),
             "recommended": request.form.get("radioRecommend"),
-            "date_submitted": date.strftime("%x"),
+            "date_submitted": submission_date,
+            "last_updated": date.strftime("%x"),
             "username": session["user"]
         }
         mongo.db.user_reviews.update({"_id": ObjectId(review_id)}, update)
