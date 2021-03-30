@@ -762,8 +762,23 @@ export_data()
 @app.route("/community-reviews")
 def reviews():
     game_reviews = mongo.db.user_reviews.find({})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
     return render_template(
-        "games-reviews.html", game_reviews=game_reviews)
+        "games-reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
 
 
 # ======================
