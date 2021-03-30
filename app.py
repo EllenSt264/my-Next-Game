@@ -540,16 +540,6 @@ def add_game(game_id):
     return redirect(request.referrer)
 
 
-# ====================
-# Edit User Games List
-# ====================
-
-@app.route("/profile/<username>/edit-games-list/playing")
-def edit_playing_list(username):
-    return render_template(
-        "profile-edit_games_list-playing.html", username=session["user"])
-
-
 # ================
 # Profile Template
 # ================
