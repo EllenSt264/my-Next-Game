@@ -88,7 +88,7 @@
                 <!-- Remove button -->
                 <div class="row">
                     <div class="col s12 m12 l6 profile-game-btn">
-                        <a href="{{ url_for('remove_game', game_id=game._id) }}" class="btn remove-btn">
+                        <a href="#deleteGame{{loop.index}}--Playing" class="btn remove-btn modal-trigger">
                             <i class="material-icons  btn-icon-left">delete</i> 
                             Remove Game
                         </a>
@@ -96,6 +96,23 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal warning -->
+        <div id="deleteGame{{loop.index}}--Playing" class="modal center-align delete-review">
+            <div class="modal-content">
+            <h5><span>warning</span></h5>
+            <h4>Are You Sure You Want to Remove <span style="font-family: 'BlenderPro-Thin';">{{ game.game_title }}</span> from your Games List?</h4>
+            <p>
+                This will not effect your reviews and/or game likes in any way.
+            </p>
+            </div>
+            <div class="modal-footer center-align">
+                <a href="{{ url_for('remove_game', game_id=game._id) }}" 
+                class="modal-close btn-flat" id="deleteReview">Yes, Delete</a>
+                <a href="#!" class="modal-close btn-flat">Cancel</a>
+            </div>
+        </div>
+
     {% else %}
         <h4 class="center-align py-5">No games have been added to this section</h4>
     {% endfor %}
@@ -190,7 +207,7 @@
                 <!-- Remove button -->
                 <div class="row">
                     <div class="col s12 m12 l6 profile-game-btn">
-                        <a href="#" class="btn remove-btn">
+                        <a href="#deleteGame{{loop.index}}--PlayLater" class="btn remove-btn modal-trigger">
                             <i class="material-icons  btn-icon-left">delete</i> 
                             Remove Game
                         </a>
@@ -198,6 +215,23 @@
                 </div> 
             </div>
         </div>
+
+        <!-- Modal warning -->
+        <div id="deleteGame{{loop.index}}--PlayLater" class="modal center-align delete-review">
+            <div class="modal-content">
+            <h5><span>warning</span></h5>
+            <h4>Are You Sure You Want to Remove <span style="font-family: 'BlenderPro-Thin';">{{ game.game_title }}</span> from your Games List?</h4>
+            <p>
+                This will not effect your reviews and/or game likes in any way.
+            </p>
+            </div>
+            <div class="modal-footer center-align">
+                <a href="{{ url_for('remove_game', game_id=game._id) }}" 
+                class="modal-close btn-flat" id="deleteReview">Yes, Delete</a>
+                <a href="#!" class="modal-close btn-flat">Cancel</a>
+            </div>
+        </div>
+
     {% else %}
         <h4 class="center-align py-5">No games have been added to this section</h4>
     {% endfor %}
@@ -289,7 +323,7 @@
                 <!-- Remove button -->
                 <div class="row">
                     <div class="col s12 m12 l6 profile-game-btn">
-                        <a href="#" class="btn remove-btn">
+                        <a href="#deleteGame{{loop.index}}--Completed" class="btn remove-btn modal-trigger">
                             <i class="material-icons  btn-icon-left">delete</i> 
                             Remove Game
                         </a>
@@ -297,6 +331,23 @@
                 </div> 
             </div>
         </div>
+
+        <!-- Modal warning -->
+        <div id="deleteGame{{loop.index}}--Completed" class="modal center-align delete-review">
+            <div class="modal-content">
+            <h5><span>warning</span></h5>
+            <h4>Are You Sure You Want to Remove <span style="font-family: 'BlenderPro-Thin';">{{ game.game_title }}</span> from your Games List?</h4>
+            <p>
+                This will not effect your reviews and/or game likes in any way.
+            </p>
+            </div>
+            <div class="modal-footer center-align">
+                <a href="{{ url_for('remove_game', game_id=game._id) }}" 
+                class="modal-close btn-flat" id="deleteReview">Yes, Delete</a>
+                <a href="#!" class="modal-close btn-flat">Cancel</a>
+            </div>
+        </div>
+
     {% else %}
         <h4 class="center-align py-5">No games have been added to this section</h4>
     {% endfor %}
