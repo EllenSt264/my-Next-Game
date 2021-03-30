@@ -909,9 +909,9 @@ def profile_submit_review(game_id):
         username=session["user"])
 
 
-# ====================
-# Profile- Edit Review
-# ====================
+# =====================
+# Profile - Edit Review
+# =====================
 
 @app.route("/edit-review/<game_id>", methods=["GET", "POST"])
 def edit_review(game_id):
@@ -952,6 +952,45 @@ def edit_review(game_id):
 
     return render_template(
         "games-edit_review.html", game=game, review=review)
+
+
+# =============================
+# Profile Reviews - Edit Review
+# =============================
+
+@app.route("/profile/edit-review/<review_id>", methods=["GET", "POST"])
+def profile_edit_review(review_id):
+    review = mongo.db.user_reviews.find_one({"_id": ObjectId(review_id)})
+
+    game_title = review["game_title"]
+    img_sm = review["game_img_sm"]
+    img_full = review["game_img_full"]
+
+    if request.method == "POST":
+        date = datetime.datetime.now()
+
+        update = {
+            "game_title": game_title,
+            "game_img_sm": img_sm,
+            "game_img_full": img_full,
+            "platform": request.form.get("platform-select").lower(),
+            "summary": request.form.get("summary"),
+            "gameplay_rating": request.form.get("gameplay-stars"),
+            "gameplay": request.form.get("gameplay"),
+            "visuals_rating": request.form.get("visuals-stars"),
+            "visuals": request.form.get("visuals"),
+            "sound_rating": request.form.get("sound-stars"),
+            "sound": request.form.get("sound"),
+            "recommended": request.form.get("radioRecommend"),
+            "date_submitted": date.strftime("%x"),
+            "username": session["user"]
+        }
+        mongo.db.user_reviews.update({"_id": ObjectId(review_id)}, update)
+        flash("Review Successfully Updated")
+        return redirect(url_for('reviews'))
+
+    return render_template(
+        "profile-edit_review.html", review=review)
 
 
 # ======================
