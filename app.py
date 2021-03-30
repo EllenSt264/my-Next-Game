@@ -374,7 +374,8 @@ def register():
                 "email": request.form.get("email").lower(),
                 "password": generate_password_hash(password),
                 "avatar": img_path,
-                "avatar_desc": img_alt
+                "avatar_desc": img_alt,
+                "admin": False
             }
             mongo.db.users.insert_one(register)
 
@@ -786,14 +787,12 @@ def submit_review():
 
         title = request.form.get("query")
         game = mongo.db.all_pc_games.find_one({"game_title": title})
-        img_sm = game["game_img_sm"]
         img_full = game["game_img_full"]
 
         date = datetime.datetime.now()
 
         review = {
             "game_title": title,
-            "game_img_sm": img_sm,
             "game_img_full": img_full,
             "platform": request.form.get("platform-select").lower(),
             "summary": request.form.get("summary"),
@@ -840,14 +839,12 @@ def profile_submit_review(game_id):
 
         title = request.form.get("query")
         game = mongo.db.all_pc_games.find_one({"game_title": title})
-        img_sm = game["game_img_sm"]
         img_full = game["game_img_full"]
 
         date = datetime.datetime.now()
 
         review = {
             "game_title": title,
-            "game_img_sm": img_sm,
             "game_img_full": img_full,
             "platform": request.form.get("platform-select").lower(),
             "summary": request.form.get("summary"),
