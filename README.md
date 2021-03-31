@@ -2,11 +2,11 @@
 
 **my Next Game** is an aspiring community-based platform for gamers. By registering an account, users can submit game reviews, like on games, and customize their profiles and game playlists. Reviews are free from commercial bias and give gamers the freedom and resources to submit their real thoughts and opinons about a huge variety of games. **my Next Game** strives to be unique, and is specifically tailored for the user, creating the potential for this web-application to form into a platform that is honest and free.
 
-![Mockup Image - Games Page](static/img/smartmockups-games_page.png)
+![Mockup Image - Games Page](static/img/documentation/smartmockups-games_page.png)
 
 | .      | .     |
 | ------- | ------ |
-| ![Mockup Image - Homepage](static/img/smartmockups-homepage_1.jpg) | ![Mockup Image - Games Page](static/img/smartmockups-games_page_2.jpg)
+| ![Mockup Image - Homepage](static/img/documentation/smartmockups-homepage_1.jpg) | ![Mockup Image - Games Page](static/img/documentation/smartmockups-games_page_2.jpg)
 
 -----
 
@@ -321,6 +321,8 @@ Each wireframe can be viewed via the links below:
 - [This source](https://moonbooks.org/Articles/How-to-remove-string-control-characters-n-t-r-in-python/) helped me find a way to remove string control characters from parser results.
 
 - [This source](https://runestone.academy/runestone/books/published/fopp/Sequences/SplitandJoin.html) helped with the join method for returning *only* the first few sentences of paragraph.
+
+- A thank you to Jo and Scott from Code Institute for helping me with the code for replacing 'bundle' list items with game genre tags from the Steam Store bundle page.
 
 
 #### Python and Flask
