@@ -26,16 +26,16 @@
 
 3. I want to be able to find games easily.
 
-|  Navbar | Secondary Navbar |
-| ------- | ---------------- |
-| ![Mockup Image - Homepage](static/img/documentation/screenshot-navbar_genre.png) | ![Mockup Image - Games Page](static/img/documentation/screenshot-secondary_navbar.png)
+![Mockup Image - Homepage](static/img/documentation/screenshot-navbar_genre.png)
+
+![Mockup Image - Games Page](static/img/documentation/screenshot-secondary_navbar.png)
 
 
 4. I want to be able to use a sort feature so that I only see the results I want.
 
-|  Sort Feature | Secondary Navbar |
-| ------------- | ---------------- |
-| ![Mockup Image - Homepage](static/img/documentation/screenshot-sort.png) | ![Mockup Image - Games Page](static/img/documentation/screenshot-secondary_navbar_short.png)
+![Mockup Image - Homepage](static/img/documentation/screenshot-sort.png) 
+
+![Mockup Image - Games Page](static/img/documentation/screenshot-secondary_navbar_short.png)
 
 
 5. I want to be able to register on the site and make a user profile.
@@ -45,16 +45,16 @@
 
 6. I want to see reviews of games, and be able to search for particular game titles or genres of those reviews.
 
-|  Sort Feature | Secondary Navbar |
-| ------------- | ---------------- |
-| ![Mockup Image - Homepage](static/img/documentation/screenshot-review_page-review_cards.png) | ![Mockup Image - Games Page](static/img/documentation/screenshot-review_page-with-secondary_navbar.png)
+![Mockup Image - Homepage](static/img/documentation/screenshot-review_page-review_cards.png)
+
+![Mockup Image - Games Page](static/img/documentation/screenshot-review_page-with-secondary_navbar.png)
 
 
 7. I want to be able to vote on games that I like.
 
-|  Sort Feature | Secondary Navbar |
-| ------------- | ---------------- |
-| ![Mockup Image - Games Page](static/img/documentation/screenshot-like_btn.png) | ![Mockup Image - Homepage](static/img/documentation/screenshot-game_card.png) 
+![Mockup Image - Games Page](static/img/documentation/screenshot-like_btn.png)
+
+![Mockup Image - Homepage](static/img/documentation/screenshot-game_card.png) 
 
 
 8. I want to leave reviews of my own.
@@ -68,9 +68,9 @@
 
 ![Website screenshot - Register page](static/img/documentation/screenshot-homepage-buttons.png)
 
-|  Sort Feature | Secondary Navbar |
-| ------------- | ---------------- |
-| ![Mockup Image - Games Page](static/img/documentation/screenshot-favourites-game_cards.png) | ![Mockup Image - Homepage](static/img/documentation/screenshot-favourites-parallax.png) 
+![Mockup Image - Games Page](static/img/documentation/screenshot-favourites-game_cards.png)
+
+![Mockup Image - Homepage](static/img/documentation/screenshot-favourites-parallax.png) 
 
 ![Website screenshot - Register page](static/img/documentation/screenshot-game_cards-recommended.png)
 
@@ -88,23 +88,25 @@
 
 ![Mockup Image - Games Page](static/img/documentation/screenshot-profile-sidenav.png)
 
-|  Sort Feature | Secondary Navbar |
-| ------------- | ---------------- |
-| ![Mockup Image - Homepage](static/img/documentation/screenshot-edit_profile.png) | ![Mockup Image - Homepage](static/img/documentation/screenshot-edit_profile-avatars.png) 
+![Mockup Image - Homepage](static/img/documentation/screenshot-edit_profile.png)
+
+![Mockup Image - Homepage](static/img/documentation/screenshot-edit_profile-avatars.png) 
 
 
 2. I want to be able to see all the reviews that I have made, and have the option to edit or delete them.
 
-|  Sort Feature | Secondary Navbar |
-| ------------- | ---------------- |
-| ![Mockup Image - Homepage](static/img/documentation/screenshot-profile-reviews.png) | ![Mockup Image - Homepage](static/img/documentation/screenshot-profile-game_list_2.png)
+![Mockup Image - Homepage](static/img/documentation/screenshot-profile-reviews.png)
+
+![Mockup Image - Homepage](static/img/documentation/screenshot-profile-game_list_2.png)
 
 
 3. I want to update my games list. I want to categories games into what I am currently playing, what I have played and want I want to play in the future.
 
-|  Sort Feature | Secondary Navbar | Secondary Navbar |
-| ------------- | ---------------- | ---------------- |
-| ![Mockup Image - Homepage](static/img/documentation/screenshot-profile-game_list-playing.png) | ![Mockup Image - Homepage](static/img/documentation/screenshot-profile-game_list-play_later.png) | ![Mockup Image - Homepage](static/img/documentation/screenshot-profile-game_list-completed.png)
+![Mockup Image - Homepage](static/img/documentation/screenshot-profile-game_list-playing.png)
+
+![Mockup Image - Homepage](static/img/documentation/screenshot-profile-game_list-play_later.png)
+
+![Mockup Image - Homepage](static/img/documentation/screenshot-profile-game_list-completed.png)
 
 4. I want to see profiles of other users.
 
