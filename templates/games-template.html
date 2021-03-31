@@ -96,9 +96,83 @@
             <li><a href="{{ url_for('pc_games') }}">Your List</a></li>
         </ul>
     </section>
+
+    <!-- Sort nav and pagination -->
+    <section id="sort-and-pagination-nav">
+        <div class="row">
+            <!-- Pagination --> 
+            <div class="col s12 m6">
+                <div class="pagination-top">
+                    <ul class="pagination">
+                        <li class="active"><a href="#!">1</a></li>
+                        <li class="waves-effect"><a href="#!">2</a></li>
+                        <li class="waves-effect"><a href="#!">3</a></li>
+                        <li class="waves-effect"><a href="#!">4</a></li>
+                        <li class="waves-effect"><a href="#!">5</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Sort by features -->
+            <div class="col s12 m6">
+                <div class="sort-by right">
+                    <!-- Select labels -->
+                    <ul class="tabs tabs-transparent" id="sortNav-label">
+                        <li class="tab" id="nav1">
+                            <a>
+                                <label for="navSelect1">Time</label>
+                            </a>
+                        </li>
+                        <li class="tab" id="nav2">
+                            <a>
+                                <label for="navSelect2">Sort By</label>
+                            </a>
+                        </li>
+                        <li class="tab" id="nav3">
+                            <a>
+                                <label for="navSelect3">Order</label>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Select options -->
+                    <ul class="tabs tabs-transparent" id="sortNav">
+                        <li class="tab">
+                            <a>
+                                <select class="browser-default" class="browser-default" name="navSelect1" id="navSelect1">
+                                    <option value="#">24hrs</option>
+                                    <option value="#">7 days</option>
+                                    <option value="#">30 days</option>
+                                    <option value="#" selected>All Time</option>
+                                </select>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <select class="browser-default" name="navSelect2" id="navSelect2">
+                                    <option value="#" selected>Date Added</option>
+                                    <option value="#">Likes</option>
+                                    <option value="#">Playing</option>
+                                    <option value="#">Review Count</option>
+                                    <option value="#">Title</option>
+                                    <option value="#">Genre</option>
+                                </select>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <select class="browser-default" name="navSelect3" id="navSelect3">
+                                    <option value="#">Asc</option>
+                                    <option value="#" selected>Desc</option>
+                                </select>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- Games -->
-    <section style="padding-top: 5rem;">
+    <section style="padding-top: 2.5rem;">
 
         {% block games %}
         {% endblock %}

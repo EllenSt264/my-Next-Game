@@ -409,6 +409,58 @@ The following code is based upon this source:
     line-height: 40px;
 }
 
+#sort-and-pagination-nav {
+    width: 95%; 
+    margin: auto;
+}
+
+#sort-and-pagination-nav .pagination {
+    margin-top: 2.5rem;
+}
+
+#sort-and-pagination-nav .sort-by {
+    margin-top: 0.5rem;
+}
+
+#sort-and-pagination-nav .tabs {
+    font-family: "BlenderPro-Bold";
+}
+
+#sortNav-label {
+    height: 30px;
+}
+
+#sortNav-label .tab {
+    height: 30px; line-height: 40px;
+}
+
+#sortNav-label label {
+    font-size: 14px;
+}
+
+#nav1 {
+    width: 130px;
+}
+
+#nav2 {
+    width: 167px;
+}
+
+#nav3 {
+    width: 120px;
+}
+
+#sortNav {
+    height: 42px;
+}
+
+#sortNav .browser-default {
+    height: 35px; 
+    font-family: 'BlenderPro-Bold'; 
+    font-size: 16px; 
+    color: #444;
+}
+
 @media (max-width: 992px) {
     .secondary-nav .nav-content div.valign {
         margin-bottom: 20px;
