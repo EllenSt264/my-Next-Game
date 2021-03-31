@@ -146,7 +146,7 @@
                             <a>
                                 <select class="browser-default" name="navSelect2" id="navSelect2">
                                     <option value="#" selected>Date Added</option>
-                                    <option value="#">Likes</option>
+                                    <a href="{{ url_for('sort_by_likes') }}"><option value="#">Likes</option></a>
                                     <option value="#">Playing</option>
                                     <option value="#">Review Count</option>
                                     <option value="#">Title</option>
@@ -161,6 +161,9 @@
                                     <option value="#" selected>Desc</option>
                                 </select>
                             </a>
+                        </li>
+                        <li class="tab">
+                            <a href="{{ url_for('sort_by_likes') }}">Likes</a>
                         </li>
                     </ul>
                 </div>
