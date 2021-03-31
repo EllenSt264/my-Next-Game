@@ -222,6 +222,46 @@ The following code is based upon this source:
     margin: 0 !important;   /* remove margin */
 }
 
+#homeParallax-img1 {
+    height: 25vh;
+}
+
+#homeParallax-img2 {
+    height: 50vh;
+}
+
+/*
+    The parallax image was not showing,
+    To fix this I used code from the following source:
+    "https://stackoverflow.com/questions/43896410/parallax-from-materialize-no-showing-image/43963949"
+*/
+
+.parallax img {
+    transform: translate3d(-50%, 432.451px, 0px);
+    opacity: 1;
+}
+
+#aboutUs p {
+    font-family: "BlenderPro-Thin";
+    letter-spacing: 1px;
+    font-size: 16px;
+}
+
+#aboutUs h3 {
+    font-family: "Cyberspace Raceway Front";
+    letter-spacing: 6px;
+    font-size: 36px;
+}
+
+#aboutUs p span {
+    font-family: "BlenderPro-Heavy";
+    letter-spacing: 2px;
+}
+
+.section.list-of-games {
+    padding-top: 50px;
+}
+
 @media (min-width: 601px) {
     .list-of-games .row {
         background: linear-gradient(

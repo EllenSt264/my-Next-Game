@@ -135,7 +135,8 @@
             <h1 class="center-align title front-font">myNext Game</h1>
             <div class="col s12 ">
                 <video class="hero-vid" autoplay muted loop>
-                    <source src="{{ url_for('static', filename='video/synthwave.mp4') }}" type="video/mp4">
+                    <source src="{{ url_for('static', filename='video/synthwave.mp4') }}" type="video/mp4"
+                    alt="Synthwave theme parallax background video">
                 </video>
             </div>
         </section>
@@ -157,20 +158,42 @@
         </div>
 
         <!-- Parallax image -->
-        <div class="parallax-container" style="height:50vh;">
+        <div class="parallax-container" id="homeParallax-img1">
             <div class="parallax">
-            <!--
-                The image was not showing,
-                To fix this I used code from the following source:
-                "https://stackoverflow.com/questions/43896410/parallax-from-materialize-no-showing-image/43963949"
-            -->
-                <img src="https://i.redd.it/p1ed58yua3h51.png"
-                style="transform: translate3d(-50%, 432.451px, 0px);opacity: 1;">
+                <img src="https://wallpapercave.com/wp/wp6810014.jpg" alt="Synthwave theme parallax background image">
+            </div>
+        </div>
+
+        <!-- About Us -->
+        <div class="section" id="aboutUs">
+            <div class="row container white-text">
+                <div class="col s12 m6 offset-m3 center-align">
+                    <h3>About Us</h3>
+                </div>
+                <div class="col s12 m6 offset-m3">
+                    <div class="divider"></div>
+                </div>
+            </div>
+            <div class="row container white-text">
+                <div class="col s12 m6 offset-m3 center-align">
+                    <p>
+                        We are committed to provide you with a gaming, community-based platform that is free, honest and unique. At <span>my
+                            Next Game</span> we value people and honesty, meaning all of our reviews are free from commercial bias;
+                        written by people for people. Register an account with us and join the community so that you too can review and like
+                        games, build your own 'gaming playlist' and connect to other users in the community.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="parallax-container" id="homeParallax-img2">
+            <div class="parallax">
+                <img src="https://i.redd.it/p1ed58yua3h51.png" alt="Synthwave theme parallax background image">
             </div>
         </div>
 
         <!-- Games List -->
-        <div class="section list-of-games" style="padding-top: 50px;">
+        <div class="section list-of-games">
             <div class="row py-5">
                 <!-- Best Sellers -->
                 <div class="col s12 m12 l4 offset-l1">
