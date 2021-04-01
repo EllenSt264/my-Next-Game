@@ -11,9 +11,22 @@
 
 - [Manual Testing](#manual-testing)
 
-    - [Navigation - Navbar (Desktop)](#navigation---navbar-(desktop))
+    - [Navigation - Navbar (Desktop)](#navigation---navbar-desktop)
 
-    - [Navigation - Navbar (Mobile)](#navigation---navbar-(mobile))
+    - [Navigation - Navbar (Mobile)](#navigation---navbar-mobile)
+
+    - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
+
+    - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
+
+    - [Navigation - Games Page Secondary Navbar (Desktop)](#navigation---games-page-secondary-navbar-desktop)
+
+    - [Navigation - Games Page Secondary Navbar (Mobile)](#navigation---games-page-secondary-navbar-mobile)
+
+    - [Navigation - Other (Desktop)](#navigation---other-desktop)
+
+    - [Navigation - Other (Mobile)](#navigation---other-mobile)
+
 
 
 -----
@@ -265,3 +278,77 @@
 |  12  | Navigate to `Homepage` | When on any page other than the Homepage, click the `Site Brand Logo` in the navbar | The site will navigate to the `Homepage` | Navigates to `Homepage` | Pass |
 |  13  | Navigate to `Profile` page | When logged into an account, click the `Profile` navlink within the `Profile sidenav` | The site will navigate to the session user's `Profile` page | Navigates to the session user's `Profile` page | Pass |
 |  14  | Logout | When logged into an account, click the `Logout` navlink within the `Profile sidenav` | The user will be `logged out` and directed to the `Login` page. A `flash message` should say 'You have been logged out' | The user is `logged out` and then directed to the `Login` page. The `flash message` says 'You have been logged out'  | Pass |
+
+
+### Navigation - Profile (Desktop)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Navigate to `Profile - Reviews` page | When on the `Profile` page, click the `Reviews` button in the sidenav - to the right | It should direct to the `Profile - Reviews` page | Directs to `Profile - Reviews` page | Pass |
+|  2  | Navigate to `Profile - Games` page (default page for the Profile) | While still on the `Profile - Reviews` page, click the `Games` button in the sidenav | Direct to the `Profile - Games` page (the default page whenever the `Profile` navlink is clicked) | Directs to `Profile - Games` page | Pass |  
+|  3  | Navigate to `Edit Profile` page | When on the `Profile` page, click the `Edit Profile` button in the sidenav | Direct to `Edit Profile` page | Directs to `Edit Profile` page | Pass |  
+|  4  | Navigate to `Edit Profile - Avatar` page | While still on the `Edit Profile` page, click the `Avatar` button in the sidenav | It should direct to `Edit Profile - Avatar` page | Directs to `Edit Profile - Avatar` page | Pass |  
+|  5  | Navigate to `Edit Profile - General` page (default page for Edit Profile) | While still on the `Edit Profile - Avatar` page, click the `General` button in the sidenav | It should direct to `Edit Profile - General` page (default page for Edit Profile) | Directs to `Edit Profile - General` page | Pass |
+|  6  | Navigate to `Edit Profile - General` page (2) | While on the `Edit Profile - Avatar` page, click the `Edit Profile` link heading at the top of the card | It should direct to `Edit Profile - General` page | Directs to `Edit Profile - General` page | Pass |
+|  7  | Navigate back to `Profile` page | While on any of the `Edit Profile` pages, click the `username` link heading at the top of the card | It should direct back to the `Profile - Games` page | Directs to `Profile - Games` page | Pass |   
+
+
+### Navigation - Profile (Mobile)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Navigate to `Profile - Reviews` page | When on the `Profile` page, click the `Reviews` button | It should direct to the `Profile - Reviews` page | Directs to `Profile - Reviews` page | Pass |
+|  2  | Navigate to `Profile - Games` page (default page for the Profile) | While still on the `Profile - Reviews` page, click the `Games` button | Direct to the `Profile - Games` page (the default page whenever the `Profile` navlink is clicked) | Directs to `Profile - Games` page | Pass |  
+|  3  | Navigate to `Edit Profile` page | When on the `Profile` page, click the `Edit Profile` button | Direct to `Edit Profile` page | Directs to `Edit Profile` page | Pass |  
+|  4  | Navigate to `Edit Profile - Avatar` page | While still on the `Edit Profile` page, click the `Avatar` button | It should direct to `Edit Profile - Avatar` page | Directs to `Edit Profile - Avatar` page | Pass |  
+|  5  | Navigate to `Edit Profile - General` page (default page for Edit Profile) | While still on the `Edit Profile - Avatar` page, click the `General` button | It should direct to `Edit Profile - General` page (default page for Edit Profile) | Directs to `Edit Profile - General` page | Pass |
+|  6  | Navigate to `Edit Profile - General` page (2) | While on the `Edit Profile - Avatar` page, click the `Edit Profile` link heading at the top of the card | It should direct to `Edit Profile - General` page | Directs to `Edit Profile - General` page | Pass |
+|  7  | Navigate back to `Profile` page | While on any of the `Edit Profile` pages, click the `username` link heading at the top of the card | It should direct back to the `Profile - Games` page | Directs to `Profile - Games` page | Pass |
+|  8  | Navigate back to `Profile` page (2) | While on any of the `Edit Profile` pages, click the `Back to Profile` link below the heading | It should direct back to the `Profile - Games` page | Directs to `Profile - Games` page | Pass |      
+
+
+### Navigation - Games Page Secondary Navbar (Desktop)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Navigate to `Favourites` page | Click the `Genre` navlink in the navbar to navigate to the `Games` page, displaying **all games** in the database. Once there, click the `Our Favourites` navlink in the `secondary navbar` | It should direct to the `Favourites` page | Directs to `Favourites` page | Pass |
+|  2  | Show Genre tags | Click the `Genre` link in the `secondary navbar` | It should display all of the genre links (`Action`, `Adventure`, `RPG`, `Strategy` and `Multiplayer`) and the `Genre` link should no longer be visible | Displays all genre links. The `Genre` link itself is no longer visible | Pass |
+|  3  | Show Platform tags | Click the `Platform` link in the `secondary navbar` | It should display all of the platform links (`PC`, `XBOX` and `Playstation`) and the `Platform` link should no longer be visible | Displays all platform links. The `Platform` link itself is no longer visible | Pass |
+|  4  | Navigate to a user's `Profile - Game List` | When `logged in`, click the `Your List` navlink in the `secondary navbar` | It should direct to the user to their `Profile - Game List` | Directs to the user to their `Profile - Game List` | Pass |
+|  5  | Search for a game title using the `searchbar` in the `secondary navbar` | Input 'Red' into the `searchbar` and hit enter | The page should display two game results: 'Red Dead Online' and 'Red Dead Redemption 2' | After searching for 'red', the page displays the two game results containing that name: 'Red Dead Online' and 'Red Dead Redemption 2' | Pass |
+|  6  | Display all games in the database | Hover over the `Genre` dropdown menu (navlink) and click on the `Action` navlink in the navbar to navigate to the `Games - Action` page. Click on the `All Games` link in the `secondary navbar` once there | After the clicking the link, all games should be displayed on the page | Before clicking the link there were 12 pages, containing games that had the 'Action' tag and/or were primarily categorised as 'Action' (for more information on how the data is handled, see [here]()). After clicking `All Games`, there were 18 pages, containing all games within the database | Pass |
+
+
+### Navigation - Games Page Secondary Navbar (Mobile)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Navigate to `Favourites` page | Click the `Genre` navlink in the main `sidenav` to navigate to the `Games` page, displaying **all games** in the database. Once there, click on the `hamburger icon` in the `secondary navbar`. Then click the `Our Favourites` navlink in the `secondary navbar sidenav` | It should direct the user to the `Favourites` page | Directs the user to `Favourites` page | Pass |
+|  2  | Navigate to a user's `Profile - Game List` | When `logged in`, click the `Your List` navlink in the `secondary navbar sidenav` | It should direct to the user to their `Profile - Game List` | Directs to the user to their `Profile - Game List` | Pass |
+|  5  | Search for a game title using the `searchbar` in the `secondary navbar` | Input 'Red' into the `searchbar` and hit enter | The page should display two game results: 'Red Dead Online' and 'Red Dead Redemption 2' | After searching for 'red', the page displays the two game results containing that name: 'Red Dead Online' and 'Red Dead Redemption 2' | Pass |
+|  6  | Display all games in the database | Hover over the `Genre` dropdown menu (navlink) and click on the `Action` navlink in the navbar to navigate to the `Games - Action` page. Click on the `All Games` link in the `secondary navbar` once there | After the clicking the link, all games should be displayed on the page | Before clicking the link there were 12 pages, containing games that had the 'Action' tag and/or were primarily categorised as 'Action' (for more information on how the data is handled, see [here]()). After clicking `All Games`, there were 18 pages, containing all games within the database | Pass |
+
+
+### Navigation - Other (Desktop)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Navigate to `Favourites` page | When on the `Homepage`, click the `Explore Our Favourites` button | It should direct to the `Favourites` page | Directs to `Favourites` page | Pass |
+|  2  | Navigate to `Favourites` page | When on any of the `Game` pages, click the `Our Favourites` navlink in the `secondary navbar` | It should direct to the `Favourites` page | Directs to `Favourites` page | Pass |
+|  3  | Navigate to `Submit Review` page | When on the`Community Reviews` page, click the `Leave a Review` button | It should direct to the `Submit Review` page | Directs to `Submit Review` page | Pass |
+|  4  | Navigate to `Submit Review` page from the `Profile` page | When on the session user's`Profile` page, find a game within any section of the `Games List` (if none have been added then see [here]() to add some) that has not yet been reviewed by the user. Click the `Review` button beside it | Should direct the user to the `Submit Review` page and the game title should **already be filled in** with the game from the user's `Game List` | Directs to the `Submit Review` page. The correct game title for the *game title*  `input field` is already filled in | Pass |
+|  5  | Navigate to `Edit Review` page from the `Profile` page | When on the session user's`Profile` page, find a game within any section of the `Games List` (if none have been added then see [here]() to add some) that **have** been reviewed by the user. If no reviews have been made yet, then see [here]() to submit one. Click the `pen icon` inside the `Reviewed` button | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
+|  5  | Navigate to `Edit Review` page from the `Profile - Reviews` page | When on the session user's`Profile - Reviews` page, find any review within the list (no reviews have been made yet, then see [here]() to submit one). Click the `Edit` button inside the review card | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
+
+
+### Navigation - Other (Mobile)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Navigate to `Favourites` page | When on the `Homepage`, click the `Explore Our Favourites` button | It should direct to the `Favourites` page | Directs to `Favourites` page | Pass |
+|  2  | Navigate to `Favourites` page | When on any of the `Game` pages, click the `hamburger icon` in th the `secondary navbar`, then click the `Our Favourites` navlink in the `sidenav` | It should direct to the `Favourites` page | Directs to `Favourites` page | Pass |
+|  3  | Navigate to `Submit Review` page | When on the`Community Reviews` page, click the `Leave a Review` button | It should direct to the `Submit Review` page | Directs to `Submit Review` page | Pass |
+|  4  | Navigate to `Submit Review` page from the `Profile` page | When on the session user's`Profile` page, find a game within any section of the `Games List` (if none have been added then see [here]() to add some) that has not yet been reviewed by the user. Click the `Review` button beside it | Should direct the user to the `Submit Review` page and the game title should **already be filled in** with the game from the user's `Game List` | Directs to the `Submit Review` page. The correct game title for the *game title*  `input field` is already filled in | Pass |
+|  5  | Navigate to `Edit Review` page from the `Profile` page | When on the session user's`Profile` page, find a game within any section of the `Games List` (if none have been added then see [here]() to add some) that **have** been reviewed by the user. If no reviews have been made yet, then see [here]() to submit one. Click the `pen icon` inside the `Reviewed` button | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
+|  6  | Navigate to `Edit Review` page from the `Profile - Reviews` page | When on the session user's`Profile - Reviews` page, find any review within the list (no reviews have been made yet, then see [here]() to submit one). Click the `Edit` button inside the review card | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
+
