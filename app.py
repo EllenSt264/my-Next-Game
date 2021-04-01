@@ -101,8 +101,22 @@ def search():
     games = mongo.db.all_pc_games.find(
         {"$text": {"$search": query}})
 
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = games.count()
+    pagination_games = games[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
     return render_template(
-        "games-search_results.html", games=games)
+        "games-search_results.html", games=pagination_games,
+        pagination=pagination)
 
 
 @app.route("/community-reviews/search", methods=["GET", "POST"])
@@ -113,7 +127,22 @@ def search_reviews():
     reviews = mongo.db.user_reviews.find(
         {"$text": {"$search": query}})
 
-    return render_template("games-reviews.html", game_reviews=reviews)
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = reviews.count()
+    pagination_game_reviews = reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "games-reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
 
 
 # ===================
