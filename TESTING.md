@@ -11,22 +11,33 @@
 
 - [Manual Testing](#manual-testing)
 
-    - [Navigation - Navbar (Desktop)](#navigation---navbar-desktop)
+    - [Navigation](#navigation)
 
-    - [Navigation - Navbar (Mobile)](#navigation---navbar-mobile)
+        - [Navigation - Navbar (Desktop)](#navigation---navbar-desktop)
 
-    - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
+        - [Navigation - Navbar (Mobile)](#navigation---navbar-mobile)
 
-    - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
+        - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
 
-    - [Navigation - Games Page Secondary Navbar (Desktop)](#navigation---games-page-secondary-navbar-desktop)
+        - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
 
-    - [Navigation - Games Page Secondary Navbar (Mobile)](#navigation---games-page-secondary-navbar-mobile)
+        - [Navigation - Games Page Secondary Navbar (Desktop)](#navigation---games-page-secondary-navbar-desktop)
 
-    - [Navigation - Other (Desktop)](#navigation---other-desktop)
+        - [Navigation - Games Page Secondary Navbar (Mobile)](#navigation---games-page-secondary-navbar-mobile)
 
-    - [Navigation - Other (Mobile)](#navigation---other-mobile)
+        - [Navigation - Other (Desktop)](#navigation---other-desktop)
 
+        - [Navigation - Other (Mobile)](#navigation---other-mobile)
+
+    - [C-R-U-D](#c--r--u--d)
+
+        - [Game Pages](#game-pages)
+
+        - [Profile - Games List](#profile---games-list)
+
+        - [Edit Profile](#edit-profile)
+
+        - [Edit Avatar](#edit-avatar)
 
 
 -----
@@ -238,7 +249,10 @@
 ## Manual Testing
 
 
-### Navigation - Navbar (Desktop)
+### Navigation
+
+
+#### Navigation - Navbar (Desktop)
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
@@ -260,7 +274,7 @@
 |  16  | Navigate to `Homepage` | When on any page other than the Homepage, click the `Site Brand Logo` in the navbar | The site will navigate to the `Homepage` | Navigates to `Homepage` | Pass |
 
 
-### Navigation - Navbar (Mobile)
+#### Navigation - Navbar (Mobile)
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
@@ -280,7 +294,7 @@
 |  14  | Logout | When logged into an account, click the `Logout` navlink within the `Profile sidenav` | The user will be `logged out` and directed to the `Login` page. A `flash message` should say 'You have been logged out' | The user is `logged out` and then directed to the `Login` page. The `flash message` says 'You have been logged out'  | Pass |
 
 
-### Navigation - Profile (Desktop)
+#### Navigation - Profile (Desktop)
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
@@ -293,7 +307,7 @@
 |  7  | Navigate back to `Profile` page | While on any of the `Edit Profile` pages, click the `username` link heading at the top of the card | It should direct back to the `Profile - Games` page | Directs to `Profile - Games` page | Pass |   
 
 
-### Navigation - Profile (Mobile)
+#### Navigation - Profile (Mobile)
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
@@ -307,7 +321,7 @@
 |  8  | Navigate back to `Profile` page (2) | While on any of the `Edit Profile` pages, click the `Back to Profile` link below the heading | It should direct back to the `Profile - Games` page | Directs to `Profile - Games` page | Pass |      
 
 
-### Navigation - Games Page Secondary Navbar (Desktop)
+#### Navigation - Games Page Secondary Navbar (Desktop)
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
@@ -319,7 +333,7 @@
 |  6  | Display all games in the database | Hover over the `Genre` dropdown menu (navlink) and click on the `Action` navlink in the navbar to navigate to the `Games - Action` page. Click on the `All Games` link in the `secondary navbar` once there | After the clicking the link, all games should be displayed on the page | Before clicking the link there were 12 pages, containing games that had the 'Action' tag and/or were primarily categorised as 'Action' (for more information on how the data is handled, see [here]()). After clicking `All Games`, there were 18 pages, containing all games within the database | Pass |
 
 
-### Navigation - Games Page Secondary Navbar (Mobile)
+#### Navigation - Games Page Secondary Navbar (Mobile)
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
@@ -329,7 +343,7 @@
 |  6  | Display all games in the database | Hover over the `Genre` dropdown menu (navlink) and click on the `Action` navlink in the navbar to navigate to the `Games - Action` page. Click on the `All Games` link in the `secondary navbar` once there | After the clicking the link, all games should be displayed on the page | Before clicking the link there were 12 pages, containing games that had the 'Action' tag and/or were primarily categorised as 'Action' (for more information on how the data is handled, see [here]()). After clicking `All Games`, there were 18 pages, containing all games within the database | Pass |
 
 
-### Navigation - Other (Desktop)
+#### Navigation - Other (Desktop)
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
@@ -341,7 +355,7 @@
 |  5  | Navigate to `Edit Review` page from the `Profile - Reviews` page | When on the session user's`Profile - Reviews` page, find any review within the list (no reviews have been made yet, then see [here]() to submit one). Click the `Edit` button inside the review card | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
 
 
-### Navigation - Other (Mobile)
+#### Navigation - Other (Mobile)
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
@@ -352,3 +366,41 @@
 |  5  | Navigate to `Edit Review` page from the `Profile` page | When on the session user's`Profile` page, find a game within any section of the `Games List` (if none have been added then see [here]() to add some) that **have** been reviewed by the user. If no reviews have been made yet, then see [here]() to submit one. Click the `pen icon` inside the `Reviewed` button | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
 |  6  | Navigate to `Edit Review` page from the `Profile - Reviews` page | When on the session user's`Profile - Reviews` page, find any review within the list (no reviews have been made yet, then see [here]() to submit one). Click the `Edit` button inside the review card | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
 
+
+------
+
+### C-R-U-D
+
+
+#### Game Pages
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | `Like` a game when **not** signed in | Click any game card's `like button` on the `Games` page. Ensure you are **not** logged in | A `tooltip` should trigger, and no like should be added | Once clicking on the `like button` a `tooltip` is triggered above it, saying 'Please sign in or register an account with us to leave likes on games' | Pass |
+|  2  | **Sign in** and `Like` a game | Click any game card's `like button` on the `Games` page. Ensure you **are** logged in and like a game that you **have not** liked before | Your like should be added to the database and a `flash message` should appear notifying you that your like was successful. The `like count` on the game card should increment by 1 | After clicking the `like button` a `flash message` appears, saying 'Liked added!'. The `like count` is incremented by 1 | Pass |
+|  3  | `Add a game` to a user's `Game List` | When logged in, click any game card's floating `add button` on the `Games` page. Click on a game that **does not** already exisit in your `Games List` | A `flash message` should notify you that your action was successful and the game should be added to the 'Play Later' section of your `Games List`. Visit the `Profile` page to check | A `flash message` says 'Game Successfully Added to List' and the game is added to the 'Play Later' section of the `Games List` | Pass | The floating `add button` does **not** show when a user is **not** logged in, as intended |
+|  4  | `Add a game` to a user's `Game List` that **already exisits** | When logged in, click a game card's floating `add button` on the `Games` page. Ensure that the game you pick **already exisits** in your `Games List` | A `flash message` should notify you that your action was **not** successful because the game already exisits in your `Games List`. If you were to go on the `Profile - Games List` page, only **one copy** of the game should be present | A `flash message` says 'You've Already Added This Game'. The game was **not** added again to the `Games List` | Pass | The floating `add button` is **only** visible when a user **is** logged in, as intended |
+|  5  | Do everything above but on a mobile device | n/a | n/a | n/a | Pass |
+
+
+#### Profile - Games List
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | `Move` a game to the 'Currently Playing' section of the `Games List` | Ensure there are multiple games within the `Profile - Game List` to work with. From either the 'Play Later' section or the 'Completed' section, click the `playing` button next to a game | The game should move to the 'Currently Playing' section and a flash message should notify you that your action was succesful | Game moved to the 'Currently Playing' section once the `playing` button was clicked. The `flash message` said 'Game Successfully Moved to Playing' | Pass |
+|  2  | `Move` a game to the 'Play Later' section of the `Games List` | Ensure there are multiple games within the `Profile - Game List` to work with. From either the 'Playing' section or the 'Completed' section, click the `play later` button next to a game | The game should move to the 'Play Later' section and a flash message should notify you that your action was succesful | Game moved to the 'Play Later' section once the `play later` button was clicked. The `flash message` said 'Game Successfully Moved to Play Later' | Pass |
+|  3  | `Move` a game to the 'Completed' section of the `Games List` | Ensure there are multiple games within the `Profile - Game List` to work with. From either the 'Playing' section or the 'Play Later' section, click the `completed` button next to a game | The game should move to the 'Completed' section and a flash message should notify you that your action was succesful | Game moved to the 'Completed' section once the `completed` button was clicked. The `flash message` said 'Game Successfully Moved to Completed' | Pass |
+|  4  | `Remove` a game from the `Games List` - trigger `modal` | Click on the `remove game` button next to a game | A `modal` should trigger asking you to check if want to remove the game | The `modal` trigger once the button is clicked | Pass |
+|  5  |`Remove` a game from the `Games List` - cancel | Click on the `remove game` to trigger the `modal` then click the `cancel` button | The `modal` should close, and the game should still be in the `Games List`. No game should be deleted | The `modal` closes and the game is still there - no game has been removed from the `Games List` | Pass |
+|  6  | `Remove` a game from the `Games List` | Click on the `remove game` to trigger the `modal` then click the `yes, delete` button | The `modal` should close, having removed the game from the `Games List`. A `flash message` should notify you that your action was successful | After clicking `yes, delete` in the `modal`, the `modal` closes and a `flash message` says 'Game Successfully Removed from Your List'. The game has been **removed** from the `Games List` | Pass |
+
+
+#### Edit Profile
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Update `Display Name` - cancel | On the `Edit Profile - General` page, click on the `edit` button beside the `display name input field` and create a display name for your user. Click `cancel` once done | All `input fields` should refresh | Upon clicking `cancel` all `input fields` refresh | Pass | This works correctly for each `input field` on this page |
+|  2  | Update `Display Name` - verification | On the `Edit Profile - General` page, click on the `edit` button beside the `display name input field` and create a display name for your user. Click `save changes` once done | Clicking `save changes` should trigger a `modal`, asking for you to input your `password` in order to update your account details | Clicking `save changes` triggers the `modal` which asks for `password verification` | Pass |
+|  3  | Update `Display Name` | On the `modal`, enter the user's password and click `save changes` | The `Display Name` should be updated and a flash message should notify you that your actions were successful | The `Display Name` successfully update and the `flash message` was trigger, saying 'Profile Setting Successfully Updated' | Pass |
+|  4  | Trying the same thing with differerent `input fields` produced the same result and worked as intended | n/a | n/a | n/a | Pass |
+|  5  | Update `avatar` | Navigate to `Edit Profile - Avatar` and click on any avatar image below the 'Available Avatars' heading | Your `avatar` should be updated and a `flash message` should notify you that the action was successful | The `avatar` image updates and the `flash message` states 'Avatar Successfully Updated' | Pass |
