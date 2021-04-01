@@ -722,16 +722,16 @@ def game_to_playing(game_id):
         "profile_games", username=session["user"], game=game))
 
 
-# ==============================
-# Profile - Move to Next In Line
-# ==============================
+# ============================
+# Profile - Move to Play Later
+# ============================
 
 @app.route("/play-next/<game_id>", methods=["GET", "POST"])
 def game_to_next(game_id):
     if request.method == "POST":
         update = {"$set": {"stage": "next"}}
         mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
-        flash("Game Successfully Moved to Next In Line")
+        flash("Game Successfully Moved to Play Later")
 
     game = mongo.db.user_games.find_one({"_id": str(ObjectId(game_id))})
     return redirect(url_for(
