@@ -105,6 +105,12 @@ The following code is based upon this source:
     color: #00e5ff;
 }
 
+li.mobile-sidenav-genreLink {
+    padding-left: 0;
+    font-size: 18px;
+    border-bottom: 0;
+}
+
 /* ---------------------------------------------- Hamburger Icon */
 
 /*

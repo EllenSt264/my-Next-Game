@@ -105,8 +105,17 @@
 
         <!-- Mobile side-navbar -->
         <ul class="my-sidenav" id="mobile-nav">
-            <li><a href="{{ url_for('games') }}">Platform</a></li>
-            <li><a href="{{ url_for('games') }}">Genre</a></li>
+            <li><a href="{{ url_for('pc_games') }}">Platform</a></li>
+            <li>
+                <a href="{{ url_for('pc_games') }}">Genre</a>
+                <ul>
+                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('action_games') }}">Action</a></li>
+                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
+                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('RPG_games') }}">RPG</a></li>
+                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
+                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
+                </ul>
+            </li>
             <li><a href="{{ url_for('reviews') }}">Community Reviews</a></li>
             {% if session.user and session.admin %}
                 <li><a href="#">Admin Controls</a></li>
