@@ -24,7 +24,7 @@
                 <div class="nav-wrapper">
                     <!-- Navbar logo -->
                     <a href="{{ url_for('home') }}" class="brand-logo center">
-                        <img src="{{ url_for('static', filename='img/main/odin_logo.png') }}" alt="Website/navbar brand logo">
+                        <img src="{{ url_for('static', filename='img/main/odin_logo.png') }}" alt="Website/navbar brand logo" loading="lazy">
                     </a>
 
                     {% if session.user %}
@@ -136,7 +136,7 @@
             <div class="col s12 ">
                 <video class="hero-vid" autoplay muted loop>
                     <source src="{{ url_for('static', filename='video/synthwave.mp4') }}" type="video/mp4"
-                    alt="Synthwave theme parallax background video">
+                    alt="Synthwave theme parallax background video" loading="lazy">
                 </video>
             </div>
         </section>
@@ -160,7 +160,7 @@
         <!-- Parallax image -->
         <div class="parallax-container" id="homeParallax-img1">
             <div class="parallax">
-                <img src="{{ url_for('static', filename='img/main/parallax-bg_img2.jpg') }}" alt="Synthwave theme parallax background image">
+                <img src="{{ url_for('static', filename='img/main/parallax-bg_img2.jpg') }}" alt="Synthwave theme parallax background image" loading="lazy">
             </div>
         </div>
 
@@ -188,7 +188,7 @@
 
         <div class="parallax-container" id="homeParallax-img2">
             <div class="parallax">
-                <img src="{{ url_for('static', filename='img/main/parallax-bg_img1.png') }}" alt="Synthwave theme parallax background image">
+                <img src="{{ url_for('static', filename='img/main/parallax-bg_img1.png') }}" alt="Synthwave theme parallax background image" loading="lazy">
             </div>
         </div>
 
