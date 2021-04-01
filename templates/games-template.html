@@ -97,7 +97,7 @@
             <li><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
             <li><a href="{{ url_for('pc_games') }}">Award Winners</a></li>
             <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
-            <li><a href="{{ url_for('pc_games') }}">Your List</a></li>
+            <li><a href="{{ url_for('profile_games', username=session['user']) }}">Your List</a></li>
         </ul>
     </section>
 
