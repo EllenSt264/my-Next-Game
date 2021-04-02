@@ -191,11 +191,31 @@ def pc_games():
     elif navSelect1 == "title" and navSelect2 == "asc":
         pagination_pc_games.sort("game_title", pymongo.ASCENDING)
 
+    # Sort by bestseller
+    elif navSelect1 == "bestseller" and navSelect2 == "desc":
+        pagination_pc_games.sort("bestseller", pymongo.DESCENDING)
+
+    elif navSelect1 == "bestseller" and navSelect2 == "asc":
+        pagination_pc_games.sort("bestseller", pymongo.ASCENDING)
+
+    # Sort by awardwinner
+    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
+        pagination_pc_games.sort("awardwinner", pymongo.DESCENDING)
+
+    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
+        pagination_pc_games.sort("awardwinner", pymongo.ASCENDING)
+
+    # Sort by favourite
+    elif navSelect1 == "favourite" and navSelect2 == "desc":
+        pagination_pc_games.sort("favourite", pymongo.DESCENDING)
+
+    elif navSelect1 == "favourite" and navSelect2 == "asc":
+        pagination_pc_games.sort("favourite", pymongo.ASCENDING)
+
     return render_template(
         "games-pc.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1,
-        navSelect2=navSelect2)
+        navSelect1=navSelect1, navSelect2=navSelect2)
 
 
 # ===================
