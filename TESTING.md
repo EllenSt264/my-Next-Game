@@ -83,7 +83,7 @@
 
 4. I want to be able to use a sort feature so that I only see the results I want.
 
-![Mockup Image - Homepage](static/img/documentation/screenshot-sort.png) 
+![Mockup Image - Homepage](static/img/documentation/screenshot-sort_filter.png) 
 
 ![Mockup Image - Games Page](static/img/documentation/screenshot-secondary_navbar_short.png)
 
