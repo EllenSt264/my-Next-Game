@@ -120,17 +120,12 @@
                     <ul class="tabs tabs-transparent" id="sortNav-label">
                         <li class="tab" id="nav1">
                             <a>
-                                <label for="navSelect1">Time</label>
+                                <label for="navSelect1">Sort By</label>
                             </a>
                         </li>
                         <li class="tab" id="nav2">
                             <a>
-                                <label for="navSelect2">Sort By</label>
-                            </a>
-                        </li>
-                        <li class="tab" id="nav3">
-                            <a>
-                                <label for="navSelect3">Order</label>
+                                <label for="navSelect2">Order</label>
                             </a>
                         </li>
                     </ul>
@@ -139,32 +134,22 @@
                         <ul class="tabs tabs-transparent" id="sortNav">
                             <li class="tab">
                                 <a>
-                                    <select class="browser-default" class="browser-default" name="navSelect1" id="navSelect1" value="{{ navSelect1 }}">
-                                        <option value="24"{% if navSelect1=="24" %} selected="selected" {% endif %}>24hrs</option>
-                                        <option value="7"{% if navSelect1=="7" %} selected="selected" {% endif %}>7 days</option>
-                                        <option value="30"{% if navSelect1=="30" %} selected="selected" {% endif %}>30 days</option>
-                                        <option value="all-time"{% if navSelect1=="all-time" %} selected="selected" {% endif %}>All Time</option>
+                                    <select class="browser-default" name="navSelect1" id="navSelect1" value="{{ navSelect1 }}">
+                                        <option value="date-added"{% if navSelect1=="date-added" %} selected="selected" {% endif %}>Date Added</option>
+                                        <option value="likes"{% if navSelect1=="likes" %} selected="selected" {% endif %}>Likes</option>
+                                        <option value="playing"{% if navSelect1=="playing" %} selected="selected" {% endif %}>Playing</option>
+                                        <option value="reviews"{% if navSelect1=="reviews" %} selected="selected" {% endif %}>Review Count</option>
+                                        <option value="title"{% if navSelect1=="title" %} selected="selected" {% endif %}>Title</option>
+                                        <option value="bestseller"{% if navSelect1=="bestseller" %} selected="selected" {% endif %}>Bestseller</option>
+                                        <option value="awardwinner"{% if navSelect1=="awardwinner" %} selected="selected" {% endif %}>Award Winner</option>
                                     </select>
                                 </a>
                             </li>
                             <li class="tab">
                                 <a>
-                                    <select class="browser-default" name="navSelect2" id="navSelect2" value="{{ navSelect2 }}">
-                                        <option value="date-added"{% if navSelect2=="date-added" %} selected="selected" {% endif %}>Date Added</option>
-                                        <option value="likes"{% if navSelect2=="likes" %} selected="selected" {% endif %}>Likes</option>
-                                        <option value="playing"{% if navSelect2=="playing" %} selected="selected" {% endif %}>Playing</option>
-                                        <option value="reviews"{% if navSelect2=="reviews" %} selected="selected" {% endif %}>Review Count</option>
-                                        <option value="title"{% if navSelect2=="title" %} selected="selected" {% endif %}>Title</option>
-                                        <option value="bestseller"{% if navSelect2=="bestseller" %} selected="selected" {% endif %}>Bestseller</option>
-                                        <option value="awardwinner"{% if navSelect2=="awardwinner" %} selected="selected" {% endif %}>Award Winner</option>
-                                    </select>
-                                </a>
-                            </li>
-                            <li class="tab">
-                                <a>
-                                    <select class="browser-default" name="navSelect3" id="navSelect3"  value="{{ navSelect3 }}">
-                                        <option value="asc"{% if navSelect3=="asc" %} selected="selected" {% endif %}>Asc</option>
-                                        <option value="desc"{% if navSelect3=="desc" %} selected="selected" {% endif %}>Desc</option>
+                                    <select class="browser-default" name="navSelect2" id="navSelect2"  value="{{ navSelect2 }}">
+                                        <option value="asc"{% if navSelect2=="asc" %} selected="selected" {% endif %}>Asc</option>
+                                        <option value="desc"{% if navSelect2=="desc" %} selected="selected" {% endif %}>Desc</option>
                                     </select>
                                 </a>
                             </li>
