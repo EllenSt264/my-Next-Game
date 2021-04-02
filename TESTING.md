@@ -29,7 +29,7 @@
 
         - [Navigation - Other (Mobile)](#navigation---other-mobile)
 
-    - [C-R-U-D](#c--r--u--d)
+    - [C-R-U-D](#c-r-u-d)
 
         - [Game Pages](#game-pages)
 
@@ -90,6 +90,20 @@
 - The secondary navbar acts a sorting feature, by only displaying game results that match its criteria. For example, clicking the 'Action' button within the Genre Link, will only show games that have the 'Action' game genre tags and/or are primarily categorised as an action game.
 
 - Users can use the searchbar to narrow down their search.
+
+- The sort filter allows users to sort the order of the game results on each page. Users can sort the order of games by:
+
+    - Number of Likes
+
+    - Game Title
+
+    - Recommended Games
+
+    - Bestsellers
+
+    - Award Winners
+
+- For each sort filter, users can chose either an ascending or descending order.
 
 -----
 
@@ -169,7 +183,7 @@
 
 ![Mockup Image - Homepage](static/img/documentation/screenshot-profile-game_list.png) 
 
-- When logged in, a Add Button will be available on each game card for users to click on.
+- When logged in, an Add Button will be available on each game card for users to click on.
 
 - Once clicked, the selected game will be added to their Profile Game List.
 
