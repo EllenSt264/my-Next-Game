@@ -27,7 +27,6 @@
 import os
 import datetime
 import random
-from re import sub
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -149,7 +148,7 @@ def search_reviews():
 # PC Games
 # ===================
 
-@app.route("/pc-games")
+@app.route("/pc-games", methods=["GET", "POST"])
 def pc_games():
     pc_games = mongo.db.all_pc_games.find()
 
@@ -168,9 +167,37 @@ def pc_games():
     # Find site favourites
     favourites = mongo.db.site_favourites.distinct("game_title")
 
+    # Sort filter
+
+    if request.method == "POST":
+        session["navSelect1"] = request.form.get("navSelect1").lower()
+        session["navSelect2"] = request.form.get("navSelect2").lower()
+        session["navSelect3"] = request.form.get("navSelect3").lower()
+
+    navSelect1 = session["navSelect1"]
+    navSelect2 = session["navSelect2"]
+    navSelect3 = session["navSelect3"]
+
+    # Sort by Likes
+
+    if navSelect2 == "likes" and navSelect3 == "desc":
+        pagination_pc_games.sort("likes", pymongo.DESCENDING)
+
+    elif navSelect2 == "likes" and navSelect3 == "asc":
+        pagination_pc_games.sort("likes", pymongo.ASCENDING)
+
+    # Sort by game title
+    elif navSelect2 == "title" and navSelect3 == "desc":
+        pagination_pc_games.sort("game_title", pymongo.DESCENDING)
+
+    elif navSelect2 == "title" and navSelect3 == "asc":
+        pagination_pc_games.sort("game_title", pymongo.ASCENDING)
+
     return render_template(
         "games-pc.html", pc_games=pagination_pc_games,
-        pagination=pagination, favourites=favourites)
+        pagination=pagination, favourites=favourites,
+        navSelect1=navSelect1, navSelect2=navSelect2,
+        navSelect3=navSelect3)
 
 
 # ===================
