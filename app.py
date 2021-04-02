@@ -29,7 +29,7 @@ import datetime
 import random
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, pymongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from bson.json_util import dumps
