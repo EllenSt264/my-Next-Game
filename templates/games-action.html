@@ -16,6 +16,10 @@
     {{ pagination.links }}
 {% endblock %}
 
+{% block sort_filter %}
+    "{{url_for('action_games')}}"
+{% endblock %}
+
 {% block games %}
     <section>
         <div class="row">

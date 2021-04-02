@@ -130,7 +130,8 @@
                         </li>
                     </ul>
                     <!-- Select options -->
-                    <form action="{{ url_for('pc_games') }}" method="POST">
+
+                    <form action={% block sort_filter %}{% endblock %} method="POST">
                         <ul class="tabs tabs-transparent" id="sortNav">
                             <li class="tab">
                                 <a>
