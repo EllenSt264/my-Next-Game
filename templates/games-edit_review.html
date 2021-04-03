@@ -4,9 +4,9 @@
     <div class="row">
         <form class="col s12 m10 offset-m1 l6 offset-l3" method="post" action="{{ url_for('edit_review', game_id=game._id, review=review) }}" id="reviewForm">
             <!-- Outer card -->
-            <div class="card-panel" style="background-color: #5b0bad;">
+            <div class="card-panel form-outer-panel">
                 <!-- Inner card -->
-                <div class="card-panel grey-text text-lighten-2" style="background-color: #30134d;">
+                <div class="card-panel form-inner-panel grey-text text-lighten-2">
                     <!-- Site logo -->
                     <div class="col s12 center-align">
                         <img src="{{ url_for('static', filename='img/main/odin_logo.png')}}" alt="" style="width:100px; height:100px;">
@@ -15,7 +15,7 @@
                     <h3 class="text-lighten-1 account-title py-5 center-align">Submit Your Review</h3>
     
                     <!-- General -->
-                    <div class="card-panel" style="background-color: #622d83;">
+                    <div class="card-panel input-panel">
                         <!-- Game title search -->
                         <div class="row">
                             <div class="input-field ui-widget col s12 m8 offset-m2">
