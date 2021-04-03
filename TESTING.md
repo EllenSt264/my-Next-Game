@@ -40,6 +40,17 @@
         - [Edit Avatar](#edit-avatar)
 
 
+- [Bug Fixes](#bug-fixes)
+
+    - [Review Card Collapsible](#review-card-collapsible)
+
+    - [Admin KeyError](#admin-keyerror)
+
+    - [Materialize Tooltip ](#materialize-tooltip)
+
+    - [Edit Profile - Updating Data](#edit-profile---updating-data)
+
+
 -----
 
 ## Testing User Stories 
@@ -418,3 +429,124 @@
 |  3  | Update `Display Name` | On the `modal`, enter the user's password and click `save changes` | The `Display Name` should be updated and a flash message should notify you that your actions were successful | The `Display Name` successfully update and the `flash message` was trigger, saying 'Profile Setting Successfully Updated' | Pass |
 |  4  | Trying the same thing with differerent `input fields` produced the same result and worked as intended | n/a | n/a | n/a | Pass |
 |  5  | Update `avatar` | Navigate to `Edit Profile - Avatar` and click on any avatar image below the 'Available Avatars' heading | Your `avatar` should be updated and a `flash message` should notify you that the action was successful | The `avatar` image updates and the `flash message` states 'Avatar Successfully Updated' | Pass |
+
+
+
+-----
+
+## Bug Fixes
+
+### Review Card Collapsible
+
+- When making the review cards on the Community Reviews page, I used the Materialize collapsible to store larger content. However, when clicking the collapsible header the following bug occurred:
+
+![Review card collapsible visual bug](static/img/documentation/bug-review_collapsible.gif)]
+
+I narrowed the cause of bug down to how the rows and collumns were handled with Jinja:
+
+```
+<div class="row" id="reviewCards">
+    {% for review in game_reviews %}
+        {% if loop.index0 % 3 == 0 %}
+            <!-- Review card -->
+            <div class="col s12 m6 l4 left-review-card review-card" id="left-review-card">
+                .....
+            </div>
+        {% else %}
+            <!-- Review card -->
+            <div class="col s12 m6 l4 left-review-card review-card" id="left-review-card">
+                .....
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+```
+
+To fix this bug I created a new 'row' div for every third iteration of the loop index. Then, to ensure that the cards were centered as before, I added the 'left-review-card' id variable with Jinja, with help from [this source](https://stackoverflow.com/questions/43858134/how-to-add-conditional-css-class-based-on-python-if-statement)
+
+
+```
+<div class="row" id="reviewCards">
+    {% for review in game_reviews %}
+        {% if loop.index % 3 != 0 %}
+            <!-- Review card -->
+            <div class="col s12 m6 l4 review-card" id="{{ 'left-review-card' if loop.index0 % 3 == 0 }}">
+                .....
+            </div>
+        {% else %}
+            <div class="row">
+                <!-- Review card -->
+                <div class="col s12 m6 l4 review-card">
+                    .....
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+```
+
+
+This is how the collapsible looks after fixing the bug:
+
+![Review card collapsible after fix](static/img/documentation/fix-review_collapsible.gif) 
+
+
+-----
+
+
+### Admin KeyError
+
+- The following code in `app.py` was causing a "KeyError: 'user'" error in the browser when no user was logged into the site:
+
+`admin = mongo.db.user.find_one({"username": session["user"]})["admin"]`
+
+- To fix this, I replaced the admin variable with a new session cookie, which is created upon logging in:
+
+```
+# Create session cookie for admin
+user = mongo.db.users.find_one({
+    "username": request.form.get("username").lower()})
+admin = user["admin"]
+
+if admin is True:
+    session["admin"] = True
+else:
+    session["admin"] = False
+```
+
+The session cookie can be seen in the Network tab of Chrome DevTools:
+
+|  Admin = False  |  Admin = True  |
+| --------------- | -------------- |
+| ![Screenshot of admin session cookie, false](static/img/documentation/screenshot-session_admin-false.png) | ![Screenshot of admin session cookie, true](static/img/documentation/screenshot-session_admin-true.png)
+
+No errors were produced; fixing this issue.
+
+
+-----
+
+### Materialize Tooltip 
+
+- Materialize tooltip was not working due to a conflict between Materialize and JQuery-UI. 
+
+- To fix this I had to build a custom JQuery-UI JS file and JQuery-UI Themes CSS file with [JQuery Download Builder](https://jqueryui.com/download/) and replace the standard CDN link.
+
+
+-----
+
+## Edit Profile - Updating Data
+
+- When attempting to update user data on the Edit Profile page, any fields that were not filled again by the user were updating to `null` rather than keeping their default values.
+
+- This was caused by the 'disabled` attribute in the HTML code. To fix this, I created some custom JS code to remove the disable attribute from the input fields once the 'submit' button is clicked. This allowed me to keep the function of the disabled attribute but prevent any null errors from happening, as the disabled attribute is removed before the database is updated.
+
+```
+$('#saveChanges').on('click', function() {
+    $('#edit-displayName').prop('disabled', false);
+    $('#edit-email').prop('disabled', false);
+    $('#edit-fname').prop('disabled', false);
+    $('#edit-lname').prop('disabled', false);
+});
+```
+
+-----
