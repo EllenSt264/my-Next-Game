@@ -36,6 +36,7 @@ from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from bson.json_util import dumps
 from werkzeug.security import generate_password_hash, check_password_hash
+from scrape_custom_links import custom_games
 if os.path.exists("env.py"):
     import env
 
@@ -144,6 +145,115 @@ def search_reviews():
     return render_template(
         "games-reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
+
+
+# ==========================
+# Admin Controls - Add to DB
+# ==========================
+
+@app.route("/admin/add-to-db", methods=["GET", "POST"])
+def admin_add_to_db():
+    if request.method == "POST":
+        user = mongo.db.users.find_one({"username": session["user"]})
+
+        # Check if passwords match
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirmPassword")
+
+        if password == confirm_password:
+            # Check password
+            if check_password_hash(user["password"], password):
+
+                # Check if game link exisits in admin col
+                existing_link = mongo.db.admin_game_links.find_one(
+                    {"link": request.form.get("game-link")})
+
+                # Grab full game title
+                def get_full_title():
+                    url = request.form.get("game-link")
+                    cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+                    source = requests.get(url, cookies=cookies)
+                    soup = BeautifulSoup(source.text, "html.parser")
+
+                    # ------------------------------ Game title
+                    for item in soup.select(".page_title_area.game_title_area"):
+                        for title in item.select(".apphub_AppName"):
+                            global game_title
+                            game_title = (title.text)
+
+                get_full_title()
+
+                # Check if game already exists in games col
+                existing_game = mongo.db.all_pc_games.find_one(
+                    {"game_title": game_title})
+
+                if existing_link:
+                    flash("Game Already In Waiting List")
+                    return redirect(url_for("admin_add_to_db"))
+
+                if existing_game:
+                    flash("Game Already Exists in Our Database")
+                    return redirect(url_for("admin_add_to_db"))
+
+                # Otherwise add to db
+                game = {
+                    "link": request.form.get("game-link"),
+                    "category": request.form.getlist("category")
+                }
+                mongo.db.admin_game_links.insert_one(game)
+                flash("Succesfully Added Data")
+                return redirect(url_for("admin_add_to_db"))
+            else:
+                flash("Details Invalid")
+                return redirect(url_for("admin_add_to_db"))
+        else:
+            flash("Details Invalid")
+            return redirect(url_for("admin_add_to_db"))
+
+    return render_template("admin-add_game.html")
+
+
+# ==========================
+# Admin Controls - Update DB
+# ==========================
+
+@app.route("/admin/update-db", methods=["GET", "POST"])
+def admin_update_db():
+    if request.method == "POST":
+        user = mongo.db.users.find_one({"username": session["user"]})
+
+        # Check if passwords match
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirmPassword")
+
+        if password == confirm_password:
+            # Check password
+            if check_password_hash(user["password"], password):
+                # Update DB
+                for k, v in custom_games.items():
+                    game = v
+                    title = game["game_title"]
+
+                    existing_game = mongo.db.all_pc_games.find_one(
+                        {"game_title": title})
+
+                    if not existing_game:
+                        mongo.db.all_pc_games.insert_one(game)
+
+                if existing_game:
+                    flash("Database Already Updated")
+                    return redirect(url_for("home"))
+
+                if not existing_game:
+                    flash("Successfully Updated Database")
+                    return redirect(url_for("home"))
+
+            else:
+                flash("Details Invalid")
+        else:
+            flash("Details Invalid")
+
+    return render_template("admin-update_db.html")
 
 
 # ===================
@@ -806,81 +916,6 @@ def like(game_id):
 @app.route("/request-a-game")
 def request_game():
     return render_template("games-request_form.html")
-
-
-# ==========================
-# Admin Controls - Add to DB
-# ==========================
-
-@app.route("/admin/add-to-db", methods=["GET", "POST"])
-def admin_add_to_db():
-    if request.method == "POST":
-        user = mongo.db.users.find_one({"username": session["user"]})
-
-        # Check if passwords match
-        password = request.form.get("password")
-        confirm_password = request.form.get("confirmPassword")
-
-        if password == confirm_password:
-            # Check password
-            if check_password_hash(user["password"], password):
-
-                # Check if game link exisits in admin col
-                existing_link = mongo.db.admin_game_links.find_one(
-                    {"link": request.form.get("game-link")})
-
-                # Grab full game title
-                def get_full_title():
-                    url = request.form.get("game-link")
-                    cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
-                    source = requests.get(url, cookies=cookies)
-                    soup = BeautifulSoup(source.text, "html.parser")
-
-                    # ------------------------------ Game title
-                    for item in soup.select(".page_title_area.game_title_area"):
-                        for title in item.select(".apphub_AppName"):
-                            global game_title
-                            game_title = (title.text)
-
-                get_full_title()
-
-                # Check if game already exists in games col
-                existing_game = mongo.db.all_pc_games.find_one(
-                    {"game_title": game_title})
-
-                if existing_link:
-                    flash("Game Already In Waiting List")
-                    return redirect(url_for("admin_add_to_db"))
-
-                if existing_game:
-                    flash("Game Already Exists in Our Database")
-                    return redirect(url_for("admin_add_to_db"))
-
-                # Otherwise add to db
-                game = {
-                    "link": request.form.get("game-link"),
-                    "category": request.form.getlist("category")
-                }
-                mongo.db.admin_game_links.insert_one(game)
-                flash("Succesfully Added Data")
-                return redirect(url_for("admin_add_to_db"))
-            else:
-                flash("Details Invalid")
-                return redirect(url_for("admin_add_to_db"))
-        else:
-            flash("Details Invalid")
-            return redirect(url_for("admin_add_to_db"))
-
-    return render_template("admin-add_game.html")
-
-
-# ==========================
-# Admin Controls - Update DB
-# ==========================
-
-@app.route("/admin/update-db")
-def admin_update_db():
-    return render_template("admin-update_db.html")
 
 
 # =============================
