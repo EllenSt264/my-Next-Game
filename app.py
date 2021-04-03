@@ -277,7 +277,7 @@ def pc_games():
         css_framework='materialize')
 
     # Find site favourites
-    favourites = mongo.db.site_favourites.distinct("game_title")
+    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
 
     # Sort filter
 
@@ -358,7 +358,7 @@ def action_games():
         css_framework='materialize')
 
     # Find site favourites
-    favourites = mongo.db.site_favourites.distinct("game_title")
+    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
 
     # Sort filter
 
@@ -439,7 +439,7 @@ def adventure_games():
         css_framework='materialize')
 
     # Find site favourites
-    favourites = mongo.db.site_favourites.distinct("game_title")
+    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
 
     # Sort filter
 
@@ -520,7 +520,7 @@ def RPG_games():
         css_framework='materialize')
 
     # Find site favourites
-    favourites = mongo.db.site_favourites.distinct("game_title")
+    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
 
     # Sort filter
 
@@ -601,7 +601,7 @@ def strategy_games():
         css_framework='materialize')
 
     # Find site favourites
-    favourites = mongo.db.site_favourites.distinct("game_title")
+    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
 
     # Sort filter
 
@@ -682,7 +682,7 @@ def multiplayer_games():
         css_framework='materialize')
 
     # Find site favourites
-    favourites = mongo.db.site_favourites.distinct("game_title")
+    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
 
     # Sort filter
 
