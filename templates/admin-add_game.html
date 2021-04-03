@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <div class="row center-align admin-form">
+        <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="{{ url_for('login') }}">
+            <div class="card-panel blue-grey darken-4 grey-text text-lighten-2">
+                <!-- Logo -->
+                <div class="col s12">
+                    <img src="{{ url_for('static', filename='img/main/odin_logo.png') }}" alt="Website brand logo">
+                </div>
+                <!-- Title -->
+                <h3 class="text-lighten-1 account-title py-5">Add Game to DB</h3>
+                <p id="importantNotice">
+                    <strong>Important:</strong> Use <a href="#">Steam Store</a>
+                    Links Only
+                </p>
+                <!-- Game link -->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <input id="game-link" name="game-link" type="url" class="validate" required>
+                        <label for="game-link">Game Page URL</label>
+                    </div>
+                </div>
+                <!-- Game category -->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <select id="category" name="category" multiple required>
+                            <option value="bestseller">Bestseller</option>
+                            <option value="awardwinner">Awardwinner</option>
+                            <option value="favourite" selected>Favourite</option>
+                            <option value="action">Action</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="rpg">RPG</option>
+                            <option value="strategy">Strategy</option>
+                            <option value="multiplayer">Multiplayer</option>
+                        </select>
+                        <label for="category" style="font-size: 15px;">Game Category</label>
+                    </div>
+                </div>
+                <!-- Password -->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <input id="password" name="password" type="password" minlength="6"
+                        maxlength="15" pattern="^[a-zA-Z0-9]{6,15}$" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <!-- Confirm Password -->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <input id="confirmPassword" name="confirmPassword" type="password" minlength="6"
+                        maxlength="15" pattern="^[a-zA-Z0-9]{6,15}$" class="validate" required>
+                        <label for="confirmPassword">Confirm Password</label>
+                    </div>
+                </div>
+                <!-- Log In -->
+                <div class="row">
+                    <button type="submit" class="btn btn-large waves-effect waves-light cyan accent-4"
+                    style="border-radius: 5px;">
+                        Add To Waiting List
+                    </button>
+                </div>
+                <!-- Register -->
+                <div class="row">
+                    <div class="col s12">
+                        <p>
+                            Please review the <a href="#">Terms and Conditions</a> before submission
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

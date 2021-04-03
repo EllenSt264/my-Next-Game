@@ -806,6 +806,15 @@ def request_game():
     return render_template("games-request_form.html")
 
 
+# ==========================
+# Admin Controls - Add to DB
+# ==========================
+
+@app.route("/admin/add-to-db")
+def admin_add_to_db():
+    return render_template("admin-add_game.html")
+
+
 # =============================
 # Add game to Profile Game List
 # =============================

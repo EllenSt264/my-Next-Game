@@ -1350,14 +1350,30 @@ label[for]:hover {
     }
 }
 
-/* ---------------------------------------------- Register page */
+/* ---------------------------------------------- Forms - Global */
 
 .account-title {
     text-transform: uppercase;
 }
 
-.account-form p {
+.account-form p,
+.admin-form p {
     font-size: 18px;
+}
+
+.account-form img,
+.admin-form img {
+    width:100px; 
+    height:100px;
+}
+
+#importantNotice strong {
+    font-family: "BlenderPro-Heavy"; 
+    color: red;
+}
+
+#importantNotice a {
+    text-decoration: underline;
 }
 
 /* ---------------------------------------------- Profile */
@@ -2321,7 +2337,8 @@ label[for]:hover {
 
 @media(min-height: 1090px) {
     .account-form,
-    .request-form {
+    .request-form,
+    .admin-form {
         margin-top: 15vh;
     }
 }

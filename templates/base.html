@@ -59,6 +59,11 @@
                         <li><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
                         <li><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
                     </ul>
+
+                    <!-- Admin Dropdown -->
+                    <ul class="dropdown-content" id="adminDropdown">
+                        <li><a href="{{ url_for('admin_add_to_db') }}">Add to DB</a></li>
+                    </ul>
                 
                     <ul class="left hide-on-med-and-down">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -71,7 +76,7 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('reviews') }}">Community Reviews</a></li>
                         {% if session.user and session.admin != False %}
-                            <li><a href="#">Admin Controls</a></li>
+                            <li><a href="#" class="dropdown-trigger nav-dropdown-trigger" data-target="adminDropdown">Admin Controls</a></li>
                         {% endif %}
                         {% if not session.user %}
                             <li><a href="{{ url_for('login') }}">Log In</a></li>
