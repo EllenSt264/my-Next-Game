@@ -810,8 +810,42 @@ def request_game():
 # Admin Controls - Add to DB
 # ==========================
 
-@app.route("/admin/add-to-db")
+@app.route("/admin/add-to-db", methods=["GET", "POST"])
 def admin_add_to_db():
+    if request.method == "POST":
+        user = mongo.db.users.find_one({"username": session["user"]})
+
+        # Check if passwords match
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirmPassword")
+
+        if password == confirm_password:
+            # Check password
+            if check_password_hash(user["password"], password):
+
+                # Check if game already exisits
+                existing_link = mongo.db.admin_game_links.find_one(
+                    {"link": request.form.get("game-link")})
+
+                if existing_link:
+                    flash("Game Already In Waiting List")
+                    return redirect(url_for("admin_add_to_db"))
+
+                # Otherwise add to db
+                game = {
+                    "link": request.form.get("game-link"),
+                    "category": request.form.getlist("category")
+                }
+                mongo.db.admin_game_links.insert_one(game)
+                flash("Succesfully Added Data")
+                return redirect(url_for("admin_add_to_db"))
+            else:
+                flash("Details Invalid")
+                return redirect(url_for("admin_add_to_db"))
+        else:
+            flash("Details Invalid")
+            return redirect(url_for("admin_add_to_db"))
+
     return render_template("admin-add_game.html")
 
 

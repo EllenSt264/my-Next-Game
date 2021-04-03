@@ -2,7 +2,7 @@
 {% block content %}
     
     <div class="row center-align admin-form">
-        <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="{{ url_for('login') }}">
+        <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="{{ url_for('admin_add_to_db') }}">
             <div class="card-panel blue-grey darken-4 grey-text text-lighten-2">
                 <!-- Logo -->
                 <div class="col s12">
@@ -25,14 +25,18 @@
                 <div class="row">
                     <div class="input-field col s10 offset-s1">
                         <select id="category" name="category" multiple required>
-                            <option value="bestseller">Bestseller</option>
-                            <option value="awardwinner">Awardwinner</option>
-                            <option value="favourite" selected>Favourite</option>
-                            <option value="action">Action</option>
-                            <option value="adventure">Adventure</option>
-                            <option value="rpg">RPG</option>
-                            <option value="strategy">Strategy</option>
-                            <option value="multiplayer">Multiplayer</option>
+                            <optgroup label="Genre">
+                                <option value="action">Action</option>
+                                <option value="adventure">Adventure</option>
+                                <option value="rpg">RPG</option>
+                                <option value="strategy">Strategy</option>
+                                <option value="multiplayer">Multiplayer</option>
+                            </optgroup>
+                            <optgroup label="Other">
+                                <option value="bestseller">Bestseller</option>
+                                <option value="awardwinner">Awardwinner</option>
+                                <option value="favourite">Favourite</option>
+                            </optgroup>
                         </select>
                         <label for="category" style="font-size: 15px;">Game Category</label>
                     </div>
