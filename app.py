@@ -874,6 +874,15 @@ def admin_add_to_db():
     return render_template("admin-add_game.html")
 
 
+# ==========================
+# Admin Controls - Update DB
+# ==========================
+
+@app.route("/admin/update-db")
+def admin_update_db():
+    return render_template("admin-update_db.html")
+
+
 # =============================
 # Add game to Profile Game List
 # =============================
