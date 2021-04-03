@@ -523,6 +523,28 @@ The following code is based upon this source:
     }
 }
 
+/* ---------------------------------------------- Review and Request form */
+
+.form-outer-panel {
+    background-color: #5b0bad;
+}
+
+.form-inner-panel {
+    background-color: #30134d;
+}
+
+.input-panel {
+    background-color: #622d83;
+}
+
+.request-form p {
+    font-size: 16px;
+}
+
+.request-form label {
+    color: white;
+}
+
 /* ---------------------------------------------- Game Cards */
 
 .list-of-games p {
@@ -2298,7 +2320,8 @@ label[for]:hover {
 }
 
 @media(min-height: 1090px) {
-    .account-form {
+    .account-form,
+    .request-form {
         margin-top: 15vh;
     }
 }

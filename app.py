@@ -487,7 +487,7 @@ def strategy_games():
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-    
+
     # Find site favourites
     favourites = mongo.db.site_favourites.distinct("game_title")
 
@@ -568,7 +568,7 @@ def multiplayer_games():
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-    
+
     # Find site favourites
     favourites = mongo.db.site_favourites.distinct("game_title")
 
@@ -795,6 +795,15 @@ def like(game_id):
 
         flash("Liked added!")
         return redirect(request.referrer)
+
+
+# ==============
+# Request A Game
+# ==============
+
+@app.route("/request-a-game")
+def request_game():
+    return render_template("games-request_form.html")
 
 
 # =============================

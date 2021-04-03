@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <div class="row center-align request-form">
+        <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="">
+            <!-- Outer card -->
+            <div class="card-panel form-outer-panel">
+                <!-- Inner card -->
+                <div class="card-panel form-inner-panel grey-text text-lighten-2">
+                    <!-- Site logo -->
+                    <div class="col s12 center-align">
+                        <img src="{{ url_for('static', filename='img/main/odin_logo.png')}}" alt=""
+                            style="width:100px; height:100px;">
+                    </div>
+                    <!-- Form title -->
+                    <h3 class="text-lighten-1 account-title py-5 center-align">Request A Game</h3>
+                    <!-- Info text -->
+                    <p>When you request a game ........</p>
+                    <!-- Input fields -->
+                    <div class="card-panel input-panel">
+                        <!-- Username -->
+                        <div class="row">
+                            <div class="input-field col s10 offset-s1">
+                                <input id="username" name="username" type="text" class="validate" required>
+                                <label for="username">Username</label>
+                            </div>
+                        </div>
+                        <!-- Email -->
+                        <div class="row">
+                            <div class="input-field col s10 offset-s1">
+                                <input id="email" name="email" type="text" class="validate" required>
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <!-- Game -->
+                        <div class="row">
+                            <div class="input-field col s10 offset-s1">
+                                <input id="game-request" name="game-request" type="text" class="validate" required>
+                                <label for="game-request">Game Request</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit -->
+                    <div class="row center-align">
+                        <button type="submit" class="btn btn-large waves-effect waves-light"
+                            style="border-radius: 5px; background-color: #c41cce;">
+                            Request Game
+                        </button>
+                    </div>
+                    <!-- Disclaimer -->
+                    <div class="row">
+                        <div class="col s12">
+                            <p style="font-size: 14px;">
+                                Please note we cannot guarantee that this game will be added, but we will try our best to
+                                fulfill your request when we can
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
