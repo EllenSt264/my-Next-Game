@@ -27,13 +27,13 @@
         </div>
     </section>
 
-    <!-- Games -->
+    <!-- Reviews -->
     <section>
         <div class="row" id="reviewCards">
             {% for review in game_reviews %}
-                {% if loop.index0 % 3 == 0 %}
+                {% if loop.index % 3 != 0 %}
                     <!-- Review card -->
-                    <div class="col s12 m6 l4 left-review-card review-card" id="left-review-card">
+                    <div class="col s12 m6 l4 review-card" id="{{ 'left-review-card' if loop.index0 % 3 == 0 }}">
                         <div class="card-panel center-align review-card-panel">
                             <!-- Game title -->
                             <p class="review-card-game-title">{{ review.game_title }}</p>
@@ -100,69 +100,71 @@
                         </div>
                     </div>
                 {% else %}
-                    <!-- Review card -->
-                    <div class="col s12 m6 l4 review-card">
-                        <div class="card-panel center-align review-card-panel">
-                            <!-- Game title -->
-                            <p class="review-card-game-title">{{ review.game_title }}</p>
-                            <div class="divider"></div>
-            
-                            <div class="content black-magenta glow">
-                                <!-- Game image -->
-                                <div class="card-image">
-                                    <img src="{{ review.game_img_full }}"
-                                        alt="" class="responsive-img z-depth-5">
-                                </div>
-                                <!-- Card content -->
-                                <div class="card-content">
-                                    <!-- Username -->
-                                    <p class="review-card-username">
-                                        {% if review.display_name %}
-                                            {{ review.display_name }}
-                                        {% else %}
-                                            {{ review.username|capitalize }}
-                                        {% endif %}
-                                        |
-                                        <span style="color: #ff3d00">
-                                            {% if review.last_updated %}
-                                                Last Updated: {{ review.last_updated }}
+                    <div class="row">
+                        <!-- Review card -->
+                        <div class="col s12 m6 l4 review-card">
+                            <div class="card-panel center-align review-card-panel">
+                                <!-- Game title -->
+                                <p class="review-card-game-title">{{ review.game_title }}</p>
+                                <div class="divider"></div>
+                
+                                <div class="content black-magenta glow">
+                                    <!-- Game image -->
+                                    <div class="card-image">
+                                        <img src="{{ review.game_img_full }}"
+                                            alt="" class="responsive-img z-depth-5">
+                                    </div>
+                                    <!-- Card content -->
+                                    <div class="card-content">
+                                        <!-- Username -->
+                                        <p class="review-card-username">
+                                            {% if review.display_name %}
+                                                {{ review.display_name }}
                                             {% else %}
-                                                {{ review.date_submitted }}
+                                                {{ review.username|capitalize }}
                                             {% endif %}
-                                        </span>
-                                    </p>
-                                    <!-- Summary -->
-                                    <p class="summary">
-                                        {{ review.summary }}
-                                    </p>
-                                    <!-- Full review -->
-                                    <ul class="collapsible popout">
-                                        <li>
-                                            <div class="collapsible-header"><i class="fas fa-gamepad"></i>Gameplay</div>
-                                            <div class="collapsible-body"><span>{{ review.gameplay }}</span></div>
-                                        </li>
-                                        <li>
-                                            <div class="collapsible-header"><i class="fas fa-eye"></i>Visuals</div>
-                                            <div class="collapsible-body"><span>{{ review.visuals }}</span></div>
-                                        </li>
-                                        <li>
-                                            <div class="collapsible-header"><i class="fas fa-music"></i>Sound</div>
-                                            <div class="collapsible-body"><span>{{ review.sound }}</span></div>
-                                        </li>
-                                    </ul>
-                                    {% if review.recommended == "yes" %}
-                                        <div class="card-panel light-blue accent-3 review-card-sticker">
-                                            <span>
-                                                <h6>Postive <i class="material-icons">thumb_up</i></h6>
+                                            |
+                                            <span style="color: #ff3d00">
+                                                {% if review.last_updated %}
+                                                    Last Updated: {{ review.last_updated }}
+                                                {% else %}
+                                                    {{ review.date_submitted }}
+                                                {% endif %}
                                             </span>
-                                        </div>
-                                    {% elif review.recommended == "no" %}
-                                        <div class="card-panel red accent-4 darken-3 review-card-sticker">
-                                            <span>
-                                                <h6>Negative <i class="material-icons">thumb_down</i></h6>
-                                            </span>
-                                        </div>
-                                    {% endif %}
+                                        </p>
+                                        <!-- Summary -->
+                                        <p class="summary">
+                                            {{ review.summary }}
+                                        </p>
+                                        <!-- Full review -->
+                                        <ul class="collapsible popout">
+                                            <li>
+                                                <div class="collapsible-header"><i class="fas fa-gamepad"></i>Gameplay</div>
+                                                <div class="collapsible-body"><span>{{ review.gameplay }}</span></div>
+                                            </li>
+                                            <li>
+                                                <div class="collapsible-header"><i class="fas fa-eye"></i>Visuals</div>
+                                                <div class="collapsible-body"><span>{{ review.visuals }}</span></div>
+                                            </li>
+                                            <li>
+                                                <div class="collapsible-header"><i class="fas fa-music"></i>Sound</div>
+                                                <div class="collapsible-body"><span>{{ review.sound }}</span></div>
+                                            </li>
+                                        </ul>
+                                        {% if review.recommended == "yes" %}
+                                            <div class="card-panel light-blue accent-3 review-card-sticker">
+                                                <span>
+                                                    <h6>Postive <i class="material-icons">thumb_up</i></h6>
+                                                </span>
+                                            </div>
+                                        {% elif review.recommended == "no" %}
+                                            <div class="card-panel red accent-4 darken-3 review-card-sticker">
+                                                <span>
+                                                    <h6>Negative <i class="material-icons">thumb_down</i></h6>
+                                                </span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
