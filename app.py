@@ -27,6 +27,8 @@
 import os
 import datetime
 import random
+import requests
+from bs4 import BeautifulSoup
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo, pymongo
@@ -823,12 +825,35 @@ def admin_add_to_db():
             # Check password
             if check_password_hash(user["password"], password):
 
-                # Check if game already exisits
+                # Check if game link exisits in admin col
                 existing_link = mongo.db.admin_game_links.find_one(
                     {"link": request.form.get("game-link")})
 
+                # Grab full game title
+                def get_full_title():
+                    url = request.form.get("game-link")
+                    cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+                    source = requests.get(url, cookies=cookies)
+                    soup = BeautifulSoup(source.text, "html.parser")
+
+                    # ------------------------------ Game title
+                    for item in soup.select(".page_title_area.game_title_area"):
+                        for title in item.select(".apphub_AppName"):
+                            global game_title
+                            game_title = (title.text)
+
+                get_full_title()
+
+                # Check if game already exists in games col
+                existing_game = mongo.db.all_pc_games.find_one(
+                    {"game_title": game_title})
+
                 if existing_link:
                     flash("Game Already In Waiting List")
+                    return redirect(url_for("admin_add_to_db"))
+
+                if existing_game:
+                    flash("Game Already Exists in Our Database")
                     return redirect(url_for("admin_add_to_db"))
 
                 # Otherwise add to db
