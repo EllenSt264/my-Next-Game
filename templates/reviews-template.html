@@ -61,11 +61,11 @@
                             <a class="standard-link">Genre</a>
                             <ul class="floating-nav">
                                 <div class="items">
-                                    <li class="tab"><a href="#">Action</a></li>
-                                    <li class="tab"><a href="#">Adventure</a></li>
-                                    <li class="tab"><a href="#">RPG</a></li>
-                                    <li class="tab"><a href="#">Strategy</a></li>
-                                    <li class="tab"><a href="#">Multiplayer</a></li>
+                                    <li class="tab"><a href="{{ url_for('reviews_action') }}">Action</a></li>
+                                    <li class="tab"><a href="{{ url_for('reviews_adventure') }}">Adventure</a></li>
+                                    <li class="tab"><a href="{{ url_for('reviews_RPG') }}">RPG</a></li>
+                                    <li class="tab"><a href="{{ url_for('reviews_strategy') }}">Strategy</a></li>
+                                    <li class="tab"><a href="{{ url_for('reviews_multiplayer') }}">Multiplayer</a></li>
                                 </div>
                             </ul>
                         </div>
@@ -88,7 +88,7 @@
                 <!-- All games link -->
                 <div class="nav-content my-nav-extend">
                     <ul class="tabs">
-                        <li class="tab"><a href="#">All games</a></li>
+                        <li class="tab"><a href="{{ url_for('reviews') }}">All reviews</a></li>
                     </ul>
                 </div>
 
@@ -101,11 +101,11 @@
             <li><a href="#!" class="sidenav-close right"><i class="material-icons white-text"
                         style="margin: 0;">close</i></a></li>
             <li><a href="#">Platform</a></li>
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Adventure</a></li>
-            <li><a href="#">RPG</a></li>
-            <li><a href="#">Strategy</a></li>
-            <li><a href="#">Multiplayer</a></li>
+            <li><a href="{{ url_for('reviews_action') }}">Action</a></li>
+            <li><a href="{{ url_for('reviews_adventure') }}">Adventure</a></li>
+            <li><a href="{{ url_for('reviews_RPG') }}">RPG</a></li>
+            <li><a href="{{ url_for('reviews_strategy') }}">Strategy</a></li>
+            <li><a href="{{ url_for('reviews_multiplayer') }}">Multiplayer</a></li>
             <li><a href="#">Award Winners</a></li>
             <li><a href="#">Our Favourites</a></li>
             <li><a href="#">Your List</a></li>

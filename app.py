@@ -1230,7 +1230,171 @@ def reviews_template():
 
 @app.route("/community-reviews")
 def reviews():
-    game_reviews = mongo.db.user_reviews.find({})
+    game_reviews = mongo.db.user_reviews.find()
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews-all.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# ================
+# Reviews - Action
+# ================
+@app.route("/community-reviews/action")
+def reviews_action():
+    # Find action game titles
+    action_games = mongo.db.all_pc_games.find({"action": True})
+    titles = []
+    for game in action_games:
+        titles.append(game["game_title"])
+    
+    # Find reviews that match action game titles
+    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews-all.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# ===================
+# Reviews - Adventure
+# ===================
+
+@app.route("/community-reviews/adventure")
+def reviews_adventure():
+    # Find adventure game titles
+    adventure_games = mongo.db.all_pc_games.find({"adventure": True})
+    titles = []
+    for game in adventure_games:
+        titles.append(game["game_title"])
+    
+    # Find reviews that match adventure game titles
+    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews-all.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# =============
+# Reviews - RPG
+# =============
+
+@app.route("/community-reviews/RPG")
+def reviews_RPG():
+    # Find RPG game titles
+    RPG_games = mongo.db.all_pc_games.find({"RPG": True})
+    titles = []
+    for game in RPG_games:
+        titles.append(game["game_title"])
+    
+    # Find reviews that match RPG game titles
+    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews-all.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# ==================
+# Reviews - Strategy
+# ==================
+
+@app.route("/community-reviews/strategy")
+def reviews_strategy():
+    # Find strategy game titles
+    strategy_games = mongo.db.all_pc_games.find({"strategy": True})
+    titles = []
+    for game in strategy_games:
+        titles.append(game["game_title"])
+    
+    # Find reviews that match strategy game titles
+    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews-all.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# =====================
+# Reviews - Multiplayer
+# =====================
+
+@app.route("/community-reviews/multiplayer")
+def reviews_multiplayer():
+    # Find multiplayer game titles
+    multiplayer_games = mongo.db.all_pc_games.find({"multiplayer": True})
+    titles = []
+    for game in multiplayer_games:
+        titles.append(game["game_title"])
+    
+    # Find reviews that match multiplayer game titles
+    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
 
     # Pagination
     page, per_page, offset = get_page_args(
