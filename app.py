@@ -30,7 +30,7 @@ import random
 import requests
 from bs4 import BeautifulSoup
 from flask import (
-    Flask, flash, render_template, redirect, request, session, url_for)
+    Flask, flash, render_template, redirect, request, session, url_for, make_response)
 from flask_pymongo import PyMongo, pymongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
@@ -256,6 +256,19 @@ def admin_update_db():
     return render_template("admin-update_db.html")
 
 
+
+@app.route("/setcookie", methods=["GET", "POST"])
+def setcookie():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("pc_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
 # ===================
 # PC Games
 # ===================
@@ -281,15 +294,15 @@ def pc_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
-    else:
-        session["navSelect1"] = "default"
-        session["navSelect2"] = "desc"
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -365,15 +378,15 @@ def action_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
-    else:
-        session["navSelect1"] = "default"
-        session["navSelect2"] = "desc"
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -449,15 +462,15 @@ def adventure_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
-    else:
-        session["navSelect1"] = "default"
-        session["navSelect2"] = "desc"
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -533,15 +546,15 @@ def RPG_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
-    else:
-        session["navSelect1"] = "default"
-        session["navSelect2"] = "desc"
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -617,15 +630,15 @@ def strategy_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
-    else:
-        session["navSelect1"] = "default"
-        session["navSelect2"] = "desc"
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -701,15 +714,15 @@ def multiplayer_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
-    else:
-        session["navSelect1"] = "default"
-        session["navSelect2"] = "desc"
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -1253,6 +1266,7 @@ def reviews():
 # ================
 # Reviews - Action
 # ================
+
 @app.route("/community-reviews/action")
 def reviews_action():
     # Find action game titles
