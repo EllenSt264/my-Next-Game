@@ -143,7 +143,7 @@ def search_reviews():
         css_framework='materialize')
 
     return render_template(
-        "games-reviews.html", game_reviews=pagination_game_reviews,
+        "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
 
 
@@ -1246,7 +1246,7 @@ def reviews():
         css_framework='materialize')
 
     return render_template(
-        "reviews-all.html", game_reviews=pagination_game_reviews,
+        "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
 
 
@@ -1278,7 +1278,7 @@ def reviews_action():
         css_framework='materialize')
 
     return render_template(
-        "reviews-all.html", game_reviews=pagination_game_reviews,
+        "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
 
 
@@ -1311,7 +1311,7 @@ def reviews_adventure():
         css_framework='materialize')
 
     return render_template(
-        "reviews-all.html", game_reviews=pagination_game_reviews,
+        "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
 
 
@@ -1344,7 +1344,7 @@ def reviews_RPG():
         css_framework='materialize')
 
     return render_template(
-        "reviews-all.html", game_reviews=pagination_game_reviews,
+        "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
 
 
@@ -1377,7 +1377,7 @@ def reviews_strategy():
         css_framework='materialize')
 
     return render_template(
-        "reviews-all.html", game_reviews=pagination_game_reviews,
+        "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
 
 
@@ -1410,7 +1410,7 @@ def reviews_multiplayer():
         css_framework='materialize')
 
     return render_template(
-        "reviews-all.html", game_reviews=pagination_game_reviews,
+        "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
 
 
