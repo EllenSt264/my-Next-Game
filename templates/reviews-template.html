@@ -130,43 +130,35 @@
                     <ul class="tabs tabs-transparent" id="sortNav-label">
                         <li class="tab" id="nav1">
                             <a>
-                                <label for="navSelect1">Sort By</label>
+                                <label for="reviewSort1">Sort By</label>
                             </a>
                         </li>
                         <li class="tab" id="nav2">
                             <a>
-                                <label for="navSelect2">Order</label>
+                                <label for="reviewSort2">Order</label>
                             </a>
                         </li>
                     </ul>
                     <!-- Select options -->
 
-                    <form action={% block sort_filter %}{% endblock %} method="POST">
+                    <form action="{{ url_for('set_review_cookies') }}" method="POST">
                         <ul class="tabs tabs-transparent" id="sortNav">
                             <li class="tab">
                                 <a>
-                                    <select class="browser-default" name="navSelect1" id="navSelect1"
-                                        value="{{ navSelect1 }}">
-                                        <option value="date" {% if navSelect1=="date" %} selected="selected" {% endif %}>
-                                            Date Added</option>
-                                        <option value="last-updated" {% if navSelect1=="last-updated" %} selected="selected"
-                                            {% endif %}>Last Updated</option>
-                                        <option value="Title" {% if navSelect1=="Title" %} selected="selected" {% endif %}>
-                                            Title</option>
-                                        <option value="rating" {% if navSelect1=="rating" %} selected="selected" {% endif
-                                            %}>Rating</option>
-
+                                    <select class="browser-default" name="reviewSort1" id="reviewSort1"
+                                        value="{{ reviewSort1 }}">
+                                        <option value="date" {% if reviewSort1=="date" %} selected="selected" {% endif %}>Date Added</option>
+                                        <option value="title" {% if reviewSort1=="title" %} selected="selected" {% endif %}>Title</option>
+                                        <option value="rating" {% if reviewSort1=="rating" %} selected="selected" {% endif %}>Rating</option>
                                     </select>
                                 </a>
                             </li>
                             <li class="tab">
                                 <a>
-                                    <select class="browser-default" name="navSelect2" id="navSelect2"
-                                        value="{{ navSelect2 }}">
-                                        <option value="asc" {% if navSelect2=="asc" %} selected="selected" {% endif %}>Asc
-                                        </option>
-                                        <option value="desc" {% if navSelect2=="desc" %} selected="selected" {% endif %}>
-                                            Desc</option>
+                                    <select class="browser-default" name="reviewSort2" id="reviewSort2"
+                                        value="{{ reviewSort2 }}">
+                                        <option value="asc" {% if reviewSort2=="asc" %} selected="selected" {% endif %}>Asc</option>
+                                        <option value="desc" {% if reviewSort2=="desc" %} selected="selected" {% endif %}>Desc</option>
                                     </select>
                                 </a>
                             </li>

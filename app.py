@@ -22,6 +22,9 @@
     * Returning documents from MongoDB without duplicates:
     "https://stackoverflow.com/questions/11470614/mongodb-return-all-documents-by-field-without-duplicates"
 
+    * Add session cookies to browser with Flask:
+    "https://pythonbasics.org/flask-cookies/"
+
 """
 
 import os
@@ -256,6 +259,9 @@ def admin_update_db():
     return render_template("admin-update_db.html")
 
 
+# =================
+# Games Sort Filter
+# =================
 
 @app.route("/setcookie", methods=["GET", "POST"])
 def setcookie():
@@ -269,9 +275,10 @@ def setcookie():
 
         return resp
 
-# ===================
+
+# ========
 # PC Games
-# ===================
+# ========
 
 @app.route("/pc-games", methods=["GET", "POST"])
 def pc_games():
@@ -1237,11 +1244,28 @@ def reviews_template():
     return render_template("reviews-template.html")
 
 
+# ===================
+# Reviews Sort Filter
+# ===================
+
+@app.route("/set-reviewcookie", methods=["GET", "POST"])
+def set_review_cookies():
+    if request.method == "POST":
+        cookie1 = request.form.get("reviewSort1").lower()
+        cookie2 = request.form.get("reviewSort2").lower()
+
+        resp = make_response(redirect(url_for("reviews")))
+        resp.set_cookie("reviewSort1", cookie1)
+        resp.set_cookie("reviewSort2", cookie2)
+
+        return resp
+
+
 # ==========
 # Reviews
 # ==========
 
-@app.route("/community-reviews")
+@app.route("/community-reviews", methods=["GET", "POST"])
 def reviews():
     game_reviews = mongo.db.user_reviews.find()
 
@@ -1258,9 +1282,44 @@ def reviews():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Sort filter
+
+    cookie1 = request.cookies.get("reviewSort1")
+    cookie2 = request.cookies.get("reviewSort2")
+
+    if cookie1 == None and cookie2 == None:
+        reviewSort1 = "date"
+        reviewSort2 = "desc"
+    else:
+        reviewSort1 = cookie1
+        reviewSort2 = cookie2
+
+    # Sort by date added
+    if reviewSort1 == "date" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("date_submitted", -1)
+
+    elif reviewSort1 == "date" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("date_submitted", 1)
+    
+    # Sort by game title    
+    elif reviewSort1 == "title" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("game_title", pymongo.DESCENDING)
+
+    elif reviewSort1 == "title" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("game_title", pymongo.ASCENDING)
+
+    # Sort by rating
+    elif reviewSort1 == "rating" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("recommended", -1)
+
+    elif reviewSort1 == "rating" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("recommended", 1)
+
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, reviewSort1=reviewSort1,
+        reviewSort2=reviewSort2)
 
 
 # ================
