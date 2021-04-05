@@ -1215,6 +1215,15 @@ def export_data():
 export_data()
 
 
+# ================
+# Reviews Template
+# ================
+
+@app.route("/reviews")
+def reviews_template():
+    return render_template("reviews-template.html")
+
+
 # ==========
 # Reviews
 # ==========
@@ -1237,7 +1246,7 @@ def reviews():
         css_framework='materialize')
 
     return render_template(
-        "games-reviews.html", game_reviews=pagination_game_reviews,
+        "reviews-all.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
 
 

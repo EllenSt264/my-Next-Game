@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- Media -->
+    {% block media %}
+        <section class="py-5">
+            <h3 class="title carousel-title center">Today's Picks</h3>
+            <div class="carousel carousel-slider center">
+                <div class="carousel-item">
+                    <a href="#"><img
+                            src="https://www.rockstargames.com/reddeadredemption2/dist/img/global/social/ea95b42f4d8029ac2510571cc8dbdae4.jpg"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img
+                            src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fkingdom-come-deliverance%2Fhome%2FEGS_WarhorseStudios_KingdomComeDeliverance_S3-1360x766-1e8502930c6282cb34acf7add01c6832a5bc217e.jpg"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#"><img src="https://images6.alphacoders.com/107/thumb-1920-1072573.jpg"></a>
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    <!-- Secondary Navbar -->
+    <section class="py-5">
+        <nav class="secondary-nav">
+
+            <!-- Hamburger icon -->
+            <a href="#" data-target="secondary-sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+            <!-- Collapsible -->
+            <ul class="collapsible">
+
+                <div class="hide-on-med-and-down">
+
+                    <!-- Standard Links -->
+                    <li><a href="#" class="standard-link">Our Favourites</a></li>
+                    <li><a href="#" class="standard-link">Award Winners</a></li>
+                    {% if session.user %}
+                    <li><a href="#" class="standard-link">Your
+                            List</a></li>
+                    {% endif %}
+
+                    <!-- Platform -->
+                    <li id="PlatformLink">
+                        <div class="fixed-action-btn click-to-toggle">
+                            <a class="standard-link">Platform</a>
+                            <ul class="floating-nav">
+                                <div class="items">
+                                    <li class="tab"><a href="#">PC</a></li>
+                                    <li class="tab"><a href="#">XBOX</a></li>
+                                    <li class="tab"><a href="#">Playstation</a></li>
+                                </div>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <!-- Genre -->
+                    <li id="GenreLink">
+                        <div class="fixed-action-btn click-to-toggle">
+                            <a class="standard-link">Genre</a>
+                            <ul class="floating-nav">
+                                <div class="items">
+                                    <li class="tab"><a href="#">Action</a></li>
+                                    <li class="tab"><a href="#">Adventure</a></li>
+                                    <li class="tab"><a href="#">RPG</a></li>
+                                    <li class="tab"><a href="#">Strategy</a></li>
+                                    <li class="tab"><a href="#">Multiplayer</a></li>
+                                </div>
+                            </ul>
+                        </div>
+                    </li>
+
+                </div>
+
+                <!-- Search bar -->
+
+                <li class="right">
+                    <form action="{{ url_for('search_reviews') }}" method="post" id="searchbar">
+                        <div class="input-field">
+                            <i class="material-icons prefix">search</i>
+                            <input type="text" id="review-query" name="review-query" class="autocomplete validate" required>
+                            <label for="review-query">Game Title</label>
+                        </div>
+                    </form>
+                </li>
+
+                <!-- All games link -->
+                <div class="nav-content my-nav-extend">
+                    <ul class="tabs">
+                        <li class="tab"><a href="#">All games</a></li>
+                    </ul>
+                </div>
+
+            </ul>
+
+        </nav>
+
+        <!-- Mobile side nav -->
+        <ul class="sidenav" id="secondary-sidenav">
+            <li><a href="#!" class="sidenav-close right"><i class="material-icons white-text"
+                        style="margin: 0;">close</i></a></li>
+            <li><a href="#">Platform</a></li>
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Adventure</a></li>
+            <li><a href="#">RPG</a></li>
+            <li><a href="#">Strategy</a></li>
+            <li><a href="#">Multiplayer</a></li>
+            <li><a href="#">Award Winners</a></li>
+            <li><a href="#">Our Favourites</a></li>
+            <li><a href="#">Your List</a></li>
+        </ul>
+    </section>
+
+    <!-- Sort nav and pagination -->
+    <section id="sort-and-pagination-nav">
+        <div class="row">
+            <!-- Pagination -->
+            <div class="col s12 m6">
+                <div class="pagination-top">
+                    <ul class="pagination">
+                        {{ pagination.links }}
+                    </ul>
+                </div>
+            </div>
+            <!-- Sort by features -->
+            <div class="col s12 m6">
+                <div class="sort-by right">
+                    <!-- Select labels -->
+                    <ul class="tabs tabs-transparent" id="sortNav-label">
+                        <li class="tab" id="nav1">
+                            <a>
+                                <label for="navSelect1">Sort By</label>
+                            </a>
+                        </li>
+                        <li class="tab" id="nav2">
+                            <a>
+                                <label for="navSelect2">Order</label>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Select options -->
+
+                    <form action={% block sort_filter %}{% endblock %} method="POST">
+                        <ul class="tabs tabs-transparent" id="sortNav">
+                            <li class="tab">
+                                <a>
+                                    <select class="browser-default" name="navSelect1" id="navSelect1"
+                                        value="{{ navSelect1 }}">
+                                        <option value="date" {% if navSelect1=="date" %} selected="selected" {% endif %}>
+                                            Date Added</option>
+                                        <option value="last-updated" {% if navSelect1=="last-updated" %} selected="selected"
+                                            {% endif %}>Last Updated</option>
+                                        <option value="Title" {% if navSelect1=="Title" %} selected="selected" {% endif %}>
+                                            Title</option>
+                                        <option value="rating" {% if navSelect1=="rating" %} selected="selected" {% endif
+                                            %}>Rating</option>
+
+                                    </select>
+                                </a>
+                            </li>
+                            <li class="tab">
+                                <a>
+                                    <select class="browser-default" name="navSelect2" id="navSelect2"
+                                        value="{{ navSelect2 }}">
+                                        <option value="asc" {% if navSelect2=="asc" %} selected="selected" {% endif %}>Asc
+                                        </option>
+                                        <option value="desc" {% if navSelect2=="desc" %} selected="selected" {% endif %}>
+                                            Desc</option>
+                                    </select>
+                                </a>
+                            </li>
+                            <li class="tab">
+                                <a style="line-height: 10px;">
+                                    <button type="submit" class="btn" id="filterBtn">Filter Results</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games -->
+    <main style="padding-top: 2.5rem;">
+        <!-- Review button -->
+        <section>
+            <div class="row">
+                <div class="col" style="margin-left: 12.49999999995%">
+                    <a href="{{ url_for('submit_review') }}" class="btn-large">Leave a Review</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        {% block reviews %}
+        {% endblock %}
+    </main>
+
+{% endblock %}
