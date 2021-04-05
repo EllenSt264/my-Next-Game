@@ -284,6 +284,9 @@ def pc_games():
     if request.method == "POST":
         session["navSelect1"] = request.form.get("navSelect1").lower()
         session["navSelect2"] = request.form.get("navSelect2").lower()
+    else:
+        session["navSelect1"] = "default"
+        session["navSelect2"] = "desc"
 
     navSelect1 = session["navSelect1"]
     navSelect2 = session["navSelect2"]
@@ -365,6 +368,9 @@ def action_games():
     if request.method == "POST":
         session["navSelect1"] = request.form.get("navSelect1").lower()
         session["navSelect2"] = request.form.get("navSelect2").lower()
+    else:
+        session["navSelect1"] = "default"
+        session["navSelect2"] = "desc"
 
     navSelect1 = session["navSelect1"]
     navSelect2 = session["navSelect2"]
@@ -446,6 +452,9 @@ def adventure_games():
     if request.method == "POST":
         session["navSelect1"] = request.form.get("navSelect1").lower()
         session["navSelect2"] = request.form.get("navSelect2").lower()
+    else:
+        session["navSelect1"] = "default"
+        session["navSelect2"] = "desc"
 
     navSelect1 = session["navSelect1"]
     navSelect2 = session["navSelect2"]
@@ -527,6 +536,9 @@ def RPG_games():
     if request.method == "POST":
         session["navSelect1"] = request.form.get("navSelect1").lower()
         session["navSelect2"] = request.form.get("navSelect2").lower()
+    else:
+        session["navSelect1"] = "default"
+        session["navSelect2"] = "desc"
 
     navSelect1 = session["navSelect1"]
     navSelect2 = session["navSelect2"]
@@ -608,6 +620,9 @@ def strategy_games():
     if request.method == "POST":
         session["navSelect1"] = request.form.get("navSelect1").lower()
         session["navSelect2"] = request.form.get("navSelect2").lower()
+    else:
+        session["navSelect1"] = "default"
+        session["navSelect2"] = "desc"
 
     navSelect1 = session["navSelect1"]
     navSelect2 = session["navSelect2"]
@@ -689,6 +704,9 @@ def multiplayer_games():
     if request.method == "POST":
         session["navSelect1"] = request.form.get("navSelect1").lower()
         session["navSelect2"] = request.form.get("navSelect2").lower()
+    else:
+        session["navSelect1"] = "default"
+        session["navSelect2"] = "desc"
 
     navSelect1 = session["navSelect1"]
     navSelect2 = session["navSelect2"]
