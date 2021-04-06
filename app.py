@@ -263,13 +263,99 @@ def admin_update_db():
 # Games Sort Filter
 # =================
 
-@app.route("/setcookie", methods=["GET", "POST"])
-def setcookie():
+@app.route("/setcookie/all", methods=["GET", "POST"])
+def setcookie_all():
     if request.method == "POST":
         cookie1 = request.form.get("navSelect1").lower()
         cookie2 = request.form.get("navSelect2").lower()
 
         resp = make_response(redirect(url_for("pc_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+# ==========================
+# Games Sort Filter - Action
+# ==========================
+
+@app.route("/setcookie/action", methods=["GET", "POST"])
+def setcookie_action():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("action_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+# =============================
+# Games Sort Filter - Adventure
+# =============================
+
+@app.route("/setcookie/adventure", methods=["GET", "POST"])
+def setcookie_adventure():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("adventure_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+# =======================
+# Games Sort Filter - RPG
+# =======================
+
+@app.route("/setcookie/RPG", methods=["GET", "POST"])
+def setcookie_RPG():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("RPG_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+
+# ============================
+# Games Sort Filter - Strategy
+# ============================
+
+@app.route("/setcookie/strategy", methods=["GET", "POST"])
+def setcookie_strategy():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("strategy_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+# ===============================
+# Games Sort Filter - Multiplayer
+# ===============================
+
+@app.route("/setcookie/multiplayer", methods=["GET", "POST"])
+def setcookie_multiplayer():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("multiplayer_games")))
         resp.set_cookie("navSelect1", cookie1)
         resp.set_cookie("navSelect2", cookie2)
 
