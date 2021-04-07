@@ -1574,6 +1574,116 @@ def reviews_multiplayer():
         pagination=pagination)
 
 
+# =====================
+# Reviews - PC Platform
+# =====================
+
+@app.route("/community-reviews/pc")
+def reviews_pc():
+    # Find reviews with pc platform
+    # Steam, Windows, Mac or Linux
+    game_reviews = mongo.db.user_reviews.find({
+        "platform": {"$in": ["windows", "mac", "linux", "steam"]}})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# =======================
+# Reviews - XBOX Platform
+# =======================
+
+@app.route("/community-reviews/xbox")
+def reviews_xbox():
+    # Find reviews with xbox platform
+    game_reviews = mongo.db.user_reviews.find({"platform": "xbox"})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# ==============================
+# Reviews - Playstation Platform
+# ==============================
+
+@app.route("/community-reviews/playstation")
+def reviews_playstation():
+    # Find reviews with playstation platform
+    game_reviews = mongo.db.user_reviews.find({"platform": "playstation"})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+# ===========================
+# Reviews - Nintendo Platform
+# ===========================
+
+@app.route("/community-reviews/nintendo")
+def reviews_nintendo():
+    # Find reviews with nintendo platform
+    game_reviews = mongo.db.user_reviews.find({"platform": "nintendo"})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+
 # ======================
 # Profile - User Reviews
 # ======================

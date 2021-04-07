@@ -47,9 +47,10 @@
                             <a class="standard-link">Platform</a>
                             <ul class="floating-nav">
                                 <div class="items">
-                                    <li class="tab"><a href="#">PC</a></li>
-                                    <li class="tab"><a href="#">XBOX</a></li>
-                                    <li class="tab"><a href="#">Playstation</a></li>
+                                    <li class="tab"><a href="{{ url_for('reviews_pc') }}">PC</a></li>
+                                    <li class="tab"><a href="{{ url_for('reviews_xbox') }}">XBOX</a></li>
+                                    <li class="tab"><a href="{{ url_for('reviews_playstation') }}">Playstation</a></li>
+                                    <li class="tab"><a href="{{ url_for('reviews_nintendo') }}">Nintendo</a></li>
                                 </div>
                             </ul>
                         </div>
