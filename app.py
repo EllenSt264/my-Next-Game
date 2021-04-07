@@ -951,20 +951,22 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        # Check if username exists in the db
+        # Check if email exists in the db
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"email": request.form.get("email").lower()})
+
+        # Get username
+        username = existing_user["username"]
 
         if existing_user:
             # Check if hashed password matches user input
             if check_password_hash(
                existing_user["password"], request.form.get("password")):
                 # Create session cookie for user
-                session["user"] = request.form.get("username").lower()
+                session["user"] = username
 
                 # Create session cookie for admin
-                user = mongo.db.users.find_one({
-                    "username": request.form.get("username").lower()})
+                user = mongo.db.users.find_one({"username": username})
                 admin = user["admin"]
 
                 if admin is True:
@@ -973,8 +975,7 @@ def login():
                     session["admin"] = False
 
                 # Success - redirect to profile
-                flash("Welcome {}".format(
-                    request.form.get("username").capitalize()))
+                flash("Welcome {}".format(username.capitalize()))
                 return redirect(url_for(
                     "profile_games", username=session["user"]))
             else:
