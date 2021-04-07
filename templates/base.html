@@ -68,7 +68,7 @@
                 
                     <ul class="left hide-on-med-and-down">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('pc_games') }}">Platform</a></li>
+                        <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
                         <li>
                             <a href="{{ url_for('pc_games') }}" class="dropdown-trigger nav-dropdown-trigger" 
                             data-target="GenreDropdown">Genre</a>
@@ -111,7 +111,7 @@
 
         <!-- Mobile side-navbar -->
         <ul class="my-sidenav" id="mobile-nav">
-            <li><a href="{{ url_for('pc_games') }}">Platform</a></li>
+            <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
             <li>
                 <a href="{{ url_for('pc_games') }}">Genre</a>
                 <ul>

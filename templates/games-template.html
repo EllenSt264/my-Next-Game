@@ -37,20 +37,6 @@
                     {% if session.user %}
                     <li><a href="{{ url_for('profile_games', username=session['user']) }}" class="standard-link">Your List</a></li>
                     {% endif %}
-                    
-                    <!-- Platform -->
-                    <li id="PlatformLink">
-                        <div class="fixed-action-btn click-to-toggle">
-                            <a class="standard-link">Platform</a>
-                            <ul class="floating-nav">
-                                <div class="items">
-                                    <li class="tab"><a href="{{ url_for('pc_games') }}">PC</a></li>
-                                    <li class="tab"><a href="{{ url_for('pc_games') }}">XBOX</a></li>
-                                    <li class="tab"><a href="{{ url_for('pc_games') }}">Playstation</a></li>
-                                </div>
-                            </ul>
-                        </div>
-                    </li>
 
                     <!-- Genre -->
                     <li id="GenreLink">
