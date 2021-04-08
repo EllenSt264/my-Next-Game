@@ -259,6 +259,17 @@ def admin_update_db():
     return render_template("admin-update_db.html")
 
 
+# =============================
+# Admin Controls - See Requests
+# =============================
+
+@app.route("/admin/user-requests")
+def admin_user_requests():
+    user_requests = mongo.db.game_requests.find()
+    return render_template(
+        "admin-user_requests.html", user_requests=user_requests)
+
+
 # =================
 # Games Sort Filter
 # =================
