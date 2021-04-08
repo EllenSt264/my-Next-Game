@@ -1038,8 +1038,33 @@ def like(game_id):
 # Request A Game
 # ==============
 
-@app.route("/request-a-game")
+@app.route("/request-a-game", methods=["GET", "POST"])
 def request_game():
+    if request.method == "POST":
+        # Grab session user's username
+        user = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+
+        # Grab session user's email
+        user_email = mongo.db.users.find_one(
+            {"username": session["user"]})["email"]
+
+        username = request.form.get("username")
+        email = request.form.get("email")
+
+        if (username == user) and (email == user_email):
+            game = {
+                "game_request": request.form.get("game-request"),
+                "requested_by": username
+            }
+            mongo.db.game_requests.insert_one(game)
+
+            flash("Your Request Has Been Submitted")
+            return redirect(url_for("home"))
+        else:
+            flash("Details Incorrect")
+            return redirect(url_for("request_game"))
+
     return render_template("games-request_form.html")
 
 
