@@ -1446,6 +1446,36 @@ export_data()
 
 
 # ================
+# See Game Reviews
+# ================
+
+@app.route("/community-reviews/<game_id>")
+def see_game_reviews(game_id):
+    # Grab game review
+    game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
+    game_title = game["game_title"]
+
+    reviews = mongo.db.user_reviews.find({"game_title": game_title})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = reviews.count()
+    pagination_game_reviews = reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+    
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# ================
 # Reviews Template
 # ================
 
