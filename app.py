@@ -1159,6 +1159,19 @@ def edit_profile(username):
         "profile-edit_general.html", username=session["user"], user=user)
 
 
+# =======================
+# Edit Profile - Password
+# =======================
+
+@app.route("/edit-profile/<username>/general/password-reset")
+def edit_password(username):
+    user = mongo.db.users.find_one({"username": session["user"]})
+    if request.method == "POST":
+        user_id = user["_id"]
+    
+    return render_template("profile-edit_password.html", username=session["user"], user=user)
+
+
 # =====================
 # Edit Profile - Avatar
 # =====================
