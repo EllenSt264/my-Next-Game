@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <section id="Profile">
+        <div class="row py-5">
+            <!-- Profile Card -->
+            <div class="card-panel profile-base-card grey-text text-lighten-4 col s12 m10 offset-m1 l11 xl9 offset-xl2" id="ProfileCard">
+                <!-- Header -->
+                <div class="row profile-header">
+                    <!-- Username -->
+                    <div class="col s12 l6 header-username">
+                        {% if "user_display_name" %}
+                            {% if user_display_name == None %}
+                                <h2>{{ username|capitalize }}'s Profile</h2>
+                            {% else %}
+                                <h2>{{ user_display_name }}'s Profile</h2>
+                            {% endif %}
+                        {% else %}
+                            <h2>{{ username|capitalize }}'s Profile</h2>
+                        {% endif %}
+                    </div>
+                    <!-- Avatar -->
+                    <div class="row hide-on-large-only">
+                        <div class="col s12">
+                            <img src="{{ user_avatar }}" alt="User's current avatar" class="profile-avatar">
+                        </div>
+                    </div>
+                    <!-- Profile rank -->
+                    <div class="col s12 l6 rank">
+                        <h5>Profile Rank 1</h5>
+                    </div>
+                </div>
+                <!-- Divider -->
+                <div class="divider"></div>
+                <!-- Buttons -->
+                <div class="card-panel profile-card-panel col s12 l2 right" id="ProfileSidePanel">
+                    <!-- Avatar and username -->
+                    <div class="row hide-on-med-and-down side-panel-avatar">
+                        <div class="row">
+                            <div class="col right">
+                                <img src="{{ user_avatar }}" alt="User's current avatar" class="profile-avatar">
+                            </div>
+                        </div>
+                       <div class="row">
+                            <div class="col right">
+                                <h5>
+                                    {% if "user_display_name" %}
+                                        {% if user_display_name == None %}
+                                            {{ username|capitalize }}'s Profile
+                                        {% else %}
+                                            {{ user_display_name }}'s Profile
+                                        {% endif %}
+                                    {% else %}
+                                        {{ username|capitalize }}'s Profile
+                                    {% endif %}
+                                </h5>
+                            </div>
+                       </div>
+                    </div>
+                    <div class="divider hide-on-med-and-down"></div>
+                    <!-- Navigation buttons -->
+                    <ul class="profile-btns">
+                        <div class="row">
+                            <div class="divider hide-on-med-and-down"></div>
+                            <!-- Navigation -->
+                            <!-- Games-->
+                            <li class="col s3 l12" id="firstItem">
+                                <a class="btn" href="#">Games</a>
+                            </li>
+                            <div class="divider hide-on-med-and-down"></div>
+                            <!-- Favourites -->
+                            <li class="col s4 l12">
+                                <a class="btn" href="#">Favourites</a>
+                            </li>
+                            <div class="divider hide-on-med-and-down"></div>
+                            <!-- Reviews -->
+                            <li class="col s3 l12">
+                                <a class="btn" href="#">Reviews</a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <!-- Profile Content -->
+                <div class="card-panel profile-card-panel col s12 l9" id="ProfileContentCard">
+    
+                    {% block profile_content %}
+                    {% endblock %}
+    
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

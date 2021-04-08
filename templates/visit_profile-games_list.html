@@ -1,0 +1,216 @@
+{% extends "visit_profile-template.html" %}
+
+{% block profile_content %}
+
+    <!-- Currently Playing -->
+
+    <!-- Title -->
+    <div class="row card-panel profile-card-header" id="ProfileHeader_first">
+        <div class="valign-wrapper card-section-header">
+            <div class="col s8">
+                <h3>Currently Playing</h3>
+            </div>
+            <div class="col s2 edit-btn">
+                <div class="center-align">
+                    <a href="#"><i class="cog-icon fas fa-cog fa-3x"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Games -->
+    {% for game in games_playing if game.username == user %}
+        <div class="row card-panel profile-card-content">
+            <div class="valigin-wrapper">
+                <!-- Image -->
+                <div class="row main-row">
+                    <div class="col s12 m12 l6">
+                        <div class="card-image profile-game-img">
+                            <img src="{{ game.game_img_full }}" alt="">
+                        </div>
+                    </div>
+                    <!-- Title -->
+                    <div class="col m12 l6 profile-game-title">
+                        <h5 class="center-align">{{ game.game_title }}</h5>
+                    </div>
+                    <!-- Content -->
+                    <div class="card-content game-btns col s12 m12 l6 left">
+                        <!-- Link and Review -->
+                        <div class="row">
+                            <!-- Link -->
+                            <div class="col s4 profile-game-btn left-side">
+                                <a href="#" class="btn-large">
+                                    <i class="material-icons btn-icon-left">http</i>
+                                    <span style="font-size: 14px;">Links</span>
+                                    <i class="material-icons btn-icon-right">arrow_drop_down</i>
+                                </a>
+                            </div>
+                            <!-- Review -->
+                            {% for match in matches if match == game.game_title %}
+                                <div class="col s4 profile-game-btn btn-large reviewed">
+                                    <i class="material-icons btn-icon-left">thumb_up</i>
+                                    <span>Reviewed</span>
+                                    <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                                        <i class="fas fa-pen-square"></i>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="col s4 profile-game-btn">
+                                    <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn-large">
+                                        <i class="fas fa-pen-alt"></i>
+                                        <span>Review</span>
+                                    </a>    
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <h4 class="center-align py-5">No games have been added to this section</h4>
+    {% endfor %}
+    
+
+    <!-- Play later -->
+
+    <!-- Title -->
+    <div class="row card-panel profile-card-header">
+        <div class="valign-wrapper card-section-header">
+            <div class="col s8">
+                <h3>Play later</h3>
+            </div>
+            <div class="col s2 edit-btn">
+                <div class="center-align">
+                    <a href="#"><i class="cog-icon fas fa-cog fa-3x"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Games -->
+    {% for game in games_next if game.username == user %}
+        <div class="row card-panel profile-card-content">
+            <div class="valigin-wrapper">
+                <!-- Image -->
+                <div class="row main-row">
+                    <div class="col s12 m12 l6">
+                        <div class="card-image profile-game-img">
+                            <img src="{{ game.game_img_full }}" alt="">
+                        </div>
+                    </div>
+                    <!-- Title -->
+                    <div class="col m12 l6 profile-game-title">
+                        <h5 class="center-align">{{ game.game_title }}</h5>
+                    </div>
+                    <!-- Content -->
+                    <div class="card-content game-btns col s12 m12 l6 left">
+                        <!-- Link and Review -->
+                        <div class="row">
+                            <!-- Link -->
+                            <div class="col s4 profile-game-btn left-side">
+                                <a href="#" class="btn-large">
+                                    <i class="material-icons btn-icon-left">http</i>
+                                    <span style="font-size: 14px;">Links</span>
+                                    <i class="material-icons btn-icon-right">arrow_drop_down</i>
+                                </a>
+                            </div>
+                            <!-- Review -->
+                            {% for match in matches if match == game.game_title %}
+                                <div class="col s4 profile-game-btn btn-large reviewed">
+                                    <i class="material-icons btn-icon-left">thumb_up</i>
+                                    <span>Reviewed</span>
+                                    <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                                        <i class="fas fa-pen-square"></i>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="col s4 profile-game-btn">
+                                    <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn-large">
+                                        <i class="fas fa-pen-alt" style="font-size: 18px; padding:0"></i>
+                                        <span>Review</span>
+                                    </a>    
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h4 class="center-align py-5">No games have been added to this section</h4>
+    {% endfor %}
+    
+    
+    <!-- Completed -->
+
+    <!-- Title -->
+    <div class="row card-panel profile-card-header">
+        <div class="valign-wrapper card-section-header">
+            <div class="col s8">
+                <h3>Completed</h3>
+            </div>
+            <div class="col s2 edit-btn">
+                <div class="center-align">
+                    <a href="#"><i class="cog-icon fas fa-cog fa-3x"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Games -->
+    {% for game in games_completed if game.username == user %}
+        <div class="row card-panel profile-card-content">
+            <div class="valigin-wrapper">
+                <!-- Image -->
+                <div class="row main-row">
+                    <div class="col s12 m12 l6">
+                        <div class="card-image profile-game-img">
+                            <img src="{{ game.game_img_full }}" alt="">
+                        </div>
+                    </div>
+                    <!-- Title -->
+                    <div class="col m12 l6 profile-game-title">
+                        <h5 class="center-align">{{ game.game_title }}</h5>
+                    </div>
+                    <!-- Content -->
+                    <div class="card-content game-btns col s12 m12 l6 left">
+                        <!-- Link and Review -->
+                        <div class="row">
+                            <!-- Link -->
+                            <div class="col s4 profile-game-btn left-side">
+                                <a href="#" class="btn-large">
+                                    <i class="material-icons btn-icon-left">http</i>
+                                    <span style="font-size: 14px;">Links</span>
+                                    <i class="material-icons btn-icon-right">arrow_drop_down</i>
+                                </a>
+                            </div>
+                            <!-- Review -->
+                            {% for match in matches if match == game.game_title %}
+                                <div class="col s4 profile-game-btn btn-large reviewed">
+                                    <i class="material-icons btn-icon-left">thumb_up</i>
+                                    <span>Reviewed</span>
+                                    <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                                        <i class="fas fa-pen-square"></i>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="col s4 profile-game-btn">
+                                    <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn-large">
+                                        <i class="fas fa-pen-alt" style="font-size: 18px; padding:0"></i>
+                                        <span>Review</span>
+                                    </a>    
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h4 class="center-align py-5">No games have been added to this section</h4>
+    {% endfor %}
+    
+
+{% endblock %}

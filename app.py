@@ -1301,6 +1301,40 @@ def remove_game(game_id):
     return redirect(url_for("profile_games", username=session["user"]))
 
 
+# ======================
+# Visit Profile Template
+# ======================
+
+@app.route("/profiles-template")
+def profiles_template():
+    return render_template(
+        "visit_profile-template.html")
+
+
+# ==============
+# Visit Profiles
+# ==============
+
+@app.route("/profiles/<user>")
+def profiles(user):
+    games_playing = mongo.db.user_games.find({"stage": "playing"})
+    games_next = mongo.db.user_games.find({"stage": "next"})
+    games_completed = mongo.db.user_games.find({"stage": "completed"})
+    
+    user_data = mongo.db.users.find_one({"username": user})
+    username = user_data["username"]
+    user_display_name = user_data["display_name"]
+    user_avatar = user_data["avatar"]
+    user_avatar_desc = user_data["avatar_desc"]
+
+    return render_template(
+        "visit_profile-games_list.html",
+        games_playing=games_playing, games_next=games_next,
+        games_completed=games_completed, user=user,
+        username=username, user_display_name=user_display_name,
+        user_avatar=user_avatar)
+
+
 # ==============
 # Export to JS
 # ==============

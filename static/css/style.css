@@ -1507,6 +1507,12 @@ label[for]:hover {
     margin: 15px;
 }
 
+#ProfileSidePanel h5 {
+    margin-top: 0; 
+    margin-right: 10px; 
+    font-size: 16px;
+}
+
 /* Review buttons */
 
 .reviewed {
@@ -1548,6 +1554,10 @@ label[for]:hover {
     cursor: default;
 }
 
+.fa-pen-alt {
+    font-size: 18px;
+    padding: 0;
+}
 
 /* ---------------------------------------------- Edit Profile */
 
