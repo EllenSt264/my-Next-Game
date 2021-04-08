@@ -859,6 +859,85 @@ def multiplayer_games():
         navSelect1=navSelect1, navSelect2=navSelect2)
 
 
+# ===================
+# Award Winner Games
+# ===================
+
+@app.route("/awardwinner-games", methods=["GET", "POST"])
+def awardwinner_games():
+    pc_games = mongo.db.all_pc_games.find({"awardwinner": True})
+
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 6
+    offset = ((page - 1) * per_page)
+
+    total = pc_games.count()
+    pagination_pc_games = pc_games[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    # Find site favourites
+    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
+
+    # Sort filter
+
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
+
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
+
+    # Sort by Likes
+
+    if navSelect1 == "likes" and navSelect2 == "desc":
+        pagination_pc_games.sort("likes", pymongo.DESCENDING)
+
+    elif navSelect1 == "likes" and navSelect2 == "asc":
+        pagination_pc_games.sort("likes", pymongo.ASCENDING)
+
+    # Sort by game title
+    elif navSelect1 == "title" and navSelect2 == "desc":
+        pagination_pc_games.sort("game_title", pymongo.DESCENDING)
+
+    elif navSelect1 == "title" and navSelect2 == "asc":
+        pagination_pc_games.sort("game_title", pymongo.ASCENDING)
+
+    # Sort by bestseller
+    elif navSelect1 == "bestseller" and navSelect2 == "desc":
+        pagination_pc_games.sort("bestseller", pymongo.DESCENDING)
+
+    elif navSelect1 == "bestseller" and navSelect2 == "asc":
+        pagination_pc_games.sort("bestseller", pymongo.ASCENDING)
+
+    # Sort by awardwinner
+    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
+        pagination_pc_games.sort("awardwinner", pymongo.DESCENDING)
+
+    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
+        pagination_pc_games.sort("awardwinner", pymongo.ASCENDING)
+
+    # Sort by favourite
+    elif navSelect1 == "favourite" and navSelect2 == "desc":
+        pagination_pc_games.sort("favourite", pymongo.DESCENDING)
+
+    elif navSelect1 == "favourite" and navSelect2 == "asc":
+        pagination_pc_games.sort("favourite", pymongo.ASCENDING)
+
+    return render_template(
+        "games-awardwinners.html", pc_games=pagination_pc_games,
+        pagination=pagination, favourites=favourites,
+        navSelect1=navSelect1, navSelect2=navSelect2)
+
+
+
+
 # =================
 # Site's Favourites
 # =================
@@ -1469,7 +1548,7 @@ def see_game_reviews(game_id):
     pagination = Pagination(
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
-    
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)

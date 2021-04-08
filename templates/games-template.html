@@ -33,7 +33,7 @@
 
                     <!-- Standard Links -->
                     <li><a href="{{ url_for('favourites') }}" class="standard-link">Our Favourites</a></li>
-                    <li><a href="#" class="standard-link">Award Winners</a></li>
+                    <li><a href="{{ url_for('awardwinner_games') }}" class="standard-link">Award Winners</a></li>
                     {% if session.user %}
                     <li><a href="{{ url_for('profile_games', username=session['user']) }}" class="standard-link">Your List</a></li>
                     {% endif %}
