@@ -1049,18 +1049,44 @@ def request_game():
         user_email = mongo.db.users.find_one(
             {"username": session["user"]})["email"]
 
+        # Grab account details from form inputs
         username = request.form.get("username")
         email = request.form.get("email")
 
+        # Check if email and username match the db
         if (username == user) and (email == user_email):
+            # Check if game request already exists in db
+            existing_request = mongo.db.game_requests.find_one(
+                {"game_request": request.form.get("game-request")})
+            
+            # Check if current user has already requested this game
+            has_user_requested = existing_request["requested_by"]
+
+            # Block users from requesting the same game
+            if user in has_user_requested:
+                flash("You've already submitted a request for this game")
+                return redirect(url_for("request_game"))
+
+            # Update existing game request with session user's username
+            if existing_request:
+                # Find id of document
+                request_id = existing_request["_id"]
+                # Update existing document
+                mongo.db.game_requests.update_one({"_id": request_id}, {"$push": {"requested_by": username}})
+
+                flash("You Request Has Been Submitted")
+                return redirect(url_for("home"))
+
+            # Else add new document
             game = {
                 "game_request": request.form.get("game-request"),
-                "requested_by": username
+                "requested_by": [username]
             }
             mongo.db.game_requests.insert_one(game)
 
             flash("Your Request Has Been Submitted")
             return redirect(url_for("home"))
+
         else:
             flash("Details Incorrect")
             return redirect(url_for("request_game"))
