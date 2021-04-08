@@ -1163,12 +1163,37 @@ def edit_profile(username):
 # Edit Profile - Password
 # =======================
 
-@app.route("/edit-profile/<username>/general/password-reset")
+@app.route("/edit-profile/<username>/general/password-reset", methods=["GET", "POST"])
 def edit_password(username):
     user = mongo.db.users.find_one({"username": session["user"]})
     if request.method == "POST":
         user_id = user["_id"]
-    
+
+        # Check password
+        if check_password_hash(user["password"], request.form.get("password")):
+            
+            # Check if new passwords match
+            new_password = request.form.get("change-password")
+            confirm_new_password = request.form.get("confirm-new-password")
+
+            if new_password == confirm_new_password:
+                # Update db 
+                update = {"$set": {
+                    "password": generate_password_hash(new_password)
+                }}
+                mongo.db.users.update_one({"_id": user_id}, update)
+                flash("Password Successfully Updated")
+                return redirect(url_for("profile_games", username=session["user"]))
+
+            else:
+                # Invalid match
+                flash("Inputs invalid")
+                return redirect(url_for("edit_password", username=session["user"]))
+        else:
+            # Invalid password
+            flash("Password Incorrect")
+            return redirect(url_for("edit_password", username=session["user"]))
+
     return render_template("profile-edit_password.html", username=session["user"], user=user)
 
 
