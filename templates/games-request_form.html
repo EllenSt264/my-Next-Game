@@ -2,20 +2,22 @@
 {% block content %}
     
     <div class="row center-align request-form">
-        <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="">
+        <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="{{ url_for('request_game') }}">
             <!-- Outer card -->
             <div class="card-panel form-outer-panel">
                 <!-- Inner card -->
                 <div class="card-panel form-inner-panel grey-text text-lighten-2">
                     <!-- Site logo -->
                     <div class="col s12 center-align">
-                        <img src="{{ url_for('static', filename='img/main/odin_logo.png')}}" alt=""
-                            style="width:100px; height:100px;">
+                        <img src="{{ url_for('static', filename='img/main/odin_logo.png')}}" alt="Site brand logo">
                     </div>
                     <!-- Form title -->
                     <h3 class="text-lighten-1 account-title py-5 center-align">Request A Game</h3>
                     <!-- Info text -->
-                    <p>When you request a game ........</p>
+                    <p>
+                        Please use the game's <strong>full title</strong> when
+                        requesting a game to be added to our database.
+                    </p>
                     <!-- Input fields -->
                     <div class="card-panel input-panel">
                         <!-- Username -->
@@ -42,8 +44,7 @@
                     </div>
                     <!-- Submit -->
                     <div class="row center-align">
-                        <button type="submit" class="btn btn-large waves-effect waves-light"
-                            style="border-radius: 5px; background-color: #c41cce;">
+                        <button type="submit" class="btn btn-large waves-effect waves-light">
                             Request Game
                         </button>
                     </div>
