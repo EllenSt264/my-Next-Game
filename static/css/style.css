@@ -2445,7 +2445,7 @@ label[for]:hover {
     }
     i.fas.fa-plus::before {
         position: absolute;
-        top: 0;
+        top: -5px;
         right: 0;
         left: 0;
         bottom: 0;
