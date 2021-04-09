@@ -263,11 +263,34 @@ def admin_update_db():
 # Admin Controls - See Requests
 # =============================
 
-@app.route("/admin/user-requests")
+@app.route("/admin/user-requests", methods=["GET", "POST"])
 def admin_user_requests():
     user_requests = mongo.db.game_requests.find()
+
+    if request.method == "POST":
+        session["navSelect1"] = request.form.get("navSelect1").lower()
+        session["navSelect2"] = request.form.get("navSelect2").lower()
+
+    navSelect1 = session["navSelect1"]
+    navSelect2 = session["navSelect2"]
+
+    # Sort filter
+
+    if navSelect1 == "title" and navSelect2 == "desc":
+        user_requests.sort("game_request", pymongo.DESCENDING)
+
+    elif navSelect1 == "title" and navSelect2 == "asc":
+        user_requests.sort("requested_by", pymongo.ASCENDING)
+
+    elif navSelect1 == "user-count" and navSelect2 == "desc":
+        user_requests.sort("requested_by", pymongo.DESCENDING)
+
+    elif navSelect1 == "user-count" and navSelect2 == "asc":
+        user_requests.sort("game_request", pymongo.ASCENDING)
+
     return render_template(
-        "admin-user_requests.html", user_requests=user_requests)
+        "admin-user_requests.html", user_requests=user_requests,
+        navSelect1=navSelect1, navSelect2=navSelect2)
 
 
 # =================
