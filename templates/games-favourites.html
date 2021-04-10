@@ -1,6 +1,7 @@
-{% extends "games-template.html" %}
+{% extends "base.html" %}
 
-{% block media %}
+{% block content %}
+    <!-- Parallax -->
     <section>
         <div class="parallax-container">
             <div class="parallax">
@@ -59,10 +60,75 @@
         </div>
 
     </section>
-{% endblock %}
 
-{% block games %}
+    <!-- Sort nav and pagination -->
+    <section id="sort-and-pagination-nav">
+        <div class="row">
+            <!-- Pagination --> 
+            <div class="col s12 m6">
+                <div class="pagination-top">
+                    <ul class="pagination">
+                       {% block pagination %}
+                       {% endblock %}
+                    </ul>
+                </div>
+            </div>
+            <!-- Sort by features -->
+            <div class="col s12 m6">
+                <div class="sort-by right">
+                    <!-- Select labels -->
+                    <ul class="tabs tabs-transparent" id="sortNav-label">
+                        <li class="tab" id="nav1">
+                            <a>
+                                <label for="navSelect1">Sort By</label>
+                            </a>
+                        </li>
+                        <li class="tab" id="nav2">
+                            <a>
+                                <label for="navSelect2">Order</label>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Select options -->
 
+                    <form action={% block sort_filter %}{% endblock %} method="POST">
+                        <ul class="tabs tabs-transparent" id="sortNav">
+                            <li class="tab">
+                                <a>
+                                    <select class="browser-default" name="navSelect1" id="navSelect1" value="{{ navSelect1 }}">
+                                        <option value="default"{% if navSelect1=="default" %} selected="selected" {% endif %}>Default</option>
+                                        <option value="title"{% if navSelect1=="title" %} selected="selected" {% endif %}>Title</option>
+                                        <option value="likes"{% if navSelect1=="likes" %} selected="selected" {% endif %}>Likes</option>
+                                        <option value="favourite"{% if navSelect1=="favourite" %} selected="selected" {% endif %}>Recommended</option>
+                                        <option value="awardwinner"{% if navSelect1=="awardwinner" %} selected="selected" {% endif %}>Award Winners</option>
+                                        <option value="bestseller"{% if navSelect1=="bestseller" %} selected="selected" {% endif %}>Bestsellers</option>
+                                        <option value="playing"{% if navSelect1=="playing" %} selected="selected" {% endif %}>Playing</option>
+                                        <option value="reviews"{% if navSelect1=="reviews" %} selected="selected" {% endif %}>Review Count</option>
+                                        
+                                    </select>
+                                </a>
+                            </li>
+                            <li class="tab">
+                                <a>
+                                    <select class="browser-default" name="navSelect2" id="navSelect2"  value="{{ navSelect2 }}">
+                                        <option value="asc"{% if navSelect2=="asc" %} selected="selected" {% endif %}>Asc</option>
+                                        <option value="desc"{% if navSelect2=="desc" %} selected="selected" {% endif %}>Desc</option>
+                                    </select>
+                                </a>
+                            </li>
+                            <li class="tab">
+                                <a style="line-height: 10px;">
+                                    <button type="submit" class="btn" id="filterBtn">Filter Results</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games -->
     <section>
         {% for game in favourites %}
             <!-- For larger screens -->
