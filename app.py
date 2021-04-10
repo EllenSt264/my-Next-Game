@@ -1051,6 +1051,7 @@ def register():
 
             # Add user into session cookie
             session["user"] = request.form.get("username").lower()
+            session["admin"] = False
             flash("Registration Successful")
             return redirect(url_for("profile_games", username=session["user"]))
 
