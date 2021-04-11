@@ -22,6 +22,9 @@
     * Returning documents from MongoDB without duplicates:
     "https://stackoverflow.com/questions/11470614/mongodb-return-all-documents-by-field-without-duplicates"
 
+    * Add session cookies to browser with Flask:
+    "https://pythonbasics.org/flask-cookies/"
+
 """
 
 import os
@@ -30,7 +33,7 @@ import random
 import requests
 from bs4 import BeautifulSoup
 from flask import (
-    Flask, flash, render_template, redirect, request, session, url_for)
+    Flask, flash, render_template, redirect, request, session, url_for, make_response)
 from flask_pymongo import PyMongo, pymongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
@@ -143,7 +146,7 @@ def search_reviews():
         css_framework='materialize')
 
     return render_template(
-        "games-reviews.html", game_reviews=pagination_game_reviews,
+        "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
 
 
@@ -256,9 +259,146 @@ def admin_update_db():
     return render_template("admin-update_db.html")
 
 
-# ===================
+# =============================
+# Admin Controls - See Requests
+# =============================
+
+@app.route("/admin/user-requests", methods=["GET", "POST"])
+def admin_user_requests():
+    user_requests = mongo.db.game_requests.find()
+
+    if request.method == "POST":
+        session["navSelect1"] = request.form.get("navSelect1").lower()
+        session["navSelect2"] = request.form.get("navSelect2").lower()
+
+    navSelect1 = session["navSelect1"]
+    navSelect2 = session["navSelect2"]
+
+    # Sort filter
+
+    if navSelect1 == "title" and navSelect2 == "desc":
+        user_requests.sort("game_request", pymongo.DESCENDING)
+
+    elif navSelect1 == "title" and navSelect2 == "asc":
+        user_requests.sort("requested_by", pymongo.ASCENDING)
+
+    elif navSelect1 == "user-count" and navSelect2 == "desc":
+        user_requests.sort("requested_by", pymongo.DESCENDING)
+
+    elif navSelect1 == "user-count" and navSelect2 == "asc":
+        user_requests.sort("game_request", pymongo.ASCENDING)
+
+    return render_template(
+        "admin-user_requests.html", user_requests=user_requests,
+        navSelect1=navSelect1, navSelect2=navSelect2)
+
+
+# =================
+# Games Sort Filter
+# =================
+
+@app.route("/setcookie/all", methods=["GET", "POST"])
+def setcookie_all():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("pc_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+# ==========================
+# Games Sort Filter - Action
+# ==========================
+
+@app.route("/setcookie/action", methods=["GET", "POST"])
+def setcookie_action():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("action_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+# =============================
+# Games Sort Filter - Adventure
+# =============================
+
+@app.route("/setcookie/adventure", methods=["GET", "POST"])
+def setcookie_adventure():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("adventure_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+# =======================
+# Games Sort Filter - RPG
+# =======================
+
+@app.route("/setcookie/RPG", methods=["GET", "POST"])
+def setcookie_RPG():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("RPG_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+
+# ============================
+# Games Sort Filter - Strategy
+# ============================
+
+@app.route("/setcookie/strategy", methods=["GET", "POST"])
+def setcookie_strategy():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("strategy_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+# ===============================
+# Games Sort Filter - Multiplayer
+# ===============================
+
+@app.route("/setcookie/multiplayer", methods=["GET", "POST"])
+def setcookie_multiplayer():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("multiplayer_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
+# ========
 # PC Games
-# ===================
+# ========
 
 @app.route("/pc-games", methods=["GET", "POST"])
 def pc_games():
@@ -281,12 +421,15 @@ def pc_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -362,12 +505,15 @@ def action_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -443,12 +589,15 @@ def adventure_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -524,12 +673,15 @@ def RPG_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -605,12 +757,15 @@ def strategy_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -686,12 +841,15 @@ def multiplayer_games():
 
     # Sort filter
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
 
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
 
     # Sort by Likes
 
@@ -733,6 +891,85 @@ def multiplayer_games():
         "games-multiplayer.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
         navSelect1=navSelect1, navSelect2=navSelect2)
+
+
+# ===================
+# Award Winner Games
+# ===================
+
+@app.route("/awardwinner-games", methods=["GET", "POST"])
+def awardwinner_games():
+    pc_games = mongo.db.all_pc_games.find({"awardwinner": True})
+
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 6
+    offset = ((page - 1) * per_page)
+
+    total = pc_games.count()
+    pagination_pc_games = pc_games[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    # Find site favourites
+    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
+
+    # Sort filter
+
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
+
+    if cookie1 == None and cookie2 == None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
+
+    # Sort by Likes
+
+    if navSelect1 == "likes" and navSelect2 == "desc":
+        pagination_pc_games.sort("likes", pymongo.DESCENDING)
+
+    elif navSelect1 == "likes" and navSelect2 == "asc":
+        pagination_pc_games.sort("likes", pymongo.ASCENDING)
+
+    # Sort by game title
+    elif navSelect1 == "title" and navSelect2 == "desc":
+        pagination_pc_games.sort("game_title", pymongo.DESCENDING)
+
+    elif navSelect1 == "title" and navSelect2 == "asc":
+        pagination_pc_games.sort("game_title", pymongo.ASCENDING)
+
+    # Sort by bestseller
+    elif navSelect1 == "bestseller" and navSelect2 == "desc":
+        pagination_pc_games.sort("bestseller", pymongo.DESCENDING)
+
+    elif navSelect1 == "bestseller" and navSelect2 == "asc":
+        pagination_pc_games.sort("bestseller", pymongo.ASCENDING)
+
+    # Sort by awardwinner
+    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
+        pagination_pc_games.sort("awardwinner", pymongo.DESCENDING)
+
+    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
+        pagination_pc_games.sort("awardwinner", pymongo.ASCENDING)
+
+    # Sort by favourite
+    elif navSelect1 == "favourite" and navSelect2 == "desc":
+        pagination_pc_games.sort("favourite", pymongo.DESCENDING)
+
+    elif navSelect1 == "favourite" and navSelect2 == "asc":
+        pagination_pc_games.sort("favourite", pymongo.ASCENDING)
+
+    return render_template(
+        "games-awardwinners.html", pc_games=pagination_pc_games,
+        pagination=pagination, favourites=favourites,
+        navSelect1=navSelect1, navSelect2=navSelect2)
+
+
 
 
 # =================
@@ -814,6 +1051,7 @@ def register():
 
             # Add user into session cookie
             session["user"] = request.form.get("username").lower()
+            session["admin"] = False
             flash("Registration Successful")
             return redirect(url_for("profile_games", username=session["user"]))
 
@@ -827,20 +1065,22 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        # Check if username exists in the db
+        # Check if email exists in the db
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"email": request.form.get("email").lower()})
+
+        # Get username
+        username = existing_user["username"]
 
         if existing_user:
             # Check if hashed password matches user input
             if check_password_hash(
                existing_user["password"], request.form.get("password")):
                 # Create session cookie for user
-                session["user"] = request.form.get("username").lower()
+                session["user"] = username
 
                 # Create session cookie for admin
-                user = mongo.db.users.find_one({
-                    "username": request.form.get("username").lower()})
+                user = mongo.db.users.find_one({"username": username})
                 admin = user["admin"]
 
                 if admin is True:
@@ -849,8 +1089,7 @@ def login():
                     session["admin"] = False
 
                 # Success - redirect to profile
-                flash("Welcome {}".format(
-                    request.form.get("username").capitalize()))
+                flash("Welcome {}".format(username.capitalize()))
                 return redirect(url_for(
                     "profile_games", username=session["user"]))
             else:
@@ -913,8 +1152,59 @@ def like(game_id):
 # Request A Game
 # ==============
 
-@app.route("/request-a-game")
+@app.route("/request-a-game", methods=["GET", "POST"])
 def request_game():
+    if request.method == "POST":
+        # Grab session user's username
+        user = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+
+        # Grab session user's email
+        user_email = mongo.db.users.find_one(
+            {"username": session["user"]})["email"]
+
+        # Grab account details from form inputs
+        username = request.form.get("username")
+        email = request.form.get("email")
+
+        # Check if email and username match the db
+        if (username == user) and (email == user_email):
+            # Check if game request already exists in db
+            existing_request = mongo.db.game_requests.find_one(
+                {"game_request": request.form.get("game-request")})
+            
+            # Check if current user has already requested this game
+            has_user_requested = existing_request["requested_by"]
+
+            # Block users from requesting the same game
+            if user in has_user_requested:
+                flash("You've already submitted a request for this game")
+                return redirect(url_for("request_game"))
+
+            # Update existing game request with session user's username
+            if existing_request:
+                # Find id of document
+                request_id = existing_request["_id"]
+                # Update existing document
+                mongo.db.game_requests.update_one({"_id": request_id}, {"$push": {"requested_by": username}})
+
+                flash("You Request Has Been Submitted")
+                return redirect(url_for("home"))
+
+            # Else add new document
+            game = {
+                "game_request": request.form.get("game-request"),
+                "requested_by": [username]
+            }
+            mongo.db.game_requests.insert_one(game)
+
+            flash("Your Request Has Been Submitted")
+            return redirect(url_for("home"))
+
+        else:
+            flash("Details Incorrect")
+            return redirect(url_for("request_game"))
+
     return render_template("games-request_form.html")
 
 
@@ -1032,6 +1322,44 @@ def edit_profile(username):
 
     return render_template(
         "profile-edit_general.html", username=session["user"], user=user)
+
+
+# =======================
+# Edit Profile - Password
+# =======================
+
+@app.route("/edit-profile/<username>/general/password-reset", methods=["GET", "POST"])
+def edit_password(username):
+    user = mongo.db.users.find_one({"username": session["user"]})
+    if request.method == "POST":
+        user_id = user["_id"]
+
+        # Check password
+        if check_password_hash(user["password"], request.form.get("password")):
+            
+            # Check if new passwords match
+            new_password = request.form.get("change-password")
+            confirm_new_password = request.form.get("confirm-new-password")
+
+            if new_password == confirm_new_password:
+                # Update db 
+                update = {"$set": {
+                    "password": generate_password_hash(new_password)
+                }}
+                mongo.db.users.update_one({"_id": user_id}, update)
+                flash("Password Successfully Updated")
+                return redirect(url_for("profile_games", username=session["user"]))
+
+            else:
+                # Invalid match
+                flash("Inputs invalid")
+                return redirect(url_for("edit_password", username=session["user"]))
+        else:
+            # Invalid password
+            flash("Password Incorrect")
+            return redirect(url_for("edit_password", username=session["user"]))
+
+    return render_template("profile-edit_password.html", username=session["user"], user=user)
 
 
 # =====================
@@ -1176,6 +1504,40 @@ def remove_game(game_id):
     return redirect(url_for("profile_games", username=session["user"]))
 
 
+# ======================
+# Visit Profile Template
+# ======================
+
+@app.route("/profiles-template")
+def profiles_template():
+    return render_template(
+        "visit_profile-template.html")
+
+
+# ==============
+# Visit Profiles
+# ==============
+
+@app.route("/profiles/<user>")
+def profiles(user):
+    games_playing = mongo.db.user_games.find({"stage": "playing"})
+    games_next = mongo.db.user_games.find({"stage": "next"})
+    games_completed = mongo.db.user_games.find({"stage": "completed"})
+    
+    user_data = mongo.db.users.find_one({"username": user})
+    username = user_data["username"]
+    user_display_name = user_data["display_name"]
+    user_avatar = user_data["avatar"]
+    user_avatar_desc = user_data["avatar_desc"]
+
+    return render_template(
+        "visit_profile-games_list.html",
+        games_playing=games_playing, games_next=games_next,
+        games_completed=games_completed, user=user,
+        username=username, user_display_name=user_display_name,
+        user_avatar=user_avatar)
+
+
 # ==============
 # Export to JS
 # ==============
@@ -1197,13 +1559,137 @@ def export_data():
 export_data()
 
 
+# ================
+# See Game Reviews
+# ================
+
+@app.route("/community-reviews/<game_id>")
+def see_game_reviews(game_id):
+    # Grab game review
+    game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
+    game_title = game["game_title"]
+
+    reviews = mongo.db.user_reviews.find({"game_title": game_title})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = reviews.count()
+    pagination_game_reviews = reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# ================
+# Reviews Template
+# ================
+
+@app.route("/reviews")
+def reviews_template():
+    return render_template("reviews-template.html")
+
+
+# ===================
+# Reviews Sort Filter
+# ===================
+
+@app.route("/set-reviewcookie", methods=["GET", "POST"])
+def set_review_cookies():
+    if request.method == "POST":
+        cookie1 = request.form.get("reviewSort1").lower()
+        cookie2 = request.form.get("reviewSort2").lower()
+
+        resp = make_response(redirect(url_for("reviews")))
+        resp.set_cookie("reviewSort1", cookie1)
+        resp.set_cookie("reviewSort2", cookie2)
+
+        return resp
+
+
 # ==========
 # Reviews
 # ==========
 
-@app.route("/community-reviews")
+@app.route("/community-reviews", methods=["GET", "POST"])
 def reviews():
-    game_reviews = mongo.db.user_reviews.find({})
+    game_reviews = mongo.db.user_reviews.find()
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    # Sort filter
+
+    cookie1 = request.cookies.get("reviewSort1")
+    cookie2 = request.cookies.get("reviewSort2")
+
+    if cookie1 == None and cookie2 == None:
+        reviewSort1 = "date"
+        reviewSort2 = "desc"
+    else:
+        reviewSort1 = cookie1
+        reviewSort2 = cookie2
+
+    # Sort by date added
+    if reviewSort1 == "date" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("date_submitted", -1)
+
+    elif reviewSort1 == "date" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("date_submitted", 1)
+    
+    # Sort by game title    
+    elif reviewSort1 == "title" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("game_title", pymongo.DESCENDING)
+
+    elif reviewSort1 == "title" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("game_title", pymongo.ASCENDING)
+
+    # Sort by rating
+    elif reviewSort1 == "rating" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("recommended", -1)
+
+    elif reviewSort1 == "rating" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("recommended", 1)
+
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination, reviewSort1=reviewSort1,
+        reviewSort2=reviewSort2)
+
+
+# ================
+# Reviews - Action
+# ================
+
+@app.route("/community-reviews/action")
+def reviews_action():
+    # Find action game titles
+    action_games = mongo.db.all_pc_games.find({"action": True})
+    titles = []
+    for game in action_games:
+        titles.append(game["game_title"])
+    
+    # Find reviews that match action game titles
+    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
 
     # Pagination
     page, per_page, offset = get_page_args(
@@ -1219,8 +1705,250 @@ def reviews():
         css_framework='materialize')
 
     return render_template(
-        "games-reviews.html", game_reviews=pagination_game_reviews,
+        "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
+
+
+# ===================
+# Reviews - Adventure
+# ===================
+
+@app.route("/community-reviews/adventure")
+def reviews_adventure():
+    # Find adventure game titles
+    adventure_games = mongo.db.all_pc_games.find({"adventure": True})
+    titles = []
+    for game in adventure_games:
+        titles.append(game["game_title"])
+    
+    # Find reviews that match adventure game titles
+    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# =============
+# Reviews - RPG
+# =============
+
+@app.route("/community-reviews/RPG")
+def reviews_RPG():
+    # Find RPG game titles
+    RPG_games = mongo.db.all_pc_games.find({"RPG": True})
+    titles = []
+    for game in RPG_games:
+        titles.append(game["game_title"])
+    
+    # Find reviews that match RPG game titles
+    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# ==================
+# Reviews - Strategy
+# ==================
+
+@app.route("/community-reviews/strategy")
+def reviews_strategy():
+    # Find strategy game titles
+    strategy_games = mongo.db.all_pc_games.find({"strategy": True})
+    titles = []
+    for game in strategy_games:
+        titles.append(game["game_title"])
+    
+    # Find reviews that match strategy game titles
+    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# =====================
+# Reviews - Multiplayer
+# =====================
+
+@app.route("/community-reviews/multiplayer")
+def reviews_multiplayer():
+    # Find multiplayer game titles
+    multiplayer_games = mongo.db.all_pc_games.find({"multiplayer": True})
+    titles = []
+    for game in multiplayer_games:
+        titles.append(game["game_title"])
+    
+    # Find reviews that match multiplayer game titles
+    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# =====================
+# Reviews - PC Platform
+# =====================
+
+@app.route("/community-reviews/pc")
+def reviews_pc():
+    # Find reviews with pc platform
+    # Steam, Windows, Mac or Linux
+    game_reviews = mongo.db.user_reviews.find({
+        "platform": {"$in": ["windows", "mac", "linux", "steam"]}})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# =======================
+# Reviews - XBOX Platform
+# =======================
+
+@app.route("/community-reviews/xbox")
+def reviews_xbox():
+    # Find reviews with xbox platform
+    game_reviews = mongo.db.user_reviews.find({"platform": "xbox"})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+
+# ==============================
+# Reviews - Playstation Platform
+# ==============================
+
+@app.route("/community-reviews/playstation")
+def reviews_playstation():
+    # Find reviews with playstation platform
+    game_reviews = mongo.db.user_reviews.find({"platform": "playstation"})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
+# ===========================
+# Reviews - Nintendo Platform
+# ===========================
+
+@app.route("/community-reviews/nintendo")
+def reviews_nintendo():
+    # Find reviews with nintendo platform
+    game_reviews = mongo.db.user_reviews.find({"platform": "nintendo"})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = game_reviews.count()
+    pagination_game_reviews = game_reviews[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "reviews.html", game_reviews=pagination_game_reviews,
+        pagination=pagination)
+
 
 
 # ======================

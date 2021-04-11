@@ -33,24 +33,10 @@
 
                     <!-- Standard Links -->
                     <li><a href="{{ url_for('favourites') }}" class="standard-link">Our Favourites</a></li>
-                    <li><a href="#" class="standard-link">Award Winners</a></li>
+                    <li><a href="{{ url_for('awardwinner_games') }}" class="standard-link">Award Winners</a></li>
                     {% if session.user %}
                     <li><a href="{{ url_for('profile_games', username=session['user']) }}" class="standard-link">Your List</a></li>
                     {% endif %}
-                    
-                    <!-- Platform -->
-                    <li id="PlatformLink">
-                        <div class="fixed-action-btn click-to-toggle">
-                            <a class="standard-link">Platform</a>
-                            <ul class="floating-nav">
-                                <div class="items">
-                                    <li class="tab"><a href="{{ url_for('pc_games') }}">PC</a></li>
-                                    <li class="tab"><a href="{{ url_for('pc_games') }}">XBOX</a></li>
-                                    <li class="tab"><a href="{{ url_for('pc_games') }}">Playstation</a></li>
-                                </div>
-                            </ul>
-                        </div>
-                    </li>
 
                     <!-- Genre -->
                     <li id="GenreLink">
@@ -136,7 +122,7 @@
                             <li class="tab">
                                 <a>
                                     <select class="browser-default" name="navSelect1" id="navSelect1" value="{{ navSelect1 }}">
-                                        <option value="date-added"{% if navSelect1=="date-added" %} selected="selected" {% endif %}>Date Added</option>
+                                        <option value="default"{% if navSelect1=="default" %} selected="selected" {% endif %}>Default</option>
                                         <option value="title"{% if navSelect1=="title" %} selected="selected" {% endif %}>Title</option>
                                         <option value="likes"{% if navSelect1=="likes" %} selected="selected" {% endif %}>Likes</option>
                                         <option value="favourite"{% if navSelect1=="favourite" %} selected="selected" {% endif %}>Recommended</option>
@@ -176,4 +162,9 @@
     
     </section>
 
+{% endblock %}
+
+{% block scripts %}
+<!-- JQuery Autocomplete -->
+<script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
 {% endblock %}

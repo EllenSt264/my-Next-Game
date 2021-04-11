@@ -27,7 +27,7 @@
                                 <h4>Sorry, but we couldn't find what you're looking for</h4>
                             </div>
                             <div class="card-image">
-                                <img src="{{ url_for('static', filename='img/thinking_emoji.png') }}" alt="Thinking emoji">
+                                <img src="{{ url_for('static', filename='img/main/thinking_emoji.png') }}" alt="Thinking emoji">
                             </div>
                             <div class="divider"></div>
                             <p>
@@ -35,7 +35,7 @@
                                 If you're certain we do, then please check your spelling and try again. Otherwise, you can 
                                 request to have the game added to our database by clicking the button bellow.
                             </p>
-                            <a href="#" class="btn">Request A Game</a>
+                            <a href="{{ url_for('request_game') }}" class="btn">Request A Game</a>
                         </div>
                     </div>
                 </div>

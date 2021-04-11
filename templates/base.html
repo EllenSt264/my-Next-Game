@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_fonts.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <title>my Next Game</title>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
 </head>
 <body>
     <header>
@@ -64,11 +69,12 @@
                     <ul class="dropdown-content" id="adminDropdown">
                         <li><a href="{{ url_for('admin_add_to_db') }}">Add to DB</a></li>
                         <li><a href="{{ url_for('admin_update_db') }}">Update DB</a></li>
+                        <li><a href="{{ url_for('admin_user_requests') }}">User Requests</a></li>
                     </ul>
                 
                     <ul class="left hide-on-med-and-down">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('pc_games') }}">Platform</a></li>
+                        <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
                         <li>
                             <a href="{{ url_for('pc_games') }}" class="dropdown-trigger nav-dropdown-trigger" 
                             data-target="GenreDropdown">Genre</a>
@@ -111,7 +117,7 @@
 
         <!-- Mobile side-navbar -->
         <ul class="my-sidenav" id="mobile-nav">
-            <li><a href="{{ url_for('pc_games') }}">Platform</a></li>
+            <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
             <li>
                 <a href="{{ url_for('pc_games') }}">Genre</a>
                 <ul>
@@ -281,5 +287,6 @@
     <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>

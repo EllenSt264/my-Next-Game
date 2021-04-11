@@ -297,6 +297,8 @@
 |  14  | `Logout` | When logged into an account, hover over the `Profile icon` in the navbar and click on the `Logout` navlink  | The user will be `logged out` and directed to the `Login` page. A `flash message` should say 'You have been logged out' | The user is `logged out` and then directed to the `Login` page. The `flash message` says 'You have been logged out'  | Pass |
 |  15  | Navigate to `Homepage` | When on any page other than the Homepage, click the `Home` link in the navbar | The site will navigate to the `Homepage` | Navigates to `Homepage` | Pass |
 |  16  | Navigate to `Homepage` | When on any page other than the Homepage, click the `Site Brand Logo` in the navbar | The site will navigate to the `Homepage` | Navigates to `Homepage` | Pass |
+|  17  | Navigate to a `Games Page` with `browser cookies cleared` | Clear browser `cookies` and reload the site. Click the `Genre` navlink to navigate to the `Games Page` for all games | Should navigate to the `Games Page` for all games | KeyError for `navSelect1` and `navSelect2` occurs; page does not load | Fail | See fix [here](#navselect-keyerror) |
+|  17  | Navigate to a `Games Page` with `browser cookies cleared` after fix | Clear browser `cookies` and reload the site. Click the `Genre` navlink to navigate to the `Games Page` for all games | Should navigate to the `Games Page` for all games | Navigates to `Games Page` | Pass |
 
 
 #### Navigation - Navbar (Mobile)
@@ -521,6 +523,33 @@ The session cookie can be seen in the Network tab of Chrome DevTools:
 | ![Screenshot of admin session cookie, false](static/img/documentation/screenshot-session_admin-false.png) | ![Screenshot of admin session cookie, true](static/img/documentation/screenshot-session_admin-true.png)
 
 No errors were produced; fixing this issue.
+
+
+-----
+
+
+### NavSelect KeyError
+
+- Navigating to any of the Game pages with the browser cookies cleared, would trigger a "KeyError: 'navSelect1'" error in the browser. This was caused by session cookie not being defined properly. The following code caused the issue:
+
+```
+if request.method == "POST":
+    session["navSelect1"] = request.form.get("navSelect1").lower()
+    session["navSelect2"] = request.form.get("navSelect2").lower()
+```
+
+- There was nothing in place to define the session cookie for when the sort filter form is not in use. I.e, when running the website for the first time and navigating to any of the Games pages. 
+
+- Add the following code to the conditional statement fixed the error:
+
+```
+if request.method == "POST":
+        session["navSelect1"] = request.form.get("navSelect1").lower()
+        session["navSelect2"] = request.form.get("navSelect2").lower()
+    else:
+        session["navSelect1"] = "default"
+        session["navSelect2"] = "desc"
+```
 
 
 -----

@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block sort_filter %}
-    "{{url_for('setcookie_all')}}"
+    "{{url_for('setcookie_action')}}"
 {% endblock %}
 
 {% block games %}
@@ -29,6 +29,7 @@
 
                     <!-- Medium screens and up -->
                     <div class="col m12 l5 offset-l1 game-cards hide-on-small-only" id="gameCard1">
+                        <h5 class="white-text">{{ game.award_title }} | {{ game.award_year }}</h5>
                         <div class="card-panel black-magenta glow">
                             <div class="card horizontal purple-linear-gradient glow">
                                 <div class="card-image">
@@ -121,6 +122,7 @@
 
                     <!-- Small screens only -->
                     <div class="col s12 hide-on-med-and-up game-cards sm-screen-card">
+                        <h5 class="white-text center-align">{{ game.award_title }} | {{ game.award_year }}</h5>
                         <div class="card-panel black-magenta glow">
                             <div class="card purple-linear-gradient glow">
                                 <div class="card-image">
@@ -182,6 +184,7 @@
 
                     <!-- Medium screens and up -->
                     <div class="col m12 l5 game-cards hide-on-small-only" id="gameCard2">
+                        <h5 class="white-text">{{ game.award_title }} | {{ game.award_year }}</h5>
                         <div class="card-panel black-magenta glow">
                             <div class="card horizontal purple-linear-gradient glow">
                                 <div class="card-image">
@@ -275,6 +278,7 @@
 
                     <!-- Small screens only -->
                     <div class="col s12 hide-on-med-and-up game-cards sm-screen-card">
+                        <h5 class="white-text center-align">{{ game.award_title }} | {{ game.award_year }}</h5>
                         <div class="card-panel black-magenta glow">
                             <div class="card purple-linear-gradient glow">
                                 <div class="card-image">
@@ -340,5 +344,4 @@
             {{ pagination.links }}
         </ul>
     </section>
-
 {% endblock %}
