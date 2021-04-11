@@ -1934,23 +1934,6 @@ label[for]:hover {
 
 /* ---------------------------------------------- Media Queries */
 
-@media (min-width: 2130px) {
-    .floating-add-btn {
-        position: absolute; 
-        top: 5%; 
-        bottom: 0; 
-        right: 9%; 
-        left: 0;
-    }
-    .like-outer {
-        position: absolute; 
-        top: 10%; 
-        bottom: 0; 
-        right: 0; 
-        left: 78%;
-    }
-}
-
 @media (min-width: 1980px) {
     .game-cards {
         margin-bottom: 25px;
