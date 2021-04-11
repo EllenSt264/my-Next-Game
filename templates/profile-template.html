@@ -51,7 +51,11 @@
                             <div class="col right">
                                 <h5 style="margin-top: 0; margin-right: 10px; font-size: 18px;">
                                     {% if "display_name" in user %}
-                                        {{ user.display_name }}
+                                        {% if user.display_name == None %}
+                                            {{ user.username|capitalize }}
+                                        {% else %}
+                                            {{ user.display_name }}
+                                        {% endif %}
                                     {% else %}
                                         {{ user.username|capitalize }}
                                     {% endif %}
