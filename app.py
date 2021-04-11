@@ -94,9 +94,9 @@ def games():
     return render_template("games-template.html")
 
 
-# ===================
+# ======
 # Search
-# ===================
+# ======
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
@@ -123,6 +123,10 @@ def search():
         "games-search_results.html", games=pagination_games,
         pagination=pagination)
 
+
+# ==============
+# Search Reviews
+# ==============
 
 @app.route("/community-reviews/search", methods=["GET", "POST"])
 def search_reviews():
@@ -174,12 +178,16 @@ def admin_add_to_db():
                 # Grab full game title
                 def get_full_title():
                     url = request.form.get("game-link")
-                    cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+                    cookies = {
+                        "birthtime": "786240001",
+                        "lastagecheckage": "1-0-1995"
+                    }
                     source = requests.get(url, cookies=cookies)
                     soup = BeautifulSoup(source.text, "html.parser")
 
                     # ------------------------------ Game title
-                    for item in soup.select(".page_title_area.game_title_area"):
+                    for item in soup.select(
+                            ".page_title_area.game_title_area"):
                         for title in item.select(".apphub_AppName"):
                             global game_title
                             game_title = (title.text)
@@ -310,99 +318,16 @@ def setcookie_all():
         return resp
 
 
-# ==========================
-# Games Sort Filter - Action
-# ==========================
-
-@app.route("/setcookie/action", methods=["GET", "POST"])
-def setcookie_action():
-    if request.method == "POST":
-        cookie1 = request.form.get("navSelect1").lower()
-        cookie2 = request.form.get("navSelect2").lower()
-
-        resp = make_response(redirect(url_for("action_games")))
-        resp.set_cookie("navSelect1", cookie1)
-        resp.set_cookie("navSelect2", cookie2)
-
-        return resp
-
-
-# =============================
-# Games Sort Filter - Adventure
-# =============================
-
-@app.route("/setcookie/adventure", methods=["GET", "POST"])
-def setcookie_adventure():
-    if request.method == "POST":
-        cookie1 = request.form.get("navSelect1").lower()
-        cookie2 = request.form.get("navSelect2").lower()
-
-        resp = make_response(redirect(url_for("adventure_games")))
-        resp.set_cookie("navSelect1", cookie1)
-        resp.set_cookie("navSelect2", cookie2)
-
-        return resp
-
-
-# =======================
-# Games Sort Filter - RPG
-# =======================
-
-@app.route("/setcookie/RPG", methods=["GET", "POST"])
-def setcookie_RPG():
-    if request.method == "POST":
-        cookie1 = request.form.get("navSelect1").lower()
-        cookie2 = request.form.get("navSelect2").lower()
-
-        resp = make_response(redirect(url_for("RPG_games")))
-        resp.set_cookie("navSelect1", cookie1)
-        resp.set_cookie("navSelect2", cookie2)
-
-        return resp
-
-
-
-# ============================
-# Games Sort Filter - Strategy
-# ============================
-
-@app.route("/setcookie/strategy", methods=["GET", "POST"])
-def setcookie_strategy():
-    if request.method == "POST":
-        cookie1 = request.form.get("navSelect1").lower()
-        cookie2 = request.form.get("navSelect2").lower()
-
-        resp = make_response(redirect(url_for("strategy_games")))
-        resp.set_cookie("navSelect1", cookie1)
-        resp.set_cookie("navSelect2", cookie2)
-
-        return resp
-
-
-# ===============================
-# Games Sort Filter - Multiplayer
-# ===============================
-
-@app.route("/setcookie/multiplayer", methods=["GET", "POST"])
-def setcookie_multiplayer():
-    if request.method == "POST":
-        cookie1 = request.form.get("navSelect1").lower()
-        cookie2 = request.form.get("navSelect2").lower()
-
-        resp = make_response(redirect(url_for("multiplayer_games")))
-        resp.set_cookie("navSelect1", cookie1)
-        resp.set_cookie("navSelect2", cookie2)
-
-        return resp
-
-
 # ========
 # PC Games
 # ========
 
 @app.route("/pc-games", methods=["GET", "POST"])
 def pc_games():
+    # Find games
     pc_games = mongo.db.all_pc_games.find()
+
+    # Pagination
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -424,7 +349,7 @@ def pc_games():
     cookie1 = request.cookies.get("navSelect1")
     cookie2 = request.cookies.get("navSelect2")
 
-    if cookie1 == None and cookie2 == None:
+    if cookie1 is None and cookie2 is None:
         navSelect1 = "default"
         navSelect2 = "desc"
     else:
@@ -473,12 +398,30 @@ def pc_games():
         navSelect1=navSelect1, navSelect2=navSelect2)
 
 
+# ==========================
+# Games Sort Filter - Action
+# ==========================
+
+@app.route("/setcookie/action", methods=["GET", "POST"])
+def setcookie_action():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("action_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
 # ===================
 # Action Games
 # ===================
 
 @app.route("/action-games", methods=["GET", "POST"])
 def action_games():
+    # Find games
     pc_games = mongo.db.all_pc_games.find(
         {
             "$or": [
@@ -487,6 +430,8 @@ def action_games():
             ]
         }
     )
+
+    # Pagination
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -508,7 +453,7 @@ def action_games():
     cookie1 = request.cookies.get("navSelect1")
     cookie2 = request.cookies.get("navSelect2")
 
-    if cookie1 == None and cookie2 == None:
+    if cookie1 is None and cookie2 is None:
         navSelect1 = "default"
         navSelect2 = "desc"
     else:
@@ -557,12 +502,30 @@ def action_games():
         navSelect1=navSelect1, navSelect2=navSelect2)
 
 
+# =============================
+# Games Sort Filter - Adventure
+# =============================
+
+@app.route("/setcookie/adventure", methods=["GET", "POST"])
+def setcookie_adventure():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("adventure_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
 # ===================
 # Adventure Games
 # ===================
 
 @app.route("/adventure-games", methods=["GET", "POST"])
 def adventure_games():
+    # Find games
     pc_games = mongo.db.all_pc_games.find(
         {
             "$or": [
@@ -571,6 +534,8 @@ def adventure_games():
             ]
         }
     )
+
+    # Pagination
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -592,7 +557,7 @@ def adventure_games():
     cookie1 = request.cookies.get("navSelect1")
     cookie2 = request.cookies.get("navSelect2")
 
-    if cookie1 == None and cookie2 == None:
+    if cookie1 is None and cookie2 is None:
         navSelect1 = "default"
         navSelect2 = "desc"
     else:
@@ -641,12 +606,30 @@ def adventure_games():
         navSelect1=navSelect1, navSelect2=navSelect2)
 
 
+# =======================
+# Games Sort Filter - RPG
+# =======================
+
+@app.route("/setcookie/RPG", methods=["GET", "POST"])
+def setcookie_RPG():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("RPG_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
 # ===================
 # RPG Games
 # ===================
 
 @app.route("/RPG-games", methods=["GET", "POST"])
 def RPG_games():
+    # Find games
     pc_games = mongo.db.all_pc_games.find(
         {
             "$or": [
@@ -655,6 +638,8 @@ def RPG_games():
             ]
         }
     )
+
+    # Pagination
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -676,7 +661,7 @@ def RPG_games():
     cookie1 = request.cookies.get("navSelect1")
     cookie2 = request.cookies.get("navSelect2")
 
-    if cookie1 == None and cookie2 == None:
+    if cookie1 is None and cookie2 is None:
         navSelect1 = "default"
         navSelect2 = "desc"
     else:
@@ -725,12 +710,30 @@ def RPG_games():
         navSelect1=navSelect1, navSelect2=navSelect2)
 
 
+# ============================
+# Games Sort Filter - Strategy
+# ============================
+
+@app.route("/setcookie/strategy", methods=["GET", "POST"])
+def setcookie_strategy():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("strategy_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
 # ===================
 # Strategy Games
 # ===================
 
 @app.route("/strategy-games", methods=["GET", "POST"])
 def strategy_games():
+    # Find games
     pc_games = mongo.db.all_pc_games.find(
         {
             "$or": [
@@ -739,6 +742,8 @@ def strategy_games():
             ]
         }
     )
+
+    # Pagination
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -760,7 +765,7 @@ def strategy_games():
     cookie1 = request.cookies.get("navSelect1")
     cookie2 = request.cookies.get("navSelect2")
 
-    if cookie1 == None and cookie2 == None:
+    if cookie1 is None and cookie2 is None:
         navSelect1 = "default"
         navSelect2 = "desc"
     else:
@@ -809,12 +814,30 @@ def strategy_games():
         navSelect1=navSelect1, navSelect2=navSelect2)
 
 
+# ===============================
+# Games Sort Filter - Multiplayer
+# ===============================
+
+@app.route("/setcookie/multiplayer", methods=["GET", "POST"])
+def setcookie_multiplayer():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("multiplayer_games")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
 # ===================
 # Multiplayer Games
 # ===================
 
 @app.route("/multiplayer-games", methods=["GET", "POST"])
 def multiplayer_games():
+    # Find games
     pc_games = mongo.db.all_pc_games.find(
         {
             "$or": [
@@ -823,6 +846,8 @@ def multiplayer_games():
             ]
         }
     )
+
+    # Pagination
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -844,7 +869,7 @@ def multiplayer_games():
     cookie1 = request.cookies.get("navSelect1")
     cookie2 = request.cookies.get("navSelect2")
 
-    if cookie1 == None and cookie2 == None:
+    if cookie1 is None and cookie2 is None:
         navSelect1 = "default"
         navSelect2 = "desc"
     else:
@@ -899,7 +924,10 @@ def multiplayer_games():
 
 @app.route("/awardwinner-games", methods=["GET", "POST"])
 def awardwinner_games():
+    # Find games
     pc_games = mongo.db.all_pc_games.find({"awardwinner": True})
+
+    # Pagination
 
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -921,7 +949,7 @@ def awardwinner_games():
     cookie1 = request.cookies.get("navSelect1")
     cookie2 = request.cookies.get("navSelect2")
 
-    if cookie1 == None and cookie2 == None:
+    if cookie1 is None and cookie2 is None:
         navSelect1 = "default"
         navSelect2 = "desc"
     else:
@@ -968,8 +996,6 @@ def awardwinner_games():
         "games-awardwinners.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
         navSelect1=navSelect1, navSelect2=navSelect2)
-
-
 
 
 # =================
@@ -1172,7 +1198,7 @@ def request_game():
             # Check if game request already exists in db
             existing_request = mongo.db.game_requests.find_one(
                 {"game_request": request.form.get("game-request")})
-            
+
             # Check if current user has already requested this game
             has_user_requested = existing_request["requested_by"]
 
@@ -1186,7 +1212,8 @@ def request_game():
                 # Find id of document
                 request_id = existing_request["_id"]
                 # Update existing document
-                mongo.db.game_requests.update_one({"_id": request_id}, {"$push": {"requested_by": username}})
+                mongo.db.game_requests.update_one(
+                    {"_id": request_id}, {"$push": {"requested_by": username}})
 
                 flash("You Request Has Been Submitted")
                 return redirect(url_for("home"))
@@ -1328,7 +1355,8 @@ def edit_profile(username):
 # Edit Profile - Password
 # =======================
 
-@app.route("/edit-profile/<username>/general/password-reset", methods=["GET", "POST"])
+@app.route(
+    "/edit-profile/<username>/general/password-reset", methods=["GET", "POST"])
 def edit_password(username):
     user = mongo.db.users.find_one({"username": session["user"]})
     if request.method == "POST":
@@ -1336,30 +1364,33 @@ def edit_password(username):
 
         # Check password
         if check_password_hash(user["password"], request.form.get("password")):
-            
+
             # Check if new passwords match
             new_password = request.form.get("change-password")
             confirm_new_password = request.form.get("confirm-new-password")
 
             if new_password == confirm_new_password:
-                # Update db 
+                # Update db
                 update = {"$set": {
                     "password": generate_password_hash(new_password)
                 }}
                 mongo.db.users.update_one({"_id": user_id}, update)
                 flash("Password Successfully Updated")
-                return redirect(url_for("profile_games", username=session["user"]))
+                return redirect(url_for(
+                    "profile_games", username=session["user"]))
 
             else:
                 # Invalid match
                 flash("Inputs invalid")
-                return redirect(url_for("edit_password", username=session["user"]))
+                return redirect(url_for(
+                    "edit_password", username=session["user"]))
         else:
             # Invalid password
             flash("Password Incorrect")
             return redirect(url_for("edit_password", username=session["user"]))
 
-    return render_template("profile-edit_password.html", username=session["user"], user=user)
+    return render_template(
+        "profile-edit_password.html", username=session["user"], user=user)
 
 
 # =====================
@@ -1382,18 +1413,20 @@ def edit_profile_avatar(username):
 @app.route("/update-avatar/<avatar_id>", methods=["GET", "POST"])
 def update_avatar(avatar_id):
     if request.method == "POST":
+        # Grab user id and avatar
         user_id = mongo.db.users.find_one({"username": session["user"]})["_id"]
         avatar = mongo.db.avatars.find({"_id": ObjectId(avatar_id)})
 
+        # Grab avatar img path and alt attribute
         for i in list(avatar):
             img_path = i["img_path"]
             img_alt = i["img_alt"]
 
+        # Update avatar
         update = {"$set": {
             "avatar": img_path,
             "avatar_desc": img_alt
         }}
-
         mongo.db.users.update({"_id": user_id}, update)
         flash("Avatar Successfully Updated")
 
@@ -1404,11 +1437,12 @@ def update_avatar(avatar_id):
 # Profile - Games List
 # ====================
 
-
 @app.route("/profile/<username>")
 def profile_games(username):
+    # Find session user
     user = mongo.db.users.find_one({"username": session["user"]})
 
+    # Grab username
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
@@ -1452,6 +1486,7 @@ def profile_games(username):
 @app.route("/play-now/<game_id>", methods=["GET", "POST"])
 def game_to_playing(game_id):
     if request.method == "POST":
+        # Set 'stage' value to 'playing'
         update = {"$set": {"stage": "playing"}}
         mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
         flash("Game Successfully Moved to Playing")
@@ -1468,6 +1503,7 @@ def game_to_playing(game_id):
 @app.route("/play-next/<game_id>", methods=["GET", "POST"])
 def game_to_next(game_id):
     if request.method == "POST":
+        # Set 'stage' value to 'next'
         update = {"$set": {"stage": "next"}}
         mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
         flash("Game Successfully Moved to Play Later")
@@ -1484,6 +1520,7 @@ def game_to_next(game_id):
 @app.route("/completed/<game_id>", methods=["GET", "POST"])
 def game_to_completed(game_id):
     if request.method == "POST":
+        # Set 'stage' value to 'completed'
         update = {"$set": {"stage": "completed"}}
         mongo.db.user_games.update({"_id": ObjectId(game_id)}, update)
         flash("Game Successfully Moved to Completed")
@@ -1499,6 +1536,7 @@ def game_to_completed(game_id):
 
 @app.route("/remove-game/<game_id>")
 def remove_game(game_id):
+    # Remove game from playlist
     mongo.db.user_games.remove({"_id": ObjectId(game_id)})
     flash("Game Successfully Removed from Your List")
     return redirect(url_for("profile_games", username=session["user"]))
@@ -1520,15 +1558,16 @@ def profiles_template():
 
 @app.route("/profiles/<user>")
 def profiles(user):
+    # Find the user's game playlist
     games_playing = mongo.db.user_games.find({"stage": "playing"})
     games_next = mongo.db.user_games.find({"stage": "next"})
     games_completed = mongo.db.user_games.find({"stage": "completed"})
-    
+
+    # Find user details
     user_data = mongo.db.users.find_one({"username": user})
     username = user_data["username"]
     user_display_name = user_data["display_name"]
     user_avatar = user_data["avatar"]
-    user_avatar_desc = user_data["avatar_desc"]
 
     return render_template(
         "visit_profile-games_list.html",
@@ -1621,6 +1660,7 @@ def set_review_cookies():
 
 @app.route("/community-reviews", methods=["GET", "POST"])
 def reviews():
+    # Find reviews
     game_reviews = mongo.db.user_reviews.find()
 
     # Pagination
@@ -1641,7 +1681,7 @@ def reviews():
     cookie1 = request.cookies.get("reviewSort1")
     cookie2 = request.cookies.get("reviewSort2")
 
-    if cookie1 == None and cookie2 == None:
+    if cookie1 is None and cookie2 is None:
         reviewSort1 = "date"
         reviewSort2 = "desc"
     else:
@@ -1654,8 +1694,8 @@ def reviews():
 
     elif reviewSort1 == "date" and reviewSort2 == "asc":
         pagination_game_reviews.sort("date_submitted", 1)
-    
-    # Sort by game title    
+
+    # Sort by game title
     elif reviewSort1 == "title" and reviewSort2 == "desc":
         pagination_game_reviews.sort("game_title", pymongo.DESCENDING)
 
@@ -1668,7 +1708,6 @@ def reviews():
 
     elif reviewSort1 == "rating" and reviewSort2 == "asc":
         pagination_game_reviews.sort("recommended", 1)
-
 
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
@@ -1687,11 +1726,12 @@ def reviews_action():
     titles = []
     for game in action_games:
         titles.append(game["game_title"])
-    
+
     # Find reviews that match action game titles
     game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
 
     # Pagination
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 9
@@ -1720,11 +1760,12 @@ def reviews_adventure():
     titles = []
     for game in adventure_games:
         titles.append(game["game_title"])
-    
+
     # Find reviews that match adventure game titles
     game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
 
     # Pagination
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 9
@@ -1753,11 +1794,12 @@ def reviews_RPG():
     titles = []
     for game in RPG_games:
         titles.append(game["game_title"])
-    
+
     # Find reviews that match RPG game titles
     game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
 
     # Pagination
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 9
@@ -1786,11 +1828,12 @@ def reviews_strategy():
     titles = []
     for game in strategy_games:
         titles.append(game["game_title"])
-    
+
     # Find reviews that match strategy game titles
     game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
 
     # Pagination
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 9
@@ -1819,11 +1862,12 @@ def reviews_multiplayer():
     titles = []
     for game in multiplayer_games:
         titles.append(game["game_title"])
-    
+
     # Find reviews that match multiplayer game titles
     game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
 
     # Pagination
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 9
@@ -1853,6 +1897,7 @@ def reviews_pc():
         "platform": {"$in": ["windows", "mac", "linux", "steam"]}})
 
     # Pagination
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 9
@@ -1880,6 +1925,7 @@ def reviews_xbox():
     game_reviews = mongo.db.user_reviews.find({"platform": "xbox"})
 
     # Pagination
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 9
@@ -1907,6 +1953,7 @@ def reviews_playstation():
     game_reviews = mongo.db.user_reviews.find({"platform": "playstation"})
 
     # Pagination
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 9
@@ -1922,6 +1969,7 @@ def reviews_playstation():
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
+
 
 # ===========================
 # Reviews - Nintendo Platform
@@ -1933,6 +1981,7 @@ def reviews_nintendo():
     game_reviews = mongo.db.user_reviews.find({"platform": "nintendo"})
 
     # Pagination
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 9
@@ -1948,7 +1997,6 @@ def reviews_nintendo():
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
-
 
 
 # ======================
@@ -1972,6 +2020,7 @@ def profile_reviews(username):
 def submit_review():
     if request.method == "POST":
 
+        # Find game data for displaying game review
         title = request.form.get("query")
         game = mongo.db.all_pc_games.find_one({"game_title": title})
         img_full = game["game_img_full"]
@@ -1979,6 +2028,7 @@ def submit_review():
         display_name = mongo.db.users.find_one(
             {"username": session["user"]})["display_name"]
 
+        # Set current date
         date = datetime.datetime.now()
 
         review = {
@@ -2028,10 +2078,12 @@ def submit_review():
 def profile_submit_review(game_id):
     if request.method == "POST":
 
+        # Find game data for displaying game review
         title = request.form.get("query")
         game = mongo.db.all_pc_games.find_one({"game_title": title})
         img_full = game["game_img_full"]
 
+        # Set current date
         date = datetime.datetime.now()
 
         display_name = mongo.db.users.find_one(
@@ -2085,6 +2137,7 @@ def profile_submit_review(game_id):
 
 @app.route("/edit-review/<game_id>", methods=["GET", "POST"])
 def edit_review(game_id):
+    # Find game to assign to review form
     game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
 
     game_title = game["game_title"]
@@ -2132,6 +2185,7 @@ def edit_review(game_id):
 
 @app.route("/profile/edit-review/<review_id>", methods=["GET", "POST"])
 def profile_edit_review(review_id):
+    # Find game to assign to review form
     review = mongo.db.user_reviews.find_one({"_id": ObjectId(review_id)})
 
     game_title = review["game_title"]
@@ -2173,6 +2227,7 @@ def profile_edit_review(review_id):
 
 @app.route("/delete-review/<review_id>")
 def delete_review(review_id):
+    # Find review and remove it from db
     mongo.db.user_reviews.remove({"_id": ObjectId(review_id)})
     flash("Review Successfully Deleted")
     return redirect(url_for("profile_reviews", username=session["user"]))
