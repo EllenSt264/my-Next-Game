@@ -440,7 +440,7 @@
 
 - When making the review cards on the Community Reviews page, I used the Materialize collapsible to store larger content. However, when clicking the collapsible header the following bug occurred:
 
-![Review card collapsible visual bug](static/img/documentation/bug-review_collapsible.gif)]
+![Review card collapsible visual bug](static/img/documentation/bug-review_collapsible.gif)
 
 I narrowed the cause of bug down to how the rows and collumns were handled with Jinja:
 
