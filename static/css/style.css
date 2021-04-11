@@ -961,7 +961,9 @@ The following code is based upon this source:
     top: 5%; 
     bottom: 0; 
     right: 7%; 
-    left: 0;
+    left: 75%;
+    width:50px;
+    height: 50px;
 }
 
 .like-outer {
@@ -2206,7 +2208,7 @@ label[for]:hover {
         left: 70%;
     }
     .floating-add-btn { 
-        right: 11%;
+        left: 70%;
     }
     .like-outer {
         left: 77%;
@@ -2268,7 +2270,7 @@ label[for]:hover {
         left: 65%;
     }
     .floating-add-btn { 
-        right: 16%;
+        left: 65%;
     }
     .like-outer {
         left: 72%;
@@ -2406,6 +2408,12 @@ label[for]:hover {
     .secondary-nav .sidenav-trigger i {
         font-size: 32px;
     }
+    #sort-and-pagination-nav .pagination {
+        text-align: right;
+    }
+    .favourites-page .sort-by {
+        padding-top: 25px;
+    }
     .rank h5 {
         margin: 0 10px;
     }
@@ -2454,9 +2462,13 @@ label[for]:hover {
     .rank h5 {
         margin-right: 15px;
     }
-    .add-btn {
+    .add-btn,
+    .favourite-floating-btn {
         padding-top: 15px;
         padding-bottom: 28px;
+    }
+    .favourite-floating-btn i.fas.fa-plus::before {
+        top: 0;
     }
     i.fas.fa-plus::before {
         position: absolute;
@@ -2702,6 +2714,16 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 599px) {
+    i.fas.fa-plus::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 2px;
+        bottom: 0;
+    }
+}
+
 @media (max-width: 590px) {
     .edit-profile-card .profile-btns a {
         font-size: 12px;
@@ -2877,6 +2899,16 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 436px) {
+    #sort-and-pagination-nav {
+        width: 100%;
+    }
+    #filterBtn {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+}
+
 @media (max-width: 430px) {
     .carousel-item a img {
         width: 350px !important;
@@ -3031,12 +3063,29 @@ label[for]:hover {
         top: 3.5%;
         left: 74%;
     }
+    #sort-and-pagination-nav .col {
+        padding: 0;
+    }
+    #sortNav .tab a {
+        padding: 5px;
+    };
 }
 
 @media (max-width: 368px) {
     .favourites-sm .game-summary {
         padding-right: 50px;
         width: 90%;
+    }
+    .favourites-sm .game-tags {
+        width: 95% !important;
+        overflow-x: hidden;
+    }
+    .favourite-floating-btn {
+        position: absolute;
+        top: 91.5%;
+        bottom: 0;
+        left: -155%;
+        right: 0;
     }
 }
 

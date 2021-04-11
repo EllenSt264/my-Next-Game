@@ -62,22 +62,13 @@
     </section>
 
     <!-- Sort nav and pagination -->
-    <section id="sort-and-pagination-nav">
+    <section class="favourites-page" id="sort-and-pagination-nav">
         <div class="row">
-            <!-- Pagination --> 
-            <div class="col s12 m6">
-                <div class="pagination-top">
-                    <ul class="pagination">
-                       {% block pagination %}
-                       {% endblock %}
-                    </ul>
-                </div>
-            </div>
             <!-- Sort by features -->
-            <div class="col s12 m6">
+            <div class="col s12 m8 right">
                 <div class="sort-by right">
                     <!-- Select labels -->
-                    <ul class="tabs tabs-transparent" id="sortNav-label">
+                    <ul class="tabs tabs-transparent hide-on-med-and-down" id="sortNav-label">
                         <li class="tab" id="nav1">
                             <a>
                                 <label for="navSelect1">Sort By</label>
@@ -170,7 +161,7 @@
                                     <a href="#" class="btn-large">See Reviews</a>
                                 </div>
                                 <!-- Add to list -->
-                                <div class="floating-add-btn" style="width:50px; height: 50px; position: absolute; left: 75%;">
+                                <div class="floating-add-btn">
                                     {% if session.user %}
                                     <div class="container">
                                         <a href="{{ url_for('add_game', game_id=game._id) }}" class="btn-floating pulse right waves-effect waves-light red accent-3">
@@ -248,7 +239,7 @@
                                     <div class="row">
                                         <div class="col s12">
                                             <p class="grey-text text-lighten-2 game-tags">
-                                                {{ game.game_top_tags[:10]|join(', ') }}
+                                                {{ game.game_top_tags[:5]|join(', ') }}
                                             </p>
                                         </div>
                                     </div>
@@ -275,7 +266,7 @@
                                 <div class="row">
                                     <div class="col s2 right">
                                         {% if session.user %}
-                                            <div class="container add-btn">
+                                            <div class="container favourite-floating-btn">
                                                 <a href="{{ url_for('add_game', game_id=game._id) }}"
                                                 class="btn-floating pulse right waves-effect waves-light red accent-3">
                                                     <i class="fas fa-plus"></i>
