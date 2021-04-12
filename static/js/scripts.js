@@ -42,7 +42,7 @@ $(document).ready(function () {
 
 
     /* Carousel */
-    $('.carousel.carousel-slider').carousel({
+    $('.carousel').carousel({
         fullWidth: true, 
         indicators: true,
         duration: 600

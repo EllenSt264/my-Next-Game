@@ -1,25 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <!-- Media -->
-    {% block media %}
-        <section class="py-5">
-            <h3 class="title carousel-title center">Today's Picks</h3>
-            <div class="carousel carousel-slider center">
-                <div class="carousel-item">
-                    <a href="#"><img
-                            src="https://www.rockstargames.com/reddeadredemption2/dist/img/global/social/ea95b42f4d8029ac2510571cc8dbdae4.jpg"></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#"><img
-                            src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fkingdom-come-deliverance%2Fhome%2FEGS_WarhorseStudios_KingdomComeDeliverance_S3-1360x766-1e8502930c6282cb34acf7add01c6832a5bc217e.jpg"></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#"><img src="https://images6.alphacoders.com/107/thumb-1920-1072573.jpg"></a>
-                </div>
-            </div>
-        </section>
-    {% endblock %}
+    <!-- Carousel -->
+    <div class="carousel carousel-slider center">
+        <!-- Next -->
+        <div class="carousel-fixed-item" id="carousel-next">
+            <a class="white-text"><i class="material-icons">navigate_next</i></a>
+        </div>
+        <!-- Prev -->
+        <div class="carousel-fixed-item" id="carousel-prev">
+            <a class="white-text"><i class="material-icons">navigate_before</i></a>
+        </div>
+        <!-- Button -->
+        <div class="carousel-fixed-item center">
+            <a href="#" class="btn waves-effect">See Reviews</a>
+        </div>
+        <!-- Carousel item 1 -->
+        <div class="carousel-item white-text" href="#">
+            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg?t=1615608871" alt="carousel image" class="glow2">
+            <h2>First Panel</h2> 
+            <p class="white-text">This is your first panel</p>
+        </div>
+        <!-- Carousel item 2 -->
+        <div class="carousel-item white-text other" href="#">
+            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/header.jpg?t=1616683107" alt="carousel image" class="glow2">
+            <h2>Second Panel</h2>
+            <p class="white-text">This is your second panel</p>
+        </div>
+        <!-- Carousel item 3 -->
+        <div class="carousel-item white-text" href="#">
+            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/892970/header.jpg?t=1615295984" alt="carousel image" class="glow2">
+            <h2>Third Panel</h2>
+            <p class="white-text">This is your third panel</p>
+        </div>
+    </div>
 
     <!-- Secondary Navbar -->
     <section class="py-5">
