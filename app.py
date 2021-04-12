@@ -1134,42 +1134,59 @@ def login():
 def like(game_id):
     # Grab game data from database
     game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
-    game_title = game["game_title"]
-
-    # Find ids of other games with the same game title
-    other_games = mongo.db.all_pc_games.find({"game_title": game_title})
-    other_game_ids = []
-
-    for game in other_games:
-        other_game_ids.append(game["_id"])
 
     # Find username
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
     # Check if a user has already liked the game
-    already_liked = mongo.db.all_pc_games.find_one(
-        {"$and": [{"game_title": game_title},
-                  {"liked_by": session["user"]}]})
+    already_liked = game["liked_by"]
 
-    # Find game likes total
-    like_num = mongo.db.all_pc_games.find_one(
-        {"_id": ObjectId(game_id)})["likes"]
-
-    new_like_num = int(like_num) + 1
-
-    # Increment game likes
-    if already_liked:
+    # If 'liked_by' is null
+    if already_liked is None:
+        # Add like
+        like = {"$set": {
+            "likes": 1,
+            "liked_by": [username]
+        }}
+        mongo.db.all_pc_games.update_one({"_id": ObjectId(game_id)}, like)
+        flash("Liked added!")
+        return redirect(request.referrer)
+    # Else check if session user has already liked the game
+    elif username in already_liked:
         flash("Sorry, but you've already liked this game.")
         return redirect(request.referrer)
-    else:
-        like = {"$set": {
-            "likes": new_like_num,
-            "liked_by": username
-        }}
-        for games in other_game_ids:
-            mongo.db.all_pc_games.update({"_id": games}, like)
 
+    # If game has never been liked
+    if game["likes"] == int(0):
+        # Add like
+        like = {"$set": {
+            "likes": 1,
+            "liked_by": [username]
+        }}
+        mongo.db.all_pc_games.update_one({"_id": ObjectId(game_id)}, like)
+        flash("Liked added!")
+        return redirect(request.referrer)
+
+    # If game already has likes
+    else:
+        # Find game likes total
+        like_num = mongo.db.all_pc_games.find_one(
+            {"_id": ObjectId(game_id)})["likes"]
+
+        new_like_num = int(like_num) + 1
+
+        # Update like total and add session user to 'liked_by'
+        like = {
+            "$set": {
+                "likes": new_like_num
+            },
+            "$push": {
+                "liked_by": username
+            }
+        }
+        mongo.db.all_pc_games.update_one(
+            {"_id": ObjectId(game_id)}, like, upsert=False)
         flash("Liked added!")
         return redirect(request.referrer)
 
