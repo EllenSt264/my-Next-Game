@@ -392,10 +392,26 @@ def pc_games():
     elif navSelect1 == "favourite" and navSelect2 == "asc":
         pagination_pc_games.sort("favourite", pymongo.ASCENDING)
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "games-pc.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2)
+        navSelect1=navSelect1, navSelect2=navSelect2,
+        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
+        rand_game_3=rand_game_3)
 
 
 # ==========================
@@ -496,10 +512,26 @@ def action_games():
     elif navSelect1 == "favourite" and navSelect2 == "asc":
         pagination_pc_games.sort("favourite", pymongo.ASCENDING)
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "games-action.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2)
+        navSelect1=navSelect1, navSelect2=navSelect2,
+        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
+        rand_game_3=rand_game_3)
 
 
 # =============================
@@ -600,10 +632,26 @@ def adventure_games():
     elif navSelect1 == "favourite" and navSelect2 == "asc":
         pagination_pc_games.sort("favourite", pymongo.ASCENDING)
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "games-adventure.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2)
+        navSelect1=navSelect1, navSelect2=navSelect2,
+        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
+        rand_game_3=rand_game_3)
 
 
 # =======================
@@ -704,10 +752,26 @@ def RPG_games():
     elif navSelect1 == "favourite" and navSelect2 == "asc":
         pagination_pc_games.sort("favourite", pymongo.ASCENDING)
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "games-rpg.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2)
+        navSelect1=navSelect1, navSelect2=navSelect2,
+        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
+        rand_game_3=rand_game_3)
 
 
 # ============================
@@ -808,10 +872,26 @@ def strategy_games():
     elif navSelect1 == "favourite" and navSelect2 == "asc":
         pagination_pc_games.sort("favourite", pymongo.ASCENDING)
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "games-strategy.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2)
+        navSelect1=navSelect1, navSelect2=navSelect2,
+        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
+        rand_game_3=rand_game_3)
 
 
 # ===============================
@@ -912,10 +992,26 @@ def multiplayer_games():
     elif navSelect1 == "favourite" and navSelect2 == "asc":
         pagination_pc_games.sort("favourite", pymongo.ASCENDING)
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "games-multiplayer.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2)
+        navSelect1=navSelect1, navSelect2=navSelect2,
+        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
+        rand_game_3=rand_game_3)
 
 
 # ===================
@@ -992,10 +1088,26 @@ def awardwinner_games():
     elif navSelect1 == "favourite" and navSelect2 == "asc":
         pagination_pc_games.sort("favourite", pymongo.ASCENDING)
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "games-awardwinners.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2)
+        navSelect1=navSelect1, navSelect2=navSelect2,
+        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
+        rand_game_3=rand_game_3)
 
 
 # =================
@@ -1616,6 +1728,15 @@ export_data()
 
 
 # ================
+# Reviews Template
+# ================
+
+@app.route("/reviews")
+def reviews_template():
+    return render_template("reviews-template.html")
+
+
+# ================
 # See Game Reviews
 # ================
 
@@ -1643,15 +1764,6 @@ def see_game_reviews(game_id):
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination)
-
-
-# ================
-# Reviews Template
-# ================
-
-@app.route("/reviews")
-def reviews_template():
-    return render_template("reviews-template.html")
 
 
 # ===================
