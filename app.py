@@ -1761,9 +1761,24 @@ def see_game_reviews(game_id):
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # ===================
@@ -1838,10 +1853,25 @@ def reviews():
     elif reviewSort1 == "rating" and reviewSort2 == "asc":
         pagination_game_reviews.sort("recommended", 1)
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination, reviewSort1=reviewSort1,
-        reviewSort2=reviewSort2)
+        reviewSort2=reviewSort2, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # ================
@@ -1873,9 +1903,24 @@ def reviews_action():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # ===================
@@ -1907,9 +1952,24 @@ def reviews_adventure():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # =============
@@ -1941,9 +2001,24 @@ def reviews_RPG():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # ==================
@@ -1975,9 +2050,24 @@ def reviews_strategy():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # =====================
@@ -2009,9 +2099,24 @@ def reviews_multiplayer():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # =====================
@@ -2039,9 +2144,24 @@ def reviews_pc():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # =======================
@@ -2067,9 +2187,24 @@ def reviews_xbox():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # ==============================
@@ -2095,9 +2230,24 @@ def reviews_playstation():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # ===========================
@@ -2123,9 +2273,24 @@ def reviews_nintendo():
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # ======================
