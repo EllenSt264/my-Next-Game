@@ -17,21 +17,21 @@
         </div>
         <!-- Carousel item 1 -->
         <div class="carousel-item white-text" href="#">
-            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg?t=1615608871" alt="carousel image" class="glow2">
-            <h2>First Panel</h2> 
-            <p class="white-text">This is your first panel</p>
+            <img src="{{ rand_game_1.game_img_full }}" alt="carousel image" class="glow2">
+            <h2>{{ rand_game_1.game_title }}</h2> 
+            <p class="white-text">{{ rand_game_1.game_top_tags[:3]|join(', ') }}</p>
         </div>
         <!-- Carousel item 2 -->
-        <div class="carousel-item white-text other" href="#">
-            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/header.jpg?t=1616683107" alt="carousel image" class="glow2">
-            <h2>Second Panel</h2>
-            <p class="white-text">This is your second panel</p>
+        <div class="carousel-item white-text" href="#">
+            <img src="{{ rand_game_2.game_img_full }}" alt="carousel image" class="glow2">
+            <h2>{{ rand_game_2.game_title }}</h2> 
+            <p class="white-text">{{ rand_game_2.game_top_tags[:3]|join(', ') }}</p>
         </div>
         <!-- Carousel item 3 -->
         <div class="carousel-item white-text" href="#">
-            <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/892970/header.jpg?t=1615295984" alt="carousel image" class="glow2">
-            <h2>Third Panel</h2>
-            <p class="white-text">This is your third panel</p>
+            <img src="{{ rand_game_3.game_img_full }}" alt="carousel image" class="glow2">
+            <h2>{{ rand_game_3.game_title }}</h2> 
+            <p class="white-text">{{ rand_game_3.game_top_tags[:3]|join(', ') }}</p>
         </div>
     </div>
 
