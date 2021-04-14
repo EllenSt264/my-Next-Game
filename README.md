@@ -22,6 +22,8 @@
 
     - [Wireframes](#wireframes)
 
+- [Database Schema](#database-schema)
+
 - [Implemented Features](#implemented-features)
 
     - [List of Pages](#list-of-pages)
@@ -201,6 +203,56 @@ Navlinks Mindmap
     
 
 -----
+
+
+## Database Schema 
+
+MongoDB, which is a NoSQL database, is the chosen database for this project. The two main entities stored in the database are user data and game data. The main concern for user data is the users’ account information and profile settings. Whereas the major concern for game data includes, but not limited to, game titles, images, links and likes made by users. 
+
+The database schema was subjected to several alterations throughout the site’s development. I will explain these changes in further detail below.
+
+
+### Database Structure
+
+- The final database contains seven collections
+    - users
+    - user_games
+    - user_reviews
+    - avatars
+    - all_pc_games
+    - admin_game_links
+    - game_requests
+
+- **users**
+    ![MongoDB users collection screenshot](static/img/documentation/mongodb-users_doc.png)
+    - This collections holds all the account information for registered users of the site
+    - Each document contains all details of a single user
+
+- **user_games**
+    ![MongoDB user_games collection screenshot](static/img/documentation/mongodb-user_games.png)
+    - This collection holds all profile information relating to a user's game playlist
+    - Each document is primarily concerned with game data, but also contains a `username` and `stage` key value, which is used to assign the games to a user's profile
+
+- **user_reviews**
+    ![MongoDB user_games collection screenshot](static/img/documentation/mongodb-user_reviews.png)
+    - This collection holds all data relating to game reviews submitted by registered users
+    - Each document contains the full review for game that a user has submitted
+    - The `username` key value pair is used to link the correct reviews to user's Profile Reviews page
+
+- **avatars**
+    ![MongoDB user_games collection screenshot](static/img/documentation/mongodb-avatars.png)
+    - This collection stores all the avatars that a user can assign to their profile
+    - Each document contains an image src path and alt attribute for every avatar
+
+- **all_pc_games**
+    ![MongoDB user_games collection screenshot](static/img/documentation/mongodb-all_pc_games_1.png)
+    - This collection holds all of the game data
+    - Each document contains all the relevant information for each game, such as its title, images, genre tags etc.
+
+
+------
+
+
 
 ## Implemented Features
 
