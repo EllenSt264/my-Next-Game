@@ -161,28 +161,43 @@ Each page has a wireframe for both desktop and mobile devices. I did not include
 
 Each wireframe can be viewed via the links below:
 
-- Homepage:
-    - [Desktop](static/wireframes/homepage_1.png)
-    - [Login, Register and Profile](static/wireframes/homepage_2.png)
-    - [Mobile](static/wireframes/homepage_3.png)
+#### Homepage
 
-- Game Page:
-    - [Desktop and Mobile](static/wireframes/games_page.png)
+Desktop
+![Desktop](static/wireframes/homepage_1.png)
 
-- Favourites Page:
-    - [Desktop and Mobile](static/wireframes/favourites_page.png)
+Mobile
+![Mobile](static/wireframes/homepage_3.png)
 
-- Reviews Page:
-    - [Desktop and Mobile](static/wireframes/reviews_page.png)
+Login, Register and Profile navlink
+![Login, Register and Profile](static/wireframes/homepage_2.png)
 
-- Profile Page:
-    - [Profile Games List](static/wireframes/profile.png)
-    - [Profile Games List Version 2](static/wireframes/profile_games_list.png)
-    - [Profile Reviews](static/wireframes/profile_reviews.png)
+#### Game Page:
+![Desktop and Mobile](static/wireframes/games_page.png)
 
-- Site Navigation Mindmap:
-    - [Site navigation mindmap](static/wireframes/navigation_mindmap.png)
-    - [Site navbar navigation links](static/wireframes/navbar_mindmap.png)
+#### Favourites Page:
+![Desktop and Mobile](static/wireframes/favourites_page.png)
+
+#### Reviews Page:
+![Desktop and Mobile](static/wireframes/reviews_page.png)
+
+#### Profile Page:
+Profile Games List - Version 1
+![Profile Games List](static/wireframes/profile.png)
+
+Profile Games List - Version 2
+![Profile Games List Version 2](static/wireframes/profile_games_list.png)
+
+Profile Reviews page
+![Profile Reviews](static/wireframes/profile_reviews.png)
+
+#### Site Navigation Mindmap:
+
+Navigation Mindmap
+![Site navigation mindmap](static/wireframes/navigation_mindmap.png)
+
+Navlinks Mindmap
+![Site navbar navigation links](static/wireframes/navbar_mindmap.png)
     
 
 -----
