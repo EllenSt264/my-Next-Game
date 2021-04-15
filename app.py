@@ -2444,6 +2444,9 @@ def edit_review(game_id):
     review_id = review["_id"]
     submission_date = review["date_submitted"]
 
+    display_name = mongo.db.users.find_one(
+        {"username": session["user"]})["display_name"]
+
     if request.method == "POST":
         date = datetime.datetime.now()
 
@@ -2484,6 +2487,9 @@ def profile_edit_review(review_id):
     game_title = review["game_title"]
     img_full = review["game_img_full"]
     submission_date = review["date_submitted"]
+
+    display_name = mongo.db.users.find_one(
+        {"username": session["user"]})["display_name"]
 
     if request.method == "POST":
         date = datetime.datetime.now()
