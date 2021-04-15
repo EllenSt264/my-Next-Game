@@ -2461,7 +2461,8 @@ def edit_review(game_id):
             "recommended": request.form.get("radioRecommend"),
             "date_submitted": submission_date,
             "last_updated": date.strftime("%x"),
-            "username": session["user"]
+            "username": session["user"],
+            "display_name": display_name
         }
         mongo.db.user_reviews.update({"_id": review_id}, update)
         flash("Review Successfully Updated")
@@ -2501,7 +2502,8 @@ def profile_edit_review(review_id):
             "recommended": request.form.get("radioRecommend"),
             "date_submitted": submission_date,
             "last_updated": date.strftime("%x"),
-            "username": session["user"]
+            "username": session["user"],
+            "display_name": display_name
         }
         mongo.db.user_reviews.update({"_id": ObjectId(review_id)}, update)
         flash("Review Successfully Updated")
