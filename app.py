@@ -1207,13 +1207,13 @@ def login():
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
 
-        # Get username
-        username = existing_user["username"]
-
         if existing_user:
             # Check if hashed password matches user input
             if check_password_hash(
                existing_user["password"], request.form.get("password")):
+
+                # Get username
+                username = existing_user["username"]
                 # Create session cookie for user
                 session["user"] = username
 
@@ -1232,8 +1232,12 @@ def login():
                     "profile_games", username=session["user"]))
             else:
                 # Invalid password match
-                flash("Incorrect Username and/or Password")
+                flash("Incorrect Email and/or Password")
                 return redirect(url_for("login"))
+        else:
+            # Invalid password match
+            flash("Incorrect Email and/or Password")
+            return redirect(url_for("login"))
 
     return render_template("login.html")
 
