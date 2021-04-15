@@ -24,6 +24,21 @@
 
 - [Database Schema](#database-schema)
 
+    - [Database Structure - users](#users)
+
+    - [Database Structure - user_games](#user_games)
+
+    - [Database Structure - user_reviews](#user_reviews)
+
+    - [Database Structure - avatars](#avatars)
+
+    - [Database Structure - all_pc_games](#all_pc_games)
+
+    - [Database Structure - game_requests](#game_requests)
+
+    - [Database Structure - admin_game_links](#admin_game_links)
+    
+
 - [Implemented Features](#implemented-features)
 
     - [List of Pages](#list-of-pages)
