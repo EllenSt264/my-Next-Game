@@ -2435,7 +2435,6 @@ def edit_review(game_id):
     game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
 
     game_title = game["game_title"]
-    img_sm = game["game_img_sm"]
     img_full = game["game_img_full"]
 
     review = mongo.db.user_reviews.find_one(
@@ -2450,7 +2449,6 @@ def edit_review(game_id):
 
         update = {
             "game_title": game_title,
-            "game_img_sm": img_sm,
             "game_img_full": img_full,
             "platform": request.form.get("platform-select").lower(),
             "summary": request.form.get("summary"),
@@ -2483,7 +2481,6 @@ def profile_edit_review(review_id):
     review = mongo.db.user_reviews.find_one({"_id": ObjectId(review_id)})
 
     game_title = review["game_title"]
-    img_sm = review["game_img_sm"]
     img_full = review["game_img_full"]
     submission_date = review["date_submitted"]
 
@@ -2492,7 +2489,6 @@ def profile_edit_review(review_id):
 
         update = {
             "game_title": game_title,
-            "game_img_sm": img_sm,
             "game_img_full": img_full,
             "platform": request.form.get("platform-select").lower(),
             "summary": request.form.get("summary"),
