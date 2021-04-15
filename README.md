@@ -43,6 +43,10 @@
 
     - [List of Pages](#list-of-pages)
 
+    - [Navigation Bar](#navigation-bar)
+
+    - [Homepage](#homepage)
+
 - [Technologies Used](#technologies-used)
 
     - [Languages](#languages)
@@ -428,6 +432,83 @@ The database schema was subjected to several alterations throughout the site’s
     - Profile - User Reviews
     - Edit Profile
 
+
+### Navigation Bar
+
+- Fixed navbar 
+
+    - Built using Materialize to implement responsive UX design that is cross-compatible on a wide range of devices
+
+    - Allows users to easily navigate the site
+
+    - Improves user experience by removing the need to scroll to the top of the page in order to navigate the site
+
+- Hamburger collapse menu
+
+    - Built using Materialize
+
+    - Adds a side nav to access navigation links
+
+    - Improves user experience for touch screen devices
+    
+    - Conform to web-design conventions 
+
+    - Limits the amount of real estate used on smaller screens, particuarly mobile devices
+
+- Dropdown menu for Genre, Profile and Admin Controls navlinks
+
+    - Implements a dropdown menu (for desktop devices) to reduce the amount of real estate on the page
+
+    - Gives the user greater control in regards to the navigation of the site
+
+    - For smaller screens and mobile devices the content in the dropdown is moved to the side nav, which is accessed via the hamburger icon
+
+- Brand Logo
+
+    - The site's logo is implemented to the center of the navbar to help make the site recognisable to returning users
+
+
+### Homepage
+
+- Hero background video
+    
+    - A vibrant hero image (video tag) to immediately encourage a positive emotional response from the user
+    
+    - The design links to the site's Synthwave theme, thus providing visually clarity by promoting a reoccuring theme. For more details on this theme, see [here]()
+
+    - The moving video makes it seem that the user is moving towards something. This can represent a journey, which links well to the idea of building a new community platform, as something that is constantly growing
+
+    - The site's title, **My Next Game** is displayed clearly over the hero video
+
+
+- Parrallax effect
+
+    - Adds visual depth to the site 
+
+    - Links well to other web pages that use it - Favourites page
+
+    - Promotes the Synthwave visual theme by providing more media images that are consistent of the Synthwave style.
+
+    - Stresses the importance that I have placed on good UX design
+
+
+- Navigation buttons
+
+    - An 'Explore Favourites' and 'Take the Quiz' button to encourage users to explore the site's main features
+
+
+- About Us
+
+    - Explains the purpose of the site to the user
+
+    - Encourages users to Register and interactive with the site
+
+
+- Game Lists - Bestsellers and Awardwinners
+
+    - It was important to display games on the Homepage to further convey the site's purpose
+
+    - Both of these cateogories contain a wide selection of games (it is not limited to certain genres) and thus is suitable for several tastes and preferences, which can be expected by the user
 
 -----
 
