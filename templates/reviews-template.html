@@ -191,7 +191,11 @@
         <section>
             <div class="row">
                 <div class="col" style="margin-left: 12.49999999995%">
-                    <a href="{{ url_for('submit_review') }}" class="btn-large">Leave a Review</a>
+                    {% if not session.user %}
+                        <a href="#!" class="btn-large tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to submit reviews">Leave a Review</a>
+                    {% else %}
+                        <a href="{{ url_for('submit_review') }}" class="btn-large">Leave a Review</a>
+                    {% endif %}
                 </div>
             </div>
         </section>
