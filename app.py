@@ -1110,11 +1110,29 @@ def awardwinner_games():
         rand_game_3=rand_game_3)
 
 
+
+# ===============================
+# Games Sort Filter - Favourites
+# ===============================
+
+@app.route("/setcookie/favourites", methods=["GET", "POST"])
+def setcookie_favourites():
+    if request.method == "POST":
+        cookie1 = request.form.get("navSelect1").lower()
+        cookie2 = request.form.get("navSelect2").lower()
+
+        resp = make_response(redirect(url_for("favourites")))
+        resp.set_cookie("navSelect1", cookie1)
+        resp.set_cookie("navSelect2", cookie2)
+
+        return resp
+
+
 # =================
 # Site's Favourites
 # =================
 
-@app.route("/our-favourites")
+@app.route("/our-favourites", methods=["GET", "POST"])
 def favourites():
     # Favourites db
     favourites = mongo.db.all_pc_games.find({"favourite": True})
@@ -1141,10 +1159,39 @@ def favourites():
 
     rand_game_imgs = random.sample(screenshots, 3)
 
+    # Sort filter
+
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
+
+    if cookie1 is None and cookie2 is None:
+        navSelect1 = "likes"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
+
+    # Sort by Likes
+
+    if navSelect1 == "likes" and navSelect2 == "desc":
+        favourites.sort("likes", pymongo.DESCENDING)
+
+    elif navSelect1 == "likes" and navSelect2 == "asc":
+        favourites.sort("likes", pymongo.ASCENDING)
+
+    # Sort by game title
+    elif navSelect1 == "title" and navSelect2 == "desc":
+        favourites.sort("game_title", pymongo.DESCENDING)
+
+    elif navSelect1 == "title" and navSelect2 == "asc":
+        favourites.sort("game_title", pymongo.ASCENDING)
+
+
     return render_template(
         "games-favourites.html", favourites=favourites,
         rand_game_title=rand_game_title, rand_game_imgs=rand_game_imgs,
-        rand_game_summary=rand_game_summary, rand_game_id=rand_game_id)
+        rand_game_summary=rand_game_summary, rand_game_id=rand_game_id,
+        navSelect1=navSelect1, navSelect2=navSelect2)
 
 
 # ==========
