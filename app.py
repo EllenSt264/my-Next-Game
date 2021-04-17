@@ -151,6 +151,20 @@ def search_reviews():
     reviews = mongo.db.user_reviews.find(
         {"$text": {"$search": query}})
 
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     # Pagination
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -166,7 +180,8 @@ def search_reviews():
 
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination)
+        pagination=pagination, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
 
 
 # ==========================
