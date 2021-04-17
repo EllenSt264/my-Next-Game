@@ -35,7 +35,11 @@
                                 If you're certain we do, then please check your spelling and try again. Otherwise, you can 
                                 request to have the game added to our database by clicking the button bellow.
                             </p>
-                            <a href="{{ url_for('request_game') }}" class="btn">Request A Game</a>
+                            {% if not session.user %}
+                                <a href="#!" class="btn tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to request games">Request A Game</a>
+                            {% else %}
+                                <a href="{{ url_for('request_game') }}" class="btn">Request A Game</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
