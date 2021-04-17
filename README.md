@@ -47,6 +47,14 @@
 
     - [Homepage](#homepage)
 
+    - [Navigation](#navigation)
+
+    - [Favourites Page](#favourites-page)
+
+    - [Games Pages](#games-pages)
+
+    - [Community Reviews Page](#community-reviews-page)
+
 - [Technologies Used](#technologies-used)
 
     - [Languages](#languages)
@@ -509,6 +517,212 @@ The database schema was subjected to several alterations throughout the site’s
     - It was important to display games on the Homepage to further convey the site's purpose
 
     - Both of these cateogories contain a wide selection of games (it is not limited to certain genres) and thus is suitable for several tastes and preferences, which can be expected by the user
+
+
+### Favourites Page
+
+- Parallax effect
+
+    - Adds visual depth
+
+    - A visually effective way to split up information and images on the site
+
+    - The images within the parallax are of screenshots from a game that is randomized whenever this site refreshes
+
+    - The text in the firt parallax section includes the game title and a summary of the game
+
+    - The text in the second parallax section includes a navigation button that leads to the Request A Game form page
+
+
+- Scroll to Top button
+
+    - A bouncing floating button at the bottom right hand side of the screen
+
+    - The up arrow represents its function
+
+    - When clicked it will scroll back up to the top of the page
+
+
+- Sort Filter
+
+    - This allows users to sort the display order of games
+
+    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
+
+
+- Game Cards
+
+    - Below the Parallax effect and Sort Filter is a list of games, each displayed within a card
+
+    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
+
+    - Each card has an image for the game, its title, platforms that it can be played on, genre tags and a summary. Each card also includes a 'Recommended By Us' tag, a 'Like' button and a 'See Reviews' button, which will direct users to the Community Reviews page and filter the results for only that game
+
+    - When logged in, a pulsing add button will be present on each card. When clicked it will add the game to the user's game playlist in their Profile 
+
+    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
+
+
+### Game Pages
+
+- Carousel 
+
+    - Built using Materialize
+
+    - By default, the carousel has a swipe feature that is user friendly for all touchscreen devices, particularly mobile devices. Left and right arrows were implemented to ensure that the carousel was also user friendly on desktop devices that do not have touchscreen functionality
+
+    - The carousel is present on all of the Games pages, this includes All Games, Action Games, Adventure Games, RPG Games, Strategy Games and Multiplayer Games
+
+    - The carousel contains three images of three diffrent games that are randomized upon refresh and/or first load of the page
+
+    - Below each image is the title and genre tags to match the game shown in the image
+
+    - Below that is a 'See Reviews' button which will direct users to the Community Reviews page and filter the results for only that game
+
+
+- Secondary Navbar
+
+    - Underneath the carousel is a secondary navbar containing navlinks that are appropirate for the filtering the game results below
+
+    - The following navlinks are:
+        - Our Favourites
+        - Award Winners
+        - All Games
+        - Genre
+            - Action
+            - Adventure
+            - RPG
+            - Strategy
+            - Multiplayer
+
+    - A search bar is included to right, which allows users to search for specific game titles
+
+    - A collapsible hamburger icon will trigger on smaller devices
+
+
+- Sort Filter
+
+    - This allows users to sort the display order of games
+
+    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
+
+    - 'Sort By' contains the following options:
+        - Default
+        - Title
+        - Likes
+        - Recommended
+        - Award Winners
+        - Bestsellers
+        - Playing
+        - Review Count
+
+    - 'Order' has 'desc' (descending) and 'asc' (ascending) options
+
+
+- Game Cards
+
+    - Built with Materialize
+
+    - The cards are horizontal from a width of 600px, anything below that then the content is displayed vertically
+
+    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
+
+    - Each card has an image for the game; its title, platforms that it can be played on, and genre tags. Each card also includes a 'Recommended By Us' tag if the game is included in the Favourites page (if it has the key/value pair of `favourite: True`). There is also a 'Like' button
+
+    - When logged in, a pulsing add button will be present on each card. When clicked it will add the game to the user's game playlist in their Profile 
+
+    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
+
+    - To increase performance, only six cards are displayed per page
+
+
+- Pagination 
+
+    - There are pagination links that above and below the cards to allow users to iterate through the pages
+
+
+
+### Community Reviews Page
+
+- Carousel 
+
+    - Built using Materialize
+
+    - By default, the carousel has a swipe feature that is user friendly for all touchscreen devices, particularly mobile devices. Left and right arrows were implemented to ensure that the carousel was also user friendly on desktop devices that do not have touchscreen functionality
+
+    - The carousel is present on all of the Games pages, this includes All Games, Action Games, Adventure Games, RPG Games, Strategy Games and Multiplayer Games
+
+    - The carousel contains three images of three diffrent games that are randomized upon refresh and/or first load of the page
+
+    - Below each image is the title and genre tags to match the game shown in the image
+
+
+- Secondary Navbar
+
+ - Underneath the carousel is a secondary navbar containing navlinks that are appropirate for the filtering game review results below
+
+    - The following navlinks are:
+        - Our Favourites
+        - Award Winners
+        - All Reviews
+        - Platform
+            - PC
+            - XBOX
+            - Playstation
+            - Nintendo
+        - Genre
+            - Action
+            - Adventure
+            - RPG
+            - Strategy
+            - Multiplayer
+
+    - A search bar is included to right, which allows users to search for specific game titles
+
+    - A collapsible hamburger icon will trigger on smaller devices
+
+
+- Sort Filter
+
+    - This allows users to sort the display order of reviews
+
+    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
+
+    - 'Sort By' contains the following options:
+        - Date Added
+        - Title
+        - Rating
+
+    - 'Order' has 'desc' (descending) and 'asc' (ascending) options
+
+
+- Leave Review Button
+
+    - This directs users to the Submit Review form which allows them to create and submit game reviews
+
+
+- Review Cards
+
+    - Built with Materialize
+
+    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
+
+    - Each card has a game image that matches the review; the game title, the username or display name of the user who submitted the review, the date of when it was submmited and/or last updated, a review summary and three collapsibles containing the full review.
+
+    - There are three collapsibles: Gameplay, Visuals and Sound. When clicked they will display the user's review relating to this section
+
+    - The review cards will contain a 'Positive' or 'Negative' card sticker, depending on what option was chosen when a user submitted their review
+
+    - Users can click the username on a review which will direct them to the Profile page of that user
+
+    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
+
+    - To increase performance, nine cards are displayed per page
+
+
+- Pagination 
+
+    - There are pagination links that above and below the cards to allow users to iterate through the pages
 
 -----
 
