@@ -1410,23 +1410,24 @@ def request_game():
                 {"game_request": request.form.get("game-request")})
 
             # Check if current user has already requested this game
-            has_user_requested = existing_request["requested_by"]
+            if existing_request is not None:
+                has_user_requested = existing_request["requested_by"]
 
-            # Block users from requesting the same game
-            if user in has_user_requested:
-                flash("You've already submitted a request for this game")
-                return redirect(url_for("request_game"))
+                # Block users from requesting the same game
+                if user in has_user_requested:
+                    flash("You've already submitted a request for this game")
+                    return redirect(url_for("request_game"))
 
-            # Update existing game request with session user's username
-            if existing_request:
-                # Find id of document
-                request_id = existing_request["_id"]
-                # Update existing document
-                mongo.db.game_requests.update_one(
-                    {"_id": request_id}, {"$push": {"requested_by": username}})
+                # Update existing game request with session user's username
+                if existing_request:
+                    # Find id of document
+                    request_id = existing_request["_id"]
+                    # Update existing document
+                    mongo.db.game_requests.update_one(
+                        {"_id": request_id}, {"$push": {"requested_by": username}})
 
-                flash("You Request Has Been Submitted")
-                return redirect(url_for("home"))
+                    flash("You Request Has Been Submitted")
+                    return redirect(url_for("home"))
 
             # Else add new document
             game = {
