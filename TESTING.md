@@ -31,7 +31,7 @@
 
     - [C-R-U-D](#c-r-u-d)
 
-        - [Game Pages](#game-pages)
+        - [Game Pages, Review Page and Favourites Page](#game-pages-review-page-and-favourites-page)
 
         - [Profile - Games List](#profile---games-list)
 
@@ -49,6 +49,8 @@
     - [Materialize Tooltip ](#materialize-tooltip)
 
     - [Edit Profile - Updating Data](#edit-profile---updating-data)
+
+    - [NoneType Error for Request A Game Form](#nonetype-error-for-request-a-game-form)
 
 
 -----
@@ -399,14 +401,26 @@
 ### C-R-U-D
 
 
-#### Game Pages
+#### Game Pages, Review Page and Favourites Page
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
-|  1  | `Like` a game when **not** signed in | Click any game card's `like button` on the `Games` page. Ensure you are **not** logged in | A `tooltip` should trigger, and no like should be added | Once clicking on the `like button` a `tooltip` is triggered above it, saying 'Please sign in or register an account with us to leave likes on games' | Pass |
+|  1  | `Like` a game when **not** logged in | Click any game card's `like button` on the `Games` page. Ensure you are **not** logged in | A `tooltip` should trigger, and no like should be added | Once clicking on the `like button` a `tooltip` is triggered above it, saying 'Please sign in or register an account with us to leave likes on games' | Pass |
 |  2  | **Sign in** and `Like` a game | Click any game card's `like button` on the `Games` page. Ensure you **are** logged in and like a game that you **have not** liked before | Your like should be added to the database and a `flash message` should appear notifying you that your like was successful. The `like count` on the game card should increment by 1 | After clicking the `like button` a `flash message` appears, saying 'Liked added!'. The `like count` is incremented by 1 | Pass |
 |  3  | `Add a game` to a user's `Game List` | When logged in, click any game card's floating `add button` on the `Games` page. Click on a game that **does not** already exisit in your `Games List` | A `flash message` should notify you that your action was successful and the game should be added to the 'Play Later' section of your `Games List`. Visit the `Profile` page to check | A `flash message` says 'Game Successfully Added to List' and the game is added to the 'Play Later' section of the `Games List` | Pass | The floating `add button` does **not** show when a user is **not** logged in, as intended |
 |  4  | `Add a game` to a user's `Game List` that **already exisits** | When logged in, click a game card's floating `add button` on the `Games` page. Ensure that the game you pick **already exisits** in your `Games List` | A `flash message` should notify you that your action was **not** successful because the game already exisits in your `Games List`. If you were to go on the `Profile - Games List` page, only **one copy** of the game should be present | A `flash message` says 'You've Already Added This Game'. The game was **not** added again to the `Games List` | Pass | The floating `add button` is **only** visible when a user **is** logged in, as intended |
+|  5  | `Submit Review` when **not** logged in | Navigate to `Community Reviews` page and click the `Leave A Review` button. Ensure you are **not** logged in | A `tooltip` should trigger telling the user to log in first | Triggers a `tooltip` that says 'Please sign in or register an account with us to submit reviews' | Pass |
+|  6  | **Log in** and `Submit Review` | Navigate to `Community Reviews` page and click the `Leave Review` button. Fill out **all** required fields and click submit | It should submit your review and redirect you to the `Community Reviews` page | Successfully submits review. Redirects to the `Community Reviews` page and triggers a `flash message` that says 'Review Successfully Submitted'. Upon scrolling down the new review can be seen within the review results and all details are correct | Pass |
+|  7  | **Log in** and `Submit Review` via the `Profile page` | Navigate to the user's `Profile` page, ensuring that a game has been added to the user's `Game List`, and locate a game to review. Click the `Review` button within the game card. Submit a review | Clicking the `Review` button should direct the user to the `Submit Review` page. The game title should be already filled in with the game title from the user's `Game List`. Filling out all required fields should submit the review and redirect the user to the `Community Reviews` page | Upon clicking the `Review` button, I am directed to the `Submit Review` page, with the correct game title already filled in. Successfully submits review once all required fields are filled. Redirects to the `Community Reviews` page and triggers a `flash message` that says 'Review Successfully Submitted'. Upon scrolling down the new review can be seen within the review results and all details are correct | Pass |
+|  8  | **Log in** and `Submit Review` that the user has **already submitted** | Navigate to `Community Reviews` page and click the `Leave Review` button. Pick a game from the game title select field that the user has **already** reviewed. Fill out **all** required fields and click submit | It should **not** submit your review but still redirect you to the `Community Reviews` page | As intended, it does **not** submit the review. Redirects to the `Community Reviews` page and triggers a `flash message` that says 'You've Already Submitted a Review for this Game' | Pass |
+|  9  | `Update Review` | While **logged in**, navigate to the `Profile - Reviews` page and find a review you want to update. Click the `Edit` button | It should navigate to the `Edit Review` page and all fields should be filled in with the data from your existing review. Edit one or several fields and submit | It should update your review and redirect you to the `Community Reviews` page | Successfully updates review. Redirects to the `Community Reviews` page and triggers a `flash message` that says 'Review Successfully Updated'. Upon scrolling down the new review can be seen within the review results and all details are correct | Pass |
+|  10  | `Delete Review` - modal | While **logged in**, navigate to the `Profile - Reviews` page and find a review you want to delete. Click the `Delete` button | It should trigger a `modal` | Triggers a modal asking if I am sure if I want to proceed with my action | Pass |
+|  11  | `Delete Review` | While **logged in**, navigate to the `Profile - Reviews` page and find a review you want to delete. Click the `Delete` button and click `Yes, Delete` in the modal | It should delete the review | Successfully deletes the review and triggers a `flash message` that says 'Review Successfully Deleted'. The review is no longer in my reviews list on the `Profile - Reviews` page | Pass |
+|  12  | `Request A Game` when **not** logged in | Navigate to `Favourites` page and scroll down until you see the `Request A Game` button. Click it when you are **not** logged in | A `tooltip` should trigger telling the user to log in first | Triggers a `tooltip` that says 'Please sign in or register an account with us to request games' | Pass |
+|  12  | `Request A Game` | Navigate to `Favourites` page and scroll down until you see the `Request A Game` button. Click it, ensuring that you **are** logged in. Request a game to be added to the database | It should navigate to the `Request A Game` page. After filling in all required fields it should redirect to the Homepage with your request submitted | It successfully navigates to the `Request A Game` page but submitting the form triggers a `TypeError` | Fail | See fix [here](#nonetype-error-for-request-a-game-form) |
+|  13  |  `Request A Game` - attempt 2 | Navigate to `Favourites` page and scroll down until you see the `Request A Game` button. Click it, ensuring that you **are** logged in. Request a game to be added to the database | It should navigate to the `Request A Game` page. After filling in all required fields it should redirect to the Homepage with your request submitted | After navigating to the `Request A Game` page, and completing the form input fields, the game request is submitted successfully. A `flash message` says 'Your Request Has Been Submitted` | Pass |
+|  14  | Request the **same** game via the `Request A Game` page | On the `Request A Game` page, fill in the form fields and request the **same** game as before. Ensure that the **same** user is still logged in | The request should not be successful and the page should reload | The game request is **not** submitted and the page reloads as intended. A `flash message` triggers, which says 'You've already submitted a request for this game' | Pass |
+|  15  | Request the **same** game as a **different user** | Log in as a **different user** and follow the same steps as above in order to request the same game as before via the `Request A Game` page | The request should be submitted, but it should **update** an existing document in the database rather than create a new one | The request is submitted successfully. The user is redirected to the Homepage and a `flash message` says 'Your Request Has Been Submitted' which confirms that the user's actions were successful. The database has updated an existing document by appending the username of the session user to the `requested_by` array | Pass | For more details on the database schema, see [here]() |
 |  5  | Do everything above but on a mobile device | n/a | n/a | n/a | Pass |
 
 
@@ -579,3 +593,16 @@ $('#saveChanges').on('click', function() {
 ```
 
 -----
+
+## NoneType Error for Request A Game Form
+
+- When submitting the form on the Request A Game page, the following error occurred: `TypeError: 'NoneType' object is not subscriptable`, which was caused by this line of code: `has_user_requested = existing_request["requested_by"]`
+
+- If `existing_requested` was **None**, it would trigger this error. To fix the error, then, I update the code as follows:
+
+```
+if existing_request is not None:
+    has_user_requested = existing_request["requested_by"]
+```
+
+- This alteration fixed the NoneType Error and allowed the form to be submitted
