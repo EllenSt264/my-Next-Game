@@ -278,8 +278,8 @@ def admin_update_db():
                     existing_game = mongo.db.all_pc_games.find_one(
                         {"game_title": title})
 
-                    if not existing_game:
-                        mongo.db.all_pc_games.insert_one(game)
+                if not existing_game:
+                    mongo.db.all_pc_games.insert_one(game)
 
                 if existing_game:
                     flash("Database Already Updated")
