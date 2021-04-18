@@ -256,7 +256,7 @@ The database schema was subjected to several alterations throughout the site’s
 
 #### users
 
-![MongoDB users collection screenshot](static/img/documentation/mongodb-users_doc.png)
+[MongoDB users collection screenshot](static/img/documentation/mongodb-users_doc.png)
 - This collections holds all the account information for registered users of the site
 - Each document contains all details of a single user
 
@@ -278,7 +278,7 @@ The database schema was subjected to several alterations throughout the site’s
 
 #### user_games
 
-![MongoDB user_games collection screenshot](static/img/documentation/mongodb-user_games.png)
+[MongoDB user_games collection screenshot](static/img/documentation/mongodb-user_games.png)
 - This collection holds all profile information relating to a user's game playlist
 - Each document is primarily concerned with game data, but also contains a `username` and `stage` key value, which is used to assign the games to a user's profile
 - A document can be deleted by the user assigned to it at any time. Whether a user is assigned to a document or not is is governed by the `username` key value. A user can only delete a document if their username matches the value of `username` within this collection
@@ -299,7 +299,7 @@ The database schema was subjected to several alterations throughout the site’s
 
 #### user_reviews
 
-![MongoDB user_reviews collection screenshot](static/img/documentation/mongodb-user_reviews.png)
+[MongoDB user_reviews collection screenshot](static/img/documentation/mongodb-user_reviews.png)
 - This collection holds all data relating to game reviews submitted by registered users
 - Each document contains the full review for game that a user has submitted
 - The `username` key value pair is used to link the correct reviews to user's **Profile Reviews** page
@@ -329,7 +329,7 @@ The database schema was subjected to several alterations throughout the site’s
 
 #### avatars
 
-![MongoDB avatars collection screenshot](static/img/documentation/mongodb-avatars.png)
+[MongoDB avatars collection screenshot](static/img/documentation/mongodb-avatars.png)
 - This collection stores all the avatars that a user can assign to their profile
 - Each document contains an image src path and alt attribute for every avatar
 
@@ -344,10 +344,11 @@ The database schema was subjected to several alterations throughout the site’s
 
 #### all_pc_games
 
-![MongoDB all_pc_games collection screenshot](static/img/documentation/mongodb-all_pc_games_1.png)
+[MongoDB all_pc_games collection screenshot](static/img/documentation/mongodb-all_pc_games_1.png)
 - This collection holds all of the game data
 - Each document contains all the relevant information for each game, such as its title, images, genre tags etc.
 - This collection underwent several trial runs and alterations before deciding on this format. [See here]() to read its development process in detail
+- [This](static/img/documentation/mongodb-all_pc_games_2.png) is an example of what a document containing multiple booleans would look like
 
 |  Key  |  Data Type | Notes |
 | ------| ---------- | ----- |
@@ -373,15 +374,12 @@ The database schema was subjected to several alterations throughout the site’s
 | `game_summary` | String | If a game document contains the `favourite` key value pair, then it will also have the `game_summary` key value pair. This is a written summary of the game, which is taken from the [Steam Store website](https://store.steampowered.com/) For more details about this, see the web scraping section, [here]() |
 | `screenshots` | Array | If a game document contains the `favourite` key value pair, then it will also have the `screenshots` key value pair. This is an array of img src tags (screenshots of the game), taken from the [Steam Store website](https://store.steampowered.com/) For more details about this, see the web scraping section, [here]() |
 
-- Here is an example of what a document containing multiple booleans would look like:
-![MongoDB all_pc_games collection screenshot](static/img/documentation/mongodb-all_pc_games_2.png)
-
 -----
 
 
 #### game_requests
 
-![MongoDB game_requests collection screenshot](static/img/documentation/mongodb-game_requests.png)
+[MongoDB game_requests collection screenshot](static/img/documentation/mongodb-game_requests.png)
 - This collection stores all game requests submitted by users via the **Request A Game** page
 - Each document contains the `game_request` game title and a `requested_by` array which includes a list of all users (`usernames`) who have requested the game
 
@@ -396,7 +394,7 @@ The database schema was subjected to several alterations throughout the site’s
 
 #### admin_game_links
 
-![MongoDB admin_game_links collection screenshot](static/img/documentation/mongodb-admin_game_links.png)
+[MongoDB admin_game_links collection screenshot](static/img/documentation/mongodb-admin_game_links.png)
 - This collection stores all game links added by admin users, that are intended to be added to the **all_pc_games** collection
 - Each document contains a `game link` and `category` array
 - The game link is used to get all the data shown in **all_pc_games** (e.g. The game title and images)
