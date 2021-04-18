@@ -37,6 +37,8 @@
     - [Database Structure - game_requests](#game_requests)
 
     - [Database Structure - admin_game_links](#admin_game_links)
+
+    - [Database Relationships](#database-relationships)
     
 
 - [Implemented Features](#implemented-features)
@@ -49,7 +51,7 @@
 
     - [Navigation](#navigation)
 
-    - [Favourites Page](#favourites-page)
+    - [Our Favourites Page](#our-favourites-page)
 
     - [Games Pages](#games-pages)
 
@@ -410,6 +412,17 @@ The database schema was subjected to several alterations throughout the site’s
 ------
 
 
+### Database Relationships
+
+- Each collection in the database is linked in someway to another. The two primary collections that contribute to the data that is shared between different collections are `all_pc_games` and `users`
+
+- The image below illustrates the relationship between each of the collections:
+
+![Database Relationships](static/img/documentation/db-relationships.png)
+
+
+-----
+
 
 ## Implemented Features
 
@@ -519,7 +532,7 @@ The database schema was subjected to several alterations throughout the site’s
     - Both of these cateogories contain a wide selection of games (it is not limited to certain genres) and thus is suitable for several tastes and preferences, which can be expected by the user
 
 
-### Favourites Page
+### Our Favourites Page
 
 - Parallax effect
 
