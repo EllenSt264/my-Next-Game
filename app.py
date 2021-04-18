@@ -1407,7 +1407,7 @@ def request_game():
         if (username == user) and (email == user_email):
             # Check if game request already exists in db
             existing_request = mongo.db.game_requests.find_one(
-                {"game_request": request.form.get("game-request")})
+                {"game_request": request.form.get("game-request").lower()})
 
             # Check if current user has already requested this game
             if existing_request is not None:
@@ -1431,7 +1431,7 @@ def request_game():
 
             # Else add new document
             game = {
-                "game_request": request.form.get("game-request"),
+                "game_request": request.form.get("game-request").lower(),
                 "requested_by": [username]
             }
             mongo.db.game_requests.insert_one(game)
