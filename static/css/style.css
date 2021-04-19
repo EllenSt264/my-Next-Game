@@ -3079,6 +3079,11 @@ label[for]:hover {
 }
 
 @media (max-width: 370px) {
+    .profile-btns a.btn,
+    #editBtn {
+        font-size: 12px;
+        padding: 0 10px;
+    }
     #ProfileCard {
         margin: 0 !important;
         padding: 0 !important;
@@ -3122,6 +3127,9 @@ label[for]:hover {
 }
 
 @media (max-width: 354px) {
+    ul.profile-btns a.btn {
+        font-size: 12px;
+    }
     .profile-card-content {
         text-align: center;
     }
@@ -3135,6 +3143,13 @@ label[for]:hover {
     .profile-game-title h5 {
         text-align: center;
         margin: 5px 5px 10px;
+    }
+    .profile-game-btn.delete {
+        margin: auto !important;
+    }
+    .game-btns.left {
+        width: 50vw !important;
+        margin: auto 15vw !important;
     }
     .review-card-row img {
         width: 225px;
@@ -3172,6 +3187,17 @@ label[for]:hover {
     #reviewCards {
         margin-left: 0;
     }
+    .edit-btn {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+@media (max-width: 319px) {
+    .game-btns.left {
+        width: 50vw !important;
+        margin: auto 10vw !important;
+    }
 }
 
 @media (max-width: 310px) {
@@ -3198,5 +3224,12 @@ label[for]:hover {
     }
     .profile-game-img img {
         width: 200px;
+    }
+}
+
+@media (max-width: 270px) {
+    .game-btns.left {
+        width: 50vw !important;
+        margin: auto 5vw !important;
     }
 }
