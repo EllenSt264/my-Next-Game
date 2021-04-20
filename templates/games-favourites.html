@@ -70,51 +70,29 @@
         <div class="row">
             <!-- Sort by features -->
             <div class="col s12 m8 right">
-                <div class="sort-by right">
-                    <!-- Select labels -->
-                    <ul class="tabs tabs-transparent hide-on-med-and-down" id="sortNav-label">
-                        <li class="tab" id="nav1">
-                            <a>
-                                <label for="navSelect1">Sort By</label>
-                            </a>
+                <form action="{{ url_for('setcookie_favourites') }}" method="POST" class="right">
+                    <ul class="tabs tabs-transparent" id="sortNav">
+                        <li class="tab">
+                            <label class="white-text" id="sortBy-label">Sort By</label>
+                            <select class="browser-default" name="navSelect1" id="navSelect1" value="{{ navSelect1 }}">
+                                <option value="title"{% if navSelect1=="title" %} selected="selected" {% endif %}>Title</option>
+                                <option value="likes"{% if navSelect1=="likes" %} selected="selected" {% endif %}>Likes</option>
+                                <option value="playing"{% if navSelect1=="playing" %} selected="selected" {% endif %}>Playing</option>
+                                <option value="reviews"{% if navSelect1=="reviews" %} selected="selected" {% endif %}>Review Count</option>
+                            </select>
                         </li>
-                        <li class="tab" id="nav2">
-                            <a>
-                                <label for="navSelect2">Order</label>
-                            </a>
+                        <li class="tab">
+                            <label class="white-text" id="order-label">Order</label>
+                            <select class="browser-default" name="navSelect2" id="navSelect2"  value="{{ navSelect2 }}">
+                                <option value="asc"{% if navSelect2=="asc" %} selected="selected" {% endif %}>Asc</option>
+                                <option value="desc"{% if navSelect2=="desc" %} selected="selected" {% endif %}>Desc</option>
+                            </select>
+                        </li>
+                        <li class="tab">
+                            <button type="submit" class="btn" id="filterBtn">Filter Results</button>
                         </li>
                     </ul>
-                    <!-- Select options -->
-
-                    <form action="{{ url_for('setcookie_favourites') }}" method="POST">
-                        <ul class="tabs tabs-transparent" id="sortNav">
-                            <li class="tab">
-                                <a>
-                                    <select class="browser-default" name="navSelect1" id="navSelect1" value="{{ navSelect1 }}">
-                                        <option value="title"{% if navSelect1=="title" %} selected="selected" {% endif %}>Title</option>
-                                        <option value="likes"{% if navSelect1=="likes" %} selected="selected" {% endif %}>Likes</option>
-                                        <option value="playing"{% if navSelect1=="playing" %} selected="selected" {% endif %}>Playing</option>
-                                        <option value="reviews"{% if navSelect1=="reviews" %} selected="selected" {% endif %}>Review Count</option>
-                                        
-                                    </select>
-                                </a>
-                            </li>
-                            <li class="tab">
-                                <a>
-                                    <select class="browser-default" name="navSelect2" id="navSelect2"  value="{{ navSelect2 }}">
-                                        <option value="asc"{% if navSelect2=="asc" %} selected="selected" {% endif %}>Asc</option>
-                                        <option value="desc"{% if navSelect2=="desc" %} selected="selected" {% endif %}>Desc</option>
-                                    </select>
-                                </a>
-                            </li>
-                            <li class="tab">
-                                <a style="line-height: 10px;">
-                                    <button type="submit" class="btn" id="filterBtn">Filter Results</button>
-                                </a>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </section>
@@ -158,7 +136,7 @@
                             <div class="buttons-and-tags">
                                 <!-- See reviews -->
                                 <div class="see-review-btn">
-                                    <a href="#" class="btn-large">See Reviews</a>
+                                    <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="btn-large">See Reviews</a>
                                 </div>
                                 <!-- Add to list -->
                                 <div class="floating-add-btn">
@@ -309,7 +287,7 @@
                                 <!-- See reviews -->
                                 <div class="col s6 m4">
                                     <div class="see-review-btn-sm">
-                                        <a href="#" class="btn-large">See Reviews</a>
+                                        <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="btn-large">See Reviews</a>
                                     </div>
                                 </div>
                             </div>
