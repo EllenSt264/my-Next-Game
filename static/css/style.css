@@ -745,16 +745,6 @@ The following code is based upon this source:
     width: 40px;
 }
 
-.game-cards img,
-.game-cards .card.card-image img {
-    width: 250px;
-    height: 120px;
-    /* For the box shadow: "https://www.w3schools.com/css/css3_shadows_box.asp" */
-    box-shadow: 0 4px 8px 0 
-    rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
-}
-
 .sm-screen-card .card-panel {
     width:95%; 
     margin: 32px auto; 
@@ -2009,11 +1999,6 @@ label[for]:hover {
         height: 125px;
         border: 3px solid #f608ea;
     }
-    .game-cards img,
-    .game-cards .card.card-image img {
-        width: 250px !important;
-        height: 120px;
-    }
     .game-cards .card-content .card-title,
     .sm-screen-card .card-title {
         font-size: 18px;
@@ -2351,6 +2336,14 @@ label[for]:hover {
     }
 }
 
+@media (min-width: 1180px) {
+    .game-cards .card-image,
+    .game-cards img {
+        width: 256.75px !important;
+        height: 120px !important;
+    }
+}
+
 @media (max-width: 1160px) {
     .profile-game-img img {
         width: 350px;
@@ -2556,6 +2549,15 @@ label[for]:hover {
     .review-card-row .game-title h5 {
         margin-left: 0;
         padding-left: 0;
+    }
+}
+
+@media (min-width: 600px) {
+    .game-cards .card-image,
+    .game-cards img {
+        width: 256.75px !important;
+        min-width: 256.75px !important;
+        height: 120px !important;
     }
 }
 
