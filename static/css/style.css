@@ -502,6 +502,9 @@ The following code is based upon this source:
     line-height: 40px;
 }
 
+
+/* ---------------------------------------------- Sort filter*/
+
 #sort-and-pagination-nav {
     width: 95%; 
     margin: auto;
@@ -511,7 +514,7 @@ The following code is based upon this source:
     margin-top: 2.5rem;
 }
 
-#sort-and-pagination-nav .sort-by {
+#sort-and-pagination-nav form {
     margin-top: 0.5rem;
 }
 
@@ -519,32 +522,10 @@ The following code is based upon this source:
     font-family: "BlenderPro-Bold";
 }
 
-#sortNav-label {
-    height: 30px;
-}
-
-#sortNav-label .tab {
-    height: 30px; line-height: 40px;
-}
-
-#sortNav-label label {
-    font-size: 14px;
-}
-
-#nav1 {
-    width: 181px;
-}
-
-#nav2 {
-    width: 114px;
-}
-
-#nav3 {
-    width: 120px;
-}
-
 #sortNav {
-    height: 42px;
+    position: relative; 
+    height: 60px; 
+    padding-top: 24px;
 }
 
 #sortNav .browser-default {
@@ -554,19 +535,43 @@ The following code is based upon this source:
     color: #444;
 }
 
-@media (max-width: 992px) {
-    .secondary-nav .nav-content div.valign {
-        margin-bottom: 20px;
-    }
-    .secondary-nav .nav-content div.valign a {
-        font-size: 14px;
-    }
+#sortNav li.tab:nth-child(1) {
+    margin-right: 5px;
 }
 
-@media (max-width: 600px) {
-    .secondary-nav .nav-content div.valign {
-        margin-bottom: 30px;
-    }
+#sortNav li.tab:nth-child(3) {
+    line-height: 0;
+}
+
+#sortBy-label {
+    position: absolute; 
+    top: -10px; 
+    right: 87%;
+}
+
+#order-label {
+    position: absolute; 
+    top: -10px; 
+    left: 52%;
+}
+
+#reviews-sortBy-label {
+    position: absolute; 
+    top: -10px; 
+    right: 86%;
+}
+
+#reviews-order-label {
+    position: absolute; 
+    top: -10px; 
+    left: 39%;
+}
+
+#filterBtn {
+    font-size: 12px;
+    padding: 0 12px;
+    margin-left: 5px;
+    margin-bottom: 2px;
 }
 
 /* ---------------------------------------------- Review and Request form */
@@ -2451,6 +2456,12 @@ label[for]:hover {
     .fas.fa-user {
         font-size: 2.25rem;
     }
+    .secondary-nav .nav-content div.valign {
+        margin-bottom: 20px;
+    }
+    .secondary-nav .nav-content div.valign a {
+        font-size: 14px;
+    }
     .secondary-nav #searchbar .input-field {
         width: 600px;
     }
@@ -2700,6 +2711,9 @@ label[for]:hover {
     }
     .fas.fa-user {
         font-size: 2rem;
+    }
+    .secondary-nav .nav-content div.valign {
+        margin-bottom: 30px;
     }
     #homepageBtns .btn-large {
         margin: 10px;
@@ -3122,6 +3136,23 @@ label[for]:hover {
 }
 
 @media (max-width: 406px) {
+    #sort-and-pagination-nav {
+        width: 100%; 
+        margin: auto;
+    }
+    #sort-and-pagination-nav form {
+        margin-right: 0 !important;
+    }
+    #sortNav {
+        width: 95vw;
+        margin: auto;
+    }
+    #sortBy-label {
+        right: 88%;
+    }
+    #order-label { 
+        left: 44%;
+    }
     .favourites-sm .card-image img {
         width: 300px;
         height: auto;
@@ -3250,6 +3281,12 @@ label[for]:hover {
 }
 
 @media (max-width: 354px) {
+    #sortBy-label {
+        right: 86%;
+    }
+    #order-label {
+        left: 45%;
+    }
     ul.profile-btns a.btn {
         font-size: 12px;
     }
