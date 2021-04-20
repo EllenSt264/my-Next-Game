@@ -252,6 +252,10 @@ The following code is based upon this source:
     opacity: 1;
 }
 
+#homepageBtns .btn-large {
+    background-color: #c41cce;
+}
+
 #aboutUs p {
     font-family: "BlenderPro-Thin";
     letter-spacing: 1px;
