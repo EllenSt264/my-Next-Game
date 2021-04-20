@@ -285,6 +285,8 @@ The following code is based upon this source:
 
 /* ---------------------------------------------- Games carousel */
 
+/* here */
+
 .carousel { 
     position: relative;
     min-height: 600px;
@@ -322,7 +324,7 @@ The following code is based upon this source:
 
 .carousel-item img {
     width: 800px !important;
-    height: 375px !important;
+    height: auto !important;
 }
 
 .carousel-item h2 {
@@ -331,6 +333,10 @@ The following code is based upon this source:
 
 .carousel-item p {
     margin-top: 5px;
+}
+
+#carouselBtn {
+    bottom: 50px;
 }
 
 .carousel-title {
@@ -2567,9 +2573,19 @@ label[for]:hover {
         width: 95% !important;
         margin-left: 2.083333333325% !important;
     }
-    .carousel-title {
-        margin-top: 20px;
+    .carousel { 
+        min-height: 500px;
+        margin: 0;
     }
+    .carousel-item img {
+        width: 600px !important;
+    }
+    #carousel-next {
+        top: 30%;
+    }
+    #carousel-prev {
+        top: 30%;
+    }     
 }
 
 @media (max-width: 905px) and (min-width: 860px) {
@@ -2634,6 +2650,20 @@ label[for]:hover {
 }
 
 @media (max-width: 675px) {
+    .carousel { 
+        min-height: 460px;
+        margin: 0;
+    }
+    .carousel-item {
+        padding-top: 32px;
+    }
+    .carousel-item img {
+        width: 500px !important;
+    }
+    .carousel-item h2 {
+        line-height: 1 !important;
+        margin-bottom: 0;
+    }
     #reviewCards {
         margin-left: 10%;
     }
@@ -2794,6 +2824,21 @@ label[for]:hover {
 }
 
 @media (max-width: 565px) {
+    .carousel { 
+        min-height: 400px;
+    }
+    .carousel-item {
+        padding-top: 30px;
+    }
+    .carousel-item img {
+        width: 400px !important;
+    }
+    #carousel-next {
+        top: 25%;
+    }
+    #carousel-prev {
+        top: 25%;
+    } 
     #reviewCards {
         margin-left: 10%;
     }
@@ -2945,6 +2990,37 @@ label[for]:hover {
 }
 
 @media (max-width: 460px) {
+    .carousel { 
+        min-height: 325px;
+    }
+    .carousel-item img {
+        width: 300px !important;
+    }
+    #carousel-next {
+        top: 23%;
+        left: 93%;
+    }
+    #carousel-prev {
+        top: 23%;
+    }
+    #carousel-next i,
+    #carousel-prev i {
+        font-size: 25px;
+    }
+    .carousel-item h2 {
+        font-size: 20px !important;
+        margin: 0;
+    }
+    .carousel-item p {
+        font-size: 12px !important;
+        margin-top: 0;
+        margin: 0;
+    }
+    .carousel-fixed-item .btn {
+        font-size: 12px;
+        letter-spacing: 1px;
+        padding: 0 10px;
+    }
     .profile-game-img img {
         width: 300px;
         height: auto;
@@ -3154,6 +3230,25 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 360px) {
+    .carousel { 
+        min-height: 310px;
+    }
+    .carousel-item {
+        padding-top: 25px;
+    }
+    .carousel-item img {
+        width: 250px !important;
+    }
+    #carousel-next {
+        top: 18%;
+        left: 93%;
+    }
+    #carousel-prev {
+        top: 18%;
+    }
+}
+
 @media (max-width: 354px) {
     ul.profile-btns a.btn {
         font-size: 12px;
@@ -3242,6 +3337,32 @@ label[for]:hover {
    }
     .review-card-row img {
         width: 200px;
+    }
+}
+
+@media (max-width: 305px) {
+    .carousel { 
+        min-height: 260px;
+    }
+    .carousel-item {
+        padding-top: 20px;
+    }
+    .carousel-item img {
+        width: 200px !important;
+    }
+    #carousel-next {
+        top: 20%;
+        left: 93%;
+    }
+    #carousel-prev {
+        top: 20%;
+    }
+    #carousel-next i,
+    #carousel-prev i {
+        font-size: 20px;
+    }
+    .carousel-item h2 {
+        font-size: 18px !important;
     }
 }
 
