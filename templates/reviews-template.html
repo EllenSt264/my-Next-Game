@@ -53,14 +53,6 @@
 
                 <div class="hide-on-med-and-down">
 
-                    <!-- Standard Links -->
-                    <li><a href="#" class="standard-link">Our Favourites</a></li>
-                    <li><a href="#" class="standard-link">Award Winners</a></li>
-                    {% if session.user %}
-                    <li><a href="#" class="standard-link">Your
-                            List</a></li>
-                    {% endif %}
-
                     <!-- Platform -->
                     <li id="PlatformLink">
                         <div class="fixed-action-btn click-to-toggle">
@@ -119,17 +111,13 @@
 
         <!-- Mobile side nav -->
         <ul class="sidenav" id="secondary-sidenav">
-            <li><a href="#!" class="sidenav-close right"><i class="material-icons white-text"
-                        style="margin: 0;">close</i></a></li>
-            <li><a href="#">Platform</a></li>
+            <li><a href="#!" class="sidenav-close right"><i class="material-icons white-text" style="margin: 0;">close</i></a></li>
+            <li><a href="{{ url_for('reviews') }}">All Reviews</a></li>
             <li><a href="{{ url_for('reviews_action') }}">Action</a></li>
             <li><a href="{{ url_for('reviews_adventure') }}">Adventure</a></li>
             <li><a href="{{ url_for('reviews_RPG') }}">RPG</a></li>
             <li><a href="{{ url_for('reviews_strategy') }}">Strategy</a></li>
             <li><a href="{{ url_for('reviews_multiplayer') }}">Multiplayer</a></li>
-            <li><a href="#">Award Winners</a></li>
-            <li><a href="#">Our Favourites</a></li>
-            <li><a href="#">Your List</a></li>
         </ul>
     </section>
 
@@ -179,7 +167,7 @@
         <!-- Review button -->
         <section>
             <div class="row">
-                <div class="col" style="margin-left: 12.49999999995%">
+                <div class="col right" style="margin-right: 2.5%">
                     {% if not session.user %}
                         <a href="#!" class="btn-large tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to submit reviews">Leave a Review</a>
                     {% else %}

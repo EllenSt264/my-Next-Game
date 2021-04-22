@@ -32,16 +32,16 @@
                         <img src="{{ url_for('static', filename='img/main/odin_logo.png') }}" alt="Website/navbar brand logo" loading="lazy">
                     </a>
 
+                    <!-- Desktop profile dropdown icon -->
                     {% if session.user %}
-                    <!-- Desktop profile dropdown -->
-                    <a href="{{ url_for('profile_games', user=user, username=session['user'], admin=session['admin']) }}" data-target="desktop-profile" 
-                    class="dropdown-trigger right hide-on-med-and-down nav-dropdown-trigger"
-                    style="margin-right:25px;">
-                        <i class="fas fa-user"></i>
-                    </a>
+                        <a href="{{ url_for('profile_games', user=user, username=session['user'], admin=session['admin']) }}" data-target="desktop-profile" 
+                        class="dropdown-trigger right hide-on-med-and-down nav-dropdown-trigger"
+                        style="margin-right:25px;">
+                            <i class="fas fa-user"></i>
+                        </a>
                     {% endif %}
 
-                    <!-- Mobile hamburger --> 
+                    <!-- Mobile hamburger icon --> 
                     <a href="#" class="my-sidenav-trigger right hide-on-large-only"
                     style="margin-right:25px;">
                         <div id="hamburger">
@@ -50,28 +50,21 @@
                             <span></span>
                         </div>
                     </a>
-                    <!-- Mobile profile -->
+
+                    <!-- Mobile profile icon -->
                     <a href="#" data-target="mobile-nav-profile" class="sidenav-trigger right" 
                     style="margin-right:20px;">
                         <i class="fas fa-user"></i>
                     </a>
 
-                    <!-- Genre Dropdown -->
-                    <ul class="dropdown-content" id="GenreDropdown">
-                        <li><a href="{{ url_for('action_games') }}">Action</a></li>
-                        <li><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
-                        <li><a href="{{ url_for('RPG_games') }}">RPG</a></li>
-                        <li><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
-                        <li><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
-                    </ul>
-
-                    <!-- Admin Dropdown -->
+                    <!-- Desktop Admin Dropdown -->
                     <ul class="dropdown-content" id="adminDropdown">
                         <li><a href="{{ url_for('admin_add_to_db') }}">Add to DB</a></li>
                         <li><a href="{{ url_for('admin_update_db') }}">Update DB</a></li>
                         <li><a href="{{ url_for('admin_user_requests') }}">User Requests</a></li>
                     </ul>
                 
+                    <!-- Navlinks -->
                     <ul class="left hide-on-med-and-down">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
@@ -89,17 +82,24 @@
                             <li><a href="{{ url_for('login') }}">Log In</a></li>
                         {% endif %}
                     </ul>
-
                 </div>
             </nav>
         </div>
+
+        <!-- Dekstop Genre dropdown -->
+        <ul class="dropdown-content" id="GenreDropdown">
+            <li><a href="{{ url_for('action_games') }}">Action</a></li>
+            <li><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
+            <li><a href="{{ url_for('RPG_games') }}">RPG</a></li>
+            <li><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
+            <li><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
+        </ul>
         
         <!-- Desktop profile dropdown -->
         <ul class="dropdown-content" id="desktop-profile"  data-constrainwidth="false">
             <li><a href="{{ url_for('profile_games', user=user, username=session['user'], admin=session['admin']) }}">Profile</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
         </ul>
-    
 
         <!-- Profile mobile side-nav -->
         <ul class="sidenav" id="mobile-nav-profile">
@@ -115,11 +115,11 @@
             {% endif %}
         </ul>
 
-        <!-- Mobile side-navbar -->
+        <!-- Mobile side-nav -->
         <ul class="my-sidenav" id="mobile-nav">
             <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
             <li>
-                <a href="{{ url_for('pc_games') }}">Genre</a>
+                <a href="{{ url_for('pc_games') }}">All Games</a>
                 <ul>
                     <li class="mobile-sidenav-genreLink"><a href="{{ url_for('action_games') }}">Action</a></li>
                     <li class="mobile-sidenav-genreLink"><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
@@ -128,7 +128,9 @@
                     <li class="mobile-sidenav-genreLink"><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
                 </ul>
             </li>
-            <li><a href="{{ url_for('reviews') }}">Community Reviews</a></li>
+            <li>
+                <a href="{{ url_for('reviews') }}">Community Reviews</a>
+            </li>
             {% if session.user and session.admin %}
                 <li><a href="#">Admin Controls</a></li>
             {% endif %}
@@ -150,63 +152,66 @@
     </section>
     
     {% block content %}
-        <!-- Hero video background -->
-        <section id="heroBg" class="valign-wrapper">
-            <h1 class="center-align title back-font">myNext Game</h1>
-            <h1 class="center-align title front-font">myNext Game</h1>
-            <div class="col s12 ">
-                <video class="hero-vid" autoplay muted loop>
-                    <source src="{{ url_for('static', filename='video/synthwave.mp4') }}" type="video/mp4"
-                    alt="Synthwave theme parallax background video" loading="lazy">
-                </video>
+        <!-- Parallax -->
+        <section>
+            <!-- Hero video background -->
+            <div id="heroBg" class="valign-wrapper">
+                <h1 class="center-align title back-font">myNext Game</h1>
+                <h1 class="center-align title front-font">myNext Game</h1>
+                <div class="col s12 ">
+                    <video class="hero-vid" autoplay muted loop>
+                        <source src="{{ url_for('static', filename='video/synthwave.mp4') }}" type="video/mp4"
+                        alt="Synthwave theme parallax background video" loading="lazy">
+                    </video>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="section" id="homepageBtns">
+                <div class="row container">
+                    <div class="col s12 center-align">
+                        <a href="{{ url_for('favourites') }}" class="waves-effect waves-light btn-large">
+                            Explore Our Favourites
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parallax image -->
+            <div class="parallax-container" id="homeParallax-img1">
+                <div class="parallax">
+                    <img src="{{ url_for('static', filename='img/main/parallax-bg_img2.jpg') }}" alt="Synthwave theme parallax background image" loading="lazy">
+                </div>
+            </div>
+
+            <!-- About Us -->
+            <div class="section" id="aboutUs">
+                <div class="row container white-text">
+                    <div class="col s12 m6 offset-m3 center-align">
+                        <h3>About Us</h3>
+                    </div>
+                    <div class="col s12 m6 offset-m3">
+                        <div class="divider"></div>
+                    </div>
+                </div>
+                <div class="row container white-text">
+                    <div class="col s12 m6 offset-m3 center-align">
+                        <p>
+                            We are committed to provide you with a gaming, community-based platform that is free, honest and unique. At <span>my
+                                Next Game</span> we value people and honesty, meaning all of our reviews are free from commercial bias;
+                            written by people for people. Register an account with us and join the community so that you too can review and like
+                            games, build your own 'gaming playlist' and connect to other users in the community.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="parallax-container" id="homeParallax-img2">
+                <div class="parallax">
+                    <img src="{{ url_for('static', filename='img/main/parallax-bg_img1.png') }}" alt="Synthwave theme parallax background image" loading="lazy">
+                </div>
             </div>
         </section>
-
-        <!-- Button -->
-        <div class="section" id="homepageBtns">
-            <div class="row container">
-                <div class="col s12 center-align">
-                    <a href="{{ url_for('favourites') }}" class="waves-effect waves-light btn-large">
-                        Explore Our Favourites
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Parallax image -->
-        <div class="parallax-container" id="homeParallax-img1">
-            <div class="parallax">
-                <img src="{{ url_for('static', filename='img/main/parallax-bg_img2.jpg') }}" alt="Synthwave theme parallax background image" loading="lazy">
-            </div>
-        </div>
-
-        <!-- About Us -->
-        <div class="section" id="aboutUs">
-            <div class="row container white-text">
-                <div class="col s12 m6 offset-m3 center-align">
-                    <h3>About Us</h3>
-                </div>
-                <div class="col s12 m6 offset-m3">
-                    <div class="divider"></div>
-                </div>
-            </div>
-            <div class="row container white-text">
-                <div class="col s12 m6 offset-m3 center-align">
-                    <p>
-                        We are committed to provide you with a gaming, community-based platform that is free, honest and unique. At <span>my
-                            Next Game</span> we value people and honesty, meaning all of our reviews are free from commercial bias;
-                        written by people for people. Register an account with us and join the community so that you too can review and like
-                        games, build your own 'gaming playlist' and connect to other users in the community.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="parallax-container" id="homeParallax-img2">
-            <div class="parallax">
-                <img src="{{ url_for('static', filename='img/main/parallax-bg_img1.png') }}" alt="Synthwave theme parallax background image" loading="lazy">
-            </div>
-        </div>
 
         <!-- Games List -->
         <div class="section list-of-games">
