@@ -815,6 +815,9 @@ The database schema was subjected to several alterations throughout the site’s
 - [Asana](https://app.asana.com/0/home/1192103038725952)
   - Asana is a web and mobile application designed to help you organise, track and manage your projects. It was used to organise my project and schedule each task efficiently.
 
+- [Micro](https://miro.com/online-whiteboard/)
+    - Micro is an online sketching/whiteboard tool. I used it to visually demonstrate the relationships between each collection in the database.
+
 -----
 
 ## Credits
