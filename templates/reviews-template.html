@@ -11,21 +11,31 @@
         <div class="carousel-fixed-item" id="carousel-prev">
             <a class="white-text"><i class="material-icons">navigate_before</i></a>
         </div>
+        <!-- Button -->
+        <div class="carousel-fixed-item center" id="carouselBtn">
+            <a href="{{ url_for('see_game_reviews_carousel', id_1=rand_game_1._id, id_2=rand_game_2._id, id_3=rand_game_3._id,) }}" class="btn waves-effect">See Reviews</a>
+        </div>
         <!-- Carousel item 1 -->
         <div class="carousel-item white-text" href="#">
-            <img src="{{ rand_game_1.game_img_full }}" alt="carousel image" class="glow2">
+            <a href="{{ url_for('see_game_reviews', game_id=rand_game_1._id) }}">
+                <img src="{{ rand_game_1.game_img_full }}" alt="carousel image" class="glow2">
+            </a>
             <h2>{{ rand_game_1.game_title }}</h2> 
             <p class="white-text">{{ rand_game_1.game_top_tags[:3]|join(', ') }}</p>
         </div>
         <!-- Carousel item 2 -->
         <div class="carousel-item white-text" href="#">
-            <img src="{{ rand_game_2.game_img_full }}" alt="carousel image" class="glow2">
+            <a href="{{ url_for('see_game_reviews', game_id=rand_game_2._id) }}">
+                <img src="{{ rand_game_2.game_img_full }}" alt="carousel image" class="glow2">
+            </a>
             <h2>{{ rand_game_2.game_title }}</h2> 
             <p class="white-text">{{ rand_game_2.game_top_tags[:3]|join(', ') }}</p>
         </div>
         <!-- Carousel item 3 -->
         <div class="carousel-item white-text" href="#">
-            <img src="{{ rand_game_3.game_img_full }}" alt="carousel image" class="glow2">
+            <a href="{{ url_for('see_game_reviews', game_id=rand_game_3._id) }}">
+                <img src="{{ rand_game_3.game_img_full }}" alt="carousel image" class="glow2">
+            </a>
             <h2>{{ rand_game_3.game_title }}</h2> 
             <p class="white-text">{{ rand_game_3.game_top_tags[:3]|join(', ') }}</p>
         </div>
@@ -136,51 +146,30 @@
             </div>
             <!-- Sort by features -->
             <div class="col s12 m6">
-                <div class="sort-by right">
-                    <!-- Select labels -->
-                    <ul class="tabs tabs-transparent" id="sortNav-label">
-                        <li class="tab" id="nav1">
-                            <a>
-                                <label for="reviewSort1">Sort By</label>
-                            </a>
+                <form action="{{ url_for('set_review_cookies') }}" method="POST" class="right">
+                    <ul class="tabs tabs-transparent" id="sortNav">
+                        <li class="tab">
+                            <label class="white-text" id="reviews-sortBy-label">Sort By</label>
+                            <select class="browser-default" name="reviewSort1" id="reviewSort1"
+                                value="{{ reviewSort1 }}">
+                                <option value="date" {% if reviewSort1=="date" %} selected="selected" {% endif %}>Date Added</option>
+                                <option value="title" {% if reviewSort1=="title" %} selected="selected" {% endif %}>Title</option>
+                                <option value="rating" {% if reviewSort1=="rating" %} selected="selected" {% endif %}>Rating</option>
+                            </select>
                         </li>
-                        <li class="tab" id="nav2">
-                            <a>
-                                <label for="reviewSort2">Order</label>
-                            </a>
+                        <li class="tab">
+                            <label class="white-text" id="reviews-order-label">Order</label>
+                            <select class="browser-default" name="reviewSort2" id="reviewSort2"
+                                value="{{ reviewSort2 }}">
+                                <option value="asc" {% if reviewSort2=="asc" %} selected="selected" {% endif %}>Asc</option>
+                                <option value="desc" {% if reviewSort2=="desc" %} selected="selected" {% endif %}>Desc</option>
+                            </select>
+                        </li>
+                        <li class="tab">
+                            <button type="submit" class="btn" id="filterBtn">Filter Results</button>
                         </li>
                     </ul>
-                    <!-- Select options -->
-
-                    <form action="{{ url_for('set_review_cookies') }}" method="POST">
-                        <ul class="tabs tabs-transparent" id="sortNav">
-                            <li class="tab">
-                                <a>
-                                    <select class="browser-default" name="reviewSort1" id="reviewSort1"
-                                        value="{{ reviewSort1 }}">
-                                        <option value="date" {% if reviewSort1=="date" %} selected="selected" {% endif %}>Date Added</option>
-                                        <option value="title" {% if reviewSort1=="title" %} selected="selected" {% endif %}>Title</option>
-                                        <option value="rating" {% if reviewSort1=="rating" %} selected="selected" {% endif %}>Rating</option>
-                                    </select>
-                                </a>
-                            </li>
-                            <li class="tab">
-                                <a>
-                                    <select class="browser-default" name="reviewSort2" id="reviewSort2"
-                                        value="{{ reviewSort2 }}">
-                                        <option value="asc" {% if reviewSort2=="asc" %} selected="selected" {% endif %}>Asc</option>
-                                        <option value="desc" {% if reviewSort2=="desc" %} selected="selected" {% endif %}>Desc</option>
-                                    </select>
-                                </a>
-                            </li>
-                            <li class="tab">
-                                <a style="line-height: 10px;">
-                                    <button type="submit" class="btn" id="filterBtn">Filter Results</button>
-                                </a>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </section>

@@ -218,7 +218,7 @@
                                             XBOX, Playstation
                                         </p>
                                         <p class="grey-text text-lighten-2 game-tags">
-                                            {{ game.game_top_tags|join('') }}
+                                            {{ game.game_top_tags[:5]|join(', ') }}
                                         </p>
                                     </div>
                                     <div class="card-action">
