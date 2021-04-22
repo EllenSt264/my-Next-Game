@@ -2571,15 +2571,6 @@ label[for]:hover {
     }
 }
 
-@media (min-width: 600px) {
-    .game-cards .card-image,
-    .game-cards img {
-        width: 256.75px !important;
-        min-width: 256.75px !important;
-        height: 120px !important;
-    }
-}
-
 @media (max-width: 992px) and (min-width: 510px) {
     .profile-game-img img {
         width: 400px;
@@ -2738,9 +2729,6 @@ label[for]:hover {
     }
     #homepageBtns .btn-large {
         margin: 10px;
-    }
-    .carousel-item a img {
-        width: 550px !important;
     }
     .review-card-row .card-image {
         text-align: center;
@@ -2958,9 +2946,6 @@ label[for]:hover {
 }
 
 @media (max-width: 500px) {
-    .carousel-item a img {
-        width: 450px !important;
-    }
     .carousel-title {
         font-size: 32px;
         margin-top: 0;
@@ -3026,26 +3011,26 @@ label[for]:hover {
 
 @media (max-width: 460px) {
     .carousel { 
-        min-height: 325px;
+        min-height: 345px;
     }
     .carousel-item img {
-        width: 300px !important;
+        width: 350px !important;
     }
     #carousel-next {
-        top: 23%;
+        top: 30%;
         left: 93%;
     }
     #carousel-prev {
-        top: 23%;
+        top: 30%;
     }
-    #carousel-next i,
-    #carousel-prev i {
-        font-size: 25px;
-    }
-    .carousel-item h2 {
-        font-size: 20px !important;
-        margin: 0;
-    }
+        #carousel-next i,
+        #carousel-prev i {
+            font-size: 25px;
+        }
+        .carousel-item h2 {
+            font-size: 20px !important;
+            margin: 0;
+        }
     .carousel-item p {
         font-size: 12px !important;
         margin-top: 0;
@@ -3081,9 +3066,6 @@ label[for]:hover {
 }
 
 @media (max-width: 430px) {
-    .carousel-item a img {
-        width: 350px !important;
-    }
     #firstItem {
         margin-left: 0;
     }
@@ -3157,6 +3139,18 @@ label[for]:hover {
 }
 
 @media (max-width: 406px) {
+    .carousel { 
+        min-height: 325px;
+    }
+    .carousel-item img {
+        width: 300px !important;
+    }
+    #carousel-next {
+        top: 25%;
+    }
+    #carousel-prev {
+        top: 25%;
+    }
     #sort-and-pagination-nav {
         width: 100%; 
         margin: auto;
@@ -3213,9 +3207,6 @@ label[for]:hover {
 }
 
 @media (max-width: 376px) {
-    .carousel-item a img {
-        width: 280px !important;
-    }
     .carousel-title {
         font-size: 22px;
         margin-top: 150px;
@@ -3284,7 +3275,7 @@ label[for]:hover {
 
 @media (max-width: 360px) {
     .carousel { 
-        min-height: 310px;
+        min-height: 290px;
     }
     .carousel-item {
         padding-top: 25px;
@@ -3293,11 +3284,18 @@ label[for]:hover {
         width: 250px !important;
     }
     #carousel-next {
-        top: 18%;
-        left: 93%;
+        top: 22%;
     }
     #carousel-prev {
-        top: 18%;
+        top: 22%;
+    }
+    #carousel-next i,
+    #carousel-prev i {
+        font-size: 20px;
+    }
+    .carousel-item h2 {
+        font-size: 18px !important;
+        margin: 0;
     }
 }
 
@@ -3374,6 +3372,24 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 334px) {
+    .carousel { 
+        min-height: 275px;
+    }
+    .carousel-item {
+        padding-top: 25px;
+    }
+    .carousel-item img {
+        width: 200px !important;
+    }
+    #carousel-next {
+        top: 22%;
+    }
+    #carousel-prev {
+        top: 22%;
+    }
+}
+
 @media (max-width: 319px) {
     .game-btns.left {
         width: 50vw !important;
@@ -3398,32 +3414,6 @@ label[for]:hover {
     }
 }
 
-@media (max-width: 305px) {
-    .carousel { 
-        min-height: 260px;
-    }
-    .carousel-item {
-        padding-top: 20px;
-    }
-    .carousel-item img {
-        width: 200px !important;
-    }
-    #carousel-next {
-        top: 20%;
-        left: 93%;
-    }
-    #carousel-prev {
-        top: 20%;
-    }
-    #carousel-next i,
-    #carousel-prev i {
-        font-size: 20px;
-    }
-    .carousel-item h2 {
-        font-size: 18px !important;
-    }
-}
-
 @media (max-width: 295px) {
     .profile-game-img {
         padding: 10px 0;
@@ -3431,6 +3421,12 @@ label[for]:hover {
     }
     .profile-game-img img {
         width: 200px;
+    }
+}
+
+@media (max-width: 280px) {
+    .carousel { 
+        min-height: 295px;
     }
 }
 
