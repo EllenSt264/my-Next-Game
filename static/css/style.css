@@ -518,8 +518,8 @@ The following code is based upon this source:
     position: absolute; 
     top: -107%;
     bottom: 0; 
-    right: 0; 
-    left: -40%; 
+    right: -50%; 
+    left: 0; 
     width: 300px;
     height: 54px; 
     background: #442c4c;

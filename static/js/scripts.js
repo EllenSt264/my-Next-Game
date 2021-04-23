@@ -83,7 +83,7 @@ $(document).ready(function () {
     });
 
     $('#PlatformLink').on('click', function() {
-        $('#GenreLink .fixed-action-btn').css('left', '135px')
+        $('#GenreLink .fixed-action-btn').css('left', '225px')
     })
 
     $('#searchbar').on('click', function() {
