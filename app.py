@@ -1400,8 +1400,8 @@ def request_game():
             {"username": session["user"]})["email"]
 
         # Grab account details from form inputs
-        username = request.form.get("username")
-        email = request.form.get("email")
+        username = request.form.get("username").lower()
+        email = request.form.get("email").lower()
 
         # Check if email and username match the db
         if (username == user) and (email == user_email):
