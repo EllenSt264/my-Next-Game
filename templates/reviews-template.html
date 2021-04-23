@@ -1,11 +1,5 @@
-<!-- Game data for autocomplete searchbar -->
-<script async>
-    var reviewData = {{reviewData|tojson|safe}}
-</script>
-
 {% extends "base.html" %}
 {% block content %}
-
     <!-- Carousel -->
     <div class="carousel carousel-slider center">
         <!-- Next -->
@@ -190,6 +184,10 @@
 {% endblock %}
 
 {% block scripts %}
+    <!-- Game data for autocomplete searchbar -->
+    <script async>
+        var reviewData = {{reviewData|tojson|safe}}
+    </script>
     <!-- JQuery Autocomplete -->
     <script src="{{ url_for('static', filename='js/autocomplete-review.js') }}"></script>
 {% endblock %}
