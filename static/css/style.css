@@ -378,6 +378,11 @@ The following code is based upon this source:
     right: 95%;
 }
 
+#carousel-next a,
+#carousel-prev a {
+    cursor: pointer;
+}
+
 .carousel-fixed-item i {
     font-size: 36px;
 }

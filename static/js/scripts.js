@@ -55,6 +55,16 @@ $(document).ready(function () {
         $('.carousel').carousel('next');
     }, 8000)
 
+    /*  Carousel next arrow */
+    $('#carousel-next a').on('click', function() {
+        $('.carousel').carousel('next')
+    })
+
+    /*  Carousel prev arrow */
+    $('#carousel-prev a').on('click', function() {
+        $('.carousel').carousel('prev')
+    })
+
     /* Modal */
     $('.modal').modal({
         endingTop: "25%"
