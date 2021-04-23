@@ -1,3 +1,8 @@
+<!-- Game data for autocomplete searchbar -->
+<script async>
+    var gameData = {{gameData|tojson|safe}}
+</script>
+
 {% extends "base.html" %}
 {% block content %}
 
@@ -79,9 +84,15 @@
                 </div>
 
                 <!-- Search bar -->
-
-                {% block searchbar %}
-                {% endblock %}
+                <li class="right">
+                    <form action="{{ url_for('search') }}" method="post" id="searchbar">
+                        <div class="input-field">
+                            <i class="material-icons prefix">search</i>
+                            <input type="text" id="query" name="query" class="autocomplete validate" required>
+                            <label for="query">Game Title</label>
+                        </div>
+                    </form>
+                </li>
 
                 <!-- All games link -->
                 <div class="nav-content my-nav-extend"> 
