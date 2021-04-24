@@ -25,6 +25,9 @@
     * Add session cookies to browser with Flask:
     "https://pythonbasics.org/flask-cookies/"
 
+    * For cache control, to help boost performance, I used the following code:
+    "https://stackoverflow.com/questions/23112316/using-flask-how-do-i-modify-the-cache-control-header-for-all-output"
+
 """
 
 import os
@@ -47,11 +50,25 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 
 
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 172800
+
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
+
+
+# =============
+# Cache Control
+# =============
+
+@app.after_request
+def add_header(response):
+    # response.cache_control.no_store = True
+    if 'Cache-Control' not in response.headers:
+        response.headers['Cache-Control'] = 'no-store'
+    return response
 
 
 # ==========
