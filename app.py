@@ -102,6 +102,9 @@ def games():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    # Grab game data for autocomplete function
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+
     query = request.form.get("query")
 
     mongo.db.all_pc_games.create_index([("game_title", "text")])
@@ -138,7 +141,8 @@ def search():
     return render_template(
         "games-search_results.html", games=pagination_games,
         pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
+        gameData=gameData)
 
 
 # ==============
@@ -147,6 +151,9 @@ def search():
 
 @app.route("/community-reviews/search", methods=["GET", "POST"])
 def search_reviews():
+    # Grab review data for autocomplete function
+    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
+
     query = request.form.get("review-query")
 
     mongo.db.user_reviews.create_index([("game_title", "text")])
@@ -183,7 +190,8 @@ def search_reviews():
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
+        reviewData=reviewData)
 
 
 # ==========================
