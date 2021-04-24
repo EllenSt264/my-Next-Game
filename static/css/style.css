@@ -1085,10 +1085,10 @@ The following code is based upon this source:
 
 .floating-add-btn {
     position: absolute; 
-    top: 5%; 
+    top: 7%; 
     bottom: 0; 
-    right: 7%; 
-    left: 75%;
+    right: 0; 
+    left: 82%;
     width:50px;
     height: 50px;
 }
@@ -1098,7 +1098,7 @@ The following code is based upon this source:
     top: 10%; 
     bottom: 0; 
     right: 0; 
-    left: 80%;
+    left: 75%;
 }
 
 .like-inner {
@@ -2061,6 +2061,12 @@ label[for]:hover {
     }
     .like-text {
         font-size: 14px;
+    }
+    .floating-add-btn { 
+        left: 84%;
+    }
+    .like-outer {
+        left: 75%;
     }
 }
 
