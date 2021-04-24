@@ -2,6 +2,10 @@
 
 ## Contents
 
+- [Automated Testing](#automated-testing)
+
+    - [Page Speed / Performance](#page-performance)
+
 - [Testing User Stories](#testing-user-stories)
 
     - [First Time User Goals](#first-time-user-goals)
@@ -54,6 +58,33 @@
 
 
 -----
+
+## Automated Testing
+
+### Page Performance
+
+I used [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) to measure the speed and performance of my website.
+
+
+#### Cache Control
+
+Before cache control:
+
+|  Desktop  |  Mobile  |
+| --------- | -------- |
+| ![Google PageSpeed Insights - before cache control](static/img/documentation/pagespeed-cache_control-desktop-before.png) | ![Google PageSpeed Insights - before cache control](static/img/documentation/pagespeed-cache_control-mobile-before.png) |
+
+
+After cache control:
+
+|  Desktop  |  Mobile  |
+| --------- | -------- |
+| ![Google PageSpeed Insights - before cache control](static/img/documentation/pagespeed-cache_control-desktop-after.png) | ![Google PageSpeed Insights - after cache control](static/img/documentation/pagespeed-cache_control-mobile-after.png) |
+
+
+-----
+
+
 
 ## Testing User Stories 
 
