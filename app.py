@@ -1851,6 +1851,9 @@ def reviews_template():
 
 @app.route("/community-reviews/<game_id>")
 def see_game_reviews(game_id):
+    # Grab review data for autocomplete function
+    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
+
     # Grab game review
     print(type(game_id))
 
@@ -1889,7 +1892,8 @@ def see_game_reviews(game_id):
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
+        reviewData=reviewData)
 
 
 # ==============================
@@ -1898,6 +1902,9 @@ def see_game_reviews(game_id):
 
 @app.route("/community-reviews/<id_1>/<id_2>/<id_3>")
 def see_game_reviews_carousel(id_1, id_2, id_3):
+    # Grab review data for autocomplete function
+    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
+
     # Grab game ids
     game1 = mongo.db.all_pc_games.find_one({"_id": ObjectId(id_1)})
     game2 = mongo.db.all_pc_games.find_one({"_id": ObjectId(id_2)})
@@ -1943,7 +1950,8 @@ def see_game_reviews_carousel(id_1, id_2, id_3):
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3)
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
+        reviewData=reviewData)
 
 
 # ===================
