@@ -184,7 +184,11 @@
 {% endblock %}
 
 {% block scripts %}
-    <!-- Game data for autocomplete searchbar -->
+    <!--
+        Review data for autocomplete searchbar
+        Based upon the following source: 
+        "https://stackoverflow.com/questions/15321431/how-to-pass-a-list-from-python-by-jinja2-to-javascript"
+    -->
     <script async>
         var reviewData = {{reviewData|tojson|safe}}
     </script>
