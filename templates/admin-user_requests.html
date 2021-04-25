@@ -11,9 +11,15 @@
                 <!-- Title -->
                 <h3 class="text-lighten-1 account-title center-align">User Game Requests</h3>
                 <p class="center-align" id="importantNotice">
+                    Below is a list of all game requests submitted by users. Games that are waiting in the queue, are listed <a
+                        href="{{ url_for('admin_game_queue') }}">here</a>
+                    <br>
+                    If games have already been added, then please remove them. Games that are already added will not be listed in the <a
+                        href="{{ url_for('admin_game_queue') }}">Game Queue</a>
+                    <br>
+                    <br>
                     Please review the <a href="#">Terms and Conditions</a> before any changes are made
                 </p>
-
                 <!-- Sort nav and pagination -->
                 <section id="sort-and-pagination-nav">
                     <div class="row">

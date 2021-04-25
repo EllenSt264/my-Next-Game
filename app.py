@@ -31,6 +31,9 @@
     * For using MongoDB $search phrase with a variable:
     "https://stackoverflow.com/questions/43779319/mongodb-text-search-exact-match-using-variable"
 
+    * To use zip with Jinja:
+    "https://thetopsites.net/article/53453426.shtml"
+
 """
 
 import os
@@ -44,6 +47,7 @@ from flask_pymongo import PyMongo, pymongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from bson.json_util import dumps
+from requests.api import get
 from werkzeug.security import generate_password_hash, check_password_hash
 from scrape_custom_links import custom_games
 if os.path.exists("env.py"):
@@ -58,6 +62,8 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 172800
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+
+app.jinja_env.filters['zip'] = zip
 
 mongo = PyMongo(app)
 
@@ -282,6 +288,63 @@ def admin_add_to_db():
             return redirect(url_for("admin_add_to_db"))
 
     return render_template("admin-add_game.html")
+
+
+# ===========================
+# Admin Controls - Game Queue
+# ===========================
+
+@app.route("/admin/update-queue")
+def admin_game_queue():
+    # Grab data from db
+    admin_game_links = mongo.db.admin_game_links.find()
+    get_games = mongo.db.admin_game_links.find()
+    get_links = mongo.db.admin_game_links.find()
+    games = mongo.db.all_pc_games.find()
+
+    link_titles = []
+
+    # Split links to get titles
+    for game in get_games:
+        link = game["link"]
+        split_1 = link.split("https://store.steampowered.com/app/")
+        split_1 = split_1[1]
+        split_2 = split_1.split("/")
+
+        for item in split_2:
+            if item == "":
+                continue
+            elif item.isnumeric():
+                continue
+            else:
+                link_titles.append(item)
+
+    titles = []
+    for item in link_titles:
+        titles.append(item.replace("_", " "))
+
+    game_links = []
+    admin_links = []
+
+    matches = []
+
+    for game in games:
+        game_links.append(game["game_link"])
+
+    for link in get_links:
+        admin_links.append(link["link"])
+
+    for game in game_links:
+        for link in admin_links:
+            if game == link:
+                matches.append(game)
+            else:
+                continue
+
+    return render_template(
+        "admin-game_queue.html",
+        admin_game_links=admin_game_links, matches=matches,
+        titles=titles)
 
 
 # ==========================
