@@ -1588,6 +1588,7 @@ label[for]:hover {
 
 #gameRequests-card .btn {
     height: 30px;
+    margin: 15px 0;
     padding: 0 10px;
 }
 

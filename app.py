@@ -28,6 +28,9 @@
     * For cache control, to help boost performance, I used the following code:
     "https://stackoverflow.com/questions/23112316/using-flask-how-do-i-modify-the-cache-control-header-for-all-output"
 
+    * For using MongoDB $search phrase with a variable:
+    "https://stackoverflow.com/questions/43779319/mongodb-text-search-exact-match-using-variable"
+
 """
 
 import os
@@ -356,6 +359,31 @@ def admin_user_requests():
     return render_template(
         "admin-user_requests.html", user_requests=user_requests,
         navSelect1=navSelect1, navSelect2=navSelect2)
+
+
+# ===============================
+# Admin Controls - Remove Request
+# ===============================
+
+@app.route("/admin/user-requests/remove-request/<request_id>", methods=["GET", "POST"])
+def admin_remove_request(request_id):
+    user_request = mongo.db.game_requests.find_one(
+        {"_id": ObjectId(request_id)})
+
+    request_title = user_request["game_request"]
+
+    games = mongo.db.all_pc_games.find_one(
+        {"$text": {"$search": "(\"{}\"".format(request_title)}})
+
+    if not games:
+        flash("Error! Games that do not exist within the database cannot be removed")
+
+    if games:
+        mongo.db.game_requests.remove({"_id": ObjectId(request_id)})
+        flash("User Requested Deleted")
+        return redirect(url_for("admin_user_requests"))
+
+    return redirect(url_for("admin_user_requests"))
 
 
 # =================
