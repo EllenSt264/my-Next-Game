@@ -642,10 +642,12 @@ The following code is based upon this source:
 }
 
 #filterBtn {
+    font-family: "BlenderPro-Book";
     font-size: 12px;
     padding: 0 12px;
     margin-left: 5px;
     margin-bottom: 2px;
+    letter-spacing: 1px;
 }
 
 /* ---------------------------------------------- Review and Request form */
@@ -1225,6 +1227,14 @@ The following code is based upon this source:
 }
 
 /* ---------------------------------------------- Community reviews page */
+
+#Reviews {
+    padding-top: 2.5rem;
+}
+
+.leave-review-col {
+    margin-right: 2.5%
+}
 
 .review-card {
     margin: 25px 0;
@@ -2417,8 +2427,15 @@ label[for]:hover {
     .profile-game-btn.left-side {
         margin-left: 27px !important;
     }
+    #Reviews {
+        padding-top: 1rem;
+    }
     .review-edit-left-btn {
         margin-left: 32px !important;
+    }
+    .leave-review {
+        height: 50px;
+        padding: 0 15px;
     }
     #reviewCards {
         margin-left: 12.49999999995%;
@@ -2605,6 +2622,9 @@ label[for]:hover {
     .submission-date .card-title {
         margin-left: 5px;
     }
+    #Reviews {
+        padding-top: 0.5rem;
+    }
     #reviewCards {
         margin-left: 25%;
     }
@@ -2772,6 +2792,13 @@ label[for]:hover {
     }
     #homepageBtns .btn-large {
         margin: 10px;
+    }
+    .leave-review {
+        height: 40px;
+        font-family: "BlenderPro-Medium";
+        font-size: 13px;
+        letter-spacing: 1px;
+        line-height: 40px;
     }
     .review-card-row .card-image {
         text-align: center;
@@ -3017,18 +3044,19 @@ label[for]:hover {
         width: 300px;
         padding-right: 5px;
     }
+    #reviewCards {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .review-card,
+    #left-review-card {
+        margin: 10px 10% !important;
+    }
 }
 
 @media (max-width: 480px) {
     .review-card-row img {
         width: 300px;
-    }
-    #reviewCards {
-        margin-left: 7.5%;
-    }
-    .review-card,
-    #left-review-card {
-        margin-left: 5px !important;
     }
     .review-card-sticker {
         width: 90px;
@@ -3106,6 +3134,17 @@ label[for]:hover {
         height: auto;
         margin: auto;
     }
+    .review-card,
+    #left-review-card {
+        margin: 10px 8% !important;
+    }
+}
+
+@media (max-width: 450px) {
+    .review-card,
+    #left-review-card {
+        margin: 10px 6% !important;
+    }
 }
 
 @media (max-width: 436px) {
@@ -3115,6 +3154,9 @@ label[for]:hover {
     #filterBtn {
         font-size: 12px;
         padding: 0 10px;
+    }
+    .leave-review-col {
+        margin-right: 0.5%
     }
 }
 
@@ -3132,8 +3174,10 @@ label[for]:hover {
 }
 
 @media (max-width: 420px) {
-    .review-card {
-        width: 350px !important;
+    .review-card,
+    #left-review-card {
+        width: 370px !important;
+        margin: 10px 8% !important;
     }
     .review-card-panel .edit-review {
         top: 64%;
@@ -3191,6 +3235,10 @@ label[for]:hover {
     }
     .remove-btn {
         margin-left: 0;
+    }
+    .review-card,
+    #left-review-card {
+        margin: 10px 6% !important;
     }
 }
 
@@ -3260,6 +3308,24 @@ label[for]:hover {
     .see-review-btn-sm a {
         font-size: 12px;
     }
+    .leave-review-col {
+        margin-right: 2.5%
+    }
+}
+
+@media (max-width: 400px) {
+    .review-card,
+    #left-review-card {
+        margin: 10px 4% !important;
+    }
+}
+
+@media (max-width:390px) {
+    .review-card,
+    #left-review-card {
+        width: 340px !important;
+        margin: 10px 8% !important;
+    }
 }
 
 @media (max-width: 376px) {
@@ -3294,8 +3360,10 @@ label[for]:hover {
     .game-btns {
         width: 200px !important;
     }
-    #reviewCards {
-        margin-left: 2.5%;
+    .review-card,
+    #left-review-card {
+        width: 340px !important;
+        margin: 10px 4% !important;
     }
     .review-card-sticker {
         width: 90px;
@@ -3308,7 +3376,11 @@ label[for]:hover {
     }
     #sortNav .tab a {
         padding: 5px;
-    };
+    }
+    .leave-review-col {
+        margin-right: 0;
+        padding-right: 5px !important;
+    }
 }
 
 @media (max-width: 368px) {
@@ -3386,8 +3458,16 @@ label[for]:hover {
         width: 50vw !important;
         margin: auto 15vw !important;
     }
+    .review-card,
+    #left-review-card {
+        width: 325px !important;
+        margin: 10px 5% !important;
+    }
     .review-card-row img {
         width: 225px;
+    }
+    .review-card-sticker {
+        left: 68%;
     }
     .favourite-tag-sm {
         position: absolute;
@@ -3419,8 +3499,10 @@ label[for]:hover {
 }
 
 @media (max-width: 336px) {
-    #reviewCards {
-        margin-left: 0;
+    .review-card,
+    #left-review-card {
+        width: 310px !important;
+        margin: 10px 4% !important;
     }
     .edit-btn {
         margin: 0 !important;
@@ -3446,10 +3528,21 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 326px) {
+    .review-card,
+    #left-review-card {
+        width: 300px !important;
+        margin: 10px 4% !important;
+    }
+}
+
 @media (max-width: 319px) {
     .game-btns.left {
         width: 50vw !important;
         margin: auto 10vw !important;
+    }
+    .leave-review-col {
+        padding-right: 0 !important;
     }
 }
 
@@ -3465,6 +3558,23 @@ label[for]:hover {
     .game-btns {
         margin-left: 35px !important;
    }
+   #filterBtn {
+        height: 35px;
+        padding: 0 5px;
+        font-size: 12px;
+        letter-spacing: 0;
+        line-height: 35px;
+   }
+   .leave-review {
+        height: 35px;
+        font-size: 12px;
+        line-height: 35px;
+    }
+   .review-card,
+    #left-review-card {
+        width: 290px !important;
+        margin: 10px 3% !important;
+    }
     .review-card-row img {
         width: 200px;
     }
@@ -3477,6 +3587,52 @@ label[for]:hover {
     }
     .profile-game-img img {
         width: 200px;
+    }
+    .review-card,
+    #left-review-card {
+        width: 280px !important;
+        margin: 10px 4% !important;
+    }
+    .review-card-sticker {
+        width: 75px;
+        height: 30px;
+        top: 3%;
+        left: 66%;
+        padding: 0;
+    }
+    .review-card-sticker h6 {
+        height: 30px;
+        margin: 0;
+        font-size: 13px;
+        line-height: 30px;
+    }
+    .review-card-sticker h6 i.material-icons {
+        font-size: 13px;
+        line-height: 32px;
+    }
+}
+
+@media (max-width: 285px) {
+    #reviewSort1.browser-default,
+    #reviewSort2.browser-default {
+        font-size: 14px;
+    }
+    #reviews-sortBy-label {
+        left: 0;
+    }
+    #reviews-order-label {
+        left: 46%;
+    }
+    #reviewSort1.browser-default {
+        width: 96px;
+    }
+    #filterBtn span {
+        display: none;
+    }
+    .review-card,
+    #left-review-card {
+        width: 100vw !important;
+        margin: 10px auto !important;
     }
 }
 

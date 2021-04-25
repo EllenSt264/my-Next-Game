@@ -153,7 +153,7 @@
                             </select>
                         </li>
                         <li class="tab">
-                            <button type="submit" class="btn" id="filterBtn">Filter Results</button>
+                            <button type="submit" class="btn" id="filterBtn">Filter <span>Results</span></button>
                         </li>
                     </ul>
                 </form>
@@ -162,15 +162,15 @@
     </section>
 
     <!-- Games -->
-    <main style="padding-top: 2.5rem;">
+    <main id="Reviews">
         <!-- Review button -->
         <section>
             <div class="row">
-                <div class="col right" style="margin-right: 2.5%">
+                <div class="col right leave-review-col">
                     {% if not session.user %}
-                        <a href="#!" class="btn-large tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to submit reviews">Leave a Review</a>
+                        <a href="#!" class="btn-large leave-review tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to submit reviews">Leave a Review</a>
                     {% else %}
-                        <a href="{{ url_for('submit_review') }}" class="btn-large">Leave a Review</a>
+                        <a href="{{ url_for('submit_review') }}" class="btn-large leave-review">Leave a Review</a>
                     {% endif %}
                 </div>
             </div>
