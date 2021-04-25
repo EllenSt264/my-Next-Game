@@ -2219,6 +2219,12 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1605px) and (min-width: 1520px) {
+    #left-review-card {
+        margin-left: 5% !important;
+    }
+}
+
 @media (max-width: 1570px) {
     .profile-game-img img {
         width: 400px;
@@ -2242,6 +2248,12 @@ label[for]:hover {
     }
     .submission-date h6 {
         font-size: 14px;
+    }
+}
+
+@media (max-width: 1520px) and (min-width: 1462px) {
+    #left-review-card {
+        margin-left: 2.5% !important;
     }
 }
 
@@ -2322,6 +2334,19 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1424px) and (min-width: 1356px) {
+    #reviewCards.row {
+        width: 100%;
+        margin: 0 !important;
+    }
+    #left-review-card {
+        margin-left: 2.5% !important;
+    }
+    .review-card {
+        width: 420px !important;
+    }
+}
+
 @media (max-width: 1455px) and (min-width: 993px) {
     #ProfileSidePanel {
         width: 150px;
@@ -2344,6 +2369,16 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1356px) and (min-width: 1292px) {
+    #reviewCards.row {
+        width: 100%;
+        margin: 0 !important;
+    }
+    .review-card {
+        width: 400px !important;
+    }
+}
+
 @media (max-width: 1300px) and (min-width: 1200px) {
     .profile-base-card {
         width: 1100px !important;
@@ -2353,6 +2388,22 @@ label[for]:hover {
     }
     #ProfileContentCard {
         width: 825px;
+    }
+}
+
+@media (max-width: 1292px) and (min-width: 1249px) {  
+    #left-review-card {
+        margin-left: 5% !important;
+    }
+}
+
+@media (max-width: 1292px) and (min-width: 1206px) {
+    #reviewCards.row {
+        width: 100%;
+        margin: 0 !important;
+    }
+    .review-card {
+        width: 370px !important;
     }
 }
 
@@ -2381,6 +2432,42 @@ label[for]:hover {
     }
     .favourite-tag {
         left: 65%;
+    }
+}
+
+@media (max-width: 1249px) and (min-width: 1210px) {  
+    #left-review-card {
+        margin-left: 2.5% !important;
+    }
+}
+
+@media (max-width: 1206px) and (min-width: 992px) {
+    #reviewCards.row {
+        width: 100%;
+        margin: 0;
+    }
+    .review-card {
+        width: 360px !important;
+    }
+    .review-card-panel {
+        padding: 15px !important;
+    }
+    .review-card-sticker {
+        width: 85px;
+        height: 36px;
+        top: 7%;
+        left: 78%;
+        padding: 0;
+    }
+    .review-card-sticker h6 {
+        height: 38px;
+        margin: 0;
+        font-size: 14px;
+        line-height: 38px;
+    }
+    .review-card-sticker h6 i.material-icons {
+        font-size: 14px;
+        line-height: 38px;
     }
 }
 
@@ -2413,6 +2500,18 @@ label[for]:hover {
     .game-cards img {
         width: 256.75px !important;
         height: 120px !important;
+    }
+}
+
+@media (max-width: 1160px) and (min-width: 1105px) {
+    .review-card {
+        width: 340px !important;
+    }
+}
+
+@media (max-width: 1160px) and (min-width: 1118px) {  
+    #left-review-card {
+        margin-left: 3% !important;
     }
 }
 
@@ -2482,11 +2581,61 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1105px) and (min-width: 1000px) {
+    .review-card {
+        width: 330px !important;
+        margin-left: 5px !important;
+    }
+    .review-card-sticker {
+        left: 74%;;
+    }
+}
+
+@media (max-width: 1105px) and (min-width: 1070px) {  
+    #left-review-card {
+        margin-left: 5% !important;
+    }
+}
+
+@media (max-width: 1070px) and (min-width: 1050px) {
+    #left-review-card {
+        margin-left: 4% !important;
+    }
+}
+
 @media(min-height: 1090px) {
     .account-form,
     .request-form,
     .admin-form {
         margin-top: 15vh;
+    }
+}
+
+@media (max-width: 1028px) and (min-width: 1015px) {
+    #left-review-card {
+        margin-left: 15px !important;
+    }
+}
+
+@media (max-width: 1028px) and (min-width: 1010px) {
+    #left-review-card {
+        margin-left: 10px !important;
+    }
+}
+
+@media (max-width: 1010px) and (min-width: 992px) {
+    #left-review-card {
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 1000px) and (min-width: 992px) {
+    .review-card {
+        width: 320px !important;
+        margin-left: 5px !important;
+    }
+    .review-card-sticker {
+        left: 74%;;
     }
 }
 
