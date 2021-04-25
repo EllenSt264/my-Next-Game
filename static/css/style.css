@@ -1270,10 +1270,30 @@ The following code is based upon this source:
 
 .review-card-panel .card-image {
     padding: 10px;
+    position: relative;
 }
 
 .review-card-panel .card-image img {
     border: 2px solid #f608ea;
+}
+
+.review-card-panel .edit-review {
+    position: absolute; 
+    top: 72%; 
+    bottom: 0; 
+    left: 85%; 
+    right: 0;
+    width: 42px; 
+    height: 36px; 
+    padding: 10px; 
+    line-height: 12px;
+}
+
+.review-card-panel .edit-review i {
+    height: 18px; 
+    font-size: 16px;
+    margin: 0; 
+    padding:0;
 }
 
 .review-card-panel .summary {
@@ -2056,6 +2076,10 @@ label[for]:hover {
     #left-review-card {
         margin-left: 12.49999999995% !important;
     }
+    .review-card-panel .edit-review {
+        top: 69%; 
+        left: 84%;
+    }
     .like-icon i {
         font-size: 18px;
     }
@@ -2215,6 +2239,14 @@ label[for]:hover {
     .review-card .card-image img {
         width: 300px;
         height: auto;
+    }
+    .review-card-panel .edit-review {
+        top: 67%; 
+        left: 80%;
+        width: 35px;
+        height: 32px;
+        padding: 5px;
+        line-height: 22px;
     }
     .review-card-game-title {
         font-size: 16px;
@@ -2883,6 +2915,16 @@ label[for]:hover {
         width: 275px;
         height: auto;
     }
+    .review-card-panel .edit-review {
+        top: 67%; 
+        left: 82%;
+        width: 32px;
+        height: 30px;
+    }
+    .review-card-panel .edit-review i {
+        height: 16px; 
+        font-size: 14px;
+    }
     .review-card-game-title {
         font-size: 14px;
         margin-top: 2px;
@@ -3034,14 +3076,14 @@ label[for]:hover {
     #carousel-prev {
         top: 30%;
     }
-        #carousel-next i,
-        #carousel-prev i {
-            font-size: 25px;
-        }
-        .carousel-item h2 {
-            font-size: 20px !important;
-            margin: 0;
-        }
+    #carousel-next i,
+    #carousel-prev i {
+        font-size: 25px;
+    }
+    .carousel-item h2 {
+        font-size: 20px !important;
+        margin: 0;
+    }
     .carousel-item p {
         font-size: 12px !important;
         margin-top: 0;
@@ -3092,6 +3134,9 @@ label[for]:hover {
 @media (max-width: 420px) {
     .review-card {
         width: 350px !important;
+    }
+    .review-card-panel .edit-review {
+        top: 64%;
     }
 }
 
