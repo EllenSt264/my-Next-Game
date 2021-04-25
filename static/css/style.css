@@ -1551,6 +1551,52 @@ label[for]:hover {
     text-decoration: underline;
 }
 
+/* ---------------------------------------------- Admin - User Requests */
+
+#userRequests {
+    margin-top: 5vh;
+}
+
+#userRequests #sortBy-label {
+    right: 82%;
+}
+
+#userRequests #order-label {
+    left: 48%;
+}
+
+#gameRequests-card {
+    background-color: #0e232f;
+}
+
+#gameRequests-card .row {
+    margin-bottom: 0;
+}
+
+#gameRequests-card h5 {
+    margin: 10px 0 0;
+    font-family: "BlenderPro-Heavy";
+    font-size: 19px;
+    letter-spacing: 1px;
+}
+
+#gameRequests-card p {
+    margin: 5px 0 10px;
+    font-size: 16px;
+    font-family: "BlenderPro-Thin";
+}
+
+#gameRequests-card .btn {
+    height: 30px;
+    padding: 0 10px;
+}
+
+#gameRequests-card .btn i {
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+}
+
 /* ---------------------------------------------- Profile */
 
 #Profile {
@@ -2607,7 +2653,7 @@ label[for]:hover {
     .account-form,
     .request-form,
     .admin-form {
-        margin-top: 15vh;
+        margin-top: 10vh;
     }
 }
 
@@ -2666,6 +2712,12 @@ label[for]:hover {
 @media (max-width: 956px) and (min-width: 915px) {
     #ProfileContentCard {
         margin-left: 1.5%;
+    }
+}
+
+@media (min-width: 992px) {
+    #userRequests #sort-and-pagination-nav .row div.m12 {
+        float: right;
     }
 }
 
@@ -3420,6 +3472,9 @@ label[for]:hover {
     }
     #order-label { 
         left: 44%;
+    }
+    #userRequests #sortNav {
+        width: 85vw;
     }
     .favourites-sm .card-image img {
         width: 300px;

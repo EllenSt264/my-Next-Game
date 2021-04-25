@@ -1,95 +1,83 @@
 {% extends "base.html" %}
 {% block content %}
     
-    <div class="row admin-form">
-        <div class="card-panel col s12 m10 offset-m1 l6 offset-l3 blue-grey darken-4 grey-text text-lighten-2">
-            <!-- Logo -->
-            <div class="col s12 center-align">
-                <img src="{{ url_for('static', filename='img/main/odin_logo.png') }}" alt="Website brand logo">
-            </div>
-            <!-- Title -->
-            <h3 class="text-lighten-1 account-title center-align">User Game Requests</h3>
-            <p class="center-align" id="importantNotice">
-                Please review the <a href="#">Terms and Conditions</a> before any changes are made
-            </p>
-    
-            <!-- Sort nav and pagination -->
-            <section id="sort-and-pagination-nav">
-                <div class="row">
-                    <!-- Pagination -->
-                    <div class="col s12 m6">
-                        <div class="pagination-top">
-                            <ul class="pagination">
-                                {% block pagination %}
-                                {% endblock %}
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Sort by features -->
-                    <div class="col s12">
-                        <div class="sort-by right">
-                            <!-- Select labels -->
-                            <ul class="tabs tabs-transparent" id="sortNav-label">
-                                <li class="tab" id="nav1">
-                                    <a>
-                                        <label for="navSelect1">Sort By</label>
-                                    </a>
-                                </li>
-                                <li class="tab" id="nav2">
-                                    <a>
-                                        <label for="navSelect2">Order</label>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!-- Select options -->
-    
-                            <form action="{{ url_for('admin_user_requests') }}" method="POST">
+    <div class="row admin-form" id="userRequests">
+        <div class="col s12 m10 offset-m1 l6 offset-l3">
+            <div class="card-panel blue-grey darken-4 grey-text text-lighten-2">
+                <!-- Logo -->
+                <div class="col s12 center-align">
+                    <img src="{{ url_for('static', filename='img/main/odin_logo.png') }}" alt="Website brand logo">
+                </div>
+                <!-- Title -->
+                <h3 class="text-lighten-1 account-title center-align">User Game Requests</h3>
+                <p class="center-align" id="importantNotice">
+                    Please review the <a href="#">Terms and Conditions</a> before any changes are made
+                </p>
+
+                <!-- Sort nav and pagination -->
+                <section id="sort-and-pagination-nav">
+                    <div class="row">
+                        <!-- Sort by features -->
+                        <div class="col s12 m12 l8">
+                            <form action="{{ url_for('set_review_cookies') }}" method="POST" class="right">
                                 <ul class="tabs tabs-transparent" id="sortNav">
                                     <li class="tab">
-                                        <a>
-                                            <select class="browser-default" name="navSelect1" id="navSelect1"
-                                                value="{{ navSelect1 }}">
-                                                <option value="default" {% if navSelect1=="default" %} selected="selected"
-                                                    {% endif %}>Default</option>
-                                                <option value="title" {% if navSelect1=="title" %} selected="selected" {%
-                                                    endif %}>Title</option>
-                                                <option value="date" {% if navSelect1=="date" %} selected="selected" {%
-                                                    endif %}>Date</option>
-                                                <option value="user-count" {% if navSelect1=="user-count" %} selected="selected"
-                                                    {% endif %}>User Count</option>
-                                            </select>
-                                        </a>
+                                        <label class="white-text" id="sortBy-label">Sort By</label>
+                                        <select class="browser-default" name="navSelect1" id="navSelect1"
+                                            value="{{ navSelect1 }}">
+                                            <option value="default" {% if navSelect1=="default" %} selected="selected"
+                                                {% endif %}>Default</option>
+                                            <option value="title" {% if navSelect1=="title" %} selected="selected" {%
+                                                endif %}>Title</option>
+                                            <option value="date" {% if navSelect1=="date" %} selected="selected" {%
+                                                endif %}>Date</option>
+                                            <option value="user-count" {% if navSelect1=="user-count" %} selected="selected"
+                                                {% endif %}>User Count</option>
+                                        </select>
                                     </li>
                                     <li class="tab">
-                                        <a>
-                                            <select class="browser-default" name="navSelect2" id="navSelect2"
-                                                value="{{ navSelect2 }}">
-                                                <option value="asc" {% if navSelect2=="asc" %} selected="selected" {% endif
-                                                    %}>Asc</option>
-                                                <option value="desc" {% if navSelect2=="desc" %} selected="selected" {%
-                                                    endif %}>Desc</option>
-                                            </select>
-                                        </a>
+                                        <label class="white-text" id="order-label">Order</label>
+                                        <select class="browser-default" name="navSelect2" id="navSelect2"
+                                            value="{{ navSelect2 }}">
+                                            <option value="asc" {% if navSelect2=="asc" %} selected="selected" {% endif
+                                                %}>Asc</option>
+                                            <option value="desc" {% if navSelect2=="desc" %} selected="selected" {%
+                                                endif %}>Desc</option>
+                                        </select>
                                     </li>
                                     <li class="tab">
-                                        <a style="line-height: 10px;">
-                                            <button type="submit" class="btn" id="filterBtn">Filter Results</button>
-                                        </a>
+                                        <button type="submit" class="btn" id="filterBtn">Filter</button>
                                     </li>
                                 </ul>
                             </form>
                         </div>
                     </div>
-                </div>
-            </section>
-    
-            <!-- User game requests -->
-            <div class="card-panel" style="background-color: #0e232f;">
-                <div class="row">
+                </section>
+        
+                <!-- User game requests -->
+                <div class="card-panel" id="gameRequests-card">
                     {% for request in user_requests %}
-                    <h5>{{ request.game_request }}</h5>
-                    <p>User Count: {{ request.requested_by|length }}</p>
-                    <div class="divider"></div>
+                        <div class="row">
+                            <div class="col s12 m10">
+                                <div class="row">
+                                    <!-- Game request title -->
+                                    <div class="col s12">
+                                        <h5>{{ request.game_request }}</h5>
+                                    </div>
+                                    <!-- User count -->
+                                    <div class="col s12">
+                                        <p>User Count: {{ request.requested_by|length }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m2" style=" text-align: right;">
+                                <!-- Delete -->
+                                <a href="#" class="btn" style="margin: 15px 0;">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
                     {% endfor %}
                 </div>
             </div>
