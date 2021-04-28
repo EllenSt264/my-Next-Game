@@ -2336,6 +2336,12 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1500px) and (min-width: 992px) {
+    .game-cards .card-title a {
+        font-size: 16px;
+    }
+}
+
 @media (max-width: 1445px) {
     .review-card .card-image img {
         width: 300px;
@@ -2571,14 +2577,6 @@ label[for]:hover {
     }
     .secondary-nav #searchbar label {
         line-height: 52px;
-    }
-}
-
-@media (min-width: 1180px) {
-    .game-cards .card-image,
-    .game-cards img {
-        width: 256.75px !important;
-        height: 120px !important;
     }
 }
 
@@ -3011,6 +3009,21 @@ label[for]:hover {
     }
 }
 
+@media (min-width: 600px) {
+    .game-cards .card-image,
+    .game-cards img {
+        min-width: 256.75px !important;
+        width: 256.75px !important;
+        height: 120px !important;
+    }
+    .game-cards .card-title,
+    .game-cards .card-title a {
+        max-height: 36px !important;
+        height: 36px !important;
+        overflow-y: hidden;
+    }
+}
+
 @media (max-width: 600px) {
     .brand-logo img {
         width: 40px;
@@ -3092,10 +3105,6 @@ label[for]:hover {
     }
     .game-cards .card {
         height: 90%;
-    }
-    .game-cards .card-image img {
-        width: 100%;
-        height: auto;
     }
     .game-cards .card-title {
         height: 50px;
