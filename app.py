@@ -16,9 +16,6 @@
     * Selecting a random item from a list:
     "https://stackoverflow.com/questions/306400/how-to-randomly-select-an-item-from-a-list"
 
-    * Exporting MongoDB collection to local JSON/JS file:
-    "https://stackoverflow.com/questions/60584148/export-pymongo-collection-to-a-json-file"
-
     * Returning documents from MongoDB without duplicates:
     "https://stackoverflow.com/questions/11470614/mongodb-return-all-documents-by-field-without-duplicates"
 
@@ -33,6 +30,9 @@
 
     * To use zip with Jinja:
     "https://thetopsites.net/article/53453426.shtml"
+
+    * Check if ObjectId is valid:
+    "https://stackoverflow.com/questions/28774526/how-to-check-that-mongo-objectid-is-valid-in-python"
 
 """
 

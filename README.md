@@ -911,3 +911,5 @@ The database schema was subjected to several alterations throughout the site’s
 - I used [this source](https://stackoverflow.com/questions/43858134/how-to-add-conditional-css-class-based-on-python-if-statement) for help with assigning a class to a div element with Jinja
 
 - [This source](https://stackoverflow.com/questions/15321431/how-to-pass-a-list-from-python-by-jinja2-to-javascript) helped me pass a list variable from Python to JavaScript via Jinja. It was used to handle the data for the searchbar's autocomplete feature on the Games pages and Reviews page
+
+- To check if the ObjectId was valid, I looked to [this source](https://stackoverflow.com/questions/28774526/how-to-check-that-mongo-objectid-is-valid-in-python)
