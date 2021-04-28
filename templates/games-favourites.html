@@ -23,15 +23,6 @@
                     <div class="col s6 m4 l2">
                         <a href="{{ url_for('see_game_reviews', game_id=rand_game_id) }}" class="btn">See Reviews</a>
                     </div>
-                    {% if session.user %}
-                        <div class="col s6 m4 l2">
-                            <a href="{{ url_for('like', game_id=rand_game_id) }}" class="btn">Like This Game</a>
-                        </div>
-                    {% else %}
-                        <div class="col s6 m4 l2">
-                            <a href="#!" class="btn tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to leave likes on games">Like This Game</a>
-                        </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
