@@ -1291,7 +1291,6 @@ def awardwinner_games():
         rand_game_3=rand_game_3, gameData=gameData)
 
 
-
 # ===============================
 # Games Sort Filter - Favourites
 # ===============================
@@ -1366,7 +1365,6 @@ def favourites():
 
     elif navSelect1 == "title" and navSelect2 == "asc":
         favourites.sort("game_title", pymongo.ASCENDING)
-
 
     return render_template(
         "games-favourites.html", favourites=favourites,
@@ -1793,6 +1791,20 @@ def update_avatar(avatar_id):
         flash("Avatar Successfully Updated")
 
     return redirect(url_for("edit_profile_avatar", username=session["user"]))
+
+
+# =====================
+#  Profile - Game Likes
+# =====================
+
+@app.route("/profile/<username>/likes")
+def profile_likes(username):
+    # Find session user
+    user = mongo.db.users.find_one({"username": session["user"]})
+    username = user["username"]
+    # Find games
+    games = mongo.db.all_pc_games.find({"liked_by": username})
+    return render_template("profile-game_likes.html", user=user, games=games)
 
 
 # ====================

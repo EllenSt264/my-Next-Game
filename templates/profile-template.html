@@ -72,7 +72,7 @@
                             </li>
                             <!-- Likes-->
                             <li class="col s4 l12">
-                                <a href="#" class="btn">Likes</a>
+                                <a href="{{ url_for('profile_likes', username=session['user']) }}" class="btn">Likes</a>
                             </li>
                             <!-- Reviews -->
                             <li class="col s4 l12">
