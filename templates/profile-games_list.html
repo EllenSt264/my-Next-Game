@@ -1,5 +1,4 @@
 {% extends "profile-template.html" %}
-
 {% block profile_content %}
 
     <!-- Currently Playing -->
@@ -54,7 +53,7 @@
                         <div class="row">
                             <!-- Link -->
                             <div class="col s4 profile-game-btn left-side">
-                                <a href="#" class="btn-large">
+                                <a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks1{{loop.index}}">
                                     <i class="material-icons btn-icon-left">http</i>
                                     <span style="font-size: 14px;">Links</span>
                                     <i class="material-icons btn-icon-right">arrow_drop_down</i>
@@ -90,6 +89,10 @@
                     </div>
                 </div>
             </div>
+            <!-- Links dropdown -->
+            <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks1{{loop.index}}">
+                <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+            </ul>
         </div>
 
         <!-- Modal warning -->
@@ -111,9 +114,6 @@
     {% else %}
         <h4 class="center-align py-5">No games have been added to this section</h4>
     {% endfor %}
-    
-    
-    
 
 
     <!-- Play later -->
@@ -168,7 +168,7 @@
                         <div class="row">
                             <!-- Link -->
                             <div class="col s4 profile-game-btn left-side">
-                                <a href="#" class="btn-large">
+                                <a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks2{{loop.index}}">
                                     <i class="material-icons btn-icon-left">http</i>
                                     <span style="font-size: 14px;">Links</span>
                                     <i class="material-icons btn-icon-right">arrow_drop_down</i>
@@ -204,6 +204,10 @@
                     </div>
                 </div> 
             </div>
+            <!-- Links dropdown -->
+            <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks2{{loop.index}}">
+                <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+            </ul>
         </div>
 
         <!-- Modal warning -->
@@ -279,7 +283,7 @@
                         <div class="row">
                             <!-- Link -->
                             <div class="col s4 profile-game-btn left-side">
-                                <a href="#" class="btn-large">
+                                <a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks3{{loop.index}}">
                                     <i class="material-icons btn-icon-left">http</i>
                                     <span style="font-size: 14px;">Links</span>
                                     <i class="material-icons btn-icon-right">arrow_drop_down</i>
@@ -315,6 +319,10 @@
                     </div>
                 </div> 
             </div>
+            <!-- Links dropdown -->
+            <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks3{{loop.index}}">
+                <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+            </ul>
         </div>
 
         <!-- Modal warning -->
@@ -336,6 +344,5 @@
     {% else %}
         <h4 class="center-align py-5">No games have been added to this section</h4>
     {% endfor %}
-    
 
 {% endblock %}
