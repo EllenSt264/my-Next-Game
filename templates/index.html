@@ -70,24 +70,26 @@
                 <h3 class="center-align white-text">Best Sellers</h3>
                 <!-- Games -->
                 {% for bestseller in bestsellers %}
-                    <div class="card horizontal purple-linear-gradient glow">
-                        <div class="card-image">
-                            <img src="{{ bestseller.game_img_full }}" 
-                            alt="Game image for {{ bestseller.game_title }}" class="responsive-img">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content white-text">
-                                <div class="card-title">
-                                    <span>
-                                        {{ bestseller.game_title }}
-                                    </span>
+                    <a href="{{ url_for('see_game_reviews', game_id=bestseller._id) }}">
+                        <div class="card horizontal purple-linear-gradient glow">
+                            <div class="card-image">
+                                <img src="{{ bestseller.game_img_full }}" 
+                                alt="Game image for {{ bestseller.game_title }}" class="responsive-img">
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-content white-text">
+                                    <div class="card-title">
+                                        <span>
+                                            {{ bestseller.game_title }}
+                                        </span>
+                                    </div>
+                                    <p>
+                                        {{ bestseller.game_top_tags[:4]|join(', ') }}
+                                    </p>
                                 </div>
-                                <p>
-                                    {{ bestseller.game_top_tags[:4]|join(', ') }}
-                                </p>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 {% endfor %}
                 <ul class="pagination center-align">
                     {{ pagination.links }}
@@ -100,24 +102,26 @@
                 <h3 class="center-align white-text">Award Winners</h3>
                 <!-- Games -->
                 {% for awardwinner in awardwinners %}
-                    <div class="card horizontal purple-linear-gradient glow">
-                        <div class="card-image">
-                            <img src="{{ awardwinner.game_img_full }}" alt="Image for {{ awardwinner.game_title }}" class="responsive-img">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content white-text">
-                                <div class="card-title">
-                                    <span>
-                                        {{ awardwinner.game_title }}
-                                    </span>
+                    <a href="{{ url_for('see_game_reviews', game_id=awardwinner._id) }}">
+                        <div class="card horizontal purple-linear-gradient glow">
+                            <div class="card-image">
+                                <img src="{{ awardwinner.game_img_full }}" alt="Image for {{ awardwinner.game_title }}" class="responsive-img">
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-content white-text">
+                                    <div class="card-title">
+                                        <span>
+                                            {{ awardwinner.game_title }}
+                                        </span>
+                                    </div>
+                                    <p>
+                                        {{ awardwinner.award_year }}
+                                        {{ awardwinner.award_title }}
+                                    </p>
                                 </div>
-                                <p>
-                                    {{ awardwinner.award_year }}
-                                    {{ awardwinner.award_title }}
-                                </p>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 {% endfor %}
             </div>
         </div>
