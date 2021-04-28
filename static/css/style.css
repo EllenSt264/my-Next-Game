@@ -1391,6 +1391,7 @@ The following code is based upon this source:
 }
 
 .review-card-panel .collapsible-header {
+    position: relative;
     font-family: "BlenderPro-Heavy";
     letter-spacing: 1px;
 }
@@ -1414,6 +1415,16 @@ The following code is based upon this source:
     font-size: 17px;
 }
 
+.star-rating {
+    position: absolute;
+    right: 5%;
+}
+
+.star-rating i {
+    font-size: 13px;
+    width: 13px;
+    margin: 0;
+}
 
 /* ---------------------------------------------- Review Form */
 
@@ -1566,6 +1577,11 @@ label[for]:hover {
     Glow effect for stars is based upon the following source:
     "https://www.w3schools.com/howto/howto_css_glowing_text.asp"
 */
+
+.star-glow,
+.star-glow:focus {
+    text-shadow: 0 0 1px #fff, 0 0 2px #ff4da6, 0 0 3px #ff4da6, 0 0 4px #ff4da6, 0 0 5px #ff4da6, 0 0 6px #ff4da6, 0 0 7px #ff4da6;
+}
 
 .rating [type="radio"]:nth-of-type(1):checked ~ .stars label:nth-of-type(-n+1),
 .rating [type="radio"]:nth-of-type(2):checked ~ .stars label:nth-of-type(-n+2),
