@@ -9,7 +9,7 @@
                 <div class="card-panel form-inner-panel grey-text text-lighten-2">
                     <!-- Site logo -->
                     <div class="col s12 center-align">
-                        <img src="{{ url_for('static', filename='img/main/odin_logo.png')}}" alt="" style="width:100px; height:100px;">
+                        <img src="{{ url_for('static', filename='img/main/odin_logo.png')}}" alt="Brand logo" style="width:100px; height:100px;">
                     </div>
                     <!-- Form title -->
                     <h3 class="text-lighten-1 account-title py-5 center-align">Submit Your Review</h3>
@@ -20,8 +20,8 @@
                         <div class="row">
                             <div class="input-field ui-widget col s12 m8 offset-m2">
                                 <i class="material-icons prefix">search</i>
-                                <label for="query" style="font-size: 18px;">Game Title</label>
-                                <input type="text" id="query" name="query" class="validate" value="{{ review.game_title }}" required
+                                <label for="query" style="font-size: 18px;">Search For Game</label>
+                                <input type="text" id="query" name="query" class="validate" value="{{ review.game_title }}" required disabled
                                 oninvalid="this.setCustomValidity('Enter Game Title')"
                                 oninput="this.setCustomValidity('')"/>
                             </div>
@@ -254,9 +254,4 @@
         </form>
     </div>
 
-{% endblock %}
-
-{% block scripts %}
-<!-- JQuery Autocomplete -->
-<script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
 {% endblock %}
