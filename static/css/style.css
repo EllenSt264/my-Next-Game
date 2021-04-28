@@ -1083,6 +1083,8 @@ The following code is based upon this source:
     bottom: 0; 
     right: 0; 
     left: 75%;
+    width: 142px;
+    height: 54px;
 }
 
 .floating-add-btn {
@@ -1101,6 +1103,8 @@ The following code is based upon this source:
     bottom: 0; 
     right: 0; 
     left: 75%;
+    height: 30px;
+    width: 90px;
 }
 
 .like-inner {
