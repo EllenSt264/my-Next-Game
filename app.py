@@ -1958,10 +1958,10 @@ def see_game_reviews(game_id):
     reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
 
     # Grab game review
-    print(type(game_id))
-
     game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
     game_title = game["game_title"]
+    game_img = game["game_img_full"]
+    game_tags = game["game_top_tags"]
 
     reviews = mongo.db.user_reviews.find({"game_title": game_title})
 
@@ -1996,7 +1996,8 @@ def see_game_reviews(game_id):
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData)
+        reviewData=reviewData, game=game, game_img=game_img,
+        game_tags=game_tags)
 
 
 # ==============================

@@ -1,44 +1,57 @@
 {% extends "base.html" %}
 {% block content %}
     <!-- Carousel -->
-    <div class="carousel carousel-slider center">
-        <!-- Next -->
-        <div class="carousel-fixed-item" id="carousel-next">
-            <a class="white-text"><i class="material-icons">navigate_next</i></a>
+    {% if game %}
+        <div class="py-5 center">
+            <!-- Carousel item 1 -->
+            <div class="carousel-item white-text" style="padding: 40px 25px 25px;">
+                <a href="#!">
+                    <img src="{{ game_img }}" alt="carousel image" class="glow2">
+                </a>
+                <h2>{{ game_title }}</h2> 
+                <p class="white-text">{{ game_tags[:3]|join(', ') }}</p>
+            </div>
         </div>
-        <!-- Prev -->
-        <div class="carousel-fixed-item" id="carousel-prev">
-            <a class="white-text"><i class="material-icons">navigate_before</i></a>
+    {% else %}
+        <div class="carousel carousel-slider center">
+            <!-- Next -->
+            <div class="carousel-fixed-item" id="carousel-next">
+                <a class="white-text"><i class="material-icons">navigate_next</i></a>
+            </div>
+            <!-- Prev -->
+            <div class="carousel-fixed-item" id="carousel-prev">
+                <a class="white-text"><i class="material-icons">navigate_before</i></a>
+            </div>
+            <!-- Button -->
+            <div class="carousel-fixed-item center" id="carouselBtn">
+                <a href="{{ url_for('see_game_reviews_carousel', id_1=rand_game_1._id, id_2=rand_game_2._id, id_3=rand_game_3._id,) }}" class="btn waves-effect">See Reviews</a>
+            </div>
+            <!-- Carousel item 1 -->
+            <div class="carousel-item white-text" href="#">
+                <a href="{{ url_for('see_game_reviews', game_id=rand_game_1._id) }}">
+                    <img src="{{ rand_game_1.game_img_full }}" alt="carousel image" class="glow2">
+                </a>
+                <h2>{{ rand_game_1.game_title }}</h2> 
+                <p class="white-text">{{ rand_game_1.game_top_tags[:3]|join(', ') }}</p>
+            </div>
+            <!-- Carousel item 2 -->
+            <div class="carousel-item white-text" href="#">
+                <a href="{{ url_for('see_game_reviews', game_id=rand_game_2._id) }}">
+                    <img src="{{ rand_game_2.game_img_full }}" alt="carousel image" class="glow2">
+                </a>
+                <h2>{{ rand_game_2.game_title }}</h2> 
+                <p class="white-text">{{ rand_game_2.game_top_tags[:3]|join(', ') }}</p>
+            </div>
+            <!-- Carousel item 3 -->
+            <div class="carousel-item white-text" href="#">
+                <a href="{{ url_for('see_game_reviews', game_id=rand_game_3._id) }}">
+                    <img src="{{ rand_game_3.game_img_full }}" alt="carousel image" class="glow2">
+                </a>
+                <h2>{{ rand_game_3.game_title }}</h2> 
+                <p class="white-text">{{ rand_game_3.game_top_tags[:3]|join(', ') }}</p>
+            </div>
         </div>
-        <!-- Button -->
-        <div class="carousel-fixed-item center" id="carouselBtn">
-            <a href="{{ url_for('see_game_reviews_carousel', id_1=rand_game_1._id, id_2=rand_game_2._id, id_3=rand_game_3._id,) }}" class="btn waves-effect">See Reviews</a>
-        </div>
-        <!-- Carousel item 1 -->
-        <div class="carousel-item white-text" href="#">
-            <a href="{{ url_for('see_game_reviews', game_id=rand_game_1._id) }}">
-                <img src="{{ rand_game_1.game_img_full }}" alt="carousel image" class="glow2">
-            </a>
-            <h2>{{ rand_game_1.game_title }}</h2> 
-            <p class="white-text">{{ rand_game_1.game_top_tags[:3]|join(', ') }}</p>
-        </div>
-        <!-- Carousel item 2 -->
-        <div class="carousel-item white-text" href="#">
-            <a href="{{ url_for('see_game_reviews', game_id=rand_game_2._id) }}">
-                <img src="{{ rand_game_2.game_img_full }}" alt="carousel image" class="glow2">
-            </a>
-            <h2>{{ rand_game_2.game_title }}</h2> 
-            <p class="white-text">{{ rand_game_2.game_top_tags[:3]|join(', ') }}</p>
-        </div>
-        <!-- Carousel item 3 -->
-        <div class="carousel-item white-text" href="#">
-            <a href="{{ url_for('see_game_reviews', game_id=rand_game_3._id) }}">
-                <img src="{{ rand_game_3.game_img_full }}" alt="carousel image" class="glow2">
-            </a>
-            <h2>{{ rand_game_3.game_title }}</h2> 
-            <p class="white-text">{{ rand_game_3.game_top_tags[:3]|join(', ') }}</p>
-        </div>
-    </div>
+    {% endif %}
 
     <!-- Secondary Navbar -->
     <section class="py-5">
