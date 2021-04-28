@@ -79,15 +79,8 @@ nav {
 }
 
 .nav-wrapper a {
-    margin-right: 25px;
-    margin-left: 25px;
-    font-size: 18px;
-}
-
-.brand-logo img {
-    width: 50px; 
-    height: 55px; 
-    margin-top: 5px;
+    margin: 0 15px;
+    font-size: 16px;
 }
 
 .sidenav {
@@ -139,6 +132,83 @@ nav .dropdown-content a:focus {
     font-size: 2.5rem;
 }
 
+
+/* ---------------------------------------------- Searchbar */
+
+#navSearchbar {
+    position: absolute; 
+    top: 22%; 
+    bottom: 0; 
+    right: 0; 
+    left: 0;
+    max-width: 560px;
+    margin: auto;
+}
+
+#navSearchbar form {
+    position: relative;
+    width: 420px; 
+    margin: auto; 
+}
+
+#navSearchbar input#search,
+#sidenav-searchbar input#search {
+    background-color: white; 
+    border-radius: 25px;
+}
+
+#navSearchbar label {
+    position: absolute; 
+    left: 92%; 
+    bottom: 8%;
+}
+
+#navSearchbar i {
+    font-size: 30px; 
+    color: #4a4a4a;
+}
+
+#sidenav-searchbar--outer-div {
+    position: relative;
+}
+
+#sidenav-searchbar--outer-div span {
+    color: #00e5ff;
+    font-size: 14px;
+}
+
+#sidenav-searchbar {
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    right: 0; 
+    left: 15%;
+    width: 360px;
+}
+
+#sidenav-searchbar input#search {
+    height: 28px;
+}
+
+#sidenav-searchbar label {
+    position: absolute; 
+    top: 0; 
+    bottom: 0; 
+    right: 0; 
+    left: 90%;
+    width: 25px;
+    color: #4a4a4a;
+}
+
+#sidenav-searchbar i {
+    position: absolute; 
+    top: 12%; 
+    bottom: 0; 
+    right: 95%; 
+    left: 0;
+    width: 25px;
+}
+
 /* ---------------------------------------------- Custom Side Nav */
 
 /*
@@ -157,7 +227,7 @@ The following code is based upon this source:
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
-    z-index: 10;
+    z-index: 100;
 }
 
 .my-sidenav li {
@@ -2118,6 +2188,34 @@ label[for]:hover {
 
 /* ---------------------------------------------- Media Queries */
 
+@media (min-width: 2020px) {
+    #navSearchbar {
+        position: absolute; 
+        top: 22%; 
+        bottom: 0; 
+        right: 0; 
+        left: 0;
+    }
+    #navSearchbar form {
+        position: relative;
+        width: 560px; 
+        margin: auto; 
+    }
+    #navSearchbar input#search {
+        background-color: white; 
+        border-radius: 25px;
+    }
+    #navSearchbar label {
+        position: absolute; 
+        left: 92%; 
+        bottom: 8%;
+    }
+    #navSearchbar i {
+        font-size: 30px; 
+        color: #4a4a4a;
+    }
+}
+
 @media (min-width: 1980px) {
     .game-cards {
         margin-bottom: 25px;
@@ -2212,6 +2310,18 @@ label[for]:hover {
 }
 
 @media (max-width: 1675px) {
+    #navSearchbar form {
+        position: relative;
+        width: 360px; 
+        margin: auto; 
+    }
+    #navSearchbar label {
+        left: 90%; 
+    }
+    .nav-wrapper a {
+        margin: 0 5px;
+        font-size: 16px;
+    }
     .profile-game-title h5 {
         margin-left: 70px;
     }
@@ -2330,6 +2440,15 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1540px) {
+    #navSearchbar form {
+        width: 320px; 
+    }
+    #navSearchbar label {
+        left: 88%; 
+    }
+}
+
 @media (max-width: 1520px) and (min-width: 1462px) {
     #left-review-card {
         margin-left: 2.5% !important;
@@ -2386,6 +2505,21 @@ label[for]:hover {
 @media (max-width: 1455px) and (min-width: 1300px) {
     #ProfileContentCard {
         width: 800px;
+    }
+}
+
+@media (max-width: 1450px) {
+    #navSearchbar form {
+        width: 280px; 
+    }
+    #navSearchbar label {
+        left: 86%; 
+    }
+    .nav-wrapper a {
+        margin: 0;
+    }
+    nav .dropdown-content a {
+        padding: 5px;
     }
 }
 
@@ -2517,6 +2651,18 @@ label[for]:hover {
     }
     .favourite-tag {
         left: 65%;
+    }
+}
+
+@media (max-width: 1270px) {
+    #navSearchbar {
+        right: 20%; 
+    }
+    #navSearchbar form {
+        width: 260px; 
+    }
+    #navSearchbar label {
+        left: 84%; 
     }
 }
 
@@ -2755,10 +2901,6 @@ label[for]:hover {
 }
 
 @media(max-width: 992px) {
-    .brand-logo img {
-        width: 45px;
-        height: 50px;
-    }
     .fas.fa-user {
         font-size: 2.25rem;
     }
@@ -2920,6 +3062,20 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 880px) {
+    #sidenav-searchbar {
+        position: absolute; 
+        top: 0; 
+        bottom: 0; 
+        right: 0; 
+        left: 20%;
+        width: 240px;
+    }
+    #sidenav-searchbar i {
+        left: -10%; 
+    }
+}
+
 @media (max-width: 860px) and (min-width: 828px) {
     #ProfileContentCard {
         margin-left: 3.16666666665%;
@@ -3025,9 +3181,9 @@ label[for]:hover {
 }
 
 @media (max-width: 600px) {
-    .brand-logo img {
-        width: 40px;
-        height: 45px;
+    #sidenav-searchbar {
+        left: 25%;
+        width: 200px;
     }
     .sidenav-trigger.right {
         margin-right: 12px !important;
@@ -3273,6 +3429,15 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 510px) {
+    #sidenav-searchbar {
+        left: 32%;
+    }
+    #sidenav-searchbar i {
+        left: -30%;
+    }
+}
+
 @media (max-width: 500px) {
     .carousel-title {
         font-size: 32px;
@@ -3434,6 +3599,9 @@ label[for]:hover {
 }
 
 @media (max-width: 415px) {
+    #sidenav-searchbar {
+        left: 36%;
+    }
     .back-font {
         letter-spacing: 1px;    /* To fix unmatched width with front face */
         font-size: 29px;
@@ -3581,6 +3749,10 @@ label[for]:hover {
 }
 
 @media (max-width: 376px) {
+    #sidenav-searchbar {
+        left: 40%;
+        width: 180px;
+    }
     .carousel-title {
         font-size: 22px;
         margin-top: 150px;
@@ -3734,6 +3906,16 @@ label[for]:hover {
     .game-btns {
         margin-left: 50px !important;
    }
+}
+
+@media (max-width: 350px) {
+    #sidenav-searchbar--outer-div span {
+        opacity: 0;
+    }
+    #sidenav-searchbar {
+        left: 0;
+        width: 200px;
+    }
 }
 
 @media (max-width: 346px) {

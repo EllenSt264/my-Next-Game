@@ -25,12 +25,8 @@
     <header>
         <!-- Navbar -->
         <div class="navbar-fixed">
-            <nav>
+            <nav class="nav-extended">
                 <div class="nav-wrapper nav-center">
-                    <!-- Navbar logo -->
-                    <a href="{{ url_for('home') }}" class="brand-logo center" style="margin: 0 3px;">
-                        <img src="{{ url_for('static', filename='img/main/odin_logo.png') }}" alt="Website/navbar brand logo" loading="lazy">
-                    </a>
 
                     <!-- Desktop profile dropdown icon -->
                     {% if session.user %}
@@ -85,6 +81,16 @@
                         {% endif %}
                     </ul>
                 </div>
+
+                <!-- Searchbar -->
+                <div class="nav-content hide-on-med-and-down" id="navSearchbar">
+                    <form>
+                        <input id="search" type="search" required>
+                        <label class="label-icon" for="search">
+                            <i class="material-icons">search</i>
+                        </label>
+                    </form>
+                </div>
             </nav>
         </div>
 
@@ -119,6 +125,22 @@
 
         <!-- Mobile side-nav -->
         <ul class="my-sidenav" id="mobile-nav">
+            <!-- Searchbar -->
+            <li>
+                <div id="sidenav-searchbar--outer-div">
+                    <span>Search For Game</span>
+                    <div id="sidenav-searchbar">
+                        <form>
+                            <label class="label-icon" for="search">
+                                <i class="material-icons">search</i>
+                            </label>
+                            <input id="search" type="search" required>
+                        </form>
+                    </div>
+                </div>
+            </li>
+            
+            <!-- Navlinks -->
             <li><a href="{{ url_for('request_game') }}">Request A Game</a></li>
             <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
             <li>
