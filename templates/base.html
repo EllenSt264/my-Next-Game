@@ -79,6 +79,7 @@
                         {% if session.user and session.admin != False %}
                             <li><a href="#" class="dropdown-trigger nav-dropdown-trigger" data-target="adminDropdown">Admin Controls</a></li>
                         {% endif %}
+                        <li><a href="{{ url_for('request_game') }}">Request A Game</a></li>
                         {% if not session.user %}
                             <li><a href="{{ url_for('login') }}">Log In</a></li>
                         {% endif %}
@@ -118,6 +119,7 @@
 
         <!-- Mobile side-nav -->
         <ul class="my-sidenav" id="mobile-nav">
+            <li><a href="{{ url_for('request_game') }}">Request A Game</a></li>
             <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
             <li>
                 <a href="{{ url_for('pc_games') }}">All Games</a>
@@ -129,9 +131,7 @@
                     <li class="mobile-sidenav-genreLink"><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
                 </ul>
             </li>
-            <li>
-                <a href="{{ url_for('reviews') }}">Community Reviews</a>
-            </li>
+            <li><a href="{{ url_for('reviews') }}">Community Reviews</a></li>
             {% if session.user and session.admin %}
                 <li><a href="#">Admin Controls</a></li>
             {% endif %}
