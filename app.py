@@ -133,6 +133,9 @@ def search():
 
     query = request.form.get("query")
 
+    if query is None:
+        return redirect(url_for("pc_games"))
+
     mongo.db.all_pc_games.create_index([("game_title", "text")])
     games = mongo.db.all_pc_games.find(
         {"$text": {"$search": query}})
