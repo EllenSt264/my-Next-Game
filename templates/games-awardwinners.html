@@ -20,12 +20,15 @@
                         <h5 class="white-text">{{ game.award_title }} | {{ game.award_year }}</h5>
                         <div class="card-panel black-magenta glow">
                             <div class="card horizontal purple-linear-gradient glow">
+                                <!-- Game image -->
                                 <div class="card-image">
-                                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}" loading="lazy"
-                                        class="responsive-img activator">
+                                    <a href="{{ url_for('see_game_reviews', game_id=game._id) }}">
+                                        <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}" loading="lazy">
+                                    </a>
                                 </div>
                                 <div class="card-stacked">
                                     <div class="card-content">
+                                        <!-- Add button -->
                                         {% if session.user %}
                                         <div class="container right add-btn">
                                             <a  href="{{ url_for('add_game', game_id=game._id) }}" class="btn-floating pulse right waves-effect waves-light red accent-3">
@@ -33,11 +36,15 @@
                                             </a>
                                         </div>
                                         {% endif %}
+                                        <!-- Game title -->
                                         <div class="card-title white-text">
                                             <span>
-                                                {{ game.game_title }}
+                                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                                    {{ game.game_title }}
+                                                </a>
                                             </span>
                                         </div>
+                                        <!-- Game platform tags -->
                                         <p class="grey-text text-lighten-2">
                                             {% for platform in game.platform_tags_pc %}
                                                 {% if "win" in platform %}
@@ -49,14 +56,13 @@
                                                 {% endif %}
                                             {% endfor %}
                                         </p>
-                                        <p class="grey-text text-lighten-2">
-                                            XBOX, Playstation
-                                        </p>
+                                        <!-- Game genre tags -->
                                         <p class="grey-text text-lighten-2 game-tags">
                                             {{ game.game_top_tags[:5]|join(', ') }}
                                         </p>
                                     </div>
                                     <div class="card-action">
+                                        <!-- Like button -->
                                         <div class="like right">
                                             <div class="col s6 like-icon">
                                                 {% if session.user %}
@@ -76,6 +82,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Recommended tag -->
                             {% for fav in favourites %}
                                 {% if fav.game_title == game.game_title %}
                                     <div class="favourite-tag--games-page">
@@ -102,14 +109,23 @@
                         <h5 class="white-text center-align">{{ game.award_title }} | {{ game.award_year }}</h5>
                         <div class="card-panel black-magenta glow">
                             <div class="card purple-linear-gradient glow">
+                                <!-- Game image -->
                                 <div class="card-image">
-                                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}" class="responsive-img activator" loading="lazy">
+                                    <a href="{{ url_for('see_game_reviews', game_id=game._id) }}">
+                                        <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}" loading="lazy">
+                                    </a>
                                 </div>
+                                <!-- Game title -->
                                 <div class="card-title white-text">
                                     <div class="col s10">
-                                        <span>{{ game.game_title }}</span>
+                                        <span>
+                                            <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                                {{ game.game_title }}
+                                            </a>
+                                        </span>
                                     </div>
                                     <div class="col s2">
+                                        <!-- Add button -->
                                         {% if session.user %}
                                             <div class="container add-btn">
                                                 <a href="{{ url_for('add_game', game_id=game._id) }}"
@@ -121,6 +137,7 @@
                                     </div>
                                 </div>
                                 <div class="card-content">
+                                    <!-- Game platform tags -->
                                     <p class="grey-text text-lighten-2">
                                         {% for platform in game.platform_tags_pc %}
                                             {% if "win" in platform %}
@@ -131,11 +148,12 @@
                                                 <i class="fab fa-apple"></i>
                                             {% endif %}
                                         {% endfor %}
-                                        XBOX, Playstation
                                     </p>
+                                    <!-- Game genre tags -->
                                     <p class="grey-text text-lighten-2 game-tags">
                                         {{ game.game_top_tags[:5]|join(', ') }}
                                     </p>
+                                    <!-- Like button -->
                                     <div class="like right">
                                         <div class="col s6 like-text">
                                             <span>{{ game.likes }}</span>
@@ -164,12 +182,15 @@
                         <h5 class="white-text">{{ game.award_title }} | {{ game.award_year }}</h5>
                         <div class="card-panel black-magenta glow">
                             <div class="card horizontal purple-linear-gradient glow">
+                                <!-- Game image -->
                                 <div class="card-image">
-                                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}" loading="lazy"
-                                        class="responsive-img activator">
+                                    <a href="{{ url_for('see_game_reviews', game_id=game._id) }}">
+                                        <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}" loading="lazy">
+                                    </a>
                                 </div>
                                 <div class="card-stacked">
                                     <div class="card-content">
+                                        <!-- Add button -->
                                         {% if session.user %}
                                         <div class="container right add-btn">
                                             <a href="{{ url_for('add_game', game_id=game._id) }}"
@@ -178,11 +199,15 @@
                                             </a>
                                         </div>
                                         {% endif %}
+                                        <!-- Game title -->
                                         <div class="card-title white-text">
                                             <span>
-                                                {{ game.game_title }}
+                                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                                    {{ game.game_title }}
+                                                </a>
                                             </span>
                                         </div>
+                                        <!-- Game platform tags -->
                                         <p class="grey-text text-lighten-2">
                                             {% for platform in game.platform_tags_pc %}
                                                 {% if "win" in platform %}
@@ -194,14 +219,13 @@
                                                 {% endif %}
                                             {% endfor %}
                                         </p>
-                                        <p class="grey-text text-lighten-2">
-                                            XBOX, Playstation
-                                        </p>
+                                        <!-- Game genre tags -->
                                         <p class="grey-text text-lighten-2 game-tags">
                                             {{ game.game_top_tags[:5]|join(', ') }}
                                         </p>
                                     </div>
                                     <div class="card-action">
+                                        <!-- Like button -->
                                         <div class="like right">
                                             <div class="col s6 like-icon">
                                                 {% if session.user %}
@@ -221,6 +245,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Recommended tag -->
                             {% for fav in favourites %}
                                 {% if fav.game_title == game.game_title %}
                                     <div class="favourite-tag--games-page">
@@ -247,13 +272,22 @@
                         <h5 class="white-text center-align">{{ game.award_title }} | {{ game.award_year }}</h5>
                         <div class="card-panel black-magenta glow">
                             <div class="card purple-linear-gradient glow">
+                                <!-- Game image -->
                                 <div class="card-image">
-                                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}" class="responsive-img activator" loading="lazy">
+                                    <a href="{{ url_for('see_game_reviews', game_id=game._id) }}">
+                                        <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}" loading="lazy">
+                                    </a>
                                 </div>
+                                <!-- Game title -->
                                 <div class="card-title white-text">
                                     <div class="col s10">
-                                        <span>{{ game.game_title }}</span>
+                                        <span>
+                                            <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                                {{ game.game_title }}
+                                            </a>
+                                        </span>
                                     </div>
+                                    <!-- Add button -->
                                     <div class="col s2">
                                         {% if session.user %}
                                             <div class="container add-btn">
@@ -266,6 +300,7 @@
                                     </div>
                                 </div>
                                 <div class="card-content">
+                                    <!-- Game platform tags -->
                                     <p class="grey-text text-lighten-2">
                                         {% for platform in game.platform_tags_pc %}
                                             {% if "win" in platform %}
@@ -276,11 +311,12 @@
                                                 <i class="fab fa-apple"></i>
                                             {% endif %}
                                         {% endfor %}
-                                        XBOX, Playstation
                                     </p>
+                                    <!-- Game genre tags -->
                                     <p class="grey-text text-lighten-2 game-tags">
                                         {{ game.game_top_tags[:5]|join(', ') }}
                                     </p>
+                                    <!-- Like button -->
                                     <div class="like right">
                                         <div class="col s6 like-text">
                                             <span>{{ game.likes }}</span>
