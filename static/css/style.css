@@ -1723,14 +1723,13 @@ label[for]:hover {
     margin: 15px;
 }
 
-#ProfileSidePanel .divider {
-    border: 1px solid white; 
-    margin: 15px;
+#ProfileSidePanel .row {
+    margin-bottom: 0;
 }
 
 #ProfileSidePanel h5 {
     margin-top: 0; 
-    margin-right: 10px; 
+    font-family: "BlenderPro-Thin"; 
     font-size: 16px;
 }
 
@@ -2720,6 +2719,9 @@ label[for]:hover {
     #userRequests #sort-and-pagination-nav .row div.m12 {
         float: right;
     }
+    #ProfileSidePanel h5 {
+        text-align: right;
+    }
 }
 
 @media(max-width: 992px) {
@@ -2781,9 +2783,6 @@ label[for]:hover {
     }
     .remove-btn {
         margin-left: 20px;
-    }
-    #firstItem {
-        margin-left: 8.3333333333%;
     }
     #editBtn {
         margin-right: 15px;
@@ -3363,9 +3362,6 @@ label[for]:hover {
 }
 
 @media (max-width: 430px) {
-    #firstItem {
-        margin-left: 0;
-    }
     .review-card-row img {
         width: 285px;
     }
@@ -3557,10 +3553,6 @@ label[for]:hover {
     #editBtn {
         font-size: 12px;
         padding: 0 10px;
-    }
-    #ProfileCard {
-        margin: 0 !important;
-        padding: 0 !important;
     }
     .game-btns {
         width: 200px !important;
