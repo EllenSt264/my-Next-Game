@@ -39,8 +39,10 @@
 
                                 <div class="content black-magenta glow">
                                     <!-- Game image -->
-                                    <div class="card-image" style="position: relative;">
-                                        <img src="{{ review.game_img_full }}" alt="Game image for {{ review.game_title }}" class="responsive-img z-depth-5">
+                                    <div class="card-image">
+                                        <a href="{{ url_for('see_game_reviews', game_id=review.game_title) }}">
+                                            <img src="{{ review.game_img_full }}" alt="Game image for {{ review.game_title }}" class="responsive-img z-depth-5">
+                                        </a>
                                         <!-- Edit button -->
                                         {% if session.user == review.username %}
                                             <a href="{{ url_for('profile_edit_review', review_id=review._id) }}" class="btn edit-review">
@@ -116,7 +118,9 @@
                                     <div class="content black-magenta glow">
                                         <!-- Game image -->
                                         <div class="card-image">
-                                            <img src="{{ review.game_img_full }}" alt="Game image for {{ review.game_title }}" class="responsive-img z-depth-5">
+                                            <a href="{{ url_for('see_game_reviews', game_id=review.game_title) }}">
+                                                <img src="{{ review.game_img_full }}" alt="Game image for {{ review.game_title }}" class="responsive-img z-depth-5">
+                                            </a>
                                             <!-- Edit button -->
                                             {% if session.user == review.username %}
                                                 <a href="{{ url_for('profile_edit_review', review_id=review._id) }}" class="btn edit-review">

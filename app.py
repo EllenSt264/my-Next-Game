@@ -1957,12 +1957,18 @@ def see_game_reviews(game_id):
     # Grab review data for autocomplete function
     reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
 
-    # Grab game review
-    game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
+    # Check if ObjectId is valid
+    if ObjectId.is_valid(game_id):
+        game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
+    else:
+        game = mongo.db.all_pc_games.find_one({"game_title": game_id})
+
+    # Grab game details
     game_title = game["game_title"]
     game_img = game["game_img_full"]
     game_tags = game["game_top_tags"]
 
+    # Filter reviews
     reviews = mongo.db.user_reviews.find({"game_title": game_title})
 
     # Pagination
