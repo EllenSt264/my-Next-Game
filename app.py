@@ -2006,64 +2006,6 @@ def see_game_reviews(game_id):
         game_tags=game_tags)
 
 
-# ==============================
-# See Game Reviews from Carousel
-# ==============================
-
-@app.route("/community-reviews/<id_1>/<id_2>/<id_3>")
-def see_game_reviews_carousel(id_1, id_2, id_3):
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Grab game ids
-    game1 = mongo.db.all_pc_games.find_one({"_id": ObjectId(id_1)})
-    game2 = mongo.db.all_pc_games.find_one({"_id": ObjectId(id_2)})
-    game3 = mongo.db.all_pc_games.find_one({"_id": ObjectId(id_3)})
-
-    # Grab titles from games
-    titles = []
-    titles.append(game1["game_title"])
-    titles.append(game2["game_title"])
-    titles.append(game3["game_title"])
-
-    print(list(titles))
-
-    reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
-
-    # Pagination
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = reviews.count()
-    pagination_game_reviews = reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData)
-
-
 # ===================
 # Reviews Sort Filter
 # ===================
