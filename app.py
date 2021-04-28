@@ -80,11 +80,20 @@ def add_header(response):
     return response
 
 
-# ==========
-# Homepage
-# ==========
+# =============
+# Base Template
+# =============
 
 @app.route("/")
+@app.route("/base")
+def base():
+    return render_template("base.html")
+
+
+# ========
+# Homepage
+# ========
+
 @app.route("/home")
 def home():
     # Grab bestsellers from db
@@ -107,7 +116,7 @@ def home():
         css_framework='materialize')
 
     return render_template(
-        "base.html", bestsellers=pagination_bestsellers,
+        "index.html", bestsellers=pagination_bestsellers,
         pagination=pagination, awardwinners=awardwinners)
 
 
