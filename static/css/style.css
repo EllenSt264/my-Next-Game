@@ -1607,16 +1607,32 @@ label[for]:hover {
     background-position: center;
 }
 
+#ProfileContentCard {
+    margin-top: 10px;
+    padding-bottom: 20px;
+}
+
+#ProfileSidePanel {
+    margin-top: 10px;
+}
+
 .profile-base-card {
     background-color: #5b0bad;
 }
 
-.header-username h2 {
+.profile-header {
+    margin-bottom: 5px;
+}
+
+.header-username h3 {
     margin-left: 20px;
+    font-family: "BlenderPro-ThinItalic";
 }
 
 .rank {
     margin-right: 20px;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
 .profile-card-panel {
@@ -1630,11 +1646,6 @@ label[for]:hover {
     margin: 50px auto 10px !important;
 }
 
-.profile-card-header h3 {
-    margin-top: 5px; 
-    margin-bottom: 5px;
-}
-
 .profile-avatar {
     width: 150px; 
     height: 150px; 
@@ -1643,21 +1654,6 @@ label[for]:hover {
 
 .side-panel-avatar {
     margin-right: 5px !important;
-}
-
-.cog-icon {
-    color: #8b0292;
-}
-
-.cog-icon:hover {
-    animation: spin 2.2s infinite;
-    animation-timing-function: linear;
-}
-
-@keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
 }
 
 .profile-card-content {
@@ -1695,7 +1691,6 @@ label[for]:hover {
     font-family: "BlenderPro-Book";
     font-size: 14px;
     padding: 0 15px; 
-    min-width: 131px;
     background-color: #431d5a;
     color: white;
 }
@@ -1731,6 +1726,7 @@ label[for]:hover {
     margin-top: 0; 
     font-family: "BlenderPro-Thin"; 
     font-size: 16px;
+    letter-spacing: 0.5px;
 }
 
 /* Review buttons */
@@ -1921,6 +1917,31 @@ label[for]:hover {
     background-color: #ff6cf8;
 }
 
+.profile-game-btn .btn-large {
+    width: 115px;
+    height: 45px;
+    font-size: 13px;
+    line-height: 45px;
+}
+
+.profile-game-btn .btn-large i {
+    font-size: 18px;
+}
+
+.profile-game-btn .btn-large i.fas {
+    font-size: 14px;
+}
+
+.remove-btn {
+    font-size: 12px !important;
+    letter-spacing: 1px;
+}
+
+.remove-btn i {
+    font-size: 17px !important;
+    padding-right: 0;
+}
+
 /* ---------------------------------------------- Profile Reviews */
 
 .user-review-card .card-image {
@@ -2086,6 +2107,15 @@ label[for]:hover {
     height:100px;
 }
 
+.no-games {
+    padding: 15px 0; 
+    margin: 0;
+}
+
+.profile-game-title h5 {
+    font-size: 20px;
+}
+
 /* ---------------------------------------------- Media Queries */
 
 @media (min-width: 1980px) {
@@ -2152,7 +2182,7 @@ label[for]:hover {
 
 @media (max-width: 1840px) {
     .profile-game-title h5 {
-        margin-left: 50px;
+        margin-left: 40px;
     }
     .btn-link,
     .btn-review  {
@@ -2183,7 +2213,7 @@ label[for]:hover {
 
 @media (max-width: 1675px) {
     .profile-game-title h5 {
-        margin-left: 80px;
+        margin-left: 70px;
     }
     .profile-game-btn.left-side {
         margin-left: 80px !important;
@@ -2272,12 +2302,15 @@ label[for]:hover {
 }
 
 @media (max-width: 1570px) {
+    .header-username h3 {
+        font-size: 32px;
+    }
     .profile-game-img img {
         width: 400px;
         height: auto;
     }
     .profile-game-title h5 {
-        margin-left: 50px;
+        margin-left: 40px;
     }
     .profile-game-btn.left-side {
         margin-left: 50px !important;
@@ -2567,7 +2600,7 @@ label[for]:hover {
         height: auto;
     }
     .profile-game-title h5 {
-        margin-left: 27px;
+        margin-left: 17px;
     }
     .profile-game-btn.left-side {
         margin-left: 27px !important;
@@ -2692,14 +2725,13 @@ label[for]:hover {
     .rank {
         position: relative;
     }
-    .rank h5 {
+    .rank h6 {
         position: absolute; 
         bottom: 20px; 
         right: 5px;
     }
     .profile-btns li {
         text-align: right;
-        margin: 5px 0;
     }
 }
 
@@ -2719,7 +2751,7 @@ label[for]:hover {
     #userRequests #sort-and-pagination-nav .row div.m12 {
         float: right;
     }
-    #ProfileSidePanel h5 {
+    #ProfileSidePanel h6 {
         text-align: right;
     }
 }
@@ -2750,8 +2782,16 @@ label[for]:hover {
     .favourites-page .sort-by {
         padding-top: 25px;
     }
-    .rank h5 {
-        margin: 0 10px;
+    .header-username h3 {
+        font-size: 26px;
+        margin-bottom: 0;
+    }
+    .profile-header .row.hide-on-large-only,
+    .profile-header .row:nth-child(3) {
+        margin-bottom: 0;
+    }
+    .rank h6 {
+        margin: 10px 10px 0;
     }
     #ProfileSidePanel {
         height: 65px;
@@ -2769,8 +2809,9 @@ label[for]:hover {
     .profile-header h2 {
         font-size: 36px;
     }
-    .rank h5 {
-        font-size: 15px;
+    .rank h6 {
+        font-size: 14px;
+        margin-right: 5px !important;
     }
     .profile-btns li {
         display: inline;
@@ -2792,7 +2833,7 @@ label[for]:hover {
         margin-right: 15px;
         font-size: 18px;
     }
-    .rank h5 {
+    .rank h6 {
         margin-right: 15px;
     }
     .add-btn,
@@ -3036,12 +3077,9 @@ label[for]:hover {
         height: 125px;
     }
     .header-username h2 {
-        font-size: 26px;
+        font-size: 28px;
         margin-bottom: 0;
         margin-top: 15px;
-    }
-    .profile-card-header h3 {
-        font-size: 32px;
     }
     .profile-card-header .cog-icon {
         font-size: 2.5em;
@@ -3253,6 +3291,10 @@ label[for]:hover {
     #left-review-card {
         margin: 10px 10% !important;
     }
+    .header-username h3 {
+        margin-top: 15px;
+        font-size: 22px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3413,7 +3455,7 @@ label[for]:hover {
         height: auto;
     }
     .profile-game-title h5 {
-        font-size: 20px;
+        font-size: 18px;
     }
     .profile-game-btn {
         margin-top: 10px;
@@ -3545,6 +3587,9 @@ label[for]:hover {
     .secondary-nav #searchbar input#query {
         margin-left: 25px;
         width: 180px;
+    }
+    .header-username h3 {
+        font-size: 20px;
     }
 }
 
@@ -3693,6 +3738,12 @@ label[for]:hover {
         margin-right: 0;
         padding-right: 0;
     }
+    .profile-btns li.col {
+        padding: 0;
+    }
+    .profile-btns a.btn {
+        margin: 15px 5px;
+    }
 }
 
 @media (max-width: 336px) {
@@ -3807,6 +3858,9 @@ label[for]:hover {
         font-size: 13px;
         line-height: 32px;
     }
+    .header-username h3 {
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 285px) {
@@ -3843,5 +3897,11 @@ label[for]:hover {
     .game-btns.left {
         width: 50vw !important;
         margin: auto 5vw !important;
+    }
+    .profile-btns .btn {
+        height: 35px !important;
+        margin: 15px 0 !important;
+        font-family: "BlenderPro-Thin";
+        font-size: 11px !important;
     }
 }
