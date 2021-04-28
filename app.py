@@ -2578,7 +2578,6 @@ def profile_reviews(username):
 @app.route("/submit-review", methods=["GET", "POST"])
 def submit_review():
     if request.method == "POST":
-
         # Find game data for displaying game review
         title = request.form.get("query")
         game = mongo.db.all_pc_games.find_one({"game_title": title})
@@ -2625,8 +2624,11 @@ def submit_review():
 
         return redirect(url_for('reviews'))
 
+    # Grab review data for autocomplete function
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+
     return render_template(
-        "games-review_form.html", matching_results=games)
+        "games-review_form.html", gameData=gameData)
 
 
 # ======================
@@ -2685,9 +2687,12 @@ def profile_submit_review(game_id):
 
     game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
 
+    # Grab review data for autocomplete function
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+
     return render_template(
         "profile-review_form.html", matching_results=games, game=game,
-        username=session["user"])
+        username=session["user"], gameData=gameData)
 
 
 # =====================
