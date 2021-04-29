@@ -1743,10 +1743,15 @@ label[for]:hover {
 }
 
 .profile-card-content {
-    background-color: #622d83;
+    background-color: #30134d; 
+    border: 1px solid pink;
     padding: 0; 
     width: 95%; 
-    margin: 10px auto !important;
+    margin: 20px auto !important;
+}
+
+.profile-card-inner {
+    background-color: rgb(18, 0, 32);
 }
 
 .profile-card-content .main-row {
@@ -1769,7 +1774,6 @@ label[for]:hover {
 
 .profile-game-btn {
     padding-left: 0 !important;
-    min-width: 131px;
 }
 
 .profile-game-btn .btn-large,
@@ -2004,7 +2008,6 @@ label[for]:hover {
 }
 
 .profile-game-btn .btn-large {
-    width: 115px;
     height: 45px;
     font-size: 13px;
     line-height: 45px;
