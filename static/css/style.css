@@ -2297,6 +2297,34 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1923px) {
+    .profile-card-content.horizontal .card-action {
+        text-align: center;
+        padding: 16px 0;
+    }
+    .profile-card-content.horizontal .profile-game-btn .btn-large {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 1875px) and (min-width: 992px) {
+    .secondary-nav li {
+        padding: 0;
+    }
+    .secondary-nav .standard-link {
+        padding: 0 5px;
+    }
+    .secondary-nav .collapsible-header {
+        padding: 15px 5px;
+    }
+    .secondary-nav li a:first-child {
+        padding-left: 15px;
+    }
+    .secondary-nav #searchbar label {
+        line-height: 52px;
+    }
+}
+
 @media (max-width: 1840px) {
     .profile-game-title h5 {
         margin-left: 40px;
@@ -2380,13 +2408,32 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1655px) {
+    .profile-card-content.horizontal .card-action {
+        text-align: center;
+        padding: 16px 0;
+    }
+    .profile-card-content.horizontal .profile-game-btn {
+        width: auto;
+        padding-right: 0;
+    }
+    .profile-card-content.horizontal .btn-large {
+        margin-right: 5px;
+        font-size: 12px;
+    }
+    .profile-card-content.horizontal .btn-large i {
+        padding-right: 0;
+    }
+
+}
+
 @media (max-width: 1640px) {
     .profile-game-btn .btn-large i {
         font-size: 18px;
     }
 }
 
-@media (min-width: 992px) and (max-width: 1640px) {
+@media (max-width: 1640px) and (min-width: 992px) {
     .list-of-games .col {
         width: 50% !important;
         margin: 0 !important;
@@ -2477,6 +2524,16 @@ label[for]:hover {
 @media (max-width: 1500px) and (min-width: 992px) {
     .game-cards .card-title a {
         font-size: 16px;
+    }
+}
+
+@media (max-width: 1470px) and (min-width: 1066px) {
+    .profile-card-content.horizontal .card-image {
+        padding-right: 0;
+    }
+    .profile-card-content.horizontal img {
+        width: 340px !important;
+        height: auto;
     }
 }
 
@@ -2727,21 +2784,13 @@ label[for]:hover {
     }
 }
 
-@media (max-width: 11875px) and (min-width: 992px) {
-    .secondary-nav li {
-        padding: 0;
+@media (max-width: 1066px) and (min-width: 992px) {
+    .profile-card-content.horizontal .card-image {
+        padding-right: 0;
     }
-    .secondary-nav .standard-link {
-        padding: 0 5px;
-    }
-    .secondary-nav .collapsible-header {
-        padding: 15px 5px;
-    }
-    .secondary-nav li a:first-child {
-        padding-left: 15px;
-    }
-    .secondary-nav #searchbar label {
-        line-height: 52px;
+    .profile-card-content.horizontal img {
+        width: 280px !important;
+        height: auto;
     }
 }
 
@@ -2981,6 +3030,11 @@ label[for]:hover {
         margin-left: 20px;
         text-align: left;
     }
+    .profile-game-btn {
+        padding: 0 !important;
+        margin: 0 !important;
+        text-align: center;
+    }
     .remove-btn {
         margin-left: 20px;
     }
@@ -3182,6 +3236,15 @@ label[for]:hover {
     .secondary-nav #searchbar .input-field {
         width: 400px;
     }
+    .profile-game-btn .btn-large {
+        font-size: 12px;
+    }
+    .profile-game-btn {
+        max-width: 140px;
+    }
+    .profile-game-btn:first-child {
+        margin-left: 20px !important;
+    }
 }
 
 @media (min-width: 600px) {
@@ -3268,9 +3331,6 @@ label[for]:hover {
         font-size: 28px;
         margin-bottom: 0;
         margin-top: 15px;
-    }
-    .profile-card-header .cog-icon {
-        font-size: 2.5em;
     }
     #return-to-profile-btn {
         margin-top: 10px;
@@ -3448,6 +3508,17 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 520px) {
+    .profile-game-btn {
+        max-width: 116px;
+    }
+    .profile-game-btn .btn-large {
+        padding: 0 8px;
+        font-family: "BlenderPro-Thin";
+        font-size: 11px;
+    }
+}
+
 @media (max-width: 510px) {
     #sidenav-searchbar {
         left: 32%;
@@ -3594,6 +3665,10 @@ label[for]:hover {
     .leave-review-col {
         margin-right: 0.5%
     }
+    #ProfileCard {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
 }
 
 @media (max-width: 430px) {
@@ -3630,6 +3705,13 @@ label[for]:hover {
         font-size: 24px;
         margin-bottom: 200px;
     }
+    .profile-game-btn {
+        max-width: 86px;
+        margin-left: 0 !important;
+    }
+    .profile-game-btn .btn-large i {
+        display: none;
+    }
 }
 
 @media (max-width: 412px) {
@@ -3652,15 +3734,6 @@ label[for]:hover {
     }
     .profile-game-title h5 {
         font-size: 18px;
-    }
-    .profile-game-btn {
-        margin-top: 10px;
-        margin-right: 25px;
-        margin-left: 25px !important;
-    }
-    .profile-game-btn.left-side {
-        margin-left: 25px !important;
-        margin-top: 0 !important;
     }
     .review-card-row img {
         width: 250px;
@@ -3867,6 +3940,9 @@ label[for]:hover {
         font-size: 18px !important;
         margin: 0;
     }
+    .profile-game-title h5 {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 354px) {
@@ -3994,10 +4070,13 @@ label[for]:hover {
     }
 }
 
-@media (max-width: 319px) {
+@media (max-width: 320px) {
     .game-btns.left {
         width: 50vw !important;
         margin: auto 10vw !important;
+    }
+    .profile-game-btn:first-child {
+        margin-left: 12px !important;
     }
     .leave-review-col {
         padding-right: 0 !important;

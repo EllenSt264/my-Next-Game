@@ -1933,9 +1933,16 @@ def profiles_template():
 @app.route("/profiles/<user>")
 def profiles(user):
     # Find the user's game playlist
+    user_games = mongo.db.user_games.find({"username": user})
     games_playing = mongo.db.user_games.find({"stage": "playing"})
     games_next = mongo.db.user_games.find({"stage": "next"})
     games_completed = mongo.db.user_games.find({"stage": "completed"})
+
+    # Find user reviews 
+    user_reviews = mongo.db.user_reviews.find({"username": user})
+
+    # Find game likes
+    game_likes = mongo.db.all_pc_games.find({"liked_by": user})
 
     # Find user details
     user_data = mongo.db.users.find_one({"username": user})
@@ -1943,12 +1950,42 @@ def profiles(user):
     user_display_name = user_data["display_name"]
     user_avatar = user_data["avatar"]
 
+    # Find game titles
+    user_game_titles = []
+    for i in list(user_games):
+        user_game_titles.append(i["game_title"])
+
+    # Find review game titles
+    user_game_reviews = []
+    for i in list(user_reviews):
+        user_game_reviews.append(i["game_title"])
+
+    # Find game likes
+    user_game_likes = []
+    for i in list(game_likes):
+        user_game_likes.append(i["game_title"])
+
+    # Find matches
+    review_matches = []
+    for i in user_game_titles:
+        for x in user_game_reviews:
+            if i == x:
+                review_matches.append(x)
+
+    # Find matches 
+    like_matches = []
+    for i in user_game_titles:
+        for x in user_game_likes:
+            if i == x:
+                like_matches.append(x)
+
     return render_template(
         "visit_profile-games_list.html",
         games_playing=games_playing, games_next=games_next,
         games_completed=games_completed, user=user,
         username=username, user_display_name=user_display_name,
-        user_avatar=user_avatar)
+        user_avatar=user_avatar, review_matches=review_matches,
+        like_matches=like_matches)
 
 
 # ================
