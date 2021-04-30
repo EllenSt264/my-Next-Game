@@ -84,7 +84,6 @@ def add_header(response):
 # Base Template
 # =============
 
-@app.route("/")
 @app.route("/base")
 def base():
     return render_template("base.html")
@@ -94,6 +93,7 @@ def base():
 # Homepage
 # ========
 
+@app.route("/")
 @app.route("/home")
 def home():
     # Grab bestsellers from db
