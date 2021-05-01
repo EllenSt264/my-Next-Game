@@ -117,24 +117,6 @@
                                     </ul>
                                 </div>
                             </div>
-
-                            <!-- Buttons -->
-                            <div class="row review-card-row center-align review-card-edit-btns" style="margin-bottom: 25px;">
-                                <!-- Delete -->
-                                <div class="col s6 m2 l2 review-edit-left-btn">
-                                    <a href="#deleteReview{{loop.index}}" class="btn modal-trigger">
-                                        <i class="fas fa-trash"></i>
-                                        <span>Delete</span>
-                                    </a>
-                                </div>
-                                <!-- Edit -->
-                                <div class="col s6 m2 l2">
-                                    <a href="{{ url_for('profile_edit_review', review_id=review._id) }}" class="btn">
-                                        <i class="fas fa-pen-square"></i>
-                                        <span>Edit</span>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
