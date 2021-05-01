@@ -1996,6 +1996,22 @@ def profiles(user):
         like_matches=like_matches, session_user_games=session_user_games)
 
 
+
+# ======================
+# Visit Profiles - Likes
+# ======================
+
+@app.route("/profiles/<user>/likes")
+def profiles_likes(user):
+    # Find games liked by the user
+    user_liked_games = mongo.db.all_pc_games.find({"liked_by": user})
+
+    return render_template(
+        "visit_profile-game_likes.html", user=user,
+        user_liked_games=user_liked_games)
+
+
+
 # ================
 # Reviews Template
 # ================
