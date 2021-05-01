@@ -1601,8 +1601,12 @@ def request_game():
 
 @app.route("/add_game/<game_id>")
 def add_game(game_id):
-    # Grab game data from database
-    game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
+
+    # Check if ObjectId is valid
+    if ObjectId.is_valid(game_id):
+        game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
+    else:
+        game = mongo.db.all_pc_games.find_one({"game_title": game_id})
 
     # Create empty lists to add dict data into
     title = []
@@ -1979,13 +1983,17 @@ def profiles(user):
             if i == x:
                 like_matches.append(x)
 
+    # Find session user's game list
+    session_user_games = mongo.db.user_games.find(
+        {"username": session["user"]}).distinct("game_title")
+
     return render_template(
         "visit_profile-games_list.html",
         games_playing=games_playing, games_next=games_next,
         games_completed=games_completed, user=user,
         username=username, user_display_name=user_display_name,
         user_avatar=user_avatar, review_matches=review_matches,
-        like_matches=like_matches)
+        like_matches=like_matches, session_user_games=session_user_games)
 
 
 # ================

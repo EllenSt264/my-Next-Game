@@ -33,7 +33,7 @@
                         {% else %}
                             {{user_display_name|capitalize}}
                         {% endif %}
-                        has reviewed this game! <a href="#">Read Review</a>
+                        has reviewed this game! <a href="{{ url_for('add_game', game_id=game.game_title) }}">Read Review</a>
                     </p>
                     {% endfor %}
                     <!-- Has liked? -->
@@ -63,13 +63,17 @@
                             <span style="line-height: 0;">Read Reviews</span>
                         </a>
                     </div>
-                    <!-- Review -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">add_circle</i>
-                            <span>Add Game</span>
-                        </a>
-                    </div>
+                    <!-- Add game -->
+                    {% if session.user %}
+                        {% if not game.game_title in session_user_games  %}
+                            <div class="col s4 profile-game-btn">
+                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                                    <i class="material-icons btn-icon-left">add_circle</i>
+                                    <span>Add Game</span>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -100,13 +104,17 @@
                             <span style="line-height: 0;">Read Reviews</span>
                         </a>
                     </div>
-                    <!-- Review -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">add_circle</i>
-                            <span>Add Game</span>
-                        </a>
-                    </div>
+                    <!-- Add game -->
+                    {% if session.user %}
+                        {% if not game.game_title in session_user_games  %}
+                            <div class="col s4 profile-game-btn">
+                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                                    <i class="material-icons btn-icon-left">add_circle</i>
+                                    <span>Add Game</span>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -147,7 +155,7 @@
                         {% else %}
                             {{user_display_name|capitalize}}
                         {% endif %}
-                        has reviewed this game! <a href="#">Read Review</a>
+                        has reviewed this game! <a href="{{ url_for('add_game', game_id=game.game_title) }}">Read Review</a>
                     </p>
                     {% endfor %}
                     <!-- Has liked? -->
@@ -177,13 +185,17 @@
                             <span style="line-height: 0;">Read Reviews</span>
                         </a>
                     </div>
-                    <!-- Review -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">add_circle</i>
-                            <span>Add Game</span>
-                        </a>
-                    </div>
+                    <!-- Add game -->
+                    {% if session.user %}
+                        {% if not game.game_title in session_user_games  %}
+                            <div class="col s4 profile-game-btn">
+                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                                    <i class="material-icons btn-icon-left">add_circle</i>
+                                    <span>Add Game</span>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -214,13 +226,17 @@
                             <span style="line-height: 0;">Read Reviews</span>
                         </a>
                     </div>
-                    <!-- Review -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">add_circle</i>
-                            <span>Add Game</span>
-                        </a>
-                    </div>
+                    <!-- Add game -->
+                    {% if session.user %}
+                        {% if not game.game_title in session_user_games  %}
+                            <div class="col s4 profile-game-btn">
+                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                                    <i class="material-icons btn-icon-left">add_circle</i>
+                                    <span>Add Game</span>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -261,7 +277,7 @@
                         {% else %}
                             {{user_display_name|capitalize}}
                         {% endif %}
-                        has reviewed this game! <a href="#">Read Review</a>
+                        has reviewed this game! <a href="{{ url_for('add_game', game_id=game.game_title) }}">Read Review</a>
                     </p>
                     {% endfor %}
                     <!-- Has liked? -->
@@ -291,13 +307,17 @@
                             <span style="line-height: 0;">Read Reviews</span>
                         </a>
                     </div>
-                    <!-- Review -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">add_circle</i>
-                            <span>Add Game</span>
-                        </a>
-                    </div>
+                    <!-- Add game -->
+                    {% if session.user %}
+                        {% if not game.game_title in session_user_games  %}
+                            <div class="col s4 profile-game-btn">
+                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                                    <i class="material-icons btn-icon-left">add_circle</i>
+                                    <span>Add Game</span>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -328,13 +348,17 @@
                             <span style="line-height: 0;">Read Reviews</span>
                         </a>
                     </div>
-                    <!-- Review -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">add_circle</i>
-                            <span>Add Game</span>
-                        </a>
-                    </div>
+                    <!-- Add game -->
+                    {% if session.user %}
+                        {% if not game.game_title in session_user_games  %}
+                            <div class="col s4 profile-game-btn">
+                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                                    <i class="material-icons btn-icon-left">add_circle</i>
+                                    <span>Add Game</span>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
