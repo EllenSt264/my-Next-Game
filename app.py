@@ -1942,7 +1942,7 @@ def profiles(user):
     games_next = mongo.db.user_games.find({"stage": "next"})
     games_completed = mongo.db.user_games.find({"stage": "completed"})
 
-    # Find user reviews 
+    # Find user reviews
     user_reviews = mongo.db.user_reviews.find({"username": user})
 
     # Find game likes
@@ -1996,7 +1996,6 @@ def profiles(user):
         like_matches=like_matches, session_user_games=session_user_games)
 
 
-
 # ======================
 # Visit Profiles - Likes
 # ======================
@@ -2016,6 +2015,27 @@ def profiles_likes(user):
         "visit_profile-game_likes.html", user=user,
         username=username, user_display_name=user_display_name,
         user_avatar=user_avatar, user_liked_games=user_liked_games)
+
+
+# ========================
+# Visit Profiles - Reviews
+# ========================
+
+@app.route("/profiles/<user>/reviews")
+def profiles_reviews(user):
+    # Find user details
+    user_data = mongo.db.users.find_one({"username": user})
+    username = user_data["username"]
+    user_display_name = user_data["display_name"]
+    user_avatar = user_data["avatar"]
+
+    # Find the user's reviews
+    user_reviews = mongo.db.user_reviews.find({"username": user})
+
+    return render_template(
+        "visit_profile-reviews.html", user=user,
+        username=username, user_display_name=user_display_name,
+        user_avatar=user_avatar, user_reviews=user_reviews)
 
 
 # ================
