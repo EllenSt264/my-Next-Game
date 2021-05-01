@@ -33,7 +33,7 @@
                         {% else %}
                             {{user_display_name|capitalize}}
                         {% endif %}
-                        has reviewed this game! <a href="{{ url_for('add_game', game_id=game.game_title) }}">Read Review</a>
+                        has reviewed this game! <a href="{{ url_for('profiles_reviews', user=user) }}">Read Review</a>
                     </p>
                     {% endfor %}
                     <!-- Has liked? -->
@@ -155,7 +155,7 @@
                         {% else %}
                             {{user_display_name|capitalize}}
                         {% endif %}
-                        has reviewed this game! <a href="{{ url_for('add_game', game_id=game.game_title) }}">Read Review</a>
+                        has reviewed this game! <a href="{{ url_for('profiles_reviews', user=user) }}">Read Review</a>
                     </p>
                     {% endfor %}
                     <!-- Has liked? -->
@@ -277,7 +277,7 @@
                         {% else %}
                             {{user_display_name|capitalize}}
                         {% endif %}
-                        has reviewed this game! <a href="{{ url_for('add_game', game_id=game.game_title) }}">Read Review</a>
+                        has reviewed this game! <a href="{{ url_for('profiles_reviews', user=user) }}">Read Review</a>
                     </p>
                     {% endfor %}
                     <!-- Has liked? -->
