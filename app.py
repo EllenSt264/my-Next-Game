@@ -1976,7 +1976,7 @@ def profiles(user):
             if i == x:
                 review_matches.append(x)
 
-    # Find matches 
+    # Find matches
     like_matches = []
     for i in user_game_titles:
         for x in user_game_likes:
@@ -2003,13 +2003,19 @@ def profiles(user):
 
 @app.route("/profiles/<user>/likes")
 def profiles_likes(user):
+    # Find user details
+    user_data = mongo.db.users.find_one({"username": user})
+    username = user_data["username"]
+    user_display_name = user_data["display_name"]
+    user_avatar = user_data["avatar"]
+
     # Find games liked by the user
     user_liked_games = mongo.db.all_pc_games.find({"liked_by": user})
 
     return render_template(
         "visit_profile-game_likes.html", user=user,
-        user_liked_games=user_liked_games)
-
+        username=username, user_display_name=user_display_name,
+        user_avatar=user_avatar, user_liked_games=user_liked_games)
 
 
 # ================
