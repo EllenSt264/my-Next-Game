@@ -1,37 +1,102 @@
 {% extends "visit_profile-template.html" %}
 {% block profile_content %}
-
-    <!-- Currently Playing -->
-
-    <!-- Title -->
-    <div class="row card-panel profile-card-header" id="ProfileHeader_first">
-        <div class="valign-wrapper card-section-header">
+    <section id="visitProfiles">
+        <!-- Currently Playing -->
+        <div class="row card-panel profile-card-header">
             <div class="col s12">
                 <h6>Currently Playing</h6>
             </div>
         </div>
-    </div>
-
-    <!-- Games -->
-    {% for game in games_playing if game.username == user %}
-        <!-- Larger screens and up -->
-        <div class="card horizontal profile-card-content hide-on-med-and-down">
-            <div class="card-image profile-game-img">
-                <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-            </div>
-            <div class="card-stacked">
-                <div class="card-content" style="padding-top: 0;">
-                    <div class="card-title">
-                        <h5 style="font-size: 20px;">{{ game.game_title }}</h5>
+        <div class="row card-panel profile-card-inner">
+            {% for game in games_playing if game.username == user %}
+            <!-- Large screens only -->
+            <div class="card horizontal hide-on-med-and-down">
+                <div class="card-image profile-game-img">
+                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                </div>
+                <div class="card-stacked">
+                    <!-- Game details -->
+                    <div class="card-content" style="padding: 5px 20px;">
+                        <!-- Game title -->
+                        <div class="card-title white-text">
+                            <span>
+                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                    {{ game.game_title }}
+                                </a>
+                            </span>
+                        </div>
+                        <!-- Has reviewed? -->
+                        {% for match in review_matches if match == game.game_title %}
+                        <p>
+                            {% if user_display_name == None %}
+                            {{username|capitalize}}
+                            {% else %}
+                            {{user_display_name|capitalize}}
+                            {% endif %}
+                            has reviewed this game! <a href="{{ url_for('profiles_reviews', user=user) }}">Read Review</a>
+                        </p>
+                        {% endfor %}
+                        <!-- Has liked? -->
+                        {% for match in like_matches if match == game.game_title %}
+                        <p>
+                            {% if user_display_name == None %}
+                            {{username|capitalize}}
+                            {% else %}
+                            {{user_display_name|capitalize}}
+                            {% endif %}
+                            likes this game!
+                        </p>
+                        {% endfor %}
                     </div>
-                    <br>
+                    <div class="card-action" style="padding-left: 5px;">
+                        <!-- Steam Store -->
+                        <div class="col s4 profile-game-btn">
+                            <a href="{{ game.game_link }}" target="_blank" class="btn-large">
+                                <i class="material-icons btn-icon-left">http</i>
+                                <span>Steam Store</span>
+                            </a>
+                        </div>
+                        <!-- Reviews -->
+                        <div class="col s4 profile-game-btn">
+                            <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
+                                <i class="material-icons btn-icon-left book-icon">library_books</i>
+                                <span style="line-height: 0;">Read Reviews</span>
+                            </a>
+                        </div>
+                        <!-- Add game -->
+                        {% if session.user %}
+                        {% if not game.game_title in session_user_games %}
+                        <div class="col s4 profile-game-btn">
+                            <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                                <i class="material-icons btn-icon-left add-icon">add_circle</i>
+                                <span>Add Game</span>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- Medium screens and down -->
+            <div class="card smaller hide-on-large-only">
+                <div class="card-image profile-game-img">
+                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                </div>
+                <div class="card-content">
+                    <div class="card-title">
+                        <span>
+                            <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                {{ game.game_title }}
+                            </a>
+                        </span>
+                    </div
                     <!-- Has reviewed? -->
                     {% for match in review_matches if match == game.game_title %}
                     <p>
                         {% if user_display_name == None %}
-                            {{username|capitalize}}
+                        {{username|capitalize}}
                         {% else %}
-                            {{user_display_name|capitalize}}
+                        {{user_display_name|capitalize}}
                         {% endif %}
                         has reviewed this game! <a href="{{ url_for('profiles_reviews', user=user) }}">Read Review</a>
                     </p>
@@ -40,9 +105,9 @@
                     {% for match in like_matches if match == game.game_title %}
                     <p>
                         {% if user_display_name == None %}
-                            {{username|capitalize}}
+                        {{username|capitalize}}
                         {% else %}
-                            {{user_display_name|capitalize}}
+                        {{user_display_name|capitalize}}
                         {% endif %}
                         likes this game!
                     </p>
@@ -59,101 +124,125 @@
                     <!-- Reviews -->
                     <div class="col s4 profile-game-btn">
                         <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">library_books</i>
+                            <i class="material-icons btn-icon-left book-icon">library_books</i>
                             <span style="line-height: 0;">Read Reviews</span>
                         </a>
                     </div>
                     <!-- Add game -->
                     {% if session.user %}
-                        {% if not game.game_title in session_user_games  %}
-                            <div class="col s4 profile-game-btn">
-                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
-                                    <i class="material-icons btn-icon-left">add_circle</i>
-                                    <span>Add Game</span>
-                                </a>
-                            </div>
-                        {% endif %}
+                    {% if not game.game_title in session_user_games %}
+                    <div class="col s4 profile-game-btn">
+                        <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                            <i class="material-icons btn-icon-left add-icon">add_circle</i>
+                            <span>Add Game</span>
+                        </a>
+                    </div>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>
+
+            {% else %}
+            <h6 class="center-align no-games">No games have been added to this section</h6>
+            {% endfor %}
         </div>
 
-        <!-- Medium screens and down -->
-        <div class="card-panel profile-card-content hide-on-large-only">
-            <div class="card-image profile-game-img">
-                <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-            </div>
-            <div class="card-content">
-                <div class="card-title profile-game-title">
-                    <h5 class="center-align">{{ game.game_title }}</h5>
-                </div>
-            </div>
-            <div class="card-action">
-                <div class="row">
-                    <!-- Steam Store -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ game.game_link }}" target="_blank" class="btn-large">
-                            <i class="material-icons btn-icon-left">http</i>
-                            <span>Steam Store</span>
-                        </a>
-                    </div>
-                    <!-- Reviews -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">library_books</i>
-                            <span style="line-height: 0;">Read Reviews</span>
-                        </a>
-                    </div>
-                    <!-- Add game -->
-                    {% if session.user %}
-                        {% if not game.game_title in session_user_games  %}
-                            <div class="col s4 profile-game-btn">
-                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
-                                    <i class="material-icons btn-icon-left">add_circle</i>
-                                    <span>Add Game</span>
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% else %}
-        <h4 class="center-align py-5">No games have been added to this section</h4>
-    {% endfor %}
-    
-
-    <!-- Play later -->
-
-    <!-- Title -->
-    <div class="row card-panel profile-card-header">
-        <div class="valign-wrapper card-section-header">
+        <!-- Play later -->
+        <div class="row card-panel profile-card-header">
             <div class="col s12">
                 <h6>Play later</h6>
             </div>
         </div>
-    </div>
-
-    <!-- Games -->
-    {% for game in games_next if game.username == user %}
-        <!-- Larger screens and up -->
-        <div class="card horizontal profile-card-content hide-on-med-and-down">
-            <div class="card-image profile-game-img">
-                <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-            </div>
-            <div class="card-stacked">
-                <div class="card-content" style="padding-top: 0;">
-                    <div class="card-title">
-                        <h5 style="font-size: 20px;">{{ game.game_title }}</h5>
+        <div class="row card-panel profile-card-inner">
+            {% for game in games_next if game.username == user %}
+            <!-- Large screens only -->
+            <div class="card horizontal hide-on-med-and-down">
+                <div class="card-image profile-game-img">
+                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                </div>
+                <div class="card-stacked">
+                    <!-- Game details -->
+                    <div class="card-content" style="padding: 5px 20px;">
+                        <!-- Game title -->
+                        <div class="card-title white-text">
+                            <span>
+                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                    {{ game.game_title }}
+                                </a>
+                            </span>
+                        </div>
+                        <!-- Has reviewed? -->
+                        {% for match in review_matches if match == game.game_title %}
+                        <p>
+                            {% if user_display_name == None %}
+                            {{username|capitalize}}
+                            {% else %}
+                            {{user_display_name|capitalize}}
+                            {% endif %}
+                            has reviewed this game! <a href="{{ url_for('profiles_reviews', user=user) }}">Read Review</a>
+                        </p>
+                        {% endfor %}
+                        <!-- Has liked? -->
+                        {% for match in like_matches if match == game.game_title %}
+                        <p>
+                            {% if user_display_name == None %}
+                            {{username|capitalize}}
+                            {% else %}
+                            {{user_display_name|capitalize}}
+                            {% endif %}
+                            likes this game!
+                        </p>
+                        {% endfor %}
                     </div>
-                    <br>
+                    <div class="card-action" style="padding-left: 5px;">
+                        <!-- Steam Store -->
+                        <div class="col s4 profile-game-btn">
+                            <a href="{{ game.game_link }}" target="_blank" class="btn-large">
+                                <i class="material-icons btn-icon-left">http</i>
+                                <span>Steam Store</span>
+                            </a>
+                        </div>
+                        <!-- Reviews -->
+                        <div class="col s4 profile-game-btn">
+                            <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
+                                <i class="material-icons btn-icon-left book-icon">library_books</i>
+                                <span style="line-height: 0;">Read Reviews</span>
+                            </a>
+                        </div>
+                        <!-- Add game -->
+                        {% if session.user %}
+                        {% if not game.game_title in session_user_games %}
+                        <div class="col s4 profile-game-btn">
+                            <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                                <i class="material-icons btn-icon-left add-icon">add_circle</i>
+                                <span>Add Game</span>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- Medium screens and down -->
+            <div class="card smaller hide-on-large-only">
+                <div class="card-image profile-game-img">
+                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                </div>
+                <div class="card-content">
+                    <div class="card-title">
+                        <span>
+                            <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                {{ game.game_title }}
+                            </a>
+                        </span>
+                    </div
                     <!-- Has reviewed? -->
                     {% for match in review_matches if match == game.game_title %}
                     <p>
                         {% if user_display_name == None %}
-                            {{username|capitalize}}
+                        {{username|capitalize}}
                         {% else %}
-                            {{user_display_name|capitalize}}
+                        {{user_display_name|capitalize}}
                         {% endif %}
                         has reviewed this game! <a href="{{ url_for('profiles_reviews', user=user) }}">Read Review</a>
                     </p>
@@ -162,9 +251,9 @@
                     {% for match in like_matches if match == game.game_title %}
                     <p>
                         {% if user_display_name == None %}
-                            {{username|capitalize}}
+                        {{username|capitalize}}
                         {% else %}
-                            {{user_display_name|capitalize}}
+                        {{user_display_name|capitalize}}
                         {% endif %}
                         likes this game!
                     </p>
@@ -181,101 +270,125 @@
                     <!-- Reviews -->
                     <div class="col s4 profile-game-btn">
                         <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">library_books</i>
+                            <i class="material-icons btn-icon-left book-icon">library_books</i>
                             <span style="line-height: 0;">Read Reviews</span>
                         </a>
                     </div>
                     <!-- Add game -->
                     {% if session.user %}
-                        {% if not game.game_title in session_user_games  %}
-                            <div class="col s4 profile-game-btn">
-                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
-                                    <i class="material-icons btn-icon-left">add_circle</i>
-                                    <span>Add Game</span>
-                                </a>
-                            </div>
-                        {% endif %}
+                    {% if not game.game_title in session_user_games %}
+                    <div class="col s4 profile-game-btn">
+                        <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                            <i class="material-icons btn-icon-left add-icon">add_circle</i>
+                            <span>Add Game</span>
+                        </a>
+                    </div>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>
+
+            {% else %}
+            <h6 class="center-align no-games">No games have been added to this section</h6>
+            {% endfor %}
         </div>
 
-        <!-- Medium screens and down -->
-        <div class="card-panel profile-card-content hide-on-large-only">
-            <div class="card-image profile-game-img">
-                <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-            </div>
-            <div class="card-content">
-                <div class="card-title profile-game-title">
-                    <h5 class="center-align">{{ game.game_title }}</h5>
-                </div>
-            </div>
-            <div class="card-action">
-                <div class="row">
-                    <!-- Steam Store -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ game.game_link }}" target="_blank" class="btn-large">
-                            <i class="material-icons btn-icon-left">http</i>
-                            <span>Steam Store</span>
-                        </a>
-                    </div>
-                    <!-- Reviews -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">library_books</i>
-                            <span style="line-height: 0;">Read Reviews</span>
-                        </a>
-                    </div>
-                    <!-- Add game -->
-                    {% if session.user %}
-                        {% if not game.game_title in session_user_games  %}
-                            <div class="col s4 profile-game-btn">
-                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
-                                    <i class="material-icons btn-icon-left">add_circle</i>
-                                    <span>Add Game</span>
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% else %}
-        <h4 class="center-align py-5">No games have been added to this section</h4>
-    {% endfor %}
-    
-    
-    <!-- Completed -->
-
-    <!-- Title -->
-    <div class="row card-panel profile-card-header">
-        <div class="valign-wrapper card-section-header">
+        <!-- Completed -->
+        <div class="row card-panel profile-card-header">
             <div class="col s12">
                 <h6>Completed</h6>
             </div>
         </div>
-    </div>
-
-    <!-- Games -->
-    {% for game in games_completed if game.username == user %}
-        <!-- Larger screens and up -->
-        <div class="card horizontal profile-card-content hide-on-med-and-down">
-            <div class="card-image profile-game-img">
-                <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-            </div>
-            <div class="card-stacked">
-                <div class="card-content" style="padding-top: 0;">
-                    <div class="card-title">
-                        <h5 style="font-size: 20px;">{{ game.game_title }}</h5>
+        <div class="row card-panel profile-card-inner">
+            {% for game in games_completed if game.username == user %}
+            <!-- Large screens only -->
+            <div class="card horizontal hide-on-med-and-down">
+                <div class="card-image profile-game-img">
+                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                </div>
+                <div class="card-stacked">
+                    <!-- Game details -->
+                    <div class="card-content" style="padding: 5px 20px;">
+                        <!-- Game title -->
+                        <div class="card-title white-text">
+                            <span>
+                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                    {{ game.game_title }}
+                                </a>
+                            </span>
+                        </div>
+                        <!-- Has reviewed? -->
+                        {% for match in review_matches if match == game.game_title %}
+                        <p>
+                            {% if user_display_name == None %}
+                            {{username|capitalize}}
+                            {% else %}
+                            {{user_display_name|capitalize}}
+                            {% endif %}
+                            has reviewed this game! <a href="{{ url_for('profiles_reviews', user=user) }}">Read Review</a>
+                        </p>
+                        {% endfor %}
+                        <!-- Has liked? -->
+                        {% for match in like_matches if match == game.game_title %}
+                        <p>
+                            {% if user_display_name == None %}
+                            {{username|capitalize}}
+                            {% else %}
+                            {{user_display_name|capitalize}}
+                            {% endif %}
+                            likes this game!
+                        </p>
+                        {% endfor %}
                     </div>
-                    <br>
+                    <div class="card-action" style="padding-left: 5px;">
+                        <!-- Steam Store -->
+                        <div class="col s4 profile-game-btn">
+                            <a href="{{ game.game_link }}" target="_blank" class="btn-large">
+                                <i class="material-icons btn-icon-left">http</i>
+                                <span>Steam Store</span>
+                            </a>
+                        </div>
+                        <!-- Reviews -->
+                        <div class="col s4 profile-game-btn">
+                            <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
+                                <i class="material-icons btn-icon-left book-icon">library_books</i>
+                                <span style="line-height: 0;">Read Reviews</span>
+                            </a>
+                        </div>
+                        <!-- Add game -->
+                        {% if session.user %}
+                        {% if not game.game_title in session_user_games %}
+                        <div class="col s4 profile-game-btn">
+                            <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                                <i class="material-icons btn-icon-left add-icon">add_circle</i>
+                                <span>Add Game</span>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- Medium screens and down -->
+            <div class="card smaller hide-on-large-only">
+                <div class="card-image profile-game-img">
+                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                </div>
+                <div class="card-content">
+                    <div class="card-title">
+                        <span>
+                            <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                {{ game.game_title }}
+                            </a>
+                        </span>
+                    </div
                     <!-- Has reviewed? -->
                     {% for match in review_matches if match == game.game_title %}
                     <p>
                         {% if user_display_name == None %}
-                            {{username|capitalize}}
+                        {{username|capitalize}}
                         {% else %}
-                            {{user_display_name|capitalize}}
+                        {{user_display_name|capitalize}}
                         {% endif %}
                         has reviewed this game! <a href="{{ url_for('profiles_reviews', user=user) }}">Read Review</a>
                     </p>
@@ -284,9 +397,9 @@
                     {% for match in like_matches if match == game.game_title %}
                     <p>
                         {% if user_display_name == None %}
-                            {{username|capitalize}}
+                        {{username|capitalize}}
                         {% else %}
-                            {{user_display_name|capitalize}}
+                        {{user_display_name|capitalize}}
                         {% endif %}
                         likes this game!
                     </p>
@@ -303,67 +416,27 @@
                     <!-- Reviews -->
                     <div class="col s4 profile-game-btn">
                         <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">library_books</i>
+                            <i class="material-icons btn-icon-left book-icon">library_books</i>
                             <span style="line-height: 0;">Read Reviews</span>
                         </a>
                     </div>
                     <!-- Add game -->
                     {% if session.user %}
-                        {% if not game.game_title in session_user_games  %}
-                            <div class="col s4 profile-game-btn">
-                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
-                                    <i class="material-icons btn-icon-left">add_circle</i>
-                                    <span>Add Game</span>
-                                </a>
-                            </div>
-                        {% endif %}
+                    {% if not game.game_title in session_user_games %}
+                    <div class="col s4 profile-game-btn">
+                        <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
+                            <i class="material-icons btn-icon-left add-icon">add_circle</i>
+                            <span>Add Game</span>
+                        </a>
+                    </div>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>
-        </div>
 
-        <!-- Medium screens and down -->
-        <div class="card-panel profile-card-content hide-on-large-only">
-            <div class="card-image profile-game-img">
-                <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-            </div>
-            <div class="card-content">
-                <div class="card-title profile-game-title">
-                    <h5 class="center-align">{{ game.game_title }}</h5>
-                </div>
-            </div>
-            <div class="card-action">
-                <div class="row">
-                    <!-- Steam Store -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ game.game_link }}" target="_blank" class="btn-large">
-                            <i class="material-icons btn-icon-left">http</i>
-                            <span>Steam Store</span>
-                        </a>
-                    </div>
-                    <!-- Reviews -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="btn-large">
-                            <i class="material-icons btn-icon-left">library_books</i>
-                            <span style="line-height: 0;">Read Reviews</span>
-                        </a>
-                    </div>
-                    <!-- Add game -->
-                    {% if session.user %}
-                        {% if not game.game_title in session_user_games  %}
-                            <div class="col s4 profile-game-btn">
-                                <a href="{{ url_for('add_game', game_id=game.game_title) }}" class="btn-large">
-                                    <i class="material-icons btn-icon-left">add_circle</i>
-                                    <span>Add Game</span>
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% endif %}
-                </div>
-            </div>
+            {% else %}
+            <h6 class="center-align no-games">No games have been added to this section</h6>
+            {% endfor %}
         </div>
-    {% else %}
-        <h4 class="center-align py-5">No games have been added to this section</h4>
-    {% endfor %}
-    
+    </section>
 {% endblock %}

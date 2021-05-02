@@ -1,76 +1,120 @@
 {% extends "visit_profile-template.html" %}
 {% block profile_content %}
-    <!-- Games -->
-    <div class="row card-panel profile-card-inner" style="margin: 2rem 5px;">
-    {% for game in user_liked_games %}
-        <div class="card horizontal " style="margin: 3rem 0; background-color: #30134d; border: 1px solid pink;">
-            <div class="card-image profile-game-img">
-                <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-            </div>
-            <div class="card-stacked">
-                <!-- Game details -->
-                <div class="card-content">
-                    <!-- Game title -->
-                    <div class="card-title white-text">
-                        <span>
-                            <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
-                                {{ game.game_title }}
-                            </a>
-                        </span>
+    <section id="visitProfiles-likes">
+        <!-- Games -->
+        <div class="row card-panel profile-card-inner">
+            {% for game in user_liked_games %}
+                <!-- Large screens only -->
+                <div class="card horizontal hide-on-med-and-down">
+                    <div class="card-image profile-game-img">
+                        <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
                     </div>
-                    <!-- Game platform tags -->
-                    <p class="grey-text text-lighten-2">
-                        {% for platform in game.platform_tags_pc %}
-                            {% if "win" in platform %}
-                                <i class="fab fa-windows"></i>
-                            {% elif "linux" in platform %}
-                                <i class="fab fa-linux"></i>
-                            {% elif "mac" in platform %}
-                                <i class="fab fa-apple"></i>
-                            {% endif %}
+                    <div class="card-stacked">
+                        <!-- Game details -->
+                        <div class="card-content">
+                            <!-- Game title -->
+                            <div class="card-title white-text">
+                                <span>
+                                    <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                        {{ game.game_title }}
+                                    </a>
+                                </span>
+                            </div>
+                            <!-- Game genre tags -->
+                            <p class="grey-text text-lighten-2 game-tags">
+                                {{ game.game_top_tags[:3]|join(', ') }}
+                            </p>
+                        </div>
+                        <!-- Buttons -->
+                        <div class="card-action">
+                            <!-- Steam Store -->
+                            <div class="col s4 profile-game-btn">
+                                <a href="{{ game.game_link }}" target="_blank" class="btn-large">
+                                    <i class="material-icons btn-icon-left">http</i>
+                                    <span>Steam Store</span>
+                                </a>
+                            </div>
+                            <!-- Reviews -->
+                            <div class="col s4 profile-game-btn">
+                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="btn-large">
+                                    <i class="fab fa-readme"></i>
+                                    <span>Read Reviews</span>
+                                </a>
+                            </div>
+                            <!-- Review -->
+                            {% for match in matches if match == game.game_title %}
+                                <div class="col s4 profile-game-btn btn-large reviewed">
+                                    <i class="material-icons btn-icon-left">thumb_up</i>
+                                    <span>Edit Review</span>
+                                    <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                                        <i class="fas fa-pen-square"></i>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="col s4 profile-game-btn">
+                                    <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn-large">
+                                        <i class="fas fa-pen-alt"></i>
+                                        <span>Write Review</span>
+                                    </a>    
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Medium screens and down -->
+                <div class="card smaller hide-on-large-only">
+                    <div class="card-image profile-game-img">
+                        <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">
+                            <span>
+                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                    {{ game.game_title }}
+                                </a>
+                            </span>
+                        </div>
+                        <!-- Game genre tags -->
+                        <p class="grey-text text-lighten-2 game-tags">
+                            {{ game.game_top_tags[:3]|join(', ') }}
+                        </p>
+                    </div>
+                    <div class="card-action" style="height: 85px; text-align: center;">
+                        <!-- Steam Store -->
+                        <div class="col s4 profile-game-btn-sm">
+                            <a href="{{ game.game_link }}" target="_blank" class="btn">
+                                <i class="material-icons btn-icon-left">http</i>
+                                <span>Steam Store</span>
+                            </a>
+                        </div>
+                        <!-- Reviews -->
+                        <div class="col s4 profile-game-btn-sm">
+                            <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="btn">
+                                <i class="fab fa-readme"></i>
+                                <span>Read Reviews</span>
+                            </a>
+                        </div>
+                        <!-- Review -->
+                        {% for match in matches if match == game.game_title %}
+                            <div class="col s4 profile-game-btn-sm btn reviewed">
+                                <i class="material-icons btn-icon-left">thumb_up</i>
+                                <span>Edit Review</span>
+                                <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                                    <i class="fas fa-pen-square"></i>
+                                </a>
+                            </div>
+                        {% else %}
+                            <div class="col s4 profile-game-btn-sm">
+                                <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn">
+                                    <i class="fas fa-pen-alt"></i>
+                                    <span>Write Review</span>
+                                </a>    
+                            </div>
                         {% endfor %}
-                    </p>
-                    <!-- Game genre tags -->
-                    <p class="grey-text text-lighten-2 game-tags">
-                        {{ game.game_top_tags[:5]|join(', ') }}
-                    </p>
-                </div>
-                <!-- Buttons -->
-                <div class="card-action">
-                    <!-- Steam Store -->
-                    <div class="col s4 profile-game-btn left-side">
-                        <a href="{{ game.game_link }}" target="_blank" class="btn-large">
-                            <i class="material-icons btn-icon-left">http</i>
-                            <span>Steam Store</span>
-                        </a>
                     </div>
-                    <!-- Reviews -->
-                    <div class="col s4 profile-game-btn left-side">
-                        <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="btn-large">
-                            <i class="fab fa-readme" style="font-size: 15px;"></i>
-                            <span>Read Reviews</span>
-                        </a>
-                    </div>
-                    <!-- Review -->
-                    {% for match in matches if match == game.game_title %}
-                        <div class="col s4 profile-game-btn btn-large reviewed">
-                            <i class="material-icons btn-icon-left">thumb_up</i>
-                            <span>Edit Review</span>
-                            <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
-                                <i class="fas fa-pen-square" style="font-size: 15px;"></i>
-                            </a>
-                        </div>
-                    {% else %}
-                        <div class="col s4 profile-game-btn">
-                            <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn-large">
-                                <i class="fas fa-pen-alt"></i>
-                                <span>Write Review</span>
-                            </a>    
-                        </div>
-                    {% endfor %}
                 </div>
-            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
-    </div>
+    </section>
 {% endblock %}
