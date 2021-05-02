@@ -151,10 +151,14 @@ nav .dropdown-content a:focus {
     margin: auto; 
 }
 
-#navSearchbar input#search,
-#sidenav-searchbar input#search {
+#navSearchbar input#query,
+#sidenav-searchbar input#query {
     background-color: white; 
     border-radius: 25px;
+}
+
+#navSearchbar input#query {
+    padding-left: 10px;
 }
 
 #navSearchbar label {

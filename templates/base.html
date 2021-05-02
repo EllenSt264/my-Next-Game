@@ -84,9 +84,9 @@
 
                 <!-- Searchbar -->
                 <div class="nav-content hide-on-med-and-down" id="navSearchbar">
-                    <form>
-                        <input id="search" type="search" required>
-                        <label class="label-icon" for="search">
+                    <form action="{{ url_for('search') }}" method="post" id="searchbar">
+                        <input  id="query" name="query" type="search" class="autocomplete" required>
+                        <label class="label-icon" for="query">
                             <i class="material-icons">search</i>
                         </label>
                     </form>
@@ -185,6 +185,12 @@
     <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    {% block scripts %}{% endblock %}
+    {% block scripts %}
+        <script async>
+            var gameData = {{gameData|tojson|safe}}
+        </script>
+        <!-- JQuery Autocomplete -->
+        <script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
+    {% endblock %}
 </body>
 </html>
