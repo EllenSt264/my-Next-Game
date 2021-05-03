@@ -125,17 +125,12 @@
         <!-- Mobile side-nav -->
         <ul class="my-sidenav" id="mobile-nav">
             <!-- Searchbar -->
-            <li>
-                <div id="sidenav-searchbar--outer-div">
-                    <span>Search For Game</span>
-                    <div id="sidenav-searchbar">
-                        <form action="{{ url_for('get_nav_query') }}" method="POST">
-                            <input id="nav-query" name="nav-query" type="text" class="autocomplete" placeholder="Search for game title"
-                                required>
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
+            <li id="sidenav-searchbar">
+                <form action="{{ url_for('get_nav_query') }}" method="POST">
+                    <input id="nav-query" name="nav-query" type="text" class="autocomplete" placeholder="Search for game title"
+                        required>
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
             </li>
             
             <!-- Navlinks -->
