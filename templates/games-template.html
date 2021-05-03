@@ -76,10 +76,10 @@
 
                 <!-- Search bar -->
                 <li class="right">
-                    <form action="{{ url_for('search') }}" method="post" id="searchbar">
+                    <form action="{{ url_for('get_query') }}" method="post" id="searchbar">
                         <div class="input-field">
                             <i class="material-icons prefix">search</i>
-                            <input type="text" id="query" name="query" class="autocomplete validate" required>
+                            <input type="text" id="query" name="query" class="autocomplete" required>
                             <label for="query">Game Title</label>
                         </div>
                     </form>

@@ -84,8 +84,9 @@
 
                 <!-- Searchbar -->
                 <div class="nav-content hide-on-med-and-down" id="navSearchbar">
-                    <form action="{{ url_for('nav_search', query=query) }}" method="post" id="searchbar">
-                        <input  id="nav-query" name="nav-query" type="text" class="autocomplete" placeholder="Search Game" required>
+                    <form action="{{ url_for('get_nav_query') }}" method="POST">
+                        <input id="nav-query" name="nav-query" type="text" class="autocomplete" placeholder="Search for game title"
+                            required>
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
@@ -128,11 +129,10 @@
                 <div id="sidenav-searchbar--outer-div">
                     <span>Search For Game</span>
                     <div id="sidenav-searchbar">
-                        <form>
-                            <label class="label-icon" for="search">
-                                <i class="material-icons">search</i>
-                            </label>
-                            <input id="navbarSearch" type="search" required>
+                        <form action="{{ url_for('get_nav_query') }}" method="POST">
+                            <input id="nav-query" name="nav-query" type="text" class="autocomplete" placeholder="Search for game title"
+                                required>
+                            <button type="submit"><i class="fas fa-search"></i></button>
                         </form>
                     </div>
                 </div>

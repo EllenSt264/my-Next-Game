@@ -93,19 +93,25 @@ def base():
 # Navbar Search
 # =============
 
-@app.route("/nav-search", methods=["GET", "POST"])
-def nav_search():
+@app.route("/nav-search", methods=["POST"])
+def get_nav_query():
+    # Grab query
+    query = request.form.get("nav-query")
+    return redirect(url_for('nav_search', query=query))
+
+
+@app.route("/nav-search/<query>", methods=["GET"])
+def nav_search(query):
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Grab game data for autocomplete function for games template
     gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    query = request.form.get("nav-query")
-
     if query is None:
         return redirect(url_for("pc_games"))
 
+    # Find matching games
     mongo.db.all_pc_games.create_index([("game_title", "text")])
     games = mongo.db.all_pc_games.find(
         {"$text": {"$search": query}})
@@ -144,65 +150,24 @@ def nav_search():
         navGameData=navGameData, gameData=gameData)
 
 
-# ========
-# Homepage
-# ========
+# ====================
+# Secondary Nav Search
+# ====================
 
-@app.route("/")
-@app.route("/home")
-def home():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab bestsellers from db
-    bestsellers = mongo.db.all_pc_games.find({"bestseller": True})
-
-    # Grab award winners from db
-    awardwinners = mongo.db.all_pc_games.find({"awardwinner": True})
-
-    # Initalize pagination
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = bestsellers.count()
-    pagination_bestsellers = bestsellers[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    return render_template(
-        "index.html", bestsellers=pagination_bestsellers,
-        pagination=pagination, awardwinners=awardwinners,
-        navGameData=navGameData)
+@app.route("/search", methods=["POST"])
+def get_query():
+    # Grab query
+    query = request.form.get("query")
+    return redirect(url_for('nav_search', query=query))
 
 
-# ===================
-# Game pages template
-# ===================
-
-@app.route("/games")
-def games():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-    return render_template("games-template.html", navGameData=navGameData)
-
-
-# ======
-# Search
-# ======
-
-@app.route("/search", methods=["GET", "POST"])
-def search():
+@app.route("/search/<query>", methods=["GET"])
+def search(query):
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Grab game data for autocomplete function
     gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    query = request.form.get("query")
 
     if query is None:
         return redirect(url_for("pc_games"))
@@ -249,12 +214,19 @@ def search():
 # Search Reviews
 # ==============
 
-@app.route("/community-reviews/search", methods=["GET", "POST"])
-def search_reviews():
+@app.route("/community-reviews/search", methods=["POST"])
+def get_review_query():
+    query = request.form.get("review-query")
+    return redirect(url_for('search_reviews', query=query))
+
+
+@app.route("/community-reviews/search/<query>", methods=["GET"])
+def search_reviews(query):
+    # Grab game data for autocomplete function in navbar
+    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+
     # Grab review data for autocomplete function
     reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    query = request.form.get("review-query")
 
     mongo.db.user_reviews.create_index([("game_title", "text")])
     reviews = mongo.db.user_reviews.find(
@@ -291,7 +263,53 @@ def search_reviews():
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData)
+        navGameData=navGameData, reviewData=reviewData)
+
+
+# ========
+# Homepage
+# ========
+
+@app.route("/")
+@app.route("/home")
+def home():
+    # Grab game data for autocomplete function in navbar
+    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+
+    # Grab bestsellers from db
+    bestsellers = mongo.db.all_pc_games.find({"bestseller": True})
+
+    # Grab award winners from db
+    awardwinners = mongo.db.all_pc_games.find({"awardwinner": True})
+
+    # Initalize pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 9
+    offset = ((page - 1) * per_page)
+
+    total = bestsellers.count()
+    pagination_bestsellers = bestsellers[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    return render_template(
+        "index.html", bestsellers=pagination_bestsellers,
+        pagination=pagination, awardwinners=awardwinners,
+        navGameData=navGameData)
+
+
+# ===================
+# Game pages template
+# ===================
+
+@app.route("/games")
+def games():
+    # Grab game data for autocomplete function in navbar
+    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    return render_template("games-template.html", navGameData=navGameData)
 
 
 # ==========================
