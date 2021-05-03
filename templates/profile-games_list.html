@@ -16,11 +16,11 @@
                 </div>
                 <div class="card-stacked">
                     <!-- Game details -->
-                    <div class="card-content" style="padding: 5px 20px;">
+                    <div class="card-content">
                         <!-- Game title -->
                         <div class="card-title white-text">
                             <span>
-                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
                                     {{ game.game_title }}
                                 </a>
                             </span>
@@ -209,11 +209,11 @@
                 </div>
                 <div class="card-stacked">
                     <!-- Game details -->
-                    <div class="card-content" style="padding: 5px 20px;">
+                    <div class="card-content">
                         <!-- Game title -->
                         <div class="card-title white-text">
                             <span>
-                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
                                     {{ game.game_title }}
                                 </a>
                             </span>
@@ -402,11 +402,11 @@
                 </div>
                 <div class="card-stacked">
                     <!-- Game details -->
-                    <div class="card-content" style="padding: 5px 20px;">
+                    <div class="card-content">
                         <!-- Game title -->
                         <div class="card-title white-text">
                             <span>
-                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
                                     {{ game.game_title }}
                                 </a>
                             </span>

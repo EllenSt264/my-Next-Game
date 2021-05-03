@@ -20,7 +20,7 @@
                         <!-- Game title -->
                         <div class="card-title white-text">
                             <span>
-                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
                                     {{ game.game_title }}
                                 </a>
                             </span>
@@ -166,7 +166,7 @@
                         <!-- Game title -->
                         <div class="card-title white-text">
                             <span>
-                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
                                     {{ game.game_title }}
                                 </a>
                             </span>
@@ -312,7 +312,7 @@
                         <!-- Game title -->
                         <div class="card-title white-text">
                             <span>
-                                <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+                                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
                                     {{ game.game_title }}
                                 </a>
                             </span>
