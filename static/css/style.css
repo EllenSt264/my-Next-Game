@@ -162,8 +162,10 @@ nav .dropdown-content a:focus {
 #navSearchbar input#nav-query,
 #sidenav-searchbar input#nav-query,
 #secondary-nav-searchbar input#query {
-    background-color: white; 
     padding-left: 10px;
+    font-family: "BlenderPro-Medium";
+    background-color: white; 
+    color: black;
 }
 
 #secondary-nav-searchbar input#query {
