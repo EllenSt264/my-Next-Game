@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: "BlenderPro-Book";
-    background-color: #221424;
+    background-color: #0c0a0e;
     overflow-x: hidden;
 }
 
@@ -84,7 +84,7 @@ nav {
 }
 
 .sidenav {
-    background-color: #0e232f;
+    background-color: #0c0a0e;
 }
 
 .sidenav li a {
@@ -106,7 +106,7 @@ nav {
 }
 
 nav .dropdown-content {
-    background-color: #0e232f;
+    background-color: #0c0a0e;
 }
 
 nav .dropdown-content a {
@@ -119,7 +119,7 @@ nav .dropdown-content li:hover,
 nav .dropdown-content a:hover,
 nav .dropdown-content li:focus,
 nav .dropdown-content a:focus {
-    background-color: #0e232f;
+    background-color: #0c0a0e;
     color: purple;
 }
 
@@ -155,24 +155,36 @@ nav .dropdown-content a:focus {
     margin: auto; 
 }
 
+#secondary-nav-searchbar form {
+    position: relative;
+}
+
 #navSearchbar input#nav-query,
-#sidenav-searchbar input#nav-query {
+#sidenav-searchbar input#nav-query,
+#secondary-nav-searchbar input#query {
     background-color: white; 
+    padding-left: 10px;
+}
+
+#secondary-nav-searchbar input#query {
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 #sidenav-searchbar input#nav-query {
     width: 90%;
 }
 
-#navSearchbar input#nav-query,
-#sidenav-searchbar input#nav-query {
-    padding-left: 10px;
-}
-
 #navSearchbar input::placeholder,
-#sidenav-searchbar input::placeholder {
+#sidenav-searchbar input::placeholder,
+#secondary-nav-searchbar input::placeholder {
     font-family: "BlenderPro-Heavy";
     color: #4a4a4a;
+}
+
+#secondary-nav-searchbar input::placeholder {
+    font-size: 14px;
 }
 
 #navSearchbar button {
@@ -200,11 +212,31 @@ nav .dropdown-content a:focus {
     cursor: pointer;
 }
 
+#secondary-nav-searchbar button {
+    position: absolute; 
+    top: 16%;
+    left: 89%; 
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    height: 41px;
+    background-color: #f23dfd;
+    border: none;
+    cursor: pointer;
+}
+
 #navSearchbar i {
     text-align: center;
     line-height: 46px;
     font-size: 18px; 
     color: #161618 !important;
+}
+
+#secondary-nav-searchbar i {
+    text-align: center;
+    line-height: 41px;
+    font-size: 20px; 
+    color: #1f1f21;
 }
 
 /* ---------------------------------------------- Custom Side Nav */
@@ -221,7 +253,7 @@ The following code is based upon this source:
     z-index: 1;
     top: 0;
     right: 0;
-    background-color: #0e232f; 
+    background-color: #0c0a0e; 
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
@@ -410,13 +442,9 @@ The following code is based upon this source:
     padding-top: 50px;
 }
 
-@media (min-width: 601px) {
+@media (min-width: 600px) {
     .list-of-games .row {
-        background: linear-gradient(
-            to right,
-            #352138 50%,
-            #2a1a2c 50%
-        )
+        background: linear-gradient( to right, #1e1e21 50%, #161618 50% );
     }
 }
 
@@ -457,11 +485,7 @@ The following code is based upon this source:
 
 .carousel-item {
     padding: 40px 25px 0;
-    background-color: #2a1a2c;
-}
-
-.carousel-item.other {
-    background-color: #352138;
+    background-color: #0f0d10;
 }
 
 .carousel-item img {
@@ -492,7 +516,7 @@ The following code is based upon this source:
 .secondary-nav {
     width: 95%;
     margin: auto;
-    background-color: #442c4c;
+    background-color: #161618;
 }
 
 .secondary-nav .collapsible {
@@ -539,7 +563,7 @@ The following code is based upon this source:
 }
 
 .my-nav-extend .tabs {
-    background-color: #261f33;
+    background-color: #1f1f21;
     height: 35px;
 }
 
@@ -1701,7 +1725,7 @@ label[for]:hover {
 }
 
 .profile-base-card {
-    background-color: #5b0bad;
+    background-color: rgb(196 28 206 / 74%);
 }
 
 .profile-header {
@@ -1720,7 +1744,7 @@ label[for]:hover {
 }
 
 .profile-card-panel {
-    background-color: #30134d;
+    background-color: #120020;
 }
 
 .profile-card-header {
@@ -1740,7 +1764,7 @@ label[for]:hover {
 }
 
 .profile-card-content {
-    background-color: #30134d; 
+    background-color: #120020; 
     border: 1px solid pink;
     padding: 0; 
     width: 95%; 
@@ -1749,11 +1773,11 @@ label[for]:hover {
 
 .profile-card-inner {
     margin: 1.5rem 5px !important;
-    background-color: rgb(18, 0, 32);
+    background-color: rgb(48 19 77);
 }
 
 .profile-card-inner .card {
-    background-color: #30134d; 
+    background-color: #120020; 
     border: 1px solid pink;
 }
 
@@ -2858,6 +2882,9 @@ label[for]:hover {
     #navSearchbar button {
         height: 46px;
     }
+    #secondary-nav-searchbar button {
+        top: 15%;
+    }
 }
 
 @media (max-width: 1182px) and (min-width: 1160px) {
@@ -3085,6 +3112,9 @@ label[for]:hover {
     }
     .secondary-nav #searchbar .input-field {
         width: 600px;
+    }
+    #secondary-nav-searchbar button {
+        left: 91%;
     }
     .secondary-nav .sidenav-trigger i {
         font-size: 32px;
@@ -3323,6 +3353,9 @@ label[for]:hover {
         font-size: 45px;
         margin-bottom: 120px;
     }
+    #secondary-nav-searchbar button {
+        left: 87%;
+    }
     .secondary-nav #searchbar .input-field {
         width: 400px;
     }
@@ -3367,6 +3400,9 @@ label[for]:hover {
     }
     .secondary-nav .nav-content div.valign {
         margin-bottom: 30px;
+    }
+    #secondary-nav-searchbar button {
+        top: 16%;
     }
     #homepageBtns .btn-large {
         margin: 10px;
@@ -3666,7 +3702,10 @@ label[for]:hover {
     }
     .secondary-nav #searchbar .input-field {
         width: 300px;
-        padding-right: 5px;
+    }
+    #secondary-nav-searchbar button {
+        top: 16%;
+        left: 87%;
     }
     #reviewCards {
         margin: 0 auto;
@@ -3967,16 +4006,13 @@ label[for]:hover {
         margin-top: 150px;
     }
     .secondary-nav #searchbar .input-field {
-        width: 200px;
-        padding-right: 5px;
+        width: 250px;
+    }
+    #secondary-nav-searchbar button {
+        left: 86%;
     }
     .secondary-nav #searchbar i {
         font-size: 18px;
-    }
-    .secondary-nav #searchbar label,
-    .secondary-nav #searchbar input#query {
-        margin-left: 25px;
-        width: 180px;
     }
     .header-username h3 {
         font-size: 20px;
@@ -4182,6 +4218,15 @@ label[for]:hover {
 }
 
 @media (max-width: 326px) {
+    .secondary-nav #searchbar .input-field {
+        width: 215px;
+    }
+    #secondary-nav-searchbar input::placeholder {
+        font-size: 13px;
+    }
+    #secondary-nav-searchbar button {
+        left: 82%;
+    }
     .review-card,
     #left-review-card {
         width: 300px !important;
@@ -4245,6 +4290,9 @@ label[for]:hover {
 }
 
 @media (max-width: 295px) {
+    .secondary-nav #searchbar .input-field {
+        width: 200px;
+    }
     .profile-game-img {
         padding: 10px 0;
         margin: auto;
