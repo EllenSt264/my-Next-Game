@@ -97,57 +97,7 @@ def base():
 def get_nav_query():
     # Grab query
     query = request.form.get("nav-query")
-    return redirect(url_for('nav_search', query=query))
-
-
-@app.route("/nav-search/<query>", methods=["GET"])
-def nav_search(query):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab game data for autocomplete function for games template
-    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    if query is None:
-        return redirect(url_for("pc_games"))
-
-    # Find matching games
-    mongo.db.all_pc_games.create_index([("game_title", "text")])
-    games = mongo.db.all_pc_games.find(
-        {"$text": {"$search": query}})
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    # Pagination
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = games.count()
-    pagination_games = games[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    return render_template(
-        "nav-search_results.html", games=pagination_games,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        navGameData=navGameData, gameData=gameData)
+    return redirect(url_for('search', query=query))
 
 
 # ====================
@@ -158,8 +108,12 @@ def nav_search(query):
 def get_query():
     # Grab query
     query = request.form.get("query")
-    return redirect(url_for('nav_search', query=query))
+    return redirect(url_for('search', query=query))
 
+
+# ======
+# Search
+# ======
 
 @app.route("/search/<query>", methods=["GET"])
 def search(query):
