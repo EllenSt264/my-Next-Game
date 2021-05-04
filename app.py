@@ -255,17 +255,6 @@ def home():
         navGameData=navGameData)
 
 
-# ===================
-# Game pages template
-# ===================
-
-@app.route("/games")
-def games():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-    return render_template("games-template.html", navGameData=navGameData)
-
-
 # ==========================
 # Admin Controls - Add to DB
 # ==========================
@@ -507,737 +496,108 @@ def admin_remove_request(request_id):
     return redirect(url_for("admin_user_requests"))
 
 
+# ===================
+# Game pages template
+# ===================
+
+@app.route("/games")
+def games_template():
+    return render_template("games-template.html")
+
+
 # =================
 # Games Sort Filter
 # =================
 
-@app.route("/setcookie/all", methods=["GET", "POST"])
+@app.route("/setcookie", methods=["GET", "POST"])
 def setcookie_all():
+    # Get parameters for game page
+    page = request.referrer
+    page_param = page.split("games/")
+    genre = page_param[1]
+
     if request.method == "POST":
         cookie1 = request.form.get("navSelect1").lower()
         cookie2 = request.form.get("navSelect2").lower()
 
-        resp = make_response(redirect(url_for("pc_games")))
+        resp = make_response(redirect(url_for("games", genre=genre)))
         resp.set_cookie("navSelect1", cookie1)
         resp.set_cookie("navSelect2", cookie2)
 
         return resp
 
 
-# ========
-# PC Games
-# ========
+# ================
+# Game Genre - All
+# ================
 
-@app.route("/pc-games", methods=["GET", "POST"])
-def pc_games():
-    # Find games
-    pc_games = mongo.db.all_pc_games.find()
-
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab game data for autocomplete function
-    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 6
-    offset = ((page - 1) * per_page)
-
-    total = pc_games.count()
-    pagination_pc_games = pc_games[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Find site favourites
-    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
-
-    # Sort filter
-
-    cookie1 = request.cookies.get("navSelect1")
-    cookie2 = request.cookies.get("navSelect2")
-
-    if cookie1 is None and cookie2 is None:
-        navSelect1 = "default"
-        navSelect2 = "desc"
-    else:
-        navSelect1 = cookie1
-        navSelect2 = cookie2
-
-    # Sort by Likes
-
-    if navSelect1 == "likes" and navSelect2 == "desc":
-        pagination_pc_games.sort("likes", pymongo.DESCENDING)
-
-    elif navSelect1 == "likes" and navSelect2 == "asc":
-        pagination_pc_games.sort("likes", pymongo.ASCENDING)
-
-    # Sort by game title
-    elif navSelect1 == "title" and navSelect2 == "desc":
-        pagination_pc_games.sort("game_title", pymongo.DESCENDING)
-
-    elif navSelect1 == "title" and navSelect2 == "asc":
-        pagination_pc_games.sort("game_title", pymongo.ASCENDING)
-
-    # Sort by bestseller
-    elif navSelect1 == "bestseller" and navSelect2 == "desc":
-        pagination_pc_games.sort("bestseller", pymongo.DESCENDING)
-
-    elif navSelect1 == "bestseller" and navSelect2 == "asc":
-        pagination_pc_games.sort("bestseller", pymongo.ASCENDING)
-
-    # Sort by awardwinner
-    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
-        pagination_pc_games.sort("awardwinner", pymongo.DESCENDING)
-
-    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
-        pagination_pc_games.sort("awardwinner", pymongo.ASCENDING)
-
-    # Sort by favourite
-    elif navSelect1 == "favourite" and navSelect2 == "desc":
-        pagination_pc_games.sort("favourite", pymongo.DESCENDING)
-
-    elif navSelect1 == "favourite" and navSelect2 == "asc":
-        pagination_pc_games.sort("favourite", pymongo.ASCENDING)
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "games-pc.html", pc_games=pagination_pc_games,
-        pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2,
-        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
-        rand_game_3=rand_game_3, navGameData=navGameData,
-        gameData=gameData)
-
-
-# ==========================
-# Games Sort Filter - Action
-# ==========================
-
-@app.route("/setcookie/action", methods=["GET", "POST"])
-def setcookie_action():
-    if request.method == "POST":
-        cookie1 = request.form.get("navSelect1").lower()
-        cookie2 = request.form.get("navSelect2").lower()
-
-        resp = make_response(redirect(url_for("action_games")))
-        resp.set_cookie("navSelect1", cookie1)
-        resp.set_cookie("navSelect2", cookie2)
-
-        return resp
+@app.route("/all-games", methods=["POST", "GET"])
+def all_games():
+    genre = "all-games"
+    return redirect(url_for("games", genre=genre))
 
 
 # ===================
-# Action Games
+# Game Genre - Action
 # ===================
 
-@app.route("/action-games", methods=["GET", "POST"])
+@app.route("/action-games", methods=["POST", "GET"])
 def action_games():
-    # Find games
-    pc_games = mongo.db.all_pc_games.find(
-        {
-            "$or": [
-                {"action": True},
-                {"game_top_tags": "Action"}
-            ]
-        }
-    )
-
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab game data for autocomplete function
-    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 6
-    offset = ((page - 1) * per_page)
-
-    total = pc_games.count()
-    pagination_pc_games = pc_games[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Find site favourites
-    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
-
-    # Sort filter
-
-    cookie1 = request.cookies.get("navSelect1")
-    cookie2 = request.cookies.get("navSelect2")
-
-    if cookie1 is None and cookie2 is None:
-        navSelect1 = "default"
-        navSelect2 = "desc"
-    else:
-        navSelect1 = cookie1
-        navSelect2 = cookie2
-
-    # Sort by Likes
-
-    if navSelect1 == "likes" and navSelect2 == "desc":
-        pagination_pc_games.sort("likes", pymongo.DESCENDING)
-
-    elif navSelect1 == "likes" and navSelect2 == "asc":
-        pagination_pc_games.sort("likes", pymongo.ASCENDING)
-
-    # Sort by game title
-    elif navSelect1 == "title" and navSelect2 == "desc":
-        pagination_pc_games.sort("game_title", pymongo.DESCENDING)
-
-    elif navSelect1 == "title" and navSelect2 == "asc":
-        pagination_pc_games.sort("game_title", pymongo.ASCENDING)
-
-    # Sort by bestseller
-    elif navSelect1 == "bestseller" and navSelect2 == "desc":
-        pagination_pc_games.sort("bestseller", pymongo.DESCENDING)
-
-    elif navSelect1 == "bestseller" and navSelect2 == "asc":
-        pagination_pc_games.sort("bestseller", pymongo.ASCENDING)
-
-    # Sort by awardwinner
-    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
-        pagination_pc_games.sort("awardwinner", pymongo.DESCENDING)
-
-    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
-        pagination_pc_games.sort("awardwinner", pymongo.ASCENDING)
-
-    # Sort by favourite
-    elif navSelect1 == "favourite" and navSelect2 == "desc":
-        pagination_pc_games.sort("favourite", pymongo.DESCENDING)
-
-    elif navSelect1 == "favourite" and navSelect2 == "asc":
-        pagination_pc_games.sort("favourite", pymongo.ASCENDING)
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "games-action.html", pc_games=pagination_pc_games,
-        pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2,
-        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
-        rand_game_3=rand_game_3, navGameData=navGameData,
-        gameData=gameData)
+    genre = "action"
+    return redirect(url_for("games", genre=genre))
 
 
-# =============================
-# Games Sort Filter - Adventure
-# =============================
+# ======================
+# Game Genre - Adventure
+# ======================
 
-@app.route("/setcookie/adventure", methods=["GET", "POST"])
-def setcookie_adventure():
-    if request.method == "POST":
-        cookie1 = request.form.get("navSelect1").lower()
-        cookie2 = request.form.get("navSelect2").lower()
-
-        resp = make_response(redirect(url_for("adventure_games")))
-        resp.set_cookie("navSelect1", cookie1)
-        resp.set_cookie("navSelect2", cookie2)
-
-        return resp
-
-
-# ===================
-# Adventure Games
-# ===================
-
-@app.route("/adventure-games", methods=["GET", "POST"])
+@app.route("/adventure-games", methods=["POST", "GET"])
 def adventure_games():
-    # Find games
-    pc_games = mongo.db.all_pc_games.find(
-        {
-            "$or": [
-                {"category": "adventure"},
-                {"game_top_tags": "Adventure"}
-            ]
-        }
-    )
-
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab game data for autocomplete function
-    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 6
-    offset = ((page - 1) * per_page)
-
-    total = pc_games.count()
-    pagination_pc_games = pc_games[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Find site favourites
-    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
-
-    # Sort filter
-
-    cookie1 = request.cookies.get("navSelect1")
-    cookie2 = request.cookies.get("navSelect2")
-
-    if cookie1 is None and cookie2 is None:
-        navSelect1 = "default"
-        navSelect2 = "desc"
-    else:
-        navSelect1 = cookie1
-        navSelect2 = cookie2
-
-    # Sort by Likes
-
-    if navSelect1 == "likes" and navSelect2 == "desc":
-        pagination_pc_games.sort("likes", pymongo.DESCENDING)
-
-    elif navSelect1 == "likes" and navSelect2 == "asc":
-        pagination_pc_games.sort("likes", pymongo.ASCENDING)
-
-    # Sort by game title
-    elif navSelect1 == "title" and navSelect2 == "desc":
-        pagination_pc_games.sort("game_title", pymongo.DESCENDING)
-
-    elif navSelect1 == "title" and navSelect2 == "asc":
-        pagination_pc_games.sort("game_title", pymongo.ASCENDING)
-
-    # Sort by bestseller
-    elif navSelect1 == "bestseller" and navSelect2 == "desc":
-        pagination_pc_games.sort("bestseller", pymongo.DESCENDING)
-
-    elif navSelect1 == "bestseller" and navSelect2 == "asc":
-        pagination_pc_games.sort("bestseller", pymongo.ASCENDING)
-
-    # Sort by awardwinner
-    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
-        pagination_pc_games.sort("awardwinner", pymongo.DESCENDING)
-
-    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
-        pagination_pc_games.sort("awardwinner", pymongo.ASCENDING)
-
-    # Sort by favourite
-    elif navSelect1 == "favourite" and navSelect2 == "desc":
-        pagination_pc_games.sort("favourite", pymongo.DESCENDING)
-
-    elif navSelect1 == "favourite" and navSelect2 == "asc":
-        pagination_pc_games.sort("favourite", pymongo.ASCENDING)
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "games-adventure.html", pc_games=pagination_pc_games,
-        pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2,
-        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
-        rand_game_3=rand_game_3, navGameData=navGameData,
-        gameData=gameData)
-
-
-# =======================
-# Games Sort Filter - RPG
-# =======================
-
-@app.route("/setcookie/RPG", methods=["GET", "POST"])
-def setcookie_RPG():
-    if request.method == "POST":
-        cookie1 = request.form.get("navSelect1").lower()
-        cookie2 = request.form.get("navSelect2").lower()
-
-        resp = make_response(redirect(url_for("RPG_games")))
-        resp.set_cookie("navSelect1", cookie1)
-        resp.set_cookie("navSelect2", cookie2)
-
-        return resp
+    genre = "adventure"
+    return redirect(url_for("games", genre=genre))
 
 
 # ===================
-# RPG Games
+# Game Genre - RPG
 # ===================
 
-@app.route("/RPG-games", methods=["GET", "POST"])
-def RPG_games():
-    # Find games
-    pc_games = mongo.db.all_pc_games.find(
-        {
-            "$or": [
-                {"RPG": True},
-                {"game_top_tags": "RPG"}
-            ]
-        }
-    )
-
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab game data for autocomplete function
-    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 6
-    offset = ((page - 1) * per_page)
-
-    total = pc_games.count()
-    pagination_pc_games = pc_games[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Find site favourites
-    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
-
-    # Sort filter
-
-    cookie1 = request.cookies.get("navSelect1")
-    cookie2 = request.cookies.get("navSelect2")
-
-    if cookie1 is None and cookie2 is None:
-        navSelect1 = "default"
-        navSelect2 = "desc"
-    else:
-        navSelect1 = cookie1
-        navSelect2 = cookie2
-
-    # Sort by Likes
-
-    if navSelect1 == "likes" and navSelect2 == "desc":
-        pagination_pc_games.sort("likes", pymongo.DESCENDING)
-
-    elif navSelect1 == "likes" and navSelect2 == "asc":
-        pagination_pc_games.sort("likes", pymongo.ASCENDING)
-
-    # Sort by game title
-    elif navSelect1 == "title" and navSelect2 == "desc":
-        pagination_pc_games.sort("game_title", pymongo.DESCENDING)
-
-    elif navSelect1 == "title" and navSelect2 == "asc":
-        pagination_pc_games.sort("game_title", pymongo.ASCENDING)
-
-    # Sort by bestseller
-    elif navSelect1 == "bestseller" and navSelect2 == "desc":
-        pagination_pc_games.sort("bestseller", pymongo.DESCENDING)
-
-    elif navSelect1 == "bestseller" and navSelect2 == "asc":
-        pagination_pc_games.sort("bestseller", pymongo.ASCENDING)
-
-    # Sort by awardwinner
-    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
-        pagination_pc_games.sort("awardwinner", pymongo.DESCENDING)
-
-    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
-        pagination_pc_games.sort("awardwinner", pymongo.ASCENDING)
-
-    # Sort by favourite
-    elif navSelect1 == "favourite" and navSelect2 == "desc":
-        pagination_pc_games.sort("favourite", pymongo.DESCENDING)
-
-    elif navSelect1 == "favourite" and navSelect2 == "asc":
-        pagination_pc_games.sort("favourite", pymongo.ASCENDING)
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "games-rpg.html", pc_games=pagination_pc_games,
-        pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2,
-        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
-        rand_game_3=rand_game_3, navGameData=navGameData,
-        gameData=gameData)
+@app.route("/rpg-games", methods=["POST", "GET"])
+def rpg_games():
+    genre = "rpg"
+    return redirect(url_for("games", genre=genre))
 
 
-# ============================
-# Games Sort Filter - Strategy
-# ============================
+# =====================
+# Game Genre - Strategy
+# =====================
 
-@app.route("/setcookie/strategy", methods=["GET", "POST"])
-def setcookie_strategy():
-    if request.method == "POST":
-        cookie1 = request.form.get("navSelect1").lower()
-        cookie2 = request.form.get("navSelect2").lower()
-
-        resp = make_response(redirect(url_for("strategy_games")))
-        resp.set_cookie("navSelect1", cookie1)
-        resp.set_cookie("navSelect2", cookie2)
-
-        return resp
-
-
-# ===================
-# Strategy Games
-# ===================
-
-@app.route("/strategy-games", methods=["GET", "POST"])
+@app.route("/strategy-games", methods=["POST", "GET"])
 def strategy_games():
-    # Find games
-    pc_games = mongo.db.all_pc_games.find(
-        {
-            "$or": [
-                {"strategy": True},
-                {"game_top_tags": "Strategy"}
-            ]
-        }
-    )
-
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab game data for autocomplete function
-    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 6
-    offset = ((page - 1) * per_page)
-
-    total = pc_games.count()
-    pagination_pc_games = pc_games[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Find site favourites
-    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
-
-    # Sort filter
-
-    cookie1 = request.cookies.get("navSelect1")
-    cookie2 = request.cookies.get("navSelect2")
-
-    if cookie1 is None and cookie2 is None:
-        navSelect1 = "default"
-        navSelect2 = "desc"
-    else:
-        navSelect1 = cookie1
-        navSelect2 = cookie2
-
-    # Sort by Likes
-
-    if navSelect1 == "likes" and navSelect2 == "desc":
-        pagination_pc_games.sort("likes", pymongo.DESCENDING)
-
-    elif navSelect1 == "likes" and navSelect2 == "asc":
-        pagination_pc_games.sort("likes", pymongo.ASCENDING)
-
-    # Sort by game title
-    elif navSelect1 == "title" and navSelect2 == "desc":
-        pagination_pc_games.sort("game_title", pymongo.DESCENDING)
-
-    elif navSelect1 == "title" and navSelect2 == "asc":
-        pagination_pc_games.sort("game_title", pymongo.ASCENDING)
-
-    # Sort by bestseller
-    elif navSelect1 == "bestseller" and navSelect2 == "desc":
-        pagination_pc_games.sort("bestseller", pymongo.DESCENDING)
-
-    elif navSelect1 == "bestseller" and navSelect2 == "asc":
-        pagination_pc_games.sort("bestseller", pymongo.ASCENDING)
-
-    # Sort by awardwinner
-    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
-        pagination_pc_games.sort("awardwinner", pymongo.DESCENDING)
-
-    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
-        pagination_pc_games.sort("awardwinner", pymongo.ASCENDING)
-
-    # Sort by favourite
-    elif navSelect1 == "favourite" and navSelect2 == "desc":
-        pagination_pc_games.sort("favourite", pymongo.DESCENDING)
-
-    elif navSelect1 == "favourite" and navSelect2 == "asc":
-        pagination_pc_games.sort("favourite", pymongo.ASCENDING)
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "games-strategy.html", pc_games=pagination_pc_games,
-        pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2,
-        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
-        rand_game_3=rand_game_3, navGameData=navGameData,
-        gameData=gameData)
+    genre = "strategy"
+    return redirect(url_for("games", genre=genre))
 
 
-# ===============================
-# Games Sort Filter - Multiplayer
-# ===============================
+# ========================
+# Game Genre - Multiplayer
+# ========================
 
-@app.route("/setcookie/multiplayer", methods=["GET", "POST"])
-def setcookie_multiplayer():
-    if request.method == "POST":
-        cookie1 = request.form.get("navSelect1").lower()
-        cookie2 = request.form.get("navSelect2").lower()
-
-        resp = make_response(redirect(url_for("multiplayer_games")))
-        resp.set_cookie("navSelect1", cookie1)
-        resp.set_cookie("navSelect2", cookie2)
-
-        return resp
-
-
-# ===================
-# Multiplayer Games
-# ===================
-
-@app.route("/multiplayer-games", methods=["GET", "POST"])
+@app.route("/multiplayer-games", methods=["POST", "GET"])
 def multiplayer_games():
-    # Find games
-    pc_games = mongo.db.all_pc_games.find(
-        {
-            "$or": [
-                {"multiplayer": True},
-                {"game_top_tags": "Multiplayer"}
-            ]
-        }
-    )
+    genre = "multiplayer"
+    return redirect(url_for("games", genre=genre))
 
+
+# =====
+# Games
+# =====
+
+@app.route("/games/<genre>", methods=["GET", "POST"])
+def games(genre):
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Grab game data for autocomplete function
     gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 6
-    offset = ((page - 1) * per_page)
-
-    total = pc_games.count()
-    pagination_pc_games = pc_games[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Find site favourites
-    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
-
-    # Sort filter
-
-    cookie1 = request.cookies.get("navSelect1")
-    cookie2 = request.cookies.get("navSelect2")
-
-    if cookie1 is None and cookie2 is None:
-        navSelect1 = "default"
-        navSelect2 = "desc"
-    else:
-        navSelect1 = cookie1
-        navSelect2 = cookie2
-
-    # Sort by Likes
-
-    if navSelect1 == "likes" and navSelect2 == "desc":
-        pagination_pc_games.sort("likes", pymongo.DESCENDING)
-
-    elif navSelect1 == "likes" and navSelect2 == "asc":
-        pagination_pc_games.sort("likes", pymongo.ASCENDING)
-
-    # Sort by game title
-    elif navSelect1 == "title" and navSelect2 == "desc":
-        pagination_pc_games.sort("game_title", pymongo.DESCENDING)
-
-    elif navSelect1 == "title" and navSelect2 == "asc":
-        pagination_pc_games.sort("game_title", pymongo.ASCENDING)
-
-    # Sort by bestseller
-    elif navSelect1 == "bestseller" and navSelect2 == "desc":
-        pagination_pc_games.sort("bestseller", pymongo.DESCENDING)
-
-    elif navSelect1 == "bestseller" and navSelect2 == "asc":
-        pagination_pc_games.sort("bestseller", pymongo.ASCENDING)
-
-    # Sort by awardwinner
-    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
-        pagination_pc_games.sort("awardwinner", pymongo.DESCENDING)
-
-    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
-        pagination_pc_games.sort("awardwinner", pymongo.ASCENDING)
-
-    # Sort by favourite
-    elif navSelect1 == "favourite" and navSelect2 == "desc":
-        pagination_pc_games.sort("favourite", pymongo.DESCENDING)
-
-    elif navSelect1 == "favourite" and navSelect2 == "asc":
-        pagination_pc_games.sort("favourite", pymongo.ASCENDING)
 
     # Set carousel images
     random_games = mongo.db.all_pc_games.aggregate([
@@ -1253,21 +613,117 @@ def multiplayer_games():
     rand_game_2 = rand_games[1]
     rand_game_3 = rand_games[2]
 
+    # Get game results
+    if genre == "all-games":
+        game_results = mongo.db.all_pc_games.find()
+    elif genre == "action":
+        game_results = mongo.db.all_pc_games.find(
+            {"$or": [{"action": True}, {"game_top_tags": "Action"}]})
+    elif genre == "adventure":
+        game_results = mongo.db.all_pc_games.find(
+            {"$or": [{"adventure": True}, {"game_top_tags": "Adventure"}]})
+    elif genre == "rpg":
+        game_results = mongo.db.all_pc_games.find(
+            {"$or": [{"RPG": True}, {"game_top_tags": "RPG"}]})
+    elif genre == "strategy":
+        game_results = mongo.db.all_pc_games.find(
+            {"$or": [{"strategy": True}, {"game_top_tags": "Strategy"}]})
+    elif genre == "multiplayer":
+        game_results = mongo.db.all_pc_games.find(
+            {"$or": [{"multiplayer": True}, {"game_top_tags": "Multiplayer"}]})
+
+    # Pagination
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 6
+    offset = ((page - 1) * per_page)
+
+    total = game_results.count()
+    pagination_games = game_results[offset: offset + per_page]
+
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='materialize')
+
+    # Find site favourites
+    favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
+
+    # Sort filter
+    cookie1 = request.cookies.get("navSelect1")
+    cookie2 = request.cookies.get("navSelect2")
+
+    if cookie1 is None and cookie2 is None:
+        navSelect1 = "default"
+        navSelect2 = "desc"
+    else:
+        navSelect1 = cookie1
+        navSelect2 = cookie2
+
+    # Sort by Likes
+
+    if navSelect1 == "likes" and navSelect2 == "desc":
+        pagination_games.sort("likes", pymongo.DESCENDING)
+
+    elif navSelect1 == "likes" and navSelect2 == "asc":
+        pagination_games.sort("likes", pymongo.ASCENDING)
+
+    # Sort by game title
+    elif navSelect1 == "title" and navSelect2 == "desc":
+        pagination_games.sort("game_title", pymongo.DESCENDING)
+
+    elif navSelect1 == "title" and navSelect2 == "asc":
+        pagination_games.sort("game_title", pymongo.ASCENDING)
+
+    # Sort by bestseller
+    elif navSelect1 == "bestseller" and navSelect2 == "desc":
+        pagination_games.sort("bestseller", pymongo.DESCENDING)
+
+    elif navSelect1 == "bestseller" and navSelect2 == "asc":
+        pagination_games.sort("bestseller", pymongo.ASCENDING)
+
+    # Sort by awardwinner
+    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
+        pagination_games.sort("awardwinner", pymongo.DESCENDING)
+
+    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
+        pagination_games.sort("awardwinner", pymongo.ASCENDING)
+
+    # Sort by favourite
+    elif navSelect1 == "favourite" and navSelect2 == "desc":
+        pagination_games.sort("favourite", pymongo.DESCENDING)
+
+    elif navSelect1 == "favourite" and navSelect2 == "asc":
+        pagination_games.sort("favourite", pymongo.ASCENDING)
+
     return render_template(
-        "games-multiplayer.html", pc_games=pagination_pc_games,
-        pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2,
-        rand_game_1=rand_game_1, rand_game_2=rand_game_2,
-        rand_game_3=rand_game_3, navGameData=navGameData,
-        gameData=gameData)
+        "games.html", navGameData=navGameData,
+        gameData=gameData, rand_game_1=rand_game_1,
+        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
+        games=pagination_games, pagination=pagination,
+        favourites=favourites, navSelect1=navSelect1,
+        navSelect2=navSelect2)
 
 
 # ===================
 # Award Winner Games
 # ===================
 
-@app.route("/awardwinner-games", methods=["GET", "POST"])
+@app.route("/games/awardwinners", methods=["GET", "POST"])
 def awardwinner_games():
+    # Set carousel images
+    random_games = mongo.db.all_pc_games.aggregate([
+        {"$match": {"favourite": True}},
+        {"$sample": {"size": 3}}
+    ])
+
+    rand_games = []
+    for game in random_games:
+        rand_games.append(game)
+
+    rand_game_1 = rand_games[0]
+    rand_game_2 = rand_games[1]
+    rand_game_3 = rand_games[2]
+
     # Find games
     pc_games = mongo.db.all_pc_games.find({"awardwinner": True})
 
@@ -1278,7 +734,6 @@ def awardwinner_games():
     gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Pagination
-
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 6
@@ -1294,72 +749,9 @@ def awardwinner_games():
     # Find site favourites
     favourites = list(mongo.db.all_pc_games.find({"favourite": True}))
 
-    # Sort filter
-
-    cookie1 = request.cookies.get("navSelect1")
-    cookie2 = request.cookies.get("navSelect2")
-
-    if cookie1 is None and cookie2 is None:
-        navSelect1 = "default"
-        navSelect2 = "desc"
-    else:
-        navSelect1 = cookie1
-        navSelect2 = cookie2
-
-    # Sort by Likes
-
-    if navSelect1 == "likes" and navSelect2 == "desc":
-        pagination_pc_games.sort("likes", pymongo.DESCENDING)
-
-    elif navSelect1 == "likes" and navSelect2 == "asc":
-        pagination_pc_games.sort("likes", pymongo.ASCENDING)
-
-    # Sort by game title
-    elif navSelect1 == "title" and navSelect2 == "desc":
-        pagination_pc_games.sort("game_title", pymongo.DESCENDING)
-
-    elif navSelect1 == "title" and navSelect2 == "asc":
-        pagination_pc_games.sort("game_title", pymongo.ASCENDING)
-
-    # Sort by bestseller
-    elif navSelect1 == "bestseller" and navSelect2 == "desc":
-        pagination_pc_games.sort("bestseller", pymongo.DESCENDING)
-
-    elif navSelect1 == "bestseller" and navSelect2 == "asc":
-        pagination_pc_games.sort("bestseller", pymongo.ASCENDING)
-
-    # Sort by awardwinner
-    elif navSelect1 == "awardwinner" and navSelect2 == "desc":
-        pagination_pc_games.sort("awardwinner", pymongo.DESCENDING)
-
-    elif navSelect1 == "awardwinner" and navSelect2 == "asc":
-        pagination_pc_games.sort("awardwinner", pymongo.ASCENDING)
-
-    # Sort by favourite
-    elif navSelect1 == "favourite" and navSelect2 == "desc":
-        pagination_pc_games.sort("favourite", pymongo.DESCENDING)
-
-    elif navSelect1 == "favourite" and navSelect2 == "asc":
-        pagination_pc_games.sort("favourite", pymongo.ASCENDING)
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
     return render_template(
         "games-awardwinners.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
-        navSelect1=navSelect1, navSelect2=navSelect2,
         rand_game_1=rand_game_1, rand_game_2=rand_game_2,
         rand_game_3=rand_game_3, navGameData=navGameData,
         gameData=gameData)

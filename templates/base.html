@@ -66,7 +66,7 @@
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
                         <li>
-                            <a href="{{ url_for('pc_games') }}" class="dropdown-trigger nav-dropdown-trigger" 
+                            <a href="{{ url_for('all_games') }}" class="dropdown-trigger nav-dropdown-trigger" 
                             data-target="GenreDropdown">Genre</a>
                         </li>
                     </ul>
@@ -97,7 +97,7 @@
         <ul class="dropdown-content" id="GenreDropdown">
             <li><a href="{{ url_for('action_games') }}">Action</a></li>
             <li><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
-            <li><a href="{{ url_for('RPG_games') }}">RPG</a></li>
+            <li><a href="{{ url_for('rpg_games') }}">RPG</a></li>
             <li><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
             <li><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
         </ul>
@@ -137,13 +137,14 @@
             <li><a href="{{ url_for('request_game') }}">Request A Game</a></li>
             <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
             <li>
-                <a href="{{ url_for('pc_games') }}">All Games</a>
+                <a href="{{ url_for('all_games') }}">All Games</a>
                 <ul>
                     <li class="mobile-sidenav-genreLink"><a href="{{ url_for('action_games') }}">Action</a></li>
                     <li class="mobile-sidenav-genreLink"><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
-                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('RPG_games') }}">RPG</a></li>
+                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('rpg_games') }}">RPG</a></li>
                     <li class="mobile-sidenav-genreLink"><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
                     <li class="mobile-sidenav-genreLink"><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
+                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('awardwinner_games') }}">Award Winners</a></li>
                 </ul>
             </li>
             <li><a href="{{ url_for('reviews') }}">Community Reviews</a></li>

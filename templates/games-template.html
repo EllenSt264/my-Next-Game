@@ -64,7 +64,7 @@
                                 <div class="items">
                                     <li class="tab"><a href="{{ url_for('action_games') }}">Action</a></li>
                                     <li class="tab"><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
-                                    <li class="tab"><a href="{{ url_for('RPG_games') }}">RPG</a></li>
+                                    <li class="tab"><a href="{{ url_for('rpg_games') }}">RPG</a></li>
                                     <li class="tab"><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
                                     <li class="tab"><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
                                 </div>
@@ -88,7 +88,7 @@
                 <!-- All games link -->
                 <div class="nav-content my-nav-extend"> 
                     <ul class="tabs">
-                        <li class="tab"><a href="{{ url_for('pc_games') }}">All games</a></li>
+                        <li class="tab"><a href="{{ url_for('all_games') }}">All games</a></li>
                     </ul>
                 </div>
 
@@ -99,10 +99,10 @@
         <!-- Mobile side nav -->
         <ul class="sidenav" id="secondary-sidenav">
             <li><a href="#!" class="sidenav-close right"><i class="material-icons white-text" style="margin: 0;">close</i></a></li>
-            <li><a href="{{ url_for('pc_games') }}">All Games</a></li>
+            <li><a href="{{ url_for('all_games') }}">All Games</a></li>
             <li><a href="{{ url_for('action_games') }}">Action</a></li>
             <li><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
-            <li><a href="{{ url_for('RPG_games') }}">RPG</a></li>
+            <li><a href="{{ url_for('rpg_games') }}">RPG</a></li>
             <li><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
             <li><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
             <li><a href="{{ url_for('awardwinner_games') }}">Award Winners</a></li>
