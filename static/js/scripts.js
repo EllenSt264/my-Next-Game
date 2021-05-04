@@ -70,6 +70,8 @@ $(document).ready(function () {
         endingTop: "25%"
     });
 
+    $('#requestGame-confirmation').modal('open')
+
     /* To trigger Materialize tooltip on mouse click, rather than hover,
         I used the following source:
         "https://stackoverflow.com/questions/42524435/materialize-css-tooltip-shows-only-when-onclick" */

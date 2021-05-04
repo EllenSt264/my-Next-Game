@@ -30,7 +30,7 @@
                     </div>
                     <!-- Submit -->
                     <div class="row center-align">
-                        <button type="submit" class="btn btn-large waves-effect waves-light">
+                        <button type="submit" class="btn btn-large waves-effect waves-light modal-trigger">
                             Request Game
                         </button>
                     </div>
@@ -47,5 +47,8 @@
             </div>
         </form>
     </div>
+
+    {% block modal %}
+    {% endblock %}
 
 {% endblock %}

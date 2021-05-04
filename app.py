@@ -2,13 +2,16 @@
     ** Attribution:
 
     * Adding Pagination:
-    "https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9"#
+    "https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9"
 
     * Finding all the values of a specific key within a collection:
     "https://stackoverflow.com/questions/34861949/how-to-find-all-values-for-a-specific-key-in-pymongo"
 
     * Redirecting users back to the same page:
     "https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission/41272173"
+
+    * Getting the previous URL with Flask:
+    "https://stackoverflow.com/questions/39777171/how-to-get-the-previous-url-in-flask"
 
     * Returning a random document from MongoDB collection:
     "https://stackoverflow.com/questions/2824157/random-record-from-mongodb"
@@ -39,6 +42,8 @@
 import os
 import datetime
 import random
+import string
+from flask.templating import render_template_string
 import requests
 from bs4 import BeautifulSoup
 from flask import (
@@ -332,7 +337,7 @@ def admin_add_to_db():
 # Admin Controls - Game Queue
 # ===========================
 
-@app.route("/admin/update-queue")
+@app.route("/admin/game-queue")
 def admin_game_queue():
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
@@ -1017,60 +1022,142 @@ def request_game():
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
+    # Post game request
     if request.method == "POST":
+        game_request = request.form.get("game-request").lower()
+
+        # Deconstruct the string so that it's suitable for the url
+        request_str = game_request.translate(str.maketrans(
+            '', '', string.punctuation))
+        request_str = request_str.replace(" ", "+")
+
+        link = ""
+
+        # Search for string on the Steam Store website
+        base_url = "https://store.steampowered.com/search/?term="
+        url = base_url + request_str
+
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        # -------------------------------------------------- Game Links
+        try:
+            a = soup.find(
+                'a', {'class': 'search_result_row ds_collapse_flag'})['href']
+
+            split_href = a.split("?")
+            link = split_href[0]
+
+            title = soup.find("span", {"class": "title"}).text
+
+        except TypeError:
+            link = "no results"
+
+        # If the game does not exist on Steam
+        if link == "no results":
+            flash(
+                "Sorry, we can't find any results for '{}'".format(
+                    game_request.title()))
+
+        # Otherwise add game request to db
+        else:
+            return redirect(url_for(
+                "confirm_request", game_request=game_request,
+                title=title))
+
+    return render_template("request_form.html", navGameData=navGameData)
+
+
+# ======================
+# Request A Game - Modal
+# ======================
+
+@app.route("/request-a-game/request=<game_request>/found=<title>", methods=["GET", "POST"])
+def confirm_request(game_request, title):
+    # Grab game data for autocomplete function in navbar
+    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+
+    if request.method == "POST":
+        # -------------------------------------------------- Get Steam Link
+
+        # Deconstruct the string so that it's suitable for the url
+        game_request.lower()
+        request_str = game_request.translate(str.maketrans(
+            '', '', string.punctuation))
+        request_str = request_str.replace(" ", "+")
+
+        link = ""
+
+        # Search for string on the Steam Store website
+        base_url = "https://store.steampowered.com/search/?term="
+        url = base_url + request_str
+
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        a = soup.find(
+            'a', {'class': 'search_result_row ds_collapse_flag'})['href']
+
+        split_href = a.split("?")
+        link = split_href[0]
+
+        # -------------------------------------------------- Update DB
+
         # Grab session user's username
         user = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
 
-        # Grab session user's email
-        user_email = mongo.db.users.find_one(
-            {"username": session["user"]})["email"]
+        # Check if game request already exisit in db
+        exisiting_game = mongo.db.all_pc_games.find_one({"game_link": link})
 
-        # Grab account details from form inputs
-        username = request.form.get("username").lower()
-        email = request.form.get("email").lower()
+        # Check if game has already been requested
+        existing_request = mongo.db.game_requests.find_one(
+            {"game_request": title})
 
-        # Check if email and username match the db
-        if (username == user) and (email == user_email):
-            # Check if game request already exists in db
-            existing_request = mongo.db.game_requests.find_one(
-                {"game_request": request.form.get("game-request").lower()})
-
-            # Check if current user has already requested this game
-            if existing_request is not None:
-                has_user_requested = existing_request["requested_by"]
-
-                # Block users from requesting the same game
-                if user in has_user_requested:
-                    flash("You've already submitted a request for this game")
-                    return redirect(url_for("request_game"))
-
-                # Update existing game request with session user's username
-                if existing_request:
-                    # Find id of document
-                    request_id = existing_request["_id"]
-                    # Update existing document
-                    mongo.db.game_requests.update_one(
-                        {"_id": request_id}, {"$push": {"requested_by": username}})
-
-                    flash("You Request Has Been Submitted")
-                    return redirect(url_for("home"))
-
-            # Else add new document
-            game = {
-                "game_request": request.form.get("game-request").lower(),
-                "requested_by": [username]
-            }
-            mongo.db.game_requests.insert_one(game)
-
-            flash("Your Request Has Been Submitted")
-            return redirect(url_for("home"))
-
-        else:
-            flash("Details Incorrect")
+        if exisiting_game:
+            flash("Error! '{}' already exists in our database".format(title))
             return redirect(url_for("request_game"))
 
-    return render_template("request_form.html", navGameData=navGameData)
+        if existing_request is not None:
+            has_user_requested = existing_request["requested_by"]
+
+            # Block users from requesting the same game
+            if user in has_user_requested:
+                flash(
+                    "You've already submitted a request for '{}'. Don't worry, we haven't forgot about it!".format(title))
+                return redirect(url_for("request_game"))
+
+            # Update existing game request with session user's username
+            if existing_request:
+                # Find id of document
+                request_id = existing_request["_id"]
+                # Update existing document
+                mongo.db.game_requests.update_one(
+                    {"_id": request_id},
+                    {"$push": {"requested_by": user}})
+
+                flash(
+                    "Thanks! We've Submitted your Request for '{}'".format(title))
+                return redirect(url_for("home"))
+
+        # Else add new document
+        game = {
+            "game_request": title,
+            "game_link": link,
+            "requested_by": [user]
+        }
+        mongo.db.game_requests.insert_one(game)
+
+        flash(
+            "Thanks! We've Submitted your Request for '{}'".format(
+                game_request.title()))
+        return redirect(url_for("home"))
+
+    return render_template(
+        "request_form-modal.html", navGameData=navGameData,
+        game_request=game_request, title=title)
 
 
 # =============================
