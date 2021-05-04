@@ -158,7 +158,7 @@ def search(query):
         css_framework='materialize')
 
     return render_template(
-        "games-search_results.html", games=pagination_games,
+        "search_results.html", games=pagination_games,
         pagination=pagination, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
         navGameData=navGameData, gameData=gameData)
@@ -1070,7 +1070,7 @@ def request_game():
             flash("Details Incorrect")
             return redirect(url_for("request_game"))
 
-    return render_template("games-request_form.html", navGameData=navGameData)
+    return render_template("request_form.html", navGameData=navGameData)
 
 
 # =============================
@@ -2276,7 +2276,7 @@ def submit_review():
     gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     return render_template(
-        "games-review_form.html", navGameData=navGameData,
+        "reviews-review_form.html", navGameData=navGameData,
         gameData=gameData)
 
 
@@ -2398,7 +2398,7 @@ def edit_review(game_id):
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     return render_template(
-        "games-edit_review.html", game=game, review=review,
+        "reviews-edit_review.html", game=game, review=review,
         navGameData=navGameData)
 
 
