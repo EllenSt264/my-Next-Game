@@ -326,7 +326,7 @@ def admin_add_to_queue(request_id):
 
                 if in_queue:
                     flash("'{}' Already In Waiting List".format(game_request["game_request"]))
-                    return redirect(url_for("admin_add_to_db"))
+                    return redirect(url_for("admin_user_requests"))
 
                 if existing_game:
                     flash("'{}' Already Exists in Our Database".format(game_request["game_request"]))
@@ -417,10 +417,11 @@ def admin_update_db():
                 # Update DB
                 for k, v in custom_games.items():
                     game = v
-                    title = game["game_title"]
+                    link = game["game_link"]
+                    print(link)
 
                     existing_game = mongo.db.all_pc_games.find_one(
-                        {"game_title": title})
+                        {"game_link": link})
 
                 if not existing_game:
                     mongo.db.all_pc_games.insert_one(game)
