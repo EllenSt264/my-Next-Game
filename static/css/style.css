@@ -1722,6 +1722,19 @@ label[for]:hover {
     line-height: 30px;
 }
 
+#gameRequests-card .btn {
+    width: 46px;
+    height: 40px;
+}
+#gameRequests-card .btn i {
+    text-align: center;
+    font-size: 18px;
+    line-height: 38px;
+}
+#gameRequests-card .btn i.fa-plus-circle {
+    font-size: 22px;
+}
+
 /* ---------------------------------------------- Profile */
 
 #Profile {
@@ -2459,6 +2472,15 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1815px) {
+    #userRequests .offset-l3 {
+        margin-left: 12%;
+    }
+    #userRequests-outerCard {
+        width: 75vw;
+    }
+}
+
 @media (max-width: 1795px) and (min-width: 992px) {
     #gameCard1,
     #gameCard2 {
@@ -3190,6 +3212,9 @@ label[for]:hover {
     #ProfileSidePanel h6 {
         text-align: right;
     }
+    #gameRequests-card .btns {
+        text-align: right;
+    }
 }
 
 @media(max-width: 992px) {
@@ -3328,6 +3353,9 @@ label[for]:hover {
     #visitProfiles .profile-game-btn .btn-large {
         font-size: 14px;
     }
+    #gameRequests-card .btns {
+        text-align: left;
+    }
 }
 
 @media (max-width: 992px) and (min-width: 510px) {
@@ -3428,6 +3456,15 @@ label[for]:hover {
     #homepageBtns .btn-large {
         font-size: 13px;
         padding: 0 15px;
+    }
+}
+
+@media (max-width: 685px) {
+    #userRequests .offset-l3 {
+        margin-left: 6%;
+    }
+    #userRequests-outerCard {
+        width: 85vw;
     }
 }
 
@@ -3786,6 +3823,28 @@ label[for]:hover {
     }
     #visitProfiles .btn-large i {
         padding-right: 0;
+    }
+}
+
+@media (max-width: 525px) {
+    #userRequests {
+        margin-top: 0;
+    }
+    #userRequests h3 {
+        font-size: 36px;
+    }
+    #userRequests #importantNotice {
+        font-size: 16px;
+    }
+    #userRequests img {
+        width: 80px;
+        height: 80px;
+    }
+    #userRequests .offset-l3 {
+        margin-left: 0;
+    }
+    #userRequests-outerCard {
+        width: 96vw;
     }
 }
 

@@ -260,16 +260,52 @@ def home():
         navGameData=navGameData)
 
 
-# ==========================
-# Admin Controls - Add to DB
-# ==========================
+# =============================
+# Admin Controls - See Requests
+# =============================
 
-@app.route("/admin/add-to-db", methods=["GET", "POST"])
-def admin_add_to_db():
+@app.route("/admin/user-requests", methods=["GET", "POST"])
+def admin_user_requests():
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
+    user_requests = mongo.db.game_requests.find()
+
     if request.method == "POST":
+        session["navSelect1"] = request.form.get("navSelect1").lower()
+        session["navSelect2"] = request.form.get("navSelect2").lower()
+
+    navSelect1 = session["navSelect1"]
+    navSelect2 = session["navSelect2"]
+
+    # Sort filter
+
+    if navSelect1 == "title" and navSelect2 == "desc":
+        user_requests.sort("game_request", pymongo.DESCENDING)
+
+    elif navSelect1 == "title" and navSelect2 == "asc":
+        user_requests.sort("requested_by", pymongo.ASCENDING)
+
+    elif navSelect1 == "user-count" and navSelect2 == "desc":
+        user_requests.sort("requested_by", pymongo.DESCENDING)
+
+    elif navSelect1 == "user-count" and navSelect2 == "asc":
+        user_requests.sort("game_request", pymongo.ASCENDING)
+
+    return render_template(
+        "admin-user_requests.html", user_requests=user_requests,
+        navSelect1=navSelect1, navSelect2=navSelect2, navGameData=navGameData)
+
+
+# =============================
+# Admin Controls - Add To Queue
+# =============================
+
+@app.route("/admin/user-requests/add-to-queue/<request_id>", methods=["GET", "POST"])
+def admin_add_to_queue(request_id):
+    if request.method == "POST":
+        game_request = mongo.db.game_requests.find_one({"_id": ObjectId(request_id)})
+
         user = mongo.db.users.find_one({"username": session["user"]})
 
         # Check if passwords match
@@ -280,57 +316,37 @@ def admin_add_to_db():
             # Check password
             if check_password_hash(user["password"], password):
 
-                # Check if game link exisits in admin col
-                existing_link = mongo.db.admin_game_links.find_one(
-                    {"link": request.form.get("game-link")})
+                # Check if game already exisits in queue
+                in_queue = mongo.db.game_queue.find_one(
+                    {"game_link": game_request["game_link"]})
 
-                # Grab full game title
-                def get_full_title():
-                    url = request.form.get("game-link")
-                    cookies = {
-                        "birthtime": "786240001",
-                        "lastagecheckage": "1-0-1995"
-                    }
-                    source = requests.get(url, cookies=cookies)
-                    soup = BeautifulSoup(source.text, "html.parser")
-
-                    # ------------------------------ Game title
-                    for item in soup.select(
-                            ".page_title_area.game_title_area"):
-                        for title in item.select(".apphub_AppName"):
-                            global game_title
-                            game_title = (title.text)
-
-                get_full_title()
-
-                # Check if game already exists in games col
+                # Check if game already exisits in games col
                 existing_game = mongo.db.all_pc_games.find_one(
-                    {"game_title": game_title})
+                    {"game_link": game_request["game_link"]})
 
-                if existing_link:
-                    flash("Game Already In Waiting List")
+                if in_queue:
+                    flash("'{}' Already In Waiting List".format(game_request["game_request"]))
                     return redirect(url_for("admin_add_to_db"))
 
                 if existing_game:
-                    flash("Game Already Exists in Our Database")
-                    return redirect(url_for("admin_add_to_db"))
-
+                    flash("'{}' Already Exists in Our Database".format(game_request["game_request"]))
+                    return redirect(url_for("admin_user_requests"))
+                
                 # Otherwise add to db
                 game = {
-                    "link": request.form.get("game-link"),
+                    "game_title": game_request["game_request"],
+                    "game_link": game_request["game_link"],
                     "category": request.form.getlist("category")
                 }
-                mongo.db.admin_game_links.insert_one(game)
-                flash("Succesfully Added Data")
-                return redirect(url_for("admin_add_to_db"))
+                mongo.db.game_queue.insert_one(game)
+                flash("Succesfully Added '{}' To Queue".format(game_request["game_request"]))
+                return redirect(url_for("admin_user_requests"))
             else:
                 flash("Details Invalid")
-                return redirect(url_for("admin_add_to_db"))
+                return redirect(url_for("admin_user_requests"))
         else:
             flash("Details Invalid")
-            return redirect(url_for("admin_add_to_db"))
-
-    return render_template("admin-add_game.html", navGameData=navGameData)
+            return redirect(url_for("admin_user_requests"))
 
 
 # ===========================
@@ -342,55 +358,11 @@ def admin_game_queue():
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    # Grab data from db
-    admin_game_links = mongo.db.admin_game_links.find()
-    get_games = mongo.db.admin_game_links.find()
-    get_links = mongo.db.admin_game_links.find()
-    games = mongo.db.all_pc_games.find()
-
-    link_titles = []
-
-    # Split links to get titles
-    for game in get_games:
-        link = game["link"]
-        split_1 = link.split("https://store.steampowered.com/app/")
-        split_1 = split_1[1]
-        split_2 = split_1.split("/")
-
-        for item in split_2:
-            if item == "":
-                continue
-            elif item.isnumeric():
-                continue
-            else:
-                link_titles.append(item)
-
-    titles = []
-    for item in link_titles:
-        titles.append(item.replace("_", " "))
-
-    game_links = []
-    admin_links = []
-
-    matches = []
-
-    for game in games:
-        game_links.append(game["game_link"])
-
-    for link in get_links:
-        admin_links.append(link["link"])
-
-    for game in game_links:
-        for link in admin_links:
-            if game == link:
-                matches.append(game)
-            else:
-                continue
+    games = mongo.db.game_queue.find()
 
     return render_template(
-        "admin-game_queue.html",
-        admin_game_links=admin_game_links, matches=matches,
-        titles=titles, navGameData=navGameData)
+        "admin-game_queue.html", navGameData=navGameData,
+        games=games)
 
 
 # ==========================
@@ -437,43 +409,6 @@ def admin_update_db():
             flash("Details Invalid")
 
     return render_template("admin-update_db.html", navGameData=navGameData)
-
-
-# =============================
-# Admin Controls - See Requests
-# =============================
-
-@app.route("/admin/user-requests", methods=["GET", "POST"])
-def admin_user_requests():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    user_requests = mongo.db.game_requests.find()
-
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
-
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
-
-    # Sort filter
-
-    if navSelect1 == "title" and navSelect2 == "desc":
-        user_requests.sort("game_request", pymongo.DESCENDING)
-
-    elif navSelect1 == "title" and navSelect2 == "asc":
-        user_requests.sort("requested_by", pymongo.ASCENDING)
-
-    elif navSelect1 == "user-count" and navSelect2 == "desc":
-        user_requests.sort("requested_by", pymongo.DESCENDING)
-
-    elif navSelect1 == "user-count" and navSelect2 == "asc":
-        user_requests.sort("game_request", pymongo.ASCENDING)
-
-    return render_template(
-        "admin-user_requests.html", user_requests=user_requests,
-        navSelect1=navSelect1, navSelect2=navSelect2, navGameData=navGameData)
 
 
 # ===============================

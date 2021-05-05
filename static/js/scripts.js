@@ -53,24 +53,28 @@ $(document).ready(function () {
 
     setInterval(function() {
         $('.carousel').carousel('next');
-    }, 8000)
+    }, 8000);
 
     /*  Carousel next arrow */
     $('#carousel-next a').on('click', function() {
         $('.carousel').carousel('next')
-    })
+    });
 
     /*  Carousel prev arrow */
     $('#carousel-prev a').on('click', function() {
         $('.carousel').carousel('prev')
-    })
+    });
 
     /* Modal */
     $('.modal').modal({
         endingTop: "25%"
     });
 
-    $('#requestGame-confirmation').modal('open')
+    $('#requestGame-confirmation').modal('open');
+
+    $('#userRequests .modal').modal({
+        endingTop: "10%"
+    });
 
     /* To trigger Materialize tooltip on mouse click, rather than hover,
         I used the following source:

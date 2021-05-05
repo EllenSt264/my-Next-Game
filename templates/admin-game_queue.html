@@ -18,16 +18,14 @@
         
                 <!-- User game requests -->
                 <div class="card-panel" id="gameRequests-card">
-                    {% if admin_game_links.count() == matches|length %}
+                    {% if games.count() == matches|length %}
                         <h5 class="center-align">No Games Waiting in Queue</h5>
                     {% endif %}
-                    {% for waiting_game, title in admin_game_links|zip(titles) %}
-                        {% if not waiting_game.link in matches %}
-                            <h5>{{title}}</h5>
-                            <h6>{{ waiting_game.link }}</h6>
-                            <p>Categories: <strong>{{ waiting_game.category|join(', ') }}</strong></p>
-                            <div class="divider"></div>
-                        {% endif %}
+                    {% for game in games %}
+                        <h5>{{ game.game_title }}</h5>
+                        <h6>{{ game.game_link }}</h6>
+                        <p>Categories: <strong>{{ game.category|join(', ') }}</strong></p>
+                        <div class="divider"></div>
                     {% endfor %}
                 </div>
             </div>

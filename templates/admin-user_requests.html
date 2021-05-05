@@ -3,7 +3,7 @@
     
     <div class="row admin-form" id="userRequests">
         <div class="col s12 m10 offset-m1 l6 offset-l3">
-            <div class="card-panel blue-grey darken-4 grey-text text-lighten-2">
+            <div class="card-panel blue-grey darken-4 grey-text text-lighten-2" id="userRequests-outerCard">
                 <!-- Logo -->
                 <div class="col s12 center-align">
                     <img src="{{ url_for('static', filename='img/main/odin_logo.png') }}" alt="Website brand logo">
@@ -11,8 +11,7 @@
                 <!-- Title -->
                 <h3 class="text-lighten-1 account-title center-align">User Game Requests</h3>
                 <p class="center-align" id="importantNotice">
-                    Below is a list of all game requests submitted by users. Games that are waiting in the queue, are listed <a
-                        href="{{ url_for('admin_game_queue') }}">here</a>
+                    Below is a list of all game requests submitted by users. Games waiting in the queue, are listed <a href="{{ url_for('admin_game_queue') }}">here</a>
                     <br>
                     If games have already been added, then please remove them. Games that are already added will not be listed in the <a
                         href="{{ url_for('admin_game_queue') }}">Game Queue</a>
@@ -64,7 +63,7 @@
                 <div class="card-panel" id="gameRequests-card">
                     {% for request in user_requests %}
                         <div class="row">
-                            <div class="col s12 m10">
+                            <div class="col s12 m12 l8">
                                 <div class="row">
                                     <!-- Game request title -->
                                     <div class="col s12">
@@ -76,14 +75,82 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col s12 m2" style=" text-align: right;">
-                                <!-- Delete -->
-                                <a href="{{ url_for('admin_remove_request', request_id=request._id) }}" class="btn">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+                            <div class="col s12 m12 l4">
+                                <div class="col s6 m4 l6 btns">
+                                    <!-- Add to Queue -->
+                                    <a href="#userRequest-addToQueue{{loop.index}}" class="btn modal-trigger">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </a>
+                                </div>
+                                <div class="col s6 m4 l6 btns">
+                                    <!-- Delete -->
+                                    <a href="{{ url_for('admin_remove_request', request_id=request._id) }}" class="btn">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="divider"></div>
+
+                        <!-- Modal -->
+                        <div id="userRequest-addToQueue{{loop.index}}" class="modal modal-fixed-footer center-align delete-review">
+                            <!-- Content -->
+                            <form action="{{ url_for('admin_add_to_queue', request_id=request._id) }}" method="POST">
+                                <div class="modal-content white-text">
+                                    <h4>Add <span>"{{ request.game_request }}"</span> To Queue?</h4>
+                                    <h6>
+                                        Please review the <a href="#">Terms and Conditions</a> before any changes are made
+                                    </h6>
+                                     <!-- Game category -->
+                                     <div class="row py-5">
+                                        <div class="input-field col s10 offset-s1">
+                                            <select id="category{{loop.index}}" name="category" multiple required>
+                                                <optgroup label="Genre">
+                                                    <option value="action">Action</option>
+                                                    <option value="adventure">Adventure</option>
+                                                    <option value="RPG">RPG</option>
+                                                    <option value="strategy">Strategy</option>
+                                                    <option value="multiplayer">Multiplayer</option>
+                                                </optgroup>
+                                                <optgroup label="Other">
+                                                    <option value="bestseller">Bestseller</option>
+                                                    <option value="awardwinner">Awardwinner</option>
+                                                    <option value="favourite">Favourite</option>
+                                                </optgroup>
+                                            </select>
+                                            <label for="category{{loop.index}}" style="font-size: 15px;">Game Category</label>
+                                        </div>
+                                    </div>
+                                    <!-- Password -->
+                                    <div class="row">
+                                        <div class="input-field col s10 offset-s1">
+                                            <input id="password{{loop.index}}" name="password" type="password" minlength="6"
+                                            maxlength="15" pattern="^[a-zA-Z0-9]{6,15}$" class="validate" required>
+                                            <label for="password{{loop.index}}">Password</label>
+                                        </div>
+                                    </div>
+                                    <!-- Confirm Password -->
+                                    <div class="row">
+                                        <div class="input-field col s10 offset-s1">
+                                            <input id="confirmPassword{{loop.index}}" name="confirmPassword" type="password" minlength="6"
+                                            maxlength="15" pattern="^[a-zA-Z0-9]{6,15}$" class="validate" required>
+                                            <label for="confirmPassword{{loop.index}}">Confirm Password</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Action buttons -->
+                                <div class="modal-footer center-align">
+                                    <a href="{{ url_for('admin_user_requests') }}" class="modal-close btn-flat">
+                                        No, Cancel
+                                    </a>
+                                    <button type="submit" class="modal-close btn-flat">
+                                        Yes, Add To Queue
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+
                     {% endfor %}
                 </div>
             </div>

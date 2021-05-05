@@ -37,10 +37,10 @@ custom_games = {}
 # ---------------------------------------------------------- GRAB LINKS FROM DB
 
 def grab_links():
-    db = mongo.db.admin_game_links.find()
+    db = mongo.db.game_queue.find()
 
     for i in db:
-        links.append(i["link"])
+        links.append(i["game_link"])
         categories.append(i["category"])
 
 
