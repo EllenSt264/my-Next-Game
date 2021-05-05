@@ -1907,6 +1907,10 @@ label[for]:hover {
     padding: 16px;
 }
 
+#visitProfiles .card.smaller .col.s2 {
+    min-width: 120px;
+}
+
 /* Review button */
 
 .reviewed {
@@ -2124,126 +2128,169 @@ label[for]:hover {
 
 /* ---------------------------------------------- Profile Reviews */
 
-.user-review-card .card-image {
-    padding: 25px;
+#ProfileReviews .card.horizontal img {
+    width: 380px !important; 
+    height: auto; 
+    margin-top: 2px;
 }
 
-.user-review-card .card-title {
-    margin-left: 25px;
+#ProfileReviews .card.smaller img {
+    margin-top: 5px;
 }
 
-.user-review-card .game-title {
-    background-color: #431d5a;
-    width: 100%;
-}
-
-.user-review-card .game-title h5 {
-    margin: 5px 25px; 
-    padding: 5px 24px;
-}
-
-.user-review-card .collapsible,
-.user-review-card .collapsible-header,
-.user-review-card .collapsible-body {
-    border: none;
-    background-color: #431d5a;
-}
-
-/* Taken from the following source: 
-"https://stackoverflow.com/questions/45869545/how-to-remove-the-border-of-a-collapsible-div-li-in-materialize-css" */
-
-.user-review-card .collapsible-header,
-.user-review-card .collapsible-body,
-.user-review-card .collapsible,
-.user-review-card ul.collapsible>li {
-    margin: 0!important;;
-    padding: 0!important;
-    border: 0!important;
-    box-shadow: none!important;
-    background: #431d5a;
-}
-
-.user-review-card .collapsible-header .valign-wrapper {
-    width: 100%;
-}
-
-.dropdown-indicator {
+#ProfileReviews .card.horizontal .card-image .row {
+    margin-top: 15px; 
     text-align: right;
 }
 
-.dropdown-indicator span {
+#ProfileReviews .btns .btn {
+    line-height: 28px;
+    font-size: 16px;
+}
+
+#ProfileReviews .card.horizontal .fa-pen-square,
+#ProfileReviews .card.horizontal .fa-trash {
     font-size: 18px;
 }
 
-.dropdown-indicator i {
-    vertical-align: middle; 
-    margin-bottom: 5px;
+#ProfileReviews .card.horizontal .card-content {
+    padding: 5px 10px 5px 0;
 }
 
-.user-review-card .collapsible-body {
-    background-color: #622d83;
-    box-shadow: none !important;
-    padding: 25px 0;
-    width: inherit;
+#ProfileReviews .card.smaller .card-content {
+    padding: 0 10px 24px;
 }
 
-.review-card-row {
-    margin-bottom: 0;
+#ProfileReviews .card.horizontal .card-title,
+#ProfileReviews .card.smaller .card-image .card-panel {
+    position: relative; 
+    height: 65px; 
+    padding: 20px 5px; 
+    background-color: #431d5a; 
+    border: 1px solid pink;
 }
 
-.review-verdict {
-    height: 80px;
-    margin: 25px; 
-    padding: 15px;
-    background-color: #431d5a;
-}
-
-.review-verdict .card-panel {
-    height: 50px;
-    padding: 5px;
+#ProfileReviews .card.smaller .card-image .row.card-panel {
     margin: 0;
 }
 
-.review-verdict h4 {
-    line-height: 40px;
-    font-size: 28px;
-    margin: 0;
+#ProfileReviews .card.horizontal .positive-review,
+#ProfileReviews .card.smaller .card-image .positive-review {
+    height: 45px; 
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    padding: 0 10px; 
+    margin: 10px 0 0 10px; 
+    background-color: #00b0ff;
 }
 
-.review-verdict i {
+#ProfileReviews .card.horizontal .negative-review,
+#ProfileReviews .card.smaller .card-image .negative-review {
+    height: 45px; 
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    padding: 0 10px; 
+    margin: 10px 0 0 10px;
+    background-color: red;
+}
+
+#ProfileReviews .card.horizontal .positive-review h4,
+#ProfileReviews .card.horizontal .negative-review h4,
+#ProfileReviews .card.smaller .card-image .positive-review h4,
+#ProfileReviews .card.smaller .card-image .negative-review h4 {
+    margin: 0;
+    line-height: 45px;
+}
+
+#ProfileReviews .card.horizontal .submission-date h6,
+#ProfileReviews .card.smaller .submission-date h6 {
+    margin: 0;
+    text-align: right;
+    font-size: 16px;
+}
+
+#ProfileReviews .card.smaller .submission-date h6 {
+    line-height: 35px;
+}
+
+#ProfileReviews .collapsible, {
+    border: none;
+    margin-top: 10px;
+}
+
+#ProfileReviews .collapsible-header {
+    padding-left: 5px; 
+    background-color: #431d5a; 
+    border: 1px solid pink;
+}
+
+#ProfileReviews .collapsible-header .col.s7 {
+    padding: 0; 
+    margin-left: 0;
+}
+
+#ProfileReviews .collapsible-header .col.s7 > p {
+    margin-bottom: 5px; 
+    margin-left: 5px; 
     font-size: 18px;
 }
 
-.submission-date {
-    margin: 0 25px; 
-    padding: 5px; 
-    background-color: #431d5a;
+#ProfileReviews .collapsible-header .row {
+    margin-left: 5px; margin-bottom: 0;
 }
 
-.review-content {
-    background-color: #431d5a;
+#ProfileReviews .collapsible-header .row .col.s6 {
+    padding: 0;
 }
 
-.review-content.last {
-    margin: 5px 0 25px;
+#ProfileReviews .collapsible-header .row .col.s6 > p {
+    margin-top: 5px;
 }
 
-.user-review-card .btn-large {
-    margin: 5px 25px 25px;
+#ProfileReviews .review-stars {
+    position: relative;
+    margin-top: 5px;
 }
 
-.user-review-card .btn-large i {
+#ProfileReviews .read-full-review {
+    text-align: right;
+    padding: 0;
+}
+
+#ProfileReviews .read-full-review span {
+    vertical-align: top; 
+    font-size: 18px;
+}
+
+#ProfileReviews .read-full-review i {
+    margin-right: 0; 
+    height: 15px;
+}
+
+#ProfileReviews .collapsible-body {
+    padding: 5px 10px; 
+    background-color: #431d5a; 
+    border: 1px solid pink; 
+    border-top: 0;
+}
+
+#ProfileReviews .collapsible-body h6 {
+    margin: 5px 0;
+    font-family: "BlenderPro-Medium";
+    text-transform: uppercase;
     font-size: 20px;
 }
 
-.user-review-card .btn-large span {
-    margin-left: 5px;
+#ProfileReviews .collapsible-body .fas {
+    font-size: 16px;
 }
 
-.review-edit-left-btn {
-    margin-left: 25px !important;
+#ProfileReviews .collapsible-body p {
+    font-size: 18px;
+    margin-bottom: 20px;
 }
-
 
 /* ---------------------------------------------- Delete review modal */
 
@@ -2419,6 +2466,12 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1896px) {
+    #ProfileReviews .card.horizontal img {
+        width: 320px !important;
+    }
+}
+
 @media (max-width: 1875px) and (min-width: 992px) {
     .secondary-nav li {
         padding: 0;
@@ -2493,6 +2546,12 @@ label[for]:hover {
     .favourites {
         width: 95%; 
         margin: auto;
+    }
+}
+
+@media (max-width: 1785px) {
+    #ProfileReviews .card.horizontal img {
+        width: 300px !important;
     }
 }
 
@@ -2614,9 +2673,6 @@ label[for]:hover {
     #ProfileGames .card-content {
         padding-left: 0;
     }
-    #ProfileGames .row {
-        padding-left: 10px;
-    }
     .profile-card-inner .horizontal img {
         width: 320px !important;
         height: auto;
@@ -2631,7 +2687,13 @@ label[for]:hover {
     .card.horizontal p {
         font-size: 14px;
     }
-} 
+}
+
+@media (max-width: 1620px) and (min-width: 992px) {
+    #ProfileGames .row {
+        padding-left: 10px;
+    }
+}
 
 @media (max-width: 1605px) {
     .review-card {
@@ -2662,10 +2724,6 @@ label[for]:hover {
     }
     .review-verdict h3 {
         font-size: 32px;
-    }
-    .review-card-row img {
-        width: 400px;
-        height: auto;
     }
     .submission-date h6 {
         font-size: 14px;
@@ -2699,6 +2757,12 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1500px) {
+    #ProfileReviews .card.horizontal img {
+        width: 280px !important;
+    }
+}
+
 @media (max-width: 1493px) and (min-width: 1465px) {
     #visitProfiles .btn-large i {
         padding-right: 0;
@@ -2724,6 +2788,14 @@ label[for]:hover {
     }
     .profile-card-content.horizontal img {
         width: 340px !important;
+        height: auto;
+    }
+}
+
+@media (max-width: 1470px) and (min-width: 1300px) {
+    #Profile-likes img,
+    #visitProfiles-likes img {
+        width: 300px !important;
         height: auto;
     }
 }
@@ -2983,7 +3055,21 @@ label[for]:hover {
     }
 }
 
-@media (max-width: 1182px) and (min-width: 1160px) {
+@media (max-width: 1197px) and (min-width: 1160px) {
+    #Profile-likes img,
+    #visitProfiles-likes img {
+        width: 290px !important;
+        height: auto;
+    }
+}
+
+@media (max-width: 1185px) {
+    #ProfileReviews .card.horizontal img {
+        width: 260px !important;
+    }
+}
+
+@media (max-width: 1182px) and (min-width: 1066px) {
     .card.horizontal .card-action {
         text-align: left;
     }
@@ -2996,6 +3082,12 @@ label[for]:hover {
 @media (max-width: 1180px) and (min-width: 1160px) {
     #visitProfiles .profile-game-btn .btn-large {
         padding: 0 5px;
+    }
+}
+
+@media (max-width: 1094px) and (min-width: 992px) {
+    #ProfileReviews .profile-card-inner {
+        padding: 24px 0;
     }
 }
 
@@ -3283,9 +3375,6 @@ label[for]:hover {
     #ProfileGames .card-content {
         padding: 0 24px;
     }
-    #ProfileGames .row {
-        padding-left: 0;
-    }
     .profile-game-title h5 {
         margin-top: 0;
         margin-left: 20px;
@@ -3339,10 +3428,6 @@ label[for]:hover {
     #reviewCards {
         margin-left: 25%;
     }
-    .review-card-row .game-title h5 {
-        margin-left: 0;
-        padding-left: 0;
-    }
     .play-btns,
     .links-and-review {
         margin-left: 3px !important;
@@ -3355,6 +3440,11 @@ label[for]:hover {
     }
     #gameRequests-card .btns {
         text-align: left;
+    }
+    #Profile-likes .card-action,
+    #visitProfiles-likes .card-action {
+        height: 85px; 
+        text-align: center;
     }
 }
 
@@ -3417,9 +3507,6 @@ label[for]:hover {
 }
 
 @media (max-width: 785px) {
-    .review-card-row img {
-        width: 350px;
-    }
     .review-verdict h3 {
         font-size: 26px;
     }
@@ -3444,9 +3531,6 @@ label[for]:hover {
 }
 
 @media (max-width: 698px) {
-    .review-card-row img {
-        width: 300px;
-    }
     .review-verdict h3 {
         font-size: 22px;
     }
@@ -3488,6 +3572,15 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 654px) {
+    #ProfileReviews .card.smaller .card-image .row {
+        height: 80px;
+    }
+    #ProfileReviews .card.smaller .submission-date h6 {
+        line-height: 20px;
+    }
+}
+
 @media (max-width:640px) {
     .back-font {
         font-size: 50px;
@@ -3503,13 +3596,32 @@ label[for]:hover {
     .secondary-nav #searchbar .input-field {
         width: 400px;
     }
-    .profile-game-btn-sm .btn {
-        padding: 0 10px;
-        font-size: 12px;
+}
+
+@media (max-width: 626px) {
+    #Profile-likes .card-action,
+    #visitProfiles-likes .card-action {
+        height: 125px; 
+        text-align: center;
     }
-    .profile-game-btn-sm i.fa-readme,
-    .profile-game-btn-sm i.fa-pen-alt {
-        font-size: 10px;
+    #Profile-likes .profile-game-btn-sm:nth-child(2),
+    #visitProfiles-likes .profile-game-btn-sm:nth-child(2) {
+        margin-right: 20px;
+    }
+    #Profile-likes .profile-game-btn-sm:first-child,
+    #visitProfiles-likes .profile-game-btn-sm:first-child {
+        margin-left: 5px;
+    }
+    #Profile-likes .profile-game-btn-sm,
+    #visitProfiles-likes .profile-game-btn-sm {
+        min-width: 165px !important;
+        margin-bottom: 15px;
+    }
+    #ProfileReviews .card.smaller .read-full-review span {
+        font-size: 16px;
+    }
+    #ProfileReviews .card.smaller .read-full-review i {
+        width: 10px;
     }
 }
 
@@ -3525,20 +3637,6 @@ label[for]:hover {
         max-height: 36px !important;
         height: 36px !important;
         overflow-y: hidden;
-    }
-}
-
-@media (max-width: 625px) {
-    #visitProfiles .profile-game-btn {
-        max-width: 132px;
-        margin-right: 5px;
-    }
-    #visitProfiles .profile-game-btn .btn-large {
-        padding: 0 10px;
-    }
-    #visitProfiles .profile-game-btn:nth-child(3) {
-        width: 105px;
-        margin-right: 0;
     }
 }
 
@@ -3571,33 +3669,6 @@ label[for]:hover {
         font-size: 13px;
         letter-spacing: 1px;
         line-height: 40px;
-    }
-    .review-card-row .card-image {
-        text-align: center;
-    }
-    .review-card-row img {
-        width: 350px;
-    }
-    .review-card-row .card-image {
-        padding: 15px 5px 5px;
-    }
-    .review-verdict {
-        margin-top: 0;
-    }
-    .review-card-row h5 {
-        font-size: 18px;
-    }
-    .review-card-row .game-title span {
-        font-size: 16px;
-    }
-    .review-edit-left-btn {
-        margin-left: 0 !important;
-    }
-    .review-card-edit-btns {
-        text-align: left;
-    }
-    .review-card-edit-btns .btn {
-        margin: 5px 35px 0;
     }
     #reviewCards {
         margin-left: 5%;
@@ -3673,6 +3744,16 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 585px) {
+    #visitProfiles .profile-game-btn .btn-large {
+        font-size: 13px;
+    }
+    #visitProfiles .profile-game-btn .btn-large i {
+        padding-right: 0;
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 565px) {
     .carousel { 
         min-height: 400px;
@@ -3733,6 +3814,13 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 557px) and (min-width: 552px) {
+    #Profile-likes .profile-game-btn-sm,
+    #visitProfiles-likes  .profile-game-btn-sm {
+        padding: 0;
+    }
+}
+
 @media (min-width: 552px) {
     #ProfileGames .profile-game-btn .btn-large,
     #ProfileGames .reviewed span {
@@ -3752,22 +3840,6 @@ label[for]:hover {
     .card.smaller p {
         font-family: "BlenderPro-Thin";
         font-size: 12px;
-    }
-    .profile-game-btn {
-        margin-right: 25px;
-    }
-    #ProfileGames .profile-game-btn .btn-large {
-        min-width: 101px;
-    }
-    .profile-game-btn-sm {
-        padding: 0 !important;
-    }
-    .profile-game-btn-sm .btn {
-        font-size: 11px;
-    }
-    .profile-game-btn-sm i.fa-readme,
-    .profile-game-btn-sm i.fa-pen-alt {
-        font-size: 8px;
     }
     #visitProfiles .profile-game-btn {
         margin-right: 0;
@@ -3826,6 +3898,15 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 527px) and (min-width: 515px) {
+    #ProfileReviews .card.smaller .collapsible-header .col.s7 p {
+        max-width: 180px;
+    }
+    #ProfileReviews .card.smaller .read-full-review {
+        min-width: 119px;
+    }
+}
+
 @media (max-width: 525px) {
     #userRequests {
         margin-top: 0;
@@ -3858,6 +3939,48 @@ label[for]:hover {
     #visitProfiles .book-icon,
     #visitProfiles .add-icon {
         font-size: 13px;
+    }
+}
+
+@media (max-width: 520px) {
+    #visitProfiles .card-action {
+        padding: 16px 5px;
+    }
+    #visitProfiles .card-action .col.s2 {
+        min-width: 100px !important;
+        float: right;
+    }
+}
+
+@media (min-width: 515px) {
+    .read-full-review-sm {
+        display: none;
+    }
+}
+
+@media (max-width: 514px) {
+    #ProfileReviews .card.smaller .collapsible-header {
+        position: relative;
+        padding-bottom: 50px;
+    }
+    #ProfileReviews .card.smaller .collapsible-header .col.s7 {
+        width: 100%;
+    }
+    #ProfileReviews .card.smaller .read-full-review {
+        display: none;
+    }
+    .read-full-review-sm {
+        position: absolute;
+        top: 85%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 180px !important;
+        padding: 0 !important;
+        font-size: 16px;
+    }
+    .read-full-review-sm i {
+        font-size: 18px;
     }
 }
 
@@ -3910,26 +4033,62 @@ label[for]:hover {
         padding: 0;
         margin-right: 15px;
     }
-    #visitProfiles i {
-        display: none;
+    #ProfileReviews .card.smaller .positive-review,
+    #ProfileReviews .card.smaller .negative-review {
+        margin-left: 5px !important;
+        margin-top: 15px !important;
+    }
+    #ProfileReviews .card.smaller .positive-review h4,
+    #ProfileReviews .card.smaller .negative-review h4 {
+        font-size: 24px;
+        line-height: 15px;
+    }
+    #ProfileReviews .card.smaller .positive-review i,
+    #ProfileReviews .card.smaller .negative-review i {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 495px) {
+    #visitProfiles .card-action {
+        height: 130px;
+    }
+    #visitProfiles .card-action .col.s4 {
+        width: 150px !important;
+    }
+    #visitProfiles .card-action .col.s2 {
+        float: left;
+        margin-top: 10px;
+        margin-left: 13px;
+    }
+    #Profile-likes .profile-game-btn-sm,
+    #visitProfiles-likes .profile-game-btn-sm {
+        min-width: 145px !important;
+    }
+    #Profile-likes .profile-game-btn-sm .btn,
+    #visitProfiles-likes .profile-game-btn-sm .btn {
+        padding: 0 10px;
+    }
+    #Profile-likes .profile-game-btn-sm:nth-child(3),
+    #visitProfiles-likes .profile-game-btn-sm:nth-child(3) {
+        margin-left: 3px;
+    }
+    #Profile-likes .profile-game-btn-sm span,
+    #visitProfiles-likes .profile-game-btn-sm span {
+        font-size: 13px;
+    }
+    #Profile-likes .profile-game-btn-sm i,
+    #visitProfiles-likes .profile-game-btn-sm i {
+        font-size: 14px;
     }
 }
 
 @media (max-width: 480px) {
-    .review-card-row img {
-        width: 300px;
-    }
     .review-card-sticker {
         width: 90px;
         height: 38px;
         top: 2%;
         left: 77%;
-    }
-    .profile-game-btn-sm i {
-        display: none;
-    }
-    #visitProfiles .profile-game-btn .btn-large {
-        max-width: 90px !important;
     }
 }
 
@@ -4015,6 +4174,34 @@ label[for]:hover {
     #visitProfiles .profile-game-btn {
         text-align: center;
     }
+    #ProfileReviews .card.smaller .positive-review h4,
+    #ProfileReviews .card.smaller .negative-review h4 {
+        font-size: 20px;
+    }
+    #ProfileReviews .card.smaller .positive-review i,
+    #ProfileReviews .card.smaller .negative-review i {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 440px) {
+    #Profile-likes .profile-game-btn-sm,
+    #visitProfiles-likes .profile-game-btn-sm {
+        min-width: 130px !important;
+        padding: 0;
+    }
+    #Profile-likes .profile-game-btn-sm .btn,
+    #visitProfiles-likes .profile-game-btn-sm .btn {
+        padding: 0 8px;
+    }
+    #Profile-likes .profile-game-btn-sm i,
+    #Profile-likes .profile-game-btn-sm i.fab.fa-readme,
+    #Profile-likes .profile-game-btn-sm i.fas.fa-pen-alt,
+    #visitProfiles-likes .profile-game-btn-sm i,
+    #visitProfiles-likes .profile-game-btn-sm i.fab.fa-readme,
+    #visitProfiles-likes .profile-game-btn-sm i.fas.fa-pen-alt {
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 436px) {
@@ -4035,9 +4222,6 @@ label[for]:hover {
 }
 
 @media (max-width: 430px) {
-    .review-card-row img {
-        width: 285px;
-    }
     .edit-profile-card .profile-btns a.btn {
         margin: 15px 0;
         padding: 0 8px;
@@ -4073,9 +4257,6 @@ label[for]:hover {
 @media (max-width: 412px) {
     .game-cards.sm-screen-card .card-title {
         height: 45px;
-    }
-    .review-card-row img {
-        width: 250px;
     }
     .remove-btn {
         margin-left: 0;
@@ -4165,8 +4346,29 @@ label[for]:hover {
     #left-review-card {
         margin: 10px 4% !important;
     }
-    .profile-card-inner .card.smaller {
-        width: 110%;
+    #ProfileGames .profile-card-inner .card.smaller,
+    #visitProfiles .profile-card-inner .card.smaller,
+    #Profile-likes .profile-card-inner .card.smaller,
+    #visitProfiles-likes .profile-card-inner .card.smaller {
+        width: 120%;
+        margin-left: -10% !important;
+    }
+    #visitProfiles .card-action .col.s4 {
+        width: 130px !important;
+    }
+    #visitProfiles .card-action .col.s2 {
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 396px) {
+    #ProfileReviews .card.smaller {
+        width: 90vw !important;
+        margin-left: -10%;
+    }
+    #ProfileReviews .card.smaller .submission-date h6 {
+        font-family: "BlenderPro-Thin";
+        font-size: 15px;
     }
 }
 
@@ -4196,9 +4398,8 @@ label[for]:hover {
         width: 100vw;
         margin-left: -10px;
     }
-    .profile-card-inner .card.smaller {
-        width: 115%;
-        right: 4%;
+    #ProfileReviews .card.smaller {
+        margin-left: -8%;
     }
 }
 
@@ -4317,9 +4518,6 @@ label[for]:hover {
         width: 325px !important;
         margin: 10px 5% !important;
     }
-    .review-card-row img {
-        width: 225px;
-    }
     .review-card-sticker {
         left: 68%;
     }
@@ -4356,9 +4554,24 @@ label[for]:hover {
     .profile-btns a.btn {
         margin: 15px 5px;
     }
-    #visitProfiles .btn-large {
-        padding: 0 6px;
-        font-size: 10px;
+    #ProfileGames .card-content {
+        padding: 0 10px;
+    }
+    #ProfileGames .profile-game-btn.delete {
+        margin-left: 15px !important;
+    }
+}
+
+@media (max-width: 340px) {
+    #visitProfiles .card-action .col.s4 {
+        width: 120px !important;
+    }
+    #visitProfiles .card-action .col.s2 {
+        margin-left: 0;
+    }
+    #ProfileReviews .card.smaller {
+        width: 95vw !important;
+        margin-left: -12%;
     }
 }
 
@@ -4393,9 +4606,6 @@ label[for]:hover {
 }
 
 @media (max-width: 330px) {
-    #ProfileGames .profile-game-btn:first-child {
-        margin-right: 65px;
-    }
     #ProfileGames .reviewed {
         margin-top: 15px;
     }
@@ -4416,17 +4626,6 @@ label[for]:hover {
         width: 300px !important;
         margin: 10px 4% !important;
     }
-    .profile-game-btn-sm .btn {
-        padding: 0 8px;
-        font-size: 10px;
-    }
-    .profile-game-btn {
-        margin-right: 0;
-    }
-    .play-btns .profile-game-btn:first-child,
-    .links-and-review .profile-game-btn:first-child {
-        margin-right: 25px;
-    }
 }
 
 @media (max-width: 320px) {
@@ -4436,6 +4635,39 @@ label[for]:hover {
     }
     .leave-review-col {
         padding-right: 0 !important;
+    }
+    #visitProfiles .card-action .col.s4 {
+        width: 115px !important;
+    }
+    #visitProfiles .card-action .col.s2 {
+        min-width: 90px !important;
+        margin-left: 3px;
+    }
+    #visitProfiles .btn-large,
+    #visitProfiles .btn-large span {
+        font-size: 12px;
+    }
+    #visitProfiles .btn-large i {
+        font-size: 13px !important;
+    }
+    #Profile-likes .profile-game-btn-sm,
+    #visitProfiles-likes .profile-game-btn-sm {
+        min-width: 125px !important;
+        padding: 0;
+    }
+    #Profile-likes .profile-game-btn-sm:nth-child(2),
+    #visitProfiles-likes .profile-game-btn-sm:nth-child(2) {
+        margin-right: 0;
+    }
+    #Profile-likes .profile-game-btn-sm i,
+    #visitProfiles-likes .profile-game-btn-sm i {
+        padding-right: 0;
+    }
+    #Profile-likes .profile-game-btn-sm i.fab.fa-readme,
+    #Profile-likes .profile-game-btn-sm i.fas.fa-pen-alt,
+    #visitProfiles-likes .profile-game-btn-sm i.fab.fa-readme,
+    #visitProfiles-likes .profile-game-btn-sm i.fas.fa-pen-alt {
+        font-size: 10px !important;
     }
 }
 
@@ -4468,14 +4700,49 @@ label[for]:hover {
         width: 290px !important;
         margin: 10px 3% !important;
     }
-    .review-card-row img {
-        width: 200px;
+    #Profile-likes .profile-card-inner .card.smaller,
+    #visitProfiles-likes .profile-card-inner .card.smaller {
+        width: 130%;
+        margin-left: -15% !important;
+    }
+    #visitProfiles .card-action .col.s4 {
+        width: 110px !important;
+    }
+    #visitProfiles .card-action .col.s2 {
+        min-width: 85px !important;
+        margin-left: 3px;
+    }
+    #visitProfiles .btn-large,
+    #visitProfiles .btn-large span {
+        font-size: 11px;
+    }
+    #ProfileGames .card-content {
+        padding: 0 5px;
     }
 }
 
 @media (max-width: 304px) {
     #ProfileGames .profile-game-btn:first-child {
         margin-right: 50px;
+    }
+    #ProfileGames .profile-game-btn:nth-child(2) {
+        margin-top: 15px;
+    }
+    #ProfileGames .profile-game-btn.delete {
+        margin-left: 10px !important;
+    }
+}
+
+@media (max-width: 300px) {
+    #visitProfiles .card-action .col.s4 {
+        width: 100px !important;
+    }
+    #visitProfiles .card-action .col.s2 {
+        min-width: 70px !important;
+        margin-left: 5px;
+    }
+    #visitProfiles i {
+        display: none;
     }
 }
 
@@ -4514,6 +4781,9 @@ label[for]:hover {
     }
     .header-username h3 {
         font-size: 20px;
+    }
+    #ProfileReviews .card.smaller {
+        margin-left: -15%;
     }
 }
 

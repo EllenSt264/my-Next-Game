@@ -104,7 +104,7 @@
                     <!-- Play buttons-->
                     <div class="row play-btns">
                         <!-- Move to play later -->
-                        <div class="col s4 profile-game-btn">
+                        <div class="col s6 profile-game-btn">
                             <form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
                                 <button type="submit" class="btn-large">
                                     <i class="material-icons btn-icon-left">queue_play_next</i>
@@ -113,7 +113,7 @@
                             </form>
                         </div>
                         <!-- Move to completed -->
-                        <div class="col s4 profile-game-btn">
+                        <div class="col s6 profile-game-btn">
                             <form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
                                 <button type="submit" class="btn-large">
                                     <i class="fas fa-check-circle"></i>
@@ -125,7 +125,7 @@
                     <!-- Links and Review -->
                     <div class="row links-and-review">
                         <!-- Link -->
-                        <div class="col s4 profile-game-btn">
+                        <div class="col s6 profile-game-btn">
                             <a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks1{{loop.index}}-2">
                                 <i class="material-icons btn-icon-left">http</i>
                                 <span>Links</span>
@@ -134,7 +134,7 @@
                         </div>
                         <!-- Review -->
                         {% for match in matches if match == game.game_title %}
-                        <div class="col s4 profile-game-btn btn-large reviewed">
+                        <div class="col s6 profile-game-btn btn-large reviewed">
                             <i class="material-icons btn-icon-left">thumb_up</i>
                             <span>Reviewed</span>
                             <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
@@ -221,7 +221,7 @@
                         <!-- Play buttons-->
                         <div class="row">
                             <!-- Move to playing -->
-                            <div class="col s4 profile-game-btn left-side">
+                            <div class="col s4 profile-game-btn">
                                 <form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
                                     <button type="submit" class="btn-large">
                                         <i class="material-icons btn-icon-left">videogame_asset</i>
@@ -297,7 +297,7 @@
                     <!-- Play buttons-->
                     <div class="row play-btns">
                         <!-- Move to playing -->
-                        <div class="col s4 profile-game-btn left-side">
+                        <div class="col s4 profile-game-btn">
                             <form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
                                 <button type="submit" class="btn-large">
                                     <i class="material-icons btn-icon-left">videogame_asset</i>
@@ -414,7 +414,7 @@
                         <!-- Play buttons-->
                         <div class="row">
                             <!-- Move to playing -->
-                            <div class="col s4 profile-game-btn left-side">
+                            <div class="col s4 profile-game-btn">
                                 <form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
                                     <button type="submit" class="btn-large">
                                         <i class="material-icons btn-icon-left">videogame_asset</i>
@@ -490,7 +490,7 @@
                     <!-- Play buttons-->
                     <div class="row play-btns">
                         <!-- Move to playing -->
-                        <div class="col s4 profile-game-btn left-side">
+                        <div class="col s4 profile-game-btn">
                             <form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
                                 <button type="submit" class="btn-large">
                                     <i class="material-icons btn-icon-left">videogame_asset</i>
