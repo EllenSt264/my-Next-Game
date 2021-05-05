@@ -27,7 +27,7 @@
                     </div>
                     <!-- Profile rank -->
                     <div class="col s12 l6 rank">
-                        <h6>Profile Rank 1</h6>
+                        <h6>Profile Rank {{rank}}</h6>
                     </div>
                 </div>
                 <!-- Divider -->
@@ -62,17 +62,15 @@
                         <div class="row">
                             <!-- Navigation -->
                             <!-- Games-->
-                            <li class="col s3 l12" id="firstItem">
+                            <li class="col s4 l12">
                                 <a href="{{ url_for('profiles', user=user) }}" class="btn">Games</a>
                             </li>
-                            <div class="divider hide-on-med-and-down"></div>
                             <!-- Likes -->
                             <li class="col s4 l12">
                                 <a href="{{ url_for('profiles_likes', user=user) }}" class="btn">Likes</a>
                             </li>
-                            <div class="divider hide-on-med-and-down"></div>
                             <!-- Reviews -->
-                            <li class="col s3 l12">
+                            <li class="col s4 l12">
                                 <a href="{{ url_for('profiles_reviews', user=user) }}" class="btn">Reviews</a>
                             </li>
                         </div>

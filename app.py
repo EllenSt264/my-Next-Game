@@ -1253,6 +1253,7 @@ def edit_profile(username):
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     user = mongo.db.users.find_one({"username": session["user"]})
+    
     if request.method == "POST":
         user_id = user["_id"]
 
@@ -1381,11 +1382,23 @@ def profile_likes(username):
     # Find session user
     user = mongo.db.users.find_one({"username": session["user"]})
     username = user["username"]
+
     # Find games
     games = mongo.db.all_pc_games.find({"liked_by": username})
+
+    # Get review count
+    user_reviews = mongo.db.user_reviews.find({"username": username})
+    review_count = user_reviews.count()
+
+    # Get profile rating 
+    if review_count >= 7:
+        rank = review_count // 7 + 1
+    else:
+        rank = 1
+
     return render_template(
         "profile-game_likes.html", user=user, games=games,
-        navGameData=navGameData)
+        navGameData=navGameData, rank=rank)
 
 
 # ====================
@@ -1414,6 +1427,15 @@ def profile_games(username):
     user_games = mongo.db.user_games.find({"username": username}, fetch)
     user_reviews = mongo.db.user_reviews.find({"username": username}, fetch)
 
+    # Get review count
+    review_count = user_reviews.count()
+
+    # Get profile rating 
+    if review_count >= 7:
+        rank = review_count // 7 + 1
+    else:
+        rank = 1
+
     profile_games = []
     review_games = []
     matches = []
@@ -1435,7 +1457,7 @@ def profile_games(username):
         "profile-games_list.html", user=user, username=username,
         games_playing=games_playing, games_next=games_next,
         games_completed=games_completed, matches=matches,
-        navGameData=navGameData)
+        navGameData=navGameData, rank=rank)
 
 
 # =========================
@@ -1502,6 +1524,34 @@ def remove_game(game_id):
 
 
 # ======================
+# Profile - User Reviews
+# ======================
+
+@app.route("/profile/<username>/reviews")
+def profile_reviews(username):
+    # Grab game data for autocomplete function in navbar
+    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+
+    # Find user reviews
+    user = mongo.db.users.find_one({"username": session["user"]})
+
+    user_reviews = mongo.db.user_reviews.find({"username": username})
+
+    # Get review count
+    review_count = user_reviews.count()
+
+    # Get profile rating 
+    if review_count >= 7:
+        rank = review_count // 7 + 1
+    else:
+        rank = 1
+    
+    return render_template(
+        "profile-reviews.html", user=user, rank=rank,
+        user_reviews=user_reviews, navGameData=navGameData)
+
+
+# ======================
 # Visit Profile Template
 # ======================
 
@@ -1528,6 +1578,15 @@ def profiles(user):
 
     # Find user reviews
     user_reviews = mongo.db.user_reviews.find({"username": user})
+
+    # Get review count
+    review_count = user_reviews.count()
+
+    # Get profile rating 
+    if review_count >= 7:
+        rank = review_count // 7 + 1
+    else:
+        rank = 1
 
     # Find game likes
     game_likes = mongo.db.all_pc_games.find({"liked_by": user})
@@ -1574,7 +1633,7 @@ def profiles(user):
     return render_template(
         "visit_profile-games_list.html",
         games_playing=games_playing, games_next=games_next,
-        games_completed=games_completed, user=user,
+        games_completed=games_completed, user=user, rank=rank,
         username=username, user_display_name=user_display_name,
         user_avatar=user_avatar, review_matches=review_matches,
         like_matches=like_matches, session_user_games=session_user_games,
@@ -1590,6 +1649,18 @@ def profiles_likes(user):
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
+    # Find user reviews
+    user_reviews = mongo.db.user_reviews.find({"username": user})
+
+    # Get review count
+    review_count = user_reviews.count()
+
+    # Get profile rating 
+    if review_count >= 7:
+        rank = review_count // 7 + 1
+    else:
+        rank = 1
+
     # Find user details
     user_data = mongo.db.users.find_one({"username": user})
     username = user_data["username"]
@@ -1600,7 +1671,7 @@ def profiles_likes(user):
     user_liked_games = mongo.db.all_pc_games.find({"liked_by": user})
 
     return render_template(
-        "visit_profile-game_likes.html", user=user,
+        "visit_profile-game_likes.html", user=user, rank=rank,
         username=username, user_display_name=user_display_name,
         user_avatar=user_avatar, user_liked_games=user_liked_games,
         navGameData=navGameData)
@@ -1624,8 +1695,17 @@ def profiles_reviews(user):
     # Find the user's reviews
     user_reviews = mongo.db.user_reviews.find({"username": user})
 
+    # Get review count
+    review_count = user_reviews.count()
+
+    # Get profile rating 
+    if review_count >= 7:
+        rank = review_count // 7 + 1
+    else:
+        rank = 1
+
     return render_template(
-        "visit_profile-reviews.html", user=user,
+        "visit_profile-reviews.html", user=user, rank=rank,
         username=username, user_display_name=user_display_name,
         user_avatar=user_avatar, user_reviews=user_reviews,
         navGameData=navGameData)
@@ -2281,22 +2361,6 @@ def reviews_nintendo():
         pagination=pagination, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
         reviewData=reviewData, navGameData=navGameData)
-
-
-# ======================
-# Profile - User Reviews
-# ======================
-
-@app.route("/profile/<username>/reviews")
-def profile_reviews(username):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    reviews = mongo.db.user_reviews.find({})
-    user = mongo.db.users.find_one({"username": session["user"]})
-    return render_template(
-        "profile-reviews.html", username=session["user"],
-        reviews=reviews, user=user, navGameData=navGameData)
 
 
 # =============
