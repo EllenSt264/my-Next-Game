@@ -271,6 +271,36 @@ def admin_user_requests():
 
     user_requests = mongo.db.game_requests.find()
 
+    # Remove games from queue that have been added to the games col
+    def remove_added_games():
+        games = mongo.db.game_requests.find()
+        existing_games = mongo.db.all_pc_games.find()
+
+        existing_game_links = []
+        game_links = []
+        matches = []
+
+        # Sort through data and add to empty arrays
+        for i in list(existing_games):
+            existing_game_links.append(i["game_link"])
+
+        for i in list(games):
+            game_links.append(i["game_link"])
+
+        # Find matches
+        for i in existing_game_links:
+            for x in game_links:
+                if i == x:
+                    matches.append(x)
+
+        # Remove from game queue col
+        for link in matches:
+            game = mongo.db.game_requests.find_one({"game_link": link})
+            mongo.db.game_requests.remove({"_id": game["_id"]})
+
+
+    remove_added_games()
+
     if request.method == "POST":
         session["navSelect1"] = request.form.get("navSelect1").lower()
         session["navSelect2"] = request.form.get("navSelect2").lower()
