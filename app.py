@@ -359,6 +359,36 @@ def admin_game_queue():
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     games = mongo.db.game_queue.find()
+    
+    # Remove games from queue that have been added to the games col
+    def remove_added_games():
+        games = mongo.db.game_queue.find()
+        existing_games = mongo.db.all_pc_games.find()
+
+        existing_game_links = []
+        game_links = []
+        matches = []
+
+        # Sort through data and add to empty arrays
+        for i in list(existing_games):
+            existing_game_links.append(i["game_link"])
+
+        for i in list(games):
+            game_links.append(i["game_link"])
+
+        # Find matches
+        for i in existing_game_links:
+            for x in game_links:
+                if i == x:
+                    matches.append(x)
+
+        # Remove from game queue col
+        for link in matches:
+            game = mongo.db.game_queue.find_one({"game_link": link})
+            mongo.db.game_queue.remove({"_id": game["_id"]})
+
+
+    remove_added_games()
 
     return render_template(
         "admin-game_queue.html", navGameData=navGameData,
