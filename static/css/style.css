@@ -216,7 +216,7 @@ nav .dropdown-content a:focus {
 
 #secondary-nav-searchbar button {
     position: absolute; 
-    top: 16%;
+    top: 18%;
     left: 89%; 
     right: 0;
     bottom: 0;
@@ -3062,9 +3062,6 @@ label[for]:hover {
     #navSearchbar button {
         height: 46px;
     }
-    #secondary-nav-searchbar button {
-        top: 15%;
-    }
 }
 
 @media (max-width: 1197px) and (min-width: 1160px) {
@@ -3701,7 +3698,7 @@ label[for]:hover {
         margin-bottom: 30px;
     }
     #secondary-nav-searchbar button {
-        top: 16%;
+        top: 17%;
     }
     #homepageBtns .btn-large {
         margin: 10px;
@@ -4055,8 +4052,10 @@ label[for]:hover {
         width: 300px;
     }
     #secondary-nav-searchbar button {
-        top: 16%;
         left: 87%;
+    }
+    #sort-and-pagination-nav {
+        margin-top: 15px !important;
     }
     #reviewCards {
         margin: 0 auto;

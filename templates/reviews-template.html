@@ -96,12 +96,13 @@
 
                 <!-- Search bar -->
 
-                <li class="right">
-                    <form action="{{ url_for('get_review_query') }}" method="post" id="searchbar">
+                <!-- Search bar -->
+                <li class="right" id="secondary-nav-searchbar">
+                    <form action="{{ url_for('get_review_query') }}" method="POST" id="searchbar">
                         <div class="input-field">
-                            <i class="material-icons prefix">search</i>
-                            <input type="text" id="review-query" name="review-query" class="autocomplete validate" required>
-                            <label for="review-query">Game Title</label>
+                            <input id="review-query" name="review-query" type="text" class="autocomplete" placeholder="Search for game title"
+                            required>
+                            <button type="submit"><i class="fas fa-search"></i></button>
                         </div>
                     </form>
                 </li>
