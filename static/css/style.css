@@ -378,7 +378,7 @@ The following code is based upon this source:
 
 .list-of-games .card.horizontal {
     margin-top: 10px;
-    margin-bottom: 0;
+    margin-bottom: 25px;
 }
 
 .list-of-games .card-content {
@@ -386,14 +386,20 @@ The following code is based upon this source:
 }
 
 .list-of-games .card-image img {
-    width: 148px !important;
-    height: 69px;
+    width: 207px !important;
+    height: 97px;
 }
 
 .list-of-games .card-title {
-    font-size: 22px;
+    font-size: 24px;
     text-shadow: 1px 1px 1px rgba(34, 29, 29, 0.5);
     margin: 0 !important;   /* remove margin */
+}
+
+.list-of-games p {
+    font-family: "BlenderPro-Thin";
+    font-size: 16px;
+    overflow-x: hidden;
 }
 
 #homeParallax-img1 {
@@ -442,12 +448,6 @@ The following code is based upon this source:
 
 .section.list-of-games {
     padding-top: 50px;
-}
-
-@media (min-width: 600px) {
-    .list-of-games .row {
-        background: linear-gradient( to right, #1e1e21 50%, #161618 50% );
-    }
 }
 
 /* ---------------------------------------------- Games carousel */
@@ -796,10 +796,6 @@ The following code is based upon this source:
 }
 
 /* ---------------------------------------------- Game Cards */
-
-.list-of-games p {
-    font-family: "BlenderPro-Thin";
-}
 
 .game-cards {
     margin-bottom: 25px;
@@ -2684,9 +2680,6 @@ label[for]:hover {
         font-size: 20px;
         margin-bottom: 0;
     }
-    .card.horizontal p {
-        font-size: 14px;
-    }
 }
 
 @media (max-width: 1620px) and (min-width: 992px) {
@@ -3298,6 +3291,9 @@ label[for]:hover {
 }
 
 @media (min-width: 992px) {
+    .list-of-games .row {
+        background: linear-gradient( to right, #1e1e21 50%, #161618 50% );
+    }
     #userRequests #sort-and-pagination-nav .row div.m12 {
         float: right;
     }
@@ -3330,6 +3326,9 @@ label[for]:hover {
     }
     #sort-and-pagination-nav .pagination {
         text-align: right;
+    }
+    .list-of-games .pagination {
+        margin-bottom: 65px;
     }
     .favourites-page .sort-by {
         padding-top: 25px;
@@ -4117,6 +4116,20 @@ label[for]:hover {
 }
 
 @media (max-width: 460px) {
+    .list-of-games .card-image img {
+        width: 160px !important;
+        height: 75px;
+    }
+    .list-of-games .card-title {
+        max-height: 33px;
+        overflow-x: hidden;
+    }
+    .list-of-games .card-title span {
+        font-size: 18px;
+    }
+    .list-of-games p {
+        max-height: 24px;
+    }
     .carousel { 
         min-height: 345px;
     }
@@ -4454,6 +4467,13 @@ label[for]:hover {
 }
 
 @media (max-width: 360px) {
+    .list-of-games .card-image img {
+        width: 135px !important;
+        height: 63px;
+    }
+    .list-of-games .card-title {
+        max-height: 25px;
+    }
     #sidenav-searchbar input::placeholder {
         font-size: 14px;
     }
