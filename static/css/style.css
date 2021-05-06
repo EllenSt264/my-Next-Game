@@ -1455,8 +1455,8 @@ The following code is based upon this source:
 }
 
 .star-rating i {
-    font-size: 13px;
-    width: 13px;
+    font-size: 14px;
+    width: 14px;
     margin: 0;
 }
 
@@ -2844,6 +2844,9 @@ label[for]:hover {
     .review-card-sticker h6 i.material-icons{
         font-size: 15px;
     }
+    .review-card .star-rating i {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 1450px) {
@@ -2950,9 +2953,22 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1292px) and (min-width: 992px) {
+    .review-card .collapsible-header i {
+        margin-right: 0;
+    }
+    .review-card .star-rating i {
+        font-size: 14px;
+        width: 12px;
+    }
+}
+
 @media (max-width: 1292px) and (min-width: 1249px) {  
     #left-review-card {
         margin-left: 5% !important;
+    }
+    .review-card .star-rating {
+        width: 80px;
     }
 }
 
@@ -3003,6 +3019,9 @@ label[for]:hover {
 @media (max-width: 1249px) and (min-width: 1210px) {  
     #left-review-card {
         margin-left: 2.5% !important;
+    }
+    .review-card .star-rating {
+        width: 80px;
     }
 }
 
@@ -3217,11 +3236,25 @@ label[for]:hover {
     #left-review-card {
         margin-left: 5% !important;
     }
+    .review-card .star-rating {
+        width: 70px;
+        right: 3%;
+    }
+    .review-card .star-rating i {
+        width: 10px;
+    }
 }
 
 @media (max-width: 1070px) and (min-width: 1050px) {
     #left-review-card {
         margin-left: 4% !important;
+    }
+    .review-card .star-rating {
+        width: 70px;
+        right: 1%;
+    }
+    .review-card .star-rating i {
+        width: 10px;
     }
 }
 
@@ -3230,6 +3263,17 @@ label[for]:hover {
     .request-form,
     .admin-form {
         margin-top: 10vh;
+    }
+}
+
+@media (max-width: 1050px) and (min-width: 992px) {
+    .review-card .star-rating {
+        width: 70px;
+        right: 1%;
+    }
+    .review-card .star-rating i {
+        width: 10px;
+        font-size: 13px;
     }
 }
 
@@ -4372,6 +4416,17 @@ label[for]:hover {
     #visitProfiles .card-action .col.s2 {
         margin-left: 5px;
     }
+    .review-card .star-rating {
+        width: 80px;
+    }
+    .review-card .star-rating i {
+        font-size: 14px;
+        width: 12px;
+        margin: 0;
+    }
+    .review-card .collapsible-header i {
+        margin-right: 0;
+    }
 }
 
 @media (max-width: 396px) {
@@ -4388,8 +4443,8 @@ label[for]:hover {
 @media (max-width:390px) {
     .review-card,
     #left-review-card {
-        width: 340px !important;
-        margin: 10px 8% !important;
+        width: 360px !important;
+        margin: 10px 4% !important;
     }
 }
 
@@ -4427,8 +4482,8 @@ label[for]:hover {
     }
     .review-card,
     #left-review-card {
-        width: 340px !important;
-        margin: 10px 4% !important;
+        width: 350px !important;
+        margin: 10px 2% !important;
     }
     .review-card-sticker {
         width: 90px;
@@ -4535,8 +4590,8 @@ label[for]:hover {
     }
     .review-card,
     #left-review-card {
-        width: 325px !important;
-        margin: 10px 5% !important;
+        width: 350px !important;
+        margin: 10px 0 !important;
     }
     .review-card-sticker {
         left: 68%;
@@ -4596,11 +4651,6 @@ label[for]:hover {
 }
 
 @media (max-width: 336px) {
-    .review-card,
-    #left-review-card {
-        width: 310px !important;
-        margin: 10px 4% !important;
-    }
     .edit-btn {
         margin: 0 !important;
         padding: 0 !important;
@@ -4643,8 +4693,22 @@ label[for]:hover {
     }
     .review-card,
     #left-review-card {
-        width: 300px !important;
-        margin: 10px 4% !important;
+        width: 340px !important;
+        margin: 10px -1% !important;
+    }
+    .review-card .collapsible-header {
+        padding: 14px 5px;
+    }
+    .review-card .collapsible-header i {
+        margin-right: 0;
+    }
+    .review-card .star-rating {
+        width: 70px;
+    }
+    .review-card .star-rating i {
+        font-size: 14px;
+        width: 10px;
+        margin: 0;
     }
 }
 
@@ -4717,8 +4781,11 @@ label[for]:hover {
     }
    .review-card,
     #left-review-card {
-        width: 290px !important;
-        margin: 10px 3% !important;
+        width: 320px !important;
+        margin: 10px -1% !important;
+    }
+    .review-card .card-content {
+        padding: 0 5px 5px;
     }
     #Profile-likes .profile-card-inner .card.smaller,
     #visitProfiles-likes .profile-card-inner .card.smaller {
@@ -4776,11 +4843,6 @@ label[for]:hover {
     }
     .profile-game-img img {
         width: 200px;
-    }
-    .review-card,
-    #left-review-card {
-        width: 280px !important;
-        margin: 10px 4% !important;
     }
     .review-card-sticker {
         width: 75px;
