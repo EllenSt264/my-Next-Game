@@ -2941,6 +2941,12 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1340px) {
+    #navSearchbar form {
+        width: 260px; 
+    }
+}
+
 @media (max-width: 1300px) and (min-width: 1200px) {
     .profile-base-card {
         width: 1100px !important;
@@ -3007,12 +3013,6 @@ label[for]:hover {
     }
     .favourite-tag {
         left: 65%;
-    }
-}
-
-@media (max-width: 1270px) {
-    #navSearchbar form {
-        width: 260px; 
     }
 }
 
@@ -3109,6 +3109,12 @@ label[for]:hover {
     }
 }
 
+@media (max-width: 1070px) {
+    #navSearchbar {
+        right: 5%;
+    }
+}
+
 @media (max-width: 1066px) and (min-width: 992px) {
     .profile-card-content.horizontal .card-image {
         padding-right: 0;
@@ -3173,12 +3179,6 @@ label[for]:hover {
     #ProfileContentCard {
         width: 800px;
     }
-}
-
-@media (max-width: 1040px) {
-    #navSearchbar {
-        right: 5%;
-    }    
 }
 
 @media (max-width: 1112px) {
