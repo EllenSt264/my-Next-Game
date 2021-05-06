@@ -6,7 +6,7 @@
         <p>Manage your account details, such as your display name and email</p>
     </div>
 
-    <div class="card-panel py-5" style="background-color: #210d35;">
+    <div class="card-panel py-5" style="background-color: #210d35;" id="generalSettings-card">
         <form action="{{ url_for('edit_profile', username=session['user'], user=user) }}" method="POST" id="edit-profile--general">
         <!-- Account Information-->
             <!-- Title -->
@@ -24,25 +24,25 @@
                 <div class="col s12">
                     <div class="row">
                         <div class="col s12">
-                            <div class="col s10 input-field input-field--displayName">
+                            <div class="col s12 m10 input-field input-field--displayName">
                                 <i class="material-icons prefix">account_circle</i>
                                 <input id="edit-displayName" name="edit-displayName" type="text" class="validate"
                                     {% if user.display_name is none %} value="{{ user.username }}" {% else %} value="{{ user.display_name }}" {% endif %} disabled required>
                                 <label for="edit-displayName">Display Name</label>
                             </div>
-                            <div class="valign-wrapper col s2">
+                            <div class="valign-wrapper col s12 m2">
                                 <button type="button" id="allow-edit--displayName" class="btn allow-input-btn">
                                     Edit
                                 </button>
                             </div>
                         </div>
                         <div class="col s12">
-                            <div class="col s10 input-field input-field--email">
+                            <div class="col s12 m10 input-field input-field--email">
                                 <i class="material-icons prefix">email</i>
                                 <input id="edit-email" name="edit-email" type="email" class="validate" value="{{ user.email }}" disabled required>
                                 <label for="edit-email">Email Address</label>
                             </div>
-                            <div class="valign-wrapper col s2">
+                            <div class="valign-wrapper col s12 m2">
                                 <button type="button" id="allow-edit--email" class="btn allow-input-btn">
                                     Edit
                                 </button>
@@ -60,24 +60,24 @@
                 <div class="col s12">
                     <div class="row">
                         <div class="col s12 l6">
-                            <div class="col s10 input-field input-field--fname">
+                            <div class="col s12 m10 input-field input-field--fname">
                                 <input id="edit-fname" name="edit-fname" type="text" class="validate" 
                                     {% if user.first_name is not none %} value="{{ user.first_name|capitalize }}" {% endif %} disabled>
                                 <label for="edit-fname" id="edit-fname--label">First Name</label>
                             </div>
-                            <div class="valign-wrapper col s2">
+                            <div class="valign-wrapper col s12 m2">
                                 <button type="button" id="allow-edit--fname" class="btn allow-input-btn">
                                     Edit
                                 </button>
                             </div>
                         </div>
                         <div class="col s12 l6">
-                            <div class="col s10 input-field input-field--lname">
+                            <div class="col s12 m10 input-field input-field--lname">
                                 <input id="edit-lname" name="edit-lname" type="text" class="validate" 
                                     {% if user.last_name is not none %} value="{{ user.last_name|capitalize }}" {% endif %} disabled>
                                 <label for="edit-lname">Last Name</label>
                             </div>
-                            <div class="valign-wrapper col s2">
+                            <div class="valign-wrapper col s12 m2">
                                 <button type="button" id="allow-edit--lname" class="btn allow-input-btn">
                                     Edit
                                 </button>

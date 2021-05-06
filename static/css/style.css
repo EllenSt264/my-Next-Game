@@ -2462,6 +2462,10 @@ label[for]:hover {
         width: 420px !important;
         height: auto;
     }
+    #avatar-selection img {
+        width: 150px;
+        height: 150px;
+    }
 }
 
 @media (max-width: 1896px) {
@@ -2633,6 +2637,17 @@ label[for]:hover {
 @media (max-width: 1640px) {
     .profile-game-btn .btn-large i {
         font-size: 18px;
+    }
+    #current-avatar img {
+        width: 200px;
+        height: 200px;
+    }
+    #avatar-text-indicator h6 {
+        top: 150px;
+    }
+    #avatar-selection img {
+        width: 125px;
+        height: 125px;
     }
 }
 
@@ -3099,6 +3114,10 @@ label[for]:hover {
 @media (max-width: 1094px) and (min-width: 992px) {
     #ProfileReviews .profile-card-inner {
         padding: 24px 0;
+    }
+    #avatar-selection img {
+        width: 100px;
+        height: 100px;
     }
 }
 
@@ -3592,6 +3611,10 @@ label[for]:hover {
     #userRequests-outerCard {
         width: 85vw;
     }
+    #editPassword .btn {
+        padding: 0 10px;
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 675px) {
@@ -3611,6 +3634,19 @@ label[for]:hover {
     }
     #reviewCards {
         margin-left: 10%;
+    }
+    #current-avatar img {
+        width: 180px;
+        height: 180px;
+    }
+    #avatar-text-indicator h6 {
+        top: 130px; 
+        margin: 0;
+        margin-left: 25px;
+    }
+    #avatar-selection img {
+        width: 100px;
+        height: 100px;
     }
 }
 
@@ -3721,6 +3757,10 @@ label[for]:hover {
     }
     #return-to-profile-btn {
         margin-top: 10px;
+    }
+    .allow-input-btn {
+        margin-top: 0;
+        margin-bottom: 35px;
     }
     .game-cards .card-panel {
         height: 100%;
@@ -4040,12 +4080,6 @@ label[for]:hover {
         font-size: 32px;
         margin-top: 0;
     }
-    .edit-profile-card .profile-btns {
-        margin: auto;
-    }
-    .edit-profile-card .profile-btns li {
-        max-width: 90px;
-    }
     .secondary-nav {
         width: 98%;
         margin: auto;
@@ -4161,6 +4195,9 @@ label[for]:hover {
 }
 
 @media (max-width: 460px) {
+    #avatar-text-indicator h6 {
+        margin-left: 45px;
+    }
     .list-of-games .card-image img {
         width: 160px !important;
         height: 75px;
@@ -4290,6 +4327,14 @@ label[for]:hover {
 }
 
 @media (max-width: 420px) {
+    #current-avatar img {
+        width: 135px;
+        height: 135px;
+    }
+    #avatar-text-indicator h6 {
+        top: 100px;
+        margin-left: 25px;
+    }
     .review-card,
     #left-review-card {
         width: 370px !important;
@@ -4428,6 +4473,10 @@ label[for]:hover {
     .review-card .collapsible-header i {
         margin-right: 0;
     }
+    #avatar-selection img {
+        width: 80px;
+        height: 80px;
+    }
 }
 
 @media (max-width: 396px) {
@@ -4562,6 +4611,14 @@ label[for]:hover {
 }
 
 @media (max-width: 354px) {
+    #current-avatar img {
+        width: 115px;
+        height: 115px;
+    }
+    #avatar-text-indicator h6 {
+        top: 60px;
+        margin-left: 5px;
+    }
     #sortBy-label {
         right: 86%;
     }
@@ -4652,9 +4709,19 @@ label[for]:hover {
 }
 
 @media (max-width: 336px) {
+    #generalSettings-card {
+        padding: 10px 5px;
+    }
+    #edit-profile--general .btn.modal-trigger {
+        padding: 0 10px;
+    }
     .edit-btn {
         margin: 0 !important;
         padding: 0 !important;
+    }
+    #avatar-selection img {
+        width: 65px;
+        height: 65px;
     }
 }
 

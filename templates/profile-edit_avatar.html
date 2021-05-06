@@ -4,7 +4,7 @@
     <div class="row card-panel profile-card-inner" style="margin: 15px;">
         <!-- Current avatar -->
         <div class="row card-panel profile-card-content" id="current-avatar">
-            <div class="col s12 m6 l4">
+            <div class="col s6 m6 l4">
                 <div class="card-image">
                     {% for user in user_data %}
                         {% if user.username == session.user %}
@@ -13,7 +13,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col s12 m6 l8" id="avatar-text-indicator">
+            <div class="col s6 m6 l8" id="avatar-text-indicator">
                 <h6>Current Avatar</h6>
             </div>
         </div>
