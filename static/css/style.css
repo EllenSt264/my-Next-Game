@@ -169,7 +169,8 @@ nav .dropdown-content a:focus {
     color: black;
 }
 
-#secondary-nav-searchbar input#query {
+#secondary-nav-searchbar input#query,
+#secondary-nav-searchbar input#review-query {
     height: 40px;
     margin-top: 10px;
     margin-bottom: 0;
