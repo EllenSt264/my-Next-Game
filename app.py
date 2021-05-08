@@ -120,7 +120,7 @@ def get_query():
 # Search
 # ======
 
-@app.route("/search/<query>", methods=["GET"])
+@app.route("/games/search/<query>", methods=["GET"])
 def search(query):
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
