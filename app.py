@@ -893,7 +893,7 @@ def register():
             # Add user into session cookie
             session["user"] = request.form.get("username").lower()
             session["admin"] = False
-            flash("Registration Successful")
+            flash("Welcome {}".format(session["user"].capitalize()))
             return redirect(url_for("profile_games", username=session["user"]))
 
     return render_template("register.html", navGameData=navGameData)
