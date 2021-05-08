@@ -75,7 +75,7 @@ body {
 /* ---------------------------------------------- Navbar */
 
 nav {
-    background-color: #161618;
+    background-color: #232325;
 }
 
 .nav-wrapper a {
@@ -137,7 +137,7 @@ nav .dropdown-content a:focus {
 
 #navSearchbar {
     position: absolute; 
-    top: 22%; 
+    top: 15%; 
     bottom: 0; 
     right: 0; 
     left: 0;
@@ -197,7 +197,7 @@ nav .dropdown-content a:focus {
     left: 96%; 
     bottom: 0;
     width: 46px;
-    height: 47px;
+    height: 46px;
     background-color: #f23dfd;
     border: none;
     cursor: pointer;
@@ -232,7 +232,7 @@ nav .dropdown-content a:focus {
 #navSearchbar i {
     text-align: center;
     line-height: 46px;
-    font-size: 18px; 
+    font-size: 30px; 
     color: #161618 !important;
 }
 
@@ -520,7 +520,7 @@ The following code is based upon this source:
 .secondary-nav {
     width: 95%;
     margin: auto;
-    background-color: #161618;
+    background-color: #1f1f21;
 }
 
 .secondary-nav .collapsible {
@@ -567,7 +567,7 @@ The following code is based upon this source:
 }
 
 .my-nav-extend .tabs {
-    background-color: #1f1f21;
+    background-color: #454549;
     height: 35px;
 }
 
@@ -623,7 +623,7 @@ The following code is based upon this source:
     left: 0; 
     width: 300px;
     height: 54px; 
-    background: #161618;
+    background: #1f1f21;
 }
 
 #GenreLink {
@@ -663,7 +663,7 @@ The following code is based upon this source:
     right: 0; 
     left: -18%; 
     height: 54px; 
-    background: #161618;
+    background: #1f1f21;
 }
 
 #GenreLink .tab a,
@@ -677,7 +677,7 @@ The following code is based upon this source:
 
 #sort-and-pagination-nav {
     width: 95%; 
-    margin: auto;
+    margin: 15px auto;
 }
 
 #sort-and-pagination-nav .pagination {
@@ -2356,7 +2356,7 @@ label[for]:hover {
 @media (min-width: 2020px) {
     #navSearchbar {
         position: absolute; 
-        top: 22%; 
+        top: 15%; 
         bottom: 0; 
         right: 0; 
         left: 0;
@@ -2789,6 +2789,14 @@ label[for]:hover {
     #ProfileGames .profile-game-btn .btn-large span,
     #ProfileGames .reviewed span {
         font-size: 12px !important;
+    }
+    #navSearchbar button {
+        width: 46px;
+        height: 44px !important;
+    }
+    #navSearchbar i {
+        font-size: 26px !important;
+        line-height: 44px;
     }
 }
 
