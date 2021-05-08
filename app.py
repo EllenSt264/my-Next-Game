@@ -1720,100 +1720,241 @@ def reviews_template():
     return render_template("reviews-template.html")
 
 
-# ================
-# See Game Reviews
-# ================
-
-@app.route("/community-reviews/<game_id>")
-def see_game_reviews(game_id):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Check if ObjectId is valid
-    if ObjectId.is_valid(game_id):
-        game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
-    else:
-        game = mongo.db.all_pc_games.find_one({"game_title": game_id})
-
-    # Grab game details
-    game_title = game["game_title"]
-    game_img = game["game_img_full"]
-    game_tags = game["game_top_tags"]
-
-    # Filter reviews
-    reviews = mongo.db.user_reviews.find({"game_title": game_title})
-
-    # Pagination
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = reviews.count()
-    pagination_game_reviews = reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, game=game, game_img=game_img,
-        game_tags=game_tags, navGameData=navGameData)
-
-
 # ===================
 # Reviews Sort Filter
 # ===================
 
 @app.route("/set-reviewcookie", methods=["GET", "POST"])
 def set_review_cookies():
+    # Get parameters for game page
+    page = request.referrer
+    page_param = page.split("community-reviews/")
+    genre = page_param[1]
+
     if request.method == "POST":
         cookie1 = request.form.get("reviewSort1").lower()
         cookie2 = request.form.get("reviewSort2").lower()
 
-        resp = make_response(redirect(url_for("reviews")))
+        resp = make_response(redirect(url_for("reviews", genre=genre)))
         resp.set_cookie("reviewSort1", cookie1)
         resp.set_cookie("reviewSort2", cookie2)
 
         return resp
 
 
-# ==========
-# Reviews
-# ==========
+# =============
+# Reviews - All
+# =============
 
-@app.route("/community-reviews", methods=["GET", "POST"])
-def reviews():
+@app.route("/all-reviews")
+def all_reviews():
+    genre = "all"
+    return redirect(url_for("reviews", genre=genre))
+
+
+# ================
+# Reviews - Action
+# ================
+
+@app.route("/action-reviews", methods=["POST", "GET"])
+def action_reviews():
+    genre = "action"
+    return redirect(url_for("reviews", genre=genre))
+
+
+# ===================
+# Reviews - Adventure
+# ===================
+
+@app.route("/adventure-reviews", methods=["POST", "GET"])
+def adventure_reviews():
+    genre = "adventure"
+    return redirect(url_for("reviews", genre=genre))
+
+
+# =============
+# Reviews - RPG
+# =============
+
+@app.route("/rpg-reviews", methods=["POST", "GET"])
+def rpg_reviews():
+    genre = "rpg"
+    return redirect(url_for("reviews", genre=genre))
+
+
+# ==================
+# Reviews - Strategy
+# ==================
+
+@app.route("/strategy-reviews", methods=["POST", "GET"])
+def strategy_reviews():
+    genre = "strategy"
+    return redirect(url_for("reviews", genre=genre))
+
+
+# =====================
+# Reviews - Multiplayer
+# =====================
+
+@app.route("/multiplayer-reviews", methods=["POST", "GET"])
+def multiplayer_reviews():
+    genre = "multiplayer"
+    return redirect(url_for("reviews", genre=genre))
+
+
+# ========================
+# Reviews - PC Platform
+# ========================
+
+@app.route("/pc-reviews", methods=["POST", "GET"])
+def pc_reviews():
+    genre = "pc"
+    return redirect(url_for("reviews", genre=genre))
+
+
+# ========================
+# Reviews - XBOX Platform
+# ========================
+
+@app.route("/xbox-reviews", methods=["POST", "GET"])
+def xbox_reviews():
+    genre = "xbox"
+    return redirect(url_for("reviews", genre=genre))
+
+
+# ==============================
+# Reviews - Playstation Platform
+# ==============================
+
+@app.route("/playstation-reviews", methods=["POST", "GET"])
+def playstation_reviews():
+    genre = "playstation"
+    return redirect(url_for("reviews", genre=genre))
+
+
+# ===========================
+# Reviews - Nintendo Platform
+# ===========================
+
+@app.route("/nintendo-reviews", methods=["POST", "GET"])
+def nintendo_reviews():
+    genre = "nintendo"
+    return redirect(url_for("reviews", genre=genre))
+
+
+# ================
+# See Game Reviews
+# ================
+
+@app.route("/see-reviews/<game_id>")
+def see_game_reviews(game_id):
+    # Check if ObjectId is valid
+    if ObjectId.is_valid(game_id):
+        game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
+    else:
+        game = mongo.db.all_pc_games.find_one({"game_title": game_id})
+
+    genre = game["game_title"]
+
+    return redirect(url_for("reviews", genre=genre))
+
+
+# =======
+# Reviews
+# =======
+
+@app.route("/community-reviews/<genre>", methods=["GET", "POST"])
+def reviews(genre):
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Find reviews
-    game_reviews = mongo.db.user_reviews.find()
 
     # Grab review data for autocomplete function
     reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
 
+    # For carousel images
+    game_img = None
+    game_tags = None
+
+    # Get review results
+
+    if genre == "all":
+        game_reviews = mongo.db.user_reviews.find()
+
+    elif genre == "action":
+        # Find action game titles
+        action_games = mongo.db.all_pc_games.find({"action": True})
+        titles = []
+        for game in action_games:
+            titles.append(game["game_title"])
+
+        # Find reviews that match action game titles
+        game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+    
+    elif genre == "adventure":
+        # Find adventure game titles
+        adventure_games = mongo.db.all_pc_games.find({"adventure": True})
+        titles = []
+        for game in adventure_games:
+            titles.append(game["game_title"])
+
+        # Find reviews that match action game titles
+        game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    elif genre == "rpg":
+        # Find RPG game titles
+        RPG_games = mongo.db.all_pc_games.find({"RPG": True})
+        titles = []
+        for game in RPG_games:
+            titles.append(game["game_title"])
+
+        # Find reviews that match action game titles
+        game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    elif genre == "strategy":
+        # Find strategy game titles
+        strategy_games = mongo.db.all_pc_games.find({"strategy": True})
+        titles = []
+        for game in strategy_games:
+            titles.append(game["game_title"])
+
+        # Find reviews that match action game titles
+        game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    elif genre == "multiplayer":
+        # Find multiplayer game titles
+        multiplayer_games = mongo.db.all_pc_games.find({"multiplayer": True})
+        titles = []
+        for game in multiplayer_games:
+            titles.append(game["game_title"])
+
+        # Find reviews that match action game titles
+        game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+
+    elif genre == "pc":
+        game_reviews = mongo.db.user_reviews.find({
+            "platform": {"$in": ["windows", "mac", "linux", "steam"]}})
+
+    elif genre == "xbox":
+        game_reviews = mongo.db.user_reviews.find({"platform": "xbox"})
+
+    elif genre == "playstation":
+        game_reviews = mongo.db.user_reviews.find({"platform": "playstation"})
+
+    elif genre == "nintendo":
+        game_reviews = mongo.db.user_reviews.find({"platform": "nintendo"})
+    
+    else: 
+        game = mongo.db.all_pc_games.find_one({"game_title": genre})
+        # Grab game details
+        game_img = game["game_img_full"]
+        game_tags = game["game_top_tags"]
+
+        # Filter reviews
+        game_reviews = mongo.db.user_reviews.find({"game_title": genre})
+
+
     # Pagination
+
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 9
@@ -1878,489 +2019,8 @@ def reviews():
         pagination=pagination, reviewSort1=reviewSort1,
         reviewSort2=reviewSort2, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData)
-
-
-# ================
-# Reviews - Action
-# ================
-
-@app.route("/community-reviews/action")
-def reviews_action():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Find action game titles
-    action_games = mongo.db.all_pc_games.find({"action": True})
-    titles = []
-    for game in action_games:
-        titles.append(game["game_title"])
-
-    # Find reviews that match action game titles
-    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = game_reviews.count()
-    pagination_game_reviews = game_reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData)
-
-
-# ===================
-# Reviews - Adventure
-# ===================
-
-@app.route("/community-reviews/adventure")
-def reviews_adventure():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Find adventure game titles
-    adventure_games = mongo.db.all_pc_games.find({"adventure": True})
-    titles = []
-    for game in adventure_games:
-        titles.append(game["game_title"])
-
-    # Find reviews that match adventure game titles
-    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = game_reviews.count()
-    pagination_game_reviews = game_reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData)
-
-
-# =============
-# Reviews - RPG
-# =============
-
-@app.route("/community-reviews/RPG")
-def reviews_RPG():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Find RPG game titles
-    RPG_games = mongo.db.all_pc_games.find({"RPG": True})
-    titles = []
-    for game in RPG_games:
-        titles.append(game["game_title"])
-
-    # Find reviews that match RPG game titles
-    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = game_reviews.count()
-    pagination_game_reviews = game_reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData)
-
-
-# ==================
-# Reviews - Strategy
-# ==================
-
-@app.route("/community-reviews/strategy")
-def reviews_strategy():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Find strategy game titles
-    strategy_games = mongo.db.all_pc_games.find({"strategy": True})
-    titles = []
-    for game in strategy_games:
-        titles.append(game["game_title"])
-
-    # Find reviews that match strategy game titles
-    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = game_reviews.count()
-    pagination_game_reviews = game_reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData)
-
-
-# =====================
-# Reviews - Multiplayer
-# =====================
-
-@app.route("/community-reviews/multiplayer")
-def reviews_multiplayer():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Find multiplayer game titles
-    multiplayer_games = mongo.db.all_pc_games.find({"multiplayer": True})
-    titles = []
-    for game in multiplayer_games:
-        titles.append(game["game_title"])
-
-    # Find reviews that match multiplayer game titles
-    game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = game_reviews.count()
-    pagination_game_reviews = game_reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData)
-
-
-# =====================
-# Reviews - PC Platform
-# =====================
-
-@app.route("/community-reviews/pc")
-def reviews_pc():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Find reviews with pc platform
-    # Steam, Windows, Mac or Linux
-    game_reviews = mongo.db.user_reviews.find({
-        "platform": {"$in": ["windows", "mac", "linux", "steam"]}})
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = game_reviews.count()
-    pagination_game_reviews = game_reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData)
-
-
-# =======================
-# Reviews - XBOX Platform
-# =======================
-
-@app.route("/community-reviews/xbox")
-def reviews_xbox():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Find reviews with xbox platform
-    game_reviews = mongo.db.user_reviews.find({"platform": "xbox"})
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = game_reviews.count()
-    pagination_game_reviews = game_reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData)
-
-
-# ==============================
-# Reviews - Playstation Platform
-# ==============================
-
-@app.route("/community-reviews/playstation")
-def reviews_playstation():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Find reviews with playstation platform
-    game_reviews = mongo.db.user_reviews.find({"platform": "playstation"})
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = game_reviews.count()
-    pagination_game_reviews = game_reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData)
-
-
-# ===========================
-# Reviews - Nintendo Platform
-# ===========================
-
-@app.route("/community-reviews/nintendo")
-def reviews_nintendo():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Grab review data for autocomplete function
-    reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
-
-    # Find reviews with nintendo platform
-    game_reviews = mongo.db.user_reviews.find({"platform": "nintendo"})
-
-    # Pagination
-
-    page, per_page, offset = get_page_args(
-        page_parameter='page', per_page_parameter='per_page')
-    per_page = 9
-    offset = ((page - 1) * per_page)
-
-    total = game_reviews.count()
-    pagination_game_reviews = game_reviews[offset: offset + per_page]
-
-    pagination = Pagination(
-        page=page, per_page=per_page, total=total,
-        css_framework='materialize')
-
-    # Set carousel images
-    random_games = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 3}}
-    ])
-
-    rand_games = []
-    for game in random_games:
-        rand_games.append(game)
-
-    rand_game_1 = rand_games[0]
-    rand_game_2 = rand_games[1]
-    rand_game_3 = rand_games[2]
-
-    return render_template(
-        "reviews.html", game_reviews=pagination_game_reviews,
-        pagination=pagination, rand_game_1=rand_game_1,
-        rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData)
+        reviewData=reviewData, navGameData=navGameData,
+        game_img=game_img, game_tags=game_tags)
 
 
 # =============

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <!-- Carousel -->
-    {% if game %}
+    {% if game_img != None %}
         <div class="py-5 center">
             <!-- Carousel item 1 -->
             <div class="carousel-item white-text" style="padding: 40px 25px 25px;">
@@ -67,10 +67,10 @@
                             <a class="standard-link">Platform</a>
                             <ul class="floating-nav">
                                 <div class="items">
-                                    <li class="tab"><a href="{{ url_for('reviews_pc') }}">PC</a></li>
-                                    <li class="tab"><a href="{{ url_for('reviews_xbox') }}">XBOX</a></li>
-                                    <li class="tab"><a href="{{ url_for('reviews_playstation') }}">Playstation</a></li>
-                                    <li class="tab"><a href="{{ url_for('reviews_nintendo') }}">Nintendo</a></li>
+                                    <li class="tab"><a href="{{ url_for('pc_reviews') }}">PC</a></li>
+                                    <li class="tab"><a href="{{ url_for('xbox_reviews') }}">XBOX</a></li>
+                                    <li class="tab"><a href="{{ url_for('playstation_reviews') }}">Playstation</a></li>
+                                    <li class="tab"><a href="{{ url_for('nintendo_reviews') }}">Nintendo</a></li>
                                 </div>
                             </ul>
                         </div>
@@ -82,11 +82,11 @@
                             <a class="standard-link">Genre</a>
                             <ul class="floating-nav">
                                 <div class="items">
-                                    <li class="tab"><a href="{{ url_for('reviews_action') }}">Action</a></li>
-                                    <li class="tab"><a href="{{ url_for('reviews_adventure') }}">Adventure</a></li>
-                                    <li class="tab"><a href="{{ url_for('reviews_RPG') }}">RPG</a></li>
-                                    <li class="tab"><a href="{{ url_for('reviews_strategy') }}">Strategy</a></li>
-                                    <li class="tab"><a href="{{ url_for('reviews_multiplayer') }}">Multiplayer</a></li>
+                                    <li class="tab"><a href="{{ url_for('action_reviews') }}">Action</a></li>
+                                    <li class="tab"><a href="{{ url_for('adventure_reviews') }}">Adventure</a></li>
+                                    <li class="tab"><a href="{{ url_for('rpg_reviews') }}">RPG</a></li>
+                                    <li class="tab"><a href="{{ url_for('strategy_reviews') }}">Strategy</a></li>
+                                    <li class="tab"><a href="{{ url_for('multiplayer_reviews') }}">Multiplayer</a></li>
                                 </div>
                             </ul>
                         </div>
@@ -110,7 +110,7 @@
                 <!-- All games link -->
                 <div class="nav-content my-nav-extend">
                     <ul class="tabs">
-                        <li class="tab"><a href="{{ url_for('reviews') }}">All reviews</a></li>
+                        <li class="tab"><a href="{{ url_for('all_reviews') }}">All reviews</a></li>
                     </ul>
                 </div>
 
@@ -121,12 +121,12 @@
         <!-- Mobile side nav -->
         <ul class="sidenav" id="secondary-sidenav">
             <li><a href="#!" class="sidenav-close right"><i class="material-icons white-text" style="margin: 0;">close</i></a></li>
-            <li><a href="{{ url_for('reviews') }}">All Reviews</a></li>
-            <li><a href="{{ url_for('reviews_action') }}">Action</a></li>
-            <li><a href="{{ url_for('reviews_adventure') }}">Adventure</a></li>
-            <li><a href="{{ url_for('reviews_RPG') }}">RPG</a></li>
-            <li><a href="{{ url_for('reviews_strategy') }}">Strategy</a></li>
-            <li><a href="{{ url_for('reviews_multiplayer') }}">Multiplayer</a></li>
+            <li><a href="{{ url_for('all_reviews') }}">All Reviews</a></li>
+            <li><a href="{{ url_for('action_reviews') }}">Action</a></li>
+            <li><a href="{{ url_for('adventure_reviews') }}">Adventure</a></li>
+            <li><a href="{{ url_for('rpg_reviews') }}">RPG</a></li>
+            <li><a href="{{ url_for('strategy_reviews') }}">Strategy</a></li>
+            <li><a href="{{ url_for('multiplayer_reviews') }}">Multiplayer</a></li>
         </ul>
     </section>
 
@@ -185,7 +185,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Reviews -->
         {% block reviews %}
         {% endblock %}

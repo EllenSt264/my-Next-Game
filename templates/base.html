@@ -70,7 +70,7 @@
                         </li>
                     </ul>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="{{ url_for('reviews') }}">Community Reviews</a></li>
+                        <li><a href="{{ url_for('all_reviews') }}">Community Reviews</a></li>
                         {% if session.user and session.admin != False %}
                             <li><a href="#" class="dropdown-trigger nav-dropdown-trigger" data-target="adminDropdown">Admin Controls</a></li>
                         {% else %}
@@ -147,7 +147,7 @@
                     <li class="mobile-sidenav-genreLink"><a href="{{ url_for('awardwinner_games') }}">Award Winners</a></li>
                 </ul>
             </li>
-            <li><a href="{{ url_for('reviews') }}">Community Reviews</a></li>
+            <li><a href="{{ url_for('all_reviews') }}">Community Reviews</a></li>
             {% if session.user and session.admin %}
                 <li><a href="#">Admin Controls</a></li>
             {% endif %}
