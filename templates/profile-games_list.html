@@ -229,12 +229,12 @@
                                     </button>
                                 </form>
                             </div>
-                            <!-- Move to player later -->
+                            <!-- Move to completed -->
                             <div class="col s4 profile-game-btn">
-                                <form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
+                                <form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
                                     <button type="submit" class="btn-large">
-                                        <i class="material-icons btn-icon-left">queue_play_next</i>
-                                        <span>Play Later</span>
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Completed</span>
                                     </button>
                                 </form>
                             </div>
