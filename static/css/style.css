@@ -338,6 +338,28 @@ The following code is based upon this source:
     transform: rotate(-135deg);
 }
 
+
+/* ---------------------------------------------- Footer */
+
+footer {
+    margin-top: 100px;
+    background-color: #161618;
+}
+
+footer span {
+    text-transform: uppercase;
+}
+
+footer .copyright {
+    width: 50%;
+    margin: 25px auto;
+}
+
+footer .divider {
+    background-color: rgb(224 224 224 / 50%);
+}
+
+
 /* ---------------------------------------------- Hero background video */
 
 #heroBg {
