@@ -71,10 +71,12 @@
                     </ul>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{ url_for('all_reviews') }}">Community Reviews</a></li>
-                        {% if session.user and session.admin != False %}
-                            <li><a href="#" class="dropdown-trigger nav-dropdown-trigger" data-target="adminDropdown">Admin Controls</a></li>
-                        {% else %}
-                            <li><a href="{{ url_for('request_game') }}">Request A Game</a></li>
+                        {% if session.user %}
+                            {% if session.admin != False %}
+                                <li><a href="#" class="dropdown-trigger nav-dropdown-trigger" data-target="adminDropdown">Admin Controls</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('request_game') }}">Request A Game</a></li>
+                            {% endif %}
                         {% endif %}
                         {% if not session.user %}
                             <li><a href="{{ url_for('login') }}">Log In</a></li>
