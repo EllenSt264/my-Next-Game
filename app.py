@@ -218,11 +218,15 @@ def search_reviews(query):
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    game_img = None
+    game_tags  = None
+
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        navGameData=navGameData, reviewData=reviewData)
+        navGameData=navGameData, reviewData=reviewData,
+        game_img=game_img, game_tags=game_tags)
 
 
 # ========
