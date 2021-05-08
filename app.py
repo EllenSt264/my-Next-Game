@@ -162,11 +162,15 @@ def search(query):
         page=page, per_page=per_page, total=total,
         css_framework='materialize')
 
+    game_img = None
+    game_tags = None
+
     return render_template(
-        "search_results.html", games=pagination_games,
+        "games.html", games=pagination_games,
         pagination=pagination, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        navGameData=navGameData, gameData=gameData)
+        navGameData=navGameData, gameData=gameData,
+        game_img=game_img, game_tags=game_tags)
 
 
 # ==============
