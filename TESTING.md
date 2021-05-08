@@ -107,9 +107,19 @@ After cache control:
 
 3. I want to be able to find games easily.
 
+![Screenshot - Navbar](static/img/documentation/screenshot-navbar.png)
+
 ![Screenshot - Navbar](static/img/documentation/screenshot-navbar_genre.png)
 
-![Screenshot - Secondary Navbar on Games page and Reviews page](static/img/documentation/screenshot-secondary_navbar.png)
+![Screenshot - Secondary Navbar on Games page](static/img/documentation/screenshot-secondary_navbar-games.png)
+
+![Screenshot - Secondary Navbar on Games page](static/img/documentation/screenshot-secondary_navbar-games-2.png)
+
+![Screenshot - Secondary Navbar on Reviews page](static/img/documentation/screenshot-secondary_navbar-reviews.png)
+
+![Screenshot - Secondary Navbar on Reviews page](static/img/documentation/screenshot-secondary_navbar-reviews-2.png)
+
+
 
 - Users have a vareity of ways in which they can browse the selection of games that are available to them.
 
@@ -129,7 +139,8 @@ After cache control:
 
 ![Screenshot - Sort Filter](static/img/documentation/screenshot-sort_filter.png) 
 
-![Screenshot - Secondary Navbar](static/img/documentation/screenshot-secondary_navbar_short.png)
+![Screenshot - Secondary Navbar on Games page](static/img/documentation/screenshot-secondary_navbar-games.png)
+
 
 - The secondary navbar acts a sorting feature, by only displaying game results that match its criteria. For example, clicking the 'Action' button within the Genre Link, will only show games that have the 'Action' game genre tags and/or are primarily categorised as an action game.
 
@@ -163,9 +174,9 @@ After cache control:
 
 6. I want to see reviews of games, and be able to search for particular game titles or genres of those reviews.
 
-![Screenshot - Reviews page](static/img/documentation/screenshot-review_page-review_cards.png)
+![Screenshot - Reviews page](static/img/documentation/screenshot-review_cards.png)
 
-![Screenshot - Secondary Navbar for the Reviews page](static/img/documentation/screenshot-review_page-with-secondary_navbar.png)
+![Screenshot - Secondary Navbar on Reviews page](static/img/documentation/screenshot-secondary_navbar-reviews-3.png)
 
 - The Community Reviews page contains all reviews submitted by users.
 
@@ -178,7 +189,9 @@ After cache control:
 
 ![Screenshot - Like button](static/img/documentation/screenshot-like_btn.png)
 
-![Screenshot - game card](static/img/documentation/screenshot-game_card.png) 
+![Screenshot - game card](static/img/documentation/screenshot-game_card.png)
+
+![Screenshot - game card](static/img/documentation/screenshot-profile-likes.png)
 
 - Each game has a like button which allows users to leave likes on games.
 
@@ -191,7 +204,12 @@ After cache control:
 
 ![Screenshot - Submit Review form](static/img/documentation/screenshot-review_form.png)
 
-9. If I don't know what I'm looking for, I want a site feature that will help me decide what game to play next.
+
+![Screenshot - Leave review button](static/img/documentation/screenshot-leave_review_btn.png)
+
+![Screenshot - Profile page game card](static/img/documentation/screenshot-profile-game_card.png)
+
+
 
 - The 'Leave A Review' button on the Community Reviews page allows users to easily leave reviews of their own.
 
@@ -204,13 +222,13 @@ After cache control:
 
 10. I want to see games that are recommended by the site.
 
-![Screenshot - Homepage buttons](static/img/documentation/screenshot-homepage-buttons.png)
+![Screenshot - Homepage buttons](static/img/documentation/screenshot-homepage_btn.png)
 
-![Screenshot - game cards on the Favourites page](static/img/documentation/screenshot-favourites-game_cards.png)
+![Screenshot - game cards on the Favourites page](static/img/documentation/screenshot-favourites_page.png)
 
-![Screenshot - Parallax for the Favourites page](static/img/documentation/screenshot-favourites-parallax.png) 
+![Screenshot - game cards on the Favourites page](static/img/documentation/screenshot-favourites_page_2.png)
 
-![Screenshot - Recommended tag for the game cards](static/img/documentation/screenshot-game_cards-recommended.png)
+![Screenshot - Recommended tag for the game cards](static/img/documentation/screenshot-recommended_tag.png)
 
 - The Favourites page stores a collection of games that are recommended. These games have been added manually and contain unique content, such as a game summary and screenshots.
 
@@ -225,7 +243,7 @@ After cache control:
 
 ![Screenshot - game cards add button](static/img/documentation/screenshot-game_cards-add_btn.png)
 
-![Screenshot - Profile Game List](static/img/documentation/screenshot-profile-game_list.png) 
+![Screenshot - Profile Game List](static/img/documentation/screenshot-profile-playlist.png) 
 
 - When logged in, an Add Button will be available on each game card for users to click on.
 
@@ -240,11 +258,13 @@ After cache control:
 
 1. As a returning user, I want to be able to customize my profile. I want to add a bio to my profile and upload a custom profile image.
 
-![Screenshot - Profile side nav](static/img/documentation/screenshot-profile-sidenav.png)
+![Screenshot - Profile side nav](static/img/documentation/screenshot-profile-side_nav.png)
 
-![Screenshot - Edit Profile](static/img/documentation/screenshot-edit_profile.png)
+![Screenshot - Edit Profile](static/img/documentation/screenshot-edit_profile-general.png)
 
-![Screenshot - Edit Profile - Avatars](static/img/documentation/screenshot-edit_profile-avatars.png) 
+![Screenshot - Edit Profile](static/img/documentation/screenshot-edit_profile-avatar.png)
+
+![Screenshot - Edit Profile](static/img/documentation/screenshot-edit_profile-password.png)
 
 - After creating an account, users have a the option of customizing their details by clicking on the 'Edit Profile' button on their Profile page.
 
@@ -263,7 +283,7 @@ After cache control:
 
 ![Screenshot - Profile Reviews page](static/img/documentation/screenshot-profile-reviews.png)
 
-![Screenshot - Profile Games List](static/img/documentation/screenshot-profile-game_list_2.png)
+![Screenshot - Profile Games List](static/img/documentation/screenshot-profile-game_card_2.png)
 
 
 - Users can see a list of their reviews via their Profile Page, by clicking on the 'Reviews' button in the sidenav.
@@ -279,11 +299,11 @@ After cache control:
 
 3. I want to update my games list. I want to categories games into what I am currently playing, what I have played and want I want to play in the future.
 
-![Screenshot - Profile Games List](static/img/documentation/screenshot-profile-game_list-playing.png)
+![Screenshot - Profile Games List](static/img/documentation/screenshot-profile-playlist-playing.png)
 
-![Screenshot - Profile Games List](static/img/documentation/screenshot-profile-game_list-play_later.png)
+![Screenshot - Profile Games List](static/img/documentation/screenshot-profile-playlist-play_later.png)
 
-![Screenshot - Profile Games List](static/img/documentation/screenshot-profile-game_list-completed.png)
+![Screenshot - Profile Games List](static/img/documentation/screenshot-profile-playlist-completed.png)
 
 - Users can update their game list by clicking on the 'Play Later', 'Completed' and/or 'Playing' buttons.
 
@@ -295,6 +315,9 @@ After cache control:
 
 ![Screenshot - Visit Profile](static/img/documentation/screenshot-visit_profile.png)
 
+![Screenshot - Visit Profile](static/img/documentation/screenshot-visit_profile_2.png)
+
+
 - Clicking on the username/display name of a review card on the Community Reviews page, will direct users to the Profile page of that user.
 
 - Users cannot edit profile settings and/or modify the game playlist when visiting another user's Profile.
@@ -304,14 +327,16 @@ After cache control:
 
 5. I want to find the site's contact information so that I can get help on an issue.
 
+![Screenshot - Footer](static/img/documentation/screenshot-footer.png)
+
 
 ----
 
 6. I want to request new games to be added to the database.
 
-![Screenshot - Request A Game button](static/img/documentation/screenshot-request_game_button_1.png)
+![Screenshot - Request A Game button](static/img/documentation/screenshot-navbar-request_game.png)
 
-![Screenshot - Request A Game button](static/img/documentation/screenshot-request_game_button_2.png)
+![Screenshot - Request A Game button](static/img/documentation/screenshot-request_game-favourites_page.png)
 
 ![Screenshot - Request A Game form](static/img/documentation/screenshot-request_game_form.png)
 
@@ -321,9 +346,6 @@ After cache control:
 
 
 -----
-
-
-7. I want to add games to a favourites list.
 
 
 
