@@ -43,7 +43,6 @@ import os
 import datetime
 import random
 import string
-from flask.templating import render_template_string
 import requests
 from bs4 import BeautifulSoup
 from flask import (
@@ -1576,7 +1575,7 @@ def profiles_template():
 # Visit Profiles
 # ==============
 
-@app.route("/profiles/<user>")
+@app.route("/profiles/<user>", methods=["GET"])
 def profiles(user):
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
@@ -1638,8 +1637,13 @@ def profiles(user):
                 like_matches.append(x)
 
     # Find session user's game list
-    session_user_games = mongo.db.user_games.find(
-        {"username": session["user"]}).distinct("game_title")
+    session_user = session.get("user")
+
+    if session_user is not None:
+        session_user_games = mongo.db.user_games.find(
+            {"username": session["user"]}).distinct("game_title")
+    else:
+        session_user_games = None
 
     return render_template(
         "visit_profile-games_list.html",
