@@ -15,23 +15,27 @@
 
 - [Manual Testing](#manual-testing)
 
-    - [Navigation](#navigation)
+    - [Navigation - No Session User](#navigation---no-session-user)
 
         - [Navigation - Navbar (Desktop)](#navigation---navbar-desktop)
 
         - [Navigation - Navbar (Mobile)](#navigation---navbar-mobile)
 
-        - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
-
-        - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
-
         - [Navigation - Games Page Secondary Navbar (Desktop)](#navigation---games-page-secondary-navbar-desktop)
 
         - [Navigation - Games Page Secondary Navbar (Mobile)](#navigation---games-page-secondary-navbar-mobile)
 
-        - [Navigation - Other (Desktop)](#navigation---other-desktop)
+        - [Navigation - Reviews Page Secondary Navbar (Desktop)](#navigation---reviews-page-secondary-navbar-desktop)
 
-        - [Navigation - Other (Mobile)](#navigation---other-mobile)
+        - [Navigation - Reviews Page Secondary Navbar (Mobile)](#navigation---reviews-page-secondary-navbar-mobile)
+
+        - [Navigation - Other](#navigation---other)
+
+    - [Navigation - Session User](#navigation---session-user)
+
+        - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
+
+        - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
 
     - [C-R-U-D](#c-r-u-d)
 
@@ -355,51 +359,154 @@ After cache control:
 ## Manual Testing
 
 
-### Navigation
+### Navigation - No Session User
 
 
 #### Navigation - Navbar (Desktop)
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
-|  1  | Navigate to `Genre` (All Games) page | Click the `Genre` dropdown nav link | The site will navigate to the `Games Page`, listing `all games` within the database | Navigates to `Games Page` and lists `all games` | Pass |
+|  1  | Navigate to `Genre` (All Games) page | Click the `Genre` nav link | The site will navigate to the `Games Page`, listing `all games` within the database | Navigates to `Games Page` and lists `all games` | Pass |
 |  2  | Navigate to `Action` Genre page | Click the `Action` nav link within the Genre dropdown menu | The site will navigate to the `Games Page`, listing only the `Action games` within the database | Navigates to `Games Page` and lists all `Action games` | Pass |
 |  3  | Navigate to `Adventure` Genre page | Click the `Adventure` nav link within the Genre dropdown menu | The site will navigate to the `Games Page`, listing only the `Adventure games` within the database | Navigates to `Games Page` and lists all `Adventure games` | Pass |
 |  4  | Navigate to `RPG` Genre page | Click the `RPG` nav link within the Genre dropdown menu | The site will navigate to the `Games Page`, listing only the `RPG games` within the database | Navigates to `Games Page` and lists all `RPG games` | Pass |
 |  5  | Navigate to `Strategy` Genre page | Click the `Strategy` nav link within the Genre dropdown menu | The site will navigate to the `Games Page`, listing only the `Strategy games` within the database | Navigates to `Games Page` and lists all `Strategy games` | Pass |
 |  6  | Navigate to `Multiplayer` Genre page | Click the `Multiplayer` nav link within the Genre dropdown menu | The site will navigate to the `Games Page`, listing only the `Multiplayer games` within the database | Navigates to `Games Page` and lists all `Multiplayer games` | Pass |
 |  7  | Navigate to `Community Reviews`  page | Click the `Community Reviews` nav link | The site will navigate to the `Community Reviews` page | Navigates to `Community Reviews` page | Pass |
-|  8  | Navigate to `Login`  page | Click the `Login` nav link within the `Profile icon` dropdown menu | The site will navigate to the `Login` page | Navigates to `Login` page | Pass |
-|  9  | Navigate to `Login`  page | Click the `Login` nav link | The site will navigate to the `Login` page | Navigates to `Login` page | Pass |
-|  10  | Navigate to `Login`  page via the Register page | Click the `Log In` link on the Register page | The site will navigate to the `Login` page | Navigates to `Login` page | Pass |
-|  11  | `Register` an account | Navigate to the `Register` page and complete the `Register form`; click `Register` | The user will have their account registered and their user credentials will be added to the appropriate MongoDB collection. The user will be directed to their new `Profile` page. A `flash message` should say 'Welcome {username}' | After completing the `register form` the user has their account `registered` and is directed to their `Profile` page. A `flash message` says 'Welcome {username}, which in this case is 'Welcome Firstuser' | Pass |
-|  12  | `Log In` | Navigate to the `Login` page and enter credentials; click `Log In` | The user will be `logged in` and directed to their `Profile` page. A `flash message` should say 'Welcome {username}' | After entering user credentials, the user is `'logged in` and directed to their `Profile` page. A `flash message` says 'Welcome {username}, which in this case is 'Welcome Firstuser' | Pass |
-|  13  | Navigate to `Profile` page | When logged into an account, hover over the `Profile icon` in the navbar and click on the `Profile` navlink  | The site will navigate to the session user's `Profile` page | Navigates to the session user's `Profile` page | Pass |
-|  14  | `Logout` | When logged into an account, hover over the `Profile icon` in the navbar and click on the `Logout` navlink  | The user will be `logged out` and directed to the `Login` page. A `flash message` should say 'You have been logged out' | The user is `logged out` and then directed to the `Login` page. The `flash message` says 'You have been logged out'  | Pass |
-|  15  | Navigate to `Homepage` | When on any page other than the Homepage, click the `Home` link in the navbar | The site will navigate to the `Homepage` | Navigates to `Homepage` | Pass |
-|  16  | Navigate to `Homepage` | When on any page other than the Homepage, click the `Site Brand Logo` in the navbar | The site will navigate to the `Homepage` | Navigates to `Homepage` | Pass |
-|  17  | Navigate to a `Games Page` with `browser cookies cleared` | Clear browser `cookies` and reload the site. Click the `Genre` navlink to navigate to the `Games Page` for all games | Should navigate to the `Games Page` for all games | KeyError for `navSelect1` and `navSelect2` occurs; page does not load | Fail | See fix [here](#navselect-keyerror) |
-|  17  | Navigate to a `Games Page` with `browser cookies cleared` after fix | Clear browser `cookies` and reload the site. Click the `Genre` navlink to navigate to the `Games Page` for all games | Should navigate to the `Games Page` for all games | Navigates to `Games Page` | Pass |
+|  8  | Navigate to `Login`  page | Click the `Login` nav link | The site will navigate to the `Login` page | Navigates to `Login` page | Pass |
+|  9  | Navigate to `Homepage` | When on any page other than the Homepage, click the `Home` nav link | The site will navigate to the `Homepage` | Navigates to `Homepage` | Pass |
+|  10  | Navigate to `Our Favourites` | Click the `Our Favourites` nav link | The site will navigate to the `Our Favourites` page | Navigates to `Our Favourites` page | Pass |
 
 
-#### Navigation - Navbar (Mobile)
+
+#### Navigation - Side Nav (Mobile)
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
-|  1  | Trigger Mobile Sidenav | Using `Chrome DevTools`, toggle device toolbar and change the viewport to a tablet or mobile device with a max width of 992px | The `Home`, `Platform`, `Genre` and `Community Reviews` nav links should disappear. A `hamburger icon` should appear to the right in the their place. When clicked it should trigger the mobile `sidenav` | The navbar collapses at 992px; the `Home`, `Platform`, `Genre` and `Community Reviews`  nav links disappear and in its place is the `hamburger icon`, which opens the `side nav` once clicked | Pass |
-|  2  | Navigate to `Genre` (All Games) page | Click the `Genre` nav link inside the mobile `sidenav` | The site will navigate to the `Games Page`, listing `all games` within the database | Navigates to `Games Page` and lists `all games` | Pass |
-|  3  | Navigate to `Action` Genre page | Click the `Action` nav link inside the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Action games` within the database | Navigates to `Games Page` and lists all `Action games` | Pass |
-|  4  | Navigate to `Adventure` Genre page | Click the `Adventure` nav link inside the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Adventure games` within the database | Navigates to `Games Page` and lists all `Adventure games` | Pass |
-|  5  | Navigate to `RPG` Genre page | Click the `RPG` nav link inside the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `RPG games` within the database | Navigates to `Games Page` and lists all `RPG games` | Pass |
-|  6  | Navigate to `Strategy` Genre page | Click the `Strategy` nav link inside the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Strategy games` within the database | Navigates to `Games Page` and lists all `Strategy games` | Pass |
-|  7  | Navigate to `Multiplayer` Genre page | Click the `Multiplayer` nav link inside the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Multiplayer games` within the database | Navigates to `Games Page` and lists all `Multiplayer games` | Pass |
-|  8  | Navigate to `Community Reviews`  page | Click the `Community Reviews` nav link inside the mobile `side nav` | The site will navigate to the `Community Reviews` page | Navigates to `Community Reviews` page | Pass | **Bug:** Once directed to the `Community Reviews` page, all nav links other than the Site Brand logo disappears. **Fix:** Adding `overflow: hidden` to the HTML tag seems to fix the issue |
-|  9  | Trigger `Profile` mobile `sidenav` | Click on the `Profile icon` in the navbar | It should trigger a `sidenav`, to the left, which contains either the `Login` and `Register` navlink, or the `Profile` and `Log Out` navlink | The `sidenav` triggers, opening to the left, once the `Profile icon` is clicked | Pass |
-|  10  | Navigate to `Login`  page | Click the `Login` nav link within the `Profile sidenav` | The site will navigate to the `Login` page | Navigates to `Login` page | Pass |
-|  11  | Navigate to `Register`  page | Click the `Register` nav link within the `Profile sidenav` | The site will navigate to the `Register` page | Navigates to `Register` page | Pass |
-|  12  | Navigate to `Homepage` | When on any page other than the Homepage, click the `Site Brand Logo` in the navbar | The site will navigate to the `Homepage` | Navigates to `Homepage` | Pass |
-|  13  | Navigate to `Profile` page | When logged into an account, click the `Profile` navlink within the `Profile sidenav` | The site will navigate to the session user's `Profile` page | Navigates to the session user's `Profile` page | Pass |
-|  14  | Logout | When logged into an account, click the `Logout` navlink within the `Profile sidenav` | The user will be `logged out` and directed to the `Login` page. A `flash message` should say 'You have been logged out' | The user is `logged out` and then directed to the `Login` page. The `flash message` says 'You have been logged out'  | Pass |
+|  1  | Trigger Mobile Sidenav | Using `Chrome DevTools`, toggle device toolbar and change the viewport to a tablet or mobile device with a max width of 992px | The `Home`, `Our Favourites`, `Genre` and `Community Reviews` nav links should disappear. A `hamburger icon` should appear to the right in the their place. When clicked it should trigger the mobile `sidenav` | The navbar collapses at 992px; the `Home`, `Our Favourites`, `Genre` and `Community Reviews`  nav links disappear and in its place is the `hamburger icon`, and `profile icon` which opens the `side nav` once clicked | Pass |
+|  2  | Navigate to `Our Favourites` page | Click the hamburger icon to access the side nav. Inside the side nav click the `Our Favourites` nav link | The site will navigate to the `Our Favourites` page | Navigates to `Our Favourites` page | Pass |
+|  3  | Navigate to `Homepage` | While still on the `Our Favourites` page, open the `side nav` and click the `Home` nav link | The site will navigate to the `Homepage` | Navigates to `Homepage` | Pass |
+|  4  | Navigate to `All Games` page | Open the `side nav` and click the `Games` collapsible link. The collapsible menu will trigger, and more nav links will show beneath it. Click the `All Games` nav link  | Clicking `Games` should open the collapsible, and all the genre links for the game pages should appear below it. Clicking `All Games` should navigate to the `Games Page`, listing `all games` within the database | The collapsible opens, and clicking `All Games` navigates to `Games Page`, listing `all games` in the database | Pass |
+|  3  | Navigate to `Action` game page | Click the `Action` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Action games` within the database | Navigates to `Games Page` and lists all `Action games` | Pass |
+|  4  | Navigate to `Adventure` game page | Click the `Adventure` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Adventure games` within the database | Navigates to `Games Page` and lists all `Adventure games` | Pass |
+|  5  | Navigate to `RPG` game page | Click the `RPG` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `RPG games` within the database | Navigates to `Games Page` and lists all `RPG games` | Pass |
+|  6  | Navigate to `Strategy` game page | Click the `Strategy` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Strategy games` within the database | Navigates to `Games Page` and lists all `Strategy games` | Pass |
+|  7  | Navigate to `Multiplayer` game page | Click the `Multiplayer` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Multiplayer games` within the database | Navigates to `Games Page` and lists all `Multiplayer games` | Pass |
+|  8  | Navigate to `Award Winners` game page | Click the `Award Winners` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Award Winners games` within the database | Navigates to `Games Page` and lists all `Award Winners games` | Pass |
+|  9  | Navigate to `Community Reviews`  page | Click the `Community Reviews` nav link inside the mobile `side nav` | The site will navigate to the `Community Reviews` page | Navigates to `Community Reviews` page | Pass | **Bug:** Once directed to the `Community Reviews` page all nav links disappear. **Fix:** Adding `overflow: hidden` to the HTML tag seems to fix the issue |
+|  10  | Trigger `Profile` mobile `sidenav` | Click on the `Profile icon` in the navbar | It should trigger a `sidenav`, to the left, which contains either the `Login` and `Register` navlink, or the `Profile` and `Log Out` navlink | The `sidenav` triggers, opening to the left, once the `Profile icon` is clicked | Pass |
+|  11  | Navigate to `Login`  page | Click the `Login` nav link within the `Profile sidenav` | The site will navigate to the `Login` page | Navigates to `Login` page | Pass |
+|  12  | Navigate to `Register`  page | Click the `Register` nav link within the `Profile sidenav` | The site will navigate to the `Register` page | Navigates to `Register` page | Pass |
+
+
+
+#### Navigation - Games Page Secondary Navbar (Desktop)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Navigate to `Our Favourites` page | Navigate to the Games page and find the `secondary navbar` under the carousel. Click the `Our Favourites` navlink | It should direct to the `Our Favourites` page | Directs to `Our Favourites` page | Pass |
+|  2  | Navigate to `Award Winners` game page | Navigate back to the Games page and click the `Award Winners` navlink within the `secondary navbar` | It should direct to the `Award Winners` game page | Directs to `Award Winners` game page | Pass |
+|  3  | Show Genre tags | Click the `Genre` link in the `secondary navbar` | It should display all of the genre links (`Action`, `Adventure`, `RPG`, `Strategy` and `Multiplayer`) and the `Genre` link should no longer be visible | Displays all genre links. The `Genre` link itself is no longer visible | Pass |
+|  4  | List `Action` games | After clicking the `Genre` link as described above, click the `Action` link inside the collapsible within the mobile `side nav` | The site will list only the `Action games` within the database | Lists all `Action games` | Pass |
+|  5  | List `Adventure` games | Click the `Adventure` link | The site will list only the `Adventure games` within the database | Lists all `Adventure games` | Pass |
+|  6  | List `RPG` games | Click the `RPG` link | The site will list only the `RPG games` within the database | Lists all `RPG games` | Pass |
+|  7  | List `Strategy` games | Click the `Strategy` link | The site will list only the `Strategy games` within the database | Lists all `Strategy games` | Pass |
+|  8  | List `Multiplayer` games | Click the `Multiplayer` link | The site will list only the `Multiplayer games` within the database | Lists all `Multiplayer games` | Pass |
+|  9  | List `all games` | Click the `All Games` link | The site will list `all games` within the database | Lists all `all games` | Pass |
+
+
+#### Navigation - Games Page Secondary Navbar (Mobile)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Trigger Mobile Sidenav | Using `Chrome DevTools`, toggle device toolbar and change the viewport to a tablet or mobile device with a max width of 992px | The `Our Favourites`, `Award Winners`, `Genre` links should disappear. A `hamburger icon` should appear to the left in the their place. When clicked it should trigger the mobile `sidenav` which should open to the left | The navbar collapses at 992px; the `Our Favourites`, `Award Winners`, `Genre` links disappear and in its place is the `hamburger icon` appears. which opens the `side nav` to the left once clicked | Pass |
+|  2  | Navigate to `Our Favourites` page | Click the `Our Favourites` navlink within the `side nav` of the `secondary navbar` | It should direct to the `Our Favourites` page | Directs to `Our Favourites` page | Pass |
+|  3  | Navigate to `Award Winners` game page | Click the `Award Winners` navlink within the `side nav` of the `secondary navbar` | It should direct to the `Award Winners` game page | Directs to `Award Winners` game page | Pass |
+|  4  | List `Action` games | Click the `Action` navlink within the `side nav` of the `secondary navbar` | The site will list only the `Action games` within the database | Lists all `Action games` | Pass |
+|  5  | List `Adventure` games | Click the `Adventure` navlink within the `side nav` of the `secondary navbar` | The site will list only the `Adventure games` within the database | Lists all `Adventure games` | Pass |
+|  6  | List `RPG` games | Click the `RPG` navlink within the `side nav` of the `secondary navbar` | The site will list only the `RPG games` within the database | Lists all `RPG games` | Pass |
+|  7  | List `Strategy` games | Click the `Strategy` navlink within the `side nav` of the `secondary navbar` | The site will list only the `Strategy games` within the database | Lists all `Strategy games` | Pass |
+|  8  | List `Multiplayer` games | Click the `Multiplayer` navlink within the `side nav` of the `secondary navbar` | The site will list only the `Multiplayer games` within the database | Lists all `Multiplayer games` | Pass |
+|  9  | List `all games` | Click the `All Games` navlink within the `side nav` of the `secondary navbar` | The site will list `all games` within the database | Lists all `all games` | Pass |
+
+
+
+
+#### Navigation - Reviews Page Secondary Navbar (Desktop)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Show Genre tags | Click the `Genre` link in the `secondary navbar` | It should display all of the genre links (`Action`, `Adventure`, `RPG`, `Strategy` and `Multiplayer`) and the `Genre` link should no longer be visible | Displays all genre links. The `Genre` link itself is no longer visible | Pass |
+|  2  | List `Action` game reviews | After clicking the `Genre` link as described above, click the `Action` link inside the collapsible within the mobile `side nav` | The site will list only the `Action game reviews` within the database | Lists all `Action game reviews` | Pass |
+|  3  | List `Adventure` game reviews | Click the `Adventure` link | The site will list only the `Adventure game reviews` within the database | Lists all `Adventure game reviews` | Pass |
+|  4  | List `RPG` game reviews | Click the `RPG` link | The site will list only the `RPG game reviews` within the database | Lists all `RPG game reviews` | Pass |
+|  5  | List `Strategy` game reviews | Click the `Strategy` link | The site will list only the `Strategy game reviews` within the database | Lists all `Strategy game reviews` | Pass |
+|  6  | List `Multiplayer` game reviews | Click the `Multiplayer` link | The site will list only the `Multiplayer game reviews` within the database | Lists all `Multiplayer game reviews` | Pass |
+|  7  | Show Platform tags | Click the `Platform` link in the `secondary navbar` | It should display all of the platform links (`PC`, `XBOX`, `Playstation` and `Nintendo`) and the `Platform` link should no longer be visible | Displays all platform links. The `Platform` link itself is no longer visible | Pass |
+|  8  | List `PC` game reviews | After clicking the `Platform` link as described above, click the `PC` link inside the collapsible within the mobile `side nav` | The site will list only the `PC game reviews` within the database | Lists all `PC game reviews` | Pass |
+|  9  | List `XBOX` game reviews | Click the `XBOX` link | The site will list only the `XBOX game reviews` within the database | Lists all `XBOX game reviews` | Pass |
+|  10  | List `Playstation` game reviews | Click the `Playstation` link | The site will list only the `Playstation game reviews` within the database | Lists all `Playstation game reviews` | Pass |
+|  11  | List `Nintendo` game reviews | Click the `Nintendo` link | The site will list only the `Nintendo game reviews` within the database | Lists all `Nintendo game reviews` | Pass |
+|  12  | List `all reviews` | Click the `All Reviews` link | The site will list `all reviews` within the database | Lists all `all reviews` | Pass |
+
+
+
+#### Navigation - Reviews Page Secondary Navbar (Mobile)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Trigger Mobile Sidenav | Using `Chrome DevTools`, toggle device toolbar and change the viewport to a tablet or mobile device with a max width of 992px | The `Platform` and `Genre` links should disappear. A `hamburger icon` should appear to the left in the their place. When clicked it should trigger the mobile `sidenav` which should open to the left | The navbar collapses at 992px; the `Platform` and `Genre` links disappear and in its place is the `hamburger icon` appears. which opens the `side nav` to the left once clicked | Pass |
+|  2  | List `PC` game reviews | Click the `PC` navlink within the `side nav` of the `secondary navbar` | The site will list only the `PC game reviews` within the database | Lists all `PC game reviews` | Pass |
+|  3  | List `XBOX` game reviews | Click the `XBOX` navlink within the `side nav` of the `secondary navbar` | The site will list only the `XBOX game reviews` within the database | Lists all `XBOX game reviews` | Pass |
+|  4  | List `Playstation` game reviews | Click the `Playstation` navlink within the `side nav` of the `secondary navbar` | The site will list only the `Playstation game reviews` within the database | Lists all `Playstation game reviews` | Pass |
+|  5  | List `Nintendo` game reviews | Click the `Nintendo` navlink within the `side nav` of the `secondary navbar` | The site will list only the `Nintendo game reviews` within the database | Lists all `Nintendo game reviews` | Pass |
+|  6  | List `Action` game reviews | Click the `Action` navlink within the `side nav` of the `secondary navbar` | The site will list only the `Action game reviews` within the database | Lists all `Action game reviews` | Pass |
+|  7  | List `Adventure` game reviews | Click the `Adventure` navlink within the `side nav` of the `secondary navbar` | The site will list only the `Adventure game reviews` within the database | Lists all `Adventure game reviews` | Pass |
+|  8  | List `RPG` game reviews | Click the `RPG` navlink within the `side nav` of the `secondary navbar` | The site will list only the `RPG game reviews` within the database | Lists all `RPG game reviews` | Pass |
+|  9  | List `Strategy` game reviews | Click the `Strategy` navlink within the `side nav` of the `secondary navbar` | The site will list only the `Strategy game reviews` within the database | Lists all `Strategy game reviews` | Pass |
+|  10  | List `Multiplayer` game reviews | Click the `Multiplayer` navlink within the `side nav` of the `secondary navbar` | The site will list only the `Multiplayer game reviews` within the database | Lists all `Multiplayer game reviews` | Pass |
+|  11  | List `all reviews` | Click the `All Reviews` navlink within the `side nav` of the `secondary navbar` | The site will list `all reviews` within the database | Lists all `all reviews` | Pass |
+
+
+
+#### Navigation - Other
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Navigate to `Register`  page | Navigate to the `Log In` page and click the `Sign Up` link | The site will navigate to the `Register` page | Navigates to `Register` page | Pass |
+|  2  | Navigate to `Login`  page via the Register page | Click the `Log In` link on the Register page | The site will navigate to the `Login` page | Navigates to `Login` page | Pass |
+|  3  | Navigate to `Favourites` page | When on the `Homepage`, click the `Explore Our Favourites` button | It should direct to the `Our Favourites` page | Directs to `Favourites` page | Pass |
+|  4  | Navigate to `Submit Review` page | When on the`Community Reviews` page, click the `Leave a Review` button | It should direct to the `Submit Review` page | Directs to `Submit Review` page | Pass |
+|  5  | Navigate to a specific `game review` | When on the`Homepage`, scroll down to the games list. Click on a game card under the `Bestsellers` heading | It should direct to the `Community Reviews` page. The review results should only be for the game that was clicked. The carousel should be a static image of the game and only the reviews for that game should be displayed. If there are no reviews for the game, a card saying: 'Sorry, but we couldn't find what you're looking for' should be displayed instead | Directs to the `Community Reviews` page, displaying all reviews for that game. When no reviews were present, the card saying: 'Sorry, but we couldn't find what you're looking for' is displayed instead. The carousel is static, and shown only the image for the game that was clicked on the Homepage | Pass | Tested for the following games: 'Valheim', 'Evil Genius 2: World Domination', 'Hades', 'Rust', 'Red Dead Redemption 2'; 'Risk of Rain 2' |
+|  6  | Navigate to a specific `game review` - 2 | When on the`Homepage`, scroll down to the games list. Click on a game card under the `Award Winners` heading | It should direct to the `Community Reviews` page. The review results should only be for the game that was clicked. The carousel should be a static image of the game and only the reviews for that game should be displayed. If there are no reviews for the game, a card saying: 'Sorry, but we couldn't find what you're looking for' should be displayed instead | Directs to the `Community Reviews` page, displaying all reviews for that game. When no reviews were present, the card saying: 'Sorry, but we couldn't find what you're looking for' is displayed instead. The carousel is static, and shown only the image for the game that was clicked on the Homepage | Pass | Tested for the following games: 'Fall Guys: Ultimate Knockout', 'Red Dead Redemption 2', 'Half-Life: Alyx', 'Death Stranding'; 'DOOM Eternal' |
+|  7  | `Pagination` - Homepage |  When on the`Homepage`, scroll down to the games list. Click the arrow indicators for the pagination links under the games list for `Bestsellers` | It should go to the next page for `Bestsellers` | It goes to to the next page | Pass | Although this is not a bug, when clicking the next pagination link the page will refresh and scroll to the top. This is something I would like to address in the future in order to improve the user experience |
+|  8  | Navigate to `Community Reviews` page | When on the `Our Favourites` page, click the `See Reviews` button | It should direct to the `Community Reviews` page | Directs to `Community Reviews` page | Pass |
+|  9  | `Request A Game` notification | When on the `Our Favourites` page, click the `Request A Game` button | As no session user is logged in, it should trigger a `tooltip`, which says, 'Please sign in or register an account with us to request games'| Clicking the button triggers the `tooltip`  | Pass |
+|  10  | `Scroll to Top` button | When on the `Our Favourites` page, scroll down and click the `Scroll To Top` button | The page should scroll back to the top of the page | Clicking the button scrolls to the top of the page  | Pass |
+|  11  |  Navigate to a specific `game review` | When on the `Our Favourites` page, scroll down to the game card and click on the `See Reviews` button for a game | It should direct to the `Community Reviews` page, showing only the reviews for that game. The carousel should be a static image of the game and only the reviews for that game should be displayed. If there are no reviews for the game, a card saying: 'Sorry, but we couldn't find what you're looking for' should be displayed instead |  Directs to the `Community Reviews` page, displaying all reviews for that game. When no reviews were present, the card saying: 'Sorry, but we couldn't find what you're looking for' is displayed instead. The carousel is static, and shown only the image for the game that was clicked on the Our Favourites page | Pass | Tested for the following games: 'Red Dead Redemption 2', 'Grand Theft Auto V', 'Vampyr', 'Mount and Blade II Bannerlord'; 'The Elder Scrolls V: Skyrim Special Edition' |
+|  12  |  Navigate to a specific `game review` - 1 | When on the `Our Favourites` page, scroll down to the game card and click on a game card's title | It should direct to the `Community Reviews` page, showing only the reviews for that game. The carousel should be a static image of the game and only the reviews for that game should be displayed. If there are no reviews for the game, a card saying: 'Sorry, but we couldn't find what you're looking for' should be displayed instead |  Directs to the `Community Reviews` page, displaying all reviews for that game. When no reviews were present, the card saying: 'Sorry, but we couldn't find what you're looking for' is displayed instead. The carousel is static, and shown only the image for the game that was clicked on the Our Favourites page | Pass | Tested for the following games: 'A Plague Tale: Innocence', 'Crusader Kings III', 'Mount and Blade II Bannerlord'; 'Bioshock Remastered' |
+|  13  |  Navigate to a specific `game review` - 2 | When on a `Games` page, click on a game image within one of the game cards | It should direct to the `Community Reviews` page, showing only the reviews for that game. The carousel should be a static image of the game and only the reviews for that game should be displayed. If there are no reviews for the game, a card saying: 'Sorry, but we couldn't find what you're looking for' should be displayed instead |  Directs to the `Community Reviews` page, displaying all reviews for that game. When no reviews were present, the card saying: 'Sorry, but we couldn't find what you're looking for' is displayed instead. The carousel is static, and shown only the image for the game that was clicked on the Games page | Pass | Tested for the following games: 'Valheim', 'Hades', 'It Takes Two'; 'Left 4 Dead 2' |
+|  14  |  Navigate to a specific `game review` - 3 | When on the `Community Reviews` page, click on a game image within one of the review cards | It should show only the reviews for that game. The carousel should be a static image of the game and only the reviews for that game should be displayed |  Directs to the `Community Reviews` page, displaying all reviews for that game. The carousel is static, and shown only the image for the game that was clicked on the Our Favourites page | Pass | Tested for the following games: 'Hunt: Showdown', 'Rust', 'Red Dead Redemption 2'; 'Mass Effect Legendary Edition' |
+|  15  |  Navigate to a specific `game review` - 4 | When on a `Games` page, click on a game image within the `carousel` | It should show only the reviews for that game. The carousel should be a static image of the game and only the reviews for that game should be displayed |  Directs to the `Community Reviews` page, displaying all reviews for that game. When no reviews were present, the card saying: 'Sorry, but we couldn't find what you're looking for' is displayed instead. The carousel is static, and shown only the image for the game that was clicked on the Games page | Pass | Tested for the following games: 'Vampyr', 'Mordhau', 'Star Wars Battelfront II'; 'Death Stranding'  |
+|  16  | Test all of the above on mobile | n/a | n/a | n/a | Pass |
+|  17  | `Visit Other User Profiles` |  Navigate to the `Community Reviews` page and find a review card. Click on the `username` of the review card | It should navigate to the `Profile page` of that user | KeyError | Fail | Navigating to user's Profile page when no session user was logged in triggerd a KeyError. See [here](#keyerror-when-visiting-a-users-profile) for its fix |
+|  18  | `Visit Other User Profiles` - after fix |  Navigate to the `Community Reviews` page and find a review card. Click on the `username` of the review card | It should navigate to the `Profile page` of that user | Navigates to the user's Profile page | Pass |
+
+
+
+
+------
+
+### Navigation - Session User
+
+
+#### Register Log In and Sign Out (Desktop)
+
+|  1  | `Register` an account | Navigate to the `Register` page by first navigating to the `Log In` page and then clicking the `Sign Up` link. Complete the `Register form` and click `Register` | The user will have their account registered and their user credentials will be added to the appropriate MongoDB collection. The user will be directed to their new `Profile` page. A `flash message` should say 'Welcome {username}' | After completing the `register form` the user has their account `registered` and is directed to their `Profile` page. A `flash message` says 'Welcome {username}, which in this case is 'Welcome Firstuser' | Pass |
+|  2  | `Log Out`  | Hover over the `Profile icon` in the navbar and click `Log Out` | You should be logged out and directed to the `Log In` page | Clicking the link successfully logs me out and directs me back to the `Log In`. A flash message says 'You have been logged out' to confirm that the action was successful | Pass |
+|  3  | `Log In` | Navigate to the `Login` page and enter credentials; click `Log In` | The user will be `logged in` and directed to their `Profile` page. A `flash message` should say 'Welcome {username}' | After entering user credentials, the user is `'logged in` and directed to their `Profile` page. A `flash message` says 'Welcome {username}, which in this case is 'Welcome Firstuser' | Pass |
+
+
 
 
 #### Navigation - Profile (Desktop)
@@ -428,51 +535,6 @@ After cache control:
 |  7  | Navigate back to `Profile` page | While on any of the `Edit Profile` pages, click the `username` link heading at the top of the card | It should direct back to the `Profile - Games` page | Directs to `Profile - Games` page | Pass |
 |  8  | Navigate back to `Profile` page (2) | While on any of the `Edit Profile` pages, click the `Back to Profile` link below the heading | It should direct back to the `Profile - Games` page | Directs to `Profile - Games` page | Pass |      
 
-
-#### Navigation - Games Page Secondary Navbar (Desktop)
-
-| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
-| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
-|  1  | Navigate to `Favourites` page | Click the `Genre` navlink in the navbar to navigate to the `Games` page, displaying **all games** in the database. Once there, click the `Our Favourites` navlink in the `secondary navbar` | It should direct to the `Favourites` page | Directs to `Favourites` page | Pass |
-|  2  | Show Genre tags | Click the `Genre` link in the `secondary navbar` | It should display all of the genre links (`Action`, `Adventure`, `RPG`, `Strategy` and `Multiplayer`) and the `Genre` link should no longer be visible | Displays all genre links. The `Genre` link itself is no longer visible | Pass |
-|  3  | Show Platform tags | Click the `Platform` link in the `secondary navbar` | It should display all of the platform links (`PC`, `XBOX` and `Playstation`) and the `Platform` link should no longer be visible | Displays all platform links. The `Platform` link itself is no longer visible | Pass |
-|  4  | Navigate to a user's `Profile - Game List` | When `logged in`, click the `Your List` navlink in the `secondary navbar` | It should direct to the user to their `Profile - Game List` | Directs to the user to their `Profile - Game List` | Pass |
-|  5  | Search for a game title using the `searchbar` in the `secondary navbar` | Input 'Red' into the `searchbar` and hit enter | The page should display two game results: 'Red Dead Online' and 'Red Dead Redemption 2' | After searching for 'red', the page displays the two game results containing that name: 'Red Dead Online' and 'Red Dead Redemption 2' | Pass |
-|  6  | Display all games in the database | Hover over the `Genre` dropdown menu (navlink) and click on the `Action` navlink in the navbar to navigate to the `Games - Action` page. Click on the `All Games` link in the `secondary navbar` once there | After the clicking the link, all games should be displayed on the page | Before clicking the link there were 12 pages, containing games that had the 'Action' tag and/or were primarily categorised as 'Action' (for more information on how the data is handled, see [here]()). After clicking `All Games`, there were 18 pages, containing all games within the database | Pass |
-
-
-#### Navigation - Games Page Secondary Navbar (Mobile)
-
-| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
-| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
-|  1  | Navigate to `Favourites` page | Click the `Genre` navlink in the main `sidenav` to navigate to the `Games` page, displaying **all games** in the database. Once there, click on the `hamburger icon` in the `secondary navbar`. Then click the `Our Favourites` navlink in the `secondary navbar sidenav` | It should direct the user to the `Favourites` page | Directs the user to `Favourites` page | Pass |
-|  2  | Navigate to a user's `Profile - Game List` | When `logged in`, click the `Your List` navlink in the `secondary navbar sidenav` | It should direct to the user to their `Profile - Game List` | Directs to the user to their `Profile - Game List` | Pass |
-|  5  | Search for a game title using the `searchbar` in the `secondary navbar` | Input 'Red' into the `searchbar` and hit enter | The page should display two game results: 'Red Dead Online' and 'Red Dead Redemption 2' | After searching for 'red', the page displays the two game results containing that name: 'Red Dead Online' and 'Red Dead Redemption 2' | Pass |
-|  6  | Display all games in the database | Hover over the `Genre` dropdown menu (navlink) and click on the `Action` navlink in the navbar to navigate to the `Games - Action` page. Click on the `All Games` link in the `secondary navbar` once there | After the clicking the link, all games should be displayed on the page | Before clicking the link there were 12 pages, containing games that had the 'Action' tag and/or were primarily categorised as 'Action' (for more information on how the data is handled, see [here]()). After clicking `All Games`, there were 18 pages, containing all games within the database | Pass |
-
-
-#### Navigation - Other (Desktop)
-
-| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
-| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
-|  1  | Navigate to `Favourites` page | When on the `Homepage`, click the `Explore Our Favourites` button | It should direct to the `Favourites` page | Directs to `Favourites` page | Pass |
-|  2  | Navigate to `Favourites` page | When on any of the `Game` pages, click the `Our Favourites` navlink in the `secondary navbar` | It should direct to the `Favourites` page | Directs to `Favourites` page | Pass |
-|  3  | Navigate to `Submit Review` page | When on the`Community Reviews` page, click the `Leave a Review` button | It should direct to the `Submit Review` page | Directs to `Submit Review` page | Pass |
-|  4  | Navigate to `Submit Review` page from the `Profile` page | When on the session user's`Profile` page, find a game within any section of the `Games List` (if none have been added then see [here]() to add some) that has not yet been reviewed by the user. Click the `Review` button beside it | Should direct the user to the `Submit Review` page and the game title should **already be filled in** with the game from the user's `Game List` | Directs to the `Submit Review` page. The correct game title for the *game title*  `input field` is already filled in | Pass |
-|  5  | Navigate to `Edit Review` page from the `Profile` page | When on the session user's`Profile` page, find a game within any section of the `Games List` (if none have been added then see [here]() to add some) that **have** been reviewed by the user. If no reviews have been made yet, then see [here]() to submit one. Click the `pen icon` inside the `Reviewed` button | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
-|  5  | Navigate to `Edit Review` page from the `Profile - Reviews` page | When on the session user's`Profile - Reviews` page, find any review within the list (no reviews have been made yet, then see [here]() to submit one). Click the `Edit` button inside the review card | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
-
-
-#### Navigation - Other (Mobile)
-
-| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
-| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
-|  1  | Navigate to `Favourites` page | When on the `Homepage`, click the `Explore Our Favourites` button | It should direct to the `Favourites` page | Directs to `Favourites` page | Pass |
-|  2  | Navigate to `Favourites` page | When on any of the `Game` pages, click the `hamburger icon` in th the `secondary navbar`, then click the `Our Favourites` navlink in the `sidenav` | It should direct to the `Favourites` page | Directs to `Favourites` page | Pass |
-|  3  | Navigate to `Submit Review` page | When on the`Community Reviews` page, click the `Leave a Review` button | It should direct to the `Submit Review` page | Directs to `Submit Review` page | Pass |
-|  4  | Navigate to `Submit Review` page from the `Profile` page | When on the session user's`Profile` page, find a game within any section of the `Games List` (if none have been added then see [here]() to add some) that has not yet been reviewed by the user. Click the `Review` button beside it | Should direct the user to the `Submit Review` page and the game title should **already be filled in** with the game from the user's `Game List` | Directs to the `Submit Review` page. The correct game title for the *game title*  `input field` is already filled in | Pass |
-|  5  | Navigate to `Edit Review` page from the `Profile` page | When on the session user's`Profile` page, find a game within any section of the `Games List` (if none have been added then see [here]() to add some) that **have** been reviewed by the user. If no reviews have been made yet, then see [here]() to submit one. Click the `pen icon` inside the `Reviewed` button | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
-|  6  | Navigate to `Edit Review` page from the `Profile - Reviews` page | When on the session user's`Profile - Reviews` page, find any review within the list (no reviews have been made yet, then see [here]() to submit one). Click the `Edit` button inside the review card | Should direct the user to the `Edit Review` page and all `input fields` should **already be filled in** with the data from the current review that the user wishes to edit | Directs the user to the `Edit Review` page. All `input fields` are filled in with data from the review that the user wishes to edit | Pass |
 
 
 ------
@@ -696,3 +758,24 @@ if existing_request is not None:
 ```
 
 - This alteration fixed the NoneType Error and allowed the form to be submitted
+
+
+-----
+
+## KeyError when Visiting A User's Profile
+
+- Navigating to a user's profile via the Community Reviews page, when not logged into an account, triggered the error: `KeyError: 'user'`
+
+- This was error caused by the following line of code: `{"username": session["user"]}).distinct("game_title")`
+
+- When no session user was logged in, the session cookie `session['user]` produced a KeyError because it did not exist. Adding the following line of code fixed the issue:
+
+````
+session_user = session.get("user")
+
+    if session_user is not None:
+        session_user_games = mongo.db.user_games.find(
+            {"username": session["user"]}).distinct("game_title")
+    else:
+        session_user_games = None
+```
