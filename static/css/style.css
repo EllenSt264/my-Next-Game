@@ -275,10 +275,26 @@ The following code is based upon this source:
     color: #00e5ff;
 }
 
-li.mobile-sidenav-genreLink {
+#sidenav-collapsible {
+    border: none;
+    margin: 0;
+}
+
+#sidenav-collapsible .collapsible-header {
+    line-height: normal;
+    padding: 10px 0;
+    background: none;
+    border-bottom: none;
+}
+
+#sidenav-collapsible .collapsible-body {
+    border-bottom: none;
+    padding: 0;
+}
+
+#sidenav-collapsible .collapsible-body li {
     padding-left: 0;
-    font-size: 18px;
-    border-bottom: 0;
+    border-bottom: none;
 }
 
 /* ---------------------------------------------- Hamburger Icon */

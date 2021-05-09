@@ -136,22 +136,30 @@
             </li>
             
             <!-- Navlinks -->
-            <li><a href="{{ url_for('request_game') }}">Request A Game</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
-            <li>
-                <a href="{{ url_for('all_games') }}">All Games</a>
-                <ul>
-                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('action_games') }}">Action</a></li>
-                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
-                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('rpg_games') }}">RPG</a></li>
-                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
-                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
-                    <li class="mobile-sidenav-genreLink"><a href="{{ url_for('awardwinner_games') }}">Award Winners</a></li>
-                </ul>
-            </li>
+
+            <div class="collapsible" id="sidenav-collapsible">
+                <li>
+                    <a href="#!" class="collapsible-header">Games</a>
+                    <ul class="collapsible-body">
+                        <li><a href="{{ url_for('all_games') }}">All Games</a></li>
+                        <li><a href="{{ url_for('action_games') }}">Action</a></li>
+                        <li><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
+                        <li><a href="{{ url_for('rpg_games') }}">RPG</a></li>
+                        <li><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
+                        <li><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
+                        <li><a href="{{ url_for('awardwinner_games') }}">Award Winners</a></li>
+                    </ul>
+                </li>
+            </div>
+
             <li><a href="{{ url_for('all_reviews') }}">Community Reviews</a></li>
-            {% if session.user and session.admin %}
+            {% if session.user %}
+                <li><a href="{{ url_for('request_game') }}">Request A Game</a></li>
+                {% if session.admin %}
                 <li><a href="#">Admin Controls</a></li>
+                {% endif %}
             {% endif %}
         </ul>
 
