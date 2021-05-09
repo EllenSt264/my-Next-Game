@@ -2,11 +2,11 @@
 
 **my Next Game** is an aspiring community-based platform for gamers. By registering an account, users can submit game reviews, like on games, and customize their profiles and game playlists. Reviews are free from commercial bias and give gamers the freedom and resources to submit their real thoughts and opinons about a huge variety of games. **my Next Game** strives to be unique, and is specifically tailored for the user, creating the potential for this web-application to form into a platform that is honest and free.
 
-![Mockup Image - Games Page](static/img/documentation/smartmockups-games_page.png)
+![Mockup Image - Games Page](static/img/documentation/mockup-games_page.png)
 
 | .      | .     |
 | ------- | ------ |
-| ![Mockup Image - Homepage](static/img/documentation/smartmockups-homepage_1.jpg) | ![Mockup Image - Games Page](static/img/documentation/smartmockups-games_page_2.jpg)
+| ![Mockup Image - Homepage](static/img/documentation/smartmockups-homepage.jpg) | ![Mockup Image - Games Page](static/img/documentation/smartmockups-games_page.jpg)
 
 -----
 
