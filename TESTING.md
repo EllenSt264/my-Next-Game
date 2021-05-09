@@ -19,7 +19,7 @@
 
         - [Navigation - Navbar (Desktop)](#navigation---navbar-desktop)
 
-        - [Navigation - Navbar (Mobile)](#navigation---navbar-mobile)
+        - [Navigation - Navbar (Mobile)](#navigation---side-nav-mobile)
 
         - [Navigation - Games Page Secondary Navbar (Desktop)](#navigation---games-page-secondary-navbar-desktop)
 
@@ -32,6 +32,8 @@
         - [Navigation - Other](#navigation---other)
 
     - [Navigation - Session User](#navigation---session-user)
+
+        - [Register Log In and Sign Out (Desktop)](#register-log-in-and-sign-out-desktop)
 
         - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
 
@@ -502,6 +504,8 @@ After cache control:
 
 #### Register Log In and Sign Out (Desktop)
 
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
 |  1  | `Register` an account | Navigate to the `Register` page by first navigating to the `Log In` page and then clicking the `Sign Up` link. Complete the `Register form` and click `Register` | The user will have their account registered and their user credentials will be added to the appropriate MongoDB collection. The user will be directed to their new `Profile` page. A `flash message` should say 'Welcome {username}' | After completing the `register form` the user has their account `registered` and is directed to their `Profile` page. A `flash message` says 'Welcome {username}, which in this case is 'Welcome Firstuser' | Pass |
 |  2  | `Log Out`  | Hover over the `Profile icon` in the navbar and click `Log Out` | You should be logged out and directed to the `Log In` page | Clicking the link successfully logs me out and directs me back to the `Log In`. A flash message says 'You have been logged out' to confirm that the action was successful | Pass |
 |  3  | `Log In` | Navigate to the `Login` page and enter credentials; click `Log In` | The user will be `logged in` and directed to their `Profile` page. A `flash message` should say 'Welcome {username}' | After entering user credentials, the user is `'logged in` and directed to their `Profile` page. A `flash message` says 'Welcome {username}, which in this case is 'Welcome Firstuser' | Pass |
