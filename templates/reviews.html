@@ -70,6 +70,15 @@
                                                 {% endif %}
                                             </span>
                                         </p>
+                                        <!-- Platform -->
+                                        <p class="platform">
+                                            {% if review.platform == "xbox" %}
+                                                Platform: {{ review.platform|upper }}
+                                            {% else %}
+                                                Platform: {{ review.platform|capitalize }}
+                                            {% endif %}
+                                        </p>
+                                        <div class="divider"></div>
                                         <!-- Summary -->
                                         <p class="summary">
                                             {{ review.summary }}
@@ -286,6 +295,15 @@
                                                     {% endif %}
                                                 </span>
                                             </p>
+                                            <!-- Platform -->
+                                            <p class="platform">
+                                                {% if review.platform == "xbox" %}
+                                                    Platform: {{ review.platform|upper }}
+                                                {% else %}
+                                                    Platform: {{ review.platform|capitalize }}
+                                                {% endif %}
+                                            </p>
+                                            <div class="divider"></div>
                                             <!-- Summary -->
                                             <p class="summary">
                                                 {{ review.summary }}

@@ -49,8 +49,8 @@
                                     {% endif %}
                                 </div>
                                 <!-- Submission date -->
-                                <div class="col s7 submission-date">
-                                    <h6>
+                                <div class="col s7 date-and-platform">
+                                    <h6 class="submission-date">
                                         Posted:
                                         <span>{{ review.date_submitted }}</span> 
                                         {% if review.last_updated %}
@@ -58,6 +58,13 @@
                                             <span>{{ review.last_updated }}</span>
                                         {% endif %}
                                     </h6>
+                                    <p class="platform">
+                                        {% if review.platform == "xbox" %}
+                                            Platform: {{ review.platform|upper }}
+                                        {% else %}
+                                            Platform: {{ review.platform|capitalize }}
+                                        {% endif %}
+                                    </p>
                                 </div>
                             </div>
                             <!-- Collapsible -->
@@ -265,8 +272,8 @@
                                 {% endif %}
                             </div>
                             <!-- Submission date -->
-                            <div class="col s7 submission-date">
-                                <h6>
+                            <div class="col s7 date-and-platform">
+                                <h6 class="submission-date">
                                     Posted:
                                     <span>{{ review.date_submitted }}</span> 
                                     {% if review.last_updated %}
@@ -274,6 +281,13 @@
                                         <span>{{ review.last_updated }}</span>
                                     {% endif %}
                                 </h6>
+                                <p class="platform">
+                                    {% if review.platform == "xbox" %}
+                                        Platform: {{ review.platform|upper }}
+                                    {% else %}
+                                        Platform: {{ review.platform|capitalize }}
+                                    {% endif %}
+                                </p>
                             </div>
                         </div>
                         <img src="{{ review.game_img_full }}" alt="Image for {{ review.game_title }}">
