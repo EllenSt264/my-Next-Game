@@ -113,8 +113,6 @@ The target audience is gamers, coming from a wide range of platforms and backgro
 
 - I want to leave reviews of my own.
 
-- If I don't know what I'm looking for, I want a site feature that will help me decide what game to play next.
-
 - I want to see games that are recommended by the site.
 
 - I want to add games to my personal games list.
@@ -126,15 +124,15 @@ The target audience is gamers, coming from a wide range of platforms and backgro
 
 - I want to be able to see all the reviews that I have made, and have the option to edit or delete them. 
 
-- I want to update my games list. I want to categories games into what I am currently playing, what I have played and want I want to play in the future.
+- I want to update my games list. I want to categorise games into what I am currently playing, what I have played and want I want to play in the future.
 
 - I want to see profiles of other users.
 
-- I want to find the site's contact information so that I can get help on an issue.
+- I want to find the site's contact information.
 
 - I want to request new games to be added to the database.
 
-- I want to add games to a favourites list.
+- I want to see all the games that I have liked.
 
 
 -----
