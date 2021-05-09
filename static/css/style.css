@@ -710,6 +710,10 @@ footer .divider {
     line-height: 40px;
 }
 
+#secondary-sidenav {
+    padding-top: 1.5rem;
+}
+
 
 /* ---------------------------------------------- Sort filter*/
 
