@@ -511,15 +511,20 @@ After cache control:
 |  3  | `Log In` | Navigate to the `Login` page and enter credentials; click `Log In` | The user will be `logged in` and directed to their `Profile` page. A `flash message` should say 'Welcome {username}' | After entering user credentials, the user is `'logged in` and directed to their `Profile` page. A `flash message` says 'Welcome {username}, which in this case is 'Welcome Firstuser' | Pass |
 
 
+#### Register Log In and Sign Out (Mobile)
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | `Register` an account | Click the `profile icon` nav link to open the side nav and click the register link to navigate to the `Register` page Complete the `Register form` and click `Register` | The user will have their account registered and their user credentials will be added to the appropriate MongoDB collection. The user will be directed to their new `Profile` page. A `flash message` should say 'Welcome {username}' | After completing the `register form` the user has their account `registered` and is directed to their `Profile` page | Pass |
+|  2  | `Log Out`  | Click the `profile icon` nav link to open the side nav and click `Log Out` | You should be logged out and directed to the `Log In` page | Clicking the link successfully logs me out and directs me back to the `Log In`. A flash message says 'You have been logged out' to confirm that the action was successful | Pass |
+|  3  | `Log In` | Click the `profile icon` nav link to open the side nav and click `Log In` to navigate to the `Login` page and enter credentials; click `Log In` | The user will be `logged in` and directed to their `Profile` page. A `flash message` should say 'Welcome {username}' | After entering user credentials, the user is `logged in` and directed to their `Profile` page. A `flash message` says 'Welcome {username} | Pass |
 
 
 #### Navigation - Profile (Desktop)
 
-| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
-| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
 |  1  | Navigate to `Profile - Reviews` page | When on the `Profile` page, click the `Reviews` button in the sidenav - to the right | It should direct to the `Profile - Reviews` page | Directs to `Profile - Reviews` page | Pass |
 |  2  | Navigate to `Profile - Games` page (default page for the Profile) | While still on the `Profile - Reviews` page, click the `Games` button in the sidenav | Direct to the `Profile - Games` page (the default page whenever the `Profile` navlink is clicked) | Directs to `Profile - Games` page | Pass |  
-|  3  | Navigate to `Edit Profile` page | When on the `Profile` page, click the `Edit Profile` button in the sidenav | Direct to `Edit Profile` page | Directs to `Edit Profile` page | Pass |  
+|  3  | Navigate to `Edit Profile` page | When on the `Profile` page, click the `Edit Profile` button in the sidenav | Direct to `Edit Profile` page | Directs to `Edit Profile` page | Pass |      
 |  4  | Navigate to `Edit Profile - Avatar` page | While still on the `Edit Profile` page, click the `Avatar` button in the sidenav | It should direct to `Edit Profile - Avatar` page | Directs to `Edit Profile - Avatar` page | Pass |  
 |  5  | Navigate to `Edit Profile - General` page (default page for Edit Profile) | While still on the `Edit Profile - Avatar` page, click the `General` button in the sidenav | It should direct to `Edit Profile - General` page (default page for Edit Profile) | Directs to `Edit Profile - General` page | Pass |
 |  6  | Navigate to `Edit Profile - General` page (2) | While on the `Edit Profile - Avatar` page, click the `Edit Profile` link heading at the top of the card | It should direct to `Edit Profile - General` page | Directs to `Edit Profile - General` page | Pass |
@@ -539,6 +544,13 @@ After cache control:
 |  7  | Navigate back to `Profile` page | While on any of the `Edit Profile` pages, click the `username` link heading at the top of the card | It should direct back to the `Profile - Games` page | Directs to `Profile - Games` page | Pass |
 |  8  | Navigate back to `Profile` page (2) | While on any of the `Edit Profile` pages, click the `Back to Profile` link below the heading | It should direct back to the `Profile - Games` page | Directs to `Profile - Games` page | Pass |      
 
+
+#### Navigation - Other
+
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Navigate to `Request A Game` page | Click the `Request A Game` nav link in the navbar | Should navigate to the `Request A Game` page | Navigates to `Request A Game` page | Pass |
+|  2  | Navigate to `Profile Playlsit` via the secondary navbar on the `Games` page | Navigate to a `Games` page and click the `Your List` link in the secondary navbar | It should navigate to your `Profile Page` | Navigates to the `Profile page` | Pass |
 
 
 ------
@@ -591,6 +603,12 @@ After cache control:
 |  4  | Trying the same thing with differerent `input fields` produced the same result and worked as intended | n/a | n/a | n/a | Pass |
 |  5  | Update `avatar` | Navigate to `Edit Profile - Avatar` and click on any avatar image below the 'Available Avatars' heading | Your `avatar` should be updated and a `flash message` should notify you that the action was successful | The `avatar` image updates and the `flash message` states 'Avatar Successfully Updated' | Pass |
 
+
+#### Request A Game
+
+|  2  | `Request a game` to be added to the db | Navigate to the `Request A Game` page and search for a game, and request the game to be added to the db by clicking 'Yes, Request Game' once the modal opens | Inputting 'far cry 3' returns the the result 'Far Cry 3' in the modal. The game request is successfully added to the db after the button in the modal is clicked. The page redirects to the Homepage and displays a `flash message` that says 'Thanks! We've Submitted Your Request for "Far Cry 3"' | Pass |
+|  3  | `Request a game` to be added to the db that you have already requested | Navigate to the `Request A Game` page and request the same game to be added | It should prompt an error and block the game request | When requesting for 'Far Cry 3' to be added, the game request does not get submitted, as intended, and instead displays a `flash message` which says 'You've already submitted a request for 'Far Cry 3'. Don't worry, we haven't forgot about it!' | Pass |
+|  4  | `Request a game` to be added to the db that already exists on the site | Navigate to the `Request A Game` page and search for 'Valheim'. Request for it to be added to the db | It should not add the request to the db, but instead block the request and display a flash message | The request is not added to the db and a `flash message` says 'Error! 'Valheim' already exists in our database!' | Pass |
 
 
 #### Admin Controls 
