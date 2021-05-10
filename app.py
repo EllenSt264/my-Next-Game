@@ -2024,12 +2024,19 @@ def reviews(genre):
     elif reviewSort1 == "title" and reviewSort2 == "asc":
         pagination_game_reviews.sort("game_title", pymongo.ASCENDING)
 
-    # Sort by rating
-    elif reviewSort1 == "rating" and reviewSort2 == "desc":
+    # Sort by positive reviews
+    elif reviewSort1 == "positive" and reviewSort2 == "desc":
         pagination_game_reviews.sort("recommended", -1)
 
-    elif reviewSort1 == "rating" and reviewSort2 == "asc":
+    elif reviewSort1 == "positive" and reviewSort2 == "asc":
         pagination_game_reviews.sort("recommended", 1)
+
+    # Sort by negative reviews
+    elif reviewSort1 == "negative" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("recommended", 1)
+
+    elif reviewSort1 == "negative" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("recommended", -1)
 
     # Set carousel images
     random_games = mongo.db.all_pc_games.aggregate([
