@@ -2115,7 +2115,7 @@ def submit_review():
             mongo.db.user_reviews.insert_one(review)
             flash("Review Successfully Submitted")
 
-        return redirect(url_for('reviews'))
+        return redirect(url_for('all_reviews'))
 
     # Grab review data for autocomplete function
     gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
@@ -2180,7 +2180,7 @@ def profile_submit_review(game_id):
             mongo.db.user_reviews.insert_one(review)
             flash("Review Successfully Submitted")
 
-        return redirect(url_for("reviews"))
+        return redirect(url_for("all_reviews"))
 
     game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
 
@@ -2241,7 +2241,7 @@ def edit_review(game_id):
         }
         mongo.db.user_reviews.update({"_id": review_id}, update)
         flash("Review Successfully Updated")
-        return redirect(url_for('reviews'))
+        return redirect(url_for('all_reviews'))
 
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
@@ -2289,7 +2289,7 @@ def profile_edit_review(review_id):
         }
         mongo.db.user_reviews.update({"_id": ObjectId(review_id)}, update)
         flash("Review Successfully Updated")
-        return redirect(url_for('reviews'))
+        return redirect(url_for('all_reviews'))
 
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
