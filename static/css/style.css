@@ -1217,6 +1217,15 @@ footer .divider {
     font-size: 16px;
 }
 
+.favourites .fa-windows, 
+.favourites .fa-linux, 
+.favourites .fa-apple,
+.favourites-sm .fa-windows, 
+.favourites-sm .fa-linux, 
+.favourites-sm .fa-apple {
+    font-size: 18px;
+} 
+
 .favourites .divider {
     margin-top: 10px;
 }
@@ -4302,6 +4311,11 @@ label[for]:hover {
     .favourites-sm .card-content p {
         width: 300px;
     }
+    .favourites-sm .fa-windows, 
+    .favourites-sm .fa-linux, 
+    .favourites-sm .fa-apple {
+        font-size: 16px;
+    } 
 }
 
 @media (max-width: 460px) {

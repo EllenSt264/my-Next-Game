@@ -97,11 +97,14 @@
                     <div class="card horizontal purple-linear-gradient glow">
                         <!-- Game image -->
                         <div class="card-image">
-                            <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}"
+                            <a href="{{ url_for('see_game_reviews', game_id=game._id) }}">
+                                <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}"
                                 class="responsive-img activator">
+                            </a>
                         </div>
                         <div class="card-stacked">
                             <div class="card-content">
+                                <!-- Game title -->
                                 <div class="card-title">
                                     <h4>
                                         <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
@@ -109,16 +112,24 @@
                                         </a>
                                     </h4>
                                 </div>
+                                <!-- Game platform tags -->
                                 <p class="grey-text text-lighten-2">
-                                    {{ game.platform_tags_pc|join('') }}
+                                    {% for platform in game.platform_tags_pc %}
+                                        {% if "win" in platform %}
+                                            <i class="fab fa-windows"></i>
+                                        {% elif "linux" in platform %}
+                                            <i class="fab fa-linux"></i>
+                                        {% elif "mac" in platform %}
+                                            <i class="fab fa-apple"></i>
+                                        {% endif %}
+                                    {% endfor %}
                                 </p>
-                                <p class="grey-text text-lighten-2">
-                                    XBOX, Playstation
-                                </p>
+                                <!-- Game genre tags -->
                                 <p class="grey-text text-lighten-2 game-tags">
                                     {{ game.game_top_tags[:10]|join(', ') }}
                                 </p>
                                 <div class="divider"></div>
+                                <!-- Game summary -->
                                 <p class="grey-text text-lighten-2 game-summary">
                                     <span>
                                         {{ game.game_summary }}
@@ -159,7 +170,6 @@
                                         {% endif %}
                                     </div>
                                 </div>
-
                                 <!-- Recommended tag -->
                                 <div class="favourite-tag">
                                     <div class="btn-large disabled">
@@ -187,7 +197,10 @@
                     <div class="card purple-linear-gradient glow">
                         <!-- Game image -->
                         <div class="card-image">
-                            <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                            <a href="{{ url_for('see_game_reviews', game_id=game._id) }}">
+                                <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}"
+                                class="responsive-img activator">
+                            </a>
                         </div>
                         <div class="card-content">
                             <div class="row">
@@ -200,16 +213,23 @@
                                             </a>
                                         </h4>
                                     </div>
-                                    <!-- Platform tags -->
+                                    <!-- Game platform tags -->
                                     <div class="row" style="margin-bottom: 0;">
                                         <div class="col s12">
                                             <p class="grey-text text-lighten-2">
-                                                {{ game.platform_tags_pc|join('') }}
-                                                XBOX, Playstation
+                                                {% for platform in game.platform_tags_pc %}
+                                                    {% if "win" in platform %}
+                                                        <i class="fab fa-windows"></i>
+                                                    {% elif "linux" in platform %}
+                                                        <i class="fab fa-linux"></i>
+                                                    {% elif "mac" in platform %}
+                                                        <i class="fab fa-apple"></i>
+                                                    {% endif %}
+                                                {% endfor %}
                                             </p>
                                         </div>
                                     </div>
-                                    <!-- Genre tags -->
+                                    <!-- Game genre tags -->
                                     <div class="row">
                                         <div class="col s12">
                                             <p class="grey-text text-lighten-2 game-tags">
@@ -237,6 +257,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Add to playlist -->
                                 <div class="row">
                                     <div class="col s2 right">
                                         {% if session.user %}
