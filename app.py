@@ -37,6 +37,9 @@
     * Check if ObjectId is valid:
     "https://stackoverflow.com/questions/28774526/how-to-check-that-mongo-objectid-is-valid-in-python"
 
+    * Calculate number of days between two given dates:
+    "https://stackoverflow.com/questions/151199/how-to-calculate-number-of-days-between-two-given-dates"
+
 """
 
 import os
