@@ -163,14 +163,14 @@
     <!-- Games -->
     <main>
 
-        <!-- Request A Game -->
+        <!-- Review button -->
         <section>
             <div class="row">
                 <div class="col right leave-review-col">
                     {% if not session.user %}
-                        <a href="#!" class="btn tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to request games">Request A Game</a>
+                        <a href="#!" class="btn tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to submit reviews">Leave a Review</a>
                     {% else %}
-                        <a href="{{ url_for('request_game') }}" class="btn">Request A Game</a>
+                        <a href="{{ url_for('submit_review') }}" class="btn">Leave a Review</a>
                     {% endif %}
                 </div>
             </div>
