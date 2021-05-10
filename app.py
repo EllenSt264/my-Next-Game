@@ -782,9 +782,9 @@ def setcookie_favourites():
         return resp
 
 
-# =================
-# Site's Favourites
-# =================
+# ==============
+# Our Favourites
+# ==============
 
 @app.route("/our-favourites", methods=["GET", "POST"])
 def favourites():
@@ -794,26 +794,21 @@ def favourites():
     # Favourites db
     favourites = mongo.db.all_pc_games.find({"favourite": True})
 
-    # Random game
+    # Randomize parallax game each day
+    d0 = datetime.datetime(2021, 1, 1)
+    d1 = datetime.datetime.today()
+    delta = d1 - d0
+    days = delta.days
 
-    random_game = mongo.db.all_pc_games.aggregate([
-        {"$match": {"favourite": True}},
-        {"$sample": {"size": 1}}
-    ])
+    random_num = days % favourites.count()
 
-    screenshots = []
-    rand_game_title = []
-    rand_game_summary = []
-    rand_game_id = ""
+    # Get random game
+    random_game = favourites[random_num]
 
-    for data in random_game:
-        rand_game_title.append(data["game_title"])
-        rand_game_summary.append(data["game_summary"])
-        rand_game_id = data["_id"]
-
-        for img in data["screenshots"]:
-            screenshots.append(img)
-
+    rand_game_title = random_game["game_title"]
+    rand_game_summary = random_game["game_summary"]
+    rand_game_id = random_game["_id"]
+    screenshots = random_game["screenshots"]
     rand_game_imgs = random.sample(screenshots, 3)
 
     # Sort filter
@@ -2176,6 +2171,10 @@ def profile_submit_review(game_id):
 
 @app.route("/edit-review/<game_id>", methods=["GET", "POST"])
 def edit_review(game_id):
+    # Check if you user is logged in first
+
+    # Check if the session user matches the review user 
+
     # Find game to assign to review form
     game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
 
