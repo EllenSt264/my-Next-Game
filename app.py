@@ -807,12 +807,30 @@ def favourites():
 
     # Get random game
     random_game = favourites[random_num]
-
     rand_game_title = random_game["game_title"]
-    rand_game_summary = random_game["game_summary"]
-    rand_game_id = random_game["_id"]
-    screenshots = random_game["screenshots"]
-    rand_game_imgs = random.sample(screenshots, 3)
+
+    game = rand_game_title
+
+    return redirect(url_for("favourites_page", game=game))
+
+
+@app.route("/our-favourites/<game>", methods=["GET", "POST"])
+def favourites_page(game):
+    # Grab game data for autocomplete function in navbar
+    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+
+    # Favourites db
+    favourites = mongo.db.all_pc_games.find({"favourite": True})
+
+    random_game = mongo.db.all_pc_games.find({"game_title": game})
+
+    # Get random game data for parallax
+    for data in random_game:
+        rand_game_title = data["game_title"]
+        rand_game_summary = data["game_summary"]
+        rand_game_id = data["_id"]
+        screenshots = data["screenshots"]
+        rand_game_imgs = random.sample(screenshots, 3)
 
     # Sort filter
 
@@ -842,7 +860,7 @@ def favourites():
         favourites.sort("game_title", pymongo.ASCENDING)
 
     return render_template(
-        "games-favourites.html", favourites=favourites,
+        "games-favourites.html", favourites=favourites, game=game,
         rand_game_title=rand_game_title, rand_game_imgs=rand_game_imgs,
         rand_game_summary=rand_game_summary, rand_game_id=rand_game_id,
         navSelect1=navSelect1, navSelect2=navSelect2, navGameData=navGameData)
