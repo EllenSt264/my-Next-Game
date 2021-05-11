@@ -24,29 +24,29 @@
                     <div class="row">
                         <!-- Sort by features -->
                         <div class="col s12 m12 l8">
-                            <form action="{{ url_for('set_review_cookies') }}" method="POST" class="right">
+                            <form action="{{ url_for('set_user_requests_cookies') }}" method="POST" class="right">
                                 <ul class="tabs tabs-transparent" id="sortNav">
                                     <li class="tab">
                                         <label class="white-text" id="sortBy-label">Sort By</label>
-                                        <select class="browser-default" name="navSelect1" id="navSelect1"
-                                            value="{{ navSelect1 }}">
-                                            <option value="default" {% if navSelect1=="default" %} selected="selected"
-                                                {% endif %}>Default</option>
-                                            <option value="title" {% if navSelect1=="title" %} selected="selected" {%
+                                        <select class="browser-default" name="userRequestsSort1" id="userRequestsSort1"
+                                            value="{{ userRequestsSort1 }}">
+                                            <option value="title" {% if userRequestsSort1=="title" %} selected="selected" {%
                                                 endif %}>Title</option>
-                                            <option value="date" {% if navSelect1=="date" %} selected="selected" {%
-                                                endif %}>Date</option>
-                                            <option value="user-count" {% if navSelect1=="user-count" %} selected="selected"
+                                            <option value="date-added" {% if userRequestsSort1=="date-added" %} selected="selected" {%
+                                                endif %}>Date Added</option>
+                                            <option value="date-last-requested" {% if userRequestsSort1=="date-last-requested" %} selected="selected" {%
+                                                endif %}>Recent Requests</option>
+                                            <option value="user-count" {% if userRequestsSort1=="user-count" %} selected="selected"
                                                 {% endif %}>User Count</option>
                                         </select>
                                     </li>
                                     <li class="tab">
                                         <label class="white-text" id="order-label">Order</label>
-                                        <select class="browser-default" name="navSelect2" id="navSelect2"
-                                            value="{{ navSelect2 }}">
-                                            <option value="asc" {% if navSelect2=="asc" %} selected="selected" {% endif
+                                        <select class="browser-default" name="userRequestsSort2" id="userRequestsSort2"
+                                            value="{{ userRequestsSort2 }}">
+                                            <option value="asc" {% if userRequestsSort2=="asc" %} selected="selected" {% endif
                                                 %}>Asc</option>
-                                            <option value="desc" {% if navSelect2=="desc" %} selected="selected" {%
+                                            <option value="desc" {% if userRequestsSort2=="desc" %} selected="selected" {%
                                                 endif %}>Desc</option>
                                         </select>
                                     </li>

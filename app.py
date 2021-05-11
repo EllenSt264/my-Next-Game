@@ -273,6 +273,23 @@ def home():
         navGameData=navGameData)
 
 
+# ========================
+# See Requests Sort Filter
+# ========================
+
+@app.route("/set-user_requests_cookie", methods=["GET", "POST"])
+def set_user_requests_cookies():
+    if request.method == "POST":
+        cookie1 = request.form.get("userRequestsSort1").lower()
+        cookie2 = request.form.get("userRequestsSort2").lower()
+
+        resp = make_response(redirect(url_for("admin_user_requests")))
+        resp.set_cookie("userRequestsSort1", cookie1)
+        resp.set_cookie("userRequestsSort2", cookie2)
+
+        return resp
+
+
 # =============================
 # Admin Controls - See Requests
 # =============================
@@ -314,30 +331,46 @@ def admin_user_requests():
 
     remove_added_games()
 
-    if request.method == "POST":
-        session["navSelect1"] = request.form.get("navSelect1").lower()
-        session["navSelect2"] = request.form.get("navSelect2").lower()
-
-    navSelect1 = session["navSelect1"]
-    navSelect2 = session["navSelect2"]
-
     # Sort filter
 
-    if navSelect1 == "title" and navSelect2 == "desc":
+    cookie1 = request.cookies.get("userRequestsSort1")
+    cookie2 = request.cookies.get("userRequestsSort2")
+
+    if cookie1 is None and cookie2 is None:
+        userRequestsSort1 = "user-count"
+        userRequestsSort2 = "desc"
+    else:
+        userRequestsSort1 = cookie1
+        userRequestsSort2 = cookie2
+
+    if userRequestsSort1 == "title" and userRequestsSort2 == "desc":
         user_requests.sort("game_request", pymongo.DESCENDING)
 
-    elif navSelect1 == "title" and navSelect2 == "asc":
-        user_requests.sort("requested_by", pymongo.ASCENDING)
+    elif userRequestsSort1 == "title" and userRequestsSort2 == "asc":
+        user_requests.sort("game_request", pymongo.ASCENDING)
 
-    elif navSelect1 == "user-count" and navSelect2 == "desc":
+    if userRequestsSort1 == "date-added" and userRequestsSort2 == "desc":
+        user_requests.sort("date_added", pymongo.DESCENDING)
+
+    elif userRequestsSort1 == "date-added" and userRequestsSort2 == "asc":
+        user_requests.sort("date_added", pymongo.ASCENDING)
+    
+    if userRequestsSort1 == "date-last-requested" and userRequestsSort2 == "desc":
+        user_requests.sort("date_last_request", pymongo.DESCENDING)
+
+    elif userRequestsSort1 == "date-last-requested" and userRequestsSort2 == "asc":
+        user_requests.sort("date_last_request", pymongo.ASCENDING)
+
+    elif userRequestsSort1 == "user-count" and userRequestsSort2 == "desc":
         user_requests.sort("requested_by", pymongo.DESCENDING)
 
-    elif navSelect1 == "user-count" and navSelect2 == "asc":
-        user_requests.sort("game_request", pymongo.ASCENDING)
+    elif userRequestsSort1 == "user-count" and userRequestsSort2 == "asc":
+        user_requests.sort("requested_by", pymongo.ASCENDING)
 
     return render_template(
         "admin-user_requests.html", user_requests=user_requests,
-        navSelect1=navSelect1, navSelect2=navSelect2, navGameData=navGameData)
+        navGameData=navGameData, userRequestsSort1=userRequestsSort1,
+        userRequestsSort2=userRequestsSort2)
 
 
 # =============================
@@ -1165,6 +1198,7 @@ def confirm_request(game_request, title):
             if existing_request:
                 # Find id of document
                 request_id = existing_request["_id"]
+
                 # Update existing document
                 game_request = {
                     "$push": {"requested_by": user},
