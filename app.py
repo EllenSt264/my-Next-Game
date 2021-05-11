@@ -2081,11 +2081,12 @@ def reviews(genre):
     else: 
         game = mongo.db.all_pc_games.find_one({"game_url": genre})
         # Grab game details
+        title = game["game_title"]
         game_img = game["game_img_full"]
         game_tags = game["game_top_tags"]
 
         # Filter reviews
-        game_reviews = mongo.db.user_reviews.find({"game_title": genre})
+        game_reviews = mongo.db.user_reviews.find({"game_title": title})
 
 
     # Pagination
