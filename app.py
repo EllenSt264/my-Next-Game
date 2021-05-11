@@ -1041,54 +1041,59 @@ def like(game_id):
 
 @app.route("/request-a-game", methods=["GET", "POST"])
 def request_game():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    if session.get("user"):
+        # Grab game data for autocomplete function in navbar
+        navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    # Post game request
-    if request.method == "POST":
-        game_request = request.form.get("game-request").lower()
+        # Post game request
+        if request.method == "POST":
+            game_request = request.form.get("game-request").lower()
 
-        # Deconstruct the string so that it's suitable for the url
-        request_str = game_request.translate(str.maketrans(
-            '', '', string.punctuation))
-        request_str = request_str.replace(" ", "+")
+            # Deconstruct the string so that it's suitable for the url
+            request_str = game_request.translate(str.maketrans(
+                '', '', string.punctuation))
+            request_str = request_str.replace(" ", "+")
 
-        link = ""
+            link = ""
 
-        # Search for string on the Steam Store website
-        base_url = "https://store.steampowered.com/search/?term="
-        url = base_url + request_str
+            # Search for string on the Steam Store website
+            base_url = "https://store.steampowered.com/search/?term="
+            url = base_url + request_str
 
-        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
-        source = requests.get(url, cookies=cookies)
-        soup = BeautifulSoup(source.text, "html.parser")
+            cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+            source = requests.get(url, cookies=cookies)
+            soup = BeautifulSoup(source.text, "html.parser")
 
-        # -------------------------------------------------- Game Links
-        try:
-            a = soup.find(
-                'a', {'class': 'search_result_row ds_collapse_flag'})['href']
+            # -------------------------------------------------- Game Links
+            try:
+                a = soup.find(
+                    'a', {'class': 'search_result_row ds_collapse_flag'})['href']
 
-            split_href = a.split("?")
-            link = split_href[0]
+                split_href = a.split("?")
+                link = split_href[0]
 
-            title = soup.find("span", {"class": "title"}).text
+                title = soup.find("span", {"class": "title"}).text
 
-        except TypeError:
-            link = "no results"
+            except TypeError:
+                link = "no results"
 
-        # If the game does not exist on Steam
-        if link == "no results":
-            flash(
-                "Sorry, we can't find any results for '{}'".format(
-                    game_request.title()))
+            # If the game does not exist on Steam
+            if link == "no results":
+                flash(
+                    "Sorry, we can't find any results for '{}'".format(
+                        game_request.title()))
 
-        # Otherwise add game request to db
-        else:
-            return redirect(url_for(
-                "confirm_request", game_request=game_request,
-                title=title))
+            # Otherwise add game request to db
+            else:
+                return redirect(url_for(
+                    "confirm_request", game_request=game_request,
+                    title=title))
 
-    return render_template("request_form.html", navGameData=navGameData)
+        return render_template("request_form.html", navGameData=navGameData)
+
+    else:
+        flash("Sign in or register an account with us to request games")
+        return redirect(url_for("login"))
 
 
 # ======================
@@ -2067,62 +2072,68 @@ def reviews(genre):
 
 @app.route("/submit-review", methods=["GET", "POST"])
 def submit_review():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    if session.get("user"):
+        # Grab game data for autocomplete function in navbar
+        navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    if request.method == "POST":
-        # Find game data for displaying game review
-        title = request.form.get("query")
-        game = mongo.db.all_pc_games.find_one({"game_title": title})
-        img_full = game["game_img_full"]
+        if request.method == "POST":
+            # Find game data for displaying game review
+            title = request.form.get("query")
+            game = mongo.db.all_pc_games.find_one({"game_title": title})
+            img_full = game["game_img_full"]
 
-        display_name = mongo.db.users.find_one(
-            {"username": session["user"]})["display_name"]
+            display_name = mongo.db.users.find_one(
+                {"username": session["user"]})["display_name"]
 
-        # Set current date
-        date = datetime.datetime.now()
+            # Set current date
+            date = datetime.datetime.now()
 
-        review = {
-            "game_title": title,
-            "game_img_full": img_full,
-            "platform": request.form.get("platform-select").lower(),
-            "summary": request.form.get("summary"),
-            "gameplay_rating": int(request.form.get("gameplay-stars")),
-            "gameplay": request.form.get("gameplay"),
-            "visuals_rating": int(request.form.get("visuals-stars")),
-            "visuals": request.form.get("visuals"),
-            "sound_rating": int(request.form.get("sound-stars")),
-            "sound": request.form.get("sound"),
-            "recommended": request.form.get("radioRecommend"),
-            "date_submitted": date.strftime("%x"),
-            "username": session["user"],
-            "display_name": display_name
-        }
+            review = {
+                "game_title": title,
+                "game_img_full": img_full,
+                "platform": request.form.get("platform-select").lower(),
+                "summary": request.form.get("summary"),
+                "gameplay_rating": int(request.form.get("gameplay-stars")),
+                "gameplay": request.form.get("gameplay"),
+                "visuals_rating": int(request.form.get("visuals-stars")),
+                "visuals": request.form.get("visuals"),
+                "sound_rating": int(request.form.get("sound-stars")),
+                "sound": request.form.get("sound"),
+                "recommended": request.form.get("radioRecommend"),
+                "date_submitted": date.strftime("%x"),
+                "username": session["user"],
+                "display_name": display_name
+            }
 
-        # Check if a user has already added a game with the same to the db
-        existing_review = mongo.db.user_reviews.find_one(
-            {"$and": [{"username": session["user"]},
-                      {"game_title": title}]})
+            # Check if a user has already added a game with the same to the db
+            existing_review = mongo.db.user_reviews.find_one(
+                {"$and": [{"username": session["user"]},
+                        {"game_title": title}]})
 
-        if existing_review is None:
-            mongo.db.user_reviews.insert_one(review)
-            flash("Review Successfully Submitted")
+            if existing_review is None:
+                mongo.db.user_reviews.insert_one(review)
+                flash("Review Successfully Submitted")
 
-        elif existing_review:
-            flash("You've Already Submitted a Review for this Game")
+            elif existing_review:
+                flash("You've Already Submitted a Review for this Game")
 
-        else:
-            mongo.db.user_reviews.insert_one(review)
-            flash("Review Successfully Submitted")
+            else:
+                mongo.db.user_reviews.insert_one(review)
+                flash("Review Successfully Submitted")
 
-        return redirect(url_for('all_reviews'))
+            return redirect(url_for('all_reviews'))
 
-    # Grab review data for autocomplete function
-    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+        # Grab review data for autocomplete function
+        gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    return render_template(
-        "reviews-review_form.html", navGameData=navGameData,
-        gameData=gameData)
+        return render_template(
+            "reviews-review_form.html", navGameData=navGameData,
+            gameData=gameData)
+
+    else:
+        flash("Sign in or register an account with us to review games")
+        return redirect(url_for("login"))
+
 
 
 # ======================
@@ -2131,66 +2142,70 @@ def submit_review():
 
 @app.route("/submit-review/<game_id>", methods=["GET", "POST"])
 def profile_submit_review(game_id):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    if session.get("cookie"):
+        # Grab game data for autocomplete function in navbar
+        navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    if request.method == "POST":
+        if request.method == "POST":
 
-        # Find game data for displaying game review
-        title = request.form.get("query")
-        game = mongo.db.all_pc_games.find_one({"game_title": title})
-        img_full = game["game_img_full"]
+            # Find game data for displaying game review
+            title = request.form.get("query")
+            game = mongo.db.all_pc_games.find_one({"game_title": title})
+            img_full = game["game_img_full"]
 
-        # Set current date
-        date = datetime.datetime.now()
+            # Set current date
+            date = datetime.datetime.now()
 
-        display_name = mongo.db.users.find_one(
-            {"username": session["user"]})["display_name"]
+            display_name = mongo.db.users.find_one(
+                {"username": session["user"]})["display_name"]
 
-        review = {
-            "game_title": title,
-            "game_img_full": img_full,
-            "platform": request.form.get("platform-select").lower(),
-            "summary": request.form.get("summary"),
-            "gameplay_rating": int(request.form.get("gameplay-stars")),
-            "gameplay": request.form.get("gameplay"),
-            "visuals_rating": int(request.form.get("visuals-stars")),
-            "visuals": request.form.get("visuals"),
-            "sound_rating": int(request.form.get("sound-stars")),
-            "sound": request.form.get("sound"),
-            "recommended": request.form.get("radioRecommend"),
-            "date_submitted": date.strftime("%x"),
-            "username": session["user"],
-            "display_name": display_name
-        }
+            review = {
+                "game_title": title,
+                "game_img_full": img_full,
+                "platform": request.form.get("platform-select").lower(),
+                "summary": request.form.get("summary"),
+                "gameplay_rating": int(request.form.get("gameplay-stars")),
+                "gameplay": request.form.get("gameplay"),
+                "visuals_rating": int(request.form.get("visuals-stars")),
+                "visuals": request.form.get("visuals"),
+                "sound_rating": int(request.form.get("sound-stars")),
+                "sound": request.form.get("sound"),
+                "recommended": request.form.get("radioRecommend"),
+                "date_submitted": date.strftime("%x"),
+                "username": session["user"],
+                "display_name": display_name
+            }
 
-        # Check if a user has already added a game with the same to the db
-        existing_review = mongo.db.user_reviews.find_one(
-            {"$and": [{"username": session["user"]},
-                      {"game_title": title}]})
+            # Check if a user has already added a game with the same to the db
+            existing_review = mongo.db.user_reviews.find_one(
+                {"$and": [{"username": session["user"]},
+                        {"game_title": title}]})
 
-        if existing_review is None:
-            mongo.db.user_reviews.insert_one(review)
-            flash("Review Successfully Submitted")
+            if existing_review is None:
+                mongo.db.user_reviews.insert_one(review)
+                flash("Review Successfully Submitted")
 
-        elif existing_review:
-            flash("You've Already Submitted a Review for this Game")
+            elif existing_review:
+                flash("You've Already Submitted a Review for this Game")
 
-        else:
-            mongo.db.user_reviews.insert_one(review)
-            flash("Review Successfully Submitted")
+            else:
+                mongo.db.user_reviews.insert_one(review)
+                flash("Review Successfully Submitted")
 
-        return redirect(url_for("all_reviews"))
+            return redirect(url_for("all_reviews"))
 
-    game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
+        game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
 
-    # Grab review data for autocomplete function
-    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+        # Grab review data for autocomplete function
+        gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    return render_template(
-        "profile-review_form.html", matching_results=games, game=game,
-        username=session["user"], navGameData=navGameData,
-        gameData=gameData)
+        return render_template(
+            "profile-review_form.html", matching_results=games, game=game,
+            username=session["user"], navGameData=navGameData,
+            gameData=gameData)
+
+    else:
+        return redirect(url_for("login"))
 
 
 # =====================
