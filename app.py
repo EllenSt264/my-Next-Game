@@ -175,7 +175,7 @@ def search(query):
         pagination=pagination, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
         navGameData=navGameData, gameData=gameData,
-        game_img=game_img, game_tags=game_tags)
+        game_img=game_img, game_tags=game_tags, query=query)
 
 
 # ==============
@@ -235,7 +235,7 @@ def search_reviews(query):
         pagination=pagination, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
         navGameData=navGameData, reviewData=reviewData,
-        game_img=game_img, game_tags=game_tags)
+        game_img=game_img, game_tags=game_tags, query=query)
 
 
 # ========
