@@ -21,14 +21,21 @@ $(document).ready(function() {
                 $('#query').css(classInvalid);
                 event.currentTarget.value = '';
                 event.currentTarget.focus();
+                // Trigger tooltip
+                $('#query.tooltipped').tooltip();
+                $('#query.tooltipped').tooltip('open');
             }
             else {
                 $('#query').css(classValid);
+                // Destroy tooltip
+                if ($('#query.tooltipped').tooltip()) {
+                    $('#query.tooltipped').tooltip('destroy');
+                }
             }
         }
     // Highlight results on hover/focus
     }).focus(function() {
-        $(this).autocomplete("search", "");
+        $('#query.tooltipped').autocomplete("search", "");
     // Highlight input characters
     }).data("ui-autocomplete")._renderItem = function( ul, item ) {
         let txt = String(item.value).replace(new RegExp(this.term, "gi"),"<span class='highlight'>$&</span>");
@@ -37,4 +44,4 @@ $(document).ready(function() {
             .append("<a>" + txt + "</a>")
             .appendTo(ul);
     };
-})
+});

@@ -81,12 +81,12 @@ $(document).ready(function () {
         "https://stackoverflow.com/questions/42524435/materialize-css-tooltip-shows-only-when-onclick" */
 
     /* Tooltip */
-    $('.tooltipped').on('click', function() {
+    $('#like-btn.tooltipped').on('click', function() {
         $(this).tooltip();
         $(this).tooltip('open');
     })
 
-    $('.tooltipped').on('mouseleave', function() {
+    $('#like-btn.tooltipped').on('mouseleave', function() {
         if ($(this).tooltip()) {
             $(this).tooltip('destroy');
         }
