@@ -63,6 +63,26 @@
 
     - [Frameworks, Libraries and Programs](#frameworks-libraries-and-programs)
 
+- [Testing](#testing)
+
+- [Deployment](#deployment)
+
+    - [Local Deployment](#local-deployment)
+
+        - [Requirements](#requirements)
+
+        - [Virtual Environment (Optional)](#virtual-environment-optional)
+
+        - [Clone From GitHub Pages](#clone-from-github-pages)
+
+        - [Installing Requirements](#installing-requirements)
+
+        - [Setting up the Environment Variables](#setting-up-the-environment-variables)
+
+        - [Note on Visual Studio Code](#note-on-visual-studio-code)
+
+    - [Deployment to Heroku](#deployment-to-heroku)
+
 - [Credits](#credits)
 
     - [Code](#code)
@@ -743,7 +763,7 @@ The database schema was subjected to several alterations throughout the site’s
 - HTML (5)
 - CSS (3)
 - Javascript
-- Python 
+- Python 3
 
 ### Frameworks, Libraries and Programs 
 
@@ -817,6 +837,197 @@ The database schema was subjected to several alterations throughout the site’s
     - Micro is an online sketching/whiteboard tool. I used it to visually demonstrate the relationships between each collection in the database.
 
 -----
+
+## Testing
+
+Testing documentation can be found in a separate [TESTING.md](TESTING.md) file
+
+
+-----
+
+
+## Deployment
+
+
+### Local Deployment
+
+
+#### Requirements
+
+In order to deploy or use the application locally, you must ensure that following are installed:
+
+- [Python 3](https://www.python.org/)
+- [PIP](https://pypi.org/project/pip/)
+- [Git](https://git-scm.com/)
+
+You must have access to a **IDE** in order to deploy or run the project locally.
+
+My choice of IDE is [Visual Studio Code](https://code.visualstudio.com/). See Below for help with creating a virtual environment on VS Code
+
+
+
+#### Virtual Environment (Optional)
+
+A virtual environment is a great way of installing all the requirements for the application, while ensuring those requirements are kept separate from any other projects you may have.
+
+1. To setup a new virtual environment with VS Code, use the following command in Git:
+```
+python -m venv .venv
+```
+
+2. Once you have created your virtual environment you will be prompted to select it for your workspace folder. Click **yes**.
+
+3. Don't forgot to use the **Python: Select Interpreter** from the command palette (Ctrl+Shift+P), in order to use the environment:
+
+![Select Python Interpreter](static/img/documentation/python_interpreter.png)
+
+4. You can check if you are using the right environment by looking to the bottom-left of your window:
+
+![Select Python Interpreter](static/img/documentation/current_python_interpreter.png)
+
+
+
+#### Clone From GitHub Pages
+
+1. **Sign in** to your **GitHub** and locate the project's GitHub **repository**.
+
+2. Under the repository name, click the **green 'Clone' button**.
+
+3. To clone the repository using **HTTPS**, make sure the **HTTPS** is clicked (it will be underlined in orange) and **copy the link** provided.
+
+4. Open **Git Bash**
+
+5. Change your current working directory to the location where you want the cloned directory to be.
+
+6. In the **terminal** type `git clone` and **paste the URL** you copied in step 3.
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+```
+
+7. Press **Enter** - your local clone is created.
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+> Cloning into `CI-Clone`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+```
+
+
+#### Installing Requirements
+
+1. Ensure that you are in the root directory at the terminal prompt. If you are  using a [virtual environment](#virtual-environment) ensure that you in the **.venv** folder, indicated by `(.venv)` at the top of your terminal window
+
+2. Install all **requirement modules** for the project, by using the following command in your terminal:
+```
+pip3 install -r requirements.txt
+```
+
+
+#### Setting Up the Environment Variables
+
+
+1. Create a `env.py` file to store all your configurations. You can use the terminal do this by running the following command: `touch env.py`
+
+2. Enter the following code inside your `env.py` file:
+```
+import os
+
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("MONGO_URI", <YOUR_MONGO_URI>)
+os.environ.setdefault("MONGO_DBNAME", <YOUR_MONGO_DBNAME>)
+os.environ.setdefault("SECRET_KEY", <YOUR_SECREY_KEY>)
+
+
+```
+
+3. Don't forget to reference your `env.py` in your main `app.py` file (or whatever you wish to call it) with the following code:
+```
+if os.path.exists("env.py"):
+    import env
+```
+
+4. **Remember** that your `env.py` is private information and **should not** be disclosed in the repository. Before pushing anything to your repository, ensure that you have added `env.py` and `__pycache__` to your `.gitignore` file.
+
+
+5. To enable **Debug mode**, go to the last line of `app.py` and change `debug=False` to `debug=True`:
+
+
+
+The application can now be run locally. To do so use the following command in the terminal:
+```
+python app.py
+```
+
+#### Note on Visual Studio Code
+
+When running the application with VS Code locally, it is very likely that the webpage will not load. This is due to the IP and PORT variables set in the `env.py` which are needed for deployment to [Heroku](). A workaround is to comment out the following code, like so:
+
+```
+if __name__ == "__main__":
+    app.run(#host=os.environ.get("IP"),
+            #port=int(os.environ.get("PORT")),
+            debug=True)
+```
+
+This will run the application with the default PORT of 127.0.0.1, which will load the application without any problems. I bookmarked the local URL in my browser during testing, and uncommented the code after doing so, which meant it was pushed to the repository as normal. As long as the local PORT in browser is the default 127.0.0.1, then it should run without issue.
+
+
+-----
+
+
+### Deployment to Heroku
+
+1. Log in to your Heroku account and create a new app
+
+2. Ensure that you have **both** the `Procfile` and `requirements.txt` in your local repository.
+
+    - The `Procfile` should contain the following line of code:
+    ```
+    web: python app.py
+    ```
+
+    - To create your `requirements.txt` file, or ensure that it is up to date, input the following line of code in your terminal:
+    ```
+    pip freeze > requirements.txt
+    ```
+
+3. Setup **Automatic Deployment** by connecting Heroku to your GitHub repository. 
+
+    1. In the top menu, click the **Deployment** tab and then **Connect to GitHub** within the **Deployment Method** section
+
+    2. Link your GitHub account to Heroku in order to establish automatic deployment by clicking the **Connect to GitHub** button
+
+    3. **Search** for the GitHub repository and click **Connect**
+
+    4. Click **Enable Automatic Deploys** in order to finalize automatic deployment
+
+
+4. Navigate to the **Settings** tab and scroll down to the **Config Vars** section. Click **Reveal Config Vars**
+
+5. Add the following **key value** pairs (ensure that there are **no** quotation marks), these should be **exact same** as what is listed in your local `env.py` file :
+```
+IP: 0.0.0.0
+PORT: 5000
+MONGO_URI: <YOUR_MONGO_URI>
+MONGO_DBNAME: <YOUR_MONGO_DBNAME>
+SECRET_KEY: <YOUR_SECRET_KEY>
+```
+
+6. Your done!
+
+
+[See here](https://docs.atlas.mongodb.com/) for the offical documentation on how to get started with MongoDB.
+
+The database **must** contain all the collections in order for the application to run properly. This includes: `all_pc_games`, `users`, `user_games`, `user_reviews`, `avatars`, `game_requests` and `game_queue`. For more details on the database schema, [see here](#database-schema)
+
+
+
+-----
+
+
 
 ## Credits
 
