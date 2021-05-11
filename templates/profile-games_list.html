@@ -61,7 +61,7 @@
                             <div class="col s4 profile-game-btn btn-large reviewed">
                                 <i class="material-icons btn-icon-left">thumb_up</i>
                                 <span>Reviewed</span>
-                                <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                                <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}" class="btn grow">
                                     <i class="fas fa-pen-square"></i>
                                 </a>
                             </div>
@@ -137,7 +137,7 @@
                         <div class="col s6 profile-game-btn btn-large reviewed">
                             <i class="material-icons btn-icon-left">thumb_up</i>
                             <span>Reviewed</span>
-                            <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                            <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}" class="btn grow">
                                 <i class="fas fa-pen-square"></i>
                             </a>
                         </div>
@@ -254,7 +254,7 @@
                             <div class="col s4 profile-game-btn btn-large reviewed">
                                 <i class="material-icons btn-icon-left">thumb_up</i>
                                 <span>Reviewed</span>
-                                <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                                <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}" class="btn grow">
                                     <i class="fas fa-pen-square"></i>
                                 </a>
                             </div>
@@ -330,7 +330,7 @@
                         <div class="col s4 profile-game-btn btn-large reviewed">
                             <i class="material-icons btn-icon-left">thumb_up</i>
                             <span>Reviewed</span>
-                            <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                            <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}" class="btn grow">
                                 <i class="fas fa-pen-square"></i>
                             </a>
                         </div>
@@ -447,7 +447,7 @@
                             <div class="col s4 profile-game-btn btn-large reviewed">
                                 <i class="material-icons btn-icon-left">thumb_up</i>
                                 <span>Reviewed</span>
-                                <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                                <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}" class="btn grow">
                                     <i class="fas fa-pen-square"></i>
                                 </a>
                             </div>
@@ -523,7 +523,7 @@
                         <div class="col s4 profile-game-btn btn-large reviewed">
                             <i class="material-icons btn-icon-left">thumb_up</i>
                             <span>Reviewed</span>
-                            <a href="{{ url_for('edit_review', game_id=game._id) }}" class="btn grow">
+                            <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}" class="btn grow">
                                 <i class="fas fa-pen-square"></i>
                             </a>
                         </div>

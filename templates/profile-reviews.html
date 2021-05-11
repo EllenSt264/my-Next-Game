@@ -18,7 +18,7 @@
                             </div>
                             <!-- Edit -->
                             <div class="col s6">
-                                <a href="{{ url_for('profile_edit_review', review_id=review._id) }}" class="btn">
+                                <a href="{{ url_for('edit_review', username=review.username, review_id=review._id) }}" class="btn">
                                     <i class="fas fa-pen-square"></i> Edit
                                 </a>
                             </div>
@@ -483,7 +483,7 @@
                         </div>
                         <!-- Edit -->
                         <div class="col s6">
-                            <a href="{{ url_for('profile_edit_review', review_id=review._id) }}" class="btn">
+                            <a href="{{ url_for('edit_review', username=review.username, review_id=review._id) }}" class="btn">
                                 <i class="fas fa-pen-square"></i> Edit
                             </a>
                         </div>

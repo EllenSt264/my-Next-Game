@@ -45,7 +45,7 @@
                                     </a>
                                     <!-- Edit button -->
                                     {% if session.user == review.username %}
-                                        <a href="{{ url_for('profile_edit_review', review_id=review._id) }}" class="btn edit-review">
+                                        <a href="{{ url_for('edit_review', username=review.username, review_id=review._id) }}" class="btn edit-review">
                                             <i class="fas fa-pen-alt"></i>
                                         </a>
                                     {% endif %}
@@ -270,7 +270,7 @@
                                         </a>
                                         <!-- Edit button -->
                                         {% if session.user == review.username %}
-                                            <a href="{{ url_for('profile_edit_review', review_id=review._id) }}" class="btn edit-review">
+                                            <a href="{{ url_for('edit_review', username=review.username, review_id=review._id) }}" class="btn edit-review">
                                                 <i class="fas fa-pen-alt"></i>
                                             </a>
                                         {% endif %}

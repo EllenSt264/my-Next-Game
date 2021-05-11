@@ -2212,68 +2212,36 @@ def profile_submit_review(game_id):
 # Profile - Edit Review
 # =====================
 
-@app.route("/edit-review/<game_id>", methods=["GET", "POST"])
-def edit_review(game_id):
-    # Check if you user is logged in first
-
-    # Check if the session user matches the review user 
-
+@app.route("/get-review/<username>/<review_id>")
+def edit_review(username, review_id):
     # Find game to assign to review form
-    game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
+    if ObjectId.is_valid(review_id):
+        data = mongo.db.user_reviews.find_one({"_id": ObjectId(review_id)})
+        review_title = data.get("game_title")
+        game = mongo.db.all_pc_games.find_one({"game_title": review_title})
+        user_review = game.get("game_url")
 
-    game_title = game["game_title"]
-    img_full = game["game_img_full"]
+    else:
+        game = mongo.db.all_pc_games.find_one({"game_title": review_id})
+        user_review = game.get("game_url")
+        
+    return redirect(url_for("edit_review_page", user_review=user_review, username=username))
+    
 
-    review = mongo.db.user_reviews.find_one(
-            {"$and": [{"username": session["user"]},
-                      {"game_title": game_title}]})
-
-    review_id = review["_id"]
-    submission_date = review["date_submitted"]
-
-    display_name = mongo.db.users.find_one(
-        {"username": session["user"]})["display_name"]
-
-    if request.method == "POST":
-        date = datetime.datetime.now()
-
-        update = {
-            "game_title": game_title,
-            "game_img_full": img_full,
-            "platform": request.form.get("platform-select").lower(),
-            "summary": request.form.get("summary"),
-            "gameplay_rating": int(request.form.get("gameplay-stars")),
-            "gameplay": request.form.get("gameplay"),
-            "visuals_rating": int(request.form.get("visuals-stars")),
-            "visuals": request.form.get("visuals"),
-            "sound_rating": int(request.form.get("sound-stars")),
-            "sound": request.form.get("sound"),
-            "recommended": request.form.get("radioRecommend"),
-            "date_submitted": submission_date,
-            "last_updated": date.strftime("%x"),
-            "username": session["user"],
-            "display_name": display_name
-        }
-        mongo.db.user_reviews.update({"_id": review_id}, update)
-        flash("Review Successfully Updated")
-        return redirect(url_for('all_reviews'))
-
+@app.route("/edit-review/<username>/<user_review>", methods=["GET", "POST"])
+def edit_review_page(username, user_review):
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    return render_template(
-        "reviews-edit_review.html", game=game, review=review,
-        navGameData=navGameData)
+    # Find game title in order to find review
+    title = mongo.db.all_pc_games.find_one({"game_url": user_review})["game_title"]
 
-
-# =============================
-# Profile Reviews - Edit Review
-# =============================
-
-@app.route("/profile/edit-review/<review_id>", methods=["GET", "POST"])
-def profile_edit_review(review_id):
-    # Find game to assign to review form
-    review = mongo.db.user_reviews.find_one({"_id": ObjectId(review_id)})
+    # Find review 
+    review = mongo.db.user_reviews.find_one(
+        {"$and": [
+            {"game_title": title},
+            {"username": username}
+        ]})
 
     game_title = review["game_title"]
     img_full = review["game_img_full"]
@@ -2302,15 +2270,13 @@ def profile_edit_review(review_id):
             "username": session["user"],
             "display_name": display_name
         }
-        mongo.db.user_reviews.update({"_id": ObjectId(review_id)}, update)
+        mongo.db.user_reviews.update({"_id": review.get("_id")}, update)
         flash("Review Successfully Updated")
         return redirect(url_for('all_reviews'))
 
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
     return render_template(
-        "profile-edit_review.html", review=review, navGameData=navGameData)
+        "reviews-edit_review.html", username=username, user_review=user_review,
+        review=review, navGameData=navGameData)
 
 
 # ======================
