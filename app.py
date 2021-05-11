@@ -853,9 +853,6 @@ def setcookie_favourites():
 
 @app.route("/our-favourites", methods=["GET", "POST"])
 def favourites():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
     # Favourites db
     favourites = mongo.db.all_pc_games.find({"favourite": True})
 
@@ -869,9 +866,9 @@ def favourites():
 
     # Get random game
     random_game = favourites[random_num]
-    rand_game_title = random_game["game_title"]
+    rand_game_url = random_game.get("game_url")
 
-    game = rand_game_title
+    game = rand_game_url
 
     return redirect(url_for("favourites_page", game=game))
 
@@ -884,7 +881,7 @@ def favourites_page(game):
     # Favourites db
     favourites = mongo.db.all_pc_games.find({"favourite": True})
 
-    random_game = mongo.db.all_pc_games.find({"game_title": game})
+    random_game = mongo.db.all_pc_games.find({"game_url": game})
 
     # Get random game data for parallax
     for data in random_game:
