@@ -2195,6 +2195,8 @@ def submit_review_page(game):
         if game != "new-review":
             game_title = mongo.db.all_pc_games.find_one(
                 {"game_url": game})["game_title"]
+        else:
+            game_title = None
 
         if request.method == "POST":
             # Find game data for displaying game review
