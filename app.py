@@ -2169,7 +2169,7 @@ def reviews(genre):
 
 @app.route("/new-review")
 def submit_review_without_game():
-    game = "new-review"
+    game = "new"
     return redirect(url_for("submit_review_page", game=game))
 
 @app.route("/game-review/<game_id>")
@@ -2189,7 +2189,7 @@ def submit_review_page(game):
         navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
         # Get game title
-        if game != "new-review":
+        if game != "new":
             game_title = mongo.db.all_pc_games.find_one(
                 {"game_url": game})["game_title"]
         else:
