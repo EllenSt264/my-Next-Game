@@ -160,7 +160,7 @@ nav .dropdown-content a:focus {
 }
 
 #navSearchbar input#nav-search,
-#sidenav-searchbar input#nav-search,
+#sidenav-searchbar input#nav-query,
 #secondary-nav-searchbar input#query,
 #secondary-nav-searchbar input#review-query {
     padding-left: 10px;
@@ -176,7 +176,7 @@ nav .dropdown-content a:focus {
     margin-bottom: 0;
 }
 
-#sidenav-searchbar input#nav-search {
+#sidenav-searchbar input#nav-query {
     width: 90%;
 }
 
