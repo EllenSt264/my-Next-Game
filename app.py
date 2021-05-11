@@ -1108,6 +1108,8 @@ def confirm_request(game_request, title):
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
+    date = datetime.datetime.now()
+
     if request.method == "POST":
         # -------------------------------------------------- Get Steam Link
 
@@ -1164,9 +1166,12 @@ def confirm_request(game_request, title):
                 # Find id of document
                 request_id = existing_request["_id"]
                 # Update existing document
+                game_request = {
+                    "$push": {"requested_by": user},
+                    "$set": {"date_last_request": date.strftime("%x")}
+                }
                 mongo.db.game_requests.update_one(
-                    {"_id": request_id},
-                    {"$push": {"requested_by": user}})
+                    {"_id": request_id}, game_request, upsert=False)
 
                 flash(
                     "Thanks! We've Submitted your Request for '{}'".format(title))
@@ -1176,7 +1181,8 @@ def confirm_request(game_request, title):
         game = {
             "game_request": title,
             "game_link": link,
-            "requested_by": [user]
+            "requested_by": [user],
+            "date_added": date.strftime("%x")
         }
         mongo.db.game_requests.insert_one(game)
 
