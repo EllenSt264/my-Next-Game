@@ -106,7 +106,7 @@ def base():
 @app.route("/nav-search", methods=["POST"])
 def get_nav_query():
     # Grab query
-    query = request.form.get("nav-query")
+    query = request.form.get("nav-search")
     return redirect(url_for('search', query=query))
 
 

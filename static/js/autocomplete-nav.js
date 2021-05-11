@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     /* Autocomplete */
 
-    $('#nav-query').autocomplete({
+    $('#nav-search').autocomplete({
         source: navGameData,   // Grabs game titles from data.js file
         scroll: true,
         // Disallow user input to only allow input that exists within the source data
