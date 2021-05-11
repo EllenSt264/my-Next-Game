@@ -45,7 +45,9 @@
 import os
 import datetime
 import random
+import re
 import string
+from dns.query import receive_udp
 import requests
 from bs4 import BeautifulSoup
 from flask import (
@@ -56,6 +58,7 @@ from bson.objectid import ObjectId
 from bson.json_util import dumps
 from requests.api import get
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import escape
 from scrape_custom_links import custom_games
 if os.path.exists("env.py"):
     import env
@@ -1280,36 +1283,43 @@ def edit_profile_template(username):
 
 @app.route("/edit-profile/<username>/general", methods=["GET", "POST"])
 def edit_profile(username):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    # Check if session user matches the user of the profile
+    if session.get("user"):
+        if session.get("user") == username:
+            # Grab game data for autocomplete function in navbar
+            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    user = mongo.db.users.find_one({"username": session["user"]})
-    
-    if request.method == "POST":
-        user_id = user["_id"]
+            user = mongo.db.users.find_one({"username": session["user"]})
+            
+            if request.method == "POST":
+                user_id = user["_id"]
 
-        # Check password
-        if check_password_hash(user["password"], request.form.get("password")):
-            # Update db
-            update = {"$set": {
-                "email": request.values.get("edit-email"),
-                "display_name": request.values.get("edit-displayName"),
-                "first_name": request.values.get("edit-fname"),
-                "last_name": request.values.get("edit-lname")
-            }}
+                # Check password
+                if check_password_hash(user["password"], request.form.get("password")):
+                    # Update db
+                    update = {"$set": {
+                        "email": request.values.get("edit-email"),
+                        "display_name": request.values.get("edit-displayName"),
+                        "first_name": request.values.get("edit-fname"),
+                        "last_name": request.values.get("edit-lname")
+                    }}
 
-            mongo.db.users.update({"_id": user_id}, update)
-            flash("Profile Setting Successfully Updated")
-            return redirect(url_for('profile_games', username=session["user"]))
+                    mongo.db.users.update({"_id": user_id}, update)
+                    flash("Profile Setting Successfully Updated")
+                    return redirect(url_for('profile_games', username=session["user"]))
 
+                else:
+                    # Invalid password
+                    flash("Incorrect Password")
+                    return redirect(url_for('edit_profile', username=session["user"]))
+
+            return render_template(
+                "profile-edit_general.html", username=session["user"], user=user,
+                navGameData=navGameData)
         else:
-            # Invalid password
-            flash("Incorrect Password")
-            return redirect(url_for('edit_profile', username=session["user"]))
-
-    return render_template(
-        "profile-edit_general.html", username=session["user"], user=user,
-        navGameData=navGameData)
+            return redirect(url_for("home"))
+    else:
+        return redirect(url_for("login"))
 
 
 # =======================
@@ -1319,43 +1329,50 @@ def edit_profile(username):
 @app.route(
     "/edit-profile/<username>/general/password-reset", methods=["GET", "POST"])
 def edit_password(username):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    # Check if session user matches the user of the profile
+    if session.get("user"):
+        if session.get("user") == username:
+            # Grab game data for autocomplete function in navbar
+            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    user = mongo.db.users.find_one({"username": session["user"]})
-    if request.method == "POST":
-        user_id = user["_id"]
+            user = mongo.db.users.find_one({"username": session["user"]})
+            if request.method == "POST":
+                user_id = user["_id"]
 
-        # Check password
-        if check_password_hash(user["password"], request.form.get("password")):
+                # Check password
+                if check_password_hash(user["password"], request.form.get("password")):
 
-            # Check if new passwords match
-            new_password = request.form.get("change-password")
-            confirm_new_password = request.form.get("confirm-new-password")
+                    # Check if new passwords match
+                    new_password = request.form.get("change-password")
+                    confirm_new_password = request.form.get("confirm-new-password")
 
-            if new_password == confirm_new_password:
-                # Update db
-                update = {"$set": {
-                    "password": generate_password_hash(new_password)
-                }}
-                mongo.db.users.update_one({"_id": user_id}, update)
-                flash("Password Successfully Updated")
-                return redirect(url_for(
-                    "profile_games", username=session["user"]))
+                    if new_password == confirm_new_password:
+                        # Update db
+                        update = {"$set": {
+                            "password": generate_password_hash(new_password)
+                        }}
+                        mongo.db.users.update_one({"_id": user_id}, update)
+                        flash("Password Successfully Updated")
+                        return redirect(url_for(
+                            "profile_games", username=session["user"]))
 
-            else:
-                # Invalid match
-                flash("Inputs invalid")
-                return redirect(url_for(
-                    "edit_password", username=session["user"]))
+                    else:
+                        # Invalid match
+                        flash("Inputs invalid")
+                        return redirect(url_for(
+                            "edit_password", username=session["user"]))
+                else:
+                    # Invalid password
+                    flash("Password Incorrect")
+                    return redirect(url_for("edit_password", username=session["user"]))
+
+            return render_template(
+                "profile-edit_password.html", username=session["user"], user=user,
+                navGameData=navGameData)
         else:
-            # Invalid password
-            flash("Password Incorrect")
-            return redirect(url_for("edit_password", username=session["user"]))
-
-    return render_template(
-        "profile-edit_password.html", username=session["user"], user=user,
-        navGameData=navGameData)
+            return redirect(url_for("home"))
+    else:
+        return redirect(url_for("login"))
 
 
 # =====================
@@ -1364,14 +1381,21 @@ def edit_password(username):
 
 @app.route("/edit-profile/<username>/avatar")
 def edit_profile_avatar(username):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    # Check if session user matches the user of the profile
+    if session.get("user"):
+        if session.get("user") == username:
+            # Grab game data for autocomplete function in navbar
+            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    user_data = mongo.db.users.find()
-    avatars = mongo.db.avatars.find().sort("img_alt", 1)
-    return render_template(
-        "profile-edit_avatar.html", username=session["user"],
-        user_data=user_data, avatars=avatars, navGameData=navGameData)
+            user_data = mongo.db.users.find()
+            avatars = mongo.db.avatars.find().sort("img_alt", 1)
+            return render_template(
+                "profile-edit_avatar.html", username=session["user"],
+                user_data=user_data, avatars=avatars, navGameData=navGameData)
+        else:
+            return redirect(url_for("home"))
+    else:
+        return redirect(url_for("login"))
 
 
 # ============================
@@ -1401,88 +1425,62 @@ def update_avatar(avatar_id):
     return redirect(url_for("edit_profile_avatar", username=session["user"]))
 
 
-# =====================
-#  Profile - Game Likes
-# =====================
-
-@app.route("/profile/<username>/likes")
-def profile_likes(username):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-    # Find session user
-    user = mongo.db.users.find_one({"username": session["user"]})
-    username = user["username"]
-
-    # Find games
-    games = mongo.db.all_pc_games.find({"liked_by": username})
-
-    # Get review count
-    user_reviews = mongo.db.user_reviews.find({"username": username})
-    review_count = user_reviews.count()
-
-    # Get profile rating 
-    if review_count >= 7:
-        rank = review_count // 7 + 1
-    else:
-        rank = 1
-
-    return render_template(
-        "profile-game_likes.html", user=user, games=games,
-        navGameData=navGameData, rank=rank)
-
-
 # ====================
 # Profile - Games List
 # ====================
 
 @app.route("/profile/<username>")
 def profile_games(username):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    # Check if session user matches the user of the profile
+    if session.get("user") and session.get("user") == username:
+        # Grab game data for autocomplete function in navbar
+        navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    # Find session user
-    user = mongo.db.users.find_one({"username": session["user"]})
+        # Find session user
+        user = mongo.db.users.find_one({"username": session["user"]})
 
-    # Grab username
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+        # Grab username
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
 
-    # Separate games into categories
-    games_playing = list(mongo.db.user_games.find({"stage": "playing"}))
-    games_next = list(mongo.db.user_games.find({"stage": "next"}))
-    games_completed = list(mongo.db.user_games.find({"stage": "completed"}))
+        # Separate games into categories
+        games_playing = list(mongo.db.user_games.find({"stage": "playing"}))
+        games_next = list(mongo.db.user_games.find({"stage": "next"}))
+        games_completed = list(mongo.db.user_games.find({"stage": "completed"}))
 
-    # Find game titles for user_reviews and user_games
-    fetch = {"game_title": 1}
-    user_games = mongo.db.user_games.find({"username": username}, fetch)
-    user_reviews = mongo.db.user_reviews.find({"username": username}, fetch)
+        # Find game titles for user_reviews and user_games
+        fetch = {"game_title": 1}
+        user_games = mongo.db.user_games.find({"username": username}, fetch)
+        user_reviews = mongo.db.user_reviews.find({"username": username}, fetch)
 
-    # Get review count
-    review_count = user_reviews.count()
+        # Get review count
+        review_count = user_reviews.count()
 
-    # Get profile rating 
-    if review_count >= 7:
-        rank = review_count // 7 + 1
+        # Get profile rating 
+        if review_count >= 7:
+            rank = review_count // 7 + 1
+        else:
+            rank = 1
+
+        profile_games = []
+        review_games = []
+        matches = []
+
+        # Sort through data and add to empty arrays
+        for i in list(user_games):
+            profile_games.append(i["game_title"])
+
+        for i in list(user_reviews):
+            review_games.append(i["game_title"])
+
+        # Find title matches
+        for i in profile_games:
+            for x in review_games:
+                if i == x:
+                    matches.append(x)
+
     else:
-        rank = 1
-
-    profile_games = []
-    review_games = []
-    matches = []
-
-    # Sort through data and add to empty arrays
-    for i in list(user_games):
-        profile_games.append(i["game_title"])
-
-    for i in list(user_reviews):
-        review_games.append(i["game_title"])
-
-    # Find title matches
-    for i in profile_games:
-        for x in review_games:
-            if i == x:
-                matches.append(x)
+        return redirect(url_for("profiles", user=username))
 
     return render_template(
         "profile-games_list.html", user=user, username=username,
@@ -1554,21 +1552,24 @@ def remove_game(game_id):
     return redirect(url_for("profile_games", username=session["user"]))
 
 
-# ======================
-# Profile - User Reviews
-# ======================
+# =====================
+#  Profile - Game Likes
+# =====================
 
-@app.route("/profile/<username>/reviews")
-def profile_reviews(username):
+@app.route("/profile/<username>/likes")
+def profile_likes(username):
     # Grab game data for autocomplete function in navbar
     navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    # Find user reviews
+    # Find session user
     user = mongo.db.users.find_one({"username": session["user"]})
+    username = user["username"]
 
-    user_reviews = mongo.db.user_reviews.find({"username": username})
+    # Find games
+    games = mongo.db.all_pc_games.find({"liked_by": username})
 
     # Get review count
+    user_reviews = mongo.db.user_reviews.find({"username": username})
     review_count = user_reviews.count()
 
     # Get profile rating 
@@ -1576,10 +1577,42 @@ def profile_reviews(username):
         rank = review_count // 7 + 1
     else:
         rank = 1
-    
+
     return render_template(
-        "profile-reviews.html", user=user, rank=rank,
-        user_reviews=user_reviews, navGameData=navGameData)
+        "profile-game_likes.html", user=user, games=games,
+        navGameData=navGameData, rank=rank)
+
+
+# ======================
+# Profile - User Reviews
+# ======================
+
+@app.route("/profile/<username>/reviews")
+def profile_reviews(username):
+    # Check if session user matches the user of the profile
+    if session.get("user") and session.get("user") == username:
+        # Grab game data for autocomplete function in navbar
+        navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+
+        # Find user reviews
+        user = mongo.db.users.find_one({"username": session["user"]})
+
+        user_reviews = mongo.db.user_reviews.find({"username": username})
+
+        # Get review count
+        review_count = user_reviews.count()
+
+        # Get profile rating 
+        if review_count >= 7:
+            rank = review_count // 7 + 1
+        else:
+            rank = 1
+        
+        return render_template(
+            "profile-reviews.html", user=user, rank=rank,
+            user_reviews=user_reviews, navGameData=navGameData)
+    else:
+        return redirect(url_for("profiles_reviews", user=username))
 
 
 # ======================
@@ -2230,53 +2263,63 @@ def edit_review(username, review_id):
 
 @app.route("/edit-review/<username>/<user_review>", methods=["GET", "POST"])
 def edit_review_page(username, user_review):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    # Check if user is logged in
+    if session.get("user"):
+        # Check if session user matches the user of the review
+        if session.get("user") == username:
 
-    # Find game title in order to find review
-    title = mongo.db.all_pc_games.find_one({"game_url": user_review})["game_title"]
+            # Grab game data for autocomplete function in navbar
+            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    # Find review 
-    review = mongo.db.user_reviews.find_one(
-        {"$and": [
-            {"game_title": title},
-            {"username": username}
-        ]})
+            # Find game title in order to find review
+            title = mongo.db.all_pc_games.find_one({"game_url": user_review})["game_title"]
 
-    game_title = review["game_title"]
-    img_full = review["game_img_full"]
-    submission_date = review["date_submitted"]
+            # Find review 
+            review = mongo.db.user_reviews.find_one(
+                {"$and": [
+                    {"game_title": title},
+                    {"username": username}
+                ]})
 
-    display_name = mongo.db.users.find_one(
-        {"username": session["user"]})["display_name"]
+            game_title = review["game_title"]
+            img_full = review["game_img_full"]
+            submission_date = review["date_submitted"]
 
-    if request.method == "POST":
-        date = datetime.datetime.now()
+            display_name = mongo.db.users.find_one(
+                {"username": session["user"]})["display_name"]
 
-        update = {
-            "game_title": game_title,
-            "game_img_full": img_full,
-            "platform": request.form.get("platform-select").lower(),
-            "summary": request.form.get("summary"),
-            "gameplay_rating": int(request.form.get("gameplay-stars")),
-            "gameplay": request.form.get("gameplay"),
-            "visuals_rating": int(request.form.get("visuals-stars")),
-            "visuals": request.form.get("visuals"),
-            "sound_rating": int(request.form.get("sound-stars")),
-            "sound": request.form.get("sound"),
-            "recommended": request.form.get("radioRecommend"),
-            "date_submitted": submission_date,
-            "last_updated": date.strftime("%x"),
-            "username": session["user"],
-            "display_name": display_name
-        }
-        mongo.db.user_reviews.update({"_id": review.get("_id")}, update)
-        flash("Review Successfully Updated")
-        return redirect(url_for('all_reviews'))
+            if request.method == "POST":
+                date = datetime.datetime.now()
 
-    return render_template(
-        "reviews-edit_review.html", username=username, user_review=user_review,
-        review=review, navGameData=navGameData)
+                update = {
+                    "game_title": game_title,
+                    "game_img_full": img_full,
+                    "platform": request.form.get("platform-select").lower(),
+                    "summary": request.form.get("summary"),
+                    "gameplay_rating": int(request.form.get("gameplay-stars")),
+                    "gameplay": request.form.get("gameplay"),
+                    "visuals_rating": int(request.form.get("visuals-stars")),
+                    "visuals": request.form.get("visuals"),
+                    "sound_rating": int(request.form.get("sound-stars")),
+                    "sound": request.form.get("sound"),
+                    "recommended": request.form.get("radioRecommend"),
+                    "date_submitted": submission_date,
+                    "last_updated": date.strftime("%x"),
+                    "username": session["user"],
+                    "display_name": display_name
+                }
+                mongo.db.user_reviews.update({"_id": review.get("_id")}, update)
+                flash("Review Successfully Updated")
+                return redirect(url_for('all_reviews'))
+
+            return render_template(
+                "reviews-edit_review.html", username=username, user_review=user_review,
+                review=review, navGameData=navGameData)
+
+        else:
+            return redirect(url_for("home"))
+    else:
+        return redirect(url_for("login"))
 
 
 # ======================
