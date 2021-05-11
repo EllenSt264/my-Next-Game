@@ -2,7 +2,7 @@
 {% block content %}
     
     <div class="row">
-        <form class="col s12 m10 offset-m1 l6 offset-l3" method="post" action="{{ url_for('submit_review') }}" id="reviewForm" >
+        <form class="col s12 m10 offset-m1 l6 offset-l3" method="post" action="{{ url_for('submit_review_page', game=game) }}" id="reviewForm" >
             <!-- Outer card -->
             <div class="card-panel form-outer-panel">
                 <!-- Inner card -->
@@ -18,13 +18,23 @@
                     <div class="card-panel input-panel">
                         <!-- Game title search -->
                         <div class="row">
-                            <div class="input-field ui-widget col s12 m8 offset-m2">
-                                <i class="material-icons prefix">search</i>
-                                <label for="query" style="font-size: 18px;">Search For Game</label>
-                                <input type="text" id="query" name="query" class="validate tooltipped" required  data-position="left" data-tooltip="We don't have that game"
-                                oninvalid="this.setCustomValidity('Enter Game Title')"
-                                oninput="this.setCustomValidity('')"/>
-                            </div>
+                            {% if game == "new-review" %}
+                                <div class="input-field ui-widget col s12 m8 offset-m2">
+                                    <i class="material-icons prefix">search</i>
+                                    <label for="query" style="font-size: 18px;">Search For Game</label>
+                                    <input type="text" id="query" name="query" class="validate tooltipped" required data-position="left" data-tooltip="We don't have that game"
+                                    oninvalid="this.setCustomValidity('Enter Game Title')"
+                                    oninput="this.setCustomValidity('')"/>
+                                </div>
+                            {% else %}
+                                <div class="input-field ui-widget col s12 m8 offset-m2">
+                                    <i class="material-icons prefix">search</i>
+                                    <label for="query" style="font-size: 18px;">Search For Game</label>
+                                    <input type="text" id="query" name="query" class="validate" value="{{ game_title }}" required 
+                                    oninvalid="this.setCustomValidity('Enter Game Title')"
+                                    oninput="this.setCustomValidity('')"/>
+                                </div>
+                            {% endif %}
                         </div>
                         <!-- Platform select -->
                         <div class="row">

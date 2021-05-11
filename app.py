@@ -2103,11 +2103,31 @@ def reviews(genre):
 # Submit Review
 # =============
 
-@app.route("/submit-review", methods=["GET", "POST"])
-def submit_review():
+@app.route("/new-review")
+def submit_review_without_game():
+    game = "new-review"
+    return redirect(url_for("submit_review_page", game=game))
+
+@app.route("/game-review/<game_id>")
+def submit_review(game_id):
+    title = mongo.db.user_games.find_one(
+        {"_id": ObjectId(game_id)})["game_title"]
+
+    game = mongo.db.all_pc_games.find_one({"game_title": title})["game_url"]
+
+    return redirect(url_for("submit_review_page", game=game))
+    
+
+@app.route("/submit-review/<game>", methods=["GET", "POST"])
+def submit_review_page(game):
     if session.get("user"):
         # Grab game data for autocomplete function in navbar
         navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+
+        # Get game title
+        if game != "new-review":
+            game_title = mongo.db.all_pc_games.find_one(
+                {"game_url": game})["game_title"]
 
         if request.method == "POST":
             # Find game data for displaying game review
@@ -2161,88 +2181,15 @@ def submit_review():
 
         return render_template(
             "reviews-review_form.html", navGameData=navGameData,
-            gameData=gameData)
+            gameData=gameData, game=game, game_title=game_title)
 
     else:
         flash("Sign in or register an account with us to review games")
         return redirect(url_for("login"))
 
 
-
-# ======================
-# Profile- Submit Review
-# ======================
-
-@app.route("/submit-review/<game_id>", methods=["GET", "POST"])
-def profile_submit_review(game_id):
-    if session.get("cookie"):
-        # Grab game data for autocomplete function in navbar
-        navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-        if request.method == "POST":
-
-            # Find game data for displaying game review
-            title = request.form.get("query")
-            game = mongo.db.all_pc_games.find_one({"game_title": title})
-            img_full = game["game_img_full"]
-
-            # Set current date
-            date = datetime.datetime.now()
-
-            display_name = mongo.db.users.find_one(
-                {"username": session["user"]})["display_name"]
-
-            review = {
-                "game_title": title,
-                "game_img_full": img_full,
-                "platform": request.form.get("platform-select").lower(),
-                "summary": request.form.get("summary"),
-                "gameplay_rating": int(request.form.get("gameplay-stars")),
-                "gameplay": request.form.get("gameplay"),
-                "visuals_rating": int(request.form.get("visuals-stars")),
-                "visuals": request.form.get("visuals"),
-                "sound_rating": int(request.form.get("sound-stars")),
-                "sound": request.form.get("sound"),
-                "recommended": request.form.get("radioRecommend"),
-                "date_submitted": date.strftime("%x"),
-                "username": session["user"],
-                "display_name": display_name
-            }
-
-            # Check if a user has already added a game with the same to the db
-            existing_review = mongo.db.user_reviews.find_one(
-                {"$and": [{"username": session["user"]},
-                        {"game_title": title}]})
-
-            if existing_review is None:
-                mongo.db.user_reviews.insert_one(review)
-                flash("Review Successfully Submitted")
-
-            elif existing_review:
-                flash("You've Already Submitted a Review for this Game")
-
-            else:
-                mongo.db.user_reviews.insert_one(review)
-                flash("Review Successfully Submitted")
-
-            return redirect(url_for("all_reviews"))
-
-        game = mongo.db.user_games.find_one({"_id": (ObjectId(game_id))})
-
-        # Grab review data for autocomplete function
-        gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
-        return render_template(
-            "profile-review_form.html", matching_results=games, game=game,
-            username=session["user"], navGameData=navGameData,
-            gameData=gameData)
-
-    else:
-        return redirect(url_for("login"))
-
-
 # =====================
-# Profile - Edit Review
+# Edit Review
 # =====================
 
 @app.route("/get-review/<username>/<review_id>")
