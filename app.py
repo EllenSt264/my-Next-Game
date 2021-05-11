@@ -296,81 +296,88 @@ def set_user_requests_cookies():
 
 @app.route("/admin/user-requests", methods=["GET", "POST"])
 def admin_user_requests():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    if session.get("user"):
+        if session.get("admin") is True:
+            # Grab game data for autocomplete function in navbar
+            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    user_requests = mongo.db.game_requests.find()
+            user_requests = mongo.db.game_requests.find()
 
-    # Remove games from queue that have been added to the games col
-    def remove_added_games():
-        games = mongo.db.game_requests.find()
-        existing_games = mongo.db.all_pc_games.find()
+            # Remove games from queue that have been added to the games col
+            def remove_added_games():
+                games = mongo.db.game_requests.find()
+                existing_games = mongo.db.all_pc_games.find()
 
-        existing_game_links = []
-        game_links = []
-        matches = []
+                existing_game_links = []
+                game_links = []
+                matches = []
 
-        # Sort through data and add to empty arrays
-        for i in list(existing_games):
-            existing_game_links.append(i["game_link"])
+                # Sort through data and add to empty arrays
+                for i in list(existing_games):
+                    existing_game_links.append(i["game_link"])
 
-        for i in list(games):
-            game_links.append(i["game_link"])
+                for i in list(games):
+                    game_links.append(i["game_link"])
 
-        # Find matches
-        for i in existing_game_links:
-            for x in game_links:
-                if i == x:
-                    matches.append(x)
+                # Find matches
+                for i in existing_game_links:
+                    for x in game_links:
+                        if i == x:
+                            matches.append(x)
 
-        # Remove from game queue col
-        for link in matches:
-            game = mongo.db.game_requests.find_one({"game_link": link})
-            mongo.db.game_requests.remove({"_id": game["_id"]})
+                # Remove from game queue col
+                for link in matches:
+                    game = mongo.db.game_requests.find_one({"game_link": link})
+                    mongo.db.game_requests.remove({"_id": game["_id"]})
 
 
-    remove_added_games()
+            remove_added_games()
 
-    # Sort filter
+            # Sort filter
 
-    cookie1 = request.cookies.get("userRequestsSort1")
-    cookie2 = request.cookies.get("userRequestsSort2")
+            cookie1 = request.cookies.get("userRequestsSort1")
+            cookie2 = request.cookies.get("userRequestsSort2")
 
-    if cookie1 is None and cookie2 is None:
-        userRequestsSort1 = "user-count"
-        userRequestsSort2 = "desc"
+            if cookie1 is None and cookie2 is None:
+                userRequestsSort1 = "user-count"
+                userRequestsSort2 = "desc"
+            else:
+                userRequestsSort1 = cookie1
+                userRequestsSort2 = cookie2
+
+            if userRequestsSort1 == "title" and userRequestsSort2 == "desc":
+                user_requests.sort("game_request", pymongo.DESCENDING)
+
+            elif userRequestsSort1 == "title" and userRequestsSort2 == "asc":
+                user_requests.sort("game_request", pymongo.ASCENDING)
+
+            if userRequestsSort1 == "date-added" and userRequestsSort2 == "desc":
+                user_requests.sort("date_added", pymongo.DESCENDING)
+
+            elif userRequestsSort1 == "date-added" and userRequestsSort2 == "asc":
+                user_requests.sort("date_added", pymongo.ASCENDING)
+            
+            if userRequestsSort1 == "date-last-requested" and userRequestsSort2 == "desc":
+                user_requests.sort("date_last_request", pymongo.DESCENDING)
+
+            elif userRequestsSort1 == "date-last-requested" and userRequestsSort2 == "asc":
+                user_requests.sort("date_last_request", pymongo.ASCENDING)
+
+            elif userRequestsSort1 == "user-count" and userRequestsSort2 == "desc":
+                user_requests.sort("requested_by", pymongo.DESCENDING)
+
+            elif userRequestsSort1 == "user-count" and userRequestsSort2 == "asc":
+                user_requests.sort("requested_by", pymongo.ASCENDING)
+
+            return render_template(
+                "admin-user_requests.html", user_requests=user_requests,
+                navGameData=navGameData, userRequestsSort1=userRequestsSort1,
+                userRequestsSort2=userRequestsSort2)
+
+        else:
+            return redirect(url_for("home"))
     else:
-        userRequestsSort1 = cookie1
-        userRequestsSort2 = cookie2
-
-    if userRequestsSort1 == "title" and userRequestsSort2 == "desc":
-        user_requests.sort("game_request", pymongo.DESCENDING)
-
-    elif userRequestsSort1 == "title" and userRequestsSort2 == "asc":
-        user_requests.sort("game_request", pymongo.ASCENDING)
-
-    if userRequestsSort1 == "date-added" and userRequestsSort2 == "desc":
-        user_requests.sort("date_added", pymongo.DESCENDING)
-
-    elif userRequestsSort1 == "date-added" and userRequestsSort2 == "asc":
-        user_requests.sort("date_added", pymongo.ASCENDING)
-    
-    if userRequestsSort1 == "date-last-requested" and userRequestsSort2 == "desc":
-        user_requests.sort("date_last_request", pymongo.DESCENDING)
-
-    elif userRequestsSort1 == "date-last-requested" and userRequestsSort2 == "asc":
-        user_requests.sort("date_last_request", pymongo.ASCENDING)
-
-    elif userRequestsSort1 == "user-count" and userRequestsSort2 == "desc":
-        user_requests.sort("requested_by", pymongo.DESCENDING)
-
-    elif userRequestsSort1 == "user-count" and userRequestsSort2 == "asc":
-        user_requests.sort("requested_by", pymongo.ASCENDING)
-
-    return render_template(
-        "admin-user_requests.html", user_requests=user_requests,
-        navGameData=navGameData, userRequestsSort1=userRequestsSort1,
-        userRequestsSort2=userRequestsSort2)
+        return redirect(url_for("login"))
 
 
 # =============================
@@ -379,50 +386,56 @@ def admin_user_requests():
 
 @app.route("/admin/user-requests/add-to-queue/<request_id>", methods=["GET", "POST"])
 def admin_add_to_queue(request_id):
-    if request.method == "POST":
-        game_request = mongo.db.game_requests.find_one({"_id": ObjectId(request_id)})
+    if session.get("user"):
+        if session.get("admin") is True:
+            if request.method == "POST":
+                game_request = mongo.db.game_requests.find_one({"_id": ObjectId(request_id)})
 
-        user = mongo.db.users.find_one({"username": session["user"]})
+                user = mongo.db.users.find_one({"username": session["user"]})
 
-        # Check if passwords match
-        password = request.form.get("password")
-        confirm_password = request.form.get("confirmPassword")
+                # Check if passwords match
+                password = request.form.get("password")
+                confirm_password = request.form.get("confirmPassword")
 
-        if password == confirm_password:
-            # Check password
-            if check_password_hash(user["password"], password):
+                if password == confirm_password:
+                    # Check password
+                    if check_password_hash(user["password"], password):
 
-                # Check if game already exisits in queue
-                in_queue = mongo.db.game_queue.find_one(
-                    {"game_link": game_request["game_link"]})
+                        # Check if game already exisits in queue
+                        in_queue = mongo.db.game_queue.find_one(
+                            {"game_link": game_request["game_link"]})
 
-                # Check if game already exisits in games col
-                existing_game = mongo.db.all_pc_games.find_one(
-                    {"game_link": game_request["game_link"]})
+                        # Check if game already exisits in games col
+                        existing_game = mongo.db.all_pc_games.find_one(
+                            {"game_link": game_request["game_link"]})
 
-                if in_queue:
-                    flash("'{}' Already In Waiting List".format(game_request["game_request"]))
+                        if in_queue:
+                            flash("'{}' Already In Waiting List".format(game_request["game_request"]))
+                            return redirect(url_for("admin_user_requests"))
+
+                        if existing_game:
+                            flash("'{}' Already Exists in Our Database".format(game_request["game_request"]))
+                            return redirect(url_for("admin_user_requests"))
+                        
+                        # Otherwise add to db
+                        game = {
+                            "game_title": game_request["game_request"],
+                            "game_link": game_request["game_link"],
+                            "category": request.form.getlist("category")
+                        }
+                        mongo.db.game_queue.insert_one(game)
+                        flash("Succesfully Added '{}' To Queue".format(game_request["game_request"]))
+                        return redirect(url_for("admin_user_requests"))
+                    else:
+                        flash("Details Invalid")
+                        return redirect(url_for("admin_user_requests"))
+                else:
+                    flash("Details Invalid")
                     return redirect(url_for("admin_user_requests"))
-
-                if existing_game:
-                    flash("'{}' Already Exists in Our Database".format(game_request["game_request"]))
-                    return redirect(url_for("admin_user_requests"))
-                
-                # Otherwise add to db
-                game = {
-                    "game_title": game_request["game_request"],
-                    "game_link": game_request["game_link"],
-                    "category": request.form.getlist("category")
-                }
-                mongo.db.game_queue.insert_one(game)
-                flash("Succesfully Added '{}' To Queue".format(game_request["game_request"]))
-                return redirect(url_for("admin_user_requests"))
-            else:
-                flash("Details Invalid")
-                return redirect(url_for("admin_user_requests"))
         else:
-            flash("Details Invalid")
-            return redirect(url_for("admin_user_requests"))
+            return redirect(url_for("home"))
+    else:
+        return redirect(url_for("login"))
 
 
 # ===========================
@@ -431,44 +444,50 @@ def admin_add_to_queue(request_id):
 
 @app.route("/admin/game-queue")
 def admin_game_queue():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    if session.get("user"):
+        if session.get("admin") is True:
+            # Grab game data for autocomplete function in navbar
+            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    games = mongo.db.game_queue.find()
-    
-    # Remove games from queue that have been added to the games col
-    def remove_added_games():
-        games = mongo.db.game_queue.find()
-        existing_games = mongo.db.all_pc_games.find()
+            games = mongo.db.game_queue.find()
+            
+            # Remove games from queue that have been added to the games col
+            def remove_added_games():
+                games = mongo.db.game_queue.find()
+                existing_games = mongo.db.all_pc_games.find()
 
-        existing_game_links = []
-        game_links = []
-        matches = []
+                existing_game_links = []
+                game_links = []
+                matches = []
 
-        # Sort through data and add to empty arrays
-        for i in list(existing_games):
-            existing_game_links.append(i["game_link"])
+                # Sort through data and add to empty arrays
+                for i in list(existing_games):
+                    existing_game_links.append(i["game_link"])
 
-        for i in list(games):
-            game_links.append(i["game_link"])
+                for i in list(games):
+                    game_links.append(i["game_link"])
 
-        # Find matches
-        for i in existing_game_links:
-            for x in game_links:
-                if i == x:
-                    matches.append(x)
+                # Find matches
+                for i in existing_game_links:
+                    for x in game_links:
+                        if i == x:
+                            matches.append(x)
 
-        # Remove from game queue col
-        for link in matches:
-            game = mongo.db.game_queue.find_one({"game_link": link})
-            mongo.db.game_queue.remove({"_id": game["_id"]})
+                # Remove from game queue col
+                for link in matches:
+                    game = mongo.db.game_queue.find_one({"game_link": link})
+                    mongo.db.game_queue.remove({"_id": game["_id"]})
 
 
-    remove_added_games()
+            remove_added_games()
 
-    return render_template(
-        "admin-game_queue.html", navGameData=navGameData,
-        games=games)
+            return render_template(
+                "admin-game_queue.html", navGameData=navGameData,
+                games=games)
+        else:
+            return redirect(url_for("home"))
+    else:
+        return redirect(url_for("login"))
 
 
 # ==========================
@@ -477,45 +496,52 @@ def admin_game_queue():
 
 @app.route("/admin/update-db", methods=["GET", "POST"])
 def admin_update_db():
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    if session.get("user"):
+        if session.get("admin") is True:
+            # Grab game data for autocomplete function in navbar
+            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    if request.method == "POST":
-        user = mongo.db.users.find_one({"username": session["user"]})
+            if request.method == "POST":
+                user = mongo.db.users.find_one({"username": session["user"]})
 
-        # Check if passwords match
-        password = request.form.get("password")
-        confirm_password = request.form.get("confirmPassword")
+                # Check if passwords match
+                password = request.form.get("password")
+                confirm_password = request.form.get("confirmPassword")
 
-        if password == confirm_password:
-            # Check password
-            if check_password_hash(user["password"], password):
-                # Update DB
-                for k, v in custom_games.items():
-                    game = v
-                    link = game["game_link"]
-                    print(link)
+                if password == confirm_password:
+                    # Check password
+                    if check_password_hash(user["password"], password):
+                        # Update DB
+                        for k, v in custom_games.items():
+                            game = v
+                            link = game["game_link"]
+                            print(link)
 
-                    existing_game = mongo.db.all_pc_games.find_one(
-                        {"game_link": link})
+                            existing_game = mongo.db.all_pc_games.find_one(
+                                {"game_link": link})
 
-                if not existing_game:
-                    mongo.db.all_pc_games.insert_one(game)
+                        if not existing_game:
+                            mongo.db.all_pc_games.insert_one(game)
 
-                if existing_game:
-                    flash("Database Already Updated")
-                    return redirect(url_for("home"))
+                        if existing_game:
+                            flash("Database Already Updated")
+                            return redirect(url_for("home"))
 
-                if not existing_game:
-                    flash("Successfully Updated Database")
-                    return redirect(url_for("home"))
+                        if not existing_game:
+                            flash("Successfully Updated Database")
+                            return redirect(url_for("home"))
 
-            else:
-                flash("Details Invalid")
+                    else:
+                        flash("Details Invalid")
+                else:
+                    flash("Details Invalid")
+
+            return render_template("admin-update_db.html", navGameData=navGameData)
+
         else:
-            flash("Details Invalid")
-
-    return render_template("admin-update_db.html", navGameData=navGameData)
+            return redirect(url_for("home"))
+    else:
+        return redirect(url_for("login"))
 
 
 # ===============================
