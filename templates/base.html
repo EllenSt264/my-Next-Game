@@ -30,7 +30,7 @@
 
                     <!-- Desktop profile dropdown icon -->
                     {% if session.user %}
-                        <a href="{{ url_for('profile_games', user=user, username=session['user'], admin=session['admin']) }}" data-target="desktop-profile" 
+                        <a href="{{ url_for('profile_games', username=session['user']) }}" data-target="desktop-profile" 
                         class="dropdown-trigger right hide-on-med-and-down nav-dropdown-trigger"
                         style="margin-right:25px;">
                             <i class="fas fa-user"></i>
@@ -105,7 +105,7 @@
         
         <!-- Desktop profile dropdown -->
         <ul class="dropdown-content" id="desktop-profile"  data-constrainwidth="false">
-            <li><a href="{{ url_for('profile_games', user=user, username=session['user'], admin=session['admin']) }}">Profile</a></li>
+            <li><a href="{{ url_for('profile_games', username=session['user']) }}">Profile</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
         </ul>
 
@@ -115,7 +115,7 @@
                 <a href="#!"><i class="fas fa-times sidenav-close right"></i></a>
             </li>
             {% if session.user %}
-                <li><a href="{{ url_for('profile_games', username=session['user'], admin=session['admin']) }}">Profile</a></li>
+                <li><a href="{{ url_for('profile_games', username=session['user']) }}">Profile</a></li>
                 <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
