@@ -1890,7 +1890,7 @@ def see_game_reviews(game_id):
     else:
         game = mongo.db.all_pc_games.find_one({"game_title": game_id})
 
-    genre = game["game_title"]
+    genre = game["game_url"]
 
     return redirect(url_for("reviews", genre=genre))
 
@@ -1980,7 +1980,7 @@ def reviews(genre):
         game_reviews = mongo.db.user_reviews.find({"platform": "nintendo"})
     
     else: 
-        game = mongo.db.all_pc_games.find_one({"game_title": genre})
+        game = mongo.db.all_pc_games.find_one({"game_url": genre})
         # Grab game details
         game_img = game["game_img_full"]
         game_tags = game["game_top_tags"]
