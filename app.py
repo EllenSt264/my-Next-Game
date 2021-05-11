@@ -2172,10 +2172,15 @@ def submit_review_without_game():
     game = "new"
     return redirect(url_for("submit_review_page", game=game))
 
+
 @app.route("/game-review/<game_id>")
 def submit_review(game_id):
-    title = mongo.db.user_games.find_one(
-        {"_id": ObjectId(game_id)})["game_title"]
+    if ObjectId.is_valid(game_id):
+        title = mongo.db.user_games.find_one(
+            {"_id": ObjectId(game_id)})["game_title"]
+    else:
+        title = mongo.db.all_pc_games.find_one(
+            {"game_title": game_id})["game_title"]
 
     game = mongo.db.all_pc_games.find_one({"game_title": title})["game_url"]
 
