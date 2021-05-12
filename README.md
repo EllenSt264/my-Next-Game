@@ -641,27 +641,27 @@ In order to maintain an aestheic that could relate to Synthwave visual standards
 
 I used [Accessible Colour Generator](https://learnui.design/tools/accessible-color-generator.html) to ensure that the colours used in my site aligned with AA guidlines. You can see the results below:
 
-- Home
+##### Home
 ![Accessible colour generator results - home ](static/img/documentation/accessible_color_generator-home.png)
 
-- Buttons
+##### Buttons
 ![Accessible colour generator results - buttons ](static/img/documentation/accessible_color_generator-btns.png)
 
-- Game cards
+##### Game cards
 ![Accessible colour generator results - game cards ](static/img/documentation/accessible_color_generator-game_cards.png)
 
-- Navbar
+##### Navbar
 ![Accessible colour generator results - navbar ](static/img/documentation/accessible_color_generator-navbar.png)
 
-- Login and Register page
+##### Login and Register page
 ![Accessible colour generator results - login and register ](static/img/documentation/accessible_color_generator-login.png)
 
 ![Accessible colour generator results - login and regsiter ](static/img/documentation/accessible_color_generator-login_2.png)
 
-- Profile
+##### Profile
 ![Accessible colour generator results - profile ](static/img/documentation/accessible_color_generator-profile.png)
 
-- Profile buttons
+##### Profile buttons
 ![Accessible colour generator results - profile buttons ](static/img/documentation/accessible_color_generator-profile_btns.png)
 
 -----
