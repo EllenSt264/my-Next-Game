@@ -99,7 +99,10 @@
                                 <div class="modal-content white-text">
                                     <h4>Add <span>"{{ request.game_request }}"</span> To Queue?</h4>
                                     <h6>
-                                        Please review the <a href="#">Terms and Conditions</a> before any changes are made
+                                        Please review the <a href="#">Terms and Conditions</a> before any changes are made.
+                                    </h6>
+                                    <h6>
+                                        You can see the view the game on the <a href="{{ request.game_link }}" target="_blank">Steam Store</a> if you need help on what category to assign it to.
                                     </h6>
                                      <!-- Game category -->
                                      <div class="row py-5">
@@ -114,7 +117,6 @@
                                                 </optgroup>
                                                 <optgroup label="Other">
                                                     <option value="bestseller">Bestseller</option>
-                                                    <option value="awardwinner">Awardwinner</option>
                                                     <option value="favourite">Favourite</option>
                                                 </optgroup>
                                             </select>
