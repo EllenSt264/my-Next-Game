@@ -44,9 +44,11 @@
 
     - [Surface Plane](#surface-plane)
 
-        - [Design](#design)
-
         - [Typography](#typography)
+
+        - [Synthwave](#synthwave)
+
+        - [Colour](#colour)
 
 - [Database Schema](#database-schema)
 
@@ -579,11 +581,7 @@ Profile Reviews page
 
 ### Surface Plane
 
-
-## Design
-
-
-### Typography
+#### Typography
 
 The two fonts, and their variants, that are used throughout the site are [BlenderPro]() and [Cyberspace Raceway](). Both are clean and readable fonts that correlate well with the site's visual aesethic. [BlenderPro]() especially suited both the visual and contextually theme of the website, as it is same font used for the [Cyberpunk Website](), of which I took some visual inspiration from. Cyberpunk is a sci-fi game that was released in late 2020, and has both a sci-fi and synthwave theme running throughout the game. Many gamers who would would use this site may notice this visual reference, which makes the design choice more than suitable.
 
@@ -621,7 +619,50 @@ The two fonts, and their variants, that are used throughout the site are [Blende
 - BlenderPro-ThinItalic
 
 - [Cyberspace Raceway]() was only used for the site's title on the Homepage
-    
+
+
+
+#### Synthwave
+
+| ![Synthwave example](static/img/documentation/synthwave_example_1.png)
+| ![Synthwave example](static/img/documentation/synthwave_example_2.jpg)
+
+
+Synthwave draws predominantly from 1980s films, video games, and cartoons. It has huge connections to retrogaming, and escalated in popularity with the success of games like [Far Cry 3 Blood Dragon](https://en.wikipedia.org/wiki/Far_Cry_3:_Blood_Dragon) and [Grand Theft Auto: Vice City](https://en.wikipedia.org/wiki/Grand_Theft_Auto:_Vice_City). You can see more modern links in the film and TV industry in [Stranger Things](https://en.wikipedia.org/wiki/Stranger_Things) and [Tron Legacy](https://en.wikipedia.org/wiki/Tron:_Legacy).
+
+Synthwave is often immediately recognised by gamers, even if they are not aware of the origins, which is why I chose to base my project's design of it. Not only is it eye catching and memorable, but it is able to establish a connect with the site's purpose almost instantly.
+
+
+#### Colour
+
+![Coolors](static/img/documentation/coolors.png)
+
+In order to maintain an aestheic that could relate to Synthwave visual standards, I implemented a combination of the colours above throughout the site. Often the colours will shift slightly to either create more contrast or encourage a greater visual variety, but the vast majority is based upon these five colours.
+
+I used [Accessible Colour Generator](https://learnui.design/tools/accessible-color-generator.html) to ensure that the colours used in my site aligned with AA guidlines. You can see the results below:
+
+- Home
+![Accessible colour generator results - home ](static/img/documentation/accessible_color_generator-home.png)
+
+- Buttons
+![Accessible colour generator results - buttons ](static/img/documentation/accessible_color_generator-btns.png)
+
+- Game cards
+![Accessible colour generator results - game cards ](static/img/documentation/accessible_color_generator-game_cards.png)
+
+- Navbar
+![Accessible colour generator results - navbar ](static/img/documentation/accessible_color_generator-navbar.png)
+
+- Login and Register page
+![Accessible colour generator results - login and register ](static/img/documentation/accessible_color_generator-login.png)
+
+![Accessible colour generator results - login and regsiter ](static/img/documentation/accessible_color_generator-login_2.png)
+
+- Profile
+![Accessible colour generator results - profile ](static/img/documentation/accessible_color_generator-profile.png)
+
+- Profile buttons
+![Accessible colour generator results - profile buttons ](static/img/documentation/accessible_color_generator-profile_btns.png)
 
 -----
 
