@@ -52,7 +52,7 @@
                                 </div>
                             {% else %}
                                 <div class="col s4 profile-game-btn">
-                                    <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn-large">
+                                    <a href="{{ url_for('submit_review', game_id=game.game_title) }}" class="btn-large">
                                         <i class="fas fa-pen-alt"></i>
                                         <span>Write Review</span>
                                     </a>    
@@ -106,7 +106,7 @@
                             </div>
                         {% else %}
                             <div class="col s4 profile-game-btn-sm">
-                                <a href="{{ url_for('profile_submit_review', username=session['user'], game_id=game._id) }}" class="btn">
+                                <a href="{{ url_for('submit_review', game_id=game.game_title) }}" class="btn">
                                     <i class="fas fa-pen-alt"></i>
                                     <span>Write Review</span>
                                 </a>    
