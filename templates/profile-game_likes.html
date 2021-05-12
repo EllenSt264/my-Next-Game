@@ -27,11 +27,12 @@
                         </div>
                         <!-- Buttons -->
                         <div class="card-action">
-                            <!-- Steam Store -->
+                            <!-- Links -->
                             <div class="col s4 profile-game-btn">
-                                <a href="{{ game.game_link }}" target="_blank" class="btn-large">
+                                <a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks{{loop.index}}">
                                     <i class="material-icons btn-icon-left">http</i>
-                                    <span>Steam Store</span>
+                                    <span>Links</span>
+                                    <i class="material-icons btn-icon-right">arrow_drop_down</i>
                                 </a>
                             </div>
                             <!-- Reviews -->
@@ -81,11 +82,12 @@
                         </p>
                     </div>
                     <div class="card-action">
-                        <!-- Steam Store -->
-                        <div class="col s4 profile-game-btn-sm">
-                            <a href="{{ game.game_link }}" target="_blank" class="btn">
+                        <!-- Links -->
+                        <div class="col s4 profile-game-btn">
+                            <a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks{{loop.index}}-2">
                                 <i class="material-icons btn-icon-left">http</i>
-                                <span>Steam Store</span>
+                                <span>Links</span>
+                                <i class="material-icons btn-icon-right">arrow_drop_down</i>
                             </a>
                         </div>
                         <!-- Reviews -->
@@ -114,6 +116,24 @@
                         {% endfor %}
                     </div>
                 </div>
+
+                <!-- Links dropdown -->
+                <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks{{loop.index}}">
+                    <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+                    {% if game.website != None %}<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>{% endif %}
+                    {% if game.update_history != None %}<li><a href="{{ game.update_history }}" target="_blank">View Update History</a></li>{% endif %}
+                    {% if game.related_news != None %}<li><a href="{{ game.related_news }}" target="_blank">Read Related News</a></li>{% endif %}
+                    {% if game.discussions != None %}<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a></li>{% endif %}
+                    {% if game.community != None %}<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a></li>{% endif %}
+                </ul>
+                <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks{{loop.index}}-2">
+                    <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+                    {% if game.website != None %}<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>{% endif %}
+                    {% if game.update_history != None %}<li><a href="{{ game.update_history }}" target="_blank">View Update History</a></li>{% endif %}
+                    {% if game.related_news != None %}<li><a href="{{ game.related_news }}" target="_blank">Read Related News</a></li>{% endif %}
+                    {% if game.discussions != None %}<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a></li>{% endif %}
+                    {% if game.community != None %}<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a></li>{% endif %}
+                </ul>
             {% endfor %}
         </div>
     </section>
