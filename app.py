@@ -1266,37 +1266,18 @@ def add_game(game_id):
     else:
         game = mongo.db.all_pc_games.find_one({"game_title": game_id})
 
-    # Create empty lists to add dict data into
-    title = []
-    tags = []
-    img_sm = []
-    img_full = []
-    platform = []
-    link = []
-
-    # Sift through dictionary data and add to lists
-    for k, v in game.items():
-        if k == "game_title":
-            title.append(v)
-            dict_game_title = v
-        if k == "game_top_tags":
-            tags.append(v)
-        if k == "game_img_sm":
-            img_sm.append(v)
-        if k == "game_img_full":
-            img_full.append(v)
-        if k == "platform_tags_pc":
-            platform.append(v)
-        if k == "game_link":
-            link.append(v)
-
     # Construct new dicitonary
     data = {
-            "game_title": title[0],
-            "game_img_full": img_full[0],
-            "game_tags": tags[0],
-            "platform_pc": platform[0],
-            "game_link": link[0],
+            "game_title": game.get("game_title"),
+            "game_img_full": game.get("game_img_full"),
+            "game_tags": game.get("game_top_tags"),
+            "platform_pc": game.get("platform_tags_pc"),
+            "game_link": game.get("game_link"),
+            "website": game.get("website"),
+            "community": game.get("community"),
+            "discussions": game.get("discussions"),
+            "related_news": game.get("related_news"),
+            "update_history": game.get("update_history"),
             "username": session["user"],
             "stage": "next"
         }
@@ -1304,7 +1285,7 @@ def add_game(game_id):
     # Check if a user has already added a game with the same to the db
     existing_data = mongo.db.user_games.find_one(
         {"$and": [{"username": session["user"]},
-                  {"game_title": dict_game_title}]})
+                  {"game_title": game.get("game_title")}]})
 
     if existing_data is None:
         mongo.db.user_games.insert_one(data)
