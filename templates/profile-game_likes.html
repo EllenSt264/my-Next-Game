@@ -7,7 +7,9 @@
                 <!-- Large screens only -->
                 <div class="card horizontal hide-on-med-and-down">
                     <div class="card-image profile-game-img">
-                        <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
+                            <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                        </a>
                     </div>
                     <div class="card-stacked">
                         <!-- Game details -->
@@ -66,7 +68,9 @@
                 <!-- Medium screens and down -->
                 <div class="card smaller hide-on-large-only">
                     <div class="card-image profile-game-img">
-                        <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                        <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
+                            <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+                        </a>
                     </div>
                     <div class="card-content">
                         <div class="card-title">
