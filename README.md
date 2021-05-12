@@ -12,15 +12,41 @@
 
 ## Contents 
 
-- [Project Purpose](#project-purpose)
+- [UX](#ux)
 
-- [User Stories](#user-stories)
+    - [Strategy Plane](#strategy-plane)
 
-- [Design](#design)
+    - [User Stories](#user-stories)
 
-    - [Typography](#typography)
+    - [Scope Plane](#scope-plane)
 
-    - [Wireframes](#wireframes)
+    - [Structure Plane](#structure-plane)
+
+        - [List of Pages](#list-of-pages)
+
+        - [Site Navigation](#site-navigation)
+
+        - [Existing Features](#existing-features)
+
+            - [Navbar](#navbar)
+
+            - [Homepage](#homepage)
+
+            - [Our Favourites Page](#our-favourites-page)
+
+            - [Games Pages](#games-pages)
+
+            - [Community Reviews Page](#community-reviews-page)
+    
+    - [Skeleton Plane](#skeleton-plane)
+
+        - [Wireframes](#wireframes)
+
+    - [Surface Plane](#surface-plane)
+
+        - [Design](#design)
+
+        - [Typography](#typography)
 
 - [Database Schema](#database-schema)
 
@@ -39,23 +65,6 @@
     - [Database Structure - Admin Game Links](#admin-game-links)
 
     - [Database Relationships](#database-relationships)
-    
-
-- [Implemented Features](#implemented-features)
-
-    - [List of Pages](#list-of-pages)
-
-    - [Navigation Bar](#navigation-bar)
-
-    - [Homepage](#homepage)
-
-    - [Navigation](#navigation)
-
-    - [Our Favourites Page](#our-favourites-page)
-
-    - [Games Pages](#games-pages)
-
-    - [Community Reviews Page](#community-reviews-page)
 
 - [Technologies Used](#technologies-used)
 
@@ -95,27 +104,31 @@
 
 -----
 
-## Project Purpose 
+## UX 
+
+### Strategy Plane
+
+#### Project Purpose 
 
 The primary aim of this website is to help gamers decide which game they should play next. The website aims to establish a gaming community platform where users can read and submit game reviews, create their own profiles, customise game playlists and reach out to other members of the community.
 
-### Project Goals
+#### Project Goals
 
 The most siginficant goal of this web application is to ensure that the expectations of the target audience is met. The web application must offer a wide selection of games for users to browse through, and sort those games into relevant categories to make the navigation of the site easy and intuitive. It is also important to include C-R-U-D functionality to site that meets user expectations and follows the overarching schema of the project.
 
-### Project Owner Goals
+#### Site Owner Goals
 
 The primary goal is to establish a community platform that would have the potential to grow and thrive as a real-world application. It is imperative that the application has a high-quality layout and UX design, meets acccessibility guidelines, prioritizes its information appropriately and handles the back-end intuitively. 
 
-### Target Audience 
+#### Target Audience 
 
-The target audience is gamers, coming from a wide range of platforms and backgrounds. However, the site is more catered to PC gamers as the game data that is used in the web application derives from a PC video game distrubtion service: Steam. Also, a majority of the games present on the site have an age rating that is only suitable for late teenage years and above.
+The target audience is gamers, coming from a wide range of platforms and backgrounds. However, the site is more catered to PC gamers as the game data that is used in the web application derives from a PC video game distrubtion service: [Steam](https://store.steampowered.com/). Also, a majority of the games present on the site have an age rating that is only suitable for late teenage years and above.
 
 -----
 
-## User Stories
+### User Stories
 
-### First Time User Goals
+#### First Time User Goals
 
 - As a first time user I want to immediately understand the purpose of the application.
 
@@ -138,7 +151,7 @@ The target audience is gamers, coming from a wide range of platforms and backgro
 - I want to add games to my personal games list.
 
 
-### Returning User Goals
+#### Returning User Goals
 
 - As a returning user, I want to be able to customize my profile. I want to add a bio to my profile and upload a custom profile image.
 
@@ -156,6 +169,416 @@ The target audience is gamers, coming from a wide range of platforms and backgro
 
 
 -----
+
+
+### Scope Plane
+
+
+#### Functional Specifications and Requirements
+
+- Good UX design that is repsonsive, user friendly and easy to navigate.
+
+- Clear and accessible navigation options for the site. This can be in the form of a fixed navbar at the top of the page, which will allow users to navigate to any part of the site easily and efficiently.
+
+- Data must be dynamic, and must be organised in a way that is intuitive and clear.
+
+- The site should not restrict users who are not logged in. Games and reviews should be available for all users to view. Pages that should only be accessible to registered users should not be visible to users who are not logged in. 
+
+- C-R-U-D functionality should give the users the freedom to do what they want with their content. The site should respect the user's decision to edit and/or delete any reviews that they make.
+
+- User experience should be held at paramount. The site should be intuitive and enjoyable for the user.
+
+
+-----
+
+
+### Structure Plane
+
+
+#### List of Pages
+
+**Note** This does not include an entire list of all the HTML files
+
+- Homepage
+
+- Game Pages
+    - All Games 
+    - Action
+    - Adventure
+    - RPG
+    - Strategy
+    - Multiplayer
+
+- Favourites Page 
+
+- Community Reviews
+
+- Login page
+
+- Register page
+
+- Profile Page
+    - Profile - Game List 
+    - Profile - User Reviews
+    - Edit Profile
+
+
+#### Site Navigation
+
+Below is a diagram illustrating the site's navigation, older mockups of the site's navigation can be viewed [here](static/wireframes/navigation_mindmap.png) and [here](static/wireframes/navbar_mindmap.png)
+
+- For users who are not logged in:
+
+![Site navigation](static/img/documentation/site_navigation.png)
+
+- For users who are logged in:
+
+![Site navigation](static/img/documentation/site_navigation-logged_in.png)
+
+- For admin users:
+
+![Site navigation](static/img/documentation/site_navigation-admin_user.png)
+
+
+- A full illustration of the site's navigation:
+
+![Site navigation](static/img/documentation/site_navigation-full.png)
+
+
+
+#### Existing Features
+
+
+##### Navbar
+
+- Fixed navbar 
+
+    - Built using Materialize to implement responsive UX design that is cross-compatible on a wide range of devices
+
+    - Allows users to easily navigate the site
+
+    - Improves user experience by removing the need to scroll to the top of the page in order to navigate the site
+
+- Hamburger collapse menu
+
+    - Built using Materialize
+
+    - Adds a side nav to access navigation links
+
+    - Improves user experience for touch screen devices
+    
+    - Conform to web-design conventions 
+
+    - Limits the amount of real estate used on smaller screens, particuarly mobile devices
+
+- Dropdown menu for Genre, Profile and Admin Controls navlinks
+
+    - Implements a dropdown menu (for desktop devices) to reduce the amount of real estate on the page
+
+    - Gives the user greater control in regards to the navigation of the site
+
+    - For smaller screens and mobile devices the content in the dropdown is moved to the side nav, which is accessed via the hamburger icon
+
+- Brand Logo
+
+    - The site's logo is implemented to the center of the navbar to help make the site recognisable to returning users
+
+
+##### Homepage
+
+- Hero background video
+    
+    - A vibrant hero image (video tag) to immediately encourage a positive emotional response from the user
+    
+    - The design links to the site's Synthwave theme, thus providing visual clarity by promoting a reoccuring theme. For more details on this theme, see [here]()
+
+    - The moving video makes it seem that the user is moving towards something. This can represent a journey, which links well to the idea of building a new community platform, as something that is constantly growing
+
+    - The site's title, **My Next Game** is displayed clearly over the hero video
+
+
+- Parrallax effect
+
+    - Adds visual depth to the site 
+
+    - Links well to other web pages that use it - Favourites page
+
+    - Promotes the Synthwave visual theme by providing more media images that are consistent of the Synthwave style.
+
+    - Stresses the importance that I have placed on good UX design
+
+
+- Navigation buttons
+
+    - An 'Explore Favourites' and 'Take the Quiz' button to encourage users to explore the site's main features
+
+
+- About Us
+
+    - Explains the purpose of the site to the user
+
+    - Encourages users to Register and interactive with the site
+
+
+- Game Lists - Bestsellers and Awardwinners
+
+    - It was important to display games on the Homepage to further convey the site's purpose
+
+    - Both of these cateogories contain a wide selection of games (it is not limited to certain genres) and thus is suitable for several tastes and preferences, which can be expected by the user
+
+
+##### Our Favourites Page
+
+- Parallax effect
+
+    - Adds visual depth
+
+    - A visually effective way to split up information and images on the site
+
+    - The images within the parallax are of screenshots from a game that is randomized whenever this site refreshes
+
+    - The text in the firt parallax section includes the game title and a summary of the game
+
+    - The text in the second parallax section includes a navigation button that leads to the Request A Game form page
+
+
+- Scroll to Top button
+
+    - A bouncing floating button at the bottom right hand side of the screen
+
+    - The up arrow represents its function
+
+    - When clicked it will scroll back up to the top of the page
+
+
+- Sort Filter
+
+    - This allows users to sort the display order of games
+
+    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
+
+
+- Game Cards
+
+    - Below the Parallax effect and Sort Filter is a list of games, each displayed within a card
+
+    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
+
+    - Each card has an image for the game, its title, platforms that it can be played on, genre tags and a summary. Each card also includes a 'Recommended By Us' tag, a 'Like' button and a 'See Reviews' button, which will direct users to the Community Reviews page and filter the results for only that game
+
+    - When logged in, a pulsing add button will be present on each card. When clicked it will add the game to the user's game playlist in their Profile 
+
+    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
+
+
+##### Games Pages
+
+- Carousel 
+
+    - Built using Materialize
+
+    - By default, the carousel has a swipe feature that is user friendly for all touchscreen devices, particularly mobile devices. Left and right arrows were implemented to ensure that the carousel was also user friendly on desktop devices that do not have touchscreen functionality
+
+    - The carousel is present on all of the Games pages, this includes All Games, Action Games, Adventure Games, RPG Games, Strategy Games and Multiplayer Games
+
+    - The carousel contains three images of three diffrent games that are randomized upon refresh and/or first load of the page
+
+    - Below each image is the title and genre tags to match the game shown in the image
+
+    - Below that is a 'See Reviews' button which will direct users to the Community Reviews page and filter the results for only that game
+
+
+- Secondary Navbar
+
+    - Underneath the carousel is a secondary navbar containing navlinks that are appropirate for the filtering the game results below
+
+    - The following navlinks are:
+        - Our Favourites
+        - Award Winners
+        - All Games
+        - Genre
+            - Action
+            - Adventure
+            - RPG
+            - Strategy
+            - Multiplayer
+
+    - A search bar is included to right, which allows users to search for specific game titles
+
+    - A collapsible hamburger icon will trigger on smaller devices
+
+
+- Sort Filter
+
+    - This allows users to sort the display order of games
+
+    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
+
+    - 'Sort By' contains the following options:
+        - Default
+        - Title
+        - Likes
+        - Recommended
+        - Award Winners
+        - Bestsellers
+        - Playing
+        - Review Count
+
+    - 'Order' has 'desc' (descending) and 'asc' (ascending) options
+
+
+- Game Cards
+
+    - Built with Materialize
+
+    - The cards are horizontal from a width of 600px, anything below that then the content is displayed vertically
+
+    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
+
+    - Each card has an image for the game; its title, platforms that it can be played on, and genre tags. Each card also includes a 'Recommended By Us' tag if the game is included in the Favourites page (if it has the key/value pair of `favourite: True`). There is also a 'Like' button
+
+    - When logged in, a pulsing add button will be present on each card. When clicked it will add the game to the user's game playlist in their Profile 
+
+    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
+
+    - To increase performance, only six cards are displayed per page
+
+
+- Pagination 
+
+    - There are pagination links that above and below the cards to allow users to iterate through the pages
+
+
+
+##### Community Reviews Page
+
+- Carousel 
+
+    - Built using Materialize
+
+    - By default, the carousel has a swipe feature that is user friendly for all touchscreen devices, particularly mobile devices. Left and right arrows were implemented to ensure that the carousel was also user friendly on desktop devices that do not have touchscreen functionality
+
+    - The carousel is present on all of the Games pages, this includes All Games, Action Games, Adventure Games, RPG Games, Strategy Games and Multiplayer Games
+
+    - The carousel contains three images of three diffrent games that are randomized upon refresh and/or first load of the page
+
+    - Below each image is the title and genre tags to match the game shown in the image
+
+
+- Secondary Navbar
+
+ - Underneath the carousel is a secondary navbar containing navlinks that are appropirate for the filtering game review results below
+
+    - The following navlinks are:
+        - Our Favourites
+        - Award Winners
+        - All Reviews
+        - Platform
+            - PC
+            - XBOX
+            - Playstation
+            - Nintendo
+        - Genre
+            - Action
+            - Adventure
+            - RPG
+            - Strategy
+            - Multiplayer
+
+    - A search bar is included to right, which allows users to search for specific game titles
+
+    - A collapsible hamburger icon will trigger on smaller devices
+
+
+- Sort Filter
+
+    - This allows users to sort the display order of reviews
+
+    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
+
+    - 'Sort By' contains the following options:
+        - Date Added
+        - Title
+        - Rating
+
+    - 'Order' has 'desc' (descending) and 'asc' (ascending) options
+
+
+- Leave Review Button
+
+    - This directs users to the Submit Review form which allows them to create and submit game reviews
+
+
+- Review Cards
+
+    - Built with Materialize
+
+    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
+
+    - Each card has a game image that matches the review; the game title, the username or display name of the user who submitted the review, the date of when it was submmited and/or last updated, a review summary and three collapsibles containing the full review.
+
+    - There are three collapsibles: Gameplay, Visuals and Sound. When clicked they will display the user's review relating to this section
+
+    - The review cards will contain a 'Positive' or 'Negative' card sticker, depending on what option was chosen when a user submitted their review
+
+    - Users can click the username on a review which will direct them to the Profile page of that user
+
+    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
+
+    - To increase performance, nine cards are displayed per page
+
+
+- Pagination 
+
+    - There are pagination links that above and below the cards to allow users to iterate through the pages
+
+
+
+### Skeleton Plane
+
+#### Wireframes
+
+I used [Balsamiq](https://balsamiq.com/) to construct the surface plane. After delving into writing the code for the application, some design alterations were made. This included using a separate page for the Log In and Register process rather than using a modal, which may have been obstructive on smaller and/or touchscreen devices.
+
+Each page has a wireframe for both desktop and mobile devices. I did not include a tablet wireframe in the design phase because I wanted the site to look nearly identical on larger tablet and desktop devices. Particularly as many laptops now can also function as a touchscreen tablet, I thought it was important that there were no stark differences between the two as this may have compromised good UX design. Nevertheless, the mobile wireframe can represent tablet devices with smaller screens.
+
+Each wireframe can be viewed via the links below:
+
+##### Homepage
+
+Desktop
+![Desktop](static/wireframes/homepage_1.png)
+
+Mobile
+![Mobile](static/wireframes/homepage_3.png)
+
+Login, Register and Profile navlink
+![Login, Register and Profile](static/wireframes/homepage_2.png)
+
+##### Game Page:
+![Desktop and Mobile](static/wireframes/games_page.png)
+
+##### Favourites Page:
+![Desktop and Mobile](static/wireframes/favourites_page.png)
+
+##### Reviews Page:
+![Desktop and Mobile](static/wireframes/reviews_page.png)
+
+##### Profile Page:
+Profile Games List - Version 1
+![Profile Games List](static/wireframes/profile.png)
+
+Profile Games List - Version 2
+![Profile Games List Version 2](static/wireframes/profile_games_list.png)
+
+Profile Reviews page
+![Profile Reviews](static/wireframes/profile_reviews.png)
+
+
+-----
+
+### Surface Plane
+
 
 ## Design
 
@@ -198,55 +621,6 @@ The two fonts, and their variants, that are used throughout the site are [Blende
 - BlenderPro-ThinItalic
 
 - [Cyberspace Raceway]() was only used for the site's title on the Homepage
-
-
------
-
-### Wireframes
-
-I used [Balsamiq](https://balsamiq.com/) to construct the surface plane. After delving into writing the code for the application, some design alterations were made. This included using a separate page for the Log In and Register process rather than using a modal, which may have been obstructive on smaller and/or touchscreen devices.
-
-Each page has a wireframe for both desktop and mobile devices. I did not include a tablet wireframe in the design phase because I wanted the site to look nearly identical on larger tablet and desktop devices. Particularly as many laptops now can also function as a touchscreen tablet, I thought it was important that there were no stark differences between the two as this may have compromised good UX design. Nevertheless, the mobile wireframe can represent tablet devices with smaller screens.
-
-Each wireframe can be viewed via the links below:
-
-#### Homepage
-
-Desktop
-![Desktop](static/wireframes/homepage_1.png)
-
-Mobile
-![Mobile](static/wireframes/homepage_3.png)
-
-Login, Register and Profile navlink
-![Login, Register and Profile](static/wireframes/homepage_2.png)
-
-#### Game Page:
-![Desktop and Mobile](static/wireframes/games_page.png)
-
-#### Favourites Page:
-![Desktop and Mobile](static/wireframes/favourites_page.png)
-
-#### Reviews Page:
-![Desktop and Mobile](static/wireframes/reviews_page.png)
-
-#### Profile Page:
-Profile Games List - Version 1
-![Profile Games List](static/wireframes/profile.png)
-
-Profile Games List - Version 2
-![Profile Games List Version 2](static/wireframes/profile_games_list.png)
-
-Profile Reviews page
-![Profile Reviews](static/wireframes/profile_reviews.png)
-
-#### Site Navigation Mindmap:
-
-Navigation Mindmap
-![Site navigation mindmap](static/wireframes/navigation_mindmap.png)
-
-Navlinks Mindmap
-![Site navbar navigation links](static/wireframes/navbar_mindmap.png)
     
 
 -----
@@ -478,316 +852,6 @@ The database schema was subjected to several alterations throughout the site’s
 
 ## Implemented Features
 
-### List of Pages
-
-**Note** This does not include an entire list of all the HTML files
-
-- Homepage
-
-- Game Pages
-    - All Games 
-    - Action
-    - Adventure
-    - RPG
-    - Strategy
-    - Multiplayer
-
-- Favourites Page 
-
-- Community Reviews
-
-- Login page
-
-- Register page
-
-- Profile Page
-    - Profile - Game List 
-    - Profile - User Reviews
-    - Edit Profile
-
-
-### Navigation Bar
-
-- Fixed navbar 
-
-    - Built using Materialize to implement responsive UX design that is cross-compatible on a wide range of devices
-
-    - Allows users to easily navigate the site
-
-    - Improves user experience by removing the need to scroll to the top of the page in order to navigate the site
-
-- Hamburger collapse menu
-
-    - Built using Materialize
-
-    - Adds a side nav to access navigation links
-
-    - Improves user experience for touch screen devices
-    
-    - Conform to web-design conventions 
-
-    - Limits the amount of real estate used on smaller screens, particuarly mobile devices
-
-- Dropdown menu for Genre, Profile and Admin Controls navlinks
-
-    - Implements a dropdown menu (for desktop devices) to reduce the amount of real estate on the page
-
-    - Gives the user greater control in regards to the navigation of the site
-
-    - For smaller screens and mobile devices the content in the dropdown is moved to the side nav, which is accessed via the hamburger icon
-
-- Brand Logo
-
-    - The site's logo is implemented to the center of the navbar to help make the site recognisable to returning users
-
-
-### Homepage
-
-- Hero background video
-    
-    - A vibrant hero image (video tag) to immediately encourage a positive emotional response from the user
-    
-    - The design links to the site's Synthwave theme, thus providing visually clarity by promoting a reoccuring theme. For more details on this theme, see [here]()
-
-    - The moving video makes it seem that the user is moving towards something. This can represent a journey, which links well to the idea of building a new community platform, as something that is constantly growing
-
-    - The site's title, **My Next Game** is displayed clearly over the hero video
-
-
-- Parrallax effect
-
-    - Adds visual depth to the site 
-
-    - Links well to other web pages that use it - Favourites page
-
-    - Promotes the Synthwave visual theme by providing more media images that are consistent of the Synthwave style.
-
-    - Stresses the importance that I have placed on good UX design
-
-
-- Navigation buttons
-
-    - An 'Explore Favourites' and 'Take the Quiz' button to encourage users to explore the site's main features
-
-
-- About Us
-
-    - Explains the purpose of the site to the user
-
-    - Encourages users to Register and interactive with the site
-
-
-- Game Lists - Bestsellers and Awardwinners
-
-    - It was important to display games on the Homepage to further convey the site's purpose
-
-    - Both of these cateogories contain a wide selection of games (it is not limited to certain genres) and thus is suitable for several tastes and preferences, which can be expected by the user
-
-
-### Our Favourites Page
-
-- Parallax effect
-
-    - Adds visual depth
-
-    - A visually effective way to split up information and images on the site
-
-    - The images within the parallax are of screenshots from a game that is randomized whenever this site refreshes
-
-    - The text in the firt parallax section includes the game title and a summary of the game
-
-    - The text in the second parallax section includes a navigation button that leads to the Request A Game form page
-
-
-- Scroll to Top button
-
-    - A bouncing floating button at the bottom right hand side of the screen
-
-    - The up arrow represents its function
-
-    - When clicked it will scroll back up to the top of the page
-
-
-- Sort Filter
-
-    - This allows users to sort the display order of games
-
-    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
-
-
-- Game Cards
-
-    - Below the Parallax effect and Sort Filter is a list of games, each displayed within a card
-
-    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
-
-    - Each card has an image for the game, its title, platforms that it can be played on, genre tags and a summary. Each card also includes a 'Recommended By Us' tag, a 'Like' button and a 'See Reviews' button, which will direct users to the Community Reviews page and filter the results for only that game
-
-    - When logged in, a pulsing add button will be present on each card. When clicked it will add the game to the user's game playlist in their Profile 
-
-    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
-
-
-### Game Pages
-
-- Carousel 
-
-    - Built using Materialize
-
-    - By default, the carousel has a swipe feature that is user friendly for all touchscreen devices, particularly mobile devices. Left and right arrows were implemented to ensure that the carousel was also user friendly on desktop devices that do not have touchscreen functionality
-
-    - The carousel is present on all of the Games pages, this includes All Games, Action Games, Adventure Games, RPG Games, Strategy Games and Multiplayer Games
-
-    - The carousel contains three images of three diffrent games that are randomized upon refresh and/or first load of the page
-
-    - Below each image is the title and genre tags to match the game shown in the image
-
-    - Below that is a 'See Reviews' button which will direct users to the Community Reviews page and filter the results for only that game
-
-
-- Secondary Navbar
-
-    - Underneath the carousel is a secondary navbar containing navlinks that are appropirate for the filtering the game results below
-
-    - The following navlinks are:
-        - Our Favourites
-        - Award Winners
-        - All Games
-        - Genre
-            - Action
-            - Adventure
-            - RPG
-            - Strategy
-            - Multiplayer
-
-    - A search bar is included to right, which allows users to search for specific game titles
-
-    - A collapsible hamburger icon will trigger on smaller devices
-
-
-- Sort Filter
-
-    - This allows users to sort the display order of games
-
-    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
-
-    - 'Sort By' contains the following options:
-        - Default
-        - Title
-        - Likes
-        - Recommended
-        - Award Winners
-        - Bestsellers
-        - Playing
-        - Review Count
-
-    - 'Order' has 'desc' (descending) and 'asc' (ascending) options
-
-
-- Game Cards
-
-    - Built with Materialize
-
-    - The cards are horizontal from a width of 600px, anything below that then the content is displayed vertically
-
-    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
-
-    - Each card has an image for the game; its title, platforms that it can be played on, and genre tags. Each card also includes a 'Recommended By Us' tag if the game is included in the Favourites page (if it has the key/value pair of `favourite: True`). There is also a 'Like' button
-
-    - When logged in, a pulsing add button will be present on each card. When clicked it will add the game to the user's game playlist in their Profile 
-
-    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
-
-    - To increase performance, only six cards are displayed per page
-
-
-- Pagination 
-
-    - There are pagination links that above and below the cards to allow users to iterate through the pages
-
-
-
-### Community Reviews Page
-
-- Carousel 
-
-    - Built using Materialize
-
-    - By default, the carousel has a swipe feature that is user friendly for all touchscreen devices, particularly mobile devices. Left and right arrows were implemented to ensure that the carousel was also user friendly on desktop devices that do not have touchscreen functionality
-
-    - The carousel is present on all of the Games pages, this includes All Games, Action Games, Adventure Games, RPG Games, Strategy Games and Multiplayer Games
-
-    - The carousel contains three images of three diffrent games that are randomized upon refresh and/or first load of the page
-
-    - Below each image is the title and genre tags to match the game shown in the image
-
-
-- Secondary Navbar
-
- - Underneath the carousel is a secondary navbar containing navlinks that are appropirate for the filtering game review results below
-
-    - The following navlinks are:
-        - Our Favourites
-        - Award Winners
-        - All Reviews
-        - Platform
-            - PC
-            - XBOX
-            - Playstation
-            - Nintendo
-        - Genre
-            - Action
-            - Adventure
-            - RPG
-            - Strategy
-            - Multiplayer
-
-    - A search bar is included to right, which allows users to search for specific game titles
-
-    - A collapsible hamburger icon will trigger on smaller devices
-
-
-- Sort Filter
-
-    - This allows users to sort the display order of reviews
-
-    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
-
-    - 'Sort By' contains the following options:
-        - Date Added
-        - Title
-        - Rating
-
-    - 'Order' has 'desc' (descending) and 'asc' (ascending) options
-
-
-- Leave Review Button
-
-    - This directs users to the Submit Review form which allows them to create and submit game reviews
-
-
-- Review Cards
-
-    - Built with Materialize
-
-    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
-
-    - Each card has a game image that matches the review; the game title, the username or display name of the user who submitted the review, the date of when it was submmited and/or last updated, a review summary and three collapsibles containing the full review.
-
-    - There are three collapsibles: Gameplay, Visuals and Sound. When clicked they will display the user's review relating to this section
-
-    - The review cards will contain a 'Positive' or 'Negative' card sticker, depending on what option was chosen when a user submitted their review
-
-    - Users can click the username on a review which will direct them to the Profile page of that user
-
-    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
-
-    - To increase performance, nine cards are displayed per page
-
-
-- Pagination 
-
-    - There are pagination links that above and below the cards to allow users to iterate through the pages
 
 -----
 
