@@ -228,7 +228,7 @@ def search_reviews(query):
         css_framework='materialize')
 
     game_img = None
-    game_tags  = None
+    game_tags = None
 
     return render_template(
         "reviews.html", game_reviews=pagination_game_reviews,
@@ -330,7 +330,6 @@ def admin_user_requests():
                     game = mongo.db.game_requests.find_one({"game_link": link})
                     mongo.db.game_requests.remove({"_id": game["_id"]})
 
-
             remove_added_games()
 
             # Sort filter
@@ -356,7 +355,7 @@ def admin_user_requests():
 
             elif userRequestsSort1 == "date-added" and userRequestsSort2 == "asc":
                 user_requests.sort("date_added", pymongo.ASCENDING)
-            
+
             if userRequestsSort1 == "date-last-requested" and userRequestsSort2 == "desc":
                 user_requests.sort("date_last_request", pymongo.DESCENDING)
 
@@ -389,7 +388,8 @@ def admin_add_to_queue(request_id):
     if session.get("user"):
         if session.get("admin") is True:
             if request.method == "POST":
-                game_request = mongo.db.game_requests.find_one({"_id": ObjectId(request_id)})
+                game_request = mongo.db.game_requests.find_one(
+                    {"_id": ObjectId(request_id)})
 
                 user = mongo.db.users.find_one({"username": session["user"]})
 
@@ -410,13 +410,15 @@ def admin_add_to_queue(request_id):
                             {"game_link": game_request["game_link"]})
 
                         if in_queue:
-                            flash("'{}' Already In Waiting List".format(game_request["game_request"]))
+                            flash("'{}' Already In Waiting List".format(
+                                game_request["game_request"]))
                             return redirect(url_for("admin_user_requests"))
 
                         if existing_game:
-                            flash("'{}' Already Exists in Our Database".format(game_request["game_request"]))
+                            flash("'{}' Already Exists in Our Database".format(
+                                game_request["game_request"]))
                             return redirect(url_for("admin_user_requests"))
-                        
+
                         # Otherwise add to db
                         game = {
                             "game_title": game_request["game_request"],
@@ -424,7 +426,8 @@ def admin_add_to_queue(request_id):
                             "category": request.form.getlist("category")
                         }
                         mongo.db.game_queue.insert_one(game)
-                        flash("Succesfully Added '{}' To Queue".format(game_request["game_request"]))
+                        flash("Succesfully Added '{}' To Queue".format(
+                            game_request["game_request"]))
                         return redirect(url_for("admin_user_requests"))
                     else:
                         flash("Details Invalid")
@@ -450,7 +453,7 @@ def admin_game_queue():
             navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
             games = mongo.db.game_queue.find()
-            
+
             # Remove games from queue that have been added to the games col
             def remove_added_games():
                 games = mongo.db.game_queue.find()
@@ -477,7 +480,6 @@ def admin_game_queue():
                 for link in matches:
                     game = mongo.db.game_queue.find_one({"game_link": link})
                     mongo.db.game_queue.remove({"_id": game["_id"]})
-
 
             remove_added_games()
 
@@ -584,16 +586,11 @@ def games_template():
 
 @app.route("/setcookie", methods=["GET", "POST"])
 def setcookie_all():
-    # Get parameters for game page
-    page = request.referrer
-    page_param = page.split("games/")
-    genre = page_param[1]
-
     if request.method == "POST":
         cookie1 = request.form.get("navSelect1").lower()
         cookie2 = request.form.get("navSelect2").lower()
 
-        resp = make_response(redirect(url_for("games", genre=genre)))
+        resp = make_response(redirect(request.referrer))
         resp.set_cookie("navSelect1", cookie1)
         resp.set_cookie("navSelect2", cookie2)
 
@@ -943,7 +940,8 @@ def register():
             {"email": request.form.get("email").lower()})
 
         if existing_user or existing_email:
-            flash("Username and/or Email already exisits. Do you already have an account with us?")
+            flash(
+                "Username and/or Email already exisits. Do you already have an account with us?")
             return redirect(url_for("register"))
 
         # Check if passwords match
@@ -1268,19 +1266,19 @@ def add_game(game_id):
 
     # Construct new dicitonary
     data = {
-            "game_title": game.get("game_title"),
-            "game_img_full": game.get("game_img_full"),
-            "game_tags": game.get("game_top_tags"),
-            "platform_pc": game.get("platform_tags_pc"),
-            "game_link": game.get("game_link"),
-            "website": game.get("website"),
-            "community": game.get("community"),
-            "discussions": game.get("discussions"),
-            "related_news": game.get("related_news"),
-            "update_history": game.get("update_history"),
-            "username": session["user"],
-            "stage": "next"
-        }
+        "game_title": game.get("game_title"),
+        "game_img_full": game.get("game_img_full"),
+        "game_tags": game.get("game_top_tags"),
+        "platform_pc": game.get("platform_tags_pc"),
+        "game_link": game.get("game_link"),
+        "website": game.get("website"),
+        "community": game.get("community"),
+        "discussions": game.get("discussions"),
+        "related_news": game.get("related_news"),
+        "update_history": game.get("update_history"),
+        "username": session["user"],
+        "stage": "next"
+    }
 
     # Check if a user has already added a game with the same to the db
     existing_data = mongo.db.user_games.find_one(
@@ -1334,7 +1332,7 @@ def edit_profile(username):
             navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
             user = mongo.db.users.find_one({"username": session["user"]})
-            
+
             if request.method == "POST":
                 user_id = user["_id"]
 
@@ -1388,7 +1386,8 @@ def edit_password(username):
 
                     # Check if new passwords match
                     new_password = request.form.get("change-password")
-                    confirm_new_password = request.form.get("confirm-new-password")
+                    confirm_new_password = request.form.get(
+                        "confirm-new-password")
 
                     if new_password == confirm_new_password:
                         # Update db
@@ -1490,17 +1489,19 @@ def profile_games(username):
         # Separate games into categories
         games_playing = list(mongo.db.user_games.find({"stage": "playing"}))
         games_next = list(mongo.db.user_games.find({"stage": "next"}))
-        games_completed = list(mongo.db.user_games.find({"stage": "completed"}))
+        games_completed = list(
+            mongo.db.user_games.find({"stage": "completed"}))
 
         # Find game titles for user_reviews and user_games
         fetch = {"game_title": 1}
         user_games = mongo.db.user_games.find({"username": username}, fetch)
-        user_reviews = mongo.db.user_reviews.find({"username": username}, fetch)
+        user_reviews = mongo.db.user_reviews.find(
+            {"username": username}, fetch)
 
         # Get review count
         review_count = user_reviews.count()
 
-        # Get profile rating 
+        # Get profile rating
         if review_count >= 7:
             rank = review_count // 7 + 1
         else:
@@ -1616,7 +1617,7 @@ def profile_likes(username):
     user_reviews = mongo.db.user_reviews.find({"username": username})
     review_count = user_reviews.count()
 
-    # Get profile rating 
+    # Get profile rating
     if review_count >= 7:
         rank = review_count // 7 + 1
     else:
@@ -1646,12 +1647,12 @@ def profile_reviews(username):
         # Get review count
         review_count = user_reviews.count()
 
-        # Get profile rating 
+        # Get profile rating
         if review_count >= 7:
             rank = review_count // 7 + 1
         else:
             rank = 1
-        
+
         return render_template(
             "profile-reviews.html", user=user, rank=rank,
             user_reviews=user_reviews, navGameData=navGameData)
@@ -1690,7 +1691,7 @@ def profiles(user):
     # Get review count
     review_count = user_reviews.count()
 
-    # Get profile rating 
+    # Get profile rating
     if review_count >= 7:
         rank = review_count // 7 + 1
     else:
@@ -1768,7 +1769,7 @@ def profiles_likes(user):
     # Get review count
     review_count = user_reviews.count()
 
-    # Get profile rating 
+    # Get profile rating
     if review_count >= 7:
         rank = review_count // 7 + 1
     else:
@@ -1811,7 +1812,7 @@ def profiles_reviews(user):
     # Get review count
     review_count = user_reviews.count()
 
-    # Get profile rating 
+    # Get profile rating
     if review_count >= 7:
         rank = review_count // 7 + 1
     else:
@@ -1839,16 +1840,11 @@ def reviews_template():
 
 @app.route("/set-reviewcookie", methods=["GET", "POST"])
 def set_review_cookies():
-    # Get parameters for game page
-    page = request.referrer
-    page_param = page.split("community-reviews/")
-    genre = page_param[1]
-
     if request.method == "POST":
         cookie1 = request.form.get("reviewSort1").lower()
         cookie2 = request.form.get("reviewSort2").lower()
 
-        resp = make_response(redirect(url_for("reviews", genre=genre)))
+        resp = make_response(redirect(request.referrer))
         resp.set_cookie("reviewSort1", cookie1)
         resp.set_cookie("reviewSort2", cookie2)
 
@@ -2001,8 +1997,9 @@ def reviews(genre):
             titles.append(game["game_title"])
 
         # Find reviews that match action game titles
-        game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
-    
+        game_reviews = mongo.db.user_reviews.find(
+            {"game_title": {"$in": titles}})
+
     elif genre == "adventure":
         # Find adventure game titles
         adventure_games = mongo.db.all_pc_games.find({"adventure": True})
@@ -2011,7 +2008,8 @@ def reviews(genre):
             titles.append(game["game_title"])
 
         # Find reviews that match action game titles
-        game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+        game_reviews = mongo.db.user_reviews.find(
+            {"game_title": {"$in": titles}})
 
     elif genre == "rpg":
         # Find RPG game titles
@@ -2021,7 +2019,8 @@ def reviews(genre):
             titles.append(game["game_title"])
 
         # Find reviews that match action game titles
-        game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+        game_reviews = mongo.db.user_reviews.find(
+            {"game_title": {"$in": titles}})
 
     elif genre == "strategy":
         # Find strategy game titles
@@ -2031,7 +2030,8 @@ def reviews(genre):
             titles.append(game["game_title"])
 
         # Find reviews that match action game titles
-        game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+        game_reviews = mongo.db.user_reviews.find(
+            {"game_title": {"$in": titles}})
 
     elif genre == "multiplayer":
         # Find multiplayer game titles
@@ -2041,7 +2041,8 @@ def reviews(genre):
             titles.append(game["game_title"])
 
         # Find reviews that match action game titles
-        game_reviews = mongo.db.user_reviews.find({"game_title": {"$in": titles}})
+        game_reviews = mongo.db.user_reviews.find(
+            {"game_title": {"$in": titles}})
 
     elif genre == "pc":
         game_reviews = mongo.db.user_reviews.find({
@@ -2055,8 +2056,8 @@ def reviews(genre):
 
     elif genre == "nintendo":
         game_reviews = mongo.db.user_reviews.find({"platform": "nintendo"})
-    
-    else: 
+
+    else:
         game = mongo.db.all_pc_games.find_one({"game_url": genre})
         # Grab game details
         title = game["game_title"]
@@ -2065,7 +2066,6 @@ def reviews(genre):
 
         # Filter reviews
         game_reviews = mongo.db.user_reviews.find({"game_title": title})
-
 
     # Pagination
 
@@ -2166,7 +2166,7 @@ def submit_review(game_id):
     game = mongo.db.all_pc_games.find_one({"game_title": title})["game_url"]
 
     return redirect(url_for("submit_review_page", game=game))
-    
+
 
 @app.route("/submit-review/<game>", methods=["GET", "POST"])
 def submit_review_page(game):
@@ -2213,7 +2213,7 @@ def submit_review_page(game):
             # Check if a user has already added a game with the same to the db
             existing_review = mongo.db.user_reviews.find_one(
                 {"$and": [{"username": session["user"]},
-                        {"game_title": title}]})
+                          {"game_title": title}]})
 
             if existing_review is None:
                 mongo.db.user_reviews.insert_one(review)
@@ -2256,9 +2256,9 @@ def edit_review(username, review_id):
     else:
         game = mongo.db.all_pc_games.find_one({"game_title": review_id})
         user_review = game.get("game_url")
-        
+
     return redirect(url_for("edit_review_page", user_review=user_review, username=username))
-    
+
 
 @app.route("/edit-review/<username>/<user_review>", methods=["GET", "POST"])
 def edit_review_page(username, user_review):
@@ -2271,9 +2271,10 @@ def edit_review_page(username, user_review):
             navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
             # Find game title in order to find review
-            title = mongo.db.all_pc_games.find_one({"game_url": user_review})["game_title"]
+            title = mongo.db.all_pc_games.find_one(
+                {"game_url": user_review})["game_title"]
 
-            # Find review 
+            # Find review
             review = mongo.db.user_reviews.find_one(
                 {"$and": [
                     {"game_title": title},
@@ -2307,7 +2308,8 @@ def edit_review_page(username, user_review):
                     "username": session["user"],
                     "display_name": display_name
                 }
-                mongo.db.user_reviews.update({"_id": review.get("_id")}, update)
+                mongo.db.user_reviews.update(
+                    {"_id": review.get("_id")}, update)
                 flash("Review Successfully Updated")
                 return redirect(url_for('all_reviews'))
 
