@@ -7,20 +7,20 @@ $(document).ready(function () {
     // Hamburger
     $('#hamburger').click(function () {
         $(this).toggleClass('open');
-        $("#mobile-nav").css("width", "90%")
+        $("#mobile-nav").css("width", "90%");
 
         $(".sidenav-overlay").click(function () {
-            $("#hamburger").removeClass("open")
-            $("#mobile-nav").css("width", '0')
-        })
+            $("#hamburger").removeClass("open");
+            $("#mobile-nav").css("width", '0');
+        });
 
         $('#closeSideNav').click(function () {
-            $("#hamburger").removeClass("open")
-            $("#mobile-nav").css("width", '0')
-        })
+            $("#hamburger").removeClass("open");
+            $("#mobile-nav").css("width", '0');
+        });
 
         if (!$(this).hasClass('open')) {
-            $("#mobile-nav").css("width", '0')
+            $("#mobile-nav").css("width", '0');
         }
     });
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
     $('.dropdown-trigger').dropdown({ constrainWidth: false, coverTrigger: false });
 
     /* Dropdown - Navbar */
-    $('.nav-dropdown-trigger').dropdown({ constrainWidth: false, coverTrigger: false, hover: true })
+    $('.nav-dropdown-trigger').dropdown({ constrainWidth: false, coverTrigger: false, hover: true });
 
 
 
@@ -57,12 +57,12 @@ $(document).ready(function () {
 
     /*  Carousel next arrow */
     $('#carousel-next a').on('click', function () {
-        $('.carousel').carousel('next')
+        $('.carousel').carousel('next');
     });
 
     /*  Carousel prev arrow */
     $('#carousel-prev a').on('click', function () {
-        $('.carousel').carousel('prev')
+        $('.carousel').carousel('prev');
     });
 
     /* Modal */
@@ -84,13 +84,13 @@ $(document).ready(function () {
     $('#like-btn.tooltipped').on('click', function () {
         $(this).tooltip();
         $(this).tooltip('open');
-    })
+    });
 
     $('#like-btn.tooltipped').on('mouseleave', function () {
         if ($(this).tooltip()) {
             $(this).tooltip('destroy');
         }
-    })
+    });
 
     /* Navbar floating button */
     $('.fixed-action-btn').floatingActionButton({
@@ -99,13 +99,13 @@ $(document).ready(function () {
     });
 
     $('#PlatformLink').on('click', function () {
-        $('#GenreLink .fixed-action-btn').css('left', '225px')
-    })
+        $('#GenreLink .fixed-action-btn').css('left', '225px');
+    });
 
     $('#searchbar').on('click', function () {
         $('#searchbar .input-field').css('background-color', '#442c4c');
         $('#searchbar .input-field').css('z-index', '200');
-    })
+    });
 
 
     /* --------------------------------------- Materialize forms */
@@ -169,7 +169,7 @@ $(document).ready(function () {
 
     /*  Reset button */
     $('#reset-edits').on('click', function () {
-        window.location.reload()
+        window.location.reload();
     });
 
     /* Remove disable attribute from inputs before submission */

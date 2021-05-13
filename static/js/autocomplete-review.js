@@ -14,4 +14,4 @@ $(document).ready(function () {
             .append("<a>" + txt + "</a>")
             .appendTo(ul);
     };
-})
+});
