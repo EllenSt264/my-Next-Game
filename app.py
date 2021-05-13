@@ -468,7 +468,7 @@ def admin_game_queue():
     if session.get("user"):
         if session.get("admin") is True:
             # Grab game data for autocomplete function in navbar
-            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+            gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
             games = mongo.db.game_queue.find()
 
@@ -502,7 +502,7 @@ def admin_game_queue():
             remove_added_games()
 
             return render_template(
-                "admin-game_queue.html", navGameData=navGameData,
+                "admin-game_queue.html", gameData=gameData,
                 games=games)
         else:
             return redirect(url_for("home"))
