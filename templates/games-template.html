@@ -154,13 +154,11 @@
 <!-- Games -->
 <main>
 	<!-- Review button -->
-	<section>
-		<div class="row">
-			<div class="col right leave-review-col">
-				<a href="{{ url_for('submit_review_without_game') }}" class="btn-large leave-review">Leave a Review</a>
-			</div>
+	<div class="row">
+		<div class="col right leave-review-col">
+			<a href="{{ url_for('submit_review_without_game') }}" class="btn-large leave-review">Leave a Review</a>
 		</div>
-	</section>
+	</div>
 	{% block games %}
 	{% endblock %}
 </main>
