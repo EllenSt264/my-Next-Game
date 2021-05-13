@@ -24,8 +24,6 @@
 
     - [Structure Plane](#structure-plane)
 
-        - [List of Pages](#list-of-pages)
-
         - [Site Navigation](#site-navigation)
 
         - [Existing Features](#existing-features)
@@ -242,34 +240,6 @@ The target audience is gamers, coming from a wide range of platforms and backgro
 
 
 ### Structure Plane
-
-
-#### List of Pages
-
-**Note** This does not include an entire list of all the HTML files
-
-- Homepage
-
-- Game Pages
-    - All Games 
-    - Action
-    - Adventure
-    - RPG
-    - Strategy
-    - Multiplayer
-
-- Favourites Page 
-
-- Community Reviews
-
-- Login page
-
-- Register page
-
-- Profile Page
-    - Profile - Game List 
-    - Profile - User Reviews
-    - Edit Profile
 
 
 #### Site Navigation
