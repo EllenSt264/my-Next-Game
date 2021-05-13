@@ -1652,7 +1652,7 @@ fieldset.rating {
 .rating input[type="radio"]:not(:nth-of-type(0)) {
     /* hide visually */    
     border: 0;
-    clip: rect(0 0 0 0);
+    clip: rect(0, 0, 0, 0);
     height: 1px;
     margin: -1px;
     overflow: hidden;
