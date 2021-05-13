@@ -144,7 +144,7 @@
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
 
-            <div class="collapsible" id="sidenav-collapsible">
+            <ul class="collapsible" id="sidenav-collapsible">
                 <li>
                     <a href="#!" class="collapsible-header">Games</a>
                     <ul class="collapsible-body">
@@ -157,7 +157,7 @@
                         <li><a href="{{ url_for('awardwinner_games') }}">Award Winners</a></li>
                     </ul>
                 </li>
-            </div>
+            </ul>
 
             <li><a href="{{ url_for('all_reviews') }}">Community Reviews</a></li>
             {% if session.user %}
@@ -171,7 +171,7 @@
     </header>
 
     <!-- Flash messages -->
-    <section>
+    <div>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
@@ -181,7 +181,7 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
-    </section>
+    </div>
 
     {% block content %}
     {% endblock %}
@@ -204,7 +204,7 @@
     <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    <script async>
+    <script>
         var navGameData = {{ navGameData| tojson | safe}}
     </script>
     <!-- JQuery Autocomplete -->
