@@ -325,7 +325,7 @@ def admin_user_requests():
             in_queue = mongo.db.game_queue.find()
 
             request_links = []
-            queue_links = []   
+            queue_links = []
             matches = []
 
             for i in list(game_requests):
@@ -369,7 +369,6 @@ def admin_user_requests():
                     mongo.db.game_requests.remove({"_id": game["_id"]})
 
             remove_added_games()
-
 
             # Sort filter
 
@@ -2184,7 +2183,7 @@ def reviews(genre):
 
     # Sort by game title
     elif reviewSort1 == "title" and reviewSort2 == "desc":
-        pagination_game_reviews.sort("game_title",-1)
+        pagination_game_reviews.sort("game_title", -1)
 
     elif reviewSort1 == "title" and reviewSort2 == "asc":
         pagination_game_reviews.sort("game_title", 1)
