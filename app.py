@@ -109,7 +109,7 @@ def get_nav_query():
     # Grab query
     search_query = request.form.get("nav-search")
 
-    if search_query is "":
+    if search_query == "":
         return redirect(url_for("all_games"))
 
     query = search_query.lower()
@@ -126,7 +126,7 @@ def get_query():
     # Grab query
     search_query = request.form.get("game-search")
 
-    if search_query is "":
+    if search_query == "":
         return redirect(url_for("all_games"))
 
     query = search_query.lower()
@@ -195,7 +195,7 @@ def search(query):
 def get_review_query():
     search_query = request.form.get("review-search")
 
-    if search_query is "":
+    if search_query == "":
         return redirect(url_for("all_reviews"))
 
     query = search_query.lower()
