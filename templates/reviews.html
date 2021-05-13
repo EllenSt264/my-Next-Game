@@ -54,11 +54,12 @@
                                 <div class="card-content">
                                     <!-- Username -->
                                     <p class="review-card-username">
-                                        <a href="{{ url_for('profiles', user=review.username) }}" class="username">
+                                        <a href="{% if session.user == review.username %}{{ url_for('profile_games', username=session['user']) }}{% else %}{{ url_for('profiles', user=review.username) }}{% endif %}"
+                                            class="username">
                                             {% if review.display_name %}
-                                                {{ review.display_name }}
+                                            {{ review.display_name }}
                                             {% else %}
-                                                {{ review.username|capitalize }}
+                                            {{ review.username|capitalize }}
                                             {% endif %}
                                         </a>
                                         |
@@ -279,7 +280,7 @@
                                     <div class="card-content">
                                         <!-- Username -->
                                         <p class="review-card-username">
-                                            <a href="{{ url_for('profiles', user=review.username) }}" class="username">
+                                            <a href="{% if session.user == review.username %}{{ url_for('profile_games', username=session['user']) }}{% else %}{{ url_for('profiles', user=review.username) }}{% endif %}" class="username">
                                                 {% if review.display_name %}
                                                     {{ review.display_name }}
                                                 {% else %}
