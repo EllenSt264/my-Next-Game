@@ -37,6 +37,39 @@
             - [Games Pages](#games-pages)
 
             - [Community Reviews Page](#community-reviews-page)
+
+            - [Visit Profiles](#visit-profiles)
+
+            - [Visit Profiles - Likes](#visit-profiles---likes)
+
+            - [Visit Profiles - Reviews](#visit-profiles---reviews)
+
+            - [Log In Page](#log-in-page)
+
+            - [Register Page](#register-page)
+
+            - [Profile Page](#profile-page)
+
+            - [Profile Page - Likes](#profile-page---likes)
+
+            - [Profile Page - Reviews](#profile-page---reviews)
+
+            - [Edit Profile - General](#edit-profile---general)
+
+            - [Edit Profile - Avatar](#edit-profile---avatar)
+
+            - [Edit Profile - Password](#edit-profile---password)
+
+            - [Request A Game](#request-a-game)
+
+            - [Admin Controls](#admin-controls)
+
+            - [Admin Controls - User Requests](#admin-controls---user-requests)
+
+            - [Admin Controls - Game Queue](#admin-controls---game-queue)
+
+            - [Admin Controls - Update DB](#admin-controls---update-db)
+
     
     - [Skeleton Plane](#skeleton-plane)
 
@@ -255,35 +288,35 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
 
 - Fixed navbar 
 
-    - Built using Materialize to implement responsive UX design that is cross-compatible on a wide range of devices
+    - Built using Materialize to implement responsive UX design that is cross-compatible on a wide range of devices.
 
-    - Allows users to easily navigate the site
+    - Allows users to easily navigate the site.
 
-    - Improves user experience by removing the need to scroll to the top of the page in order to navigate the site
+    - Improves user experience by removing the need to scroll to the top of the page in order to navigate the site.
 
 - Hamburger collapse menu
 
-    - Built using Materialize
+    - Built using Materialize.
 
-    - Adds a side nav to access navigation links
+    - Adds a side nav to access navigation links.
 
-    - Improves user experience for touch screen devices
+    - Improves user experience for touch screen devices.
     
-    - Conform to web-design conventions 
+    - Conform to web-design conventions. 
 
-    - Limits the amount of real estate used on smaller screens, particuarly mobile devices
+    - Limits the amount of real estate used on smaller screens, particuarly mobile devices.
 
-- Dropdown menu for Genre, Profile and Admin Controls navlinks
+- Dropdown menu for Genre, Profile and Admin Controls navlinks.
 
-    - Implements a dropdown menu (for desktop devices) to reduce the amount of real estate on the page
+    - Implements a dropdown menu (for desktop devices) to reduce the amount of real estate on the page.
 
-    - Gives the user greater control in regards to the navigation of the site
+    - Gives the user greater control in regards to the navigation of the site.
 
-    - For smaller screens and mobile devices the content in the dropdown is moved to the side nav, which is accessed via the hamburger icon
+    - For smaller screens and mobile devices the content in the dropdown is moved to the side nav, which is accessed via the hamburger icon.
 
 - Brand Logo
 
-    - The site's logo is implemented to the center of the navbar to help make the site recognisable to returning users
+    - The site's logo is implemented to the center of the navbar to help make the site recognisable to returning users.
 
 
 ##### Homepage
@@ -292,41 +325,39 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
     
     - A vibrant hero image (video tag) to immediately encourage a positive emotional response from the user
     
-    - The design links to the site's Synthwave theme, thus providing visual clarity by promoting a reoccuring theme. For more details on this theme, see [here]()
+    - The design links to the site's Synthwave theme, thus providing visual clarity by promoting a reoccuring theme. For more details on this theme, see [here](#synthwave).
 
-    - The moving video makes it seem that the user is moving towards something. This can represent a journey, which links well to the idea of building a new community platform, as something that is constantly growing
+    - The moving video makes it seem that the user is moving towards something. This can represent a journey, which links well to the idea of building a new community platform, as something that is constantly growing.
 
-    - The site's title, **My Next Game** is displayed clearly over the hero video
-
+    - The site's title, *My Next Game* is displayed clearly over the hero video.
 
 - Parrallax effect
 
-    - Adds visual depth to the site 
+    - Adds visual depth to the site.
 
-    - Links well to other web pages that use it - Favourites page
+    - Links well to other web pages that use it - Favourites page.
 
     - Promotes the Synthwave visual theme by providing more media images that are consistent of the Synthwave style.
 
-    - Stresses the importance that I have placed on good UX design
-
+    - Stresses the importance that I have placed on good UX design.
 
 - Navigation buttons
 
-    - An 'Explore Favourites' and 'Take the Quiz' button to encourage users to explore the site's main features
-
+    - An 'Explore Favourites' and 'Explore Games' button to encourage users to explore the site's primary content.
 
 - About Us
 
-    - Explains the purpose of the site to the user
+    - Explains the purpose of the site to the user.
 
-    - Encourages users to Register and interactive with the site
-
+    - Encourages users to Register and interactive with the site.
 
 - Game Lists - Bestsellers and Awardwinners
 
-    - It was important to display games on the Homepage to further convey the site's purpose
+    - It was important to display games on the Homepage to further convey the site's purpose.
 
-    - Both of these cateogories contain a wide selection of games (it is not limited to certain genres) and thus is suitable for several tastes and preferences, which can be expected by the user
+    - Both of these cateogories contain a wide selection of games (it is not limited to certain genres) and thus is suitable for several tastes and preferences, which can be expected by the user.
+
+    - The game cards are interactive. Users can click on them and navigate to reviews for the game. This can encourage users to register in order to make reviews of their own.
 
 
 ##### Our Favourites Page
@@ -335,42 +366,41 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
 
     - Adds visual depth
 
-    - A visually effective way to split up information and images on the site
+    - A visually effective way to split up information and images on the site.
 
-    - The images within the parallax are of screenshots from a game that is randomized whenever this site refreshes
+    - The images within the parallax are of screenshots from a game that is randomized each day.
 
-    - The text in the firt parallax section includes the game title and a summary of the game
+    - The text in the firt parallax section includes the game title and a summary of the game. There is also a See Reviews button, which will navigate to reviews of that game by directing users to the Community Reviews page.
 
-    - The text in the second parallax section includes a navigation button that leads to the Request A Game form page
-
+    - The text in the second parallax section includes a navigation button that leads to the Request A Game form page.
 
 - Scroll to Top button
 
-    - A bouncing floating button at the bottom right hand side of the screen
+    - A bouncing floating button at the bottom right hand side of the screen.
 
-    - The up arrow represents its function
+    - The up arrow represents its function.
 
-    - When clicked it will scroll back up to the top of the page
-
+    - When clicked it will scroll back up to the top of the page.
 
 - Sort Filter
 
-    - This allows users to sort the display order of games
+    - This allows users to sort the display order of games.
 
-    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
+    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked.
 
+    - A downside to this feature is the page refresh. When clicking 'Filter Results' the page will refresh and send users to the top of the page. See [here]() for more details.
 
 - Game Cards
 
-    - Below the Parallax effect and Sort Filter is a list of games, each displayed within a card
+    - Below the Parallax effect and Sort Filter is a list of games, each displayed within a card.
 
-    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
+    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site.
 
-    - Each card has an image for the game, its title, platforms that it can be played on, genre tags and a summary. Each card also includes a 'Recommended By Us' tag, a 'Like' button and a 'See Reviews' button, which will direct users to the Community Reviews page and filter the results for only that game
+    - Each card has an image for the game, its title, platforms that it can be played on, genre tags and a summary. Each card also includes a 'Recommended By Us' tag, a 'Like' button and a 'See Reviews' button, which will direct users to the Community Reviews page and filter the results for only that game.
 
-    - When logged in, a pulsing add button will be present on each card. When clicked it will add the game to the user's game playlist in their Profile 
+    - When logged in, a pulsing add button will be present on each card. When clicked it will add the game to the user's game playlist in their Profile.
 
-    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
+    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes.
 
 
 ##### Games Pages
@@ -379,20 +409,17 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
 
     - Built using Materialize
 
-    - By default, the carousel has a swipe feature that is user friendly for all touchscreen devices, particularly mobile devices. Left and right arrows were implemented to ensure that the carousel was also user friendly on desktop devices that do not have touchscreen functionality
+    - By default, the carousel has a swipe feature that is user friendly for all touchscreen devices, particularly mobile devices. Left and right arrows were implemented to ensure that the carousel was also user friendly on desktop devices that do not have touchscreen functionality.
 
-    - The carousel is present on all of the Games pages, this includes All Games, Action Games, Adventure Games, RPG Games, Strategy Games and Multiplayer Games
+    - The carousel is present on all of the Games pages, this includes All Games, Action Games, Adventure Games, RPG Games, Strategy Games and Multiplayer Games.
 
-    - The carousel contains three images of three diffrent games that are randomized upon refresh and/or first load of the page
+    - The carousel contains three images of three diffrent games that are randomized upon refresh and/or first load of the page.
 
-    - Below each image is the title and genre tags to match the game shown in the image
-
-    - Below that is a 'See Reviews' button which will direct users to the Community Reviews page and filter the results for only that game
-
+    - Below each image is the title and genre tags to match the game shown in the image.
 
 - Secondary Navbar
 
-    - Underneath the carousel is a secondary navbar containing navlinks that are appropirate for the filtering the game results below
+    - Underneath the carousel is a secondary navbar containing navlinks that are appropirate for the filtering the game results below.
 
     - The following navlinks are:
         - Our Favourites
@@ -405,16 +432,17 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
             - Strategy
             - Multiplayer
 
-    - A search bar is included to right, which allows users to search for specific game titles
+    - If the user is logged, then the 'Your List' navlink will be visible too.
 
-    - A collapsible hamburger icon will trigger on smaller devices
+    - A search bar is included to right, which allows users to search for specific game titles.
 
+    - A collapsible hamburger icon will trigger on smaller devices.
 
 - Sort Filter
 
-    - This allows users to sort the display order of games
+    - This allows users to sort the display order of games.
 
-    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
+    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked.
 
     - 'Sort By' contains the following options:
         - Default
@@ -423,32 +451,38 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
         - Recommended
         - Award Winners
         - Bestsellers
-        - Playing
-        - Review Count
 
-    - 'Order' has 'desc' (descending) and 'asc' (ascending) options
+    - 'Order' has 'desc' (descending) and 'asc' (ascending) options.
 
+    - Sometimes the sort filter will cause games to occur multiple times when navigating through different pages. See [here]() for more details.
 
 - Game Cards
 
     - Built with Materialize
 
-    - The cards are horizontal from a width of 600px, anything below that then the content is displayed vertically
+    - The cards are horizontal from a width of 600px, anything below that then the content is displayed vertically.
 
-    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
+    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site.
 
-    - Each card has an image for the game; its title, platforms that it can be played on, and genre tags. Each card also includes a 'Recommended By Us' tag if the game is included in the Favourites page (if it has the key/value pair of `favourite: True`). There is also a 'Like' button
+    - Each card has an image for the game; its title, platforms that it can be played on, and genre tags. Each card also includes a 'Recommended By Us' tag if the game is included in the Favourites page (if it has the key/value pair of `favourite: True`). There is also a 'Like' button. Users must be logged in to leave likes on games.
 
-    - When logged in, a pulsing add button will be present on each card. When clicked it will add the game to the user's game playlist in their Profile 
+    - If a user is not logged in while trying to leave a like, a tooltip will trigger above the like button asking them to log in or register an account in order to leave likes on games.
 
-    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
+    - When logged in, a pulsing add button will be present on each card. When clicked it will add the game to the user's game playlist in their Profile.
 
-    - To increase performance, only six cards are displayed per page
+    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes.
 
+    - To increase performance, only six cards are displayed per page.
+
+- Leave Review Button
+
+    - This directs users to the Submit Review form which allows them to create and submit game reviews.
+
+    - If users are not logged in to an account then they will be directed to the Log In page instead.
 
 - Pagination 
 
-    - There are pagination links that above and below the cards to allow users to iterate through the pages
+    - There are pagination links that above and below the cards to allow users to iterate through the pages.
 
 
 
@@ -458,18 +492,17 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
 
     - Built using Materialize
 
-    - By default, the carousel has a swipe feature that is user friendly for all touchscreen devices, particularly mobile devices. Left and right arrows were implemented to ensure that the carousel was also user friendly on desktop devices that do not have touchscreen functionality
+    - By default, the carousel has a swipe feature that is user friendly for all touchscreen devices, particularly mobile devices. Left and right arrows were implemented to ensure that the carousel was also user friendly on desktop devices that do not have touchscreen functionality.
 
-    - The carousel is present on all of the Games pages, this includes All Games, Action Games, Adventure Games, RPG Games, Strategy Games and Multiplayer Games
+    - The carousel is present on all of the Games pages, this includes All Reviews, Action Reviews, Adventure Reviews, RPG Reviews, Strategy Reviews and Multiplayer Reviews.
 
-    - The carousel contains three images of three diffrent games that are randomized upon refresh and/or first load of the page
+    - The carousel contains three images of three diffrent games that are randomized upon refresh and/or first load of the page.
 
-    - Below each image is the title and genre tags to match the game shown in the image
-
+    - Below each image is the title and genre tags to match the game shown in the image.
 
 - Secondary Navbar
 
- - Underneath the carousel is a secondary navbar containing navlinks that are appropirate for the filtering game review results below
+    - Underneath the carousel is a secondary navbar containing navlinks that are appropirate for the filtering game review results below:
 
     - The following navlinks are:
         - Our Favourites
@@ -487,53 +520,382 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
             - Strategy
             - Multiplayer
 
-    - A search bar is included to right, which allows users to search for specific game titles
+    - A search bar is included to right, which allows users to search for specific game titles.
 
-    - A collapsible hamburger icon will trigger on smaller devices
-
+    - A collapsible hamburger icon will trigger on smaller devices.
 
 - Sort Filter
 
-    - This allows users to sort the display order of reviews
+    - This allows users to sort the display order of reviews.
 
-    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked
+    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter Results' button which will sort the games depending on the options chosen once clicked.
 
     - 'Sort By' contains the following options:
         - Date Added
         - Title
-        - Rating
+        - Positive
+        - Negative
 
-    - 'Order' has 'desc' (descending) and 'asc' (ascending) options
-
+    - 'Order' has 'desc' (descending) and 'asc' (ascending) options.
 
 - Leave Review Button
 
-    - This directs users to the Submit Review form which allows them to create and submit game reviews
+    - This directs users to the Submit Review form which allows them to create and submit game reviews.
 
+    - If users are not logged in to an account then they will be directed to the Log In page instead.
 
 - Review Cards
 
-    - Built with Materialize
+    - Built with Materialize.
 
-    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site
+    - The cards follow the same Synthwave visual theme that is consistent with the rest of the site.
 
     - Each card has a game image that matches the review; the game title, the username or display name of the user who submitted the review, the date of when it was submmited and/or last updated, a review summary and three collapsibles containing the full review.
 
-    - There are three collapsibles: Gameplay, Visuals and Sound. When clicked they will display the user's review relating to this section
+    - There are three collapsibles: Gameplay, Visuals and Sound. Each collapsible header contains either the Gameplay, Visuals or Sound title, with the review's star rating for that category. When clicked they will display the user's review relating to this section.
 
-    - The review cards will contain a 'Positive' or 'Negative' card sticker, depending on what option was chosen when a user submitted their review
+    - The review cards will contain a 'Positive' or 'Negative' card sticker, depending on what option was chosen when the user submitted their review.
 
-    - Users can click the username on a review which will direct them to the Profile page of that user
+    - Users can click the username on a review which will direct them to the Profile page of that user.
 
-    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes
+    - The cards are fully responsive and are designed in a way that is appropriate for a wide variety of screen sizes.
 
-    - To increase performance, nine cards are displayed per page
+    - To increase performance, nine cards are displayed per page.
 
 
 - Pagination 
 
     - There are pagination links that above and below the cards to allow users to iterate through the pages
 
+
+##### Visit Profiles
+
+- Users can visit profiles of other users by clicking on their username within the review cards on the Community Reviews page.
+
+- If a user is logged in, and they click on their own username within the Community Reviews page, then they will be directed to their own Profile page. See [here](#profile-page) for more details on its features.
+
+- Side nav
+
+    - The side nav allows for easy navigation of the user's profile.
+
+    - The navigation links include:
+
+        - Games (the default profile page)
+        - Likes
+        - Reviews
+
+    - The side nav and its links can be accessed on every profile page.
+
+- Users will be directed to the other user's Profile playlist, where they can see what games they are currently playing, plan to play later and/or have completed.
+
+- Each game card includes the game title, game image, and a 'Links' and 'Read Reviews' button. Clicking on either the game title or image will direct users to any existing reviews for that game.
+
+    - The 'Links' button is a dropdown menu of different links relating to the game that the user can visit. This can include:
+
+        - The game's Steam Store page
+        - The game's website
+        - The game's update history, available on Steam
+        - Any news relating to the game, available on Steam
+        - Any discussions about the game, available on Steam
+        - Any community groups for the game, available on Steam
+    
+    - If a certain link is not available for the game, then it will not be listed in the dropdown menu. For more details on how I attained these links, see [here]()
+
+    - The 'Read Reviews' button will direct the user to any existing reviews for that game.
+
+- If the user of the profile has reviewed a game, and that game is in their playlist, then the following text will be displayed on the card: '{user} has reviewed this game! Read Review'.
+
+    - Clicking 'Read Review' will navigate to the user's Profile - Reviews page.
+
+- If the user of the profile has liked a game, and that game is in their playlist, then the following text will be displayed on the card: '{user} likes this game!'.
+
+- If the session user is logged in, then another button will be available to them:
+
+    - The 'Add Game' button will be visible on the card if the game is not currently in the user's own playlist.
+
+    - If the user already has a game in their playlist then this button will not be visible.
+
+- No changes can be made to the profile pages.
+
+
+##### Visit Profiles - Likes
+
+- Users can visit profiles of other users by clicking on their username within the review cards on the Community Reviews page. Clicking 'Likes' in the sidenav will navigate to the user's Profile - Likes page.
+
+- The Profile - Likes page will show a list of all games liked by the user of this page.
+
+- Each game card contains the game title, the game image, its top genre tags and some buttons. 
+
+- The 'Links' button is a dropdown menu of different links relating to the game that the user can visit. This can include:
+
+    - The game's Steam Store page
+    - The game's website
+    - The game's update history, available on Steam
+    - Any news relating to the game, available on Steam
+    - Any discussions about the game, available on Steam
+    - Any community groups for the game, available on Steam
+
+
+- The 'Read Reviews' button will direct the user to any existing reviews for that game.
+
+- Clicking either the game image or the game title will also direct the user to any existing reviews for that game.
+
+- The 'Write Review' button will allow users to submit a review for that game.
+
+    - When clicked, the user will be directed to the Submit Review page. The game title will already be filled in with the title of the game they clicked on their Profile page.
+
+    - If no user is logged in, then it will direct to the Log In page.
+
+
+##### Visit Profiles - Reviews
+
+- This page displays a list of all reviews submitted by the user. Clicking 'Reviews' in the sidenav will navigate to this page.
+
+- Reviews can be read in full by clicking on the collapsible.
+
+- No changes can be made.
+
+
+
+##### Log In Page
+
+- Allows user to log in to the account in order to access more site features and C-R-U-D functionality.
+
+- To log in, users must input their email and username.
+
+- Sign Up link
+
+    - Directs users to the Registration page if they do not have an account already.
+
+
+##### Register Page
+
+- Allows users to register an account in order to access more site features and C-R-U-D functionality.
+
+- To register, users must create a username, input their email address, and create a password.
+
+- My decision to not include a link to the Registration page in the navbar was influenced by other site's of a similar genre. I found a lot of sites did not include a link to the Register page in the navbar, but rather only included on in the Log In page. I adopted this design in my project.
+
+
+##### Profile Page
+
+- Upon registration or log in, users are immediately directed to their Profile page.
+
+- Side nav
+
+    - The side nav allows for easy navigation of the user's profile.
+
+    - The navigation links include:
+
+        - Games (the default profile page)
+        - Likes
+        - Reviews
+        - Edit Profile
+
+    - The side nav and its links can be accessed on every profile page.
+
+- When users click on the floating add button as described [here](#games-pages), the game will be added to their playlist of their profile.
+
+- Users can customize their playlist by moving games to different sections, which include: **Playing**, **Play later** and **Completed**
+
+- Underneath each header will be a game card with the game's title and image. Clicking on either the game title or image will direct users to any existing reviews for that game.
+
+- Users can move the games in playlist from one section to another. 
+
+    - While under the **Currently Playing** header, the available buttons are 'Play later' and 'Completed'
+
+    - While under the **Play later** header, the available buttons are 'Playing' and 'Completed'
+
+    - While under the **Completed** header, the available buttons are 'Playing' and 'Play later'
+
+- Each game card also includes a 'Links' button and 'Review button'
+
+    - The 'Review' button will direct the user to the Submit Review page.
+
+        - The game title will already be filled in with the title of the game they clicked on their Profile page.
+
+        - The review button will change from 'Review' to 'Reviewed' if the user has already reviewed that game. 
+    
+        - If the button is 'Reviewed' then a pen icon will be appear next to it. If clicked it will allow users to edit their existing review.
+
+    - The 'Links' button is a dropdown menu of different links relating to the game that the user can visit. This can include:
+
+        - The game's Steam Store page
+        - The game's website
+        - The game's update history, available on Steam
+        - Any news relating to the game, available on Steam
+        - Any discussions about the game, available on Steam
+        - Any community groups for the game, available on Steam
+    
+    - If a certain link is not available for the game, then it will not be listed in the dropdown menu. For more details on how I attained these links, see [here]()
+
+- Any game can be removed from the playlist by clicking the 'Remove Game' button.
+
+    - This will not remove any data created by the user, such as likes or reviews.
+
+
+##### Profile Page - Likes
+
+- This page displays a list of all games liked by the user. Clicking 'Likes' in the sidenav will navigate to the user's Profile - Likes page.
+
+- Each game card contains the game title, the game image, its top genre tags and some buttons. 
+
+- The 'Links' button is a dropdown menu of different links relating to the game that the user can visit. This can include:
+
+    - The game's Steam Store page
+    - The game's website
+    - The game's update history, available on Steam
+    - Any news relating to the game, available on Steam
+    - Any discussions about the game, available on Steam
+    - Any community groups for the game, available on Steam
+
+
+- The 'Read Reviews' button will direct the user to any existing reviews for that game.
+
+- Clicking either the game image or the game title will also direct the user to any existing reviews for that game.
+
+- The 'Write Review' button will allow users to submit a review for that game.
+
+    - When clicked, the user will be directed to the Submit Review page.
+
+    - The game title will already be filled in with the title of the game they clicked on their Profile page.
+
+
+##### Profile Page - Reviews
+
+- This page displays a list of all reviews submitted by the user. Clicking 'Reviews' in the sidenav will navigate to this page.
+
+- Users can read their review in full by clicking on the collapsible.
+
+- User can edit their review by clicking on the 'Edit' button
+
+    - This will direct users to the Edit Review page. All the form fields will be automatically filled in with the data from their review. 
+
+    - The game title cannot be changed to safeguard against breaking the function.
+
+- The user can delete their review, if they wish, by clicking on the 'Delete' button.
+
+    - This will trigger a modal to ask if the user is sure they want to delete their review.
+
+    - The modal warns the user that this action cannot be undone.
+
+    - The user must click 'Yes, Delete', in order to delete it.
+
+
+##### Edit Profile - General
+
+- Here the user can edit their account details. Clicking 'Edit Profile' in the sidenav will navigate to this page.
+
+- All input fields are disabled by default. To enable them, users must click the edit button.
+
+    - This prevents anything being changed accidentally.
+
+- Here users can create a display name. The username that they signed up with cannot be changed.
+
+    - This emulates extra security measures. If a user needs to contact support regarding their account, they can provide information to verify that there account is theirs. This is also why their user ID is listed.
+
+- The user can add their first and last name. This also emulates extra security measures but is not a compulsory feature. 
+
+- When a user submits their changes, it will trigger a modal asking for their password. This is an extra security measure to protect the user's account from being changed maliciously.
+
+
+##### Edit Profile - Avatar
+
+- Here the user can change their avatar by picking from a selection of images.
+
+
+##### Edit Profile - Password
+
+- Here the user can reset his or her password.
+
+- The user must input their original password first, in order to make this change.
+
+
+
+##### Request A Game
+
+- Users can navigate to the Request A Game link by either:
+
+    - Clicking the link in the navbar (this is not available for admin users, see [here](#admin-controls) for more details).
+
+    - Clicking the link in the sidenav, if on mobile.
+
+    - Clicking the button on the Our Favourites page.
+
+    - Clicking the button when the game/review search function producing no results.
+
+- Users can request a game by inputing the game title into the input field.
+
+    - This will search the [Steam Store](https://store.steampowered.com/) for a match. A modal will trigger when one is found asking the user to confirm whether or not the game is found is correct. Clicking 'Yes, Request' will add the game request to the database but **not** add the game itself to the site. See [here]() for more details.
+
+    - For more details on how the search function works, see [here]()
+
+
+
+##### Admin Controls
+
+- If the user is an admin user, then they are able to access the Admin Controls. 
+
+- This is accessible via the navlink in the navbar.
+
+- In order to reduce the amount of real estate on the page, the Admin Controls navlink replaces the 'Request A Game' navlink in the navbar. However, the admin can still request games like any other user, and the link is still available in the sidenav for mobile devices.
+
+
+
+##### Admin Controls - User Requests
+
+- Here the admin user can see all game requests submitted by users via the Request A Game form.
+
+- Sort Filter
+
+    - This will sort the display order of the game requests.
+
+    - Two select inputs are present ('Sort By' and 'Order') and a 'Filter' button which will sort the games depending on the options chosen.
+
+    - 'Sort By' contains the following options:
+        - User Count (how many users have requested the same game title)
+        - Title
+        - Date Added
+        - Recent Requests
+
+    - 'Order' has 'desc' (descending) and 'asc' (ascending) options.
+
+- Admin users can add games to the Game Queue by clicking the add icon button beside the game request.
+
+    - This will trigger a modal asking them to fill out a form.
+
+    - The admin user must select one or more categories for the game to be assigned to. This will determine where the game will be visible on the site. E.g. Selecting 'Action' will guarantee that the game will be included in the Games Action page.
+
+    - The admin user must then input there password for security reasons. This is also implemented as a minor preventative measure, to avoid new games being added to the site and database too often.
+
+    - The modal includes a [Steam Store](https://store.steampowered.com/) link to help users determine what categories to pick.
+
+    - The modal also includes a Term and Conditions link to remind the admin users of the Terms and Conditions of their actions.
+
+- Links to navigated to the Game Queue page are included.
+
+- The page also includes a Term and Conditions link to remind the admin users of the Terms and Conditions of being an admin.
+
+
+##### Admin Controls - Game Queue
+
+- This includes a list of of games waiting to be added to site.
+
+- A link to the Update DB page and User Requests page are also included.
+
+
+##### Admin Controls - Update DB
+
+- This is how an admin user can officially add games to the site (add games to the main collection, which is `all_pc_games`)
+
+- A link to the Game Queue is provided so admin users can review games before updating the database.
+
+- The admin user must input their password in order to update the database for security reasons.
+
+- The page also includes a Term and Conditions link to remind the admin users of the Terms and Conditions of being an admin.
+
+
+-----
 
 
 ### Skeleton Plane
