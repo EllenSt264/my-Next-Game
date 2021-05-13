@@ -685,6 +685,44 @@ After cache control:
 
 -----
 
+## Further Testing
+
+### Desktop
+
+- Hardware 
+    - Desktop PC with a AOC 2560 x 1440 monitor
+    - MSI GE72MVR Apache Pro 17'3" Laptop
+    - HP Spectre x360 15'6" Laptop 
+
+- Operating Sytems 
+    - Windows 10
+
+- Browsers 
+    - Google Chrome
+    - Brave
+    - Microsoft Edge
+
+
+### Mobile Devices
+
+- Hardware
+    - Honor 20 Pro
+    - Sony Xperia Z3 Plus
+    - Realme x50 Pro
+    - Samsung A20
+
+- Operating Systems
+    - Android
+
+- Browsers
+    - Google Chrome
+    - Brave
+    - Opera 
+    - Microsoft Edge
+
+-----
+
+
 ## Bug Fixes
 
 ### Review Card Collapsible
