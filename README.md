@@ -103,6 +103,16 @@
 
 - [Web Scraping](#web-scraping)
 
+- [Updating the Database](#updating-the-database)
+
+    - [Add game_url](#add-game_url)
+
+    - [Add more links](#add-more-links)
+
+    - [Remove game_img_sm](#remove-game_img_sm)
+
+- [Features to Implement in the Future](#features-to-implement-in-the-future)
+
 - [Technologies Used](#technologies-used)
 
     - [Languages](#languages)
@@ -1345,6 +1355,321 @@ game_results = mongo.db.all_pc_games.find({"$or": [{"action": True}, {"game_top_
 
 To conclude, the python file for scraping web data from the [Steam Store]() is something that, although works how I want it, is still in need of some cleaning and tweaking. The code is repeated quite significantly, which can definitely be improved upon in the future.
 
+
+-----
+
+
+## Updating the Database
+
+Throughout the development of this project, the database had to be updated a few times. As the updating was run locally, and did not need to be included in commits, I will list what I did below:
+
+### Add game_url 
+
+The `game_url` was necessary to improve the making the URL readable. To get the `game_url`, I took the `game_title` key value pair, and replaced any spaces with underscores.
+
+```
+import os
+import re
+from flask import Flask
+from flask_pymongo import PyMongo
+if os.path.exists("env.py"):
+    import env
+
+
+app = Flask(__name__)
+
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+
+mongo = PyMongo(app)
+
+
+def update_db():
+    games = mongo.db.all_pc_games.find()
+
+    for game in games:
+        title = game.get("game_title")
+        
+        url_ready = re.sub('[^a-zA-Z0-9 \n\.]', '', title)
+        url_ready = url_ready.replace(" ", "_")
+
+        mongo.db.all_pc_games.update_one(
+            {"game_title": title},
+            {"$set": {"game_url": url_ready}})
+
+update_db()
+
+```
+
+
+### Add more links
+
+The links for the `link` dropdown menu on the Profile page was a late edition, although the intention was there from the very start of the project. Below is the code I wrote to update the database and add them:
+
+```
+import os
+import requests
+from bs4 import BeautifulSoup
+from flask import Flask
+from flask_pymongo import PyMongo
+if os.path.exists("env.py"):
+    import env
+
+
+app = Flask(__name__)
+
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
+
+mongo = PyMongo(app)
+
+
+game_db = mongo.db.all_pc_games
+
+
+game_data = game_db.aggregate(
+    [
+        {"$group": {
+            "_id": {
+                "game_title": "$game_title",
+                "game_link": "$game_link"
+            }
+        }}
+    ]
+)
+
+list_of_dicts = []
+
+
+for data in game_data:
+     for k, v in data.items():
+        list_of_dicts.append(v)
+
+
+game_links = []
+
+
+for each_dict in list_of_dicts:
+    for k, v in each_dict.items():
+        if k == "game_link":
+            game_links.append(v)
+
+
+bundle_links = []
+standard_links = []
+
+
+def sort_link_type():
+    url_list = game_links
+
+    for url in url_list:
+
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        # If a bundle page
+        if soup.find("div", {"class": "bundle_package_item"}):
+            bundle_links.append(url)
+            for each_dict in list_of_dicts:
+                if each_dict["game_link"] == url:
+                    each_dict["type"] = "bundle"
+
+            # Grab link
+            a = soup.find("a", {"class": "tab_item_overlay"})
+            link = a.attrs["href"]
+            for each_dict in list_of_dicts:
+                if each_dict["game_link"] == url:
+                    each_dict["standard_link"] = link
+        else:
+            standard_links.append(url)
+            for each_dict in list_of_dicts:
+                each_dict["type"] = "standard"
+
+sort_link_type()
+
+
+for each_dict in list_of_dicts:
+    if each_dict["game_link"] in bundle_links:
+        each_dict["type"] = "bundle"
+    elif each_dict["game_link"] in standard_links:
+        each_dict["type"] = "standard"
+
+
+url_list = []
+
+for each_dict in list_of_dicts:
+    if each_dict["type"] == "standard":
+        url_list.append(each_dict["game_link"])
+    elif each_dict["type"] == "bundle":
+        url_list.append(each_dict["standard_link"])
+
+
+
+def scrape_more_links():
+    for url in url_list:
+
+        cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
+        source = requests.get(url, cookies=cookies)
+        soup = BeautifulSoup(source.text, "html.parser")
+
+        for item in soup.select(".responsive_apppage_details_left.game_details"):
+            for a in item.findAll("a", {"class": "linkbar"}, href=True):
+                # Grab website link
+                if "Visit the website" in a.text:
+                    full_link = a.attrs["href"]
+                    split_link = full_link.split("https://steamcommunity.com/linkfilter/?url=")
+                    if len(split_link) == 2:
+                        link = split_link[1]
+                    else:
+                        link = split_link[0]
+
+                    for each_dict in list_of_dicts:
+                        if each_dict["game_link"] == url:
+                            each_dict["website"] = link
+                        if "standard_link" in each_dict:
+                            if each_dict["standard_link"] == url:
+                                each_dict["website"] = link
+
+                # Grab update history
+                if "View update history" in a.text:
+                    link = a.attrs["href"]
+                    for each_dict in list_of_dicts:
+                        if each_dict["game_link"] == url:
+                            each_dict["update_history"] = link
+                        if "standard_link" in each_dict:
+                            if each_dict["standard_link"] == url:
+                                each_dict["update_history"] = link
+
+                # Grab related news
+                if "Read related news" in a.text:
+                    link = a.attrs["href"]
+                    for each_dict in list_of_dicts:
+                        if each_dict["game_link"] == url:
+                            each_dict["related_news"] = link
+                        if "standard_link" in each_dict:
+                            if each_dict["standard_link"] == url:
+                                each_dict["related_news"] = link
+                
+                # Grab discussions
+                if "View discussions" in a.text:
+                    link = a.attrs["href"]
+                    for each_dict in list_of_dicts:
+                        if each_dict["game_link"] == url:
+                            each_dict["discussions"] = link
+                        if "standard_link" in each_dict:
+                            if each_dict["standard_link"] == url:
+                                each_dict["discussions"] = link
+
+                # Grab community groups
+                if "Find Community Groups" in a.text:
+                    link = a.attrs["href"]
+                    for each_dict in list_of_dicts:
+                        if each_dict["game_link"] == url:
+                            each_dict["community"] = link
+                        if "standard_link" in each_dict:
+                            if each_dict["standard_link"] == url:
+                                each_dict["community"] = link
+
+scrape_more_links()
+
+
+
+def update_db():
+    for each_dict in list_of_dicts:
+        link = each_dict.get("game_link")
+        website = each_dict.get("website", None)
+        update_history = each_dict.get("update_history", None)
+        related_news = each_dict.get("related_news", None)
+        discussions = each_dict.get("discussions", None)
+        community = each_dict.get("community", None)
+
+        update = {
+            "$set": {
+                "website": website,
+                "update_history": update_history,
+                "related_news": related_news,
+                "discussions": discussions,
+                "community": community 
+            }
+        }
+        game_id = game_db.find_one({"game_link": link})["_id"]
+        game_db.update_one({"_id": game_id}, update)
+
+
+update_db()
+
+```
+
+I then had to update `user_games` col with the link too:
+
+```
+import os
+from bson.objectid import ObjectId
+import requests
+from bs4 import BeautifulSoup
+from flask import Flask
+from flask_pymongo import PyMongo
+if os.path.exists("env.py"):
+    import env
+
+
+app = Flask(__name__)
+
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
+
+mongo = PyMongo(app)
+
+
+# Get links from all_pc_games col
+
+titles = mongo.db.all_pc_games.find().distinct("game_title")
+
+for title in titles:
+    game = mongo.db.all_pc_games.find_one({"game_title": title})
+
+    update = {
+        "$set": {
+            "website": game.get("website"),
+            "community": game.get("community"),
+            "discussions": game.get("discussions"),
+            "related_news": game.get("related_news"),
+            "update_history": game.get("update_history")
+        }
+    }
+    mongo.db.user_games.update_many({"game_title": title}, update)
+```
+
+
+### Remove game_img_sm
+
+In earlier developments of the database, I used two different images for the game cover: `game_img_sm` and `game_img_full`. After deciding to simply use `game_img_full` for everything (as it was a better resolution and more customizable) I then updated the database to remove `game_img_sm`, as it was still in the `user_reviews` col.
+
+```
+import os
+from bson.objectid import ObjectId
+import requests
+from bs4 import BeautifulSoup
+from flask import Flask
+from flask_pymongo import PyMongo
+if os.path.exists("env.py"):
+    import env
+
+
+app = Flask(__name__)
+
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
+
+mongo = PyMongo(app)
+
+
+mongo.db.user_reviews.update_many({}, {"$unset": {"game_img_sm": 1}})
+```
 
 -----
 
