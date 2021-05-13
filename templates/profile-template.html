@@ -1,109 +1,104 @@
 {% extends "base.html" %}
 {% block content %}
-
 <section id="Profile">
-    <div class="row py-5">
-        <!-- Profile Card -->
-        <div class="card-panel profile-base-card grey-text text-lighten-4 col s12 m10 offset-m1 l11 xl9 offset-xl2"
-            id="ProfileCard">
-            <!-- Header -->
-            <div class="row profile-header">
-                <!-- Username -->
-                <div class="col s12 l6 header-username">
-                    {% if "display_name" in user %}
-                    {% if user.display_name == None %}
-                    <h3>{{ user.username|capitalize }}'s Profile</h3>
-                    {% else %}
-                    <h3>{{ user.display_name }}'s Profile</h3>
-                    {% endif %}
-                    {% else %}
-                    <h3>{{ user.username|capitalize }}'s Profile</h3>
-                    {% endif %}
-                </div>
-                <!-- Avatar -->
-                <div class="row hide-on-large-only">
-                    <div class="col s12">
-                        <img src="{{ user.avatar }}" alt="User's current avatar" class="profile-avatar">
-                    </div>
-                </div>
-                <!-- Edit profile -->
-                <div class="row">
-                    <div class="col s12">
-                        <a href="{{ url_for('edit_profile', username=session['user']) }}" class="btn hide-on-large-only"
-                            id="editBtn">Edit Profile</a>
-                    </div>
-                </div>
-                <!-- Profile rank -->
-                <div class="col s12 l6 rank">
-                    <h6>Profile Rank {{rank}}</h6>
-                </div>
-            </div>
-            <!-- Divider -->
-            <div class="divider"></div>
-            <!-- Buttons -->
-            <div class="card-panel profile-card-panel col s12 l2 right" id="ProfileSidePanel">
-                <!-- Avatar and username -->
-                <div class="row hide-on-med-and-down side-panel-avatar">
-                    <div class="row right" style="height: 150px;">
-                        <div class="col">
-                            <img src="{{ user.avatar }}" alt="User's current avatar" class="profile-avatar">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col right">
-                            <h5>
-                                {% if "display_name" in user %}
-                                {% if user.display_name == None %}
-                                {{ user.username|capitalize }}
-                                {% else %}
-                                {{ user.display_name }}
-                                {% endif %}
-                                {% else %}
-                                {{ user.username|capitalize }}
-                                {% endif %}
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Navigation buttons -->
-                <ul class="profile-btns">
-                    <div class="row">
-                        <!-- Games-->
-                        <li class="col s4 l12">
-                            <a href="{{ url_for('profile_games', username=session['user']) }}" class="btn">Games</a>
-                        </li>
-                        <!-- Likes-->
-                        <li class="col s4 l12">
-                            <a href="{{ url_for('profile_likes', username=session['user']) }}" class="btn">Likes</a>
-                        </li>
-                        <!-- Reviews -->
-                        <li class="col s4 l12">
-                            <a href="{{ url_for('profile_reviews', username=session['user']) }}" class="btn">Reviews</a>
-                        </li>
-                        <!-- Edit profile -->
-                        <li class="col s12 hide-on-med-and-down">
-                            <a href="{{ url_for('edit_profile', username=session['user']) }}" class="btn">Edit
-                                Profile</a>
-                        </li>
-                    </div>
-                </ul>
-            </div>
-            <!-- Profile Content -->
-            <div class="card-panel profile-card-panel col s12 l9" id="ProfileContentCard">
-
-                {% block profile_content %}
-                {% endblock %}
-
-            </div>
-        </div>
-    </div>
+	<div class="row py-5">
+		<!-- Profile Card -->
+		<div class="card-panel profile-base-card grey-text text-lighten-4 col s12 m10 offset-m1 l11 xl9 offset-xl2"
+			id="ProfileCard">
+			<!-- Header -->
+			<div class="row profile-header">
+				<!-- Username -->
+				<div class="col s12 l6 header-username">
+					{% if "display_name" in user %}
+					{% if user.display_name == None %}
+					<h3>{{ user.username|capitalize }}'s Profile</h3>
+					{% else %}
+					<h3>{{ user.display_name }}'s Profile</h3>
+					{% endif %}
+					{% else %}
+					<h3>{{ user.username|capitalize }}'s Profile</h3>
+					{% endif %}
+				</div>
+				<!-- Avatar -->
+				<div class="row hide-on-large-only">
+					<div class="col s12">
+						<img src="{{ user.avatar }}" alt="User's current avatar" class="profile-avatar">
+					</div>
+				</div>
+				<!-- Edit profile -->
+				<div class="row">
+					<div class="col s12">
+						<a href="{{ url_for('edit_profile', username=session['user']) }}" class="btn hide-on-large-only"
+							id="editBtn">Edit Profile</a>
+					</div>
+				</div>
+				<!-- Profile rank -->
+				<div class="col s12 l6 rank">
+					<h6>Profile Rank {{rank}}</h6>
+				</div>
+			</div>
+			<!-- Divider -->
+			<div class="divider"></div>
+			<!-- Buttons -->
+			<div class="card-panel profile-card-panel col s12 l2 right" id="ProfileSidePanel">
+				<!-- Avatar and username -->
+				<div class="row hide-on-med-and-down side-panel-avatar">
+					<div class="row right" style="height: 150px;">
+						<div class="col">
+							<img src="{{ user.avatar }}" alt="User's current avatar" class="profile-avatar">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col right">
+							<h5>
+								{% if "display_name" in user %}
+								{% if user.display_name == None %}
+								{{ user.username|capitalize }}
+								{% else %}
+								{{ user.display_name }}
+								{% endif %}
+								{% else %}
+								{{ user.username|capitalize }}
+								{% endif %}
+							</h5>
+						</div>
+					</div>
+				</div>
+				<!-- Navigation buttons -->
+				<ul class="profile-btns">
+					<div class="row">
+						<!-- Games-->
+						<li class="col s4 l12">
+							<a href="{{ url_for('profile_games', username=session['user']) }}" class="btn">Games</a>
+						</li>
+						<!-- Likes-->
+						<li class="col s4 l12">
+							<a href="{{ url_for('profile_likes', username=session['user']) }}" class="btn">Likes</a>
+						</li>
+						<!-- Reviews -->
+						<li class="col s4 l12">
+							<a href="{{ url_for('profile_reviews', username=session['user']) }}" class="btn">Reviews</a>
+						</li>
+						<!-- Edit profile -->
+						<li class="col s12 hide-on-med-and-down">
+							<a href="{{ url_for('edit_profile', username=session['user']) }}" class="btn">Edit
+							Profile</a>
+						</li>
+					</div>
+				</ul>
+			</div>
+			<!-- Profile Content -->
+			<div class="card-panel profile-card-panel col s12 l9" id="ProfileContentCard">
+				{% block profile_content %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
 </section>
-
 <!-- Scroll to top -->
 <div class="fixed-action-btn bounce hide-on-large-only">
-    <a href="#" class="btn-floating btn">
-        <i class="fas fa-chevron-up" style="font-size: 20px;"></i>
-    </a>
+	<a href="#" class="btn-floating btn">
+	<i class="fas fa-chevron-up" style="font-size: 20px;"></i>
+	</a>
 </div>
-
 {% endblock %}

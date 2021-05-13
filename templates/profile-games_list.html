@@ -1,661 +1,725 @@
 {% extends "profile-template.html" %}
 {% block profile_content %}
 <section id="ProfileGames">
-    <!-- Currently Playing -->
-    <div class="row card-panel profile-card-header">
-        <div class="col s12">
-            <h6>Currently Playing</h6>
-        </div>
-    </div>
-    <div class="row card-panel profile-card-inner">
-        {% for game in games_playing if game.username == session.user %}
-        <!-- Large screens only -->
-        <div class="card horizontal hide-on-med-and-down">
-            <div class="card-image profile-game-img">
-                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
-                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-                </a>
-            </div>
-            <div class="card-stacked">
-                <!-- Game details -->
-                <div class="card-content">
-                    <!-- Game title -->
-                    <div class="card-title white-text">
-                        <span>
-                            <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
-                                {{ game.game_title }}
-                            </a>
-                        </span>
-                    </div>
-                    <!-- Play buttons-->
-                    <div class="row">
-                        <!-- Move to play later -->
-                        <div class="col s4 profile-game-btn">
-                            <form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
-                                <button type="submit" class="btn-large">
-                                    <i class="material-icons btn-icon-left">queue_play_next</i>
-                                    <span>Play Later</span>
-                                </button>
-                            </form>
-                        </div>
-                        <!-- Move to completed -->
-                        <div class="col s4 profile-game-btn">
-                            <form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
-                                <button type="submit" class="btn-large">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Completed</span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Links and Review -->
-                    <div class="row">
-                        <!-- Links -->
-                        <div class="col s4 profile-game-btn">
-                            <a href="#" class="btn-large dropdown-trigger"
-                                data-target="profileGameLinks1{{loop.index}}">
-                                <i class="material-icons btn-icon-left">http</i>
-                                <span>Links</span>
-                                <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                            </a>
-                        </div>
-                        <!-- Review -->
-                        {% for match in matches if match == game.game_title %}
-                        <div class="col s4 profile-game-btn btn-large reviewed">
-                            <i class="material-icons btn-icon-left">thumb_up</i>
-                            <span>Reviewed</span>
-                            <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
-                                class="btn grow">
-                                <i class="fas fa-pen-square"></i>
-                            </a>
-                        </div>
-                        {% else %}
-                        <div class="col s4 profile-game-btn">
-                            <a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
-                                <i class="fas fa-pen-alt"></i>
-                                <span>Review</span>
-                            </a>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="card-action" style="padding-left: 5px;">
-                    <!-- Remove button -->
-                    <div class="profile-game-btn delete">
-                        <a href="#deleteGame{{loop.index}}--Playing" class="btn remove-btn modal-trigger"
-                            style="margin-left: 0;">
-                            <i class="material-icons  btn-icon-left">delete</i>
-                            Remove Game
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Medium screens and down -->
-        <div class="card smaller hide-on-large-only">
-            <div class="card-image profile-game-img">
-                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
-                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-                </a>
-            </div>
-            <div class="card-content">
-                <div class="card-title">
-                    <span>
-                        <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
-                            {{ game.game_title }}
-                        </a>
-                    </span>
-                </div>
-                <!-- Play buttons-->
-                <div class="row play-btns">
-                    <!-- Move to play later -->
-                    <div class="col s6 profile-game-btn">
-                        <form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
-                            <button type="submit" class="btn-large">
-                                <i class="material-icons btn-icon-left">queue_play_next</i>
-                                <span>Play Later</span>
-                            </button>
-                        </form>
-                    </div>
-                    <!-- Move to completed -->
-                    <div class="col s6 profile-game-btn">
-                        <form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
-                            <button type="submit" class="btn-large">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Completed</span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <!-- Links and Review -->
-                <div class="row links-and-review">
-                    <!-- Link -->
-                    <div class="col s6 profile-game-btn">
-                        <a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks1{{loop.index}}-2">
-                            <i class="material-icons btn-icon-left">http</i>
-                            <span>Links</span>
-                            <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                        </a>
-                    </div>
-                    <!-- Review -->
-                    {% for match in matches if match == game.game_title %}
-                    <div class="col s6 profile-game-btn btn-large reviewed">
-                        <i class="material-icons btn-icon-left">thumb_up</i>
-                        <span>Reviewed</span>
-                        <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
-                            class="btn grow">
-                            <i class="fas fa-pen-square"></i>
-                        </a>
-                    </div>
-                    {% else %}
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
-                            <i class="fas fa-pen-alt"></i>
-                            <span>Review</span>
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="card-action">
-                <!-- Remove button -->
-                <div class="profile-game-btn delete" style="margin-left: 30px;">
-                    <a href="#deleteGame{{loop.index}}--Playing" class="btn remove-btn modal-trigger"
-                        style="margin-left: 0;">
-                        <i class="material-icons  btn-icon-left">delete</i>
-                        Remove Game
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Links dropdown -->
-        <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks1{{loop.index}}">
-            <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
-            {% if game.website != None %}<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>{% endif
-            %}
-            {% if game.update_history != None %}<li><a href="{{ game.update_history }}" target="_blank">View Update
-                    History</a></li>{% endif %}
-            {% if game.related_news != None %}<li><a href="{{ game.related_news }}" target="_blank">Read Related
-                    News</a></li>{% endif %}
-            {% if game.discussions != None %}<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
-            </li>{% endif %}
-            {% if game.community != None %}<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
-            </li>{% endif %}
-        </ul>
-        <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks1{{loop.index}}-2">
-            <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
-            {% if game.website != None %}<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>{% endif
-            %}
-            {% if game.update_history != None %}<li><a href="{{ game.update_history }}" target="_blank">View Update
-                    History</a></li>{% endif %}
-            {% if game.related_news != None %}<li><a href="{{ game.related_news }}" target="_blank">Read Related
-                    News</a></li>{% endif %}
-            {% if game.discussions != None %}<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
-            </li>{% endif %}
-            {% if game.community != None %}<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
-            </li>{% endif %}
-        </ul>
-
-        <!-- Modal warning -->
-        <div id="deleteGame{{loop.index}}--Playing" class="modal center-align delete-review">
-            <div class="modal-content">
-                <h5><span>warning</span></h5>
-                <h4>Are You Sure You Want to Remove <span style="font-family: 'BlenderPro-Thin';">{{ game.game_title
-                        }}</span> from your Games List?</h4>
-                <p>
-                    This will not effect your reviews and/or game likes in any way.
-                </p>
-            </div>
-            <div class="modal-footer center-align">
-                <a href="{{ url_for('remove_game', game_id=game._id) }}" class="modal-close btn-flat"
-                    id="deleteReview">Yes,
-                    Delete</a>
-                <a href="#!" class="modal-close btn-flat">Cancel</a>
-            </div>
-        </div>
-
-        {% else %}
-        <h6 class="center-align no-games">No games have been added to this section</h6>
-        {% endfor %}
-    </div>
-
-    <!-- Play later -->
-    <div class="row card-panel profile-card-header">
-        <div class="col s12">
-            <h6>Play later</h6>
-        </div>
-    </div>
-    <div class="row card-panel profile-card-inner">
-        {% for game in games_next if game.username == session.user %}
-        <!-- Large screens only -->
-        <div class="card horizontal hide-on-med-and-down">
-            <div class="card-image profile-game-img">
-                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
-                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-                </a>
-            </div>
-            <div class="card-stacked">
-                <!-- Game details -->
-                <div class="card-content">
-                    <!-- Game title -->
-                    <div class="card-title white-text">
-                        <span>
-                            <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
-                                {{ game.game_title }}
-                            </a>
-                        </span>
-                    </div>
-                    <!-- Play buttons-->
-                    <div class="row">
-                        <!-- Move to playing -->
-                        <div class="col s4 profile-game-btn">
-                            <form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
-                                <button type="submit" class="btn-large">
-                                    <i class="material-icons btn-icon-left">videogame_asset</i>
-                                    <span>Playing</span>
-                                </button>
-                            </form>
-                        </div>
-                        <!-- Move to completed -->
-                        <div class="col s4 profile-game-btn">
-                            <form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
-                                <button type="submit" class="btn-large">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Completed</span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Links and Review -->
-                    <div class="row">
-                        <!-- Link -->
-                        <div class="col s4 profile-game-btn">
-                            <a href="#" class="btn-large dropdown-trigger"
-                                data-target="profileGameLinks2{{loop.index}}">
-                                <i class="material-icons btn-icon-left">http</i>
-                                <span>Links</span>
-                                <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                            </a>
-                        </div>
-                        <!-- Review -->
-                        {% for match in matches if match == game.game_title %}
-                        <div class="col s4 profile-game-btn btn-large reviewed">
-                            <i class="material-icons btn-icon-left">thumb_up</i>
-                            <span>Reviewed</span>
-                            <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
-                                class="btn grow">
-                                <i class="fas fa-pen-square"></i>
-                            </a>
-                        </div>
-                        {% else %}
-                        <div class="col s4 profile-game-btn">
-                            <a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
-                                <i class="fas fa-pen-alt"></i>
-                                <span>Review</span>
-                            </a>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="card-action" style="padding-left: 5px;">
-                    <!-- Remove button -->
-                    <div class="profile-game-btn delete">
-                        <a href="#deleteGame{{loop.index}}--PlayLater" class="btn remove-btn modal-trigger"
-                            style="margin-left: 0;">
-                            <i class="material-icons  btn-icon-left">delete</i>
-                            Remove Game
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Medium screens and down -->
-        <div class="card smaller hide-on-large-only">
-            <div class="card-image profile-game-img">
-                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
-                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-                </a>
-            </div>
-            <div class="card-content">
-                <div class="card-title">
-                    <span>
-                        <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
-                            {{ game.game_title }}
-                        </a>
-                    </span>
-                </div>
-                <!-- Play buttons-->
-                <div class="row play-btns">
-                    <!-- Move to playing -->
-                    <div class="col s4 profile-game-btn">
-                        <form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
-                            <button type="submit" class="btn-large">
-                                <i class="material-icons btn-icon-left">videogame_asset</i>
-                                <span>Playing</span>
-                            </button>
-                        </form>
-                    </div>
-                    <!-- Move to completed -->
-                    <div class="col s4 profile-game-btn">
-                        <form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
-                            <button type="submit" class="btn-large">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Completed</span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <!-- Links and Review -->
-                <div class="row links-and-review">
-                    <!-- Link -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks2{{loop.index}}-2">
-                            <i class="material-icons btn-icon-left">http</i>
-                            <span>Links</span>
-                            <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                        </a>
-                    </div>
-                    <!-- Review -->
-                    {% for match in matches if match == game.game_title %}
-                    <div class="col s4 profile-game-btn btn-large reviewed">
-                        <i class="material-icons btn-icon-left">thumb_up</i>
-                        <span>Reviewed</span>
-                        <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
-                            class="btn grow">
-                            <i class="fas fa-pen-square"></i>
-                        </a>
-                    </div>
-                    {% else %}
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
-                            <i class="fas fa-pen-alt"></i>
-                            <span>Review</span>
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="card-action">
-                <!-- Remove button -->
-                <div class="profile-game-btn delete" style="margin-left: 30px;">
-                    <a href="#deleteGame{{loop.index}}--PlayLater" class="btn remove-btn modal-trigger"
-                        style="margin-left: 0;">
-                        <i class="material-icons  btn-icon-left">delete</i>
-                        Remove Game
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Links dropdown -->
-        <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks2{{loop.index}}">
-            <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
-            {% if game.website != None %}<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>{% endif
-            %}
-            {% if game.update_history != None %}<li><a href="{{ game.update_history }}" target="_blank">View Update
-                    History</a></li>{% endif %}
-            {% if game.related_news != None %}<li><a href="{{ game.related_news }}" target="_blank">Read Related
-                    News</a></li>{% endif %}
-            {% if game.discussions != None %}<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
-            </li>{% endif %}
-            {% if game.community != None %}<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
-            </li>{% endif %}
-        </ul>
-        <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks2{{loop.index}}-2">
-            <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
-            {% if game.website != None %}<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>{% endif
-            %}
-            {% if game.update_history != None %}<li><a href="{{ game.update_history }}" target="_blank">View Update
-                    History</a></li>{% endif %}
-            {% if game.related_news != None %}<li><a href="{{ game.related_news }}" target="_blank">Read Related
-                    News</a></li>{% endif %}
-            {% if game.discussions != None %}<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
-            </li>{% endif %}
-            {% if game.community != None %}<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
-            </li>{% endif %}
-        </ul>
-
-        <!-- Modal warning -->
-        <div id="deleteGame{{loop.index}}--PlayLater" class="modal center-align delete-review">
-            <div class="modal-content">
-                <h5><span>warning</span></h5>
-                <h4>Are You Sure You Want to Remove <span style="font-family: 'BlenderPro-Thin';">{{ game.game_title
-                        }}</span> from your Games List?</h4>
-                <p>
-                    This will not effect your reviews and/or game likes in any way.
-                </p>
-            </div>
-            <div class="modal-footer center-align">
-                <a href="{{ url_for('remove_game', game_id=game._id) }}" class="modal-close btn-flat"
-                    id="deleteReview">Yes,
-                    Delete</a>
-                <a href="#!" class="modal-close btn-flat">Cancel</a>
-            </div>
-        </div>
-
-        {% else %}
-        <h6 class="center-align no-games">No games have been added to this section</h6>
-        {% endfor %}
-    </div>
-
-    <!-- Completed -->
-    <div class="row card-panel profile-card-header">
-        <div class="col s12">
-            <h6>Completed</h6>
-        </div>
-    </div>
-    <div class="row card-panel profile-card-inner">
-        {% for game in games_completed if game.username == session.user %}
-        <!-- Large screens only -->
-        <div class="card horizontal hide-on-med-and-down">
-            <div class="card-image profile-game-img">
-                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
-                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-                </a>
-            </div>
-            <div class="card-stacked">
-                <!-- Game details -->
-                <div class="card-content">
-                    <!-- Game title -->
-                    <div class="card-title white-text">
-                        <span>
-                            <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
-                                {{ game.game_title }}
-                            </a>
-                        </span>
-                    </div>
-                    <!-- Play buttons-->
-                    <div class="row">
-                        <!-- Move to playing -->
-                        <div class="col s4 profile-game-btn">
-                            <form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
-                                <button type="submit" class="btn-large">
-                                    <i class="material-icons btn-icon-left">videogame_asset</i>
-                                    <span>Playing</span>
-                                </button>
-                            </form>
-                        </div>
-                        <!-- Move to player later -->
-                        <div class="col s4 profile-game-btn">
-                            <form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
-                                <button type="submit" class="btn-large">
-                                    <i class="material-icons btn-icon-left">queue_play_next</i>
-                                    <span>Play Later</span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Links and Review -->
-                    <div class="row">
-                        <!-- Link -->
-                        <div class="col s4 profile-game-btn">
-                            <a href="#" class="btn-large dropdown-trigger"
-                                data-target="profileGameLinks3{{loop.index}}">
-                                <i class="material-icons btn-icon-left">http</i>
-                                <span>Links</span>
-                                <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                            </a>
-                        </div>
-                        <!-- Review -->
-                        {% for match in matches if match == game.game_title %}
-                        <div class="col s4 profile-game-btn btn-large reviewed">
-                            <i class="material-icons btn-icon-left">thumb_up</i>
-                            <span>Reviewed</span>
-                            <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
-                                class="btn grow">
-                                <i class="fas fa-pen-square"></i>
-                            </a>
-                        </div>
-                        {% else %}
-                        <div class="col s4 profile-game-btn">
-                            <a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
-                                <i class="fas fa-pen-alt"></i>
-                                <span>Review</span>
-                            </a>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="card-action" style="padding-left: 5px;">
-                    <!-- Remove button -->
-                    <div class="profile-game-btn delete">
-                        <a href="#deleteGame{{loop.index}}--Completed" class="btn remove-btn modal-trigger"
-                            style="margin-left: 0;">
-                            <i class="material-icons  btn-icon-left">delete</i>
-                            Remove Game
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Medium screens and down -->
-        <div class="card smaller hide-on-large-only">
-            <div class="card-image profile-game-img">
-                <a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
-                    <img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
-                </a>
-            </div>
-            <div class="card-content">
-                <div class="card-title">
-                    <span>
-                        <a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
-                            {{ game.game_title }}
-                        </a>
-                    </span>
-                </div>
-                <!-- Play buttons-->
-                <div class="row play-btns">
-                    <!-- Move to playing -->
-                    <div class="col s4 profile-game-btn">
-                        <form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
-                            <button type="submit" class="btn-large">
-                                <i class="material-icons btn-icon-left">videogame_asset</i>
-                                <span>Playing</span>
-                            </button>
-                        </form>
-                    </div>
-                    <!-- Move to completed -->
-                    <div class="col s4 profile-game-btn">
-                        <form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
-                            <button type="submit" class="btn-large">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Completed</span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <!-- Links and Review -->
-                <div class="row links-and-review">
-                    <!-- Link -->
-                    <div class="col s4 profile-game-btn">
-                        <a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks3{{loop.index}}-2">
-                            <i class="material-icons btn-icon-left">http</i>
-                            <span>Links</span>
-                            <i class="material-icons btn-icon-right">arrow_drop_down</i>
-                        </a>
-                    </div>
-                    <!-- Review -->
-                    {% for match in matches if match == game.game_title %}
-                    <div class="col s4 profile-game-btn btn-large reviewed">
-                        <i class="material-icons btn-icon-left">thumb_up</i>
-                        <span>Reviewed</span>
-                        <a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
-                            class="btn grow">
-                            <i class="fas fa-pen-square"></i>
-                        </a>
-                    </div>
-                    {% else %}
-                    <div class="col s4 profile-game-btn">
-                        <a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
-                            <i class="fas fa-pen-alt"></i>
-                            <span>Review</span>
-                        </a>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="card-action">
-                <!-- Remove button -->
-                <div class="profile-game-btn delete" style="margin-left: 30px;">
-                    <a href="#deleteGame{{loop.index}}--Completed" class="btn remove-btn modal-trigger"
-                        style="margin-left: 0;">
-                        <i class="material-icons  btn-icon-left">delete</i>
-                        Remove Game
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Links dropdown -->
-        <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks3{{loop.index}}">
-            <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
-            {% if game.website != None %}<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>{% endif
-            %}
-            {% if game.update_history != None %}<li><a href="{{ game.update_history }}" target="_blank">View Update
-                    History</a></li>{% endif %}
-            {% if game.related_news != None %}<li><a href="{{ game.related_news }}" target="_blank">Read Related
-                    News</a></li>{% endif %}
-            {% if game.discussions != None %}<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
-            </li>{% endif %}
-            {% if game.community != None %}<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
-            </li>{% endif %}
-        </ul>
-        <ul class="dropdown-content profile-dropdown-links" id="profileGameLinks3{{loop.index}}-2">
-            <li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
-            {% if game.website != None %}<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>{% endif
-            %}
-            {% if game.update_history != None %}<li><a href="{{ game.update_history }}" target="_blank">View Update
-                    History</a></li>{% endif %}
-            {% if game.related_news != None %}<li><a href="{{ game.related_news }}" target="_blank">Read Related
-                    News</a></li>{% endif %}
-            {% if game.discussions != None %}<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
-            </li>{% endif %}
-            {% if game.community != None %}<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
-            </li>{% endif %}
-        </ul>
-
-        <!-- Modal warning -->
-        <div id="deleteGame{{loop.index}}--Completed" class="modal center-align delete-review">
-            <div class="modal-content">
-                <h5><span>warning</span></h5>
-                <h4>Are You Sure You Want to Remove <span style="font-family: 'BlenderPro-Thin';">{{ game.game_title
-                        }}</span> from your Games List?</h4>
-                <p>
-                    This will not effect your reviews and/or game likes in any way.
-                </p>
-            </div>
-            <div class="modal-footer center-align">
-                <a href="{{ url_for('remove_game', game_id=game._id) }}" class="modal-close btn-flat"
-                    id="deleteReview">Yes,
-                    Delete</a>
-                <a href="#!" class="modal-close btn-flat">Cancel</a>
-            </div>
-        </div>
-
-        {% else %}
-        <h6 class="center-align no-games">No games have been added to this section</h6>
-        {% endfor %}
-    </div>
+	<!-- Currently Playing -->
+	<div class="row card-panel profile-card-header">
+		<div class="col s12">
+			<h6>Currently Playing</h6>
+		</div>
+	</div>
+	<div class="row card-panel profile-card-inner">
+		{% for game in games_playing if game.username == session.user %}
+		<!-- Large screens only -->
+		<div class="card horizontal hide-on-med-and-down">
+			<div class="card-image profile-game-img">
+				<a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
+				<img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+				</a>
+			</div>
+			<div class="card-stacked">
+				<!-- Game details -->
+				<div class="card-content">
+					<!-- Game title -->
+					<div class="card-title white-text">
+						<span>
+						<a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
+						{{ game.game_title }}
+						</a>
+						</span>
+					</div>
+					<!-- Play buttons-->
+					<div class="row">
+						<!-- Move to play later -->
+						<div class="col s4 profile-game-btn">
+							<form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
+								<button type="submit" class="btn-large">
+								<i class="material-icons btn-icon-left">queue_play_next</i>
+								<span>Play Later</span>
+								</button>
+							</form>
+						</div>
+						<!-- Move to completed -->
+						<div class="col s4 profile-game-btn">
+							<form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
+								<button type="submit" class="btn-large">
+								<i class="fas fa-check-circle"></i>
+								<span>Completed</span>
+								</button>
+							</form>
+						</div>
+					</div>
+					<!-- Links and Review -->
+					<div class="row">
+						<!-- Links -->
+						<div class="col s4 profile-game-btn">
+							<a href="#" class="btn-large dropdown-trigger"
+								data-target="profileGameLinks1{{loop.index}}">
+							<i class="material-icons btn-icon-left">http</i>
+							<span>Links</span>
+							<i class="material-icons btn-icon-right">arrow_drop_down</i>
+							</a>
+						</div>
+						<!-- Review -->
+						{% for match in matches if match == game.game_title %}
+						<div class="col s4 profile-game-btn btn-large reviewed">
+							<i class="material-icons btn-icon-left">thumb_up</i>
+							<span>Reviewed</span>
+							<a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
+								class="btn grow">
+							<i class="fas fa-pen-square"></i>
+							</a>
+						</div>
+						{% else %}
+						<div class="col s4 profile-game-btn">
+							<a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
+							<i class="fas fa-pen-alt"></i>
+							<span>Review</span>
+							</a>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="card-action" style="padding-left: 5px;">
+					<!-- Remove button -->
+					<div class="profile-game-btn delete">
+						<a href="#deleteGame{{loop.index}}--Playing" class="btn remove-btn modal-trigger"
+							style="margin-left: 0;">
+						<i class="material-icons  btn-icon-left">delete</i>
+						Remove Game
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Medium screens and down -->
+		<div class="card smaller hide-on-large-only">
+			<div class="card-image profile-game-img">
+				<a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
+				<img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+				</a>
+			</div>
+			<div class="card-content">
+				<div class="card-title">
+					<span>
+					<a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+					{{ game.game_title }}
+					</a>
+					</span>
+				</div>
+				<!-- Play buttons-->
+				<div class="row play-btns">
+					<!-- Move to play later -->
+					<div class="col s6 profile-game-btn">
+						<form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
+							<button type="submit" class="btn-large">
+							<i class="material-icons btn-icon-left">queue_play_next</i>
+							<span>Play Later</span>
+							</button>
+						</form>
+					</div>
+					<!-- Move to completed -->
+					<div class="col s6 profile-game-btn">
+						<form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
+							<button type="submit" class="btn-large">
+							<i class="fas fa-check-circle"></i>
+							<span>Completed</span>
+							</button>
+						</form>
+					</div>
+				</div>
+				<!-- Links and Review -->
+				<div class="row links-and-review">
+					<!-- Link -->
+					<div class="col s6 profile-game-btn">
+						<a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks1{{loop.index}}-2">
+						<i class="material-icons btn-icon-left">http</i>
+						<span>Links</span>
+						<i class="material-icons btn-icon-right">arrow_drop_down</i>
+						</a>
+					</div>
+					<!-- Review -->
+					{% for match in matches if match == game.game_title %}
+					<div class="col s6 profile-game-btn btn-large reviewed">
+						<i class="material-icons btn-icon-left">thumb_up</i>
+						<span>Reviewed</span>
+						<a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
+							class="btn grow">
+						<i class="fas fa-pen-square"></i>
+						</a>
+					</div>
+					{% else %}
+					<div class="col s4 profile-game-btn">
+						<a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
+						<i class="fas fa-pen-alt"></i>
+						<span>Review</span>
+						</a>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="card-action">
+				<!-- Remove button -->
+				<div class="profile-game-btn delete" style="margin-left: 30px;">
+					<a href="#deleteGame{{loop.index}}--Playing" class="btn remove-btn modal-trigger"
+						style="margin-left: 0;">
+					<i class="material-icons  btn-icon-left">delete</i>
+					Remove Game
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- Links dropdown -->
+		<ul class="dropdown-content profile-dropdown-links" id="profileGameLinks1{{loop.index}}">
+			<li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+			{% if game.website != None %}
+			<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>
+			{% endif
+			%}
+			{% if game.update_history != None %}
+			<li><a href="{{ game.update_history }}" target="_blank">View Update
+				History</a>
+			</li>
+			{% endif %}
+			{% if game.related_news != None %}
+			<li><a href="{{ game.related_news }}" target="_blank">Read Related
+				News</a>
+			</li>
+			{% endif %}
+			{% if game.discussions != None %}
+			<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
+			</li>
+			{% endif %}
+			{% if game.community != None %}
+			<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
+			</li>
+			{% endif %}
+		</ul>
+		<ul class="dropdown-content profile-dropdown-links" id="profileGameLinks1{{loop.index}}-2">
+			<li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+			{% if game.website != None %}
+			<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>
+			{% endif
+			%}
+			{% if game.update_history != None %}
+			<li><a href="{{ game.update_history }}" target="_blank">View Update
+				History</a>
+			</li>
+			{% endif %}
+			{% if game.related_news != None %}
+			<li><a href="{{ game.related_news }}" target="_blank">Read Related
+				News</a>
+			</li>
+			{% endif %}
+			{% if game.discussions != None %}
+			<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
+			</li>
+			{% endif %}
+			{% if game.community != None %}
+			<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
+			</li>
+			{% endif %}
+		</ul>
+		<!-- Modal warning -->
+		<div id="deleteGame{{loop.index}}--Playing" class="modal center-align delete-review">
+			<div class="modal-content">
+				<h5><span>warning</span></h5>
+				<h4>Are You Sure You Want to Remove <span style="font-family: 'BlenderPro-Thin';">{{ game.game_title
+					}}</span> from your Games List?
+				</h4>
+				<p>
+					This will not effect your reviews and/or game likes in any way.
+				</p>
+			</div>
+			<div class="modal-footer center-align">
+				<a href="{{ url_for('remove_game', game_id=game._id) }}" class="modal-close btn-flat"
+					id="deleteReview">Yes,
+				Delete</a>
+				<a href="#!" class="modal-close btn-flat">Cancel</a>
+			</div>
+		</div>
+		{% else %}
+		<h6 class="center-align no-games">No games have been added to this section</h6>
+		{% endfor %}
+	</div>
+	<!-- Play later -->
+	<div class="row card-panel profile-card-header">
+		<div class="col s12">
+			<h6>Play later</h6>
+		</div>
+	</div>
+	<div class="row card-panel profile-card-inner">
+		{% for game in games_next if game.username == session.user %}
+		<!-- Large screens only -->
+		<div class="card horizontal hide-on-med-and-down">
+			<div class="card-image profile-game-img">
+				<a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
+				<img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+				</a>
+			</div>
+			<div class="card-stacked">
+				<!-- Game details -->
+				<div class="card-content">
+					<!-- Game title -->
+					<div class="card-title white-text">
+						<span>
+						<a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
+						{{ game.game_title }}
+						</a>
+						</span>
+					</div>
+					<!-- Play buttons-->
+					<div class="row">
+						<!-- Move to playing -->
+						<div class="col s4 profile-game-btn">
+							<form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
+								<button type="submit" class="btn-large">
+								<i class="material-icons btn-icon-left">videogame_asset</i>
+								<span>Playing</span>
+								</button>
+							</form>
+						</div>
+						<!-- Move to completed -->
+						<div class="col s4 profile-game-btn">
+							<form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
+								<button type="submit" class="btn-large">
+								<i class="fas fa-check-circle"></i>
+								<span>Completed</span>
+								</button>
+							</form>
+						</div>
+					</div>
+					<!-- Links and Review -->
+					<div class="row">
+						<!-- Link -->
+						<div class="col s4 profile-game-btn">
+							<a href="#" class="btn-large dropdown-trigger"
+								data-target="profileGameLinks2{{loop.index}}">
+							<i class="material-icons btn-icon-left">http</i>
+							<span>Links</span>
+							<i class="material-icons btn-icon-right">arrow_drop_down</i>
+							</a>
+						</div>
+						<!-- Review -->
+						{% for match in matches if match == game.game_title %}
+						<div class="col s4 profile-game-btn btn-large reviewed">
+							<i class="material-icons btn-icon-left">thumb_up</i>
+							<span>Reviewed</span>
+							<a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
+								class="btn grow">
+							<i class="fas fa-pen-square"></i>
+							</a>
+						</div>
+						{% else %}
+						<div class="col s4 profile-game-btn">
+							<a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
+							<i class="fas fa-pen-alt"></i>
+							<span>Review</span>
+							</a>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="card-action" style="padding-left: 5px;">
+					<!-- Remove button -->
+					<div class="profile-game-btn delete">
+						<a href="#deleteGame{{loop.index}}--PlayLater" class="btn remove-btn modal-trigger"
+							style="margin-left: 0;">
+						<i class="material-icons  btn-icon-left">delete</i>
+						Remove Game
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Medium screens and down -->
+		<div class="card smaller hide-on-large-only">
+			<div class="card-image profile-game-img">
+				<a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
+				<img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+				</a>
+			</div>
+			<div class="card-content">
+				<div class="card-title">
+					<span>
+					<a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+					{{ game.game_title }}
+					</a>
+					</span>
+				</div>
+				<!-- Play buttons-->
+				<div class="row play-btns">
+					<!-- Move to playing -->
+					<div class="col s4 profile-game-btn">
+						<form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
+							<button type="submit" class="btn-large">
+							<i class="material-icons btn-icon-left">videogame_asset</i>
+							<span>Playing</span>
+							</button>
+						</form>
+					</div>
+					<!-- Move to completed -->
+					<div class="col s4 profile-game-btn">
+						<form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
+							<button type="submit" class="btn-large">
+							<i class="fas fa-check-circle"></i>
+							<span>Completed</span>
+							</button>
+						</form>
+					</div>
+				</div>
+				<!-- Links and Review -->
+				<div class="row links-and-review">
+					<!-- Link -->
+					<div class="col s4 profile-game-btn">
+						<a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks2{{loop.index}}-2">
+						<i class="material-icons btn-icon-left">http</i>
+						<span>Links</span>
+						<i class="material-icons btn-icon-right">arrow_drop_down</i>
+						</a>
+					</div>
+					<!-- Review -->
+					{% for match in matches if match == game.game_title %}
+					<div class="col s4 profile-game-btn btn-large reviewed">
+						<i class="material-icons btn-icon-left">thumb_up</i>
+						<span>Reviewed</span>
+						<a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
+							class="btn grow">
+						<i class="fas fa-pen-square"></i>
+						</a>
+					</div>
+					{% else %}
+					<div class="col s4 profile-game-btn">
+						<a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
+						<i class="fas fa-pen-alt"></i>
+						<span>Review</span>
+						</a>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="card-action">
+				<!-- Remove button -->
+				<div class="profile-game-btn delete" style="margin-left: 30px;">
+					<a href="#deleteGame{{loop.index}}--PlayLater" class="btn remove-btn modal-trigger"
+						style="margin-left: 0;">
+					<i class="material-icons  btn-icon-left">delete</i>
+					Remove Game
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- Links dropdown -->
+		<ul class="dropdown-content profile-dropdown-links" id="profileGameLinks2{{loop.index}}">
+			<li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+			{% if game.website != None %}
+			<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>
+			{% endif
+			%}
+			{% if game.update_history != None %}
+			<li><a href="{{ game.update_history }}" target="_blank">View Update
+				History</a>
+			</li>
+			{% endif %}
+			{% if game.related_news != None %}
+			<li><a href="{{ game.related_news }}" target="_blank">Read Related
+				News</a>
+			</li>
+			{% endif %}
+			{% if game.discussions != None %}
+			<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
+			</li>
+			{% endif %}
+			{% if game.community != None %}
+			<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
+			</li>
+			{% endif %}
+		</ul>
+		<ul class="dropdown-content profile-dropdown-links" id="profileGameLinks2{{loop.index}}-2">
+			<li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+			{% if game.website != None %}
+			<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>
+			{% endif
+			%}
+			{% if game.update_history != None %}
+			<li><a href="{{ game.update_history }}" target="_blank">View Update
+				History</a>
+			</li>
+			{% endif %}
+			{% if game.related_news != None %}
+			<li><a href="{{ game.related_news }}" target="_blank">Read Related
+				News</a>
+			</li>
+			{% endif %}
+			{% if game.discussions != None %}
+			<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
+			</li>
+			{% endif %}
+			{% if game.community != None %}
+			<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
+			</li>
+			{% endif %}
+		</ul>
+		<!-- Modal warning -->
+		<div id="deleteGame{{loop.index}}--PlayLater" class="modal center-align delete-review">
+			<div class="modal-content">
+				<h5><span>warning</span></h5>
+				<h4>Are You Sure You Want to Remove <span style="font-family: 'BlenderPro-Thin';">{{ game.game_title
+					}}</span> from your Games List?
+				</h4>
+				<p>
+					This will not effect your reviews and/or game likes in any way.
+				</p>
+			</div>
+			<div class="modal-footer center-align">
+				<a href="{{ url_for('remove_game', game_id=game._id) }}" class="modal-close btn-flat"
+					id="deleteReview">Yes,
+				Delete</a>
+				<a href="#!" class="modal-close btn-flat">Cancel</a>
+			</div>
+		</div>
+		{% else %}
+		<h6 class="center-align no-games">No games have been added to this section</h6>
+		{% endfor %}
+	</div>
+	<!-- Completed -->
+	<div class="row card-panel profile-card-header">
+		<div class="col s12">
+			<h6>Completed</h6>
+		</div>
+	</div>
+	<div class="row card-panel profile-card-inner">
+		{% for game in games_completed if game.username == session.user %}
+		<!-- Large screens only -->
+		<div class="card horizontal hide-on-med-and-down">
+			<div class="card-image profile-game-img">
+				<a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
+				<img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+				</a>
+			</div>
+			<div class="card-stacked">
+				<!-- Game details -->
+				<div class="card-content">
+					<!-- Game title -->
+					<div class="card-title white-text">
+						<span>
+						<a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}" class="white-text">
+						{{ game.game_title }}
+						</a>
+						</span>
+					</div>
+					<!-- Play buttons-->
+					<div class="row">
+						<!-- Move to playing -->
+						<div class="col s4 profile-game-btn">
+							<form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
+								<button type="submit" class="btn-large">
+								<i class="material-icons btn-icon-left">videogame_asset</i>
+								<span>Playing</span>
+								</button>
+							</form>
+						</div>
+						<!-- Move to player later -->
+						<div class="col s4 profile-game-btn">
+							<form method="POST" action="{{ url_for('game_to_next', game_id=game._id) }}">
+								<button type="submit" class="btn-large">
+								<i class="material-icons btn-icon-left">queue_play_next</i>
+								<span>Play Later</span>
+								</button>
+							</form>
+						</div>
+					</div>
+					<!-- Links and Review -->
+					<div class="row">
+						<!-- Link -->
+						<div class="col s4 profile-game-btn">
+							<a href="#" class="btn-large dropdown-trigger"
+								data-target="profileGameLinks3{{loop.index}}">
+							<i class="material-icons btn-icon-left">http</i>
+							<span>Links</span>
+							<i class="material-icons btn-icon-right">arrow_drop_down</i>
+							</a>
+						</div>
+						<!-- Review -->
+						{% for match in matches if match == game.game_title %}
+						<div class="col s4 profile-game-btn btn-large reviewed">
+							<i class="material-icons btn-icon-left">thumb_up</i>
+							<span>Reviewed</span>
+							<a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
+								class="btn grow">
+							<i class="fas fa-pen-square"></i>
+							</a>
+						</div>
+						{% else %}
+						<div class="col s4 profile-game-btn">
+							<a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
+							<i class="fas fa-pen-alt"></i>
+							<span>Review</span>
+							</a>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="card-action" style="padding-left: 5px;">
+					<!-- Remove button -->
+					<div class="profile-game-btn delete">
+						<a href="#deleteGame{{loop.index}}--Completed" class="btn remove-btn modal-trigger"
+							style="margin-left: 0;">
+						<i class="material-icons  btn-icon-left">delete</i>
+						Remove Game
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Medium screens and down -->
+		<div class="card smaller hide-on-large-only">
+			<div class="card-image profile-game-img">
+				<a href="{{ url_for('see_game_reviews', game_id=game.game_title) }}">
+				<img src="{{ game.game_img_full }}" alt="Image for {{ game.game_title }}">
+				</a>
+			</div>
+			<div class="card-content">
+				<div class="card-title">
+					<span>
+					<a href="{{ url_for('see_game_reviews', game_id=game._id) }}" class="white-text">
+					{{ game.game_title }}
+					</a>
+					</span>
+				</div>
+				<!-- Play buttons-->
+				<div class="row play-btns">
+					<!-- Move to playing -->
+					<div class="col s4 profile-game-btn">
+						<form method="POST" action="{{ url_for('game_to_playing', game_id=game._id) }}">
+							<button type="submit" class="btn-large">
+							<i class="material-icons btn-icon-left">videogame_asset</i>
+							<span>Playing</span>
+							</button>
+						</form>
+					</div>
+					<!-- Move to completed -->
+					<div class="col s4 profile-game-btn">
+						<form method="POST" action="{{ url_for('game_to_completed', game_id=game._id) }}">
+							<button type="submit" class="btn-large">
+							<i class="fas fa-check-circle"></i>
+							<span>Completed</span>
+							</button>
+						</form>
+					</div>
+				</div>
+				<!-- Links and Review -->
+				<div class="row links-and-review">
+					<!-- Link -->
+					<div class="col s4 profile-game-btn">
+						<a href="#" class="btn-large dropdown-trigger" data-target="profileGameLinks3{{loop.index}}-2">
+						<i class="material-icons btn-icon-left">http</i>
+						<span>Links</span>
+						<i class="material-icons btn-icon-right">arrow_drop_down</i>
+						</a>
+					</div>
+					<!-- Review -->
+					{% for match in matches if match == game.game_title %}
+					<div class="col s4 profile-game-btn btn-large reviewed">
+						<i class="material-icons btn-icon-left">thumb_up</i>
+						<span>Reviewed</span>
+						<a href="{{ url_for('edit_review', username=game.username, review_id=game.game_title) }}"
+							class="btn grow">
+						<i class="fas fa-pen-square"></i>
+						</a>
+					</div>
+					{% else %}
+					<div class="col s4 profile-game-btn">
+						<a href="{{ url_for('submit_review', game_id=game._id) }}" class="btn-large">
+						<i class="fas fa-pen-alt"></i>
+						<span>Review</span>
+						</a>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="card-action">
+				<!-- Remove button -->
+				<div class="profile-game-btn delete" style="margin-left: 30px;">
+					<a href="#deleteGame{{loop.index}}--Completed" class="btn remove-btn modal-trigger"
+						style="margin-left: 0;">
+					<i class="material-icons  btn-icon-left">delete</i>
+					Remove Game
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- Links dropdown -->
+		<ul class="dropdown-content profile-dropdown-links" id="profileGameLinks3{{loop.index}}">
+			<li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+			{% if game.website != None %}
+			<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>
+			{% endif
+			%}
+			{% if game.update_history != None %}
+			<li><a href="{{ game.update_history }}" target="_blank">View Update
+				History</a>
+			</li>
+			{% endif %}
+			{% if game.related_news != None %}
+			<li><a href="{{ game.related_news }}" target="_blank">Read Related
+				News</a>
+			</li>
+			{% endif %}
+			{% if game.discussions != None %}
+			<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
+			</li>
+			{% endif %}
+			{% if game.community != None %}
+			<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
+			</li>
+			{% endif %}
+		</ul>
+		<ul class="dropdown-content profile-dropdown-links" id="profileGameLinks3{{loop.index}}-2">
+			<li><a href="{{ game.game_link }}" target="_blank">Visit Steam Store Page</a></li>
+			{% if game.website != None %}
+			<li><a href="{{ game.website }}" target="_blank">Visit Website</a></li>
+			{% endif
+			%}
+			{% if game.update_history != None %}
+			<li><a href="{{ game.update_history }}" target="_blank">View Update
+				History</a>
+			</li>
+			{% endif %}
+			{% if game.related_news != None %}
+			<li><a href="{{ game.related_news }}" target="_blank">Read Related
+				News</a>
+			</li>
+			{% endif %}
+			{% if game.discussions != None %}
+			<li><a href="{{ game.discussions }}" target="_blank">View Discussons</a>
+			</li>
+			{% endif %}
+			{% if game.community != None %}
+			<li><a href="{{ game.community }}" target="_blank">Find Community Groups</a>
+			</li>
+			{% endif %}
+		</ul>
+		<!-- Modal warning -->
+		<div id="deleteGame{{loop.index}}--Completed" class="modal center-align delete-review">
+			<div class="modal-content">
+				<h5><span>warning</span></h5>
+				<h4>Are You Sure You Want to Remove <span style="font-family: 'BlenderPro-Thin';">{{ game.game_title
+					}}</span> from your Games List?
+				</h4>
+				<p>
+					This will not effect your reviews and/or game likes in any way.
+				</p>
+			</div>
+			<div class="modal-footer center-align">
+				<a href="{{ url_for('remove_game', game_id=game._id) }}" class="modal-close btn-flat"
+					id="deleteReview">Yes,
+				Delete</a>
+				<a href="#!" class="modal-close btn-flat">Cancel</a>
+			</div>
+		</div>
+		{% else %}
+		<h6 class="center-align no-games">No games have been added to this section</h6>
+		{% endfor %}
+	</div>
 </section>
 {% endblock %}

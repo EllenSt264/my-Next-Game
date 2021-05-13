@@ -2,121 +2,119 @@
 {% block edit_profile_content %}
 <!-- Outer card -->
 <div class="settings-title" style="margin-left: 10px;">
-    <h3>General Settings</h3>
-    <p>Manage your account details, such as your display name and email</p>
+	<h3>General Settings</h3>
+	<p>Manage your account details, such as your display name and email</p>
 </div>
-
 <div class="card-panel py-5" style="background-color: #210d35;" id="generalSettings-card">
-    <form action="{{ url_for('edit_profile', username=session['user'], user=user) }}" method="POST"
-        id="edit-profile--general">
-        <!-- Account Information-->
-        <!-- Title -->
-        <h4>Account Information</h4>
-        <p>Manage your account display name and email. The display name will be displayed to others instead of your
-            username. Your username, which you registered with, will remain the same.</p>
-        <!-- ID -->
-        <div class="user-id py-5">
-            <h6>
-                <strong>ID:</strong>
-                <span>{{ user._id }}</span>
-            </h6>
-        </div>
-        <!-- Form inputs -->
-        <div class="row py-5">
-            <div class="col s12">
-                <div class="row">
-                    <div class="col s12">
-                        <div class="col s12 m10 input-field input-field--displayName">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input id="edit-displayName" name="edit-displayName" type="text" class="validate" {% if
-                                user.display_name is none %} value="{{ user.username }}" {% else %}
-                                value="{{ user.display_name }}" {% endif %} disabled required>
-                            <label for="edit-displayName">Display Name</label>
-                        </div>
-                        <div class="valign-wrapper col s12 m2">
-                            <button type="button" id="allow-edit--displayName" class="btn allow-input-btn">
-                                Edit
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col s12">
-                        <div class="col s12 m10 input-field input-field--email">
-                            <i class="material-icons prefix">email</i>
-                            <input id="edit-email" name="edit-email" type="email" class="validate"
-                                value="{{ user.email }}" disabled required>
-                            <label for="edit-email">Email Address</label>
-                        </div>
-                        <div class="valign-wrapper col s12 m2">
-                            <button type="button" id="allow-edit--email" class="btn allow-input-btn">
-                                Edit
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Personal Details -->
-        <!-- Title -->
-        <h4>Personal Details</h4>
-        <p>We respect your right to privacy. Your personal details are private and will not be displayed to other users.
-        </p>
-        <!-- Form inputs -->
-        <div class="row py-5">
-            <div class="col s12">
-                <div class="row">
-                    <div class="col s12 l6">
-                        <div class="col s12 m10 input-field input-field--fname">
-                            <input id="edit-fname" name="edit-fname" type="text" class="validate" {% if user.first_name
-                                is not none %} value="{{ user.first_name|capitalize }}" {% endif %} disabled>
-                            <label for="edit-fname" id="edit-fname--label">First Name</label>
-                        </div>
-                        <div class="valign-wrapper col s12 m2">
-                            <button type="button" id="allow-edit--fname" class="btn allow-input-btn">
-                                Edit
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col s12 l6">
-                        <div class="col s12 m10 input-field input-field--lname">
-                            <input id="edit-lname" name="edit-lname" type="text" class="validate" {% if user.last_name
-                                is not none %} value="{{ user.last_name|capitalize }}" {% endif %} disabled>
-                            <label for="edit-lname">Last Name</label>
-                        </div>
-                        <div class="valign-wrapper col s12 m2">
-                            <button type="button" id="allow-edit--lname" class="btn allow-input-btn">
-                                Edit
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row py-5">
-            <div class="col s6 m4 l3">
-                <button type="button" id="reset-edits" class="btn">Cancel</button>
-            </div>
-            <div class="col s6 m4 l3">
-                <a href="#passwordRequest-modal" class="btn modal-trigger">Save Changes</a>
-            </div>
-        </div>
-
-        <!-- Modal password request -->
-        <div id="passwordRequest-modal" class="modal center-align profile-edit-modal">
-            <div class="modal-content">
-                <h5>Please confirm your <span>password</span> to save these changes</h5>
-                <!-- Password -->
-                <div class="row py-5">
-                    <div class="input-field col s10 offset-s1 l6 offset-l3">
-                        <input id="password" name="password" type="password" class="validate" required>
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                <div class="modal-footer center-align">
-                    <a href="#!" class="modal-close btn-flat">Cancel</a>
-                    <button type="submit" class="btn" id="saveChanges">Save Changes</button>
-                </div>
-            </div>
-
-    </form>
+<form action="{{ url_for('edit_profile', username=session['user'], user=user) }}" method="POST"
+	id="edit-profile--general">
+	<!-- Account Information-->
+	<!-- Title -->
+	<h4>Account Information</h4>
+	<p>Manage your account display name and email. The display name will be displayed to others instead of your
+		username. Your username, which you registered with, will remain the same.
+	</p>
+	<!-- ID -->
+	<div class="user-id py-5">
+		<h6>
+			<strong>ID:</strong>
+			<span>{{ user._id }}</span>
+		</h6>
+	</div>
+	<!-- Form inputs -->
+	<div class="row py-5">
+		<div class="col s12">
+			<div class="row">
+				<div class="col s12">
+					<div class="col s12 m10 input-field input-field--displayName">
+						<i class="material-icons prefix">account_circle</i>
+						<input id="edit-displayName" name="edit-displayName" type="text" class="validate" {% if
+						user.display_name is none %} value="{{ user.username }}" {% else %}
+						value="{{ user.display_name }}" {% endif %} disabled required>
+						<label for="edit-displayName">Display Name</label>
+					</div>
+					<div class="valign-wrapper col s12 m2">
+						<button type="button" id="allow-edit--displayName" class="btn allow-input-btn">
+						Edit
+						</button>
+					</div>
+				</div>
+				<div class="col s12">
+					<div class="col s12 m10 input-field input-field--email">
+						<i class="material-icons prefix">email</i>
+						<input id="edit-email" name="edit-email" type="email" class="validate"
+							value="{{ user.email }}" disabled required>
+						<label for="edit-email">Email Address</label>
+					</div>
+					<div class="valign-wrapper col s12 m2">
+						<button type="button" id="allow-edit--email" class="btn allow-input-btn">
+						Edit
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Personal Details -->
+	<!-- Title -->
+	<h4>Personal Details</h4>
+	<p>We respect your right to privacy. Your personal details are private and will not be displayed to other users.
+	</p>
+	<!-- Form inputs -->
+	<div class="row py-5">
+		<div class="col s12">
+			<div class="row">
+				<div class="col s12 l6">
+					<div class="col s12 m10 input-field input-field--fname">
+						<input id="edit-fname" name="edit-fname" type="text" class="validate" {% if user.first_name
+						is not none %} value="{{ user.first_name|capitalize }}" {% endif %} disabled>
+						<label for="edit-fname" id="edit-fname--label">First Name</label>
+					</div>
+					<div class="valign-wrapper col s12 m2">
+						<button type="button" id="allow-edit--fname" class="btn allow-input-btn">
+						Edit
+						</button>
+					</div>
+				</div>
+				<div class="col s12 l6">
+					<div class="col s12 m10 input-field input-field--lname">
+						<input id="edit-lname" name="edit-lname" type="text" class="validate" {% if user.last_name
+						is not none %} value="{{ user.last_name|capitalize }}" {% endif %} disabled>
+						<label for="edit-lname">Last Name</label>
+					</div>
+					<div class="valign-wrapper col s12 m2">
+						<button type="button" id="allow-edit--lname" class="btn allow-input-btn">
+						Edit
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row py-5">
+		<div class="col s6 m4 l3">
+			<button type="button" id="reset-edits" class="btn">Cancel</button>
+		</div>
+		<div class="col s6 m4 l3">
+			<a href="#passwordRequest-modal" class="btn modal-trigger">Save Changes</a>
+		</div>
+	</div>
+	<!-- Modal password request -->
+	<div id="passwordRequest-modal" class="modal center-align profile-edit-modal">
+		<div class="modal-content">
+			<h5>Please confirm your <span>password</span> to save these changes</h5>
+			<!-- Password -->
+			<div class="row py-5">
+				<div class="input-field col s10 offset-s1 l6 offset-l3">
+					<input id="password" name="password" type="password" class="validate" required>
+					<label for="password">Password</label>
+				</div>
+			</div>
+			<div class="modal-footer center-align">
+				<a href="#!" class="modal-close btn-flat">Cancel</a>
+				<button type="submit" class="btn" id="saveChanges">Save Changes</button>
+			</div>
+		</div>
+</form>
 </div>
 {% endblock %}

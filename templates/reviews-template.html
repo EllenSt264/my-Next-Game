@@ -3,203 +3,186 @@
 <!-- Carousel -->
 {% if game_img != None %}
 <div class="py-5 center">
-    <!-- Carousel item 1 -->
-    <div class="carousel-item white-text" style="padding: 40px 25px 25px;">
-        <a href="#!">
-            <img src="{{ game_img }}" alt="carousel image" class="glow2">
-        </a>
-        <h2>{{ game_title }}</h2>
-        <p class="white-text">{{ game_tags[:3]|join(', ') }}</p>
-    </div>
+	<!-- Carousel item 1 -->
+	<div class="carousel-item white-text" style="padding: 40px 25px 25px;">
+		<a href="#!">
+		<img src="{{ game_img }}" alt="carousel image" class="glow2">
+		</a>
+		<h2>{{ game_title }}</h2>
+		<p class="white-text">{{ game_tags[:3]|join(', ') }}</p>
+	</div>
 </div>
 {% else %}
 <div class="carousel carousel-slider center">
-    <!-- Next -->
-    <div class="carousel-fixed-item" id="carousel-next">
-        <a class="white-text"><i class="material-icons">navigate_next</i></a>
-    </div>
-    <!-- Prev -->
-    <div class="carousel-fixed-item" id="carousel-prev">
-        <a class="white-text"><i class="material-icons">navigate_before</i></a>
-    </div>
-    <!-- Carousel item 1 -->
-    <div class="carousel-item white-text" href="#">
-        <a href="{{ url_for('see_game_reviews', game_id=rand_game_1._id) }}">
-            <img src="{{ rand_game_1.game_img_full }}" alt="carousel image" class="glow2">
-        </a>
-        <h2>{{ rand_game_1.game_title }}</h2>
-        <p class="white-text">{{ rand_game_1.game_top_tags[:3]|join(', ') }}</p>
-    </div>
-    <!-- Carousel item 2 -->
-    <div class="carousel-item white-text" href="#">
-        <a href="{{ url_for('see_game_reviews', game_id=rand_game_2._id) }}">
-            <img src="{{ rand_game_2.game_img_full }}" alt="carousel image" class="glow2">
-        </a>
-        <h2>{{ rand_game_2.game_title }}</h2>
-        <p class="white-text">{{ rand_game_2.game_top_tags[:3]|join(', ') }}</p>
-    </div>
-    <!-- Carousel item 3 -->
-    <div class="carousel-item white-text" href="#">
-        <a href="{{ url_for('see_game_reviews', game_id=rand_game_3._id) }}">
-            <img src="{{ rand_game_3.game_img_full }}" alt="carousel image" class="glow2">
-        </a>
-        <h2>{{ rand_game_3.game_title }}</h2>
-        <p class="white-text">{{ rand_game_3.game_top_tags[:3]|join(', ') }}</p>
-    </div>
+	<!-- Next -->
+	<div class="carousel-fixed-item" id="carousel-next">
+		<a class="white-text"><i class="material-icons">navigate_next</i></a>
+	</div>
+	<!-- Prev -->
+	<div class="carousel-fixed-item" id="carousel-prev">
+		<a class="white-text"><i class="material-icons">navigate_before</i></a>
+	</div>
+	<!-- Carousel item 1 -->
+	<div class="carousel-item white-text" href="#">
+		<a href="{{ url_for('see_game_reviews', game_id=rand_game_1._id) }}">
+		<img src="{{ rand_game_1.game_img_full }}" alt="carousel image" class="glow2">
+		</a>
+		<h2>{{ rand_game_1.game_title }}</h2>
+		<p class="white-text">{{ rand_game_1.game_top_tags[:3]|join(', ') }}</p>
+	</div>
+	<!-- Carousel item 2 -->
+	<div class="carousel-item white-text" href="#">
+		<a href="{{ url_for('see_game_reviews', game_id=rand_game_2._id) }}">
+		<img src="{{ rand_game_2.game_img_full }}" alt="carousel image" class="glow2">
+		</a>
+		<h2>{{ rand_game_2.game_title }}</h2>
+		<p class="white-text">{{ rand_game_2.game_top_tags[:3]|join(', ') }}</p>
+	</div>
+	<!-- Carousel item 3 -->
+	<div class="carousel-item white-text" href="#">
+		<a href="{{ url_for('see_game_reviews', game_id=rand_game_3._id) }}">
+		<img src="{{ rand_game_3.game_img_full }}" alt="carousel image" class="glow2">
+		</a>
+		<h2>{{ rand_game_3.game_title }}</h2>
+		<p class="white-text">{{ rand_game_3.game_top_tags[:3]|join(', ') }}</p>
+	</div>
 </div>
 {% endif %}
-
 <!-- Secondary Navbar -->
 <section class="py-5">
-    <nav class="secondary-nav">
-
-        <!-- Hamburger icon -->
-        <a href="#" data-target="secondary-sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-
-        <!-- Collapsible -->
-        <ul class="collapsible">
-
-            <div class="hide-on-med-and-down">
-
-                <!-- Platform -->
-                <li id="PlatformLink">
-                    <div class="fixed-action-btn click-to-toggle">
-                        <a class="standard-link">Platform</a>
-                        <ul class="floating-nav">
-                            <div class="items">
-                                <li class="tab"><a href="{{ url_for('pc_reviews') }}">PC</a></li>
-                                <li class="tab"><a href="{{ url_for('xbox_reviews') }}">XBOX</a></li>
-                                <li class="tab"><a href="{{ url_for('playstation_reviews') }}">Playstation</a></li>
-                                <li class="tab"><a href="{{ url_for('nintendo_reviews') }}">Nintendo</a></li>
-                            </div>
-                        </ul>
-                    </div>
-                </li>
-
-                <!-- Genre -->
-                <li id="GenreLink">
-                    <div class="fixed-action-btn click-to-toggle">
-                        <a class="standard-link">Genre</a>
-                        <ul class="floating-nav">
-                            <div class="items">
-                                <li class="tab"><a href="{{ url_for('action_reviews') }}">Action</a></li>
-                                <li class="tab"><a href="{{ url_for('adventure_reviews') }}">Adventure</a></li>
-                                <li class="tab"><a href="{{ url_for('rpg_reviews') }}">RPG</a></li>
-                                <li class="tab"><a href="{{ url_for('strategy_reviews') }}">Strategy</a></li>
-                                <li class="tab"><a href="{{ url_for('multiplayer_reviews') }}">Multiplayer</a></li>
-                            </div>
-                        </ul>
-                    </div>
-                </li>
-
-            </div>
-
-            <!-- Search bar -->
-
-            <!-- Search bar -->
-            <li class="right" id="secondary-nav-searchbar">
-                <form action="{{ url_for('get_review_query') }}" method="POST" id="searchbar">
-                    <div class="input-field">
-                        <input id="review-search" name="review-search" type="text" class="autocomplete"
-                            placeholder="Search for review">
-                        <button type="submit"><i class="fas fa-search"></i></button>
-                    </div>
-                </form>
-            </li>
-
-            <!-- All games link -->
-            <div class="nav-content my-nav-extend">
-                <ul class="tabs">
-                    <li class="tab"><a href="{{ url_for('all_reviews') }}">All reviews</a></li>
-                </ul>
-            </div>
-
-        </ul>
-
-    </nav>
-
-    <!-- Mobile side nav -->
-    <ul class="sidenav" id="secondary-sidenav">
-        <li><a href="#!" class="sidenav-close right"><i class="material-icons white-text"
-                    style="margin: 0;">close</i></a></li>
-        <li><a href="{{ url_for('all_reviews') }}">All Reviews</a></li>
-        <li class="tab"><a href="{{ url_for('pc_reviews') }}">PC</a></li>
-        <li class="tab"><a href="{{ url_for('xbox_reviews') }}">XBOX</a></li>
-        <li class="tab"><a href="{{ url_for('playstation_reviews') }}">Playstation</a></li>
-        <li class="tab"><a href="{{ url_for('nintendo_reviews') }}">Nintendo</a></li>
-        <li><a href="{{ url_for('action_reviews') }}">Action</a></li>
-        <li><a href="{{ url_for('adventure_reviews') }}">Adventure</a></li>
-        <li><a href="{{ url_for('rpg_reviews') }}">RPG</a></li>
-        <li><a href="{{ url_for('strategy_reviews') }}">Strategy</a></li>
-        <li><a href="{{ url_for('multiplayer_reviews') }}">Multiplayer</a></li>
-    </ul>
+	<nav class="secondary-nav">
+		<!-- Hamburger icon -->
+		<a href="#" data-target="secondary-sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+		<!-- Collapsible -->
+		<ul class="collapsible">
+			<div class="hide-on-med-and-down">
+				<!-- Platform -->
+				<li id="PlatformLink">
+					<div class="fixed-action-btn click-to-toggle">
+						<a class="standard-link">Platform</a>
+						<ul class="floating-nav">
+							<div class="items">
+								<li class="tab"><a href="{{ url_for('pc_reviews') }}">PC</a></li>
+								<li class="tab"><a href="{{ url_for('xbox_reviews') }}">XBOX</a></li>
+								<li class="tab"><a href="{{ url_for('playstation_reviews') }}">Playstation</a></li>
+								<li class="tab"><a href="{{ url_for('nintendo_reviews') }}">Nintendo</a></li>
+							</div>
+						</ul>
+					</div>
+				</li>
+				<!-- Genre -->
+				<li id="GenreLink">
+					<div class="fixed-action-btn click-to-toggle">
+						<a class="standard-link">Genre</a>
+						<ul class="floating-nav">
+							<div class="items">
+								<li class="tab"><a href="{{ url_for('action_reviews') }}">Action</a></li>
+								<li class="tab"><a href="{{ url_for('adventure_reviews') }}">Adventure</a></li>
+								<li class="tab"><a href="{{ url_for('rpg_reviews') }}">RPG</a></li>
+								<li class="tab"><a href="{{ url_for('strategy_reviews') }}">Strategy</a></li>
+								<li class="tab"><a href="{{ url_for('multiplayer_reviews') }}">Multiplayer</a></li>
+							</div>
+						</ul>
+					</div>
+				</li>
+			</div>
+			<!-- Search bar -->
+			<!-- Search bar -->
+			<li class="right" id="secondary-nav-searchbar">
+				<form action="{{ url_for('get_review_query') }}" method="POST" id="searchbar">
+					<div class="input-field">
+						<input id="review-search" name="review-search" type="text" class="autocomplete"
+							placeholder="Search for review">
+						<button type="submit"><i class="fas fa-search"></i></button>
+					</div>
+				</form>
+			</li>
+			<!-- All games link -->
+			<div class="nav-content my-nav-extend">
+				<ul class="tabs">
+					<li class="tab"><a href="{{ url_for('all_reviews') }}">All reviews</a></li>
+				</ul>
+			</div>
+		</ul>
+	</nav>
+	<!-- Mobile side nav -->
+	<ul class="sidenav" id="secondary-sidenav">
+		<li><a href="#!" class="sidenav-close right"><i class="material-icons white-text"
+			style="margin: 0;">close</i></a></li>
+		<li><a href="{{ url_for('all_reviews') }}">All Reviews</a></li>
+		<li class="tab"><a href="{{ url_for('pc_reviews') }}">PC</a></li>
+		<li class="tab"><a href="{{ url_for('xbox_reviews') }}">XBOX</a></li>
+		<li class="tab"><a href="{{ url_for('playstation_reviews') }}">Playstation</a></li>
+		<li class="tab"><a href="{{ url_for('nintendo_reviews') }}">Nintendo</a></li>
+		<li><a href="{{ url_for('action_reviews') }}">Action</a></li>
+		<li><a href="{{ url_for('adventure_reviews') }}">Adventure</a></li>
+		<li><a href="{{ url_for('rpg_reviews') }}">RPG</a></li>
+		<li><a href="{{ url_for('strategy_reviews') }}">Strategy</a></li>
+		<li><a href="{{ url_for('multiplayer_reviews') }}">Multiplayer</a></li>
+	</ul>
 </section>
-
 <!-- Sort nav and pagination -->
 <section id="sort-and-pagination-nav">
-    <div class="row">
-        <!-- Pagination -->
-        <div class="col s12 m6">
-            <div class="pagination-top">
-                <ul class="pagination">
-                    {{ pagination.links }}
-                </ul>
-            </div>
-        </div>
-        <!-- Sort by features -->
-        <div class="col s12 m6">
-            <form action="{{ url_for('set_review_cookies') }}" method="POST" class="right">
-                <ul class="tabs tabs-transparent" id="sortNav">
-                    <li class="tab">
-                        <label class="white-text" id="reviews-sortBy-label">Sort By</label>
-                        <select class="browser-default" name="reviewSort1" id="reviewSort1" value="{{ reviewSort1 }}">
-                            <option value="date" {% if reviewSort1=="date" %} selected="selected" {% endif %}>Date Added
-                            </option>
-                            <option value="title" {% if reviewSort1=="title" %} selected="selected" {% endif %}>Title
-                            </option>
-                            <option value="positive" {% if reviewSort1=="positive" %} selected="selected" {% endif %}>
-                                Positive</option>
-                            <option value="negative" {% if reviewSort1=="negative" %} selected="selected" {% endif %}>
-                                Negative</option>
-                        </select>
-                    </li>
-                    <li class="tab">
-                        <label class="white-text" id="reviews-order-label">Order</label>
-                        <select class="browser-default" name="reviewSort2" id="reviewSort2" value="{{ reviewSort2 }}">
-                            <option value="asc" {% if reviewSort2=="asc" %} selected="selected" {% endif %}>Asc</option>
-                            <option value="desc" {% if reviewSort2=="desc" %} selected="selected" {% endif %}>Desc
-                            </option>
-                        </select>
-                    </li>
-                    <li class="tab">
-                        <button type="submit" class="btn" id="filterBtn">Filter <span>Results</span></button>
-                    </li>
-                </ul>
-            </form>
-        </div>
-    </div>
+	<div class="row">
+		<!-- Pagination -->
+		<div class="col s12 m6">
+			<div class="pagination-top">
+				<ul class="pagination">
+					{{ pagination.links }}
+				</ul>
+			</div>
+		</div>
+		<!-- Sort by features -->
+		<div class="col s12 m6">
+			<form action="{{ url_for('set_review_cookies') }}" method="POST" class="right">
+				<ul class="tabs tabs-transparent" id="sortNav">
+					<li class="tab">
+						<label class="white-text" id="reviews-sortBy-label">Sort By</label>
+						<select class="browser-default" name="reviewSort1" id="reviewSort1" value="{{ reviewSort1 }}">
+						<option value="date" {% if reviewSort1=="date" %} selected="selected" {% endif %}>Date Added
+						</option>
+						<option value="title" {% if reviewSort1=="title" %} selected="selected" {% endif %}>Title
+						</option>
+						<option value="positive" {% if reviewSort1=="positive" %} selected="selected" {% endif %}>
+						Positive</option>
+						<option value="negative" {% if reviewSort1=="negative" %} selected="selected" {% endif %}>
+						Negative</option>
+						</select>
+					</li>
+					<li class="tab">
+						<label class="white-text" id="reviews-order-label">Order</label>
+						<select class="browser-default" name="reviewSort2" id="reviewSort2" value="{{ reviewSort2 }}">
+						<option value="asc" {% if reviewSort2=="asc" %} selected="selected" {% endif %}>Asc</option>
+						<option value="desc" {% if reviewSort2=="desc" %} selected="selected" {% endif %}>Desc
+						</option>
+						</select>
+					</li>
+					<li class="tab">
+						<button type="submit" class="btn" id="filterBtn">Filter <span>Results</span></button>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
 </section>
-
 <!-- Games -->
 <main>
-    <!-- Review button -->
-    <section>
-        <div class="row">
-            <div class="col right leave-review-col">
-                <a href="{{ url_for('submit_review_without_game') }}" class="btn-large leave-review">Leave a Review</a>
-            </div>
-        </div>
-    </section>
-    <!-- Reviews -->
-    {% block reviews %}
-    {% endblock %}
+	<!-- Review button -->
+	<section>
+		<div class="row">
+			<div class="col right leave-review-col">
+				<a href="{{ url_for('submit_review_without_game') }}" class="btn-large leave-review">Leave a Review</a>
+			</div>
+		</div>
+	</section>
+	<!-- Reviews -->
+	{% block reviews %}
+	{% endblock %}
 </main>
-
 {% endblock %}
-
 {% block scripts %}
 <script>
-    var reviewData = {{ reviewData| tojson | safe}}
+	var reviewData = {{ reviewData| tojson | safe}}
 </script>
 <script src="{{ url_for('static', filename='js/autocomplete-review.js') }}"></script>
 {% endblock %}

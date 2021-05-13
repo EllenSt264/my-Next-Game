@@ -1,13 +1,13 @@
-$(document).ready(function () {
+$(document).ready(function() {
     /* Autocomplete */
     $('#review-query').autocomplete({
-        source: reviewData,   // Grabs game titles from data.js file
+        source: reviewData, // Grabs game titles from data.js file
         scroll: true,
-    // Highlight results on hover/focus
-    }).focus(function () {
+        // Highlight results on hover/focus
+    }).focus(function() {
         $(this).autocomplete("search", "");
         // Highlight input characters
-    }).data("ui-autocomplete")._renderItem = function (ul, item) {
+    }).data("ui-autocomplete")._renderItem = function(ul, item) {
         let txt = String(item.value).replace(new RegExp(this.term, "gi"), "<span class='highlight'>$&</span>");
         return $("<li></li>")
             .data("ui-autocomplete-item", item)

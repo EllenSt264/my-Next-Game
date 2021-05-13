@@ -1,54 +1,51 @@
 {% extends "base.html" %}
 {% block content %}
-
 <div class="row center-align request-form">
-    <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="{{ url_for('request_game') }}">
-        <!-- Outer card -->
-        <div class="card-panel form-outer-panel">
-            <!-- Inner card -->
-            <div class="card-panel form-inner-panel grey-text text-lighten-2">
-                <!-- Site logo -->
-                <div class="col s12 center-align">
-                    <img src="{{ url_for('static', filename='img/main/odin_logo.png')}}" alt="Site brand logo">
-                </div>
-                <!-- Form title -->
-                <h3 class="text-lighten-1 account-title py-5 center-align">Request A Game</h3>
-                <!-- Info text -->
-                <p>
-                    Please use the game's <strong>full title</strong> when
-                    requesting a game to be added to our database.
-                </p>
-                <!-- Input fields -->
-                <div class="card-panel input-panel">
-                    <!-- Game -->
-                    <div class="row">
-                        <div class="input-field col s10 offset-s1">
-                            <input id="game-request" name="game-request" type="text" class="validate" required>
-                            <label for="game-request">Game Request</label>
-                        </div>
-                    </div>
-                </div>
-                <!-- Submit -->
-                <div class="row center-align">
-                    <button type="submit" class="btn btn-large waves-effect waves-light modal-trigger">
-                        Request Game
-                    </button>
-                </div>
-                <!-- Disclaimer -->
-                <div class="row">
-                    <div class="col s12">
-                        <p style="font-size: 14px;">
-                            Please note we cannot guarantee that this game will be added, but we will try our best to
-                            fulfill your request when we can
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+	<form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="{{ url_for('request_game') }}">
+		<!-- Outer card -->
+		<div class="card-panel form-outer-panel">
+			<!-- Inner card -->
+			<div class="card-panel form-inner-panel grey-text text-lighten-2">
+				<!-- Site logo -->
+				<div class="col s12 center-align">
+					<img src="{{ url_for('static', filename='img/main/odin_logo.png')}}" alt="Site brand logo">
+				</div>
+				<!-- Form title -->
+				<h3 class="text-lighten-1 account-title py-5 center-align">Request A Game</h3>
+				<!-- Info text -->
+				<p>
+					Please use the game's <strong>full title</strong> when
+					requesting a game to be added to our database.
+				</p>
+				<!-- Input fields -->
+				<div class="card-panel input-panel">
+					<!-- Game -->
+					<div class="row">
+						<div class="input-field col s10 offset-s1">
+							<input id="game-request" name="game-request" type="text" class="validate" required>
+							<label for="game-request">Game Request</label>
+						</div>
+					</div>
+				</div>
+				<!-- Submit -->
+				<div class="row center-align">
+					<button type="submit" class="btn btn-large waves-effect waves-light modal-trigger">
+					Request Game
+					</button>
+				</div>
+				<!-- Disclaimer -->
+				<div class="row">
+					<div class="col s12">
+						<p style="font-size: 14px;">
+							Please note we cannot guarantee that this game will be added, but we will try our best to
+							fulfill your request when we can
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 </div>
-
 {% block modal %}
 {% endblock %}
-
 {% endblock %}
