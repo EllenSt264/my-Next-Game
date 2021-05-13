@@ -1342,6 +1342,18 @@ game_results = mongo.db.all_pc_games.find({"$or": [{"action": True}, {"game_top_
 To conclude, the python file for scraping web data from the [Steam Store]() is something that, although works how I want it, is still in need of some cleaning and tweaking. The code is repeated quite significantly, which can definitely be improved upon in the future.
 
 
+
+----
+
+## Accessibility 
+
+- All images imported via img tags in the HTML files have been given meaningful, clear and descriptive alt attributes to conform to accessibility guidelines.
+
+- Most of the font size is relatively large in order to cater for audiences who have difficulties with their vision.
+
+- Good colour contrast has been used throughout the project to ensure that all the content is readable.
+
+
 -----
 
 
