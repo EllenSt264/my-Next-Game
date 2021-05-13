@@ -670,6 +670,8 @@ After cache control:
 
 #### Request A Game
 
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
 |  1  | `Request A Game` when **not** logged in | Navigate to `Favourites` page and scroll down until you see the `Request A Game` button. Click it when you are **not** logged in | You should be directed to the `Log In` | Directed to `Log In` page | Pass |
 |  2  | `Request A Game` | Navigate to `Favourites` page and scroll down until you see the `Request A Game` button. Click it, ensuring that you **are** logged in. Request a game to be added to the database | It should navigate to the `Request A Game` page. After filling in all required fields it should redirect to the Homepage with your request submitted | It successfully navigates to the `Request A Game` page but submitting the form triggers a `TypeError` | Fail | See fix [here](#nonetype-error-for-request-a-game-form) |
 |  3  | `Request a game` to be added to the db | Navigate to the `Request A Game` page and search for a game, and request the game to be added to the db by clicking 'Yes, Request Game' once the modal opens | Inputting 'far cry 3' returns the the result 'Far Cry 3' in the modal. The game request is successfully added to the db after the button in the modal is clicked. The page redirects to the Homepage and displays a `flash message` that says 'Thanks! We've Submitted Your Request for "Far Cry 3"' | Pass |
