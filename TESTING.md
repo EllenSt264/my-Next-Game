@@ -4,6 +4,14 @@
 
 - [Automated Testing](#automated-testing)
 
+    - [W3C Markup Validation Service](#w3c-markup-validation-service)
+
+    - [W3C CSS Validation Service](#w3c-css-validation-service)
+
+    - [JSHint](#jshint)
+
+    - [PEP8](#pep8)
+
     - [Page Speed / Performance](#page-performance)
 
 - [Testing User Stories](#testing-user-stories)
@@ -67,6 +75,48 @@
 
 ## Automated Testing
 
+
+[W3C Markup Validation Service](https://validator.w3.org/), [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) and [JShint](https://jshint.com/) were used to validate the project's HTML, CSS and JS files.
+
+
+### W3C Markup Validation Service
+
+When first running my site through the validator, it picked up some errors:
+
+![W3C Markup Validation](static/img/documentation/html_validator-errors.png)
+
+However, after corrected the errors the validator produced no more errors or warnings:#
+
+![W3C Markup Validation](static/img/documentation/html_validator.png)
+
+
+### W3C CSS Validation Service
+
+Found no errors in my code.
+
+![CSS Validator screenshot](assets/img/main/css-validator.png)
+
+
+### JSHint
+
+JShint gave the following warnings in relation to the syntax of my code:
+
+- `'const' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).`
+
+- `'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).`
+
+- `'arrow function syntax (=>)' is only available in ES6 (use 'esversion: 6').`
+
+After deeming these warning undetrimental to the overall functionality of my project, I decided to ignore these warnings. 
+
+
+### PEP8
+
+All of the Python code was run through a [PEP8 validator](http://pep8online.com/checkresult). 
+
+Some issues relating to white space and too many lines were found but were promptly corrected.
+
+
 ### Page Performance
 
 I used [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) to measure the speed and performance of my website.
@@ -86,6 +136,9 @@ After cache control:
 |  Desktop  |  Mobile  |
 | --------- | -------- |
 | ![Google PageSpeed Insights - before cache control](static/img/documentation/pagespeed-cache_control-desktop-after.png) | ![Google PageSpeed Insights - after cache control](static/img/documentation/pagespeed-cache_control-mobile-after.png) |
+
+
+
 
 
 -----
@@ -522,6 +575,8 @@ After cache control:
 
 #### Navigation - Profile (Desktop)
 
+| No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
 |  1  | Navigate to `Profile - Reviews` page | When on the `Profile` page, click the `Reviews` button in the sidenav - to the right | It should direct to the `Profile - Reviews` page | Directs to `Profile - Reviews` page | Pass |
 |  2  | Navigate to `Profile - Games` page (default page for the Profile) | While still on the `Profile - Reviews` page, click the `Games` button in the sidenav | Direct to the `Profile - Games` page (the default page whenever the `Profile` navlink is clicked) | Directs to `Profile - Games` page | Pass |  
 |  3  | Navigate to `Edit Profile` page | When on the `Profile` page, click the `Edit Profile` button in the sidenav | Direct to `Edit Profile` page | Directs to `Edit Profile` page | Pass |      
