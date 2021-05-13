@@ -519,7 +519,7 @@ def admin_update_db():
     if session.get("user"):
         if session.get("admin") is True:
             # Grab game data for autocomplete function in navbar
-            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+            gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
             if request.method == "POST":
                 user = mongo.db.users.find_one({"username": session["user"]})
@@ -557,7 +557,7 @@ def admin_update_db():
                     flash("Details Invalid")
 
             return render_template(
-                "admin-update_db.html", navGameData=navGameData)
+                "admin-update_db.html", gameData=gameData)
 
         else:
             return redirect(url_for("home"))
