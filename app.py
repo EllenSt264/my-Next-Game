@@ -51,7 +51,8 @@ from dns.query import receive_udp
 import requests
 from bs4 import BeautifulSoup
 from flask import (
-    Flask, flash, render_template, redirect, request, session, url_for, make_response)
+    Flask, flash, render_template, redirect,
+    request, session, url_for, make_response)
 from flask_pymongo import PyMongo, pymongo
 from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
@@ -354,40 +355,40 @@ def admin_user_requests():
             cookie2 = request.cookies.get("userRequestsSort2")
 
             if cookie1 is None and cookie2 is None:
-                userRequestsSort1 = "user-count"
-                userRequestsSort2 = "desc"
+                request1 = "user-count"
+                request2 = "desc"
             else:
-                userRequestsSort1 = cookie1
-                userRequestsSort2 = cookie2
+                request1 = cookie1
+                request2 = cookie2
 
-            if userRequestsSort1 == "title" and userRequestsSort2 == "desc":
+            if request1 == "title" and request2 == "desc":
                 user_requests.sort("game_request", pymongo.DESCENDING)
 
-            elif userRequestsSort1 == "title" and userRequestsSort2 == "asc":
+            elif request1 == "title" and request2 == "asc":
                 user_requests.sort("game_request", pymongo.ASCENDING)
 
-            if userRequestsSort1 == "date-added" and userRequestsSort2 == "desc":
+            if request1 == "date-added" and request2 == "desc":
                 user_requests.sort("date_added", pymongo.DESCENDING)
 
-            elif userRequestsSort1 == "date-added" and userRequestsSort2 == "asc":
+            elif request1 == "date-added" and request2 == "asc":
                 user_requests.sort("date_added", pymongo.ASCENDING)
 
-            if userRequestsSort1 == "date-last-requested" and userRequestsSort2 == "desc":
+            if request1 == "date-last-requested" and request2 == "desc":
                 user_requests.sort("date_last_request", pymongo.DESCENDING)
 
-            elif userRequestsSort1 == "date-last-requested" and userRequestsSort2 == "asc":
+            elif request1 == "date-last-requested" and request2 == "asc":
                 user_requests.sort("date_last_request", pymongo.ASCENDING)
 
-            elif userRequestsSort1 == "user-count" and userRequestsSort2 == "desc":
+            elif request1 == "user-count" and request2 == "desc":
                 user_requests.sort("requested_by", pymongo.DESCENDING)
 
-            elif userRequestsSort1 == "user-count" and userRequestsSort2 == "asc":
+            elif request1 == "user-count" and request2 == "asc":
                 user_requests.sort("requested_by", pymongo.ASCENDING)
 
             return render_template(
                 "admin-user_requests.html", user_requests=user_requests,
-                gameData=gameData, userRequestsSort1=userRequestsSort1,
-                userRequestsSort2=userRequestsSort2)
+                gameData=gameData, userRequestsSort1=request1,
+                userRequestsSort2=request2)
 
         else:
             return redirect(url_for("home"))
@@ -399,7 +400,8 @@ def admin_user_requests():
 # Admin Controls - Add To Queue
 # =============================
 
-@app.route("/admin/user-requests/add-to-queue/<request_id>", methods=["GET", "POST"])
+@app.route("/admin/user-requests/add-to-queue/<request_id>",
+           methods=["GET", "POST"])
 def admin_add_to_queue(request_id):
     if session.get("user"):
         if session.get("admin") is True:
@@ -554,7 +556,8 @@ def admin_update_db():
                 else:
                     flash("Details Invalid")
 
-            return render_template("admin-update_db.html", navGameData=navGameData)
+            return render_template(
+                "admin-update_db.html", navGameData=navGameData)
 
         else:
             return redirect(url_for("home"))
@@ -566,7 +569,8 @@ def admin_update_db():
 # Admin Controls - Remove Request
 # ===============================
 
-@app.route("/admin/user-requests/remove-request/<request_id>", methods=["GET", "POST"])
+@app.route("/admin/user-requests/remove-request/<request_id>",
+           methods=["GET", "POST"])
 def admin_remove_request(request_id):
     user_request = mongo.db.game_requests.find_one(
         {"_id": ObjectId(request_id)})
@@ -577,7 +581,8 @@ def admin_remove_request(request_id):
         {"$text": {"$search": "(\"{}\"".format(request_title)}})
 
     if not games:
-        flash("Error! Games that do not exist within the database cannot be removed")
+        flash(
+            "Games that do not exist within the database cannot be removed!")
 
     if games:
         mongo.db.game_requests.remove({"_id": ObjectId(request_id)})
@@ -949,8 +954,7 @@ def register():
             {"email": request.form.get("email").lower()})
 
         if existing_user or existing_email:
-            flash(
-                "Username and/or Email already exisits. Do you already have an account with us?")
+            flash("Username and/or Email already exisits.")
             return redirect(url_for("register"))
 
         # Check if passwords match
@@ -1133,7 +1137,7 @@ def request_game():
             # -------------------------------------------------- Game Links
             try:
                 a = soup.find(
-                    'a', {'class': 'search_result_row ds_collapse_flag'})['href']
+                    'a', {'class': 'search_result_row'})['href']
 
                 split_href = a.split("?")
                 link = split_href[0]
@@ -1166,7 +1170,8 @@ def request_game():
 # Request A Game - Modal
 # ======================
 
-@app.route("/request-a-game/request=<game_request>/found=<title>", methods=["GET", "POST"])
+@app.route("/request-a-game/request=<game_request>/found=<title>",
+           methods=["GET", "POST"])
 def confirm_request(game_request, title):
     # Grab game data for autocomplete function in navbar
     gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
@@ -1221,7 +1226,8 @@ def confirm_request(game_request, title):
             # Block users from requesting the same game
             if user in has_user_requested:
                 flash(
-                    "You've already submitted a request for '{}'. Don't worry, we haven't forgot about it!".format(title))
+                    "You've already submitted a request for '{}'".format(
+                        title))
                 return redirect(url_for("request_game"))
 
             # Update existing game request with session user's username
@@ -1238,7 +1244,8 @@ def confirm_request(game_request, title):
                     {"_id": request_id}, game_request, upsert=False)
 
                 flash(
-                    "Thanks! We've Submitted your Request for '{}'".format(title))
+                    "Thanks! We've Submitted your Request for '{}'".format(
+                        title))
                 return redirect(url_for("home"))
 
         # Else add new document
@@ -1345,7 +1352,8 @@ def edit_profile(username):
                 user_id = user["_id"]
 
                 # Check password
-                if check_password_hash(user["password"], request.form.get("password")):
+                if check_password_hash(
+                        user["password"], request.form.get("password")):
                     # Update db
                     update = {"$set": {
                         "email": request.values.get("edit-email"),
@@ -1356,16 +1364,18 @@ def edit_profile(username):
 
                     mongo.db.users.update({"_id": user_id}, update)
                     flash("Profile Setting Successfully Updated")
-                    return redirect(url_for('profile_games', username=session["user"]))
+                    return redirect(
+                        url_for('profile_games', username=session["user"]))
 
                 else:
                     # Invalid password
                     flash("Incorrect Password")
-                    return redirect(url_for('edit_profile', username=session["user"]))
+                    return redirect(
+                        url_for('edit_profile', username=session["user"]))
 
             return render_template(
-                "profile-edit_general.html", username=session["user"], user=user,
-                gameData=gameData)
+                "profile-edit_general.html", username=session["user"],
+                user=user, gameData=gameData)
         else:
             return redirect(url_for("home"))
     else:
@@ -1390,7 +1400,8 @@ def edit_password(username):
                 user_id = user["_id"]
 
                 # Check password
-                if check_password_hash(user["password"], request.form.get("password")):
+                if check_password_hash(
+                        user["password"], request.form.get("password")):
 
                     # Check if new passwords match
                     new_password = request.form.get("change-password")
@@ -1415,11 +1426,12 @@ def edit_password(username):
                 else:
                     # Invalid password
                     flash("Password Incorrect")
-                    return redirect(url_for("edit_password", username=session["user"]))
+                    return redirect(
+                        url_for("edit_password", username=session["user"]))
 
             return render_template(
-                "profile-edit_password.html", username=session["user"], user=user,
-                gameData=gameData)
+                "profile-edit_password.html", username=session["user"],
+                user=user, gameData=gameData)
         else:
             return redirect(url_for("home"))
     else:
@@ -2267,7 +2279,8 @@ def edit_review(username, review_id):
         game = mongo.db.all_pc_games.find_one({"game_title": review_id})
         user_review = game.get("game_url")
 
-    return redirect(url_for("edit_review_page", user_review=user_review, username=username))
+    return redirect(url_for("edit_review_page",
+                    user_review=user_review, username=username))
 
 
 @app.route("/edit-review/<username>/<user_review>", methods=["GET", "POST"])
@@ -2324,8 +2337,9 @@ def edit_review_page(username, user_review):
                 return redirect(url_for('all_reviews'))
 
             return render_template(
-                "reviews-edit_review.html", username=username, user_review=user_review,
-                review=review, gameData=gameData)
+                "reviews-edit_review.html", username=username,
+                user_review=user_review, review=review,
+                gameData=gameData)
 
         else:
             return redirect(url_for("home"))

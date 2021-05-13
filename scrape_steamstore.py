@@ -110,30 +110,30 @@ multiplayer_platform_tags = []
 
 # Links have been added manually
 favourite_links = [
-    "https://store.steampowered.com/app/1174180/Red_Dead_Redemption_2/",
-    "https://store.steampowered.com/app/1404210/Red_Dead_Online/",
-    "https://store.steampowered.com/app/379430/Kingdom_Come_Deliverance/",
-    "https://store.steampowered.com/app/261550/Mount__Blade_II_Bannerlord/",
-    "https://store.steampowered.com/app/1158310/Crusader_Kings_III/",
-    "https://store.steampowered.com/app/629760/MORDHAU/",
-    "https://store.steampowered.com/app/427290/Vampyr/",
-    "https://store.steampowered.com/app/752590/A_Plague_Tale_Innocence/",
-    "https://store.steampowered.com/app/409710/BioShock_Remastered/",
-    "https://store.steampowered.com/app/1328670/Mass_Effect_Legendary_Edition/",
-    "https://store.steampowered.com/app/703080/Planet_Zoo/",
-    "https://store.steampowered.com/app/493340/Planet_Coaster/",
-    "https://store.steampowered.com/app/1237950/STAR_WARS_Battlefront_II/",
-    "https://store.steampowered.com/app/281990/Stellaris/",
-    "https://store.steampowered.com/app/238320/Outlast/",
-    "https://store.steampowered.com/app/480490/Prey/",
-    "https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/",
-    "https://store.steampowered.com/app/362890/Black_Mesa/",
-    "https://store.steampowered.com/app/1190460/DEATH_STRANDING/",
-    "https://store.steampowered.com/app/489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/",
-    "https://store.steampowered.com/app/900883/The_Elder_Scrolls_IV_Oblivion_Game_of_the_Year_Edition_Deluxe/",
-    "https://store.steampowered.com/app/306130/The_Elder_Scrolls_Online/",
-    "https://store.steampowered.com/app/379720/DOOM/"
-]
+    '1174180/Red_Dead_Redemption_2/',
+    '1404210/Red_Dead_Online/',
+    '379430/Kingdom_Come_Deliverance/',
+    '261550/Mount__Blade_II_Bannerlord/',
+    '1158310/Crusader_Kings_III/',
+    '629760/MORDHAU/',
+    '427290/Vampyr/',
+    '752590/A_Plague_Tale_Innocence/',
+    '409710/BioShock_Remastered/',
+    '1328670/Mass_Effect_Legendary_Edition/',
+    '703080/Planet_Zoo/',
+    '493340/Planet_Coaster/',
+    '1237950/STAR_WARS_Battlefront_II/',
+    '281990/Stellaris/',
+    '238320/Outlast/',
+    '480490/Prey/',
+    '271590/Grand_Theft_Auto_V/',
+    '362890/Black_Mesa/',
+    '1190460/DEATH_STRANDING/',
+    '489830/The_Elder_Scrolls_V_Skyrim_Special_Edition/',
+    '900883/The_Elder_Scrolls_IV_Oblivion_Game_of_the_Year_Edition_Deluxe/',
+    '306130/The_Elder_Scrolls_Online/',
+    '379720/DOOM/',
+    ]
 
 favourites_game_title = []
 favourites_game_img = []
@@ -149,8 +149,9 @@ favourite_game_summary = []
 # ----------------------------------------------------------------- BESTSELLERS
 
 def scrape_bestsellers():
-
-    bestsellers_url = "https://store.steampowered.com/games/#p=0&tab=TopSellers"
+    url = "https://store.steampowered.com/games/"
+    url_tag = "#p=0&tab=TopSellers"
+    bestsellers_url = url + url_tag
 
     source = requests.get(bestsellers_url)
     soup = BeautifulSoup(source.text, "html.parser")
@@ -901,7 +902,9 @@ def scrape_strategy_game_page():
 # ----------------------------------------------------------------- MULTIPLAYER
 
 def scrape_multiplayer_games():
-    url = "https://store.steampowered.com/tags/en/Massively%20Multiplayer/#p=0&tab=TopRated"
+    url_1 = "https://store.steampowered.com/tags/en/"
+    url_2 = "Massively%20Multiplayer/#p=0&tab=TopRated"
+    url = url_1 + url_2
 
     source = requests.get(url)
     soup = BeautifulSoup(source.text, "html.parser")
@@ -1025,7 +1028,8 @@ def scrape_multiplayer_game_page():
     for lis in range(len(multiplayer_tags)):
         for item in multiplayer_tags[lis]:
             if item == "bundle":
-                multiplayer_tags[lis] = multiplayer_bundle_game_tags[bundleIndex]
+                multiplayer_tags[lis] = multiplayer_bundle_game_tags[
+                    bundleIndex]
                 bundleIndex += 1
 
 
@@ -1035,9 +1039,10 @@ def scrape_favourites_data():
     url_list = favourite_links
 
     for url in url_list:
+        game_url = "https://store.steampowered.com/app/" + url
 
         cookies = {"birthtime": "786240001", "lastagecheckage": "1-0-1995"}
-        source = requests.get(url, cookies=cookies)
+        source = requests.get(game_url, cookies=cookies)
         soup = BeautifulSoup(source.text, "html.parser")
 
         # ------------------------------ Game title
