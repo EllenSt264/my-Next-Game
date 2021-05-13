@@ -143,22 +143,7 @@
             <!-- Navlinks -->
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
-
-            <ul class="collapsible" id="sidenav-collapsible">
-                <li>
-                    <a href="#!" class="collapsible-header">Games</a>
-                    <ul class="collapsible-body">
-                        <li><a href="{{ url_for('all_games') }}">All Games</a></li>
-                        <li><a href="{{ url_for('action_games') }}">Action</a></li>
-                        <li><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
-                        <li><a href="{{ url_for('rpg_games') }}">RPG</a></li>
-                        <li><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
-                        <li><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
-                        <li><a href="{{ url_for('awardwinner_games') }}">Award Winners</a></li>
-                    </ul>
-                </li>
-            </ul>
-
+            <li><a href="{{ url_for('all_games') }}">Games</a></li>
             <li><a href="{{ url_for('all_reviews') }}">Community Reviews</a></li>
             {% if session.user %}
             <li><a href="{{ url_for('request_game') }}">Request A Game</a></li>
@@ -204,7 +189,7 @@
     <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    <script>
+    <script async>
         var navGameData = {{ navGameData| tojson | safe}}
     </script>
     <!-- JQuery Autocomplete -->
