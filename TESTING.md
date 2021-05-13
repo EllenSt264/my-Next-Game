@@ -27,7 +27,7 @@
 
         - [Navigation - Navbar (Desktop)](#navigation---navbar-desktop)
 
-        - [Navigation - Navbar (Mobile)](#navigation---side-nav-mobile)
+        - [Navigation - Side Nav (Mobile)](#navigation---side-nav-mobile)
 
         - [Navigation - Games Page Secondary Navbar (Desktop)](#navigation---games-page-secondary-navbar-desktop)
 
@@ -43,9 +43,13 @@
 
         - [Register Log In and Sign Out (Desktop)](#register-log-in-and-sign-out-desktop)
 
-        - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
+        - [Register Log In and Sign Out (Mobile)](#register-log-in-and-sign-out-mobile)
+
+        - [Navigation - Profile (Desktop)](#navigation---profile-desktop)
 
         - [Navigation - Profile (Mobile)](#navigation---profile-mobile)
+
+        - [Session User Navigation - Other](#session-user-navigation---other)
 
     - [C-R-U-D](#c-r-u-d)
 
@@ -55,8 +59,13 @@
 
         - [Edit Profile](#edit-profile)
 
-        - [Edit Avatar](#edit-avatar)
+        - [Request A Game](#request-a-game)
 
+        - [Admin Controls](#admin-controls)
+
+        - [Security Measures](#security_measures)
+
+- [Further Testing](#further-testing)
 
 - [Bug Fixes](#bug-fixes)
 
@@ -453,7 +462,7 @@ After cache control:
 |  5  | Navigate to `RPG` game page | Click the `RPG` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `RPG games` within the database | Navigates to `Games Page` and lists all `RPG games` | Pass |
 |  6  | Navigate to `Strategy` game page | Click the `Strategy` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Strategy games` within the database | Navigates to `Games Page` and lists all `Strategy games` | Pass |
 |  7  | Navigate to `Multiplayer` game page | Click the `Multiplayer` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Multiplayer games` within the database | Navigates to `Games Page` and lists all `Multiplayer games` | Pass |
-|  8  | Navigate to `Award Winners` game page | Click the `Award Winners` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Award Winners games` within the database | Navigates to `Games Page` and lists all `Award Winners games` | Pass |
+|  8  | Navigate to `Award Winners` game page | Click the `Award Winners` nav link inside the collapsible within the mobile `side nav` | The site will navigate to the `Games Page`, listing only the `Award Winners games` within the database | Navigates to `Games Page` and lists all `Award Winners games` | Pass | Found dead link in Request A Game button. Replace with Leave Review button |
 |  9  | Navigate to `Community Reviews`  page | Click the `Community Reviews` nav link inside the mobile `side nav` | The site will navigate to the `Community Reviews` page | Navigates to `Community Reviews` page | Pass | **Bug:** Once directed to the `Community Reviews` page all nav links disappear. **Fix:** Adding `overflow: hidden` to the HTML tag seems to fix the issue |
 |  10  | Trigger `Profile` mobile `sidenav` | Click on the `Profile icon` in the navbar | It should trigger a `sidenav`, to the left, which contains either the `Login` and `Register` navlink, or the `Profile` and `Log Out` navlink | The `sidenav` triggers, opening to the left, once the `Profile icon` is clicked | Pass |
 |  11  | Navigate to `Login`  page | Click the `Login` nav link within the `Profile sidenav` | The site will navigate to the `Login` page | Navigates to `Login` page | Pass |
@@ -606,7 +615,7 @@ After cache control:
 |  8  | Navigate back to `Profile` page (2) | While on any of the `Edit Profile` pages, click the `Back to Profile` link below the heading | It should direct back to the `Profile - Games` page | Directs to `Profile - Games` page | Pass |      
 
 
-#### Navigation - Other
+#### Session User Navigation - Other
 
 | No. |   Action    |   Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
 | --- | ----------- | --------- | ----------------- | ----------------- | ---------| ----------------- |
@@ -627,19 +636,13 @@ After cache control:
 |  2  | **Sign in** and `Like` a game | Click any game card's `like button` on the `Games` page. Ensure you **are** logged in and like a game that you **have not** liked before | Your like should be added to the database and a `flash message` should appear notifying you that your like was successful. The `like count` on the game card should increment by 1 | After clicking the `like button` a `flash message` appears, saying 'Liked added!'. The `like count` is incremented by 1 | Pass |
 |  3  | `Add a game` to a user's `Game List` | When logged in, click any game card's floating `add button` on the `Games` page. Click on a game that **does not** already exisit in your `Games List` | A `flash message` should notify you that your action was successful and the game should be added to the 'Play Later' section of your `Games List`. Visit the `Profile` page to check | A `flash message` says 'Game Successfully Added to List' and the game is added to the 'Play Later' section of the `Games List` | Pass | The floating `add button` does **not** show when a user is **not** logged in, as intended |
 |  4  | `Add a game` to a user's `Game List` that **already exisits** | When logged in, click a game card's floating `add button` on the `Games` page. Ensure that the game you pick **already exisits** in your `Games List` | A `flash message` should notify you that your action was **not** successful because the game already exisits in your `Games List`. If you were to go on the `Profile - Games List` page, only **one copy** of the game should be present | A `flash message` says 'You've Already Added This Game'. The game was **not** added again to the `Games List` | Pass | The floating `add button` is **only** visible when a user **is** logged in, as intended |
-|  5  | `Submit Review` when **not** logged in | Navigate to `Community Reviews` page and click the `Leave A Review` button. Ensure you are **not** logged in | A `tooltip` should trigger telling the user to log in first | Triggers a `tooltip` that says 'Please sign in or register an account with us to submit reviews' | Pass |
+|  5  | `Submit Review` when **not** logged in | Navigate to `Community Reviews` page and click the `Leave A Review` button. Ensure you are **not** logged in | You should be directed to the `Log In` | Directed to `Log In` page | Pass |
 |  6  | **Log in** and `Submit Review` | Navigate to `Community Reviews` page and click the `Leave Review` button. Fill out **all** required fields and click submit | It should submit your review and redirect you to the `Community Reviews` page | Successfully submits review. Redirects to the `Community Reviews` page and triggers a `flash message` that says 'Review Successfully Submitted'. Upon scrolling down the new review can be seen within the review results and all details are correct | Pass |
 |  7  | **Log in** and `Submit Review` via the `Profile page` | Navigate to the user's `Profile` page, ensuring that a game has been added to the user's `Game List`, and locate a game to review. Click the `Review` button within the game card. Submit a review | Clicking the `Review` button should direct the user to the `Submit Review` page. The game title should be already filled in with the game title from the user's `Game List`. Filling out all required fields should submit the review and redirect the user to the `Community Reviews` page | Upon clicking the `Review` button, I am directed to the `Submit Review` page, with the correct game title already filled in. Successfully submits review once all required fields are filled. Redirects to the `Community Reviews` page and triggers a `flash message` that says 'Review Successfully Submitted'. Upon scrolling down the new review can be seen within the review results and all details are correct | Pass |
 |  8  | **Log in** and `Submit Review` that the user has **already submitted** | Navigate to `Community Reviews` page and click the `Leave Review` button. Pick a game from the game title select field that the user has **already** reviewed. Fill out **all** required fields and click submit | It should **not** submit your review but still redirect you to the `Community Reviews` page | As intended, it does **not** submit the review. Redirects to the `Community Reviews` page and triggers a `flash message` that says 'You've Already Submitted a Review for this Game' | Pass |
 |  9  | `Update Review` | While **logged in**, navigate to the `Profile - Reviews` page and find a review you want to update. Click the `Edit` button | It should navigate to the `Edit Review` page and all fields should be filled in with the data from your existing review. Edit one or several fields and submit | It should update your review and redirect you to the `Community Reviews` page | Successfully updates review. Redirects to the `Community Reviews` page and triggers a `flash message` that says 'Review Successfully Updated'. Upon scrolling down the new review can be seen within the review results and all details are correct | Pass |
 |  10  | `Delete Review` - modal | While **logged in**, navigate to the `Profile - Reviews` page and find a review you want to delete. Click the `Delete` button | It should trigger a `modal` | Triggers a modal asking if I am sure if I want to proceed with my action | Pass |
 |  11  | `Delete Review` | While **logged in**, navigate to the `Profile - Reviews` page and find a review you want to delete. Click the `Delete` button and click `Yes, Delete` in the modal | It should delete the review | Successfully deletes the review and triggers a `flash message` that says 'Review Successfully Deleted'. The review is no longer in my reviews list on the `Profile - Reviews` page | Pass |
-|  12  | `Request A Game` when **not** logged in | Navigate to `Favourites` page and scroll down until you see the `Request A Game` button. Click it when you are **not** logged in | A `tooltip` should trigger telling the user to log in first | Triggers a `tooltip` that says 'Please sign in or register an account with us to request games' | Pass |
-|  12  | `Request A Game` | Navigate to `Favourites` page and scroll down until you see the `Request A Game` button. Click it, ensuring that you **are** logged in. Request a game to be added to the database | It should navigate to the `Request A Game` page. After filling in all required fields it should redirect to the Homepage with your request submitted | It successfully navigates to the `Request A Game` page but submitting the form triggers a `TypeError` | Fail | See fix [here](#nonetype-error-for-request-a-game-form) |
-|  13  |  `Request A Game` - attempt 2 | Navigate to `Favourites` page and scroll down until you see the `Request A Game` button. Click it, ensuring that you **are** logged in. Request a game to be added to the database | It should navigate to the `Request A Game` page. After filling in all required fields it should redirect to the Homepage with your request submitted | After navigating to the `Request A Game` page, and completing the form input fields, the game request is submitted successfully. A `flash message` says 'Your Request Has Been Submitted` | Pass |
-|  14  | Request the **same** game via the `Request A Game` page | On the `Request A Game` page, fill in the form fields and request the **same** game as before. Ensure that the **same** user is still logged in | The request should not be successful and the page should reload | The game request is **not** submitted and the page reloads as intended. A `flash message` triggers, which says 'You've already submitted a request for this game' | Pass |
-|  15  | Request the **same** game as a **different user** | Log in as a **different user** and follow the same steps as above in order to request the same game as before via the `Request A Game` page | The request should be submitted, but it should **update** an existing document in the database rather than create a new one | The request is submitted successfully. The user is redirected to the Homepage and a `flash message` says 'Your Request Has Been Submitted' which confirms that the user's actions were successful. The database has updated an existing document by appending the username of the session user to the `requested_by` array | Pass | For more details on the database schema, see [here]() |
-|  16  | Do everything above but on a mobile device | n/a | n/a | n/a | Pass |
 
 
 #### Profile - Games List
@@ -667,9 +670,11 @@ After cache control:
 
 #### Request A Game
 
-|  2  | `Request a game` to be added to the db | Navigate to the `Request A Game` page and search for a game, and request the game to be added to the db by clicking 'Yes, Request Game' once the modal opens | Inputting 'far cry 3' returns the the result 'Far Cry 3' in the modal. The game request is successfully added to the db after the button in the modal is clicked. The page redirects to the Homepage and displays a `flash message` that says 'Thanks! We've Submitted Your Request for "Far Cry 3"' | Pass |
-|  3  | `Request a game` to be added to the db that you have already requested | Navigate to the `Request A Game` page and request the same game to be added | It should prompt an error and block the game request | When requesting for 'Far Cry 3' to be added, the game request does not get submitted, as intended, and instead displays a `flash message` which says 'You've already submitted a request for 'Far Cry 3'. Don't worry, we haven't forgot about it!' | Pass |
-|  4  | `Request a game` to be added to the db that already exists on the site | Navigate to the `Request A Game` page and search for 'Valheim'. Request for it to be added to the db | It should not add the request to the db, but instead block the request and display a flash message | The request is not added to the db and a `flash message` says 'Error! 'Valheim' already exists in our database!' | Pass |
+|  1  | `Request A Game` when **not** logged in | Navigate to `Favourites` page and scroll down until you see the `Request A Game` button. Click it when you are **not** logged in | You should be directed to the `Log In` | Directed to `Log In` page | Pass |
+|  2  | `Request A Game` | Navigate to `Favourites` page and scroll down until you see the `Request A Game` button. Click it, ensuring that you **are** logged in. Request a game to be added to the database | It should navigate to the `Request A Game` page. After filling in all required fields it should redirect to the Homepage with your request submitted | It successfully navigates to the `Request A Game` page but submitting the form triggers a `TypeError` | Fail | See fix [here](#nonetype-error-for-request-a-game-form) |
+|  3  | `Request a game` to be added to the db | Navigate to the `Request A Game` page and search for a game, and request the game to be added to the db by clicking 'Yes, Request Game' once the modal opens | Inputting 'far cry 3' returns the the result 'Far Cry 3' in the modal. The game request is successfully added to the db after the button in the modal is clicked. The page redirects to the Homepage and displays a `flash message` that says 'Thanks! We've Submitted Your Request for "Far Cry 3"' | Pass |
+|  4  | `Request a game` to be added to the db that you have already requested | Navigate to the `Request A Game` page and request the same game to be added | It should prompt an error and block the game request | When requesting for 'Far Cry 3' to be added, the game request does not get submitted, as intended, and instead displays a `flash message` which says 'You've already submitted a request for 'Far Cry 3'. Don't worry, we haven't forgot about it!' | Pass |
+|  5  | `Request a game` to be added to the db that already exists on the site | Navigate to the `Request A Game` page and search for 'Valheim'. Request for it to be added to the db | It should not add the request to the db, but instead block the request and display a flash message | The request is not added to the db and a `flash message` says 'Error! 'Valheim' already exists in our database!' | Pass |
 
 
 #### Admin Controls 
@@ -681,6 +686,37 @@ After cache control:
 |  3  | `Add To DB Queue` | Navigate to `Add Game To DB` page and fill in all required fields. Take a game link from the [Steam Store]() page and paste the URL for that game page into the game page url form input. Ensure that the game does **not** already exist in the db (using the search filter on a game page to check). Submit the form | It should add the game link and its chosen category, or categories, to the `admin_game_links` collection | I filled in all required fields, and added the game URL for 'Mortal Kombat 11'. The form was successfully submitted, which triggered the `flash message` 'Successfully Added Data'. The new data was successfully added to the `admin_game_links` collection in the db | Pass |
 |  4  | `Update DB` | Navigate to the `Update DB` page and input the admin user's password. Click the update button | It should update the database by first checking if a game link from `admin_game_links` already exists in the `all_pc_games` collection. If it doesn't already exist then it should run program to scrape data from the game link provided from `admin_game_links` and then add that data to `all_pc_games`. Any new games should now be added to the site | The database was **not** updated, instead submitting the form triggered the `flash message` 'Database Already Updated' and I was redirected back to the Homepage | Fail | 
 |  5  | `Update DB` - attempt 2 | Same as above | Same as above | After altering the code I tried updating the database again. This time it was successfully and a `flash message` said 'Successfully Updated Database'. I checked this by navigating to a `Games` page and searching for 'Mortal' in the searchbar. It then showed the result for 'Mortal Kombat 11' with all the correct data, meaning the database was indeed updated. I then checked if any existing data within the `admin_game_links` had been added **again**, which would mean duplicate data. I searched for 'Ash Of Gods Redemption', which had already been added to the `all_pc_games` collection. Only one copy of the game exists meaning no duplicate data was created | Pass | This bug was caused by an identation error with the following code: `if not existing_game: mongo.db.all_pc_games.insert_one(game)`. Fixing the indentation corrected this issue |
+
+
+
+#### Security Measures
+
+| No. |    Input   |   Expected Output |   Actual Output   |   Result |  Further Comments |
+| --- |  --------- | ----------------- | ----------------- | ---------| ----------------- |
+|  1  | Open a new window in incognito mode. Keep it open for the following tests. Ensure that **you are not logged in** |
+|  2  | In another window. Sign into an account and Navigate to the Profile page. Copy the URL and paste it into your incognito browser | It should load the Profile page **but** only the **public version** (the same one you can navigate to via the Community Reviews page) | Opens the user's profile but not their personal profile. No edit/remove buttons for the content is visible | Pass |
+|  3  | Copy the URL for the user's Profile Like page and paste it into your incognito browser | It should load the Profile page **but** only the **public version**. Clicking the 'Write a Review' button should direct you to the `Log In` page | Opens the user's profile but not their personal profile. No edit/remove buttons for the content is visible. Clicking the `Write a Review` button directs me to the `Log In` page | Pass |
+|  4  | Copy the URL for the user's Profile Reviews page and paste it into your incognito browser | It should load the Profile page **but** only the **public version** | Lods only the public version, no edit buttons are visible | Pass |
+|  5  | Copy the URL for the user's Edit Profile page and paste it into your incognito browser | It should direct you straight to the `Log In` page | Directs me to the `Log In` page | Pass | Repeated for all other Edit Profile pages |
+|  6  | In the other window, clicking on the Edit icon next to a review to navigate to the Edit Review page. Copy the URL and paste it into your incognito browser | It should direct you to the `Log In` page | Directs me to the `Log In` page | Pass |
+|  7  | Navigate to the Community Reviews page and click on the Leave a Review button to open the Submit Review page. Copy the URL and paste it into your incognito browser | It should direct you to the `Log In` page | Directs me to the `Log In` page | Pass |
+|  8  | Navigate to the Request A Game page. Copy the URL and paste it into your incognito browser | It should direct you to the `Log In` page | Directs me to the `Log In` page | Pass |
+|  9  | Sign out of the current account and log in as admin. Stay logged in as admin for the rest of the following tests |
+|  10  | In your incognito browser, sign in to a different account to the one you've just been testing with. Stay signed in to that account for the following tests |
+|  11  | Copy the URL for the Profile Page and paste it into your incognito browser | It should load the Profile page **but** only the **public version** | Opens the user's profile but not their personal profile | Pass |
+|  12  | Copy the URL for the user's Profile Like page and paste it into your incognito browser | It should load the Profile page **but** only the **public version**. Clicking the 'Write a Review' button should direct you to the `Log In` page | Opens the user's profile but only the public one, not their personal profile | Pass |
+|  13  | Copy the URL for the user's Profile Reviews page and paste it into your incognito browser | It should load the Profile page **but** only the **public version** | Lods only the public version, no edit buttons are visible | Pass |
+|  14  | Copy the URL for the user's Edit Profile page and paste it into your incognito browser | It should direct you to the `Homepage` | Directs me to the `Homepage` | Pass | Repeated for all other Edit Profile pages |
+|  15  | In the other window, clicking on the Edit icon next to a review to navigate to the Edit Review page. Copy the URL and paste it into your incognito browser | It should direct you to the `Homepage` | Directs me to the `Homepage` | Pass |
+|  16  | Navigate to the Admin Controls - User Requests Page, copy the URL and paste it into your incognito browser | It should direct you to the `Homepage` | Directs me to the `Homepage` | Pass |
+|  16  | Navigate to the Admin Controls - Game Queue Page, copy the URL and paste it into your incognito browser | It should direct you to the `Homepage` | Directs me to the `Homepage` | Pass |
+|  17  | Navigate to the Admin Controls - Update DB Page, copy the URL and paste it into your incognito browser | It should direct you to the `Homepage` | Directs me to the `Homepage` | Pass |
+|  18  | Sign out of the account in the incognito browser |
+|  19  | Navigate to the Admin Controls - User Requests Page, copy the URL and paste it into your incognito browser | It should direct you to the `Log In` | Directs me to the `Log In` | Pass |
+|  20  | Navigate to the Admin Controls - Game Queue Page, copy the URL and paste it into your incognito browser | It should direct you to the `Log In` | Directs me to the `Log In` | Pass |
+|  21  | Navigate to the Admin Controls - Update DB Page, copy the URL and paste it into your incognito browser | It should direct you to the `Log In` | Directs me to the `Log In` | Pass |
+
+
 
 
 -----
