@@ -101,18 +101,12 @@
 </section>
 <!-- Games -->
 <main>
-	<!-- Request A Game -->
-	<section class="py-5">
-		<div class="row">
-			<div class="col right leave-review-col">
-				{% if not session.user %}
-				<a href="#!" class="btn tooltipped" data-position="top" data-tooltip="Please sign in or register an account with us to request games">Request A Game</a>
-				{% else %}
-				<a href="{{ url_for('request_game') }}" class="btn">Request A Game</a>
-				{% endif %}
-			</div>
+	<!-- Review button -->
+	<div class="row">
+		<div class="col right leave-review-col">
+			<a href="{{ url_for('submit_review_without_game') }}" class="btn-large leave-review">Leave a Review</a>
 		</div>
-	</section>
+	</div>
 	<!-- Games -->
 	<section>
 		<div class="row">
