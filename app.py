@@ -764,24 +764,48 @@ def games(genre):
 
     # Sort by bestseller
     elif navSelect1 == "bestseller" and navSelect2 == "desc":
-        pagination_games.sort("bestseller", pymongo.DESCENDING)
+        pagination_games.sort([
+            ("bestseller", pymongo.DESCENDING),
+            ("likes", pymongo.DESCENDING),
+            ("game_title", pymongo.ASCENDING)
+        ])
 
     elif navSelect1 == "bestseller" and navSelect2 == "asc":
-        pagination_games.sort("bestseller", pymongo.ASCENDING)
+        pagination_games.sort([
+            ("bestseller", pymongo.ASCENDING),
+            ("likes", pymongo.ASCENDING),
+            ("game_title", pymongo.DESCENDING)
+        ])
 
     # Sort by awardwinner
     elif navSelect1 == "awardwinner" and navSelect2 == "desc":
-        pagination_games.sort("awardwinner", pymongo.DESCENDING)
+        pagination_games.sort([
+            ("awardwinner", pymongo.DESCENDING),
+            ("likes", pymongo.DESCENDING),
+            ("game_title", pymongo.ASCENDING)
+        ])
 
     elif navSelect1 == "awardwinner" and navSelect2 == "asc":
-        pagination_games.sort("awardwinner", pymongo.ASCENDING)
+        pagination_games.sort([
+            ("awardwinner", pymongo.ASCENDING),
+            ("likes", pymongo.ASCENDING),
+            ("game_title", pymongo.DESCENDING)
+        ])
 
     # Sort by favourite
     elif navSelect1 == "favourite" and navSelect2 == "desc":
-        pagination_games.sort("favourite", pymongo.DESCENDING)
+        pagination_games.sort([
+            ("favourite", pymongo.DESCENDING),
+            ("likes", pymongo.DESCENDING),
+            ("game_title", pymongo.ASCENDING)
+        ])
 
     elif navSelect1 == "favourite" and navSelect2 == "asc":
-        pagination_games.sort("favourite", pymongo.ASCENDING)
+        pagination_games.sort([
+            ("favourite", pymongo.ASCENDING),
+            ("likes", pymongo.ASCENDING),
+            ("game_title", pymongo.DESCENDING)
+        ])
 
     return render_template(
         "games.html",
@@ -2122,26 +2146,52 @@ def reviews(genre):
     elif reviewSort1 == "date" and reviewSort2 == "asc":
         pagination_game_reviews.sort("date_submitted", 1)
 
+    # Sort by last updated
+    if reviewSort1 == "update" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("last_updated", -1)
+
+    elif reviewSort1 == "update" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("last_updated", 1)
+
+    # Sort by last updated
+    if reviewSort1 == "date" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("date_submitted", -1)
+
+    elif reviewSort1 == "date" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("date_submitted", 1)
+
     # Sort by game title
     elif reviewSort1 == "title" and reviewSort2 == "desc":
-        pagination_game_reviews.sort("game_title", pymongo.DESCENDING)
+        pagination_game_reviews.sort("game_title",-1)
 
     elif reviewSort1 == "title" and reviewSort2 == "asc":
-        pagination_game_reviews.sort("game_title", pymongo.ASCENDING)
+        pagination_game_reviews.sort("game_title", 1)
 
     # Sort by positive reviews
     elif reviewSort1 == "positive" and reviewSort2 == "desc":
-        pagination_game_reviews.sort("recommended", -1)
+        pagination_game_reviews.sort([
+            ("recommended", pymongo.DESCENDING),
+            ("date_submitted", -1)
+        ])
 
     elif reviewSort1 == "positive" and reviewSort2 == "asc":
-        pagination_game_reviews.sort("recommended", 1)
+        pagination_game_reviews.sort([
+            ("recommended", pymongo.ASCENDING),
+            ("date_submitted", 1)
+        ])
 
     # Sort by negative reviews
     elif reviewSort1 == "negative" and reviewSort2 == "desc":
-        pagination_game_reviews.sort("recommended", 1)
+        pagination_game_reviews.sort([
+            ("recommended", pymongo.ASCENDING),
+            ("date_submitted", -1)
+        ])
 
     elif reviewSort1 == "negative" and reviewSort2 == "asc":
-        pagination_game_reviews.sort("recommended", -1)
+        pagination_game_reviews.sort([
+            ("recommended", pymongo.DESCENDING),
+            ("date_submitted", 1)
+        ])
 
     # Set carousel images
     random_games = mongo.db.all_pc_games.aggregate([

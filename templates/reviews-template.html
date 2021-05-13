@@ -140,6 +140,8 @@
 						<select class="browser-default" name="reviewSort1" id="reviewSort1" value="{{ reviewSort1 }}">
 						<option value="date" {% if reviewSort1=="date" %} selected="selected" {% endif %}>Date Added
 						</option>
+						<option value="update" {% if reviewSort1=="update" %} selected="selected" {% endif %}>Last Updated
+						</option>
 						<option value="title" {% if reviewSort1=="title" %} selected="selected" {% endif %}>Title
 						</option>
 						<option value="positive" {% if reviewSort1=="positive" %} selected="selected" {% endif %}>
