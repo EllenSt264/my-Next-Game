@@ -339,8 +339,6 @@ def admin_user_requests():
                     if i == x:
                         matches.append(x)
 
-            print(matches)
-
             # Remove games from user requests if added to the games col
             def remove_added_games():
                 games = mongo.db.game_requests.find()
