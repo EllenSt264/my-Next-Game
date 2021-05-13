@@ -468,8 +468,6 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
 
     - 'Order' has 'desc' (descending) and 'asc' (ascending) options.
 
-    - Sometimes the sort filter will cause games to occur multiple times when navigating through different pages. See [here]() for more details.
-
 - Game Cards
 
     - Built with Materialize
@@ -546,6 +544,7 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
 
     - 'Sort By' contains the following options:
         - Date Added
+        - Last Updated
         - Title
         - Positive
         - Negative
@@ -963,9 +962,9 @@ Profile Reviews page
 
 #### Typography
 
-The two fonts, and their variants, that are used throughout the site are [BlenderPro]() and [Cyberspace Raceway](). Both are clean and readable fonts that correlate well with the site's visual aesethic. [BlenderPro]() especially suited both the visual and contextually theme of the website, as it is same font used for the [Cyberpunk Website](), of which I took some visual inspiration from. Cyberpunk is a sci-fi game that was released in late 2020, and has both a sci-fi and synthwave theme running throughout the game. Many gamers who would would use this site may notice this visual reference, which makes the design choice more than suitable.
+The two fonts, and their variants, that are used throughout the site are [BlenderPro](https://fontshub.pro/font/blender-pro-download) and [Cyberspace Raceway](https://www.dafont.com/cyberspace-raceway.font). Both are clean and readable fonts that correlate well with the site's visual aesethic. [BlenderPro](https://fontshub.pro/font/blender-pro-download) especially suited both the visual and contextually theme of the website, as it is same font used for the [Cyberpunk Website](https://www.cyberpunk.net/gb/en/), of which I took some visual inspiration from. Cyberpunk is a sci-fi game that was released in late 2020, and has both a sci-fi and synthwave theme running throughout the game. Many gamers who would would use this site may notice this visual reference, which makes the design choice more than suitable.
 
-[BlenderPro]() comes a variety of font styles, including:
+[BlenderPro](https://fontshub.pro/font/blender-pro-download) comes a variety of font styles, including:
 
 - BlenderPro-Bold
 
@@ -986,9 +985,11 @@ The two fonts, and their variants, that are used throughout the site are [Blende
     - The carousel header
     - The game title for the review cards on the Community Reviews page
     - The collapsible header for the review cards on the Community Reviews page
+    - Any information in bold
 
 - BlenderPro-Medium
     - The like button on the Game pages
+
 
 - BlenderPro-MediumItalic
 
@@ -999,6 +1000,8 @@ The two fonts, and their variants, that are used throughout the site are [Blende
 - BlenderPro-ThinItalic
 
 - [Cyberspace Raceway]() was only used for the site's title on the Homepage
+
+- The fonts were often changed depending on contrast, readable and style.
 
 
 
