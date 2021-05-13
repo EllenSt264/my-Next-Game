@@ -1,249 +1,258 @@
 html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "BlenderPro-Book";
-    background-color: #0c0a0e;
-    overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+	font-family: "BlenderPro-Book";
+	background-color: #0c0a0e;
+	overflow-x: hidden;
 }
+
 
 /* ---------------------------------------------- Global */
 
 .py-5 {
-    padding-top: 25px;
-    padding-bottom: 25px;
+	padding-top: 25px;
+	padding-bottom: 25px;
 }
 
 .px-5 {
-    padding-right: 25px;
-    padding-left: 25px;
+	padding-right: 25px;
+	padding-left: 25px;
 }
 
 .btn,
 .btn-large {
-    background-color: #ff2350;
+	background-color: #ff2350;
 }
 
 .btn:hover,
 .btn-large:hover,
 .btn:focus,
 .btn-large:focus {
-    background-color: #ff2c6b;
+	background-color: #ff2c6b;
 }
 
 .input-field textarea,
 .input-field input {
-    color: whitesmoke;
+	color: whitesmoke;
 }
 
 .flashes {
-    line-height: 2;
+	line-height: 2;
 }
 
 .grow {
-    cursor: pointer;
-    transition: all .2s ease-in-out;
+	cursor: pointer;
+	transition: all .2s ease-in-out;
 }
 
 .grow:hover {
-    transform: scale(1.2);
-    z-index: 10;
+	transform: scale(1.2);
+	z-index: 10;
 }
+
 
 /* The following code was taken from: "https://codepen.io/bisaillonyannick/pen/pvZeGg"  */
 
 .bounce {
-    animation: bounce 2s infinite;
+	animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
+	0%,
+	20%,
+	50%,
+	80%,
+	100% {
+		transform: translateY(0);
+	}
+	40% {
+		transform: translateY(-10px);
+	}
+	60% {
+		transform: translateY(-5px);
+	}
 }
+
 
 /* ---------------------------------------------- Navbar */
 
 nav {
-    background-color: #232325;
+	background-color: #232325;
 }
 
 .nav-wrapper a {
-    margin: 0 15px;
-    font-size: 16px;
+	margin: 0 15px;
+	font-size: 16px;
 }
 
 .sidenav {
-    background-color: #0c0a0e;
+	background-color: #0c0a0e;
 }
 
 .sidenav li a {
-    font-size: 20px;
-    color: white;
+	font-size: 20px;
+	color: white;
 }
 
 #closeSideNav i {
-    color: white;
+	color: white;
 }
 
 #closeSideNav a {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 .sidenav-overlay {
-    top: 64px;
+	top: 64px;
 }
 
 nav .dropdown-content {
-    background-color: #0c0a0e;
+	background-color: #0c0a0e;
 }
 
 nav .dropdown-content a {
-    color: #00e5ff;
-    font-size: 18px;
-    padding: 5px 0;
+	color: #00e5ff;
+	font-size: 18px;
+	padding: 5px 0;
 }
 
 nav .dropdown-content li:hover,
 nav .dropdown-content a:hover,
 nav .dropdown-content li:focus,
 nav .dropdown-content a:focus {
-    background-color: #0c0a0e;
-    color: purple;
+	background-color: #0c0a0e;
+	color: purple;
 }
 
 #desktop-profile {
-    left: -50px;
-    width: 150px;
+	left: -50px;
+	width: 150px;
 }
 
 .fas.fa-user {
-    font-size: 2.5rem;
+	font-size: 2.5rem;
 }
 
 
 /* ---------------------------------------------- Searchbar */
 
 #navSearchbar {
-    position: absolute; 
-    top: 15%; 
-    bottom: 0; 
-    right: 0; 
-    left: 0;
-    max-width: 560px;
-    margin: auto;
+	position: absolute;
+	top: 15%;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	max-width: 560px;
+	margin: auto;
 }
 
 #sidenav-searchbar {
-    position: relative;
+	position: relative;
 }
 
 #navSearchbar form {
-    position: relative;
-    width: 420px; 
-    margin: auto; 
+	position: relative;
+	width: 420px;
+	margin: auto;
 }
 
 #secondary-nav-searchbar form {
-    position: relative;
+	position: relative;
 }
 
 #navSearchbar input#nav-search,
 #sidenav-searchbar input#nav-query,
 #secondary-nav-searchbar input#game-search,
 #secondary-nav-searchbar input#review-search {
-    padding-left: 10px;
-    font-family: "BlenderPro-Medium";
-    background-color: white; 
-    color: black;
+	padding-left: 10px;
+	font-family: "BlenderPro-Medium";
+	background-color: white;
+	color: black;
 }
 
 #secondary-nav-searchbar input#game-search,
 #secondary-nav-searchbar input#review-search {
-    height: 40px;
-    margin-top: 10px;
-    margin-bottom: 0;
+	height: 40px;
+	margin-top: 10px;
+	margin-bottom: 0;
 }
 
 #sidenav-searchbar input#nav-query {
-    width: 90%;
+	width: 90%;
 }
 
 #navSearchbar input::placeholder,
 #sidenav-searchbar input::placeholder,
 #secondary-nav-searchbar input::placeholder {
-    font-family: "BlenderPro-Heavy";
-    color: #4a4a4a;
+	font-family: "BlenderPro-Heavy";
+	color: #4a4a4a;
 }
 
 #secondary-nav-searchbar input::placeholder {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 #navSearchbar button {
-    position: absolute; 
-    top: 0;
-    left: 96%; 
-    bottom: 0;
-    width: 46px;
-    height: 46px;
-    background-color: #f23dfd;
-    border: none;
-    cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 96%;
+	bottom: 0;
+	width: 46px;
+	height: 46px;
+	background-color: #f23dfd;
+	border: none;
+	cursor: pointer;
 }
 
 #sidenav-searchbar button {
-    position: absolute; 
-    top: 14%;
-    left: 85%; 
-    right: 0;
-    bottom: 0;
-    width: 46px;
-    height: 44px;
-    background-color: #f23dfd;
-    border: none;
-    cursor: pointer;
+	position: absolute;
+	top: 14%;
+	left: 85%;
+	right: 0;
+	bottom: 0;
+	width: 46px;
+	height: 44px;
+	background-color: #f23dfd;
+	border: none;
+	cursor: pointer;
 }
 
 #secondary-nav-searchbar button {
-    position: absolute; 
-    top: 18%;
-    left: 89%; 
-    right: 0;
-    bottom: 0;
-    width: 40px;
-    height: 41px;
-    background-color: #f23dfd;
-    border: none;
-    cursor: pointer;
+	position: absolute;
+	top: 18%;
+	left: 89%;
+	right: 0;
+	bottom: 0;
+	width: 40px;
+	height: 41px;
+	background-color: #f23dfd;
+	border: none;
+	cursor: pointer;
 }
 
 #navSearchbar i {
-    text-align: center;
-    line-height: 46px;
-    font-size: 30px; 
-    color: #161618 !important;
+	text-align: center;
+	line-height: 46px;
+	font-size: 30px;
+	color: #161618 !important;
 }
 
 #secondary-nav-searchbar i {
-    text-align: center;
-    line-height: 41px;
-    font-size: 20px; 
-    color: #1f1f21;
+	text-align: center;
+	line-height: 41px;
+	font-size: 20px;
+	color: #1f1f21;
 }
 
+
 /* ---------------------------------------------- Custom Side Nav */
+
 
 /*
 The following code is based upon this source: 
@@ -251,53 +260,55 @@ The following code is based upon this source:
 */
 
 .my-sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    background-color: #0c0a0e; 
-    overflow-x: hidden;
-    padding-top: 60px;
-    transition: 0.5s;
-    z-index: 100;
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	background-color: #0c0a0e;
+	overflow-x: hidden;
+	padding-top: 60px;
+	transition: 0.5s;
+	z-index: 100;
 }
 
 .my-sidenav li {
-    font-size: 20px;
-    text-align: left;
-    padding: 10px 25px;
-    border-bottom: 1px solid rgb(255 255 255 / 50%);
+	font-size: 20px;
+	text-align: left;
+	padding: 10px 25px;
+	border-bottom: 1px solid rgb(255 255 255 / 50%);
 }
 
 .my-sidenav li a {
-    color: #00e5ff;
+	color: #00e5ff;
 }
 
 #sidenav-collapsible {
-    border: none;
-    margin: 0;
+	border: none;
+	margin: 0;
 }
 
 #sidenav-collapsible .collapsible-header {
-    line-height: normal;
-    padding: 10px 0;
-    background: none;
-    border-bottom: none;
+	line-height: normal;
+	padding: 10px 0;
+	background: none;
+	border-bottom: none;
 }
 
 #sidenav-collapsible .collapsible-body {
-    border-bottom: none;
-    padding: 0;
+	border-bottom: none;
+	padding: 0;
 }
 
 #sidenav-collapsible .collapsible-body li {
-    padding-left: 0;
-    border-bottom: none;
+	padding-left: 0;
+	border-bottom: none;
 }
 
+
 /* ---------------------------------------------- Hamburger Icon */
+
 
 /*
 The following code is based upon this source: 
@@ -305,150 +316,153 @@ The following code is based upon this source:
 */
 
 #hamburger {
-    width: 40px;
-    height: 25px;
-    position: relative;
-    margin: 20px auto;
-    transform: rotate(0deg);
-    transition: .5s ease-in-out;
-    cursor: pointer;
+	width: 40px;
+	height: 25px;
+	position: relative;
+	margin: 20px auto;
+	transform: rotate(0deg);
+	transition: .5s ease-in-out;
+	cursor: pointer;
 }
 
 #hamburger span {
-    display: block;
-    position: absolute;
-    height: 2px;
-    width: 100%;
-    background: white;
-    border-radius: 9px;
-    opacity: 1;
-    left: 0;
-    transform: rotate(0deg);
-    transition: .25s ease-in-out;
+	display: block;
+	position: absolute;
+	height: 2px;
+	width: 100%;
+	background: white;
+	border-radius: 9px;
+	opacity: 1;
+	left: 0;
+	transform: rotate(0deg);
+	transition: .25s ease-in-out;
 }
 
 #hamburger span:nth-child(1) {
-    top: 0px;
+	top: 0px;
 }
 
 #hamburger span:nth-child(2) {
-    top: 10px;
+	top: 10px;
 }
 
 #hamburger span:nth-child(3) {
-    top: 20px;
+	top: 20px;
 }
 
 #hamburger.open span:nth-child(1) {
-    top: 14px;
-    transform: rotate(135deg);
+	top: 14px;
+	transform: rotate(135deg);
 }
 
 #hamburger.open span:nth-child(2) {
-    opacity: 0;
-    left: -60px;
+	opacity: 0;
+	left: -60px;
 }
 
 #hamburger.open span:nth-child(3) {
-    top: 14px;
-    transform: rotate(-135deg);
+	top: 14px;
+	transform: rotate(-135deg);
 }
 
 
 /* ---------------------------------------------- Footer */
 
 footer {
-    margin-top: 100px;
-    background-color: #161618;
+	margin-top: 100px;
+	background-color: #161618;
 }
 
 footer span {
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
 
 footer .copyright {
-    width: 50%;
-    margin: 25px auto;
+	width: 50%;
+	margin: 25px auto;
 }
 
 footer .divider {
-    background-color: rgb(224 224 224 / 50%);
+	background-color: rgb(224 224 224 / 50%);
 }
 
 
 /* ---------------------------------------------- Hero background video */
 
 #heroBg {
-    position: relative;
+	position: relative;
 }
 
 .hero-vid {
-    width: 100vw;
+	width: 100vw;
 }
+
 
 /* ---------------------------------------------- Homepage title */
 
 .title {
-    position: absolute;
-    width: 100%;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    z-index: 1;
-    line-height: 50px;
+	position: absolute;
+	width: 100%;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+	z-index: 1;
+	line-height: 50px;
 }
 
 .back-font {
-    font-family: "Cyberspace Raceway Back", sans-serif;
-    font-size: 80px;
-    color: black;
-    margin-left: 10px;
-    margin-bottom: 10px;
+	font-family: "Cyberspace Raceway Back", sans-serif;
+	font-size: 80px;
+	color: black;
+	margin-left: 10px;
+	margin-bottom: 10px;
 }
 
 .front-font {
-    font-family: "Cyberspace Raceway Front", sans-serif;
-    font-size: 75px;
-    color: white;
-    letter-spacing: 5px;
+	font-family: "Cyberspace Raceway Front", sans-serif;
+	font-size: 75px;
+	color: white;
+	letter-spacing: 5px;
 }
 
 .list-of-games h3 {
-    margin-top: 0;
-    padding-top: 0;
+	margin-top: 0;
+	padding-top: 0;
 }
 
 .list-of-games .card.horizontal {
-    margin-top: 10px;
-    margin-bottom: 25px;
+	margin-top: 10px;
+	margin-bottom: 25px;
 }
 
 .list-of-games .card-content {
-    padding: 5px 0 0 5px;
+	padding: 5px 0 0 5px;
 }
 
 .list-of-games .card-image img {
-    width: 207px !important;
-    height: 97px;
+	width: 207px !important;
+	height: 97px;
 }
 
 .list-of-games .card-title {
-    font-size: 24px;
-    text-shadow: 1px 1px 1px rgba(34, 29, 29, 0.5);
-    margin: 0 !important;   /* remove margin */
+	font-size: 24px;
+	text-shadow: 1px 1px 1px rgba(34, 29, 29, 0.5);
+	margin: 0 !important;
+	/* remove margin */
 }
 
 .list-of-games p {
-    font-family: "BlenderPro-Thin";
-    font-size: 16px;
-    overflow-x: hidden;
+	font-family: "BlenderPro-Thin";
+	font-size: 16px;
+	overflow-x: hidden;
 }
 
 #homeParallax-img1 {
-    height: 25vh;
+	height: 25vh;
 }
 
 #homeParallax-img2 {
-    height: 50vh;
+	height: 50vh;
 }
+
 
 /*
     The parallax image was not showing,
@@ -457,1106 +471,1106 @@ footer .divider {
 */
 
 .parallax img {
-    transform: translate3d(-50%, 432.451px, 0px);
-    opacity: 1;
+	transform: translate3d(-50%, 432.451px, 0px);
+	opacity: 1;
 }
 
 #homepageBtns .btn-large {
-    background-color: #ff2350;
+	background-color: #ff2350;
 }
 
 #homepageBtns .btn-large:hover {
-    background-color: #e42eee;
+	background-color: #e42eee;
 }
 
 #aboutUs p {
-    font-family: "BlenderPro-Thin";
-    letter-spacing: 1px;
-    font-size: 16px;
+	font-family: "BlenderPro-Thin";
+	letter-spacing: 1px;
+	font-size: 16px;
 }
 
 #aboutUs h3 {
-    font-family: "Cyberspace Raceway Front";
-    letter-spacing: 6px;
-    font-size: 36px;
+	font-family: "Cyberspace Raceway Front";
+	letter-spacing: 6px;
+	font-size: 36px;
 }
 
 #aboutUs p span {
-    font-family: "BlenderPro-Heavy";
-    letter-spacing: 2px;
+	font-family: "BlenderPro-Heavy";
+	letter-spacing: 2px;
 }
 
 .section.list-of-games {
-    padding-top: 50px;
+	padding-top: 50px;
 }
+
 
 /* ---------------------------------------------- Games carousel */
 
+
 /* here */
 
-.carousel { 
-    position: relative;
-    min-height: 600px;
-    margin: 45px 0;
+.carousel {
+	position: relative;
+	min-height: 600px;
+	margin: 45px 0;
 }
 
 #carousel-next {
-    position: absolute; 
-    top: 40%; 
-    bottom: 0; 
-    left: 95%; 
-    right: 0;
+	position: absolute;
+	top: 40%;
+	bottom: 0;
+	left: 95%;
+	right: 0;
 }
 
 #carousel-prev {
-    position: absolute; 
-    top: 40%; 
-    bottom: 0; 
-    left: 0; 
-    right: 95%;
+	position: absolute;
+	top: 40%;
+	bottom: 0;
+	left: 0;
+	right: 95%;
 }
 
 #carousel-next a,
 #carousel-prev a {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .carousel-fixed-item i {
-    font-size: 36px;
+	font-size: 36px;
 }
 
 .carousel-item {
-    padding: 40px 25px 0;
-    background-color: #0f0d10;
+	padding: 40px 25px 0;
+	background-color: #0f0d10;
 }
 
 .carousel-item img {
-    width: 800px !important;
-    height: auto !important;
+	width: 800px !important;
+	height: auto !important;
 }
 
 .carousel-item h2 {
-    margin: 5px 0;
+	margin: 5px 0;
 }
 
 .carousel-item p {
-    margin-top: 5px;
+	margin-top: 5px;
 }
 
 #carouselBtn {
-    bottom: 50px;
+	bottom: 50px;
 }
 
 .carousel-title {
-    font-family: "BlenderPro-Heavy", sans-serif;
-    color: white;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+	font-family: "BlenderPro-Heavy", sans-serif;
+	color: white;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
+
 
 /* ---------------------------------------------- Games (secondary) navbar */
 
 .secondary-nav {
-    width: 95%;
-    margin: auto;
-    background-color: #1f1f21;
+	width: 95%;
+	margin: auto;
+	background-color: #1f1f21;
 }
 
 .secondary-nav .collapsible {
-    border: none;
+	border: none;
 }
 
 .secondary-nav .collapsible a {
-    font-size: 16px;
-    margin: 2px;
+	font-size: 16px;
+	margin: 2px;
 }
 
 .standard-link {
-    line-height: 54px;
+	line-height: 54px;
 }
 
 .secondary-nav a:hover,
 .secondary-nav a:active {
-    color: #f608ea;
-    background-color: rgba(0, 0, 0, 0.1)
+	color: #f608ea;
+	background-color: rgba(0, 0, 0, 0.1)
 }
 
 .secondary-nav .collapsible-header {
-    background-color: #442c4c;
-    border: none;
-} 
+	background-color: #442c4c;
+	border: none;
+}
 
 .secondary-nav .collapsible-body {
-    width: 50vw;
+	width: 50vw;
 }
 
 .secondary-nav input#search {
-    width: 200px;
-    margin-right: 50px;
+	width: 200px;
+	margin-right: 50px;
 }
 
 #searchbar .input-field {
-    padding-right: 25px; 
-    width: 500px;
+	padding-right: 25px;
+	width: 500px;
 }
 
 #searchbar label {
-    font-size: 18px;
-    width: 200px;
+	font-size: 18px;
+	width: 200px;
 }
 
 .my-nav-extend .tabs {
-    background-color: #454549;
-    height: 35px;
+	background-color: #454549;
+	height: 35px;
 }
 
 .my-nav-extend .tab a {
-    font-size: 14px;
-    line-height: 30px;
+	font-size: 14px;
+	line-height: 30px;
 }
 
 .my-nav-extend .tab a {
-    text-decoration: underline;
-    color: #66c0f4;
+	text-decoration: underline;
+	color: #66c0f4;
 }
 
 .my-nav-extend .tab a:hover {
-    color: #f608ea;
+	color: #f608ea;
 }
 
 #PlatformLink {
-    position: relative; 
-    width: 75px; 
-    height: 54px; 
-    padding: 15px; 
-    display: list-item;
+	position: relative;
+	width: 75px;
+	height: 54px;
+	padding: 15px;
+	display: list-item;
 }
 
 #PlatformLink .fixed-action-btn {
-    position: absolute; 
-    top: 0;
-    bottom: 0; 
-    left: 0; 
-    right: 0; 
-    z-index: 1;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
 }
 
 #PlatformLink .standard-link {
-    width: 75px; 
-    height: 54px; 
-    opacity: 1;
+	width: 75px;
+	height: 54px;
+	opacity: 1;
 }
 
 #PlatformLink .floating-nav {
-    position: relative;  
-    width: 160px; 
-    padding-right: 0; 
-    z-index: 20;
+	position: relative;
+	width: 160px;
+	padding-right: 0;
+	z-index: 20;
 }
 
 #PlatformLink .items {
-    position: absolute; 
-    top: -107%;
-    bottom: 0; 
-    right: -50%; 
-    left: 0; 
-    width: 300px;
-    height: 54px; 
-    background: #1f1f21;
+	position: absolute;
+	top: -107%;
+	bottom: 0;
+	right: -50%;
+	left: 0;
+	width: 300px;
+	height: 54px;
+	background: #1f1f21;
 }
 
 #GenreLink {
-    position: relative; 
-    width: 58px; 
-    height: 54px; 
-    padding: 15px; 
-    display: list-item;
+	position: relative;
+	width: 58px;
+	height: 54px;
+	padding: 15px;
+	display: list-item;
 }
 
 #GenreLink .fixed-action-btn {
-    position: absolute; 
-    top: 0; 
-    bottom: 0; 
-    left: 0; 
-    right: 0; 
-    z-index: 1;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
 }
 
 #GenreLink .standard-link {
-    width: 58px; 
-    height: 54px; 
-    opacity: 1;
+	width: 58px;
+	height: 54px;
+	opacity: 1;
 }
 
 #GenreLink .floating-nav {
-    position: relative; 
-    width: 370px; 
-    padding-right: 0; 
-    z-index: 20;
+	position: relative;
+	width: 370px;
+	padding-right: 0;
+	z-index: 20;
 }
 
 #GenreLink .items {
-    position: absolute; 
-    top: -107%; 
-    bottom: 0; 
-    right: 0; 
-    left: -18%; 
-    height: 54px; 
-    background: #1f1f21;
+	position: absolute;
+	top: -107%;
+	bottom: 0;
+	right: 0;
+	left: -18%;
+	height: 54px;
+	background: #1f1f21;
 }
 
 #GenreLink .tab a,
 #PlatformLink .tab a {
-    padding: 0 5px; 
-    line-height: 40px;
+	padding: 0 5px;
+	line-height: 40px;
 }
 
 #secondary-sidenav {
-    padding-top: 1.5rem;
+	padding-top: 1.5rem;
 }
 
 
 /* ---------------------------------------------- Sort filter*/
 
 #sort-and-pagination-nav {
-    width: 95%; 
-    margin: 15px auto;
+	width: 95%;
+	margin: 15px auto;
 }
 
 #sort-and-pagination-nav .pagination {
-    margin-top: 2.5rem;
+	margin-top: 2.5rem;
 }
 
 #sort-and-pagination-nav form {
-    margin-top: 0.5rem;
+	margin-top: 0.5rem;
 }
 
 #sort-and-pagination-nav .tabs {
-    font-family: "BlenderPro-Bold";
+	font-family: "BlenderPro-Bold";
 }
 
 #sortNav {
-    position: relative; 
-    height: 60px; 
-    padding-top: 24px;
+	position: relative;
+	height: 60px;
+	padding-top: 24px;
 }
 
 #sortNav .browser-default {
-    height: 35px; 
-    font-family: 'BlenderPro-Bold'; 
-    font-size: 16px; 
-    color: #444;
+	height: 35px;
+	font-family: 'BlenderPro-Bold';
+	font-size: 16px;
+	color: #444;
 }
 
 #sortNav li.tab:nth-child(1) {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 #sortNav li.tab:nth-child(3) {
-    line-height: 0;
+	line-height: 0;
 }
 
 #sortBy-label {
-    position: absolute; 
-    top: -10px; 
-    right: 87%;
+	position: absolute;
+	top: -10px;
+	right: 87%;
 }
 
 #order-label {
-    position: absolute; 
-    top: -10px; 
-    left: 52%;
+	position: absolute;
+	top: -10px;
+	left: 52%;
 }
 
 #reviews-sortBy-label {
-    position: absolute; 
-    top: -10px; 
-    right: 86%;
+	position: absolute;
+	top: -10px;
+	right: 86%;
 }
 
 #reviews-order-label {
-    position: absolute; 
-    top: -10px; 
-    left: 39%;
+	position: absolute;
+	top: -10px;
+	left: 39%;
 }
 
 #filterBtn {
-    font-family: "BlenderPro-Book";
-    font-size: 12px;
-    padding: 0 12px;
-    margin-left: 5px;
-    margin-bottom: 2px;
-    letter-spacing: 1px;
+	font-family: "BlenderPro-Book";
+	font-size: 12px;
+	padding: 0 12px;
+	margin-left: 5px;
+	margin-bottom: 2px;
+	letter-spacing: 1px;
 }
+
 
 /* ---------------------------------------------- Review and Request form */
 
 .form-outer-panel {
-    background-color: #5b0bad;
+	background-color: #5b0bad;
 }
 
 .form-inner-panel {
-    background-color: #30134d;
+	background-color: #30134d;
 }
 
 .input-panel {
-    background-color: #622d83;
+	background-color: #622d83;
 }
 
 .request-form img {
-    width: 100px;
-    height: 100px;
+	width: 100px;
+	height: 100px;
 }
 
 .request-form p {
-    font-size: 16px;
+	font-size: 16px;
 }
 
 .request-form label {
-    color: white;
+	color: white;
 }
 
 .request-form strong {
-    font-family: "BlenderPro-Heavy"; 
-    color: red;
+	font-family: "BlenderPro-Heavy";
+	color: red;
 }
 
 .request-form button {
-    border-radius: 5px; 
-    background-color: #c41cce;
+	border-radius: 5px;
+	background-color: #c41cce;
 }
 
 #requestGame-confirmation .btn-flat {
-    font-family: "BlenderPro-Heavy";
-    font-size: 16px;
+	font-family: "BlenderPro-Heavy";
+	font-size: 16px;
 }
 
 .more-information {
-    width: 80%;
-    margin: auto;
+	width: 80%;
+	margin: auto;
 }
 
 .more-information h6 {
-    line-height: 25px;
+	line-height: 25px;
 }
+
 
 /* ---------------------------------------------- Game Cards */
 
 .game-cards {
-    margin-bottom: 25px;
+	margin-bottom: 25px;
 }
 
 .game-cards .card-panel {
-    height: 200px;
+	height: 200px;
 }
+
 .game-cards .card.horizontal {
-    height: 125px;
-    border: 3px solid #f608ea;
+	height: 125px;
+	border: 3px solid #f608ea;
 }
+
 
 /* The code below is based upon this source:
 "https://codersblock.com/blog/creating-glow-effects-with-css/" */
 
 .glow {
-    width: 100%;
-    height: 100%;
-    box-shadow:
-        inset 0 0 50px #fff,      /* inner white */
-        inset 0 0 45px rgba(255, 0, 255, 0.596),   /* inner left magenta short */
-        inset 0 0 45px rgba(0, 255, 255, 0.432),  /* inner right cyan short */
-        inset 0 0 300px rgba(255, 0, 255, 0.596),  /* inner left magenta broad */
-        inset 0 0 300px rgba(0, 255, 255, 0.432), /* inner right cyan broad */
-        0 0 10px rgba(255, 255, 255, 0.658),            /* outer white */
-        0 0 25px #f0f,        /* outer left magenta */
-        0 0 45px rgba(230, 111, 0, 0.808);         /* outer right orange */
+	width: 100%;
+	height: 100%;
+	box-shadow: inset 0 0 50px #fff, /* inner white */
+	inset 0 0 45px rgba(255, 0, 255, 0.596), /* inner left magenta short */
+	inset 0 0 45px rgba(0, 255, 255, 0.432), /* inner right cyan short */
+	inset 0 0 300px rgba(255, 0, 255, 0.596), /* inner left magenta broad */
+	inset 0 0 300px rgba(0, 255, 255, 0.432), /* inner right cyan broad */
+	0 0 10px rgba(255, 255, 255, 0.658), /* outer white */
+	0 0 25px #f0f, /* outer left magenta */
+	0 0 45px rgba(230, 111, 0, 0.808);
+	/* outer right orange */
 }
 
 .glow2 {
-    width: 100%;
-    height: 100%;
-    box-shadow:
-        inset 0 0 70px #fff,
-        inset 0 0 65px rgba(255, 0, 255, 0.596),
-        inset 0 0 65px rgba(0, 255, 255, 0.432),
-        inset 0 0 320px rgba(255, 0, 255, 0.596),
-        inset 0 0 320px rgba(0, 255, 255, 0.432), 
-        0 0 30px rgba(255, 255, 255, 0.658), 
-        0 0 35px #f0f,  
-        0 0 35px rgba(230, 111, 0, 0.808);
+	width: 100%;
+	height: 100%;
+	box-shadow: inset 0 0 70px #fff, inset 0 0 65px rgba(255, 0, 255, 0.596), inset 0 0 65px rgba(0, 255, 255, 0.432), inset 0 0 320px rgba(255, 0, 255, 0.596), inset 0 0 320px rgba(0, 255, 255, 0.432), 0 0 30px rgba(255, 255, 255, 0.658), 0 0 35px #f0f, 0 0 35px rgba(230, 111, 0, 0.808);
 }
 
 .purple-linear-gradient {
-    background: linear-gradient(
-        to bottom,
-        #28031c,
-        #28031c 50%,
-        #09072394 50%,
-        #09072394
-    );
-    background-size: 100% 15px;
+	background: linear-gradient( to bottom, #28031c, #28031c 50%, #09072394 50%, #09072394);
+	background-size: 100% 15px;
 }
 
 .black-magenta {
-    background-color: #5e2e65;
+	background-color: #5e2e65;
 }
 
 .game-cards .card {
-    border-radius: 10px;
-    height: 232px;
+	border-radius: 10px;
+	height: 232px;
 }
 
 .game-cards .card-content {
-    padding: 10px 8px 0;
-    overflow: hidden;
-    font-family: "BlenderPro-Thin";
+	padding: 10px 8px 0;
+	overflow: hidden;
+	font-family: "BlenderPro-Thin";
 }
 
 .game-cards .card-action {
-    font-family: "BlenderPro-Medium";
-    padding: 0 0 5px 0;
+	font-family: "BlenderPro-Medium";
+	padding: 0 0 5px 0;
 }
 
 .like {
-    padding: 0 !important;
-    height: 24px;
+	padding: 0 !important;
+	height: 24px;
 }
 
 .like-icon {
-    padding: 0 !important;
-    height: 24px;
-    width: 24px;
+	padding: 0 !important;
+	height: 24px;
+	width: 24px;
 }
 
 .like-text {
-    color: white;
-    padding: 0 0 0 5px !important;
+	color: white;
+	padding: 0 0 0 5px !important;
 }
 
 .like-icon:hover {
-    animation: pulse 1.5s infinite;
-    animation-timing-function: linear;   
+	animation: pulse 1.5s infinite;
+	animation-timing-function: linear;
 }
 
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
 
-
 .like-text {
-    padding-left: 0;
+	padding-left: 0;
 }
 
 .game-cards .card-content .card-title,
 .sm-screen-card .card-title {
-    font-family: "BlenderPro-Book";
-    letter-spacing: 1px;
-    line-height: 1;
-    font-size: 18px;
+	font-family: "BlenderPro-Book";
+	letter-spacing: 1px;
+	line-height: 1;
+	font-size: 18px;
 }
 
 .game-cards .card-title.white-text {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .game-cards .add-btn {
-    width: 40px;
+	width: 40px;
 }
 
 .sm-screen-card .card-panel {
-    width:95%; 
-    margin: 32px auto; 
-    padding: 10px 24px;
+	width: 95%;
+	margin: 32px auto;
+	padding: 10px 24px;
 }
 
 .sm-screen-card .row {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 #gameImageCard {
-    height: 125px; 
-    background-color: #231424;
-    margin-left: 8.3333333333%;
+	height: 125px;
+	background-color: #231424;
+	margin-left: 8.3333333333%;
 }
 
 #gameImageCard img {
-    height: 125px; 
-    width: 275px; 
-    margin: auto; 
-    border-radius: 10px;
+	height: 125px;
+	width: 275px;
+	margin: auto;
+	border-radius: 10px;
 }
 
 #btnCard {
-    height: 125px;
-    width: 64px; 
-    background-color: #231424;
-    z-index: 10;
+	height: 125px;
+	width: 64px;
+	background-color: #231424;
+	z-index: 10;
 }
 
 .sm-screen-card .like {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .thumbs-up-sm-screen {
-    font-size: 30px !important;
-    background-color: whitesmoke;
-    border-radius: 50%;
-    padding: 5px;
+	font-size: 30px !important;
+	background-color: whitesmoke;
+	border-radius: 50%;
+	padding: 5px;
 }
 
 .like-text-sm {
-    margin-top: 16px;
-    font-size: 15px;
+	margin-top: 16px;
+	font-size: 15px;
 }
 
 #gameCardContent .card {
-    height: 100px; 
-    margin: 10px auto; 
-    border: 3px solid #f608ea;
+	height: 100px;
+	margin: 10px auto;
+	border: 3px solid #f608ea;
 }
 
 #gameCardContent .card-title {
-    padding-top: 5px;
-    letter-spacing: 1px;
+	padding-top: 5px;
+	letter-spacing: 1px;
 }
 
 #gameCardContent .card-content {
-    padding: 5px;
+	padding: 5px;
 }
 
 .fab.fa-linux,
 .fab.fa-windows,
 .fab.fa-apple {
-    font-size: 14px;
-    padding: 2px;
+	font-size: 14px;
+	padding: 2px;
 }
+
 
 /* ---------------------------------------------- Search query - no results */
 
 #noResults img {
-    width: 150px;
-    height: 150px;
+	width: 150px;
+	height: 150px;
 }
 
 #noResults .divider {
-    width:50%; 
-    margin: 25px auto;
+	width: 50%;
+	margin: 25px auto;
 }
 
 #noResults p {
-    width: 80%; 
-    margin: auto;
+	width: 80%;
+	margin: auto;
 }
 
 #noResults .btn {
-    margin-top: 25px;
+	margin-top: 25px;
 }
 
 
 /* ---------------------------------------------- Game Cards - Favourite tag */
 
 .game-cards .card-panel {
-    position: relative;
+	position: relative;
 }
 
 .game-card.hide-on-small-only .card-panel {
-    padding: 20px;
+	padding: 20px;
 }
 
 .favourite-tag--games-page .disabled,
 .favourite-tag-sm .disabled,
 .favourite-tag .disabled {
-    color: rgb(2, 255, 242) !important;
-    background-color: rgb(46 34 68 / 94%)  !important;
-    border: 4px solid rgb(2, 255, 242);
+	color: rgb(2, 255, 242) !important;
+	background-color: rgb(46 34 68 / 94%) !important;
+	border: 4px solid rgb(2, 255, 242);
 }
 
 .favourite-tag--games-page {
-    position: absolute; 
-    top: 5%; 
-    bottom: 0; 
-    left: 1%; 
-    right: 0;
-    width: 170px; 
-    height: 65px;  
-    z-index: 20;
+	position: absolute;
+	top: 5%;
+	bottom: 0;
+	left: 1%;
+	right: 0;
+	width: 170px;
+	height: 65px;
+	z-index: 20;
 }
 
 .favourite-tag--games-page .btn-large {
-    position: relative; 
-    width: 170px; 
-    height: 65px; 
-    padding: 0 15px;
+	position: relative;
+	width: 170px;
+	height: 65px;
+	padding: 0 15px;
 }
 
 .favourite-tag--games-page .stars {
-    position: absolute; 
-    top: -10px; 
-    bottom: 0; 
-    left: 15px; 
-    right: 0; 
-    height: 35px;
+	position: absolute;
+	top: -10px;
+	bottom: 0;
+	left: 15px;
+	right: 0;
+	height: 35px;
 }
 
 .favourite-tag--games-page .stars i {
-    font-size: 14px; 
-    height: 35px;
+	font-size: 14px;
+	height: 35px;
 }
 
 .favourite-tag--games-page .recommended-text {
-    position: relative;
+	position: relative;
 }
 
 .favourite-tag--games-page .recommended-text i {
-    font-size: 16px; 
-    line-height: 40px; 
-    margin-left: 5px;
+	font-size: 16px;
+	line-height: 40px;
+	margin-left: 5px;
 }
 
 .favourite-tag--games-page .recommended-text p {
-    position: absolute; 
-    top: -5px; 
-    bottom: 0; 
-    height: 35px; 
-    margin: 0;
-    font-family: 'BlenderPro-Medium';
-    font-size: 12px; 
+	position: absolute;
+	top: -5px;
+	bottom: 0;
+	height: 35px;
+	margin: 0;
+	font-family: 'BlenderPro-Medium';
+	font-size: 12px;
 }
 
 .favourite-tag--games-page-sm {
-    position: absolute; 
-    top: 2%; 
-    bottom: 0; 
-    left: 1%; 
-    right: 0;
-    width: 150px; 
-    height: 50px; 
-    z-index: 20;
+	position: absolute;
+	top: 2%;
+	bottom: 0;
+	left: 1%;
+	right: 0;
+	width: 150px;
+	height: 50px;
+	z-index: 20;
 }
 
 .favourite-tag--games-page-sm .btn-large {
-    position: relative; 
-    width: 150px; 
-    height: 50px; 
-    padding: 0 15px;
+	position: relative;
+	width: 150px;
+	height: 50px;
+	padding: 0 15px;
 }
 
 .favourite-tag--games-page-sm .stars {
-    position: absolute; 
-    top: -15px; 
-    bottom: 0; 
-    left: 15px; 
-    right: 0; 
-    height: 35px;
+	position: absolute;
+	top: -15px;
+	bottom: 0;
+	left: 15px;
+	right: 0;
+	height: 35px;
 }
 
 .favourite-tag--games-page-sm .stars i {
-    height: 25px;
-    font-size: 12px; 
+	height: 25px;
+	font-size: 12px;
 }
 
 .favourite-tag--games-page-sm .recommended-text {
-    position: relative;
+	position: relative;
 }
 
 .favourite-tag--games-page-sm .recommended-text i {
-    font-size: 14px; 
-    line-height: 20px; 
-    margin-left: 0; 
-    margin-right: 3px;
+	font-size: 14px;
+	line-height: 20px;
+	margin-left: 0;
+	margin-right: 3px;
 }
 
 .favourite-tag--games-page-sm .recommended-text p {
-    position: absolute; 
-    top: -15px; 
-    bottom: 0; 
-    height: 35px; 
-    margin: 0;
-    font-family: 'BlenderPro-Medium'; 
-    font-size: 10px; 
+	position: absolute;
+	top: -15px;
+	bottom: 0;
+	height: 35px;
+	margin: 0;
+	font-family: 'BlenderPro-Medium';
+	font-size: 10px;
 }
+
 
 /* ---------------------------------------------- Favourites page */
 
 .favourites {
-    width: 90%; 
-    margin: auto;
+	width: 90%;
+	margin: auto;
 }
 
 .favourites .card-panel {
-    padding: 20px;
+	padding: 20px;
 }
 
 .favourites .card-image {
-    padding: 15px;
+	padding: 15px;
 }
 
 .favourites img {
-    width: 560px; 
-    height: 260px;
+	width: 560px;
+	height: 260px;
 }
 
 .favourites .card-content {
-    width: 70%;
+	width: 70%;
 }
 
 .favourites .card-title h4 {
-    margin-top: 0; 
-    font-size: 28px;
-    cursor: pointer;
+	margin-top: 0;
+	font-size: 28px;
+	cursor: pointer;
 }
 
 .favourites .card-content p {
-    padding-bottom: 5px; 
-    font-size: 16px;
+	padding-bottom: 5px;
+	font-size: 16px;
 }
 
-.favourites .fa-windows, 
-.favourites .fa-linux, 
+.favourites .fa-windows,
+.favourites .fa-linux,
 .favourites .fa-apple,
-.favourites-sm .fa-windows, 
-.favourites-sm .fa-linux, 
+.favourites-sm .fa-windows,
+.favourites-sm .fa-linux,
 .favourites-sm .fa-apple {
-    font-size: 18px;
-} 
+	font-size: 18px;
+}
 
 .favourites .divider {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .favourites .game-summary {
-    padding-top: 20px;
+	padding-top: 20px;
 }
 
 .see-review-btn {
-    position: absolute; 
-    top: 25%; 
-    bottom: 0; 
-    right: 0; 
-    left: 75%;
-    width: 142px;
-    height: 54px;
+	position: absolute;
+	top: 25%;
+	bottom: 0;
+	right: 0;
+	left: 75%;
+	width: 142px;
+	height: 54px;
 }
 
 .floating-add-btn {
-    position: absolute; 
-    top: 7%; 
-    bottom: 0; 
-    right: 0; 
-    left: 82%;
-    width:50px;
-    height: 50px;
+	position: absolute;
+	top: 7%;
+	bottom: 0;
+	right: 0;
+	left: 82%;
+	width: 50px;
+	height: 50px;
 }
 
 .like-outer {
-    position: absolute; 
-    top: 10%; 
-    bottom: 0; 
-    right: 0; 
-    left: 75%;
-    height: 30px;
-    width: 90px;
+	position: absolute;
+	top: 10%;
+	bottom: 0;
+	right: 0;
+	left: 75%;
+	height: 30px;
+	width: 90px;
 }
 
 .like-inner {
-    position: relative;
+	position: relative;
 }
 
 .like-inner i {
-    margin-left: 5px; 
-    position: absolute; 
-    top: 0; 
-    bottom: 0; 
-    left: 0; 
-    right: 0;
+	margin-left: 5px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 .like-inner span {
-    width: 25px; 
-    margin-left: 35px;
-    font-size: 18px;
+	width: 25px;
+	margin-left: 35px;
+	font-size: 18px;
 }
 
 .favourite-tag {
-    position: absolute; 
-    top: 50%; 
-    bottom: 0; 
-    right: 0; 
-    left: 75%;
+	position: absolute;
+	top: 50%;
+	bottom: 0;
+	right: 0;
+	left: 75%;
 }
 
 .favourite-tag .btn-large {
-    position: relative; 
-    height: 70px;
-    padding: 0 15px;
+	position: relative;
+	height: 70px;
+	padding: 0 15px;
 }
 
 .favourite-tag .stars {
-    position: absolute; 
-    top: -10px; 
-    left: 5%; 
-    right: 0;
+	position: absolute;
+	top: -10px;
+	left: 5%;
+	right: 0;
 }
 
 .favourite-tag .stars i {
-    font-size: 16px; 
-    height: 40px;
+	font-size: 16px;
+	height: 40px;
 }
 
 .recommended-text {
-    margin-top: 20px;
+	margin-top: 20px;
 }
+
 
 /* ---------------------------------------------- Favourites page - smaller card*/
 
 .favourites-sm .card-panel {
-    width: 560px;
-    margin: auto;
+	width: 560px;
+	margin: auto;
 }
 
 .favourites-sm img {
-    width: 560px; 
-    height: 260px;
-    padding: 10px;
+	width: 560px;
+	height: 260px;
+	padding: 10px;
 }
 
 .favourite-tag-sm {
-    width: 145px;
-    height: 75px;
+	width: 145px;
+	height: 75px;
 }
 
 .favourites-sm .card-title h4 {
-    font-size: 26px;
+	font-size: 26px;
 }
 
 .favourites-sm .btn-large {
-    width: 190px; 
-    height: 70px; 
-    padding: 0 5px;
+	width: 190px;
+	height: 70px;
+	padding: 0 5px;
 }
 
 .stars-sm {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .stars-sm i {
-    font-size: 16px; 
-    height: 20px; 
-    margin-right: 5px; 
-    line-height: 30px;
+	font-size: 16px;
+	height: 20px;
+	margin-right: 5px;
+	line-height: 30px;
 }
 
 .recommended-text-sm i {
-    font-size: 18px; 
-    height: 40px; 
-    line-height: 90px;
+	font-size: 18px;
+	height: 40px;
+	line-height: 90px;
 }
 
 .like-inner-sm {
-    position: relative; 
-    margin-top: 15px;
+	position: relative;
+	margin-top: 15px;
 }
 
 .like-inner-sm i {
-    position: absolute; 
-    margin-left: 0;
+	position: absolute;
+	margin-left: 0;
 }
 
 .like-inner-sm span {
-    margin-left: 30px; 
-    font-size: 16px;
+	margin-left: 30px;
+	font-size: 16px;
 }
 
 .see-review-btn-sm .btn-large {
-    height: 50px; 
-    width: 120px;
+	height: 50px;
+	width: 120px;
 }
 
 .game-cards.sm-screen-card .like-icon i {
-    font-size: 18px;
-    line-height: 20px;
+	font-size: 18px;
+	line-height: 20px;
 }
 
 .game-cards.sm-screen-card .like-text {
-    font-size: 16px;
+	font-size: 16px;
 }
+
 
 /* ---------------------------------------------- Community reviews page */
 
 .leave-review-col {
-    margin-right: 2.5%
+	margin-right: 2.5%
 }
 
 .review-card {
-    margin: 25px 0;
+	margin: 25px 0;
 }
 
 .review-card-game-title {
-    margin-top: 0;
-    margin-bottom: 5px;
-    font-family: "BlenderPro-Heavy";
-    letter-spacing: 1px;
-    font-size: 18px;
-    color: #ffd1f2; 
+	margin-top: 0;
+	margin-bottom: 5px;
+	font-family: "BlenderPro-Heavy";
+	letter-spacing: 1px;
+	font-size: 18px;
+	color: #ffd1f2;
 }
 
 .review-card-username {
-    margin: 0;
-    font-family: "BlenderPro-Thin";
-    font-size: 15px;
-    color: #e8eaf6; 
+	margin: 0;
+	font-family: "BlenderPro-Thin";
+	font-size: 15px;
+	color: #e8eaf6;
 }
 
 .review-card-username a {
-    color: #66c0f4;
+	color: #66c0f4;
 }
 
 .review-card-username a:hover,
 .review-card-username a:focus {
-    color: #f608ea;
+	color: #f608ea;
 }
 
 .review-card-panel {
-    position: relative;
-    padding-top: 0;
-    background-color: #30134d;
-    border: 2px solid #c41cce;
-    margin: 0;
+	position: relative;
+	padding-top: 0;
+	background-color: #30134d;
+	border: 2px solid #c41cce;
+	margin: 0;
 }
 
 .review-card-panel .card-content {
-    padding: 0 10px 10px;
+	padding: 0 10px 10px;
 }
 
 .review-card-panel .content {
-    padding: 5px;
+	padding: 5px;
 }
 
 .review-card-panel .content p {
-    padding-left: 15px;
-    padding-right: 15px;
-    color: white;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: white;
 }
 
 .review-card-panel .card-image {
-    padding: 10px;
-    position: relative;
+	padding: 10px;
+	position: relative;
 }
 
 .review-card-panel .card-image img {
-    border: 2px solid #f608ea;
+	border: 2px solid #f608ea;
 }
 
 .review-card-panel .edit-review {
-    position: absolute; 
-    top: 72%; 
-    bottom: 0; 
-    left: 85%; 
-    right: 0;
-    width: 42px; 
-    height: 36px; 
-    padding: 10px; 
-    line-height: 12px;
+	position: absolute;
+	top: 72%;
+	bottom: 0;
+	left: 85%;
+	right: 0;
+	width: 42px;
+	height: 36px;
+	padding: 10px;
+	line-height: 12px;
 }
 
 .review-card-panel .edit-review i {
-    height: 18px; 
-    font-size: 16px;
-    margin: 0; 
-    padding:0;
+	height: 18px;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
 }
 
 .review-card-panel .platform {
-    margin: 0 auto;
-    font-family: "BlenderPro-MediumItalic";
-    color: #f608ea !important;
+	margin: 0 auto;
+	font-family: "BlenderPro-MediumItalic";
+	color: #f608ea !important;
 }
 
 .review-card-panel .divider {
-    width: 50%;
-    margin: auto;
-    background-color: rgb(255 255 255 / 75%);
+	width: 50%;
+	margin: auto;
+	background-color: rgb(255 255 255 / 75%);
 }
 
 .review-card-panel .summary {
-    font-size: 16px;
-    margin-top: 5px;
+	font-size: 16px;
+	margin-top: 5px;
 }
 
 .review-card-panel .collapsible,
 .review-card-panel .collapsible-header,
 .review-card-panel .collapsible-body {
-    background-color: #a842d4 ;
-    box-shadow: none;
-    border: none;
-    color: white;
+	background-color: #a842d4;
+	box-shadow: none;
+	border: none;
+	color: white;
 }
 
 .review-card-panel .collapsible-header {
-    position: relative;
-    font-family: "BlenderPro-Heavy";
-    letter-spacing: 1px;
+	position: relative;
+	font-family: "BlenderPro-Heavy";
+	letter-spacing: 1px;
 }
 
 .review-card-sticker {
-    position: absolute;
-    top: 2%;
-    bottom: 0;
-    left: 82%;
-    right: 0;
-    width: 105px;
-    height: 45px;
-    padding: 2px 10px;
-    border-radius: 0;
-    color: white;
+	position: absolute;
+	top: 2%;
+	bottom: 0;
+	left: 82%;
+	right: 0;
+	width: 105px;
+	height: 45px;
+	padding: 2px 10px;
+	border-radius: 0;
+	color: white;
 }
 
 .review-card-sticker .material-icons,
 .review-card-sticker .fa-blender {
-    vertical-align: bottom;
-    font-size: 17px;
+	vertical-align: bottom;
+	font-size: 17px;
 }
 
 .star-rating {
-    position: absolute;
-    right: 5%;
+	position: absolute;
+	right: 5%;
 }
 
 .star-rating i {
-    font-size: 14px;
-    width: 14px;
-    margin: 0;
+	font-size: 14px;
+	width: 14px;
+	margin: 0;
 }
 
+
 /* ---------------------------------------------- Review Form */
+
 
 /* JQuery UI Autocomplete */
 
 ul.ui-autocomplete {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    max-height: 500px;
-    z-index: 10;
-    padding:0 .5em;
-    line-height:2em;
-    font-size: 18px;
-    letter-spacing: 0.04em;
-    overflow-y: scroll;
-    cursor: pointer;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	max-height: 500px;
+	z-index: 10;
+	padding: 0 .5em;
+	line-height: 2em;
+	font-size: 18px;
+	letter-spacing: 0.04em;
+	overflow-y: scroll;
+	cursor: pointer;
 }
 
 ul.ui-autocomplete .highlight {
-    color: #f608ea;
+	color: #f608ea;
 }
 
+
 /* Radio buttons */
+
 
 /*
     Based upon the following source:
@@ -1564,80 +1578,80 @@ ul.ui-autocomplete .highlight {
 */
 
 .radio-btns input[type="radio"] {
-    opacity: 0;
-    position: fixed;
-    width: 0;
+	opacity: 0;
+	position: fixed;
+	width: 0;
 }
 
 .radio-btns label {
-    display: inline-block;
-    background-color: #ddd;
-    padding: 10px 20px;
-    font-family: sans-serif, Arial;
-    font-size: 16px;
-    border: 2px solid #444;
-    border-radius: 4px;
+	display: inline-block;
+	background-color: #ddd;
+	padding: 10px 20px;
+	font-family: sans-serif, Arial;
+	font-size: 16px;
+	border: 2px solid #444;
+	border-radius: 4px;
 }
 
-.radio-btns input[type="radio"]:checked + label {
-    background-color:#bfb;
-    border-color: #4c4;
+.radio-btns input[type="radio"]:checked+label {
+	background-color: #bfb;
+	border-color: #4c4;
 }
 
-.radio-btns input[type="radio"]:focus + label {
-    border: 2px dashed #444;
+.radio-btns input[type="radio"]:focus+label {
+	border: 2px dashed #444;
 }
 
 .radio-btns label:hover {
-    background-color: #dfd;
-  }
-
-
-  .radio-toolbar {
-    margin: 10px;
-  }
-  
-  .radio-toolbar input[type="radio"] {
-    opacity: 0;
-    position: fixed;
-    width: 0;
-  }
-  
-  .radio-toolbar label {
-      display: inline-block;
-      background-color: #f608eae1;
-      color: white;
-      padding: 10px 20px;
-      font-size: 18px;
-      border: 2px solid #f608ea;
-      border-radius: 4px;
-  }
-
-  .radio-toolbar label i {
-      font-size: 16px;
-      vertical-align: middle;
-  }
-  
-  #radio-yes label:hover {
-    background-color: #2abcd5;
-  }
-
-  #radio-no label:hover {
-    background-color: #ff1744;
-  }
-  
-  
-  #radio-yes input[type="radio"]:checked + label {
-      background-color: #2abcd5;
-      border-color: #f608ea;
-  }
-
-  #radio-no input[type="radio"]:checked + label {
-    background-color: #ff1744;
-    border-color: #f608ea;
+	background-color: #dfd;
 }
 
+.radio-toolbar {
+	margin: 10px;
+}
+
+.radio-toolbar input[type="radio"] {
+	opacity: 0;
+	position: fixed;
+	width: 0;
+}
+
+.radio-toolbar label {
+	display: inline-block;
+	background-color: #f608eae1;
+	color: white;
+	padding: 10px 20px;
+	font-size: 18px;
+	border: 2px solid #f608ea;
+	border-radius: 4px;
+}
+
+.radio-toolbar label i {
+	font-size: 16px;
+	vertical-align: middle;
+}
+
+#radio-yes label:hover {
+	background-color: #2abcd5;
+}
+
+#radio-no label:hover {
+	background-color: #ff1744;
+}
+
+#radio-yes input[type="radio"]:checked+label {
+	background-color: #2abcd5;
+	border-color: #f608ea;
+}
+
+#radio-no input[type="radio"]:checked+label {
+	background-color: #ff1744;
+	border-color: #f608ea;
+}
+
+
 /* Star rating */
+
 
 /* 
     Based upon the following source:
@@ -1645,41 +1659,43 @@ ul.ui-autocomplete .highlight {
 */
 
 fieldset.rating {
-    border: none;
-    padding: 0;
+	border: none;
+	padding: 0;
 }
 
 .rating input[type="radio"]:not(:nth-of-type(0)) {
-    /* hide visually */    
-    border: 0;
-    clip: rect(0, 0, 0, 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+	/* hide visually */
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
 }
-.rating [type="radio"]:not(:nth-of-type(0)) + label {
-    display: none;
+
+.rating [type="radio"]:not(:nth-of-type(0))+label {
+	display: none;
 }
 
 label[for]:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .rating .stars label:before {
-    content: "★";
+	content: "★";
 }
 
 .stars label {
-    color: black;
-    font-size: 20px;
+	color: black;
+	font-size: 20px;
 }
 
 .stars label:hover {
-    text-shadow: 0 0 1px #000;
+	text-shadow: 0 0 1px #000;
 }
+
 
 /*
     Glow effect for stars is based upon the following source:
@@ -1688,3423 +1704,3438 @@ label[for]:hover {
 
 .star-glow,
 .star-glow:focus {
-    text-shadow: 0 0 1px #fff, 0 0 2px #ff4da6, 0 0 3px #ff4da6, 0 0 4px #ff4da6, 0 0 5px #ff4da6, 0 0 6px #ff4da6, 0 0 7px #ff4da6;
+	text-shadow: 0 0 1px #fff, 0 0 2px #ff4da6, 0 0 3px #ff4da6, 0 0 4px #ff4da6, 0 0 5px #ff4da6, 0 0 6px #ff4da6, 0 0 7px #ff4da6;
 }
 
-.rating [type="radio"]:nth-of-type(1):checked ~ .stars label:nth-of-type(-n+1),
-.rating [type="radio"]:nth-of-type(2):checked ~ .stars label:nth-of-type(-n+2),
-.rating [type="radio"]:nth-of-type(3):checked ~ .stars label:nth-of-type(-n+3),
-.rating [type="radio"]:nth-of-type(4):checked ~ .stars label:nth-of-type(-n+4),
-.rating [type="radio"]:nth-of-type(5):checked ~ .stars label:nth-of-type(-n+5) {
-    color: #fff;
-    animation: star-glow 1s ease-in-out infinite alternate;
-
+.rating [type="radio"]:nth-of-type(1):checked~.stars label:nth-of-type(-n+1),
+.rating [type="radio"]:nth-of-type(2):checked~.stars label:nth-of-type(-n+2),
+.rating [type="radio"]:nth-of-type(3):checked~.stars label:nth-of-type(-n+3),
+.rating [type="radio"]:nth-of-type(4):checked~.stars label:nth-of-type(-n+4),
+.rating [type="radio"]:nth-of-type(5):checked~.stars label:nth-of-type(-n+5) {
+	color: #fff;
+	animation: star-glow 1s ease-in-out infinite alternate;
 }
 
-.rating [type="radio"]:nth-of-type(1):focus ~ .stars label:nth-of-type(1),
-.rating [type="radio"]:nth-of-type(2):focus ~ .stars label:nth-of-type(2),
-.rating [type="radio"]:nth-of-type(3):focus ~ .stars label:nth-of-type(3),
-.rating [type="radio"]:nth-of-type(4):focus ~ .stars label:nth-of-type(4),
-.rating [type="radio"]:nth-of-type(5):focus ~ .stars label:nth-of-type(5) {
-    color: #fff;
-    animation: star-glow 1s ease-in-out infinite alternate;
+.rating [type="radio"]:nth-of-type(1):focus~.stars label:nth-of-type(1),
+.rating [type="radio"]:nth-of-type(2):focus~.stars label:nth-of-type(2),
+.rating [type="radio"]:nth-of-type(3):focus~.stars label:nth-of-type(3),
+.rating [type="radio"]:nth-of-type(4):focus~.stars label:nth-of-type(4),
+.rating [type="radio"]:nth-of-type(5):focus~.stars label:nth-of-type(5) {
+	color: #fff;
+	animation: star-glow 1s ease-in-out infinite alternate;
 }
 
 @keyframes star-glow {
-    from {
-        text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #e60073, 0 0 4px #e60073, 0 0 5px #e60073, 0 0 6px #e60073, 0 0 7px #e60073;
-    }
-    to {
-        text-shadow: 0 0 2px #fff, 0 0 3px #ff4da6, 0 0 4px #ff4da6, 0 0 5px #ff4da6, 0 0 6px #ff4da6, 0 0 7px #ff4da6, 0 0 8px #ff4da6;
-    }
+	from {
+		text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #e60073, 0 0 4px #e60073, 0 0 5px #e60073, 0 0 6px #e60073, 0 0 7px #e60073;
+	}
+	to {
+		text-shadow: 0 0 2px #fff, 0 0 3px #ff4da6, 0 0 4px #ff4da6, 0 0 5px #ff4da6, 0 0 6px #ff4da6, 0 0 7px #ff4da6, 0 0 8px #ff4da6;
+	}
 }
+
 
 /* ---------------------------------------------- Forms - Global */
 
 .account-title {
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
 
 .account-form p,
 .admin-form p {
-    font-size: 18px;
+	font-size: 18px;
 }
 
 .account-form img,
 .admin-form img {
-    width:100px; 
-    height:100px;
+	width: 100px;
+	height: 100px;
 }
 
 #importantNotice strong {
-    font-family: "BlenderPro-Heavy"; 
-    color: red;
+	font-family: "BlenderPro-Heavy";
+	color: red;
 }
 
 #importantNotice a {
-    text-decoration: underline;
+	text-decoration: underline;
 }
+
 
 /* ---------------------------------------------- Admin - User Requests */
 
 #userRequests {
-    margin-top: 5vh;
+	margin-top: 5vh;
 }
 
 #userRequests #sortBy-label {
-    right: 82%;
+	right: 82%;
 }
 
 #userRequests #order-label {
-    left: 48%;
+	left: 48%;
 }
 
 #gameRequests-card {
-    background-color: #0e232f;
+	background-color: #0e232f;
 }
 
 #gameRequests-card .row {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 #gameRequests-card h5 {
-    margin: 10px 0 0;
-    font-family: "BlenderPro-Heavy";
-    font-size: 19px;
-    letter-spacing: 1px;
+	margin: 10px 0 0;
+	font-family: "BlenderPro-Heavy";
+	font-size: 19px;
+	letter-spacing: 1px;
 }
 
 #gameRequests-card p {
-    margin: 5px 0 10px;
-    font-size: 16px;
-    font-family: "BlenderPro-Thin";
+	margin: 5px 0 10px;
+	font-size: 16px;
+	font-family: "BlenderPro-Thin";
 }
 
 #gameRequests-card .btn {
-    height: 30px;
-    margin: 15px 0;
-    padding: 0 10px;
+	height: 30px;
+	margin: 15px 0;
+	padding: 0 10px;
 }
 
 #gameRequests-card .btn i {
-    font-size: 16px;
-    height: 30px;
-    line-height: 30px;
+	font-size: 16px;
+	height: 30px;
+	line-height: 30px;
 }
 
 #gameRequests-card .btn {
-    width: 46px;
-    height: 40px;
+	width: 46px;
+	height: 40px;
 }
+
 #gameRequests-card .btn i {
-    text-align: center;
-    font-size: 18px;
-    line-height: 38px;
+	text-align: center;
+	font-size: 18px;
+	line-height: 38px;
 }
+
 #gameRequests-card .btn i.fa-plus-circle {
-    font-size: 22px;
+	font-size: 22px;
 }
+
 
 /* ---------------------------------------------- Profile */
 
 #Profile {
-    background-image: url("https://wallpapercave.com/wp/wp6757645.jpg");
-    background-repeat: no-repeat;
-    background-size: 100vw auto;
-    background-position: center;
+	background-image: url("https://wallpapercave.com/wp/wp6757645.jpg");
+	background-repeat: no-repeat;
+	background-size: 100vw auto;
+	background-position: center;
 }
 
 #ProfileContentCard {
-    margin-top: 10px;
-    padding-bottom: 20px;
+	margin-top: 10px;
+	padding-bottom: 20px;
 }
 
 #ProfileSidePanel {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .profile-base-card {
-    background-color: rgb(196 28 206 / 74%);
+	background-color: rgb(196 28 206 / 74%);
 }
 
 .profile-header {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .header-username h3 {
-    margin-left: 20px;
-    font-family: "BlenderPro-Book";
+	margin-left: 20px;
+	font-family: "BlenderPro-Book";
 }
 
 .rank {
-    margin-right: 20px;
-    font-size: 18px;
-    letter-spacing: 1px;
+	margin-right: 20px;
+	font-size: 18px;
+	letter-spacing: 1px;
 }
 
 .profile-card-panel {
-    background-color: #120020;
+	background-color: #120020;
 }
 
 .profile-card-header {
-    background-color: #c41cce;
-    padding: 0;
-    margin: 25px 5px !important;
+	background-color: #c41cce;
+	padding: 0;
+	margin: 25px 5px !important;
 }
 
 .profile-card-header h6 {
-    font-size: 24px;
+	font-size: 24px;
 }
 
 .profile-avatar {
-    width: 150px; 
-    height: 150px; 
-    padding: 10px;
+	width: 150px;
+	height: 150px;
+	padding: 10px;
 }
 
 .side-panel-avatar {
-    margin-right: 5px !important;
+	margin-right: 5px !important;
 }
 
 .profile-card-content {
-    background-color: #120020; 
-    border: 1px solid pink;
-    padding: 0; 
-    width: 95%; 
-    margin: 20px auto !important;
+	background-color: #120020;
+	border: 1px solid pink;
+	padding: 0;
+	width: 95%;
+	margin: 20px auto !important;
 }
 
 .profile-card-inner {
-    margin: 1.5rem 5px !important;
-    background-color: rgb(48 19 77);
+	margin: 1.5rem 5px !important;
+	background-color: rgb(48 19 77);
 }
 
 .profile-card-inner .card {
-    background-color: #120020; 
-    border: 1px solid pink;
+	background-color: #120020;
+	border: 1px solid pink;
 }
 
 .profile-card-inner .card.horizontal {
-    margin: 3rem 0;
+	margin: 3rem 0;
 }
 
 .profile-card-inner .card.smaller {
-    margin-bottom: 3.5rem;
+	margin-bottom: 3.5rem;
 }
 
 .card.smaller .card-content {
-    padding-top: 0;
+	padding-top: 0;
 }
 
 .profile-card-content .main-row {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .profile-game-img {
-    padding: 10px;
+	padding: 10px;
 }
 
 .profile-game-img img {
-    border: 3px solid #f608ea;
-    width: 466px;
-    height: 221px;
+	border: 3px solid #f608ea;
+	width: 466px;
+	height: 221px;
 }
 
 .profile-game-title h5 {
-    text-align: left;
+	text-align: left;
 }
 
 .profile-game-btn {
-    padding-left: 0 !important;
+	padding-left: 0 !important;
 }
 
 .profile-game-btn-sm .btn,
 .profile-game-btn .btn-large,
 .profile-game-btn.btn-large,
 .profile-game-btn .remove-btn {
-    font-family: "BlenderPro-Medium";
-    font-size: 14px;
-    padding: 0 15px; 
-    background-color: #431d5a;
-    color: white;
+	font-family: "BlenderPro-Medium";
+	font-size: 14px;
+	padding: 0 15px;
+	background-color: #431d5a;
+	color: white;
 }
 
 .remove-btn {
-    margin-left: 25px;
+	margin-left: 25px;
 }
 
 .profile-game-btn a:hover,
 .profile-game-btn span:hover {
-    color: #f600ff;
+	color: #f600ff;
 }
 
 .btn-icon-left {
-    vertical-align: bottom; 
-    padding-right: 5px;
+	vertical-align: bottom;
+	padding-right: 5px;
 }
 
 .btn-icon-right {
-    vertical-align: bottom; 
-    padding-left: 5px;
+	vertical-align: bottom;
+	padding-left: 5px;
 }
 
 .profile-btns .btn {
-    margin: 15px;
+	margin: 15px;
 }
 
 .profile-game-btn-sm i.fa-readme,
 .profile-game-btn-sm i.fa-pen-alt,
 .profile-game-btn i.fa-readme,
 .profile-game-btn i.fa-pen-alt {
-    font-size: 12px !important;
+	font-size: 12px !important;
 }
 
 #ProfileSidePanel .row {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 #ProfileSidePanel h5 {
-    margin-top: 0; 
-    margin-right: 10px;
-    font-family: "BlenderPro-Thin"; 
-    font-size: 16px;
-    letter-spacing: 0.5px;
-    text-align: right;
+	margin-top: 0;
+	margin-right: 10px;
+	font-family: "BlenderPro-Thin";
+	font-size: 16px;
+	letter-spacing: 0.5px;
+	text-align: right;
 }
 
 #visitProfiles .card-action {
-    height: 75px;
-    padding: 16px;
+	height: 75px;
+	padding: 16px;
 }
 
 #visitProfiles .card.smaller .col.s2 {
-    min-width: 120px;
+	min-width: 120px;
 }
 
-.card-action .profile-game-btn .dropdown-content li>a, .dropdown-content li>span {
-    color: #26a69a !important;
-    text-transform: none !important;
+.card-action .profile-game-btn .dropdown-content li>a,
+.dropdown-content li>span {
+	color: #26a69a !important;
+	text-transform: none !important;
 }
+
 
 /* Review button */
 
 .reviewed {
-    max-width: 148px;
-    padding: 0 !important; 
-    background-color: #431d5a; 
+	max-width: 148px;
+	padding: 0 !important;
+	background-color: #431d5a;
 }
 
 .reviewed .material-icons {
-    font-size: 13px; 
-    padding:0;
+	font-size: 13px;
+	padding: 0;
 }
 
 .reviewed span {
-    font-size: 13px; 
-    margin: 0px;
+	font-size: 13px;
+	margin: 0px;
 }
 
 .reviewed .btn {
-    height: 32px;
-    line-height: 32px;
-    padding: 0 5px; 
-    background-color: #a54aff;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 5px;
+	background-color: #a54aff;
 }
 
 .fa-pen-square {
-    height: 25px;
-    padding: 0;
-    font-size: 13px;
+	height: 25px;
+	padding: 0;
+	font-size: 13px;
 }
 
 .profile-game-btn.btn-large:hover {
-    background-color: #431d5a;
+	background-color: #431d5a;
 }
 
 .profile-game-btn.reviewed a.btn:hover,
 .profile-game-btn.reviewed a.btn:focus {
-    background-color: #c41cce;
+	background-color: #c41cce;
 }
 
 .profile-game-btn.reviewed a:hover,
 .profile-game-btn.reviewed span:hover {
-    color: white;
+	color: white;
 }
 
 .profile-game-btn.reviewed:hover {
-    cursor: default;
+	cursor: default;
 }
+
 
 /* ---------------------------------------------- Edit Profile */
 
-#edit-profile--general .input-field > label {
-    /* color: #cacaca; */
-    font-family: "BlenderPro-Medium";
-    color: rgb(32, 32, 32);
-    font-size: 16px;
-    text-transform: uppercase;
+#edit-profile--general .input-field>label {
+	/* color: #cacaca; */
+	font-family: "BlenderPro-Medium";
+	color: rgb(32, 32, 32);
+	font-size: 16px;
+	text-transform: uppercase;
 }
 
 #edit-profile--general .input-field {
-    margin-top: 0;
-    padding-top: 15px;
-    border: 2px solid #221424;
-    background-color: rgb(170, 170, 170);
-    border-radius: 3px;
-    color: rgb(92, 92, 92);
+	margin-top: 0;
+	padding-top: 15px;
+	border: 2px solid #221424;
+	background-color: rgb(170, 170, 170);
+	border-radius: 3px;
+	color: rgb(92, 92, 92);
 }
 
-#edit-profile--general .input-field > input::placeholder {
-    color: rgb(92, 92, 92);
+#edit-profile--general .input-field>input::placeholder {
+	color: rgb(92, 92, 92);
 }
 
 #edit-profile--general input {
-    color: rgb(92, 92, 92);
+	color: rgb(92, 92, 92);
 }
 
-#edit-profile--general .input-field > input {
-    margin-bottom: 5px;
+#edit-profile--general .input-field>input {
+	margin-bottom: 5px;
 }
 
 #edit-profile--general .prefix {
-    top: 20px;
+	top: 20px;
 }
 
 #edit-profile--general label,
 #edit-profile--general label.active {
-    top: 15px;
+	top: 15px;
 }
 
 #edit-profile--general .input-field input[type=text]:focus,
-#edit-profile-general  .input-field input[type=text]:active,
+#edit-profile-general .input-field input[type=text]:active,
 #edit-profile--general .input-field input[type=text].valid,
 #edit-profile--general .input-field input[type=email]:focus,
-#edit-profile-general  .input-field input[type=email]:active,
-#edit-profile--general .input-field input[type=email].valid  {
-    border-bottom: 1px solid #f608ea !important;
-    box-shadow: 0 1px 0 0 #f608ea !important;
+#edit-profile-general .input-field input[type=email]:active,
+#edit-profile--general .input-field input[type=email].valid {
+	border-bottom: 1px solid #f608ea !important;
+	box-shadow: 0 1px 0 0 #f608ea !important;
 }
 
 #edit-profile--general .input-field .prefix.active {
-    color: #f608ea;
+	color: #f608ea;
 }
 
 .allow-input-btn {
-    margin-top: 15px;
-    background-color: #c41cce;
+	margin-top: 15px;
+	background-color: #c41cce;
 }
 
 .allow-input-btn:focus,
 .allow-input-btn:hover {
-    background-color: #f608ea;
+	background-color: #f608ea;
 }
 
-
 #current-avatar img {
-    width: 240px; 
-    height: 240px; 
-    padding: 15px;
+	width: 240px;
+	height: 240px;
+	padding: 15px;
 }
 
 #avatar-text-indicator {
-    position: relative;
+	position: relative;
 }
 
 #avatar-text-indicator h6 {
-    position: absolute; 
-    top: 195px; 
-    bottom: 0; 
-    right: 0; 
-    left: 0;
+	position: absolute;
+	top: 195px;
+	bottom: 0;
+	right: 0;
+	left: 0;
 }
 
 #avatar-selection .heading {
-    margin-left: 15px;
+	margin-left: 15px;
 }
 
 #avatar-selection .heading {
-    margin-top: 0;
+	margin-top: 0;
 }
 
 .all-avatars {
-    padding-right: 15px;
+	padding-right: 15px;
 }
 
 .all-avatars button {
-    padding: 5px;
-    margin: 15px;
-    cursor: pointer;
+	padding: 5px;
+	margin: 15px;
+	cursor: pointer;
 }
 
 .all-avatars button:hover {
-    background-color: #c41cce;
+	background-color: #c41cce;
 }
 
 .avatars {
-    width: 184px; 
-    height: 184px;
+	width: 184px;
+	height: 184px;
 }
+
 
 /* ---------------------------------------------- Edit Profile password request odal */
 
 .profile-edit-modal .modal-content,
 .profile-edit-modal .modal-footer {
-    background-color: #30134d;
+	background-color: #30134d;
 }
 
 .profile-edit-modal span {
-    font-family: "BlenderPro-Heavy";
-    color: #c41cce;
-    letter-spacing: 1px;
+	font-family: "BlenderPro-Heavy";
+	color: #c41cce;
+	letter-spacing: 1px;
 }
 
 .profile-edit-modal .modal-close {
-    font-family: "BlenderPro-Medium";
-    background-color: white;
-    margin: 5px;
+	font-family: "BlenderPro-Medium";
+	background-color: white;
+	margin: 5px;
 }
 
 .profile-edit-modal .btn-flat:hover {
-    background-color: #ffecec;
-    font-family: "BlenderPro-Heavy";
+	background-color: #ffecec;
+	font-family: "BlenderPro-Heavy";
 }
 
 #saveChanges {
-    background-color: #c41cce;
+	background-color: #c41cce;
 }
 
 #saveChanges:hover {
-    background-color: #ff6cf8;
+	background-color: #ff6cf8;
 }
 
 .profile-game-btn .btn-large {
-    height: 45px;
-    font-size: 13px;
-    line-height: 45px;
+	height: 45px;
+	font-size: 13px;
+	line-height: 45px;
 }
 
 .profile-game-btn .btn-large i {
-    font-size: 18px;
+	font-size: 18px;
 }
 
 .profile-game-btn .btn-large i.fas {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 .remove-btn {
-    font-size: 12px !important;
-    letter-spacing: 1px;
+	font-size: 12px !important;
+	letter-spacing: 1px;
 }
 
 .remove-btn i {
-    font-size: 17px !important;
-    padding-right: 0;
+	font-size: 17px !important;
+	padding-right: 0;
 }
+
 
 /* ---------------------------------------------- Profile Reviews */
 
 #ProfileReviews .card.horizontal img {
-    width: 380px !important; 
-    height: auto; 
-    margin-top: 2px;
+	width: 380px !important;
+	height: auto;
+	margin-top: 2px;
 }
 
 #ProfileReviews .card.smaller img {
-    margin-top: 5px;
+	margin-top: 5px;
 }
 
 #ProfileReviews .card.horizontal .card-image .row {
-    margin-top: 15px; 
-    text-align: right;
+	margin-top: 15px;
+	text-align: right;
 }
 
 #ProfileReviews .btns .btn {
-    line-height: 28px;
-    font-size: 16px;
+	line-height: 28px;
+	font-size: 16px;
 }
 
 #ProfileReviews .card.horizontal .fa-pen-square,
 #ProfileReviews .card.horizontal .fa-trash {
-    font-size: 18px;
+	font-size: 18px;
 }
 
 #ProfileReviews .card.horizontal .card-content {
-    padding: 5px 10px 5px 0;
+	padding: 5px 10px 5px 0;
 }
 
 #ProfileReviews .card.smaller .card-content {
-    padding: 0 10px 24px;
+	padding: 0 10px 24px;
 }
 
 #ProfileReviews .card.horizontal .card-title,
 #ProfileReviews .card.smaller .card-image .card-panel {
-    position: relative; 
-    height: 65px; 
-    padding: 25px 5px; 
-    background-color: #431d5a; 
-    border: 1px solid pink;
+	position: relative;
+	height: 65px;
+	padding: 25px 5px;
+	background-color: #431d5a;
+	border: 1px solid pink;
 }
 
 #ProfileReviews .card.smaller .card-image .row.card-panel {
-    margin: 0;
+	margin: 0;
 }
 
 #ProfileReviews .card.horizontal .positive-review,
 #ProfileReviews .card.smaller .card-image .positive-review {
-    height: 45px; 
-    position: absolute; 
-    top: 0; 
-    left: 0;
-    padding: 0 10px; 
-    margin: 10px 0 0 10px; 
-    background-color: #00b0ff;
+	height: 45px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0 10px;
+	margin: 10px 0 0 10px;
+	background-color: #00b0ff;
 }
 
 #ProfileReviews .card.horizontal .negative-review,
 #ProfileReviews .card.smaller .card-image .negative-review {
-    height: 45px; 
-    position: absolute; 
-    top: 0; 
-    left: 0;
-    padding: 0 10px; 
-    margin: 10px 0 0 10px;
-    background-color: red;
+	height: 45px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0 10px;
+	margin: 10px 0 0 10px;
+	background-color: red;
 }
 
 #ProfileReviews .card.horizontal .positive-review h4,
 #ProfileReviews .card.horizontal .negative-review h4,
 #ProfileReviews .card.smaller .card-image .positive-review h4,
 #ProfileReviews .card.smaller .card-image .negative-review h4 {
-    margin: 0;
-    line-height: 45px;
+	margin: 0;
+	line-height: 45px;
 }
 
 #ProfileReviews .card.horizontal .date-and-platform,
 #ProfileReviews .card.smaller .date-and-platform {
-    position: relative;
+	position: relative;
 }
 
 #ProfileReviews .card.horizontal .submission-date,
 #ProfileReviews .card.smaller .submission-date {
-    position: absolute;
-    top: -10px;
-    left: 0;
-    right: 10px;
-    margin: 0;
-    text-align: right;
-    font-size: 16px;
+	position: absolute;
+	top: -10px;
+	left: 0;
+	right: 10px;
+	margin: 0;
+	text-align: right;
+	font-size: 16px;
 }
 
 #ProfileReviews .card.smaller .submission-date {
-    line-height: 35px;
+	line-height: 35px;
 }
 
 #ProfileReviews .card.horizontal .platform,
 #ProfileReviews .card.smaller .platform {
-    margin: 0;
-    text-align: right;
-    line-height: 50px;
-    font-family: "BlenderPro-MediumItalic";
-    font-size: 14px;
-    color: #f608ea;
+	margin: 0;
+	text-align: right;
+	line-height: 50px;
+	font-family: "BlenderPro-MediumItalic";
+	font-size: 14px;
+	color: #f608ea;
 }
 
 #ProfileReviews .collapsible {
-    border: none;
-    margin-top: 10px;
+	border: none;
+	margin-top: 10px;
 }
 
 #ProfileReviews .collapsible-header {
-    padding-left: 5px; 
-    background-color: #431d5a; 
-    border: 1px solid pink;
+	padding-left: 5px;
+	background-color: #431d5a;
+	border: 1px solid pink;
 }
 
 #ProfileReviews .collapsible-header .col.s7 {
-    padding: 0; 
-    margin-left: 0;
+	padding: 0;
+	margin-left: 0;
 }
 
-#ProfileReviews .collapsible-header .col.s7 > p {
-    margin-bottom: 5px; 
-    margin-left: 5px; 
-    font-size: 18px;
+#ProfileReviews .collapsible-header .col.s7>p {
+	margin-bottom: 5px;
+	margin-left: 5px;
+	font-size: 18px;
 }
 
 #ProfileReviews .collapsible-header .row {
-    margin-left: 5px; margin-bottom: 0;
+	margin-left: 5px;
+	margin-bottom: 0;
 }
 
 #ProfileReviews .collapsible-header .row .col.s6 {
-    padding: 0;
+	padding: 0;
 }
 
-#ProfileReviews .collapsible-header .row .col.s6 > p {
-    margin-top: 5px;
+#ProfileReviews .collapsible-header .row .col.s6>p {
+	margin-top: 5px;
 }
 
 #ProfileReviews .review-stars {
-    position: relative;
-    margin-top: 5px;
+	position: relative;
+	margin-top: 5px;
 }
 
 #ProfileReviews .read-full-review {
-    text-align: right;
-    padding: 0;
+	text-align: right;
+	padding: 0;
 }
 
 #ProfileReviews .read-full-review span {
-    vertical-align: top; 
-    font-size: 18px;
+	vertical-align: top;
+	font-size: 18px;
 }
 
 #ProfileReviews .read-full-review i {
-    margin-right: 0; 
-    height: 15px;
+	margin-right: 0;
+	height: 15px;
 }
 
 #ProfileReviews .collapsible-body {
-    padding: 5px 10px; 
-    background-color: #431d5a; 
-    border: 1px solid pink; 
-    border-top: 0;
+	padding: 5px 10px;
+	background-color: #431d5a;
+	border: 1px solid pink;
+	border-top: 0;
 }
 
 #ProfileReviews .collapsible-body h6 {
-    margin: 5px 0;
-    font-family: "BlenderPro-Medium";
-    text-transform: uppercase;
-    font-size: 20px;
+	margin: 5px 0;
+	font-family: "BlenderPro-Medium";
+	text-transform: uppercase;
+	font-size: 20px;
 }
 
 #ProfileReviews .collapsible-body .fas {
-    font-size: 16px;
+	font-size: 16px;
 }
 
 #ProfileReviews .collapsible-body p {
-    font-size: 18px;
-    margin-bottom: 20px;
+	font-size: 18px;
+	margin-bottom: 20px;
 }
+
 
 /* ---------------------------------------------- Delete review modal */
 
 .delete-review .modal-content,
 .delete-review .modal-footer {
-    background-color: #30134d;
+	background-color: #30134d;
 }
 
 .delete-review span {
-    font-family: "BlenderPro-Heavy";
-    color: red;
-    letter-spacing: 1px;
+	font-family: "BlenderPro-Heavy";
+	color: red;
+	letter-spacing: 1px;
 }
 
 .delete-review .modal-close {
-    font-family: "BlenderPro-Medium";
-    background-color: white;
-    margin: 5px;
+	font-family: "BlenderPro-Medium";
+	background-color: white;
+	margin: 5px;
 }
 
 .delete-review .btn-flat:hover {
-    background-color: #ffccbc;
-    font-family: "BlenderPro-Heavy";
+	background-color: #ffccbc;
+	font-family: "BlenderPro-Heavy";
 }
 
 #deleteReview:hover {
-    background-color: red !important;
+	background-color: red !important;
 }
+
 
 /* ---------------------------------------------- Edit Profile Game List */
 
 #editGameList #outer-card {
-    background-color: #5b0bad;
+	background-color: #5b0bad;
 }
 
 #editGameList #inner-card {
-    background-color: #30134d;
+	background-color: #30134d;
 }
 
 #editGameList .card-panel {
-    background-color: #622d83;
+	background-color: #622d83;
 }
 
 #editGameList .back-btn {
-    background-color: #c41cce;
+	background-color: #c41cce;
 }
 
 #editGameList img {
-    width:100px; 
-    height:100px;
+	width: 100px;
+	height: 100px;
 }
 
 .no-games {
-    padding: 15px 0; 
-    margin: 0;
-    font-size: 20px;
+	padding: 15px 0;
+	margin: 0;
+	font-size: 20px;
 }
 
 .profile-game-title h5 {
-    font-size: 20px;
+	font-size: 20px;
 }
+
 
 /* ---------------------------------------------- Media Queries */
 
 @media (min-width: 2020px) {
-    #navSearchbar {
-        position: absolute; 
-        top: 15%; 
-        bottom: 0; 
-        right: 0; 
-        left: 0;
-    }
-    #navSearchbar form {
-        position: relative;
-        width: 560px; 
-        margin: auto; 
-    }
-    #navSearchbar input#search {
-        background-color: white; 
-        border-radius: 25px;
-    }
-    #navSearchbar label {
-        position: absolute; 
-        left: 92%; 
-        bottom: 8%;
-    }
-    #navSearchbar i {
-        font-size: 30px; 
-        color: #4a4a4a;
-    }
+	#navSearchbar {
+		position: absolute;
+		top: 15%;
+		bottom: 0;
+		right: 0;
+		left: 0;
+	}
+	#navSearchbar form {
+		position: relative;
+		width: 560px;
+		margin: auto;
+	}
+	#navSearchbar input#search {
+		background-color: white;
+		border-radius: 25px;
+	}
+	#navSearchbar label {
+		position: absolute;
+		left: 92%;
+		bottom: 8%;
+	}
+	#navSearchbar i {
+		font-size: 30px;
+		color: #4a4a4a;
+	}
 }
 
 @media (min-width: 1980px) {
-    .game-cards {
-        margin-bottom: 25px;
-    }
-    .game-cards .card-panel {
-        height: 200px;
-    }
-    .game-cards .card.horizontal {
-        height: 125px;
-        border: 3px solid #f608ea;
-    }
-    .game-cards .card-content .card-title,
-    .sm-screen-card .card-title {
-        font-size: 18px;
-    }
-    .fab.fa-linux,
-    .fab.fa-windows,
-    .fab.fa-apple {
-        font-size: 14px;
-        padding: 2px;
-    }
-    .game-cards .card-action {
-        padding-bottom: 2px;
-    }
+	.game-cards {
+		margin-bottom: 25px;
+	}
+	.game-cards .card-panel {
+		height: 200px;
+	}
+	.game-cards .card.horizontal {
+		height: 125px;
+		border: 3px solid #f608ea;
+	}
+	.game-cards .card-content .card-title,
+	.sm-screen-card .card-title {
+		font-size: 18px;
+	}
+	.fab.fa-linux,
+	.fab.fa-windows,
+	.fab.fa-apple {
+		font-size: 14px;
+		padding: 2px;
+	}
+	.game-cards .card-action {
+		padding-bottom: 2px;
+	}
 }
 
 @media (min-width: 1965px) {
-    #left-review-card {
-        margin-left: 12.49999999995% !important;
-    }
-    .review-card {
-        margin-left: 80px !important;
-        width: 500px !important;
-    }    
+	#left-review-card {
+		margin-left: 12.49999999995% !important;
+	}
+	.review-card {
+		margin-left: 80px !important;
+		width: 500px !important;
+	}
 }
 
 @media (max-width: 1965px) {
-    .review-card {
-        margin-left: 25px !important;
-        width: 450px !important;
-    }
-    #left-review-card {
-        margin-left: 12.49999999995% !important;
-    }
-    .review-card-panel .edit-review {
-        top: 69%; 
-        left: 84%;
-    }
-    .like-icon i {
-        font-size: 18px;
-    }
-    .like-text {
-        font-size: 14px;
-    }
-    .floating-add-btn { 
-        left: 84%;
-    }
-    .like-outer {
-        left: 75%;
-    }
+	.review-card {
+		margin-left: 25px !important;
+		width: 450px !important;
+	}
+	#left-review-card {
+		margin-left: 12.49999999995% !important;
+	}
+	.review-card-panel .edit-review {
+		top: 69%;
+		left: 84%;
+	}
+	.like-icon i {
+		font-size: 18px;
+	}
+	.like-text {
+		font-size: 14px;
+	}
+	.floating-add-btn {
+		left: 84%;
+	}
+	.like-outer {
+		left: 75%;
+	}
 }
 
 @media (max-width: 1923px) {
-    .profile-card-content.horizontal .card-action {
-        text-align: center;
-        padding: 16px 0;
-    }
+	.profile-card-content.horizontal .card-action {
+		text-align: center;
+		padding: 16px 0;
+	}
 }
 
 @media (min-width: 1915px) {
-    #ProfileSidePanel h5 {
-        width: 150px;
-        text-align: right;
-    }
+	#ProfileSidePanel h5 {
+		width: 150px;
+		text-align: right;
+	}
 }
 
 @media (max-width: 1910px) {
-    .profile-card-inner .horizontal img {
-        width: 420px !important;
-        height: auto;
-    }
-    #avatar-selection img {
-        width: 150px;
-        height: 150px;
-    }
+	.profile-card-inner .horizontal img {
+		width: 420px !important;
+		height: auto;
+	}
+	#avatar-selection img {
+		width: 150px;
+		height: 150px;
+	}
 }
 
 @media (max-width: 1896px) {
-    #ProfileReviews .card.horizontal img {
-        width: 320px !important;
-    }
+	#ProfileReviews .card.horizontal img {
+		width: 320px !important;
+	}
 }
 
 @media (max-width: 1875px) and (min-width: 992px) {
-    .secondary-nav li {
-        padding: 0;
-    }
-    .secondary-nav .standard-link {
-        padding: 0 5px;
-    }
-    .secondary-nav .collapsible-header {
-        padding: 15px 5px;
-    }
-    .secondary-nav li a:first-child {
-        padding-left: 15px;
-    }
-    .secondary-nav #searchbar label {
-        line-height: 52px;
-    }
+	.secondary-nav li {
+		padding: 0;
+	}
+	.secondary-nav .standard-link {
+		padding: 0 5px;
+	}
+	.secondary-nav .collapsible-header {
+		padding: 15px 5px;
+	}
+	.secondary-nav li a:first-child {
+		padding-left: 15px;
+	}
+	.secondary-nav #searchbar label {
+		line-height: 52px;
+	}
 }
 
 @media (max-width: 1858px) {
-    .profile-card-inner .card-action {
-        padding: 16px 0;
-    }
-    .profile-game-btn .btn-large {
-        font-size: 12px;
-    }
-    .profile-game-btn i.fa-readme,
-    .profile-game-btn i.fa-pen-alt {
-        font-size: 10px !important;
-    }
-    .reviewed {
-        max-width: 130px;
-    }
-    .reviewed span {
-        font-size: 12px; 
-    }
-    .fa-pen-square {
-        font-size: 12px;
-    }
+	.profile-card-inner .card-action {
+		padding: 16px 0;
+	}
+	.profile-game-btn .btn-large {
+		font-size: 12px;
+	}
+	.profile-game-btn i.fa-readme,
+	.profile-game-btn i.fa-pen-alt {
+		font-size: 10px !important;
+	}
+	.reviewed {
+		max-width: 130px;
+	}
+	.reviewed span {
+		font-size: 12px;
+	}
+	.fa-pen-square {
+		font-size: 12px;
+	}
 }
 
 @media (max-width: 1840px) {
-    .profile-game-title h5 {
-        margin-left: 40px;
-    }
-    .btn-link,
-    .btn-review  {
-        margin-left: 50px !important;
-    }
-    #left-review-card {
-        margin-left: 9.3749999999625% !important;
-    }
+	.profile-game-title h5 {
+		margin-left: 40px;
+	}
+	.btn-link,
+	.btn-review {
+		margin-left: 50px !important;
+	}
+	#left-review-card {
+		margin-left: 9.3749999999625% !important;
+	}
 }
 
 @media (max-width: 1815px) {
-    #userRequests .offset-l3 {
-        margin-left: 12%;
-    }
-    #userRequests-outerCard {
-        width: 75vw;
-    }
+	#userRequests .offset-l3 {
+		margin-left: 12%;
+	}
+	#userRequests-outerCard {
+		width: 75vw;
+	}
 }
 
 @media (max-width: 1795px) and (min-width: 992px) {
-    #gameCard1,
-    #gameCard2 {
-        width: 50%;
-        margin-left: 0;
-    }
+	#gameCard1,
+	#gameCard2 {
+		width: 50%;
+		margin-left: 0;
+	}
 }
 
 @media (max-width: 1795px) {
-    .favourites {
-        width: 95%; 
-        margin: auto;
-    }
+	.favourites {
+		width: 95%;
+		margin: auto;
+	}
 }
 
 @media (max-width: 1785px) {
-    #ProfileReviews .card.horizontal img {
-        width: 300px !important;
-    }
+	#ProfileReviews .card.horizontal img {
+		width: 300px !important;
+	}
 }
 
 @media (max-width: 1780px) and (min-width: 1712px) {
-    #visitProfiles .profile-game-btn .btn-large {
-        padding: 0 5px;
-    }
+	#visitProfiles .profile-game-btn .btn-large {
+		padding: 0 5px;
+	}
 }
 
 @media (max-width: 1756px) and (min-width: 1715px) {
-    #visitProfiles .btn-large i {
-        padding-right: 0;
-    }
+	#visitProfiles .btn-large i {
+		padding-right: 0;
+	}
 }
 
 @media (max-width: 1738px) and (min-width: 1715px) {
-    #ProfileGames .profile-game-btn {
-        padding: 0;
-    }
+	#ProfileGames .profile-game-btn {
+		padding: 0;
+	}
 }
 
 @media (max-width: 1715px) {
-    #visitProfiles .book-icon,
-    #visitProfiles .add-icon {
-        font-size: 16px;
-    }
-    .profile-game-btn .btn-large {
-        padding: 0 8px;
-    }
+	#visitProfiles .book-icon,
+	#visitProfiles .add-icon {
+		font-size: 16px;
+	}
+	.profile-game-btn .btn-large {
+		padding: 0 8px;
+	}
 }
 
 @media (max-width: 1675px) {
-    #navSearchbar form {
-        position: relative;
-        width: 360px; 
-        margin: auto; 
-    }
-    #navSearchbar label {
-        left: 90%; 
-    }
-    .nav-wrapper a {
-        margin: 0 5px;
-        font-size: 16px;
-    }
-    .profile-game-title h5 {
-        margin-left: 70px;
-    }
-    #left-review-card {
-        margin-left: 6.249999999975% !important;
-    }
-    .favourites img {
-        width: 460px; 
-        height: 215px;
-    }
-    .favourites .card-content {
-        padding-top: 10px;
-        width: 60%;
-    }
-    .favourites .card-title h4 {
-        margin-bottom: 0;
-    }
-    .favourites .card-content p {
-        padding-bottom: 0;
-    }
-    .favourites .game-summary {
-        padding-top: 5px;
-    }
-    .floating-add-btn i {
-        font-size: 20px;
-        line-height: 50px;
-    }
-    .floating-add-btn i.fas.fa-plus::before {
-        position: absolute;
-        top: -5px;
-        right: 0;
-        left: 0;
-        bottom: 0;
-    }
+	#navSearchbar form {
+		position: relative;
+		width: 360px;
+		margin: auto;
+	}
+	#navSearchbar label {
+		left: 90%;
+	}
+	.nav-wrapper a {
+		margin: 0 5px;
+		font-size: 16px;
+	}
+	.profile-game-title h5 {
+		margin-left: 70px;
+	}
+	#left-review-card {
+		margin-left: 6.249999999975% !important;
+	}
+	.favourites img {
+		width: 460px;
+		height: 215px;
+	}
+	.favourites .card-content {
+		padding-top: 10px;
+		width: 60%;
+	}
+	.favourites .card-title h4 {
+		margin-bottom: 0;
+	}
+	.favourites .card-content p {
+		padding-bottom: 0;
+	}
+	.favourites .game-summary {
+		padding-top: 5px;
+	}
+	.floating-add-btn i {
+		font-size: 20px;
+		line-height: 50px;
+	}
+	.floating-add-btn i.fas.fa-plus::before {
+		position: absolute;
+		top: -5px;
+		right: 0;
+		left: 0;
+		bottom: 0;
+	}
 }
 
 @media (max-width: 1640px) {
-    .profile-game-btn .btn-large i {
-        font-size: 18px;
-    }
-    #current-avatar img {
-        width: 200px;
-        height: 200px;
-    }
-    #avatar-text-indicator h6 {
-        top: 150px;
-    }
-    #avatar-selection img {
-        width: 125px;
-        height: 125px;
-    }
+	.profile-game-btn .btn-large i {
+		font-size: 18px;
+	}
+	#current-avatar img {
+		width: 200px;
+		height: 200px;
+	}
+	#avatar-text-indicator h6 {
+		top: 150px;
+	}
+	#avatar-selection img {
+		width: 125px;
+		height: 125px;
+	}
 }
 
 @media (max-width: 1640px) and (min-width: 992px) {
-    .list-of-games .col {
-        width: 50% !important;
-        margin: 0 !important;
-    }
+	.list-of-games .col {
+		width: 50% !important;
+		margin: 0 !important;
+	}
 }
 
 @media (max-width: 1648px) and (min-width: 1620px) {
-    #visitProfiles .profile-game-btn .btn-large {
-        padding: 0 5px;
-    }
+	#visitProfiles .profile-game-btn .btn-large {
+		padding: 0 5px;
+	}
 }
 
 @media (max-width: 1620px) and (min-width: 992px) {
-    #ProfileReviews .card.horizontal .submission-date,
-    #ProfileReviews .card.smaller .submission-date {
-        position: absolute;
-        top: -15px;
-    }
+	#ProfileReviews .card.horizontal .submission-date,
+	#ProfileReviews .card.smaller .submission-date {
+		position: absolute;
+		top: -15px;
+	}
 }
 
 @media (max-width: 1620px) and (min-width: 600px) {
-    .add-btn a {
-        width: 30px;
-        height: 30px;
-    }
-    .add-btn i {
-        height: 20px;
-        font-size: 18px;
-    }
+	.add-btn a {
+		width: 30px;
+		height: 30px;
+	}
+	.add-btn i {
+		height: 20px;
+		font-size: 18px;
+	}
 }
 
 @media (max-width: 1620px) {
-    i.fas.fa-plus::before {
-        position: absolute;
-        top: -5px;
-        right: 0;
-        left: 0;
-        bottom: 0;
-    }
-    #ProfileGames .card-content {
-        padding-left: 0;
-    }
-    .profile-card-inner .horizontal img {
-        width: 320px !important;
-        height: auto;
-    }
-    .card.horizontal .card-content {
-        padding: 5px;
-    }
-    .card.horizontal .card-title {
-        font-size: 20px;
-        margin-bottom: 0;
-    }
+	i.fas.fa-plus::before {
+		position: absolute;
+		top: -5px;
+		right: 0;
+		left: 0;
+		bottom: 0;
+	}
+	#ProfileGames .card-content {
+		padding-left: 0;
+	}
+	.profile-card-inner .horizontal img {
+		width: 320px !important;
+		height: auto;
+	}
+	.card.horizontal .card-content {
+		padding: 5px;
+	}
+	.card.horizontal .card-title {
+		font-size: 20px;
+		margin-bottom: 0;
+	}
 }
 
 @media (max-width: 1620px) and (min-width: 992px) {
-    #ProfileGames .row {
-        padding-left: 10px;
-    }
+	#ProfileGames .row {
+		padding-left: 10px;
+	}
 }
 
 @media (max-width: 1605px) {
-    .review-card {
-        margin-left: 25px !important;
-        margin-right: 0 !important;
-    }
-    #left-review-card {
-        margin-left: 25px !important;
-    }
+	.review-card {
+		margin-left: 25px !important;
+		margin-right: 0 !important;
+	}
+	#left-review-card {
+		margin-left: 25px !important;
+	}
 }
 
 @media (max-width: 1605px) and (min-width: 1520px) {
-    #left-review-card {
-        margin-left: 5% !important;
-    }
+	#left-review-card {
+		margin-left: 5% !important;
+	}
 }
 
 @media (max-width: 1570px) {
-    .header-username h3 {
-        font-size: 38px;
-    }
-    .profile-game-img img {
-        width: 400px;
-        height: auto;
-    }
-    .profile-game-title h5 {
-        margin-left: 40px;
-    }
-    .review-verdict h3 {
-        font-size: 32px;
-    }
-    .submission-date {
-        font-size: 14px;
-    }
+	.header-username h3 {
+		font-size: 38px;
+	}
+	.profile-game-img img {
+		width: 400px;
+		height: auto;
+	}
+	.profile-game-title h5 {
+		margin-left: 40px;
+	}
+	.review-verdict h3 {
+		font-size: 32px;
+	}
+	.submission-date {
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 1540px) {
-    #navSearchbar form {
-        width: 320px; 
-    }
-    #navSearchbar label {
-        left: 88%; 
-    }
+	#navSearchbar form {
+		width: 320px;
+	}
+	#navSearchbar label {
+		left: 88%;
+	}
 }
 
 @media (max-width: 1520px) and (min-width: 1462px) {
-    #left-review-card {
-        margin-left: 2.5% !important;
-    }
+	#left-review-card {
+		margin-left: 2.5% !important;
+	}
 }
 
 @media (max-width: 1516px) and (min-width: 1456px) {
-    #visitProfiles .profile-game-btn .btn-large {
-        padding: 0 5px;
-    }
+	#visitProfiles .profile-game-btn .btn-large {
+		padding: 0 5px;
+	}
 }
 
 @media (max-width: 1500px) and (min-width: 992px) {
-    .game-cards .card-title a {
-        font-size: 16px;
-    }
+	.game-cards .card-title a {
+		font-size: 16px;
+	}
 }
 
 @media (max-width: 1500px) {
-    #ProfileReviews .card.horizontal img {
-        width: 280px !important;
-    }
+	#ProfileReviews .card.horizontal img {
+		width: 280px !important;
+	}
 }
 
 @media (max-width: 1493px) and (min-width: 1465px) {
-    #visitProfiles .btn-large i {
-        padding-right: 0;
-    }
+	#visitProfiles .btn-large i {
+		padding-right: 0;
+	}
 }
 
 @media (max-width: 1487px) and (min-width: 1200px) {
-    #ProfileGames .profile-game-btn {
-        padding: 0;
-    }
+	#ProfileGames .profile-game-btn {
+		padding: 0;
+	}
 }
 
 @media (max-width: 1200px) and (min-width: 992px) {
-    #ProfileGames .profile-game-btn .btn-large span,
-    #ProfileGames .reviewed span {
-        font-size: 12px !important;
-    }
-    #navSearchbar button {
-        width: 46px;
-        height: 44px !important;
-    }
-    #navSearchbar i {
-        font-size: 26px !important;
-        line-height: 44px;
-    }
+	#ProfileGames .profile-game-btn .btn-large span,
+	#ProfileGames .reviewed span {
+		font-size: 12px !important;
+	}
+	#navSearchbar button {
+		width: 46px;
+		height: 44px !important;
+	}
+	#navSearchbar i {
+		font-size: 26px !important;
+		line-height: 44px;
+	}
 }
 
 @media (max-width: 1470px) and (min-width: 1066px) {
-    .profile-card-content.horizontal .card-image {
-        padding-right: 0;
-    }
-    .profile-card-content.horizontal img {
-        width: 340px !important;
-        height: auto;
-    }
+	.profile-card-content.horizontal .card-image {
+		padding-right: 0;
+	}
+	.profile-card-content.horizontal img {
+		width: 340px !important;
+		height: auto;
+	}
 }
 
 @media (max-width: 1470px) and (min-width: 1300px) {
-    #Profile-likes img,
-    #visitProfiles-likes img {
-        width: 300px !important;
-        height: auto;
-    }
+	#Profile-likes img,
+	#visitProfiles-likes img {
+		width: 300px !important;
+		height: auto;
+	}
 }
 
 @media (max-width: 1465px) and (min-width: 1072px) {
-    #visitProfiles img {
-        width: 280px !important;
-    }
+	#visitProfiles img {
+		width: 280px !important;
+	}
 }
 
 @media (max-width: 1455px) and (min-width: 1300px) {
-    #ProfileContentCard {
-        width: 800px;
-    }
+	#ProfileContentCard {
+		width: 800px;
+	}
 }
 
 @media (max-width: 1445px) {
-    .review-card .card-image img {
-        width: 300px;
-        height: auto;
-    }
-    .review-card-panel .edit-review {
-        top: 67%; 
-        left: 80%;
-        width: 35px;
-        height: 32px;
-        padding: 5px;
-        line-height: 22px;
-    }
-    .review-card-game-title {
-        font-size: 16px;
-    }
-    .review-card-username {
-        font-size: 12px;
-    }
-    .review-card .summary {
-        font-size: 15px;
-    }
-    .review-card .collapsible-header {
-        font-size: 14px;
-    }
-    .review-card .collapsible-header i {
-        font-size: 18px;
-    }
-    .review-card-sticker {
-        width: 90px;
-        top: 3%;
-        left: 81.5%;
-    }
-    .review-card-sticker h6 {
-        font-size: 15px;
-    }
-    .review-card-sticker h6 i.material-icons{
-        font-size: 15px;
-    }
-    .review-card .star-rating i {
-        font-size: 14px;
-    }
+	.review-card .card-image img {
+		width: 300px;
+		height: auto;
+	}
+	.review-card-panel .edit-review {
+		top: 67%;
+		left: 80%;
+		width: 35px;
+		height: 32px;
+		padding: 5px;
+		line-height: 22px;
+	}
+	.review-card-game-title {
+		font-size: 16px;
+	}
+	.review-card-username {
+		font-size: 12px;
+	}
+	.review-card .summary {
+		font-size: 15px;
+	}
+	.review-card .collapsible-header {
+		font-size: 14px;
+	}
+	.review-card .collapsible-header i {
+		font-size: 18px;
+	}
+	.review-card-sticker {
+		width: 90px;
+		top: 3%;
+		left: 81.5%;
+	}
+	.review-card-sticker h6 {
+		font-size: 15px;
+	}
+	.review-card-sticker h6 i.material-icons {
+		font-size: 15px;
+	}
+	.review-card .star-rating i {
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 1450px) {
-    #navSearchbar form {
-        width: 280px; 
-    }
-    #navSearchbar label {
-        left: 86%; 
-    }
-    .nav-wrapper a {
-        margin: 0;
-    }
-    nav .dropdown-content a {
-        padding: 5px;
-    }
+	#navSearchbar form {
+		width: 280px;
+	}
+	#navSearchbar label {
+		left: 86%;
+	}
+	.nav-wrapper a {
+		margin: 0;
+	}
+	nav .dropdown-content a {
+		padding: 5px;
+	}
 }
 
 @media (max-width: 1435px) {
-    .favourites .card-content {
-        width: 65%;
-    }
-    .favourite-tag .stars i {
-        font-size: 14px;
-        margin-right: 10px;
-    }
-    .recommended-text {
-        font-size: 14px;
-    }
-    .recommended-text i {
-        font-size: 18px;
-        line-height: 50px;
-        margin-left: 5px;
-    }
-    .see-review-btn {
-        left: 70%;
-    }
-    .floating-add-btn { 
-        left: 70%;
-    }
-    .like-outer {
-        left: 77%;
-    }
-    .favourite-tag {
-        left: 70%;
-    }
+	.favourites .card-content {
+		width: 65%;
+	}
+	.favourite-tag .stars i {
+		font-size: 14px;
+		margin-right: 10px;
+	}
+	.recommended-text {
+		font-size: 14px;
+	}
+	.recommended-text i {
+		font-size: 18px;
+		line-height: 50px;
+		margin-left: 5px;
+	}
+	.see-review-btn {
+		left: 70%;
+	}
+	.floating-add-btn {
+		left: 70%;
+	}
+	.like-outer {
+		left: 77%;
+	}
+	.favourite-tag {
+		left: 70%;
+	}
 }
 
 @media (max-width: 1424px) and (min-width: 1356px) {
-    #reviewCards.row {
-        width: 100%;
-        margin: 0 !important;
-    }
-    #left-review-card {
-        margin-left: 2.5% !important;
-    }
-    .review-card {
-        width: 420px !important;
-    }
+	#reviewCards.row {
+		width: 100%;
+		margin: 0 !important;
+	}
+	#left-review-card {
+		margin-left: 2.5% !important;
+	}
+	.review-card {
+		width: 420px !important;
+	}
 }
 
 @media (max-width: 1455px) and (min-width: 993px) {
-    #ProfileSidePanel {
-        width: 150px;
-        padding-right: 0;
-    }
-    .profile-btns a.btn {
-        padding: 0 10px;
-        margin-right: 10px;
-    }
-    .profile-avatar {
-        width: 125px; 
-        height: 125px; 
-        padding: 0;
-        margin: 10px 5px 5px;
-    }
+	#ProfileSidePanel {
+		width: 150px;
+		padding-right: 0;
+	}
+	.profile-btns a.btn {
+		padding: 0 10px;
+		margin-right: 10px;
+	}
+	.profile-avatar {
+		width: 125px;
+		height: 125px;
+		padding: 0;
+		margin: 10px 5px 5px;
+	}
 }
 
 @media (max-width: 1424px) {
-    #reviewCards {
-        width: 95%;
-        margin-left: 15.6249999999375%;
-    }
+	#reviewCards {
+		width: 95%;
+		margin-left: 15.6249999999375%;
+	}
 }
 
 @media (max-width: 1356px) and (min-width: 1292px) {
-    #reviewCards.row {
-        width: 100%;
-        margin: 0 !important;
-    }
-    .review-card {
-        width: 400px !important;
-    }
+	#reviewCards.row {
+		width: 100%;
+		margin: 0 !important;
+	}
+	.review-card {
+		width: 400px !important;
+	}
 }
 
 @media (max-width: 1340px) {
-    #navSearchbar form {
-        width: 260px; 
-    }
+	#navSearchbar form {
+		width: 260px;
+	}
 }
 
 @media (max-width: 1300px) and (min-width: 1200px) {
-    .profile-base-card {
-        width: 1100px !important;
-    }
-    #ProfileCard {
-        margin-left: 5.16666666665%;
-    }
-    #ProfileContentCard {
-        width: 825px;
-    }
+	.profile-base-card {
+		width: 1100px !important;
+	}
+	#ProfileCard {
+		margin-left: 5.16666666665%;
+	}
+	#ProfileContentCard {
+		width: 825px;
+	}
 }
 
 @media (max-width: 1292px) and (min-width: 992px) {
-    .review-card .collapsible-header i {
-        margin-right: 0;
-    }
-    .review-card .star-rating i {
-        font-size: 14px;
-        width: 12px;
-    }
+	.review-card .collapsible-header i {
+		margin-right: 0;
+	}
+	.review-card .star-rating i {
+		font-size: 14px;
+		width: 12px;
+	}
 }
 
-@media (max-width: 1292px) and (min-width: 1249px) {  
-    #left-review-card {
-        margin-left: 5% !important;
-    }
-    .review-card .star-rating {
-        width: 80px;
-    }
+@media (max-width: 1292px) and (min-width: 1249px) {
+	#left-review-card {
+		margin-left: 5% !important;
+	}
+	.review-card .star-rating {
+		width: 80px;
+	}
 }
 
 @media (max-width: 1292px) and (min-width: 1206px) {
-    #reviewCards.row {
-        width: 100%;
-        margin: 0 !important;
-    }
-    .review-card {
-        width: 370px !important;
-    }
+	#reviewCards.row {
+		width: 100%;
+		margin: 0 !important;
+	}
+	.review-card {
+		width: 370px !important;
+	}
 }
 
 @media (max-width: 1285px) {
-    .favourites .card-image {
-        padding: 10px;
-    }
-    .favourites .card-content {
-        padding-left: 15px;
-        width: 65%;
-    }
-    .favourites .card-content p {
-        font-size: 14px;
-    }
-    .favourites .card-title h4 {
-        font-size: 22px;
-    }
-    .see-review-btn {
-        left: 65%;
-    }
-    .floating-add-btn { 
-        left: 65%;
-    }
-    .like-outer {
-        left: 72%;
-    }
-    .favourite-tag {
-        left: 65%;
-    }
+	.favourites .card-image {
+		padding: 10px;
+	}
+	.favourites .card-content {
+		padding-left: 15px;
+		width: 65%;
+	}
+	.favourites .card-content p {
+		font-size: 14px;
+	}
+	.favourites .card-title h4 {
+		font-size: 22px;
+	}
+	.see-review-btn {
+		left: 65%;
+	}
+	.floating-add-btn {
+		left: 65%;
+	}
+	.like-outer {
+		left: 72%;
+	}
+	.favourite-tag {
+		left: 65%;
+	}
 }
 
-@media (max-width: 1249px) and (min-width: 1210px) {  
-    #left-review-card {
-        margin-left: 2.5% !important;
-    }
-    .review-card .star-rating {
-        width: 80px;
-    }
+@media (max-width: 1249px) and (min-width: 1210px) {
+	#left-review-card {
+		margin-left: 2.5% !important;
+	}
+	.review-card .star-rating {
+		width: 80px;
+	}
 }
 
 @media (max-width: 1206px) and (min-width: 992px) {
-    #reviewCards.row {
-        width: 100%;
-        margin: 0;
-    }
-    .review-card {
-        width: 360px !important;
-    }
-    .review-card-panel {
-        padding: 15px !important;
-    }
-    .review-card-sticker {
-        width: 85px;
-        height: 36px;
-        top: 7%;
-        left: 78%;
-        padding: 0;
-    }
-    .review-card-sticker h6 {
-        height: 38px;
-        margin: 0;
-        font-size: 14px;
-        line-height: 38px;
-    }
-    .review-card-sticker h6 i.material-icons {
-        font-size: 14px;
-        line-height: 38px;
-    }
+	#reviewCards.row {
+		width: 100%;
+		margin: 0;
+	}
+	.review-card {
+		width: 360px !important;
+	}
+	.review-card-panel {
+		padding: 15px !important;
+	}
+	.review-card-sticker {
+		width: 85px;
+		height: 36px;
+		top: 7%;
+		left: 78%;
+		padding: 0;
+	}
+	.review-card-sticker h6 {
+		height: 38px;
+		margin: 0;
+		font-size: 14px;
+		line-height: 38px;
+	}
+	.review-card-sticker h6 i.material-icons {
+		font-size: 14px;
+		line-height: 38px;
+	}
 }
 
 @media (max-width: 1200px) and (min-width: 992px) {
-    #ProfileCard {
-        margin-left: 4.16666666665%;
-    }
-    #navSearchbar button {
-        height: 46px;
-    }
+	#ProfileCard {
+		margin-left: 4.16666666665%;
+	}
+	#navSearchbar button {
+		height: 46px;
+	}
 }
 
 @media (max-width: 1197px) and (min-width: 1160px) {
-    #Profile-likes img,
-    #visitProfiles-likes img {
-        width: 290px !important;
-        height: auto;
-    }
+	#Profile-likes img,
+	#visitProfiles-likes img {
+		width: 290px !important;
+		height: auto;
+	}
 }
 
 @media (max-width: 1185px) {
-    #ProfileReviews .card.horizontal img {
-        width: 260px !important;
-    }
+	#ProfileReviews .card.horizontal img {
+		width: 260px !important;
+	}
 }
 
 @media (max-width: 1182px) and (min-width: 1066px) {
-    .card.horizontal .card-action {
-        text-align: left;
-    }
-    .profile-card-inner .horizontal img {
-        width: 300px !important;
-        height: auto;
-    }
+	.card.horizontal .card-action {
+		text-align: left;
+	}
+	.profile-card-inner .horizontal img {
+		width: 300px !important;
+		height: auto;
+	}
 }
 
 @media (max-width: 1180px) and (min-width: 1160px) {
-    #visitProfiles .profile-game-btn .btn-large {
-        padding: 0 5px;
-    }
+	#visitProfiles .profile-game-btn .btn-large {
+		padding: 0 5px;
+	}
 }
 
 @media (max-width: 1094px) and (min-width: 992px) {
-    #ProfileReviews .profile-card-inner {
-        padding: 24px 0;
-    }
-    #avatar-selection img {
-        width: 100px;
-        height: 100px;
-    }
+	#ProfileReviews .profile-card-inner {
+		padding: 24px 0;
+	}
+	#avatar-selection img {
+		width: 100px;
+		height: 100px;
+	}
 }
 
 @media (max-width: 1072px) and (min-width: 992px) {
-    #visitProfiles img {
-        width: 260px !important;
-    }
-    #visitProfiles .profile-game-btn {
-        padding-right: 0;
-    }
+	#visitProfiles img {
+		width: 260px !important;
+	}
+	#visitProfiles .profile-game-btn {
+		padding-right: 0;
+	}
 }
 
 @media (max-width: 1070px) {
-    #navSearchbar {
-        right: 5%;
-    }
+	#navSearchbar {
+		right: 5%;
+	}
 }
 
 @media (max-width: 1066px) and (min-width: 992px) {
-    .profile-card-content.horizontal .card-image {
-        padding-right: 0;
-    }
-    .profile-card-inner .horizontal img {
-        width: 260px !important;
-        height: auto;
-    }
+	.profile-card-content.horizontal .card-image {
+		padding-right: 0;
+	}
+	.profile-card-inner .horizontal img {
+		width: 260px !important;
+		height: auto;
+	}
 }
 
 @media (max-width: 1065px) and (min-width: 992px) {
-    #visitProfiles .card-action {
-        padding: 16px 0 !important;
-    }
-    #visitProfiles .profile-game-btn .btn-large {
-        padding: 0 5px;
-    }
-    #visitProfiles .profile-game-btn .btn-large i {
-        padding-right: 0;
-    }
+	#visitProfiles .card-action {
+		padding: 16px 0 !important;
+	}
+	#visitProfiles .profile-game-btn .btn-large {
+		padding: 0 5px;
+	}
+	#visitProfiles .profile-game-btn .btn-large i {
+		padding-right: 0;
+	}
 }
 
 @media (max-width: 1160px) and (min-width: 1105px) {
-    .review-card {
-        width: 340px !important;
-    }
+	.review-card {
+		width: 340px !important;
+	}
 }
 
-@media (max-width: 1160px) and (min-width: 1118px) {  
-    #left-review-card {
-        margin-left: 3% !important;
-    }
+@media (max-width: 1160px) and (min-width: 1118px) {
+	#left-review-card {
+		margin-left: 3% !important;
+	}
 }
 
 @media (max-width: 1160px) {
-    .profile-game-img img {
-        width: 350px;
-        height: auto;
-    }
-    .profile-game-title h5 {
-        margin-left: 17px;
-    }
-    #Reviews {
-        padding-top: 1rem;
-    }
-    .review-edit-left-btn {
-        margin-left: 32px !important;
-    }
-    .leave-review {
-        height: 50px;
-        padding: 0 15px;
-    }
-    #reviewCards {
-        margin-left: 12.49999999995%;
-    }
-    .secondary-nav #searchbar .input-field {
-        width: 350px;
-    }
+	.profile-game-img img {
+		width: 350px;
+		height: auto;
+	}
+	.profile-game-title h5 {
+		margin-left: 17px;
+	}
+	#Reviews {
+		padding-top: 1rem;
+	}
+	.review-edit-left-btn {
+		margin-left: 32px !important;
+	}
+	.leave-review {
+		height: 50px;
+		padding: 0 15px;
+	}
+	#reviewCards {
+		margin-left: 12.49999999995%;
+	}
+	.secondary-nav #searchbar .input-field {
+		width: 350px;
+	}
 }
 
 @media (max-width: 1160px) and (min-width: 1065px) {
-    #ProfileContentCard {
-        width: 800px;
-    }
+	#ProfileContentCard {
+		width: 800px;
+	}
 }
 
 @media (max-width: 1112px) {
-    .favourites .card-image {
-        height: 165px;
-    }
-    .favourites img {
-        width: 350px;
-        height: 162px;
-    }
+	.favourites .card-image {
+		height: 165px;
+	}
+	.favourites img {
+		width: 350px;
+		height: 162px;
+	}
 }
 
 @media (max-width: 1065px) {
-    #reviewCards {
-        margin-left: 6.249999999975%;
-    }
+	#reviewCards {
+		margin-left: 6.249999999975%;
+	}
 }
 
 @media (max-width: 1065px) and (min-width: 790px) {
-    #ProfileContentCard {
-        width: 732px;
-    }
+	#ProfileContentCard {
+		width: 732px;
+	}
 }
 
 @media (max-width: 1065px) and (min-width: 992px) {
-    #visitProfiles-likes img,
-    #Profile-likes img {
-        width: 240px !important;
-    }
+	#visitProfiles-likes img,
+	#Profile-likes img {
+		width: 240px !important;
+	}
 }
 
 @media (max-width: 1025px) and (min-width: 992px) {
-    #reviewCards {
-        margin-left: 3.1249999999875%;
-    }
-    .review-card {
-        width: 400px !important;
-    }
+	#reviewCards {
+		margin-left: 3.1249999999875%;
+	}
+	.review-card {
+		width: 400px !important;
+	}
 }
 
 @media (max-width: 1105px) and (min-width: 1000px) {
-    .review-card {
-        width: 330px !important;
-        margin-left: 5px !important;
-    }
-    .review-card-sticker {
-        left: 74%;;
-    }
+	.review-card {
+		width: 330px !important;
+		margin-left: 5px !important;
+	}
+	.review-card-sticker {
+		left: 74%;
+		;
+	}
 }
 
-@media (max-width: 1105px) and (min-width: 1070px) {  
-    #left-review-card {
-        margin-left: 5% !important;
-    }
-    .review-card .star-rating {
-        width: 70px;
-        right: 3%;
-    }
-    .review-card .star-rating i {
-        width: 10px;
-    }
+@media (max-width: 1105px) and (min-width: 1070px) {
+	#left-review-card {
+		margin-left: 5% !important;
+	}
+	.review-card .star-rating {
+		width: 70px;
+		right: 3%;
+	}
+	.review-card .star-rating i {
+		width: 10px;
+	}
 }
 
 @media (max-width: 1070px) and (min-width: 1050px) {
-    #left-review-card {
-        margin-left: 4% !important;
-    }
-    .review-card .star-rating {
-        width: 70px;
-        right: 1%;
-    }
-    .review-card .star-rating i {
-        width: 10px;
-    }
+	#left-review-card {
+		margin-left: 4% !important;
+	}
+	.review-card .star-rating {
+		width: 70px;
+		right: 1%;
+	}
+	.review-card .star-rating i {
+		width: 10px;
+	}
 }
 
 @media(min-height: 1090px) {
-    .account-form,
-    .request-form,
-    .admin-form {
-        margin-top: 10vh;
-    }
+	.account-form,
+	.request-form,
+	.admin-form {
+		margin-top: 10vh;
+	}
 }
 
 @media (max-width: 1050px) and (min-width: 992px) {
-    .review-card .star-rating {
-        width: 70px;
-        right: 1%;
-    }
-    .review-card .star-rating i {
-        width: 10px;
-        font-size: 13px;
-    }
+	.review-card .star-rating {
+		width: 70px;
+		right: 1%;
+	}
+	.review-card .star-rating i {
+		width: 10px;
+		font-size: 13px;
+	}
 }
 
 @media (max-width: 1028px) and (min-width: 1015px) {
-    #left-review-card {
-        margin-left: 15px !important;
-    }
+	#left-review-card {
+		margin-left: 15px !important;
+	}
 }
 
 @media (max-width: 1028px) and (min-width: 1010px) {
-    #left-review-card {
-        margin-left: 10px !important;
-    }
+	#left-review-card {
+		margin-left: 10px !important;
+	}
 }
 
 @media (max-width: 1010px) and (min-width: 992px) {
-    #left-review-card {
-        margin-left: 0 !important;
-    }
+	#left-review-card {
+		margin-left: 0 !important;
+	}
 }
 
 @media (max-width: 1000px) and (min-width: 992px) {
-    .review-card {
-        width: 320px !important;
-        margin-left: 5px !important;
-    }
-    .review-card-sticker {
-        left: 74%;;
-    }
+	.review-card {
+		width: 320px !important;
+		margin-left: 5px !important;
+	}
+	.review-card-sticker {
+		left: 74%;
+		;
+	}
 }
 
 @media(min-width: 993px) {
-    .profile-header {
-        display: flex;
-    }
-    .rank {
-        position: relative;
-    }
-    .rank h6 {
-        position: absolute; 
-        bottom: 20px; 
-        right: 5px;
-    }
-    .profile-btns li {
-        text-align: right;
-    }
+	.profile-header {
+		display: flex;
+	}
+	.rank {
+		position: relative;
+	}
+	.rank h6 {
+		position: absolute;
+		bottom: 20px;
+		right: 5px;
+	}
+	.profile-btns li {
+		text-align: right;
+	}
 }
 
 @media (max-width: 992px) and (min-width: 956px) {
-    #ProfileContentCard {
-        margin-left: 3.5%;
-    }
+	#ProfileContentCard {
+		margin-left: 3.5%;
+	}
 }
 
 @media (max-width: 956px) and (min-width: 915px) {
-    #ProfileContentCard {
-        margin-left: 1.5%;
-    }
+	#ProfileContentCard {
+		margin-left: 1.5%;
+	}
 }
 
 @media (min-width: 992px) {
-    .list-of-games .row {
-        background: linear-gradient( to right, #1e1e21 50%, #161618 50% );
-    }
-    #userRequests #sort-and-pagination-nav .row div.m12 {
-        float: right;
-    }
-    #ProfileSidePanel h6 {
-        text-align: right;
-    }
-    #gameRequests-card .btns {
-        text-align: right;
-    }
+	.list-of-games .row {
+		background: linear-gradient( to right, #1e1e21 50%, #161618 50%);
+	}
+	#userRequests #sort-and-pagination-nav .row div.m12 {
+		float: right;
+	}
+	#ProfileSidePanel h6 {
+		text-align: right;
+	}
+	#gameRequests-card .btns {
+		text-align: right;
+	}
 }
 
 @media(max-width: 992px) {
-    .fas.fa-user {
-        font-size: 2.25rem;
-    }
-    .secondary-nav .nav-content div.valign {
-        margin-bottom: 20px;
-    }
-    .secondary-nav .nav-content div.valign a {
-        font-size: 14px;
-    }
-    .secondary-nav #searchbar .input-field {
-        width: 600px;
-    }
-    #secondary-nav-searchbar button {
-        left: 91%;
-    }
-    .secondary-nav .sidenav-trigger i {
-        font-size: 32px;
-    }
-    #sort-and-pagination-nav .pagination {
-        text-align: right;
-    }
-    .list-of-games .pagination {
-        margin-bottom: 65px;
-    }
-    .favourites-page .sort-by {
-        padding-top: 25px;
-    }
-    #Profile .row {
-        padding-top: 0;
-    }
-    .header-username h3 {
-        font-size: 32px;
-        margin-bottom: 0;
-    }
-    .profile-header .row.hide-on-large-only,
-    .profile-header .row:nth-child(3) {
-        margin-bottom: 0;
-    }
-    .rank h6 {
-        margin: 10px 10px 0;
-    }
-    #ProfileSidePanel {
-        height: 65px;
-    }
-    .profile-btns {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-    .profile-btns.row {
-        margin-bottom: 0;
-    }
-    .profile-header {
-        text-align: right;
-    }
-    .profile-header h2 {
-        font-size: 36px;
-    }
-    .rank h6 {
-        font-size: 14px;
-        margin-right: 5px !important;
-    }
-    .profile-btns li {
-        display: inline;
-        text-align: center;
-    }
-    #ProfileGames .card-content {
-        padding: 0 24px;
-    }
-    .profile-game-title h5 {
-        margin-top: 0;
-        margin-left: 20px;
-        text-align: left;
-    }
-    .remove-btn {
-        margin-left: 20px;
-    }
-    #editBtn {
-        margin-right: 15px;
-    }
-    #return-to-profile-btn {
-        margin-top: 0;
-        margin-right: 15px;
-        font-size: 18px;
-    }
-    .rank h6 {
-        margin-right: 15px;
-    }
-    .add-btn,
-    .favourite-floating-btn {
-        padding-top: 15px;
-        padding-bottom: 28px;
-    }
-    .favourite-floating-btn i.fas.fa-plus::before {
-        top: 0;
-    }
-    i.fas.fa-plus::before {
-        position: absolute;
-        top: -5px;
-        right: 0;
-        left: 0;
-        bottom: 0;
-    }
-    #ProfileHeader_first {
-        margin-top: 15px !important;
-    }
-    .date-and-platform {
-        width: 90%;
-        margin-left: 35px;
-    }
-    .review-edit-left-btn {
-        margin-left: 35px !important;
-    }
-    .submission-date .card-title {
-        margin-left: 5px;
-    }
-    #Reviews {
-        padding-top: 0.5rem;
-    }
-    #reviewCards {
-        margin-left: 25%;
-    }
-    .play-btns,
-    .links-and-review {
-        margin-left: 3px !important;
-    }
-    #visitProfiles .profile-game-btn {
-        padding-right: 0;
-    }
-    #visitProfiles .profile-game-btn .btn-large {
-        font-size: 14px;
-    }
-    #gameRequests-card .btns {
-        text-align: left;
-    }
-    #Profile-likes .card-action,
-    #visitProfiles-likes .card-action {
-        height: 85px; 
-        text-align: center;
-    }
-    #ProfileReviews .card.horizontal .submission-date,
-    #ProfileReviews .card.smaller .submission-date {
-        position: absolute;
-        top: -20px;
-    }
+	.fas.fa-user {
+		font-size: 2.25rem;
+	}
+	.secondary-nav .nav-content div.valign {
+		margin-bottom: 20px;
+	}
+	.secondary-nav .nav-content div.valign a {
+		font-size: 14px;
+	}
+	.secondary-nav #searchbar .input-field {
+		width: 600px;
+	}
+	#secondary-nav-searchbar button {
+		left: 91%;
+	}
+	.secondary-nav .sidenav-trigger i {
+		font-size: 32px;
+	}
+	#sort-and-pagination-nav .pagination {
+		text-align: right;
+	}
+	.list-of-games .pagination {
+		margin-bottom: 65px;
+	}
+	.favourites-page .sort-by {
+		padding-top: 25px;
+	}
+	#Profile .row {
+		padding-top: 0;
+	}
+	.header-username h3 {
+		font-size: 32px;
+		margin-bottom: 0;
+	}
+	.profile-header .row.hide-on-large-only,
+	.profile-header .row:nth-child(3) {
+		margin-bottom: 0;
+	}
+	.rank h6 {
+		margin: 10px 10px 0;
+	}
+	#ProfileSidePanel {
+		height: 65px;
+	}
+	.profile-btns {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.profile-btns.row {
+		margin-bottom: 0;
+	}
+	.profile-header {
+		text-align: right;
+	}
+	.profile-header h2 {
+		font-size: 36px;
+	}
+	.rank h6 {
+		font-size: 14px;
+		margin-right: 5px !important;
+	}
+	.profile-btns li {
+		display: inline;
+		text-align: center;
+	}
+	#ProfileGames .card-content {
+		padding: 0 24px;
+	}
+	.profile-game-title h5 {
+		margin-top: 0;
+		margin-left: 20px;
+		text-align: left;
+	}
+	.remove-btn {
+		margin-left: 20px;
+	}
+	#editBtn {
+		margin-right: 15px;
+	}
+	#return-to-profile-btn {
+		margin-top: 0;
+		margin-right: 15px;
+		font-size: 18px;
+	}
+	.rank h6 {
+		margin-right: 15px;
+	}
+	.add-btn,
+	.favourite-floating-btn {
+		padding-top: 15px;
+		padding-bottom: 28px;
+	}
+	.favourite-floating-btn i.fas.fa-plus::before {
+		top: 0;
+	}
+	i.fas.fa-plus::before {
+		position: absolute;
+		top: -5px;
+		right: 0;
+		left: 0;
+		bottom: 0;
+	}
+	#ProfileHeader_first {
+		margin-top: 15px !important;
+	}
+	.date-and-platform {
+		width: 90%;
+		margin-left: 35px;
+	}
+	.review-edit-left-btn {
+		margin-left: 35px !important;
+	}
+	.submission-date .card-title {
+		margin-left: 5px;
+	}
+	#Reviews {
+		padding-top: 0.5rem;
+	}
+	#reviewCards {
+		margin-left: 25%;
+	}
+	.play-btns,
+	.links-and-review {
+		margin-left: 3px !important;
+	}
+	#visitProfiles .profile-game-btn {
+		padding-right: 0;
+	}
+	#visitProfiles .profile-game-btn .btn-large {
+		font-size: 14px;
+	}
+	#gameRequests-card .btns {
+		text-align: left;
+	}
+	#Profile-likes .card-action,
+	#visitProfiles-likes .card-action {
+		height: 85px;
+		text-align: center;
+	}
+	#ProfileReviews .card.horizontal .submission-date,
+	#ProfileReviews .card.smaller .submission-date {
+		position: absolute;
+		top: -20px;
+	}
 }
 
 @media (max-width: 992px) and (min-width: 510px) {
-    .profile-game-img img {
-        width: 400px;
-        height: auto;
-    }
+	.profile-game-img img {
+		width: 400px;
+		height: auto;
+	}
 }
 
 @media (max-width:905px) {
-    .nav-wrapper a {
-        margin-right: 0;
-        margin-left: 0;
-    }
-    .title {
-        margin-top: 250px;
-    }    
-    .back-font {
-        font-size: 60px;
-    }
-    .front-font {
-        font-size: 55px;
-    }
-    .profile-base-card {
-        width: 95% !important;
-        margin-left: 2.083333333325% !important;
-    }
-    .carousel { 
-        min-height: 500px;
-        margin: 0;
-    }
-    .carousel-item img {
-        width: 600px !important;
-    }
-    #carousel-next {
-        top: 30%;
-    }
-    #carousel-prev {
-        top: 30%;
-    }     
+	.nav-wrapper a {
+		margin-right: 0;
+		margin-left: 0;
+	}
+	.title {
+		margin-top: 250px;
+	}
+	.back-font {
+		font-size: 60px;
+	}
+	.front-font {
+		font-size: 55px;
+	}
+	.profile-base-card {
+		width: 95% !important;
+		margin-left: 2.083333333325% !important;
+	}
+	.carousel {
+		min-height: 500px;
+		margin: 0;
+	}
+	.carousel-item img {
+		width: 600px !important;
+	}
+	#carousel-next {
+		top: 30%;
+	}
+	#carousel-prev {
+		top: 30%;
+	}
 }
 
 @media (max-width: 905px) and (min-width: 860px) {
-    #ProfileContentCard {
-        margin-left: 5.16666666665%;
-    }
+	#ProfileContentCard {
+		margin-left: 5.16666666665%;
+	}
 }
 
 @media (max-width: 860px) and (min-width: 828px) {
-    #ProfileContentCard {
-        margin-left: 3.16666666665%;
-    }
+	#ProfileContentCard {
+		margin-left: 3.16666666665%;
+	}
 }
 
 @media (max-width: 828px) and (min-width: 790px) {
-    #ProfileContentCard {
-        margin-left: 1%;
-    }
+	#ProfileContentCard {
+		margin-left: 1%;
+	}
 }
 
 @media (max-width: 785px) {
-    .review-verdict h3 {
-        font-size: 26px;
-    }
-    .review-verdict h3 i {
-        font-size: 20px;
-    }
-    .review-card-edit-btns .btn {
-        width: 100px;
-    }
-    .review-card-edit-btns div {
-        margin-right: 15px;
-    }
-    #reviewCards {
-        margin-left: 15%;
-    }
+	.review-verdict h3 {
+		font-size: 26px;
+	}
+	.review-verdict h3 i {
+		font-size: 20px;
+	}
+	.review-card-edit-btns .btn {
+		width: 100px;
+	}
+	.review-card-edit-btns div {
+		margin-right: 15px;
+	}
+	#reviewCards {
+		margin-left: 15%;
+	}
 }
 
 @media (max-width: 726px) {
-    .secondary-nav #searchbar .input-field {
-        width: 500px;
-    }
+	.secondary-nav #searchbar .input-field {
+		width: 500px;
+	}
 }
 
 @media (max-width: 698px) {
-    .review-verdict h3 {
-        font-size: 22px;
-    }
-    .review-verdict h3 i {
-        font-size: 18px;
-    }
-    #homepageBtns .btn-large {
-        font-size: 13px;
-        padding: 0 15px;
-    }
+	.review-verdict h3 {
+		font-size: 22px;
+	}
+	.review-verdict h3 i {
+		font-size: 18px;
+	}
+	#homepageBtns .btn-large {
+		font-size: 13px;
+		padding: 0 15px;
+	}
 }
 
 @media (max-width: 685px) {
-    #userRequests .offset-l3 {
-        margin-left: 6%;
-    }
-    #userRequests-outerCard {
-        width: 85vw;
-    }
-    #editPassword .btn {
-        padding: 0 10px;
-        font-size: 12px;
-    }
+	#userRequests .offset-l3 {
+		margin-left: 6%;
+	}
+	#userRequests-outerCard {
+		width: 85vw;
+	}
+	#editPassword .btn {
+		padding: 0 10px;
+		font-size: 12px;
+	}
 }
 
 @media (max-width: 675px) {
-    .carousel { 
-        min-height: 460px;
-        margin: 0;
-    }
-    .carousel-item {
-        padding-top: 32px;
-    }
-    .carousel-item img {
-        width: 500px !important;
-    }
-    .carousel-item h2 {
-        line-height: 1 !important;
-        margin-bottom: 0;
-    }
-    #reviewCards {
-        margin-left: 10%;
-    }
-    #current-avatar img {
-        width: 180px;
-        height: 180px;
-    }
-    #avatar-text-indicator h6 {
-        top: 130px; 
-        margin: 0;
-        margin-left: 25px;
-    }
-    #avatar-selection img {
-        width: 100px;
-        height: 100px;
-    }
+	.carousel {
+		min-height: 460px;
+		margin: 0;
+	}
+	.carousel-item {
+		padding-top: 32px;
+	}
+	.carousel-item img {
+		width: 500px !important;
+	}
+	.carousel-item h2 {
+		line-height: 1 !important;
+		margin-bottom: 0;
+	}
+	#reviewCards {
+		margin-left: 10%;
+	}
+	#current-avatar img {
+		width: 180px;
+		height: 180px;
+	}
+	#avatar-text-indicator h6 {
+		top: 130px;
+		margin: 0;
+		margin-left: 25px;
+	}
+	#avatar-selection img {
+		width: 100px;
+		height: 100px;
+	}
 }
 
 @media (max-width: 654px) {
-    #ProfileReviews .card.smaller .card-image .row {
-        height: 80px;
-    }
-    #ProfileReviews .card.smaller .submission-date {
-        line-height: 20px;
-    }
-    #ProfileReviews .card.smaller .submission-date {
-        position: absolute;
-        top: -15px;
-    }
-    #ProfileReviews .card.smaller .platform {
-        line-height: 70px;
-    }
+	#ProfileReviews .card.smaller .card-image .row {
+		height: 80px;
+	}
+	#ProfileReviews .card.smaller .submission-date {
+		line-height: 20px;
+	}
+	#ProfileReviews .card.smaller .submission-date {
+		position: absolute;
+		top: -15px;
+	}
+	#ProfileReviews .card.smaller .platform {
+		line-height: 70px;
+	}
 }
 
 @media (max-width:640px) {
-    .back-font {
-        font-size: 50px;
-        margin-bottom: 120px;
-    }
-    .front-font {
-        font-size: 45px;
-        margin-bottom: 120px;
-    }
-    #secondary-nav-searchbar button {
-        left: 87%;
-    }
-    .secondary-nav #searchbar .input-field {
-        width: 400px;
-    }
+	.back-font {
+		font-size: 50px;
+		margin-bottom: 120px;
+	}
+	.front-font {
+		font-size: 45px;
+		margin-bottom: 120px;
+	}
+	#secondary-nav-searchbar button {
+		left: 87%;
+	}
+	.secondary-nav #searchbar .input-field {
+		width: 400px;
+	}
 }
 
 @media (max-width: 626px) {
-    #Profile-likes .card-action,
-    #visitProfiles-likes .card-action {
-        height: 125px; 
-        text-align: center;
-    }
-    #Profile-likes .profile-game-btn-sm:nth-child(2),
-    #visitProfiles-likes .profile-game-btn-sm:nth-child(2) {
-        margin-right: 20px;
-    }
-    #Profile-likes .profile-game-btn-sm:first-child,
-    #visitProfiles-likes .profile-game-btn-sm:first-child {
-        margin-left: 5px;
-    }
-    #Profile-likes .profile-game-btn-sm,
-    #visitProfiles-likes .profile-game-btn-sm {
-        min-width: 165px !important;
-        margin-bottom: 15px;
-    }
-    #ProfileReviews .card.smaller .read-full-review span {
-        font-size: 16px;
-    }
-    #ProfileReviews .card.smaller .read-full-review i {
-        width: 10px;
-    }
+	#Profile-likes .card-action,
+	#visitProfiles-likes .card-action {
+		height: 125px;
+		text-align: center;
+	}
+	#Profile-likes .profile-game-btn-sm:nth-child(2),
+	#visitProfiles-likes .profile-game-btn-sm:nth-child(2) {
+		margin-right: 20px;
+	}
+	#Profile-likes .profile-game-btn-sm:first-child,
+	#visitProfiles-likes .profile-game-btn-sm:first-child {
+		margin-left: 5px;
+	}
+	#Profile-likes .profile-game-btn-sm,
+	#visitProfiles-likes .profile-game-btn-sm {
+		min-width: 165px !important;
+		margin-bottom: 15px;
+	}
+	#ProfileReviews .card.smaller .read-full-review span {
+		font-size: 16px;
+	}
+	#ProfileReviews .card.smaller .read-full-review i {
+		width: 10px;
+	}
 }
 
 @media (min-width: 600px) {
-    .game-cards .card-image,
-    .game-cards img {
-        min-width: 256.75px !important;
-        width: 256.75px !important;
-        height: 120px !important;
-    }
-    .game-cards .card-title,
-    .game-cards .card-title a {
-        max-height: 36px !important;
-        height: 36px !important;
-        overflow-y: hidden;
-    }
+	.game-cards .card-image,
+	.game-cards img {
+		min-width: 256.75px !important;
+		width: 256.75px !important;
+		height: 120px !important;
+	}
+	.game-cards .card-title,
+	.game-cards .card-title a {
+		max-height: 36px !important;
+		height: 36px !important;
+		overflow-y: hidden;
+	}
 }
 
 @media (max-width: 600px) {
-    .sidenav-trigger.right {
-        margin-right: 12px !important;
-    }
-    .my-sidenav-trigger.right {
-        margin-right: 15px !important;
-    }
-    #hamburger {
-        margin: 18px auto;
-        width: 30px;
-    }
-    .fas.fa-user {
-        font-size: 2rem;
-    }
-    .secondary-nav .nav-content div.valign {
-        margin-bottom: 30px;
-    }
-    #secondary-nav-searchbar button {
-        top: 17%;
-    }
-    #homepageBtns .btn-large {
-        margin: 10px;
-    }
-    .leave-review {
-        height: 40px;
-        font-family: "BlenderPro-Medium";
-        font-size: 13px;
-        letter-spacing: 1px;
-        line-height: 40px;
-    }
-    #reviewCards {
-        margin-left: 5%;
-    }
-    .profile-avatar {
-        width: 125px; 
-        height: 125px;
-    }
-    #return-to-profile-btn {
-        margin-top: 10px;
-    }
-    .allow-input-btn {
-        margin-top: 0;
-        margin-bottom: 35px;
-    }
-    .game-cards .card-panel {
-        height: 100%;
-    }
-    .game-cards .card {
-        height: 90%;
-    }
-    .game-cards .card-title {
-        height: 50px;
-    }
-    .game-cards .card-title .col.s10 {
-        font-family: "BlenderPro-Thin"; 
-        font-size: 18px; 
-        padding: 8px 15px 0;
-    }
-    .game-cards .card-title .col.s2 {
-        position: relative;
-        padding: 0;
-    }
-    .game-cards .add-btn {
-        position: absolute;
-        top: -25px; 
-        bottom: 0; 
-        left: 15%; 
-        right: 0;
-    }
-    .game-cards .card-content {
-        padding: 5px 15px;
-    }
-    .game-cards .like {
-        margin-top: 0;
-    }
-    .game-cards .like-text {
-        width: 60px; 
-        text-align: right; 
-        font-size: 18px; 
-        font-family: "BlenderPro-Medium";
-    }
-    .game-cards .like-icon {
-        width: 30px;
-    }
-    .game-cards .like-icon i {
-        font-size: 22px;
-    }
+	.sidenav-trigger.right {
+		margin-right: 12px !important;
+	}
+	.my-sidenav-trigger.right {
+		margin-right: 15px !important;
+	}
+	#hamburger {
+		margin: 18px auto;
+		width: 30px;
+	}
+	.fas.fa-user {
+		font-size: 2rem;
+	}
+	.secondary-nav .nav-content div.valign {
+		margin-bottom: 30px;
+	}
+	#secondary-nav-searchbar button {
+		top: 17%;
+	}
+	#homepageBtns .btn-large {
+		margin: 10px;
+	}
+	.leave-review {
+		height: 40px;
+		font-family: "BlenderPro-Medium";
+		font-size: 13px;
+		letter-spacing: 1px;
+		line-height: 40px;
+	}
+	#reviewCards {
+		margin-left: 5%;
+	}
+	.profile-avatar {
+		width: 125px;
+		height: 125px;
+	}
+	#return-to-profile-btn {
+		margin-top: 10px;
+	}
+	.allow-input-btn {
+		margin-top: 0;
+		margin-bottom: 35px;
+	}
+	.game-cards .card-panel {
+		height: 100%;
+	}
+	.game-cards .card {
+		height: 90%;
+	}
+	.game-cards .card-title {
+		height: 50px;
+	}
+	.game-cards .card-title .col.s10 {
+		font-family: "BlenderPro-Thin";
+		font-size: 18px;
+		padding: 8px 15px 0;
+	}
+	.game-cards .card-title .col.s2 {
+		position: relative;
+		padding: 0;
+	}
+	.game-cards .add-btn {
+		position: absolute;
+		top: -25px;
+		bottom: 0;
+		left: 15%;
+		right: 0;
+	}
+	.game-cards .card-content {
+		padding: 5px 15px;
+	}
+	.game-cards .like {
+		margin-top: 0;
+	}
+	.game-cards .like-text {
+		width: 60px;
+		text-align: right;
+		font-size: 18px;
+		font-family: "BlenderPro-Medium";
+	}
+	.game-cards .like-icon {
+		width: 30px;
+	}
+	.game-cards .like-icon i {
+		font-size: 22px;
+	}
 }
 
 @media (max-width: 599px) {
-    i.fas.fa-plus::before {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 2px;
-        bottom: 0;
-    }
+	i.fas.fa-plus::before {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 2px;
+		bottom: 0;
+	}
 }
 
 @media (max-width: 590px) {
-    .edit-profile-card .profile-btns a {
-        font-size: 12px;
-    }
-    .edit-profile-card .profile-btns li {
-        padding: 0;
-    }
+	.edit-profile-card .profile-btns a {
+		font-size: 12px;
+	}
+	.edit-profile-card .profile-btns li {
+		padding: 0;
+	}
 }
 
 @media (max-width: 585px) {
-    #visitProfiles .profile-game-btn .btn-large {
-        font-size: 13px;
-    }
-    #visitProfiles .profile-game-btn .btn-large i {
-        padding-right: 0;
-        font-size: 14px;
-    }
+	#visitProfiles .profile-game-btn .btn-large {
+		font-size: 13px;
+	}
+	#visitProfiles .profile-game-btn .btn-large i {
+		padding-right: 0;
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 565px) {
-    .carousel { 
-        min-height: 400px;
-    }
-    .carousel-item {
-        padding-top: 30px;
-    }
-    .carousel-item img {
-        width: 400px !important;
-    }
-    #carousel-next {
-        top: 25%;
-    }
-    #carousel-prev {
-        top: 25%;
-    } 
-    #reviewCards {
-        margin-left: 10%;
-    }
-    .review-card {
-        width: 400px !important;
-    }
-    .review-card .card-image img {
-        width: 275px;
-        height: auto;
-    }
-    .review-card-panel .edit-review {
-        top: 67%; 
-        left: 82%;
-        width: 32px;
-        height: 30px;
-    }
-    .review-card-panel .edit-review i {
-        height: 16px; 
-        font-size: 14px;
-    }
-    .review-card-game-title {
-        font-size: 14px;
-        margin-top: 2px;
-    }
-    .review-card-username {
-        font-size: 12px;
-    }
-    .review-card .summary {
-        font-size: 14px;
-    }
-    .review-card .collapsible-header {
-        font-size: 12px;
-    }
-    .review-card .collapsible-header i {
-        font-size: 16px;
-    }
-    .review-card-sticker {
-        width: 90px;
-        height: 38px;
-        top: 2%;
-        left: 80%;
-    }
+	.carousel {
+		min-height: 400px;
+	}
+	.carousel-item {
+		padding-top: 30px;
+	}
+	.carousel-item img {
+		width: 400px !important;
+	}
+	#carousel-next {
+		top: 25%;
+	}
+	#carousel-prev {
+		top: 25%;
+	}
+	#reviewCards {
+		margin-left: 10%;
+	}
+	.review-card {
+		width: 400px !important;
+	}
+	.review-card .card-image img {
+		width: 275px;
+		height: auto;
+	}
+	.review-card-panel .edit-review {
+		top: 67%;
+		left: 82%;
+		width: 32px;
+		height: 30px;
+	}
+	.review-card-panel .edit-review i {
+		height: 16px;
+		font-size: 14px;
+	}
+	.review-card-game-title {
+		font-size: 14px;
+		margin-top: 2px;
+	}
+	.review-card-username {
+		font-size: 12px;
+	}
+	.review-card .summary {
+		font-size: 14px;
+	}
+	.review-card .collapsible-header {
+		font-size: 12px;
+	}
+	.review-card .collapsible-header i {
+		font-size: 16px;
+	}
+	.review-card-sticker {
+		width: 90px;
+		height: 38px;
+		top: 2%;
+		left: 80%;
+	}
 }
 
 @media (max-width: 557px) and (min-width: 552px) {
-    #Profile-likes .profile-game-btn-sm,
-    #visitProfiles-likes  .profile-game-btn-sm {
-        padding: 0;
-    }
+	#Profile-likes .profile-game-btn-sm,
+	#visitProfiles-likes .profile-game-btn-sm {
+		padding: 0;
+	}
 }
 
 @media (min-width: 552px) {
-    #ProfileGames .profile-game-btn .btn-large,
-    #ProfileGames .reviewed span {
-        font-size: 14px;
-    }
+	#ProfileGames .profile-game-btn .btn-large,
+	#ProfileGames .reviewed span {
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 552px) {
-    .card.smaller .card-content {
-        padding-left: 10px;
-    }
-    .card.smaller .card-title {
-        font-size: 18px;
-        margin-bottom: 0;
-        margin-left: 5px;
-    }
-    .card.smaller p {
-        font-family: "BlenderPro-Thin";
-        font-size: 12px;
-    }
-    #visitProfiles .profile-game-btn {
-        margin-right: 0;
-    }
+	.card.smaller .card-content {
+		padding-left: 10px;
+	}
+	.card.smaller .card-title {
+		font-size: 18px;
+		margin-bottom: 0;
+		margin-left: 5px;
+	}
+	.card.smaller p {
+		font-family: "BlenderPro-Thin";
+		font-size: 12px;
+	}
+	#visitProfiles .profile-game-btn {
+		margin-right: 0;
+	}
 }
 
 @media (max-width:540px) {
-    .back-font {
-        font-size: 40px;
-    }
-    .front-font {
-        font-size: 35px;
-    }
-    .favourites-sm .card-panel {
-        width: auto;
-        height: auto;
-    }
-    .favourites-sm .card-content {
-        padding: 24px 10px;
-    }
-    .favourites-sm .card-image img {
-        width: 400px;
-        height: auto;
-        margin: auto;
-    }
-    .favourites-sm .card-title h4 {
-        font-size: 22px;
-    }
-    .favourite-tag-sm {
-        float: right;
-    }
-    .favourite-tag-sm .btn-large {
-        width: 145px;
-    }
-    .stars-sm {
-        margin: auto;
-    }
-    .recommended-text-sm {
-        position: relative;
-    }
-    .recommended-text-sm i {
-        font-size: 13px;
-        line-height: 72px;
-        margin-left: 0;
-    }
-    .recommended-text-sm span {
-        position: absolute;
-        top: 10px;
-        bottom: 0;
-        left: 0;
-        right: 15px;
-        font-size: 12px;
-    }
-    #visitProfiles .btn-large i {
-        padding-right: 0;
-    }
+	.back-font {
+		font-size: 40px;
+	}
+	.front-font {
+		font-size: 35px;
+	}
+	.favourites-sm .card-panel {
+		width: auto;
+		height: auto;
+	}
+	.favourites-sm .card-content {
+		padding: 24px 10px;
+	}
+	.favourites-sm .card-image img {
+		width: 400px;
+		height: auto;
+		margin: auto;
+	}
+	.favourites-sm .card-title h4 {
+		font-size: 22px;
+	}
+	.favourite-tag-sm {
+		float: right;
+	}
+	.favourite-tag-sm .btn-large {
+		width: 145px;
+	}
+	.stars-sm {
+		margin: auto;
+	}
+	.recommended-text-sm {
+		position: relative;
+	}
+	.recommended-text-sm i {
+		font-size: 13px;
+		line-height: 72px;
+		margin-left: 0;
+	}
+	.recommended-text-sm span {
+		position: absolute;
+		top: 10px;
+		bottom: 0;
+		left: 0;
+		right: 15px;
+		font-size: 12px;
+	}
+	#visitProfiles .btn-large i {
+		padding-right: 0;
+	}
 }
 
 @media (max-width: 527px) and (min-width: 515px) {
-    #ProfileReviews .card.smaller .collapsible-header .col.s7 p {
-        max-width: 180px;
-    }
-    #ProfileReviews .card.smaller .read-full-review {
-        min-width: 119px;
-    }
+	#ProfileReviews .card.smaller .collapsible-header .col.s7 p {
+		max-width: 180px;
+	}
+	#ProfileReviews .card.smaller .read-full-review {
+		min-width: 119px;
+	}
 }
 
 @media (max-width: 525px) {
-    #userRequests {
-        margin-top: 0;
-    }
-    #userRequests h3 {
-        font-size: 36px;
-    }
-    #userRequests #importantNotice {
-        font-size: 16px;
-    }
-    #userRequests img {
-        width: 80px;
-        height: 80px;
-    }
-    #userRequests .offset-l3 {
-        margin-left: 0;
-    }
-    #userRequests-outerCard {
-        width: 96vw;
-    }
+	#userRequests {
+		margin-top: 0;
+	}
+	#userRequests h3 {
+		font-size: 36px;
+	}
+	#userRequests #importantNotice {
+		font-size: 16px;
+	}
+	#userRequests img {
+		width: 80px;
+		height: 80px;
+	}
+	#userRequests .offset-l3 {
+		margin-left: 0;
+	}
+	#userRequests-outerCard {
+		width: 96vw;
+	}
 }
 
 @media (max-width: 524px) {
-    #visitProfiles .profile-game-btn {
-        padding-right: 0;
-    }
-    #visitProfiles .btn-large {
-        font-size: 11px;
-    }
-    #visitProfiles .book-icon,
-    #visitProfiles .add-icon {
-        font-size: 13px;
-    }
+	#visitProfiles .profile-game-btn {
+		padding-right: 0;
+	}
+	#visitProfiles .btn-large {
+		font-size: 11px;
+	}
+	#visitProfiles .book-icon,
+	#visitProfiles .add-icon {
+		font-size: 13px;
+	}
 }
 
 @media (max-width: 520px) {
-    #visitProfiles .card-action {
-        padding: 16px 5px;
-    }
-    #visitProfiles .card-action .col.s2 {
-        min-width: 100px !important;
-        float: right;
-    }
+	#visitProfiles .card-action {
+		padding: 16px 5px;
+	}
+	#visitProfiles .card-action .col.s2 {
+		min-width: 100px !important;
+		float: right;
+	}
 }
 
 @media (min-width: 515px) {
-    .read-full-review-sm {
-        display: none;
-    }
+	.read-full-review-sm {
+		display: none;
+	}
 }
 
 @media (max-width: 514px) {
-    #ProfileReviews .card.smaller .collapsible-header {
-        position: relative;
-        padding-bottom: 50px;
-    }
-    #ProfileReviews .card.smaller .collapsible-header .col.s7 {
-        width: 100%;
-    }
-    #ProfileReviews .card.smaller .read-full-review {
-        display: none;
-    }
-    .read-full-review-sm {
-        position: absolute;
-        top: 85%;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 180px !important;
-        padding: 0 !important;
-        font-size: 16px;
-    }
-    .read-full-review-sm i {
-        font-size: 18px;
-    }
+	#ProfileReviews .card.smaller .collapsible-header {
+		position: relative;
+		padding-bottom: 50px;
+	}
+	#ProfileReviews .card.smaller .collapsible-header .col.s7 {
+		width: 100%;
+	}
+	#ProfileReviews .card.smaller .read-full-review {
+		display: none;
+	}
+	.read-full-review-sm {
+		position: absolute;
+		top: 85%;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 180px !important;
+		padding: 0 !important;
+		font-size: 16px;
+	}
+	.read-full-review-sm i {
+		font-size: 18px;
+	}
 }
 
 @media (max-width: 510px) {
-    .reviewed {
-        min-width: 116px;
-    }
-    #ProfileGames .profile-game-btn .btn-large {
-        min-width: 106px;
-    }
+	.reviewed {
+		min-width: 116px;
+	}
+	#ProfileGames .profile-game-btn .btn-large {
+		min-width: 106px;
+	}
 }
 
 @media (max-width: 500px) {
-    .carousel-title {
-        font-size: 32px;
-        margin-top: 0;
-    }
-    .secondary-nav {
-        width: 98%;
-        margin: auto;
-    }
-    .secondary-nav #searchbar .input-field {
-        width: 300px;
-    }
-    #secondary-nav-searchbar button {
-        left: 87%;
-    }
-    #sort-and-pagination-nav {
-        margin-top: 15px !important;
-    }
-    #reviewCards {
-        margin: 0 auto;
-        width: 100%;
-    }
-    .review-card,
-    #left-review-card {
-        margin: 10px 10% !important;
-    }
-    .header-username h3 {
-        margin-top: 15px;
-        font-size: 24px;
-    }
-    .profile-avatar {
-        width: 80px;
-        height: 80px;
-        padding: 0;
-        margin-right: 15px;
-    }
-    #ProfileReviews .card.smaller .positive-review,
-    #ProfileReviews .card.smaller .negative-review {
-        margin-left: 5px !important;
-        margin-top: 15px !important;
-    }
-    #ProfileReviews .card.smaller .positive-review h4,
-    #ProfileReviews .card.smaller .negative-review h4 {
-        font-size: 24px;
-        line-height: 15px;
-    }
-    #ProfileReviews .card.smaller .positive-review i,
-    #ProfileReviews .card.smaller .negative-review i {
-        font-size: 20px;
-    }
+	.carousel-title {
+		font-size: 32px;
+		margin-top: 0;
+	}
+	.secondary-nav {
+		width: 98%;
+		margin: auto;
+	}
+	.secondary-nav #searchbar .input-field {
+		width: 300px;
+	}
+	#secondary-nav-searchbar button {
+		left: 87%;
+	}
+	#sort-and-pagination-nav {
+		margin-top: 15px !important;
+	}
+	#reviewCards {
+		margin: 0 auto;
+		width: 100%;
+	}
+	.review-card,
+	#left-review-card {
+		margin: 10px 10% !important;
+	}
+	.header-username h3 {
+		margin-top: 15px;
+		font-size: 24px;
+	}
+	.profile-avatar {
+		width: 80px;
+		height: 80px;
+		padding: 0;
+		margin-right: 15px;
+	}
+	#ProfileReviews .card.smaller .positive-review,
+	#ProfileReviews .card.smaller .negative-review {
+		margin-left: 5px !important;
+		margin-top: 15px !important;
+	}
+	#ProfileReviews .card.smaller .positive-review h4,
+	#ProfileReviews .card.smaller .negative-review h4 {
+		font-size: 24px;
+		line-height: 15px;
+	}
+	#ProfileReviews .card.smaller .positive-review i,
+	#ProfileReviews .card.smaller .negative-review i {
+		font-size: 20px;
+	}
 }
 
 @media (max-width: 495px) {
-    #visitProfiles .card-action {
-        height: 130px;
-    }
-    #visitProfiles .card-action .col.s4 {
-        width: 150px !important;
-    }
-    #visitProfiles .card-action .col.s2 {
-        float: left;
-        margin-top: 10px;
-        margin-left: 13px;
-    }
-    #Profile-likes .profile-game-btn-sm,
-    #visitProfiles-likes .profile-game-btn-sm {
-        min-width: 145px !important;
-    }
-    #Profile-likes .profile-game-btn-sm .btn,
-    #visitProfiles-likes .profile-game-btn-sm .btn {
-        padding: 0 10px;
-    }
-    #Profile-likes .profile-game-btn-sm:nth-child(3),
-    #visitProfiles-likes .profile-game-btn-sm:nth-child(3) {
-        margin-left: 3px;
-    }
-    #Profile-likes .profile-game-btn-sm span,
-    #visitProfiles-likes .profile-game-btn-sm span {
-        font-size: 13px;
-    }
-    #Profile-likes .profile-game-btn-sm i,
-    #visitProfiles-likes .profile-game-btn-sm i {
-        font-size: 14px;
-    }
+	#visitProfiles .card-action {
+		height: 130px;
+	}
+	#visitProfiles .card-action .col.s4 {
+		width: 150px !important;
+	}
+	#visitProfiles .card-action .col.s2 {
+		float: left;
+		margin-top: 10px;
+		margin-left: 13px;
+	}
+	#Profile-likes .profile-game-btn-sm,
+	#visitProfiles-likes .profile-game-btn-sm {
+		min-width: 145px !important;
+	}
+	#Profile-likes .profile-game-btn-sm .btn,
+	#visitProfiles-likes .profile-game-btn-sm .btn {
+		padding: 0 10px;
+	}
+	#Profile-likes .profile-game-btn-sm:nth-child(3),
+	#visitProfiles-likes .profile-game-btn-sm:nth-child(3) {
+		margin-left: 3px;
+	}
+	#Profile-likes .profile-game-btn-sm span,
+	#visitProfiles-likes .profile-game-btn-sm span {
+		font-size: 13px;
+	}
+	#Profile-likes .profile-game-btn-sm i,
+	#visitProfiles-likes .profile-game-btn-sm i {
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 480px) {
-    .review-card-sticker {
-        width: 90px;
-        height: 38px;
-        top: 2%;
-        left: 77%;
-    }
+	.review-card-sticker {
+		width: 90px;
+		height: 38px;
+		top: 2%;
+		left: 77%;
+	}
 }
 
 @media (max-width: 468px) {
-    .favourites-sm .card-content {
-        padding-top: 5px;
-    }
-    .favourites-sm .card-title h4 {
-        margin-top: 0;
-        width: 300px;
-    }
-    .favourites-sm .col.s7 {
-        width: 100%;
-        height: 95px;
-    }
-    .favourite-tag-sm {
-        position: absolute;
-        top: -2.5%;
-        bottom: 0;
-        left: 70%;
-        right: 0;
-    }
-    .favourites-sm .card-content p {
-        width: 300px;
-    }
-    .favourites-sm .fa-windows, 
-    .favourites-sm .fa-linux, 
-    .favourites-sm .fa-apple {
-        font-size: 16px;
-    } 
+	.favourites-sm .card-content {
+		padding-top: 5px;
+	}
+	.favourites-sm .card-title h4 {
+		margin-top: 0;
+		width: 300px;
+	}
+	.favourites-sm .col.s7 {
+		width: 100%;
+		height: 95px;
+	}
+	.favourite-tag-sm {
+		position: absolute;
+		top: -2.5%;
+		bottom: 0;
+		left: 70%;
+		right: 0;
+	}
+	.favourites-sm .card-content p {
+		width: 300px;
+	}
+	.favourites-sm .fa-windows,
+	.favourites-sm .fa-linux,
+	.favourites-sm .fa-apple {
+		font-size: 16px;
+	}
 }
 
 @media (max-width: 460px) {
-    #avatar-text-indicator h6 {
-        margin-left: 45px;
-    }
-    .list-of-games .card-image img {
-        width: 160px !important;
-        height: 75px;
-    }
-    .list-of-games .card-title {
-        max-height: 33px;
-        overflow-x: hidden;
-    }
-    .list-of-games .card-title span {
-        font-size: 18px;
-    }
-    .list-of-games p {
-        max-height: 24px;
-    }
-    .carousel { 
-        min-height: 345px;
-    }
-    .carousel-item img {
-        width: 350px !important;
-    }
-    #carousel-next {
-        top: 30%;
-        left: 93%;
-    }
-    #carousel-prev {
-        top: 30%;
-    }
-    #carousel-next i,
-    #carousel-prev i {
-        font-size: 25px;
-    }
-    .carousel-item h2 {
-        font-size: 20px !important;
-        margin: 0;
-    }
-    .carousel-item p {
-        font-size: 12px !important;
-        margin-top: 0;
-        margin: 0;
-    }
-    .carousel-fixed-item .btn {
-        font-size: 12px;
-        letter-spacing: 1px;
-        padding: 0 10px;
-    }
-    .profile-game-img img {
-        width: 300px;
-        height: auto;
-    }
-    .profile-card-header h3 {
-        font-size: 28px;
-    }
-    .favourites-sm .card-image img {
-        width: 360px;
-        height: auto;
-        margin: auto;
-    }
-    .review-card,
-    #left-review-card {
-        margin: 10px 8% !important;
-    }
+	#avatar-text-indicator h6 {
+		margin-left: 45px;
+	}
+	.list-of-games .card-image img {
+		width: 160px !important;
+		height: 75px;
+	}
+	.list-of-games .card-title {
+		max-height: 33px;
+		overflow-x: hidden;
+	}
+	.list-of-games .card-title span {
+		font-size: 18px;
+	}
+	.list-of-games p {
+		max-height: 24px;
+	}
+	.carousel {
+		min-height: 345px;
+	}
+	.carousel-item img {
+		width: 350px !important;
+	}
+	#carousel-next {
+		top: 30%;
+		left: 93%;
+	}
+	#carousel-prev {
+		top: 30%;
+	}
+	#carousel-next i,
+	#carousel-prev i {
+		font-size: 25px;
+	}
+	.carousel-item h2 {
+		font-size: 20px !important;
+		margin: 0;
+	}
+	.carousel-item p {
+		font-size: 12px !important;
+		margin-top: 0;
+		margin: 0;
+	}
+	.carousel-fixed-item .btn {
+		font-size: 12px;
+		letter-spacing: 1px;
+		padding: 0 10px;
+	}
+	.profile-game-img img {
+		width: 300px;
+		height: auto;
+	}
+	.profile-card-header h3 {
+		font-size: 28px;
+	}
+	.favourites-sm .card-image img {
+		width: 360px;
+		height: auto;
+		margin: auto;
+	}
+	.review-card,
+	#left-review-card {
+		margin: 10px 8% !important;
+	}
 }
 
 @media (max-width: 450px) {
-    .review-card,
-    #left-review-card {
-        margin: 10px 6% !important;
-    }
-    #visitProfiles .profile-game-btn {
-        text-align: center;
-    }
-    #ProfileReviews .card.smaller .positive-review h4,
-    #ProfileReviews .card.smaller .negative-review h4 {
-        font-size: 20px;
-    }
-    #ProfileReviews .card.smaller .positive-review i,
-    #ProfileReviews .card.smaller .negative-review i {
-        font-size: 16px;
-    }
+	.review-card,
+	#left-review-card {
+		margin: 10px 6% !important;
+	}
+	#visitProfiles .profile-game-btn {
+		text-align: center;
+	}
+	#ProfileReviews .card.smaller .positive-review h4,
+	#ProfileReviews .card.smaller .negative-review h4 {
+		font-size: 20px;
+	}
+	#ProfileReviews .card.smaller .positive-review i,
+	#ProfileReviews .card.smaller .negative-review i {
+		font-size: 16px;
+	}
 }
 
 @media (max-width: 440px) {
-    #Profile-likes .profile-game-btn-sm,
-    #visitProfiles-likes .profile-game-btn-sm {
-        min-width: 130px !important;
-        padding: 0;
-    }
-    #Profile-likes .profile-game-btn-sm .btn,
-    #visitProfiles-likes .profile-game-btn-sm .btn {
-        padding: 0 8px;
-    }
-    #Profile-likes .profile-game-btn-sm i,
-    #Profile-likes .profile-game-btn-sm i.fab.fa-readme,
-    #Profile-likes .profile-game-btn-sm i.fas.fa-pen-alt,
-    #visitProfiles-likes .profile-game-btn-sm i,
-    #visitProfiles-likes .profile-game-btn-sm i.fab.fa-readme,
-    #visitProfiles-likes .profile-game-btn-sm i.fas.fa-pen-alt {
-        font-size: 12px;
-    }
+	#Profile-likes .profile-game-btn-sm,
+	#visitProfiles-likes .profile-game-btn-sm {
+		min-width: 130px !important;
+		padding: 0;
+	}
+	#Profile-likes .profile-game-btn-sm .btn,
+	#visitProfiles-likes .profile-game-btn-sm .btn {
+		padding: 0 8px;
+	}
+	#Profile-likes .profile-game-btn-sm i,
+	#Profile-likes .profile-game-btn-sm i.fab.fa-readme,
+	#Profile-likes .profile-game-btn-sm i.fas.fa-pen-alt,
+	#visitProfiles-likes .profile-game-btn-sm i,
+	#visitProfiles-likes .profile-game-btn-sm i.fab.fa-readme,
+	#visitProfiles-likes .profile-game-btn-sm i.fas.fa-pen-alt {
+		font-size: 12px;
+	}
 }
 
 @media (max-width: 436px) {
-    #sort-and-pagination-nav {
-        width: 100%;
-    }
-    #filterBtn {
-        font-size: 12px;
-        padding: 0 10px;
-    }
-    .leave-review-col {
-        margin-right: 0.5%
-    }
-    #ProfileCard {
-        width: 100% !important;
-        margin-left: 0 !important;
-    }
+	#sort-and-pagination-nav {
+		width: 100%;
+	}
+	#filterBtn {
+		font-size: 12px;
+		padding: 0 10px;
+	}
+	.leave-review-col {
+		margin-right: 0.5%
+	}
+	#ProfileCard {
+		width: 100% !important;
+		margin-left: 0 !important;
+	}
 }
 
 @media (max-width: 430px) {
-    .edit-profile-card .profile-btns a.btn {
-        margin: 15px 0;
-        padding: 0 8px;
-    }
-    .profile-card-inner .card.smaller {
-        width: 105%;
-    }
+	.edit-profile-card .profile-btns a.btn {
+		margin: 15px 0;
+		padding: 0 8px;
+	}
+	.profile-card-inner .card.smaller {
+		width: 105%;
+	}
 }
 
 @media (max-width: 420px) {
-    #current-avatar img {
-        width: 135px;
-        height: 135px;
-    }
-    #avatar-text-indicator h6 {
-        top: 100px;
-        margin-left: 25px;
-    }
-    .review-card,
-    #left-review-card {
-        width: 370px !important;
-        margin: 10px 8% !important;
-    }
-    .review-card-panel .edit-review {
-        top: 64%;
-    }
+	#current-avatar img {
+		width: 135px;
+		height: 135px;
+	}
+	#avatar-text-indicator h6 {
+		top: 100px;
+		margin-left: 25px;
+	}
+	.review-card,
+	#left-review-card {
+		width: 370px !important;
+		margin: 10px 8% !important;
+	}
+	.review-card-panel .edit-review {
+		top: 64%;
+	}
 }
 
 @media (max-width: 415px) {
-    .back-font {
-        letter-spacing: 1px;    /* To fix unmatched width with front face */
-        font-size: 29px;
-        margin-bottom: 200px;
-    }
-    .front-font {
-        font-size: 24px;
-        margin-bottom: 200px;
-    }
+	.back-font {
+		letter-spacing: 1px;
+		/* To fix unmatched width with front face */
+		font-size: 29px;
+		margin-bottom: 200px;
+	}
+	.front-font {
+		font-size: 24px;
+		margin-bottom: 200px;
+	}
 }
 
 @media (max-width: 412px) {
-    .game-cards.sm-screen-card .card-title {
-        height: 45px;
-    }
-    .remove-btn {
-        margin-left: 0;
-    }
-    .review-card,
-    #left-review-card {
-        margin: 10px 6% !important;
-    }
+	.game-cards.sm-screen-card .card-title {
+		height: 45px;
+	}
+	.remove-btn {
+		margin-left: 0;
+	}
+	.review-card,
+	#left-review-card {
+		margin: 10px 6% !important;
+	}
 }
 
 @media (max-width: 406px) {
-    .carousel { 
-        min-height: 325px;
-    }
-    .carousel-item img {
-        width: 300px !important;
-    }
-    #carousel-next {
-        top: 25%;
-    }
-    #carousel-prev {
-        top: 25%;
-    }
-    #sort-and-pagination-nav {
-        width: 100%; 
-        margin: auto;
-    }
-    #sort-and-pagination-nav form {
-        margin-right: 0 !important;
-    }
-    #sortNav {
-        width: 95vw;
-        margin: auto;
-    }
-    #sortBy-label {
-        right: 88%;
-    }
-    #order-label { 
-        left: 44%;
-    }
-    #userRequests #sortNav {
-        width: 85vw;
-    }
-    .favourites-sm .card-image img {
-        width: 300px;
-        height: auto;
-        margin: auto;
-    }
-    .favourite-tag-sm {
-        position: absolute;
-        top: -2.5%;
-        bottom: 0;
-        left: 65%;
-        right: 0;
-        width: 130px;
-    }
-    .favourite-tag-sm .btn-large {
-        width: 130px;
-        height: 50px;
-    }
-    .stars-sm i {
-        font-size: 12px;
-        line-height: 15px;
-    }
-    .recommended-text-sm span {
-        font-size: 10px;
-        line-height: 25px;
-    }
-    .recommended-text-sm i {
-        font-size: 10px;
-        line-height: 42px;
-    }
-    .see-review-btn-sm .btn-large {
-        width: 100px !important;
-        padding: 0 15px;
-    }
-    .see-review-btn-sm a {
-        font-size: 12px;
-    }
-    .leave-review-col {
-        margin-right: 2.5%
-    }
+	.carousel {
+		min-height: 325px;
+	}
+	.carousel-item img {
+		width: 300px !important;
+	}
+	#carousel-next {
+		top: 25%;
+	}
+	#carousel-prev {
+		top: 25%;
+	}
+	#sort-and-pagination-nav {
+		width: 100%;
+		margin: auto;
+	}
+	#sort-and-pagination-nav form {
+		margin-right: 0 !important;
+	}
+	#sortNav {
+		width: 95vw;
+		margin: auto;
+	}
+	#sortBy-label {
+		right: 88%;
+	}
+	#order-label {
+		left: 44%;
+	}
+	#userRequests #sortNav {
+		width: 85vw;
+	}
+	.favourites-sm .card-image img {
+		width: 300px;
+		height: auto;
+		margin: auto;
+	}
+	.favourite-tag-sm {
+		position: absolute;
+		top: -2.5%;
+		bottom: 0;
+		left: 65%;
+		right: 0;
+		width: 130px;
+	}
+	.favourite-tag-sm .btn-large {
+		width: 130px;
+		height: 50px;
+	}
+	.stars-sm i {
+		font-size: 12px;
+		line-height: 15px;
+	}
+	.recommended-text-sm span {
+		font-size: 10px;
+		line-height: 25px;
+	}
+	.recommended-text-sm i {
+		font-size: 10px;
+		line-height: 42px;
+	}
+	.see-review-btn-sm .btn-large {
+		width: 100px !important;
+		padding: 0 15px;
+	}
+	.see-review-btn-sm a {
+		font-size: 12px;
+	}
+	.leave-review-col {
+		margin-right: 2.5%
+	}
 }
 
 @media (max-width: 400px) {
-    .review-card,
-    #left-review-card {
-        margin: 10px 4% !important;
-    }
-    #ProfileGames .profile-card-inner .card.smaller,
-    #visitProfiles .profile-card-inner .card.smaller,
-    #Profile-likes .profile-card-inner .card.smaller,
-    #visitProfiles-likes .profile-card-inner .card.smaller {
-        width: 120%;
-        margin-left: -10% !important;
-    }
-    #visitProfiles .card-action .col.s4 {
-        width: 130px !important;
-    }
-    #visitProfiles .card-action .col.s2 {
-        margin-left: 5px;
-    }
-    .review-card .star-rating {
-        width: 80px;
-    }
-    .review-card .star-rating i {
-        font-size: 14px;
-        width: 12px;
-        margin: 0;
-    }
-    .review-card .collapsible-header i {
-        margin-right: 0;
-    }
-    #avatar-selection img {
-        width: 80px;
-        height: 80px;
-    }
+	.review-card,
+	#left-review-card {
+		margin: 10px 4% !important;
+	}
+	#ProfileGames .profile-card-inner .card.smaller,
+	#visitProfiles .profile-card-inner .card.smaller,
+	#Profile-likes .profile-card-inner .card.smaller,
+	#visitProfiles-likes .profile-card-inner .card.smaller {
+		width: 120%;
+		margin-left: -10% !important;
+	}
+	#visitProfiles .card-action .col.s4 {
+		width: 130px !important;
+	}
+	#visitProfiles .card-action .col.s2 {
+		margin-left: 5px;
+	}
+	.review-card .star-rating {
+		width: 80px;
+	}
+	.review-card .star-rating i {
+		font-size: 14px;
+		width: 12px;
+		margin: 0;
+	}
+	.review-card .collapsible-header i {
+		margin-right: 0;
+	}
+	#avatar-selection img {
+		width: 80px;
+		height: 80px;
+	}
 }
 
 @media (max-width: 396px) {
-    #ProfileReviews .card.smaller {
-        width: 90vw !important;
-        margin-left: -10%;
-    }
-    #ProfileReviews .card.smaller .submission-date {
-        font-family: "BlenderPro-Thin";
-        font-size: 15px;
-    }
+	#ProfileReviews .card.smaller {
+		width: 90vw !important;
+		margin-left: -10%;
+	}
+	#ProfileReviews .card.smaller .submission-date {
+		font-family: "BlenderPro-Thin";
+		font-size: 15px;
+	}
 }
 
 @media (max-width:390px) {
-    .review-card,
-    #left-review-card {
-        width: 360px !important;
-        margin: 10px 4% !important;
-    }
+	.review-card,
+	#left-review-card {
+		width: 360px !important;
+		margin: 10px 4% !important;
+	}
 }
 
 @media (max-width: 376px) {
-    .carousel-title {
-        font-size: 22px;
-        margin-top: 150px;
-    }
-    .secondary-nav #searchbar .input-field {
-        width: 250px;
-    }
-    #secondary-nav-searchbar button {
-        left: 86%;
-    }
-    .secondary-nav #searchbar i {
-        font-size: 18px;
-    }
-    #ProfileContentCard {
-        width: 100vw;
-        margin-left: -10px;
-    }
-    #ProfileReviews .card.smaller {
-        margin-left: -8%;
-    }
+	.carousel-title {
+		font-size: 22px;
+		margin-top: 150px;
+	}
+	.secondary-nav #searchbar .input-field {
+		width: 250px;
+	}
+	#secondary-nav-searchbar button {
+		left: 86%;
+	}
+	.secondary-nav #searchbar i {
+		font-size: 18px;
+	}
+	#ProfileContentCard {
+		width: 100vw;
+		margin-left: -10px;
+	}
+	#ProfileReviews .card.smaller {
+		margin-left: -8%;
+	}
 }
 
 @media (max-width: 370px) {
-    .profile-btns a.btn,
-    #editBtn {
-        font-size: 12px;
-        padding: 0 10px;
-    }
-    .game-btns {
-        width: 200px !important;
-    }
-    .review-card,
-    #left-review-card {
-        width: 350px !important;
-        margin: 10px 2% !important;
-    }
-    .review-card-sticker {
-        width: 90px;
-        height: 38px;
-        top: 3.5%;
-        left: 74%;
-    }
-    #sort-and-pagination-nav .col {
-        padding: 0;
-    }
-    #sortNav .tab a {
-        padding: 5px;
-    }
-    .leave-review-col {
-        margin-right: 0;
-        padding-right: 5px !important;
-    }
+	.profile-btns a.btn,
+	#editBtn {
+		font-size: 12px;
+		padding: 0 10px;
+	}
+	.game-btns {
+		width: 200px !important;
+	}
+	.review-card,
+	#left-review-card {
+		width: 350px !important;
+		margin: 10px 2% !important;
+	}
+	.review-card-sticker {
+		width: 90px;
+		height: 38px;
+		top: 3.5%;
+		left: 74%;
+	}
+	#sort-and-pagination-nav .col {
+		padding: 0;
+	}
+	#sortNav .tab a {
+		padding: 5px;
+	}
+	.leave-review-col {
+		margin-right: 0;
+		padding-right: 5px !important;
+	}
 }
 
 @media (max-width: 368px) {
-    .favourites-sm .game-summary {
-        padding-right: 50px;
-        width: 90%;
-    }
-    .favourites-sm .game-tags {
-        width: 95% !important;
-        overflow-x: hidden;
-    }
-    .favourite-floating-btn {
-        position: absolute;
-        top: 91.5%;
-        bottom: 0;
-        left: -155%;
-        right: 0;
-    }
+	.favourites-sm .game-summary {
+		padding-right: 50px;
+		width: 90%;
+	}
+	.favourites-sm .game-tags {
+		width: 95% !important;
+		overflow-x: hidden;
+	}
+	.favourite-floating-btn {
+		position: absolute;
+		top: 91.5%;
+		bottom: 0;
+		left: -155%;
+		right: 0;
+	}
 }
 
 @media (max-width: 360px) {
-    .list-of-games .card-image img {
-        width: 135px !important;
-        height: 63px;
-    }
-    .list-of-games .card-title {
-        max-height: 25px;
-    }
-    #sidenav-searchbar input::placeholder {
-        font-size: 14px;
-    }
-    .carousel { 
-        min-height: 290px;
-    }
-    .carousel-item {
-        padding-top: 25px;
-    }
-    .carousel-item img {
-        width: 250px !important;
-    }
-    #carousel-next {
-        top: 22%;
-    }
-    #carousel-prev {
-        top: 22%;
-    }
-    #carousel-next i,
-    #carousel-prev i {
-        font-size: 20px;
-    }
-    .carousel-item h2 {
-        font-size: 18px !important;
-        margin: 0;
-    }
-    .profile-game-title h5 {
-        font-size: 16px;
-    }
+	.list-of-games .card-image img {
+		width: 135px !important;
+		height: 63px;
+	}
+	.list-of-games .card-title {
+		max-height: 25px;
+	}
+	#sidenav-searchbar input::placeholder {
+		font-size: 14px;
+	}
+	.carousel {
+		min-height: 290px;
+	}
+	.carousel-item {
+		padding-top: 25px;
+	}
+	.carousel-item img {
+		width: 250px !important;
+	}
+	#carousel-next {
+		top: 22%;
+	}
+	#carousel-prev {
+		top: 22%;
+	}
+	#carousel-next i,
+	#carousel-prev i {
+		font-size: 20px;
+	}
+	.carousel-item h2 {
+		font-size: 18px !important;
+		margin: 0;
+	}
+	.profile-game-title h5 {
+		font-size: 16px;
+	}
 }
 
 @media (max-width: 354px) {
-    #current-avatar img {
-        width: 115px;
-        height: 115px;
-    }
-    #avatar-text-indicator h6 {
-        top: 60px;
-        margin-left: 5px;
-    }
-    #sortBy-label {
-        right: 86%;
-    }
-    #order-label {
-        left: 45%;
-    }
-    ul.profile-btns a.btn {
-        font-size: 12px;
-    }
-    .profile-card-content {
-        text-align: center;
-    }
-    .profile-game-img img {
-        width: 200px;
-        height: auto;
-    }
-    .profile-game-title {
-        width: 100%;
-    }
-    .profile-game-title h5 {
-        text-align: center;
-        margin: 5px 5px 10px;
-    }
-    .game-btns.left {
-        width: 50vw !important;
-        margin: auto 15vw !important;
-    }
-    .review-card,
-    #left-review-card {
-        width: 350px !important;
-        margin: 10px 0 !important;
-    }
-    .review-card-sticker {
-        left: 68%;
-    }
-    .favourite-tag-sm {
-        position: absolute;
-        top: -2.5%;
-        bottom: 0;
-        left: 60%;
-        right: 0;
-        width: 130px;
-    }
+	#current-avatar img {
+		width: 115px;
+		height: 115px;
+	}
+	#avatar-text-indicator h6 {
+		top: 60px;
+		margin-left: 5px;
+	}
+	#sortBy-label {
+		right: 86%;
+	}
+	#order-label {
+		left: 45%;
+	}
+	ul.profile-btns a.btn {
+		font-size: 12px;
+	}
+	.profile-card-content {
+		text-align: center;
+	}
+	.profile-game-img img {
+		width: 200px;
+		height: auto;
+	}
+	.profile-game-title {
+		width: 100%;
+	}
+	.profile-game-title h5 {
+		text-align: center;
+		margin: 5px 5px 10px;
+	}
+	.game-btns.left {
+		width: 50vw !important;
+		margin: auto 15vw !important;
+	}
+	.review-card,
+	#left-review-card {
+		width: 350px !important;
+		margin: 10px 0 !important;
+	}
+	.review-card-sticker {
+		left: 68%;
+	}
+	.favourite-tag-sm {
+		position: absolute;
+		top: -2.5%;
+		bottom: 0;
+		left: 60%;
+		right: 0;
+		width: 130px;
+	}
 }
 
 @media (max-width: 354px) and (min-width: 310px) {
-    .game-btns {
-        margin-left: 50px !important;
-   }
+	.game-btns {
+		margin-left: 50px !important;
+	}
 }
 
 @media (max-width: 346px) {
-    .favourites-sm .card-image img {
-        width: 260px;
-        height: auto;
-        margin: auto;
-    }
-    .favourites-sm .game-summary {
-        width: 225px !important;
-        margin-right: 0;
-        padding-right: 0;
-    }
-    .profile-btns li.col {
-        padding: 0;
-    }
-    .profile-btns a.btn {
-        margin: 15px 5px;
-    }
-    #ProfileGames .card-content {
-        padding: 0 10px;
-    }
-    #ProfileGames .profile-game-btn.delete {
-        margin-left: 15px !important;
-    }
+	.favourites-sm .card-image img {
+		width: 260px;
+		height: auto;
+		margin: auto;
+	}
+	.favourites-sm .game-summary {
+		width: 225px !important;
+		margin-right: 0;
+		padding-right: 0;
+	}
+	.profile-btns li.col {
+		padding: 0;
+	}
+	.profile-btns a.btn {
+		margin: 15px 5px;
+	}
+	#ProfileGames .card-content {
+		padding: 0 10px;
+	}
+	#ProfileGames .profile-game-btn.delete {
+		margin-left: 15px !important;
+	}
 }
 
 @media (max-width: 340px) {
-    #visitProfiles .card-action .col.s4 {
-        width: 120px !important;
-    }
-    #visitProfiles .card-action .col.s2 {
-        margin-left: 0;
-    }
-    #ProfileReviews .card.smaller {
-        width: 95vw !important;
-        margin-left: -12%;
-    }
+	#visitProfiles .card-action .col.s4 {
+		width: 120px !important;
+	}
+	#visitProfiles .card-action .col.s2 {
+		margin-left: 0;
+	}
+	#ProfileReviews .card.smaller {
+		width: 95vw !important;
+		margin-left: -12%;
+	}
 }
 
 @media (max-width: 336px) {
-    #generalSettings-card {
-        padding: 10px 5px;
-    }
-    #edit-profile--general .btn.modal-trigger {
-        padding: 0 10px;
-    }
-    .edit-btn {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    #avatar-selection img {
-        width: 65px;
-        height: 65px;
-    }
+	#generalSettings-card {
+		padding: 10px 5px;
+	}
+	#edit-profile--general .btn.modal-trigger {
+		padding: 0 10px;
+	}
+	.edit-btn {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	#avatar-selection img {
+		width: 65px;
+		height: 65px;
+	}
 }
 
 @media (max-width: 334px) {
-    .carousel { 
-        min-height: 275px;
-    }
-    .carousel-item {
-        padding-top: 25px;
-    }
-    .carousel-item img {
-        width: 200px !important;
-    }
-    #carousel-next {
-        top: 22%;
-    }
-    #carousel-prev {
-        top: 22%;
-    }
+	.carousel {
+		min-height: 275px;
+	}
+	.carousel-item {
+		padding-top: 25px;
+	}
+	.carousel-item img {
+		width: 200px !important;
+	}
+	#carousel-next {
+		top: 22%;
+	}
+	#carousel-prev {
+		top: 22%;
+	}
 }
 
 @media (max-width: 330px) {
-    #ProfileGames .reviewed {
-        margin-top: 15px;
-    }
+	#ProfileGames .reviewed {
+		margin-top: 15px;
+	}
 }
 
 @media (max-width: 326px) {
-    .secondary-nav #searchbar .input-field {
-        width: 215px;
-    }
-    #secondary-nav-searchbar input::placeholder {
-        font-size: 13px;
-    }
-    #secondary-nav-searchbar button {
-        left: 82%;
-    }
-    .review-card,
-    #left-review-card {
-        width: 340px !important;
-        margin: 10px -1% !important;
-    }
-    .review-card .collapsible-header {
-        padding: 14px 5px;
-    }
-    .review-card .collapsible-header i {
-        margin-right: 0;
-    }
-    .review-card .star-rating {
-        width: 70px;
-    }
-    .review-card .star-rating i {
-        font-size: 14px;
-        width: 10px;
-        margin: 0;
-    }
+	.secondary-nav #searchbar .input-field {
+		width: 215px;
+	}
+	#secondary-nav-searchbar input::placeholder {
+		font-size: 13px;
+	}
+	#secondary-nav-searchbar button {
+		left: 82%;
+	}
+	.review-card,
+	#left-review-card {
+		width: 340px !important;
+		margin: 10px -1% !important;
+	}
+	.review-card .collapsible-header {
+		padding: 14px 5px;
+	}
+	.review-card .collapsible-header i {
+		margin-right: 0;
+	}
+	.review-card .star-rating {
+		width: 70px;
+	}
+	.review-card .star-rating i {
+		font-size: 14px;
+		width: 10px;
+		margin: 0;
+	}
 }
 
 @media (max-width: 320px) {
-    .game-btns.left {
-        width: 50vw !important;
-        margin: auto 10vw !important;
-    }
-    .leave-review-col {
-        padding-right: 0 !important;
-    }
-    #visitProfiles .card-action .col.s4 {
-        width: 115px !important;
-    }
-    #visitProfiles .card-action .col.s2 {
-        min-width: 90px !important;
-        margin-left: 3px;
-    }
-    #visitProfiles .btn-large,
-    #visitProfiles .btn-large span {
-        font-size: 12px;
-    }
-    #visitProfiles .btn-large i {
-        font-size: 13px !important;
-    }
-    #Profile-likes .profile-game-btn-sm,
-    #visitProfiles-likes .profile-game-btn-sm {
-        min-width: 125px !important;
-        padding: 0;
-    }
-    #Profile-likes .profile-game-btn-sm:nth-child(2),
-    #visitProfiles-likes .profile-game-btn-sm:nth-child(2) {
-        margin-right: 0;
-    }
-    #Profile-likes .profile-game-btn-sm i,
-    #visitProfiles-likes .profile-game-btn-sm i {
-        padding-right: 0;
-    }
-    #Profile-likes .profile-game-btn-sm i.fab.fa-readme,
-    #Profile-likes .profile-game-btn-sm i.fas.fa-pen-alt,
-    #visitProfiles-likes .profile-game-btn-sm i.fab.fa-readme,
-    #visitProfiles-likes .profile-game-btn-sm i.fas.fa-pen-alt {
-        font-size: 10px !important;
-    }
+	.game-btns.left {
+		width: 50vw !important;
+		margin: auto 10vw !important;
+	}
+	.leave-review-col {
+		padding-right: 0 !important;
+	}
+	#visitProfiles .card-action .col.s4 {
+		width: 115px !important;
+	}
+	#visitProfiles .card-action .col.s2 {
+		min-width: 90px !important;
+		margin-left: 3px;
+	}
+	#visitProfiles .btn-large,
+	#visitProfiles .btn-large span {
+		font-size: 12px;
+	}
+	#visitProfiles .btn-large i {
+		font-size: 13px !important;
+	}
+	#Profile-likes .profile-game-btn-sm,
+	#visitProfiles-likes .profile-game-btn-sm {
+		min-width: 125px !important;
+		padding: 0;
+	}
+	#Profile-likes .profile-game-btn-sm:nth-child(2),
+	#visitProfiles-likes .profile-game-btn-sm:nth-child(2) {
+		margin-right: 0;
+	}
+	#Profile-likes .profile-game-btn-sm i,
+	#visitProfiles-likes .profile-game-btn-sm i {
+		padding-right: 0;
+	}
+	#Profile-likes .profile-game-btn-sm i.fab.fa-readme,
+	#Profile-likes .profile-game-btn-sm i.fas.fa-pen-alt,
+	#visitProfiles-likes .profile-game-btn-sm i.fab.fa-readme,
+	#visitProfiles-likes .profile-game-btn-sm i.fas.fa-pen-alt {
+		font-size: 10px !important;
+	}
 }
 
 @media (max-width: 310px) {
-    .back-font {
-        font-size: 23px;
-        margin-bottom: 200px;
-    }
-    .front-font {
-        font-size: 20px;
-        margin-bottom: 200px;
-    }
-    .game-btns {
-        margin-left: 35px !important;
-   }
-   #filterBtn {
-        height: 35px;
-        padding: 0 5px;
-        font-size: 12px;
-        letter-spacing: 0;
-        line-height: 35px;
-   }
-   .leave-review {
-        height: 35px;
-        font-size: 12px;
-        line-height: 35px;
-    }
-   .review-card,
-    #left-review-card {
-        width: 320px !important;
-        margin: 10px -1% !important;
-    }
-    .review-card .card-content {
-        padding: 0 5px 5px;
-    }
-    #Profile-likes .profile-card-inner .card.smaller,
-    #visitProfiles-likes .profile-card-inner .card.smaller {
-        width: 130%;
-        margin-left: -15% !important;
-    }
-    #visitProfiles .card-action .col.s4 {
-        width: 110px !important;
-    }
-    #visitProfiles .card-action .col.s2 {
-        min-width: 85px !important;
-        margin-left: 3px;
-    }
-    #visitProfiles .btn-large,
-    #visitProfiles .btn-large span {
-        font-size: 11px;
-    }
-    #ProfileGames .card-content {
-        padding: 0 5px;
-    }
+	.back-font {
+		font-size: 23px;
+		margin-bottom: 200px;
+	}
+	.front-font {
+		font-size: 20px;
+		margin-bottom: 200px;
+	}
+	.game-btns {
+		margin-left: 35px !important;
+	}
+	#filterBtn {
+		height: 35px;
+		padding: 0 5px;
+		font-size: 12px;
+		letter-spacing: 0;
+		line-height: 35px;
+	}
+	.leave-review {
+		height: 35px;
+		font-size: 12px;
+		line-height: 35px;
+	}
+	.review-card,
+	#left-review-card {
+		width: 320px !important;
+		margin: 10px -1% !important;
+	}
+	.review-card .card-content {
+		padding: 0 5px 5px;
+	}
+	#Profile-likes .profile-card-inner .card.smaller,
+	#visitProfiles-likes .profile-card-inner .card.smaller {
+		width: 130%;
+		margin-left: -15% !important;
+	}
+	#visitProfiles .card-action .col.s4 {
+		width: 110px !important;
+	}
+	#visitProfiles .card-action .col.s2 {
+		min-width: 85px !important;
+		margin-left: 3px;
+	}
+	#visitProfiles .btn-large,
+	#visitProfiles .btn-large span {
+		font-size: 11px;
+	}
+	#ProfileGames .card-content {
+		padding: 0 5px;
+	}
 }
 
 @media (max-width: 304px) {
-    #ProfileGames .profile-game-btn:first-child {
-        margin-right: 50px;
-    }
-    #ProfileGames .profile-game-btn:nth-child(2) {
-        margin-top: 15px;
-    }
-    #ProfileGames .profile-game-btn.delete {
-        margin-left: 10px !important;
-    }
+	#ProfileGames .profile-game-btn:first-child {
+		margin-right: 50px;
+	}
+	#ProfileGames .profile-game-btn:nth-child(2) {
+		margin-top: 15px;
+	}
+	#ProfileGames .profile-game-btn.delete {
+		margin-left: 10px !important;
+	}
 }
 
 @media (max-width: 300px) {
-    #visitProfiles .card-action .col.s4 {
-        width: 100px !important;
-    }
-    #visitProfiles .card-action .col.s2 {
-        min-width: 70px !important;
-        margin-left: 5px;
-    }
-    #visitProfiles i {
-        display: none;
-    }
+	#visitProfiles .card-action .col.s4 {
+		width: 100px !important;
+	}
+	#visitProfiles .card-action .col.s2 {
+		min-width: 70px !important;
+		margin-left: 5px;
+	}
+	#visitProfiles i {
+		display: none;
+	}
 }
 
 @media (max-width: 295px) {
-    .secondary-nav #searchbar .input-field {
-        width: 200px;
-    }
-    .profile-game-img {
-        padding: 10px 0;
-        margin: auto;
-    }
-    .profile-game-img img {
-        width: 200px;
-    }
-    .review-card-sticker {
-        width: 75px;
-        height: 30px;
-        top: 3%;
-        left: 66%;
-        padding: 0;
-    }
-    .review-card-sticker h6 {
-        height: 30px;
-        margin: 0;
-        font-size: 13px;
-        line-height: 30px;
-    }
-    .review-card-sticker h6 i.material-icons {
-        font-size: 13px;
-        line-height: 32px;
-    }
-    .header-username h3 {
-        font-size: 20px;
-    }
-    #ProfileReviews .card.smaller {
-        margin-left: -15%;
-    }
+	.secondary-nav #searchbar .input-field {
+		width: 200px;
+	}
+	.profile-game-img {
+		padding: 10px 0;
+		margin: auto;
+	}
+	.profile-game-img img {
+		width: 200px;
+	}
+	.review-card-sticker {
+		width: 75px;
+		height: 30px;
+		top: 3%;
+		left: 66%;
+		padding: 0;
+	}
+	.review-card-sticker h6 {
+		height: 30px;
+		margin: 0;
+		font-size: 13px;
+		line-height: 30px;
+	}
+	.review-card-sticker h6 i.material-icons {
+		font-size: 13px;
+		line-height: 32px;
+	}
+	.header-username h3 {
+		font-size: 20px;
+	}
+	#ProfileReviews .card.smaller {
+		margin-left: -15%;
+	}
 }
 
 @media (max-width: 285px) {
-    #reviewSort1.browser-default,
-    #reviewSort2.browser-default {
-        font-size: 14px;
-    }
-    #reviews-sortBy-label {
-        left: 0;
-    }
-    #reviews-order-label {
-        left: 46%;
-    }
-    #reviewSort1.browser-default {
-        width: 96px;
-    }
-    #filterBtn span {
-        display: none;
-    }
-    .review-card,
-    #left-review-card {
-        width: 100vw !important;
-        margin: 10px auto !important;
-    }
+	#reviewSort1.browser-default,
+	#reviewSort2.browser-default {
+		font-size: 14px;
+	}
+	#reviews-sortBy-label {
+		left: 0;
+	}
+	#reviews-order-label {
+		left: 46%;
+	}
+	#reviewSort1.browser-default {
+		width: 96px;
+	}
+	#filterBtn span {
+		display: none;
+	}
+	.review-card,
+	#left-review-card {
+		width: 100vw !important;
+		margin: 10px auto !important;
+	}
 }
 
 @media (max-width: 280px) {
-    .carousel { 
-        min-height: 295px;
-    }
+	.carousel {
+		min-height: 295px;
+	}
 }
 
 @media (max-width: 270px) {
-    .game-btns.left {
-        width: 50vw !important;
-        margin: auto 5vw !important;
-    }
-    .profile-btns .btn {
-        height: 35px !important;
-        margin: 15px 0 !important;
-        font-family: "BlenderPro-Thin";
-        font-size: 11px !important;
-    }
+	.game-btns.left {
+		width: 50vw !important;
+		margin: auto 5vw !important;
+	}
+	.profile-btns .btn {
+		height: 35px !important;
+		margin: 15px 0 !important;
+		font-family: "BlenderPro-Thin";
+		font-size: 11px !important;
+	}
 }
