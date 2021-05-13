@@ -1726,3 +1726,55 @@ The database **must** contain all the collections in order for the application t
 - [This source](https://stackoverflow.com/questions/15321431/how-to-pass-a-list-from-python-by-jinja2-to-javascript) helped me pass a list variable from Python to JavaScript via Jinja. It was used to handle the data for the searchbar's autocomplete feature on the Games pages and Reviews page
 
 - To check if the ObjectId was valid, I looked to [this source](https://stackoverflow.com/questions/28774526/how-to-check-that-mongo-objectid-is-valid-in-python)
+
+
+### Content
+
+- All content was written by the developer.
+
+- Game content was derived from the [Steam Store website](https://store.steampowered.com/), this includes:
+    - Game titles
+    - Game links
+    - Game images
+    - Game screenshots
+    - Game genre tags
+    - Game platform tags
+
+
+### Media
+
+- Game content was derived from the [Steam Store website](https://store.steampowered.com/), media content for this includes:
+    - Game images
+    - Game screenshots
+
+- Avatar images were taken from the [Official Rockstar Red Dead Redemption](https://www.rockstargames.com/reddeadredemption2/downloads)
+
+- Hero background video was taken from within [Wallpaper Engine](https://store.steampowered.com/app/431960/Wallpaper_Engine/)
+
+- Synthwave images were taken from Google
+
+
+### Inspiration
+
+- [Steam Store](https://store.steampowered.com/)
+
+- [Greenman Gaming](https://www.greenmangaming.com/)
+
+- [Epic Games](https://www.epicgames.com/site/en-US/home)
+
+- [CD Keys](https://www.cdkeys.com/)
+
+
+### Acknowledgements
+
+- [Steam Store](https://store.steampowered.com/) for all the game content
+
+- [CodeInstitute](https://codeinstitute.net/) for the course material, knowledge and inspiration.
+
+- [StackOverflow](https://stackoverflow.com/) for the perpetual source of help and inspiration.
+
+- [Slack Community](https://slack.com/intl/en-gb/) for all the help, advice and inspiration.
+
+- I also want to thank my mentor, Can Sucullu, for his help and valuable suggestions throughout this project.
+
+- Finally, I want to thank friends and family members for their continual support and feedback. 
