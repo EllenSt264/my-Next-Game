@@ -78,7 +78,7 @@
 					<!-- Searchbar -->
 					<div class="nav-content hide-on-med-and-down" id="navSearchbar">
 						<form action="{{ url_for('get_nav_query') }}" method="POST">
-							<input id="nav-search" name="nav-search" type="text" placeholder="Search for game title" />
+							<input id="nav-search" name="nav-search" type="text" class="autocomplete" placeholder="Search for game title" />
 							<button type="submit"><i class="fas fa-search"></i></button>
 						</form>
 					</div>
@@ -115,7 +115,7 @@
 				<!-- Searchbar -->
 				<li id="sidenav-searchbar">
 					<form action="{{ url_for('get_nav_query') }}" method="POST">
-						<input id="nav-query" name="nav-query" type="text" class="autocomplete" placeholder="Search for game title" required />
+						<input id="nav-query" name="nav-query" type="text" class="autocomplete" placeholder="Search for game title"/>
 						<button type="submit"><i class="fas fa-search"></i></button>
 					</form>
 				</li>

@@ -239,9 +239,6 @@
 </div>
 {% endblock %}
 {% block scripts %}
-<script async>
-	var gameData = {{ gameData| tojson | safe}}
-</script>
 <!-- JQuery Autocomplete -->
-<script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
+<script src="{{ url_for('static', filename='js/autocomplete-submit_review.js') }}"></script>
 {% endblock %}

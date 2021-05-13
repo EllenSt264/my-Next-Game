@@ -1,17 +1,16 @@
 $(document).ready(function() {
-    /* Autocomplete */
-    $('#review-query').autocomplete({
-        source: reviewData, // Grabs game titles from data.js file
+    $('#review-search').autocomplete({
+        source: reviewData,   // Grabs game titles from data.js file
         scroll: true,
-        // Highlight results on hover/focus
+    // Highlight results on hover/focus
     }).focus(function() {
         $(this).autocomplete("search", "");
-        // Highlight input characters
-    }).data("ui-autocomplete")._renderItem = function(ul, item) {
-        let txt = String(item.value).replace(new RegExp(this.term, "gi"), "<span class='highlight'>$&</span>");
+    // Highlight input characters
+    }).data("ui-autocomplete")._renderItem = function( ul, item ) {
+        let txt = String(item.value).replace(new RegExp(this.term, "gi"),"<span class='highlight'>$&</span>");
         return $("<li></li>")
             .data("ui-autocomplete-item", item)
             .append("<a>" + txt + "</a>")
             .appendTo(ul);
     };
-});
+})
