@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     /* --------------------------------------- JQuery UI Initialization */
 
     /*
@@ -26,12 +26,12 @@ $(document).ready(function() {
                 $('#query').css(classValid);
             }
         }
-    // Highlight results on hover/focus
-    }).focus(function() {
+        // Highlight results on hover/focus
+    }).focus(function () {
         $(this).autocomplete("search", "");
-    // Highlight input characters
-    }).data("ui-autocomplete")._renderItem = function( ul, item ) {
-        let txt = String(item.value).replace(new RegExp(this.term, "gi"),"<span class='highlight'>$&</span>");
+        // Highlight input characters
+    }).data("ui-autocomplete")._renderItem = function (ul, item) {
+        let txt = String(item.value).replace(new RegExp(this.term, "gi"), "<span class='highlight'>$&</span>");
         return $("<li></li>")
             .data("ui-autocomplete-item", item)
             .append("<a>" + txt + "</a>")

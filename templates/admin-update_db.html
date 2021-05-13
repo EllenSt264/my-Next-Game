@@ -1,52 +1,52 @@
 {% extends "base.html" %}
 {% block content %}
-    
-    <div class="row center-align admin-form">
-        <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="{{ url_for('admin_update_db') }}">
-            <div class="card-panel blue-grey darken-4 grey-text text-lighten-2">
-                <!-- Logo -->
-                <div class="col s12">
-                    <img src="{{ url_for('static', filename='img/main/odin_logo.png') }}" alt="Website brand logo">
-                </div>
-                <!-- Title -->
-                <h3 class="text-lighten-1 account-title py-5">Update DB</h3>
-                <p id="importantNotice">
-                    <strong>Important:</strong> Please review the games before adding them the our database <br>
-                    <a href="{{ url_for('admin_game_queue') }}">Review Games</a>
-                </p>
-                <!-- Password -->
-                <div class="row">
-                    <div class="input-field col s10 offset-s1">
-                        <input id="password" name="password" type="password" minlength="6"
-                        maxlength="15" pattern="^[a-zA-Z0-9]{6,15}$" class="validate" required>
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                <!-- Confirm Password -->
-                <div class="row">
-                    <div class="input-field col s10 offset-s1">
-                        <input id="confirmPassword" name="confirmPassword" type="password" minlength="6"
-                        maxlength="15" pattern="^[a-zA-Z0-9]{6,15}$" class="validate" required>
-                        <label for="confirmPassword">Confirm Password</label>
-                    </div>
-                </div>
-                <!-- Log In -->
-                <div class="row">
-                    <button type="submit" class="btn btn-large waves-effect waves-light cyan accent-4"
-                    style="border-radius: 5px;">
-                        Update Database
-                    </button>
-                </div>
-                <!-- Register -->
-                <div class="row">
-                    <div class="col s12">
-                        <p>
-                            Please review the <a href="#">Terms and Conditions</a> before submission
-                        </p>
-                    </div>
+
+<div class="row center-align admin-form">
+    <form class="col s12 m10 offset-m1 l6 offset-l3" method="POST" action="{{ url_for('admin_update_db') }}">
+        <div class="card-panel blue-grey darken-4 grey-text text-lighten-2">
+            <!-- Logo -->
+            <div class="col s12">
+                <img src="{{ url_for('static', filename='img/main/odin_logo.png') }}" alt="Website brand logo">
+            </div>
+            <!-- Title -->
+            <h3 class="text-lighten-1 account-title py-5">Update DB</h3>
+            <p id="importantNotice">
+                <strong>Important:</strong> Please review the games before adding them the our database <br>
+                <a href="{{ url_for('admin_game_queue') }}">Review Games</a>
+            </p>
+            <!-- Password -->
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                    <input id="password" name="password" type="password" minlength="6" maxlength="15"
+                        pattern="^[a-zA-Z0-9]{6,15}$" class="validate" required>
+                    <label for="password">Password</label>
                 </div>
             </div>
-        </form>
-    </div>
+            <!-- Confirm Password -->
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                    <input id="confirmPassword" name="confirmPassword" type="password" minlength="6" maxlength="15"
+                        pattern="^[a-zA-Z0-9]{6,15}$" class="validate" required>
+                    <label for="confirmPassword">Confirm Password</label>
+                </div>
+            </div>
+            <!-- Log In -->
+            <div class="row">
+                <button type="submit" class="btn btn-large waves-effect waves-light cyan accent-4"
+                    style="border-radius: 5px;">
+                    Update Database
+                </button>
+            </div>
+            <!-- Register -->
+            <div class="row">
+                <div class="col s12">
+                    <p>
+                        Please review the <a href="#">Terms and Conditions</a> before submission
+                    </p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 
 {% endblock %}

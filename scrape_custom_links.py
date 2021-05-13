@@ -104,16 +104,16 @@ def scrape_data():
             platforms = str(pc_platforms)
 
             platforms = platforms.replace(
-                    '<span class="platform_img win"></span>', 'win'
-                ).replace(
-                    '<span class="platform_img mac"></span>', 'mac'
-                ).replace(
-                    '<span class="platform_img linux"></span>', 'linux'
-                ).replace(
-                    '[', ''
-                ).replace(
-                    ']', ''
-                )
+                '<span class="platform_img win"></span>', 'win'
+            ).replace(
+                '<span class="platform_img mac"></span>', 'mac'
+            ).replace(
+                '<span class="platform_img linux"></span>', 'linux'
+            ).replace(
+                '[', ''
+            ).replace(
+                ']', ''
+            )
 
             platform_lis = list(platforms.split(","))
             game_platform_tags.append(platform_lis)

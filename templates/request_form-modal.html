@@ -1,40 +1,45 @@
 {% extends "request_form.html" %}
 {% block modal %}
-    <div id="requestGame-confirmation" class="modal center-align delete-review">
-        <div class="modal-content white-text">
-            <h5><span>Game Found</span></h5>
-            <!-- Game title confirmation -->
-            {% if title|lower == game_request|lower %}
-                <h4>We found: <strong style="color: red;">"{{title}}"</strong> is this right?</h4>
-            {% else %}
-                <h5>We couldn't find <strong style="color: red;">"{{game_request|capitalize}}"</strong></h5>
-                <h4>But we could find <strong style="color: red;">"{{title}}"</strong> is this correct?</h4>
-            {% endif %}
-            <!-- Action buttons -->
-            <form action="{{ url_for('confirm_request', title=title, game_request=game_request) }}" method="POST" class="py-5">
-                <a href="{{ url_for('request_game') }}" class="modal-close btn-flat">
-                    No, Cancel
-                </a>
-                <button type="submit" class="modal-close btn-flat" id="submitRequest">
-                    Yes, Request Game
-                </button>
-            </form>
-            <!-- More information -->
-            <div class="more-information">
-                <div class="divider"></div>
-                <h6>
-                    Please note that right now all our games derive from the <a href="#">Steam Store website</a>, which means we can
-                    only accept game requests if they exisit within Steam. If you wish to learn more, then <a href="#">see here</a>.
-                    We aim to add further compatibality with other websites soon. 
-                </h6>
-                <br>
-                <h6>
-                    If you're sure that "{{game_request|capitalize}}" exisits within the <a href="#">Steam Store</a> <em>and</em>
-                    "{{title}}" isn't what you're looking for, then please double check your spelling and try again, and ensure to include
-                    the game's <span>full title</span>. Otherwise,
-                    <a href="#">see here</a> for further assistance.
-                </h6>
-            </div>
+<div id="requestGame-confirmation" class="modal center-align delete-review">
+    <div class="modal-content white-text">
+        <h5><span>Game Found</span></h5>
+        <!-- Game title confirmation -->
+        {% if title|lower == game_request|lower %}
+        <h4>We found: <strong style="color: red;">"{{title}}"</strong> is this right?</h4>
+        {% else %}
+        <h5>We couldn't find <strong style="color: red;">"{{game_request|capitalize}}"</strong></h5>
+        <h4>But we could find <strong style="color: red;">"{{title}}"</strong> is this correct?</h4>
+        {% endif %}
+        <!-- Action buttons -->
+        <form action="{{ url_for('confirm_request', title=title, game_request=game_request) }}" method="POST"
+            class="py-5">
+            <a href="{{ url_for('request_game') }}" class="modal-close btn-flat">
+                No, Cancel
+            </a>
+            <button type="submit" class="modal-close btn-flat" id="submitRequest">
+                Yes, Request Game
+            </button>
+        </form>
+        <!-- More information -->
+        <div class="more-information">
+            <div class="divider"></div>
+            <h6>
+                Please note that right now all our games derive from the <a href="#">Steam Store website</a>, which
+                means we can
+                only accept game requests if they exisit within Steam. If you wish to learn more, then <a href="#">see
+                    here</a>.
+                We aim to add further compatibality with other websites soon.
+            </h6>
+            <br>
+            <h6>
+                If you're sure that "{{game_request|capitalize}}" exisits within the <a href="#">Steam Store</a>
+                <em>and</em>
+                "{{title}}" isn't what you're looking for, then please double check your spelling and try again, and
+                ensure to include
+                the game's <span>full title</span>. Otherwise,
+                <a href="#">see here</a> for further assistance.
+            </h6>
         </div>
     </div>
+</div>
 {% endblock %}

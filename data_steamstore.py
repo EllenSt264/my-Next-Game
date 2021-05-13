@@ -498,12 +498,12 @@ def add_to_db():
         if existing_favourites_title:
             favourites_id = existing_favourites_title["_id"]
             mongo.db.all_pc_games.update_one(
-                    {"_id": favourites_id},
-                    {"$set": {
-                        "screenshots": favourites_game_screenshots[i],
-                        "game_summary": favourite_game_summary[i],
-                        "favourite": True
-                    }})
+                {"_id": favourites_id},
+                {"$set": {
+                    "screenshots": favourites_game_screenshots[i],
+                    "game_summary": favourite_game_summary[i],
+                    "favourite": True
+                }})
         # Otherwise, add new document to db
         else:
             mongo.db.all_pc_games.insert_one(favourite)

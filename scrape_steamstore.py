@@ -22,6 +22,9 @@
     Remove string control characters:
     "https://moonbooks.org/Articles/How-to-remove-string-control-characters-n-t-r-in-python/"
 
+    Remove special characters in a string:
+    "https://stackoverflow.com/questions/23996118/replace-special-characters-in-a-string-python"
+
     Help with the join method to return the first few sentences of a paragraph:
     "https://runestone.academy/runestone/books/published/fopp/Sequences/SplitandJoin.html"
 
@@ -180,16 +183,16 @@ def scrape_bestsellers():
             platforms = str(pc_platforms)
 
             platforms = platforms.replace(
-                    '<span class="platform_img win"></span>', 'win'
-                ).replace(
-                    '<span class="platform_img mac"></span>', 'mac'
-                ).replace(
-                    '<span class="platform_img linux"></span>', 'linux'
-                ).replace(
-                    '[', ''
-                ).replace(
-                    ']', ''
-                )
+                '<span class="platform_img win"></span>', 'win'
+            ).replace(
+                '<span class="platform_img mac"></span>', 'mac'
+            ).replace(
+                '<span class="platform_img linux"></span>', 'linux'
+            ).replace(
+                '[', ''
+            ).replace(
+                ']', ''
+            )
 
             platform_lis = list(platforms.split(","))
             bs_game_platform_tags.append(platform_lis)
@@ -356,16 +359,16 @@ def scrape_awardwinner_game_page():
             platforms = str(pc_platforms)
 
             platforms = platforms.replace(
-                    '<span class="platform_img win"></span>', 'win'
-                ).replace(
-                    '<span class="platform_img mac"></span>', 'mac'
-                ).replace(
-                    '<span class="platform_img linux"></span>', 'linux'
-                ).replace(
-                    '[', ''
-                ).replace(
-                    ']', ''
-                )
+                '<span class="platform_img win"></span>', 'win'
+            ).replace(
+                '<span class="platform_img mac"></span>', 'mac'
+            ).replace(
+                '<span class="platform_img linux"></span>', 'linux'
+            ).replace(
+                '[', ''
+            ).replace(
+                ']', ''
+            )
 
             platform_lis = list(platforms.split(","))
             award_game_platform_tags.append(platform_lis)
@@ -407,16 +410,16 @@ def scrape_action_games():
             platforms = str(pc_platforms)
 
             platforms = platforms.replace(
-                    '<span class="platform_img win"></span>', 'win'
-                ).replace(
-                    '<span class="platform_img mac"></span>', 'mac'
-                ).replace(
-                    '<span class="platform_img linux"></span>', 'linux'
-                ).replace(
-                    '[', ''
-                ).replace(
-                    ']', ''
-                )
+                '<span class="platform_img win"></span>', 'win'
+            ).replace(
+                '<span class="platform_img mac"></span>', 'mac'
+            ).replace(
+                '<span class="platform_img linux"></span>', 'linux'
+            ).replace(
+                '[', ''
+            ).replace(
+                ']', ''
+            )
 
             platform_lis = list(platforms.split(","))
             action_platform_tags.append(platform_lis)
@@ -538,16 +541,16 @@ def scrape_adventure_games():
             platforms = str(pc_platforms)
 
             platforms = platforms.replace(
-                    '<span class="platform_img win"></span>', 'win'
-                ).replace(
-                    '<span class="platform_img mac"></span>', 'mac'
-                ).replace(
-                    '<span class="platform_img linux"></span>', 'linux'
-                ).replace(
-                    '[', ''
-                ).replace(
-                    ']', ''
-                )
+                '<span class="platform_img win"></span>', 'win'
+            ).replace(
+                '<span class="platform_img mac"></span>', 'mac'
+            ).replace(
+                '<span class="platform_img linux"></span>', 'linux'
+            ).replace(
+                '[', ''
+            ).replace(
+                ']', ''
+            )
 
             platform_lis = list(platforms.split(","))
             adventure_platform_tags.append(platform_lis)
@@ -669,16 +672,16 @@ def scrape_RPG_games():
             platforms = str(pc_platforms)
 
             platforms = platforms.replace(
-                    '<span class="platform_img win"></span>', 'win'
-                ).replace(
-                    '<span class="platform_img mac"></span>', 'mac'
-                ).replace(
-                    '<span class="platform_img linux"></span>', 'linux'
-                ).replace(
-                    '[', ''
-                ).replace(
-                    ']', ''
-                )
+                '<span class="platform_img win"></span>', 'win'
+            ).replace(
+                '<span class="platform_img mac"></span>', 'mac'
+            ).replace(
+                '<span class="platform_img linux"></span>', 'linux'
+            ).replace(
+                '[', ''
+            ).replace(
+                ']', ''
+            )
 
             platform_lis = list(platforms.split(","))
             RPG_platform_tags.append(platform_lis)
@@ -800,16 +803,16 @@ def scrape_strategy_games():
             platforms = str(pc_platforms)
 
             platforms = platforms.replace(
-                    '<span class="platform_img win"></span>', 'win'
-                ).replace(
-                    '<span class="platform_img mac"></span>', 'mac'
-                ).replace(
-                    '<span class="platform_img linux"></span>', 'linux'
-                ).replace(
-                    '[', ''
-                ).replace(
-                    ']', ''
-                )
+                '<span class="platform_img win"></span>', 'win'
+            ).replace(
+                '<span class="platform_img mac"></span>', 'mac'
+            ).replace(
+                '<span class="platform_img linux"></span>', 'linux'
+            ).replace(
+                '[', ''
+            ).replace(
+                ']', ''
+            )
 
             platform_lis = list(platforms.split(","))
             strategy_platform_tags.append(platform_lis)
@@ -931,16 +934,16 @@ def scrape_multiplayer_games():
             platforms = str(pc_platforms)
 
             platforms = platforms.replace(
-                    '<span class="platform_img win"></span>', 'win'
-                ).replace(
-                    '<span class="platform_img mac"></span>', 'mac'
-                ).replace(
-                    '<span class="platform_img linux"></span>', 'linux'
-                ).replace(
-                    '[', ''
-                ).replace(
-                    ']', ''
-                )
+                '<span class="platform_img win"></span>', 'win'
+            ).replace(
+                '<span class="platform_img mac"></span>', 'mac'
+            ).replace(
+                '<span class="platform_img linux"></span>', 'linux'
+            ).replace(
+                '[', ''
+            ).replace(
+                ']', ''
+            )
 
             platform_lis = list(platforms.split(","))
             multiplayer_platform_tags.append(platform_lis)
@@ -1086,16 +1089,16 @@ def scrape_favourites_data():
             platforms = str(pc_platforms)
 
             platforms = platforms.replace(
-                    '<span class="platform_img win"></span>', 'win'
-                ).replace(
-                    '<span class="platform_img mac"></span>', 'mac'
-                ).replace(
-                    '<span class="platform_img linux"></span>', 'linux'
-                ).replace(
-                    '[', ''
-                ).replace(
-                    ']', ''
-                )
+                '<span class="platform_img win"></span>', 'win'
+            ).replace(
+                '<span class="platform_img mac"></span>', 'mac'
+            ).replace(
+                '<span class="platform_img linux"></span>', 'linux'
+            ).replace(
+                '[', ''
+            ).replace(
+                ']', ''
+            )
 
             platform_lis = list(platforms.split(","))
             favourites_platform_pc.append(platform_lis)

@@ -1,511 +1,512 @@
 {% extends "profile-template.html" %}
 {% block profile_content %}
-    <section id="ProfileReviews">
-        <div class="card-panel profile-card-inner">
-            {% for review in user_reviews %}
-                <!-- Large screens only -->
-                <div class="card horizontal hide-on-med-and-down">
-                    <!-- Game image -->
-                    <div class="card-image profile-game-img">
-                        <img src="{{ review.game_img_full }}" alt="Image for {{ review.game_title }}">
-                        <!-- Buttons -->
-                        <div class="row btns">
-                            <!-- Delete -->
-                            <div class="col s6">
-                                <a href="#deleteReview{{loop.index}}" class="btn modal-trigger">
-                                    <i class="fas fa-trash"></i> <span>Delete</span>
-                                </a>
-                            </div>
-                            <!-- Edit -->
-                            <div class="col s6">
-                                <a href="{{ url_for('edit_review', username=review.username, review_id=review._id) }}" class="btn">
-                                    <i class="fas fa-pen-square"></i> Edit
-                                </a>
-                            </div>
-                        </div>
+<section id="ProfileReviews">
+    <div class="card-panel profile-card-inner">
+        {% for review in user_reviews %}
+        <!-- Large screens only -->
+        <div class="card horizontal hide-on-med-and-down">
+            <!-- Game image -->
+            <div class="card-image profile-game-img">
+                <img src="{{ review.game_img_full }}" alt="Image for {{ review.game_title }}">
+                <!-- Buttons -->
+                <div class="row btns">
+                    <!-- Delete -->
+                    <div class="col s6">
+                        <a href="#deleteReview{{loop.index}}" class="btn modal-trigger">
+                            <i class="fas fa-trash"></i> <span>Delete</span>
+                        </a>
                     </div>
-                    <!-- Review card content -->
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <div class="card-title card-panel">
-                                <!-- Review verdict -->
-                                <div class="col s5">
-                                    <!-- Postive -->
-                                    {% if review.recommended == "yes" %}
-                                    <div class="card-panel positive-review">
-                                        <h4>
-                                            Postive
-                                            <i class="material-icons">thumb_up</i>
-                                        </h4>
-                                    </div>
-                                    <!-- Negative -->
-                                    {% elif review.recommended == "no" %}
-                                        <div class="card-panel negative-review">
-                                            <h4>
-                                                Negative
-                                                <i class="material-icons">thumb_down</i>
-                                            </h4>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                                <!-- Submission date -->
-                                <div class="col s7 date-and-platform">
-                                    <h6 class="submission-date">
-                                        Posted:
-                                        <span>{{ review.date_submitted }}</span> 
-                                        {% if review.last_updated %}
-                                            | Last Edited:
-                                            <span>{{ review.last_updated }}</span>
-                                        {% endif %}
-                                    </h6>
-                                    <p class="platform">
-                                        {% if review.platform == "xbox" %}
-                                            Platform: {{ review.platform|upper }}
-                                        {% else %}
-                                            Platform: {{ review.platform|capitalize }}
-                                        {% endif %}
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Collapsible -->
-                            <ul class="collapsible">
-                                <li>
-                                    <!-- Collapsible header -->
-                                    <div class="collapsible-header">
-                                        <!-- Summary -->
-                                        <div class="col s7">
-                                            <p>{{ review.summary }}</p>
-                                            <!-- Star ratings -->
-                                            <!-- Gameplay -->
-                                            <div class="row" style="border-top: 1px solid rgb(255 255 255 / 55%);">
-                                                <div class="col s6">
-                                                    <p style="margin-top: 10px; font-size: 16px;">Gameplay</p>
-                                                </div>
-                                                <div class="col s6 review-stars" style="margin-top: 10px;">
-                                                    <div class="star-rating" style="position: absolute;">
-                                                        <!-- 1 star rating -->
-                                                        {% if review.gameplay_rating == 1 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 2 star rating -->
-                                                        {% if review.gameplay_rating == 2 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 3 star rating -->
-                                                        {% if review.gameplay_rating == 3 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 4 star rating -->
-                                                        {% if review.gameplay_rating == 4 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 5 star rating -->
-                                                        {% if review.gameplay_rating == 5 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                        {% endif %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Visuals -->
-                                            <div class="row">
-                                                <div class="col s6">
-                                                    <p style="font-size: 16px;">Visuals</p>
-                                                </div>
-                                                <div class="col s6 review-stars">
-                                                    <div class="star-rating" style="position: absolute;">
-                                                        <!-- 1 star rating -->
-                                                        {% if review.visuals_rating == 1 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 2 star rating -->
-                                                        {% if review.visuals_rating == 2 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 3 star rating -->
-                                                        {% if review.visuals_rating == 3 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 4 star rating -->
-                                                        {% if review.visuals_rating == 4 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 5 star rating -->
-                                                        {% if review.visuals_rating == 5 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                        {% endif %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Sound -->
-                                            <div class="row">
-                                                <div class="col s6">
-                                                    <p style="font-size: 16px;">Sound</p>
-                                                </div>
-                                                <div class="col s6 review-stars">
-                                                    <div class="star-rating" style="position: absolute;">
-                                                        <!-- 1 star rating -->
-                                                        {% if review.sound_rating == 1 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 2 star rating -->
-                                                        {% if review.sound_rating == 2 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 3 star rating -->
-                                                        {% if review.sound_rating == 3 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 4 star rating -->
-                                                        {% if review.sound_rating == 4 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons black-text">star</i>
-                                                        {% endif %}
-                                                        <!-- 5 star rating -->
-                                                        {% if review.sound_rating == 5 %}
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                            <i class="material-icons star-glow">star</i>
-                                                        {% endif %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Read full review indicator -->
-                                        <div class="col s4 read-full-review">
-                                            <span>Read Full Review</span> <i class="material-icons">arrow_drop_down</i>
-                                        </div>
-                                    </div>
-                                    <div class="collapsible-body">
-                                        <h6>Gameplay <i class="fas fa-gamepad"></i></h6>
-                                        <p>{{ review.gameplay }}</p>
-                                        <h6>Visuals <i class="fas fa-eye"></i></h6>
-                                        <p>{{ review.visuals }}</p>
-                                        <h6>Sound <i class="fas fa-music"></i></h6>
-                                        <p>{{ review.sound }}</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                    <!-- Edit -->
+                    <div class="col s6">
+                        <a href="{{ url_for('edit_review', username=review.username, review_id=review._id) }}"
+                            class="btn">
+                            <i class="fas fa-pen-square"></i> Edit
+                        </a>
                     </div>
                 </div>
-
-                <!-- Medium screens and down -->
-                <div class="card smaller hide-on-large-only">
-                    <!-- Game image -->
-                    <div class="card-image profile-game-img">
-                        <div class="row card-panel">
-                            <!-- Review verdict -->
-                            <div class="col s5">
-                                <!-- Postive -->
-                                {% if review.recommended == "yes" %}
-                                <div class="card-panel positive-review">
-                                    <h4>
-                                        Postive
-                                        <i class="material-icons">thumb_up</i>
-                                    </h4>
-                                </div>
-                                <!-- Negative -->
-                                {% elif review.recommended == "no" %}
-                                    <div class="card-panel negative-review">
-                                        <h4>
-                                            Negative
-                                            <i class="material-icons">thumb_down</i>
-                                        </h4>
-                                    </div>
+            </div>
+            <!-- Review card content -->
+            <div class="card-stacked">
+                <div class="card-content">
+                    <div class="card-title card-panel">
+                        <!-- Review verdict -->
+                        <div class="col s5">
+                            <!-- Postive -->
+                            {% if review.recommended == "yes" %}
+                            <div class="card-panel positive-review">
+                                <h4>
+                                    Postive
+                                    <i class="material-icons">thumb_up</i>
+                                </h4>
+                            </div>
+                            <!-- Negative -->
+                            {% elif review.recommended == "no" %}
+                            <div class="card-panel negative-review">
+                                <h4>
+                                    Negative
+                                    <i class="material-icons">thumb_down</i>
+                                </h4>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- Submission date -->
+                        <div class="col s7 date-and-platform">
+                            <h6 class="submission-date">
+                                Posted:
+                                <span>{{ review.date_submitted }}</span>
+                                {% if review.last_updated %}
+                                | Last Edited:
+                                <span>{{ review.last_updated }}</span>
                                 {% endif %}
-                            </div>
-                            <!-- Submission date -->
-                            <div class="col s7 date-and-platform">
-                                <h6 class="submission-date">
-                                    Posted:
-                                    <span>{{ review.date_submitted }}</span> 
-                                    {% if review.last_updated %}
-                                        | Last Edited:
-                                        <span>{{ review.last_updated }}</span>
-                                    {% endif %}
-                                </h6>
-                                <p class="platform">
-                                    {% if review.platform == "xbox" %}
-                                        Platform: {{ review.platform|upper }}
-                                    {% else %}
-                                        Platform: {{ review.platform|capitalize }}
-                                    {% endif %}
-                                </p>
-                            </div>
+                            </h6>
+                            <p class="platform">
+                                {% if review.platform == "xbox" %}
+                                Platform: {{ review.platform|upper }}
+                                {% else %}
+                                Platform: {{ review.platform|capitalize }}
+                                {% endif %}
+                            </p>
                         </div>
-                        <img src="{{ review.game_img_full }}" alt="Image for {{ review.game_title }}">
                     </div>
-                    <div class="card-content">
-                        <!-- Collapsible -->
-                        <ul class="collapsible">
-                            <li>
-                                <!-- Review summary and ratings -->
-                                <div class="collapsible-header">
-                                    <!-- Summary -->
-                                    <div class="col s7">
-                                        <p>{{ review.summary }}</p>
-                                        <!-- Star ratings -->
-                                        <!-- Gameplay -->
-                                        <div class="row" style="border-top: 1px solid rgb(255 255 255 / 55%);">
-                                            <div class="col s6">
-                                                <p style="margin-top: 10px; font-size: 16px;">Gameplay</p>
-                                            </div>
-                                            <div class="col s6 review-stars" style="margin-top: 10px;">
-                                                <div class="star-rating" style="position: absolute;">
-                                                    <!-- 1 star rating -->
-                                                    {% if review.gameplay_rating == 1 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 2 star rating -->
-                                                    {% if review.gameplay_rating == 2 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 3 star rating -->
-                                                    {% if review.gameplay_rating == 3 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 4 star rating -->
-                                                    {% if review.gameplay_rating == 4 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 5 star rating -->
-                                                    {% if review.gameplay_rating == 5 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
+                    <!-- Collapsible -->
+                    <ul class="collapsible">
+                        <li>
+                            <!-- Collapsible header -->
+                            <div class="collapsible-header">
+                                <!-- Summary -->
+                                <div class="col s7">
+                                    <p>{{ review.summary }}</p>
+                                    <!-- Star ratings -->
+                                    <!-- Gameplay -->
+                                    <div class="row" style="border-top: 1px solid rgb(255 255 255 / 55%);">
+                                        <div class="col s6">
+                                            <p style="margin-top: 10px; font-size: 16px;">Gameplay</p>
                                         </div>
-                                        <!-- Visuals -->
-                                        <div class="row">
-                                            <div class="col s6">
-                                                <p style="font-size: 16px;">Visuals</p>
-                                            </div>
-                                            <div class="col s6 review-stars">
-                                                <div class="star-rating" style="position: absolute;">
-                                                    <!-- 1 star rating -->
-                                                    {% if review.visuals_rating == 1 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 2 star rating -->
-                                                    {% if review.visuals_rating == 2 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 3 star rating -->
-                                                    {% if review.visuals_rating == 3 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 4 star rating -->
-                                                    {% if review.visuals_rating == 4 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 5 star rating -->
-                                                    {% if review.visuals_rating == 5 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Sound -->
-                                        <div class="row">
-                                            <div class="col s6">
-                                                <p style="font-size: 16px;">Sound</p>
-                                            </div>
-                                            <div class="col s6 review-stars">
-                                                <div class="star-rating" style="position: absolute;">
-                                                    <!-- 1 star rating -->
-                                                    {% if review.sound_rating == 1 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 2 star rating -->
-                                                    {% if review.sound_rating == 2 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 3 star rating -->
-                                                    {% if review.sound_rating == 3 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 4 star rating -->
-                                                    {% if review.sound_rating == 4 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons black-text">star</i>
-                                                    {% endif %}
-                                                    <!-- 5 star rating -->
-                                                    {% if review.sound_rating == 5 %}
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                        <i class="material-icons star-glow">star</i>
-                                                    {% endif %}
-                                                </div>
+                                        <div class="col s6 review-stars" style="margin-top: 10px;">
+                                            <div class="star-rating" style="position: absolute;">
+                                                <!-- 1 star rating -->
+                                                {% if review.gameplay_rating == 1 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 2 star rating -->
+                                                {% if review.gameplay_rating == 2 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 3 star rating -->
+                                                {% if review.gameplay_rating == 3 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 4 star rating -->
+                                                {% if review.gameplay_rating == 4 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 5 star rating -->
+                                                {% if review.gameplay_rating == 5 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Read full review indicator -->
-                                    <div class="col s4 read-full-review">
-                                        <span>Read Full Review</span> <i class="material-icons">arrow_drop_down</i>
+                                    <!-- Visuals -->
+                                    <div class="row">
+                                        <div class="col s6">
+                                            <p style="font-size: 16px;">Visuals</p>
+                                        </div>
+                                        <div class="col s6 review-stars">
+                                            <div class="star-rating" style="position: absolute;">
+                                                <!-- 1 star rating -->
+                                                {% if review.visuals_rating == 1 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 2 star rating -->
+                                                {% if review.visuals_rating == 2 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 3 star rating -->
+                                                {% if review.visuals_rating == 3 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 4 star rating -->
+                                                {% if review.visuals_rating == 4 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 5 star rating -->
+                                                {% if review.visuals_rating == 5 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                {% endif %}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col s4 read-full-review-sm">
-                                        <span>Read Full Review</span> <i class="material-icons">arrow_drop_down</i>
+                                    <!-- Sound -->
+                                    <div class="row">
+                                        <div class="col s6">
+                                            <p style="font-size: 16px;">Sound</p>
+                                        </div>
+                                        <div class="col s6 review-stars">
+                                            <div class="star-rating" style="position: absolute;">
+                                                <!-- 1 star rating -->
+                                                {% if review.sound_rating == 1 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 2 star rating -->
+                                                {% if review.sound_rating == 2 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 3 star rating -->
+                                                {% if review.sound_rating == 3 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 4 star rating -->
+                                                {% if review.sound_rating == 4 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons black-text">star</i>
+                                                {% endif %}
+                                                <!-- 5 star rating -->
+                                                {% if review.sound_rating == 5 %}
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                <i class="material-icons star-glow">star</i>
+                                                {% endif %}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- Full review -->
-                                <div class="collapsible-body">
-                                    <h6>Gameplay <i class="fas fa-gamepad"></i></h6>
-                                    <p>{{ review.gameplay }}</p>
-                                    <h6>Visuals <i class="fas fa-eye"></i></h6>
-                                    <p>{{ review.visuals }}</p>
-                                    <h6>Sound <i class="fas fa-music"></i></h6>
-                                    <p>{{ review.sound }}</p>
+                                <!-- Read full review indicator -->
+                                <div class="col s4 read-full-review">
+                                    <span>Read Full Review</span> <i class="material-icons">arrow_drop_down</i>
                                 </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Buttons -->
-                    <div class="row btns" style="margin-left: 5px;">
-                        <!-- Delete -->
-                        <div class="col s6">
-                            <a href="#deleteReview{{loop.index}}" class="btn modal-trigger">
-                                <i class="fas fa-trash"></i> <span>Delete</span>
-                            </a>
-                        </div>
-                        <!-- Edit -->
-                        <div class="col s6">
-                            <a href="{{ url_for('edit_review', username=review.username, review_id=review._id) }}" class="btn">
-                                <i class="fas fa-pen-square"></i> Edit
-                            </a>
-                        </div>
-                    </div>
+                            </div>
+                            <div class="collapsible-body">
+                                <h6>Gameplay <i class="fas fa-gamepad"></i></h6>
+                                <p>{{ review.gameplay }}</p>
+                                <h6>Visuals <i class="fas fa-eye"></i></h6>
+                                <p>{{ review.visuals }}</p>
+                                <h6>Sound <i class="fas fa-music"></i></h6>
+                                <p>{{ review.sound }}</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-
-                <!-- Modal warning -->
-                <div id="deleteReview{{loop.index}}" class="modal center-align delete-review">
-                    <div class="modal-content">
-                    <h5><span>warning</span></h5>
-                    <h4>Are You Sure You Want to Delete Your Review for <span>{{review.game_title}}</span>?</h4>
-                    <p>
-                        If you delete your review, you cannot undo this action.
-                    </p>
-                    </div>
-                    <div class="modal-footer center-align">
-                        <a href="{{ url_for('delete_review', review_id=review._id) }}" 
-                        class="modal-close btn-flat" id="deleteReview">Yes, Delete</a>
-                        <a href="#!" class="modal-close btn-flat">Cancel</a>
-                    </div>
-                </div>
-            {% endfor %}
+            </div>
         </div>
-    </section>
+
+        <!-- Medium screens and down -->
+        <div class="card smaller hide-on-large-only">
+            <!-- Game image -->
+            <div class="card-image profile-game-img">
+                <div class="row card-panel">
+                    <!-- Review verdict -->
+                    <div class="col s5">
+                        <!-- Postive -->
+                        {% if review.recommended == "yes" %}
+                        <div class="card-panel positive-review">
+                            <h4>
+                                Postive
+                                <i class="material-icons">thumb_up</i>
+                            </h4>
+                        </div>
+                        <!-- Negative -->
+                        {% elif review.recommended == "no" %}
+                        <div class="card-panel negative-review">
+                            <h4>
+                                Negative
+                                <i class="material-icons">thumb_down</i>
+                            </h4>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <!-- Submission date -->
+                    <div class="col s7 date-and-platform">
+                        <h6 class="submission-date">
+                            Posted:
+                            <span>{{ review.date_submitted }}</span>
+                            {% if review.last_updated %}
+                            | Last Edited:
+                            <span>{{ review.last_updated }}</span>
+                            {% endif %}
+                        </h6>
+                        <p class="platform">
+                            {% if review.platform == "xbox" %}
+                            Platform: {{ review.platform|upper }}
+                            {% else %}
+                            Platform: {{ review.platform|capitalize }}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <img src="{{ review.game_img_full }}" alt="Image for {{ review.game_title }}">
+            </div>
+            <div class="card-content">
+                <!-- Collapsible -->
+                <ul class="collapsible">
+                    <li>
+                        <!-- Review summary and ratings -->
+                        <div class="collapsible-header">
+                            <!-- Summary -->
+                            <div class="col s7">
+                                <p>{{ review.summary }}</p>
+                                <!-- Star ratings -->
+                                <!-- Gameplay -->
+                                <div class="row" style="border-top: 1px solid rgb(255 255 255 / 55%);">
+                                    <div class="col s6">
+                                        <p style="margin-top: 10px; font-size: 16px;">Gameplay</p>
+                                    </div>
+                                    <div class="col s6 review-stars" style="margin-top: 10px;">
+                                        <div class="star-rating" style="position: absolute;">
+                                            <!-- 1 star rating -->
+                                            {% if review.gameplay_rating == 1 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 2 star rating -->
+                                            {% if review.gameplay_rating == 2 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 3 star rating -->
+                                            {% if review.gameplay_rating == 3 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 4 star rating -->
+                                            {% if review.gameplay_rating == 4 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 5 star rating -->
+                                            {% if review.gameplay_rating == 5 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Visuals -->
+                                <div class="row">
+                                    <div class="col s6">
+                                        <p style="font-size: 16px;">Visuals</p>
+                                    </div>
+                                    <div class="col s6 review-stars">
+                                        <div class="star-rating" style="position: absolute;">
+                                            <!-- 1 star rating -->
+                                            {% if review.visuals_rating == 1 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 2 star rating -->
+                                            {% if review.visuals_rating == 2 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 3 star rating -->
+                                            {% if review.visuals_rating == 3 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 4 star rating -->
+                                            {% if review.visuals_rating == 4 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 5 star rating -->
+                                            {% if review.visuals_rating == 5 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Sound -->
+                                <div class="row">
+                                    <div class="col s6">
+                                        <p style="font-size: 16px;">Sound</p>
+                                    </div>
+                                    <div class="col s6 review-stars">
+                                        <div class="star-rating" style="position: absolute;">
+                                            <!-- 1 star rating -->
+                                            {% if review.sound_rating == 1 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 2 star rating -->
+                                            {% if review.sound_rating == 2 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 3 star rating -->
+                                            {% if review.sound_rating == 3 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 4 star rating -->
+                                            {% if review.sound_rating == 4 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons black-text">star</i>
+                                            {% endif %}
+                                            <!-- 5 star rating -->
+                                            {% if review.sound_rating == 5 %}
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            <i class="material-icons star-glow">star</i>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Read full review indicator -->
+                            <div class="col s4 read-full-review">
+                                <span>Read Full Review</span> <i class="material-icons">arrow_drop_down</i>
+                            </div>
+                            <div class="col s4 read-full-review-sm">
+                                <span>Read Full Review</span> <i class="material-icons">arrow_drop_down</i>
+                            </div>
+                        </div>
+                        <!-- Full review -->
+                        <div class="collapsible-body">
+                            <h6>Gameplay <i class="fas fa-gamepad"></i></h6>
+                            <p>{{ review.gameplay }}</p>
+                            <h6>Visuals <i class="fas fa-eye"></i></h6>
+                            <p>{{ review.visuals }}</p>
+                            <h6>Sound <i class="fas fa-music"></i></h6>
+                            <p>{{ review.sound }}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Buttons -->
+            <div class="row btns" style="margin-left: 5px;">
+                <!-- Delete -->
+                <div class="col s6">
+                    <a href="#deleteReview{{loop.index}}" class="btn modal-trigger">
+                        <i class="fas fa-trash"></i> <span>Delete</span>
+                    </a>
+                </div>
+                <!-- Edit -->
+                <div class="col s6">
+                    <a href="{{ url_for('edit_review', username=review.username, review_id=review._id) }}" class="btn">
+                        <i class="fas fa-pen-square"></i> Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal warning -->
+        <div id="deleteReview{{loop.index}}" class="modal center-align delete-review">
+            <div class="modal-content">
+                <h5><span>warning</span></h5>
+                <h4>Are You Sure You Want to Delete Your Review for <span>{{review.game_title}}</span>?</h4>
+                <p>
+                    If you delete your review, you cannot undo this action.
+                </p>
+            </div>
+            <div class="modal-footer center-align">
+                <a href="{{ url_for('delete_review', review_id=review._id) }}" class="modal-close btn-flat"
+                    id="deleteReview">Yes, Delete</a>
+                <a href="#!" class="modal-close btn-flat">Cancel</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

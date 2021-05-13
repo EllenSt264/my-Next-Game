@@ -1,193 +1,204 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <!-- Carousel -->
-    <div class="carousel carousel-slider center">
-        <!-- Next -->
-        <div class="carousel-fixed-item" id="carousel-next">
-            <a class="white-text"><i class="material-icons">navigate_next</i></a>
-        </div>
-        <!-- Prev -->
-        <div class="carousel-fixed-item" id="carousel-prev">
-            <a class="white-text"><i class="material-icons">navigate_before</i></a>
-        </div>
-        <!-- Carousel item 1 -->
-        <div class="carousel-item white-text" href="#">
-            <a href="{{ url_for('see_game_reviews', game_id=rand_game_1._id) }}">
-                <img src="{{ rand_game_1.game_img_full }}" alt="carousel image" class="glow2">
-            </a>
-            <h2>{{ rand_game_1.game_title }}</h2> 
-            <p class="white-text">{{ rand_game_1.game_top_tags[:3]|join(', ') }}</p>
-        </div>
-        <!-- Carousel item 2 -->
-        <div class="carousel-item white-text" href="#">
-            <a href="{{ url_for('see_game_reviews', game_id=rand_game_2._id) }}">
-                <img src="{{ rand_game_2.game_img_full }}" alt="carousel image" class="glow2">
-            </a>
-            <h2>{{ rand_game_2.game_title }}</h2> 
-            <p class="white-text">{{ rand_game_2.game_top_tags[:3]|join(', ') }}</p>
-        </div>
-        <!-- Carousel item 3 -->
-        <div class="carousel-item white-text" href="#">
-            <a href="{{ url_for('see_game_reviews', game_id=rand_game_3._id) }}">
-                <img src="{{ rand_game_3.game_img_full }}" alt="carousel image" class="glow2">
-            </a>
-            <h2>{{ rand_game_3.game_title }}</h2> 
-            <p class="white-text">{{ rand_game_3.game_top_tags[:3]|join(', ') }}</p>
-        </div>
+<!-- Carousel -->
+<div class="carousel carousel-slider center">
+    <!-- Next -->
+    <div class="carousel-fixed-item" id="carousel-next">
+        <a class="white-text"><i class="material-icons">navigate_next</i></a>
     </div>
+    <!-- Prev -->
+    <div class="carousel-fixed-item" id="carousel-prev">
+        <a class="white-text"><i class="material-icons">navigate_before</i></a>
+    </div>
+    <!-- Carousel item 1 -->
+    <div class="carousel-item white-text" href="#">
+        <a href="{{ url_for('see_game_reviews', game_id=rand_game_1._id) }}">
+            <img src="{{ rand_game_1.game_img_full }}" alt="carousel image" class="glow2">
+        </a>
+        <h2>{{ rand_game_1.game_title }}</h2>
+        <p class="white-text">{{ rand_game_1.game_top_tags[:3]|join(', ') }}</p>
+    </div>
+    <!-- Carousel item 2 -->
+    <div class="carousel-item white-text" href="#">
+        <a href="{{ url_for('see_game_reviews', game_id=rand_game_2._id) }}">
+            <img src="{{ rand_game_2.game_img_full }}" alt="carousel image" class="glow2">
+        </a>
+        <h2>{{ rand_game_2.game_title }}</h2>
+        <p class="white-text">{{ rand_game_2.game_top_tags[:3]|join(', ') }}</p>
+    </div>
+    <!-- Carousel item 3 -->
+    <div class="carousel-item white-text" href="#">
+        <a href="{{ url_for('see_game_reviews', game_id=rand_game_3._id) }}">
+            <img src="{{ rand_game_3.game_img_full }}" alt="carousel image" class="glow2">
+        </a>
+        <h2>{{ rand_game_3.game_title }}</h2>
+        <p class="white-text">{{ rand_game_3.game_top_tags[:3]|join(', ') }}</p>
+    </div>
+</div>
 
-    <!-- Secondary Navbar -->
-    <section class="py-5">
-        <nav class="secondary-nav">
+<!-- Secondary Navbar -->
+<section class="py-5">
+    <nav class="secondary-nav">
 
-            <!-- Hamburger icon -->
-            <a href="#" data-target="secondary-sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <!-- Hamburger icon -->
+        <a href="#" data-target="secondary-sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-            <!-- Collapsible -->
-            <ul class="collapsible">
+        <!-- Collapsible -->
+        <ul class="collapsible">
 
-                <div class="hide-on-med-and-down">
+            <div class="hide-on-med-and-down">
 
-                    <!-- Standard Links -->
-                    <li><a href="{{ url_for('favourites') }}" class="standard-link">Our Favourites</a></li>
-                    <li><a href="{{ url_for('awardwinner_games') }}" class="standard-link">Award Winners</a></li>
-                    {% if session.user %}
-                    <li><a href="{{ url_for('profile_games', username=session['user']) }}" class="standard-link">Your List</a></li>
-                    {% endif %}
+                <!-- Standard Links -->
+                <li><a href="{{ url_for('favourites') }}" class="standard-link">Our Favourites</a></li>
+                <li><a href="{{ url_for('awardwinner_games') }}" class="standard-link">Award Winners</a></li>
+                {% if session.user %}
+                <li><a href="{{ url_for('profile_games', username=session['user']) }}" class="standard-link">Your
+                        List</a></li>
+                {% endif %}
 
-                    <!-- Genre -->
-                    <li id="GenreLink">
-                        <div class="fixed-action-btn click-to-toggle">
-                            <a class="standard-link">Genre</a>
-                            <ul class="floating-nav">
-                                <div class="items">
-                                    <li class="tab"><a href="{{ url_for('action_games') }}">Action</a></li>
-                                    <li class="tab"><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
-                                    <li class="tab"><a href="{{ url_for('rpg_games') }}">RPG</a></li>
-                                    <li class="tab"><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
-                                    <li class="tab"><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
-                                </div>
-                            </ul>
-                        </div>
-                    </li>
-
-                </div>
-
-                <!-- Search bar -->
-                <li class="right" id="secondary-nav-searchbar">
-                    <form action="{{ url_for('get_query') }}" method="POST" id="searchbar">
-                        <div class="input-field">
-                            <input id="query" name="query" type="text" class="autocomplete" placeholder="Search for game title"
-                            required>
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </div>
-                    </form>
+                <!-- Genre -->
+                <li id="GenreLink">
+                    <div class="fixed-action-btn click-to-toggle">
+                        <a class="standard-link">Genre</a>
+                        <ul class="floating-nav">
+                            <div class="items">
+                                <li class="tab"><a href="{{ url_for('action_games') }}">Action</a></li>
+                                <li class="tab"><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
+                                <li class="tab"><a href="{{ url_for('rpg_games') }}">RPG</a></li>
+                                <li class="tab"><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
+                                <li class="tab"><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
+                            </div>
+                        </ul>
+                    </div>
                 </li>
 
-                <!-- All games link -->
-                <div class="nav-content my-nav-extend"> 
-                    <ul class="tabs">
-                        <li class="tab"><a href="{{ url_for('all_games') }}">All games</a></li>
-                    </ul>
-                </div>
-
-            </ul>
-
-        </nav>
-
-        <!-- Mobile side nav -->
-        <ul class="sidenav" id="secondary-sidenav">
-            <li><a href="#!" class="sidenav-close right"><i class="material-icons white-text" style="margin: 0;">close</i></a></li>
-            {% if session.user %}
-                <li><a href="{{ url_for('profile_games', username=session['user']) }}">Your List</a></li>
-            {% endif %}
-            <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
-            <li><a href="{{ url_for('awardwinner_games') }}">Award Winners</a></li>
-            <li><a href="{{ url_for('all_games') }}">All Games</a></li>
-            <li><a href="{{ url_for('action_games') }}">Action</a></li>
-            <li><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
-            <li><a href="{{ url_for('rpg_games') }}">RPG</a></li>
-            <li><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
-            <li><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
-            
-        </ul>
-    </section>
-
-    <!-- Sort nav and pagination -->
-    <section id="sort-and-pagination-nav">
-        <div class="row">
-            <!-- Pagination --> 
-            <div class="col s12 m12 l6">
-                <div class="pagination-top">
-                    <ul class="pagination">
-                       {% block pagination %}
-                       {% endblock %}
-                    </ul>
-                </div>
             </div>
-            <!-- Sort by features -->
-            <div class="col s12 m12 l6">
-                <form action={% block sort_filter %}{% endblock %} method="POST" class="right">
-                    <ul class="tabs tabs-transparent" id="sortNav">
-                        <li class="tab">
-                            <label class="white-text" id="sortBy-label">Sort By</label>
-                            <select class="browser-default" name="navSelect1" id="navSelect1" value="{{ navSelect1 }}">
-                                <option value="default"{% if navSelect1=="default" %} selected="selected" {% endif %}>Default</option>
-                                <option value="title"{% if navSelect1=="title" %} selected="selected" {% endif %}>Title</option>
-                                <option value="likes"{% if navSelect1=="likes" %} selected="selected" {% endif %}>Likes</option>
-                                <option value="favourite"{% if navSelect1=="favourite" %} selected="selected" {% endif %}>Recommended</option>
-                                <option value="awardwinner"{% if navSelect1=="awardwinner" %} selected="selected" {% endif %}>Award Winners</option>
-                                <option value="bestseller"{% if navSelect1=="bestseller" %} selected="selected" {% endif %}>Bestsellers</option>
-                                <option value="playing"{% if navSelect1=="playing" %} selected="selected" {% endif %}>Playing</option>
-                                <option value="reviews"{% if navSelect1=="reviews" %} selected="selected" {% endif %}>Review Count</option>
-                                
-                            </select>
-                        </li>
-                        <li class="tab">
-                            <label class="white-text" id="order-label">Order</label>
-                            <select class="browser-default" name="navSelect2" id="navSelect2"  value="{{ navSelect2 }}">
-                                <option value="asc"{% if navSelect2=="asc" %} selected="selected" {% endif %}>Asc</option>
-                                <option value="desc"{% if navSelect2=="desc" %} selected="selected" {% endif %}>Desc</option>
-                            </select>
-                        </li>
-                        <li class="tab">
-                            <button type="submit" class="btn" id="filterBtn">Filter <span>Results</span></button>
-                        </li>
-                    </ul>
+
+            <!-- Search bar -->
+            <li class="right" id="secondary-nav-searchbar">
+                <form action="{{ url_for('get_query') }}" method="POST" id="searchbar">
+                    <div class="input-field">
+                        <input id="query" name="query" type="text" class="autocomplete"
+                            placeholder="Search for game title" required>
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </div>
                 </form>
+            </li>
+
+            <!-- All games link -->
+            <div class="nav-content my-nav-extend">
+                <ul class="tabs">
+                    <li class="tab"><a href="{{ url_for('all_games') }}">All games</a></li>
+                </ul>
+            </div>
+
+        </ul>
+
+    </nav>
+
+    <!-- Mobile side nav -->
+    <ul class="sidenav" id="secondary-sidenav">
+        <li><a href="#!" class="sidenav-close right"><i class="material-icons white-text"
+                    style="margin: 0;">close</i></a></li>
+        {% if session.user %}
+        <li><a href="{{ url_for('profile_games', username=session['user']) }}">Your List</a></li>
+        {% endif %}
+        <li><a href="{{ url_for('favourites') }}">Our Favourites</a></li>
+        <li><a href="{{ url_for('awardwinner_games') }}">Award Winners</a></li>
+        <li><a href="{{ url_for('all_games') }}">All Games</a></li>
+        <li><a href="{{ url_for('action_games') }}">Action</a></li>
+        <li><a href="{{ url_for('adventure_games') }}">Adventure</a></li>
+        <li><a href="{{ url_for('rpg_games') }}">RPG</a></li>
+        <li><a href="{{ url_for('strategy_games') }}">Strategy</a></li>
+        <li><a href="{{ url_for('multiplayer_games') }}">Multiplayer</a></li>
+
+    </ul>
+</section>
+
+<!-- Sort nav and pagination -->
+<section id="sort-and-pagination-nav">
+    <div class="row">
+        <!-- Pagination -->
+        <div class="col s12 m12 l6">
+            <div class="pagination-top">
+                <ul class="pagination">
+                    {% block pagination %}
+                    {% endblock %}
+                </ul>
+            </div>
+        </div>
+        <!-- Sort by features -->
+        <div class="col s12 m12 l6">
+            <form action={% block sort_filter %}{% endblock %} method="POST" class="right">
+                <ul class="tabs tabs-transparent" id="sortNav">
+                    <li class="tab">
+                        <label class="white-text" id="sortBy-label">Sort By</label>
+                        <select class="browser-default" name="navSelect1" id="navSelect1" value="{{ navSelect1 }}">
+                            <option value="default" {% if navSelect1=="default" %} selected="selected" {% endif %}>
+                                Default</option>
+                            <option value="title" {% if navSelect1=="title" %} selected="selected" {% endif %}>Title
+                            </option>
+                            <option value="likes" {% if navSelect1=="likes" %} selected="selected" {% endif %}>Likes
+                            </option>
+                            <option value="favourite" {% if navSelect1=="favourite" %} selected="selected" {% endif %}>
+                                Recommended</option>
+                            <option value="awardwinner" {% if navSelect1=="awardwinner" %} selected="selected" {% endif
+                                %}>Award Winners</option>
+                            <option value="bestseller" {% if navSelect1=="bestseller" %} selected="selected" {% endif
+                                %}>Bestsellers</option>
+                            <option value="playing" {% if navSelect1=="playing" %} selected="selected" {% endif %}>
+                                Playing</option>
+                            <option value="reviews" {% if navSelect1=="reviews" %} selected="selected" {% endif %}>
+                                Review Count</option>
+
+                        </select>
+                    </li>
+                    <li class="tab">
+                        <label class="white-text" id="order-label">Order</label>
+                        <select class="browser-default" name="navSelect2" id="navSelect2" value="{{ navSelect2 }}">
+                            <option value="asc" {% if navSelect2=="asc" %} selected="selected" {% endif %}>Asc</option>
+                            <option value="desc" {% if navSelect2=="desc" %} selected="selected" {% endif %}>Desc
+                            </option>
+                        </select>
+                    </li>
+                    <li class="tab">
+                        <button type="submit" class="btn" id="filterBtn">Filter <span>Results</span></button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Games -->
+<main>
+
+    <!-- Review button -->
+    <section>
+        <div class="row">
+            <div class="col right leave-review-col">
+                <a href="{{ url_for('submit_review_without_game') }}" class="btn-large leave-review">Leave a Review</a>
             </div>
         </div>
     </section>
-    
-    <!-- Games -->
-    <main>
 
-        <!-- Review button -->
-        <section>
-            <div class="row">
-                <div class="col right leave-review-col">
-                    <a href="{{ url_for('submit_review_without_game') }}" class="btn-large leave-review">Leave a Review</a>
-                </div>
-            </div>
-        </section>
+    {% block games %}
+    {% endblock %}
 
-        {% block games %}
-        {% endblock %}
-    
-    </main>
+</main>
 
 {% endblock %}
 
 {% block scripts %}
-    <!--
+<!--
         Game data for autocomplete searchbar
         Based upon the following source: 
         "https://stackoverflow.com/questions/15321431/how-to-pass-a-list-from-python-by-jinja2-to-javascript"
     -->
-    <script async>
-        var gameData = {{gameData|tojson|safe}}
-    </script>
-    <!-- JQuery Autocomplete -->
-    <script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
+<script async>
+    var gameData = {{ gameData| tojson | safe}}
+</script>
+<!-- JQuery Autocomplete -->
+<script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
 {% endblock %}
