@@ -1425,6 +1425,12 @@ To conclude, the python file for scraping web data from the [Steam Store]() is s
 - [Micro](https://miro.com/online-whiteboard/)
     - Micro is an online sketching/whiteboard tool. I used it to visually demonstrate the relationships between each collection in the database.
 
+- [Coolors](https://coolors.co/)
+    - Coolors is a colour scheme generator. It was used to demonstrate the colours used in on the website.
+
+- [Accessible Color Generator](https://learnui.design/tools/accessible-color-generator.html)
+    - Accessible Color Generator provided contrast results between two colours. It was used to assess AA requirements for colour combinations used on the site.
+
 -----
 
 ## Testing
