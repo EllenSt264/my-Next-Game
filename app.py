@@ -2276,9 +2276,8 @@ def submit_review_page(game):
 
         if request.method == "POST":
             # Find game data for displaying game review
-            title = request.form.get("query")
-            game = mongo.db.all_pc_games.find_one({"game_title": title})
-            img_full = game["game_img_full"]
+            game = mongo.db.all_pc_games.find_one({"game_title": game_title})
+            img_full = game.get("game_img_full")
 
             display_name = mongo.db.users.find_one(
                 {"username": session["user"]})["display_name"]
@@ -2287,7 +2286,7 @@ def submit_review_page(game):
             date = datetime.datetime.now()
 
             review = {
-                "game_title": title,
+                "game_title": game_title,
                 "game_img_full": img_full,
                 "platform": request.form.get("platform-select").lower(),
                 "summary": request.form.get("summary"),
@@ -2306,7 +2305,7 @@ def submit_review_page(game):
             # Check if a user has already added a game with the same to the db
             existing_review = mongo.db.user_reviews.find_one(
                 {"$and": [{"username": session["user"]},
-                          {"game_title": title}]})
+                          {"game_title": game_title}]})
 
             if existing_review is None:
                 mongo.db.user_reviews.insert_one(review)
