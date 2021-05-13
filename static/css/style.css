@@ -161,16 +161,16 @@ nav .dropdown-content a:focus {
 
 #navSearchbar input#nav-search,
 #sidenav-searchbar input#nav-query,
-#secondary-nav-searchbar input#query,
-#secondary-nav-searchbar input#review-query {
+#secondary-nav-searchbar input#game-search,
+#secondary-nav-searchbar input#review-search {
     padding-left: 10px;
     font-family: "BlenderPro-Medium";
     background-color: white; 
     color: black;
 }
 
-#secondary-nav-searchbar input#query,
-#secondary-nav-searchbar input#review-query {
+#secondary-nav-searchbar input#game-search,
+#secondary-nav-searchbar input#review-search {
     height: 40px;
     margin-top: 10px;
     margin-bottom: 0;

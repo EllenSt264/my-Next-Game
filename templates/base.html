@@ -92,8 +92,7 @@
                 <!-- Searchbar -->
                 <div class="nav-content hide-on-med-and-down" id="navSearchbar">
                     <form action="{{ url_for('get_nav_query') }}" method="POST">
-                        <input id="nav-search" name="nav-search" type="text" class=""
-                            placeholder="Search for game title">
+                        <input id="nav-search" name="nav-search" type="text" placeholder="Search for game title">
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
@@ -189,11 +188,16 @@
     <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <!--
+        Review data for autocomplete searchbar
+        Based upon the following source: 
+        "https://stackoverflow.com/questions/15321431/how-to-pass-a-list-from-python-by-jinja2-to-javascript"
+    -->
     <script>
-        var navGameData = {{ navGameData| tojson | safe}}
+        var gameData = {{ gameData| tojson | safe}}
     </script>
     <!-- JQuery Autocomplete -->
-    <script src="{{ url_for('static', filename='js/autocomplete-nav.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
     {% block scripts %}
     {% endblock %}
 </body>

@@ -106,7 +106,13 @@ def base():
 @app.route("/nav-search", methods=["POST"])
 def get_nav_query():
     # Grab query
-    query = request.form.get("nav-search")
+    search_query = request.form.get("nav-search")
+
+    if search_query is "":
+        return redirect(url_for("all_games"))
+
+    query = search_query.lower()
+    query = query.replace(" ", "_")
     return redirect(url_for('search', query=query))
 
 
@@ -117,7 +123,13 @@ def get_nav_query():
 @app.route("/search", methods=["POST"])
 def get_query():
     # Grab query
-    query = request.form.get("query")
+    search_query = request.form.get("game-search")
+
+    if search_query is "":
+        return redirect(url_for("all_games"))
+
+    query = search_query.lower()
+    query = query.replace(" ", "_")
     return redirect(url_for('search', query=query))
 
 
@@ -127,14 +139,10 @@ def get_query():
 
 @app.route("/games/search/<query>", methods=["GET"])
 def search(query):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
     # Grab game data for autocomplete function
     gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
-    if query is None:
-        return redirect(url_for("pc_games"))
+    query = query.replace("_", " ")
 
     mongo.db.all_pc_games.create_index([("game_title", "text")])
     games = mongo.db.all_pc_games.find(
@@ -174,7 +182,7 @@ def search(query):
         "games.html", games=pagination_games,
         pagination=pagination, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        navGameData=navGameData, gameData=gameData,
+        gameData=gameData,
         game_img=game_img, game_tags=game_tags, query=query)
 
 
@@ -184,17 +192,25 @@ def search(query):
 
 @app.route("/community-reviews/search", methods=["POST"])
 def get_review_query():
-    query = request.form.get("review-query")
+    search_query = request.form.get("review-search")
+
+    if search_query is "":
+        return redirect(url_for("all_reviews"))
+
+    query = search_query.lower()
+    query = query.replace(" ", "_")
     return redirect(url_for('search_reviews', query=query))
 
 
 @app.route("/community-reviews/search/<query>", methods=["GET"])
 def search_reviews(query):
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Grab review data for autocomplete function
     reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
+
+    query = query.replace("_", " ")
 
     mongo.db.user_reviews.create_index([("game_title", "text")])
     reviews = mongo.db.user_reviews.find(
@@ -234,7 +250,7 @@ def search_reviews(query):
         "reviews.html", game_reviews=pagination_game_reviews,
         pagination=pagination, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        navGameData=navGameData, reviewData=reviewData,
+        gameData=gameData, reviewData=reviewData,
         game_img=game_img, game_tags=game_tags, query=query)
 
 
@@ -246,7 +262,7 @@ def search_reviews(query):
 @app.route("/home")
 def home():
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Grab bestsellers from db
     bestsellers = mongo.db.all_pc_games.find({"bestseller": True})
@@ -270,7 +286,7 @@ def home():
     return render_template(
         "index.html", bestsellers=pagination_bestsellers,
         pagination=pagination, awardwinners=awardwinners,
-        navGameData=navGameData)
+        gameData=gameData)
 
 
 # ========================
@@ -299,7 +315,7 @@ def admin_user_requests():
     if session.get("user"):
         if session.get("admin") is True:
             # Grab game data for autocomplete function in navbar
-            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+            gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
             user_requests = mongo.db.game_requests.find()
 
@@ -370,7 +386,7 @@ def admin_user_requests():
 
             return render_template(
                 "admin-user_requests.html", user_requests=user_requests,
-                navGameData=navGameData, userRequestsSort1=userRequestsSort1,
+                gameData=gameData, userRequestsSort1=userRequestsSort1,
                 userRequestsSort2=userRequestsSort2)
 
         else:
@@ -663,9 +679,6 @@ def multiplayer_games():
 
 @app.route("/games/<genre>", methods=["GET", "POST"])
 def games(genre):
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
     # Grab game data for autocomplete function
     gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
@@ -766,7 +779,7 @@ def games(genre):
         pagination_games.sort("favourite", pymongo.ASCENDING)
 
     return render_template(
-        "games.html", navGameData=navGameData,
+        "games.html",
         gameData=gameData, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
         games=pagination_games, pagination=pagination,
@@ -797,9 +810,6 @@ def awardwinner_games():
     # Find games
     pc_games = mongo.db.all_pc_games.find({"awardwinner": True})
 
-    # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
-
     # Grab game data for autocomplete function
     gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
@@ -823,8 +833,7 @@ def awardwinner_games():
         "games-awardwinners.html", pc_games=pagination_pc_games,
         pagination=pagination, favourites=favourites,
         rand_game_1=rand_game_1, rand_game_2=rand_game_2,
-        rand_game_3=rand_game_3, navGameData=navGameData,
-        gameData=gameData)
+        rand_game_3=rand_game_3, gameData=gameData)
 
 
 # ===============================
@@ -873,7 +882,7 @@ def favourites():
 @app.route("/our-favourites/<game>", methods=["GET", "POST"])
 def favourites_page(game):
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Favourites db
     favourites = mongo.db.all_pc_games.find({"favourite": True})
@@ -919,7 +928,7 @@ def favourites_page(game):
         "games-favourites.html", favourites=favourites, game=game,
         rand_game_title=rand_game_title, rand_game_imgs=rand_game_imgs,
         rand_game_summary=rand_game_summary, rand_game_id=rand_game_id,
-        navSelect1=navSelect1, navSelect2=navSelect2, navGameData=navGameData)
+        navSelect1=navSelect1, navSelect2=navSelect2, gameData=gameData)
 
 
 # ==========
@@ -929,7 +938,7 @@ def favourites_page(game):
 @app.route("/register", methods=["GET", "POST"])
 def register():
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     if request.method == "POST":
         # Check if user already exists in db
@@ -975,7 +984,7 @@ def register():
             flash("Welcome {}".format(session["user"].capitalize()))
             return redirect(url_for("profile_games", username=session["user"]))
 
-    return render_template("register.html", navGameData=navGameData)
+    return render_template("register.html", gameData=gameData)
 
 
 # ==========
@@ -985,7 +994,7 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     if request.method == "POST":
         # Check if email exists in the db
@@ -1024,7 +1033,7 @@ def login():
             flash("Incorrect Email and/or Password")
             return redirect(url_for("login"))
 
-    return render_template("login.html", navGameData=navGameData)
+    return render_template("login.html", gameData=gameData)
 
 
 # ==========
@@ -1100,7 +1109,7 @@ def like(game_id):
 def request_game():
     if session.get("user"):
         # Grab game data for autocomplete function in navbar
-        navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+        gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
         # Post game request
         if request.method == "POST":
@@ -1146,7 +1155,7 @@ def request_game():
                     "confirm_request", game_request=game_request,
                     title=title))
 
-        return render_template("request_form.html", navGameData=navGameData)
+        return render_template("request_form.html", gameData=gameData)
 
     else:
         flash("Sign in or register an account with us to request games")
@@ -1160,7 +1169,7 @@ def request_game():
 @app.route("/request-a-game/request=<game_request>/found=<title>", methods=["GET", "POST"])
 def confirm_request(game_request, title):
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     date = datetime.datetime.now()
 
@@ -1247,7 +1256,7 @@ def confirm_request(game_request, title):
         return redirect(url_for("home"))
 
     return render_template(
-        "request_form-modal.html", navGameData=navGameData,
+        "request_form-modal.html", gameData=gameData,
         game_request=game_request, title=title)
 
 
@@ -1257,7 +1266,6 @@ def confirm_request(game_request, title):
 
 @app.route("/add_game/<game_id>")
 def add_game(game_id):
-
     # Check if ObjectId is valid
     if ObjectId.is_valid(game_id):
         game = mongo.db.all_pc_games.find_one({"_id": ObjectId(game_id)})
@@ -1329,7 +1337,7 @@ def edit_profile(username):
     if session.get("user"):
         if session.get("user") == username:
             # Grab game data for autocomplete function in navbar
-            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+            gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
             user = mongo.db.users.find_one({"username": session["user"]})
 
@@ -1357,7 +1365,7 @@ def edit_profile(username):
 
             return render_template(
                 "profile-edit_general.html", username=session["user"], user=user,
-                navGameData=navGameData)
+                gameData=gameData)
         else:
             return redirect(url_for("home"))
     else:
@@ -1375,7 +1383,7 @@ def edit_password(username):
     if session.get("user"):
         if session.get("user") == username:
             # Grab game data for autocomplete function in navbar
-            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+            gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
             user = mongo.db.users.find_one({"username": session["user"]})
             if request.method == "POST":
@@ -1411,7 +1419,7 @@ def edit_password(username):
 
             return render_template(
                 "profile-edit_password.html", username=session["user"], user=user,
-                navGameData=navGameData)
+                gameData=gameData)
         else:
             return redirect(url_for("home"))
     else:
@@ -1428,13 +1436,14 @@ def edit_profile_avatar(username):
     if session.get("user"):
         if session.get("user") == username:
             # Grab game data for autocomplete function in navbar
-            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+            gameData = gameData = mongo.db.all_pc_games.find(
+                {}).distinct("game_title")
 
             user_data = mongo.db.users.find()
             avatars = mongo.db.avatars.find().sort("img_alt", 1)
             return render_template(
                 "profile-edit_avatar.html", username=session["user"],
-                user_data=user_data, avatars=avatars, navGameData=navGameData)
+                user_data=user_data, avatars=avatars, gameData=gameData)
         else:
             return redirect(url_for("home"))
     else:
@@ -1477,7 +1486,7 @@ def profile_games(username):
     # Check if session user matches the user of the profile
     if session.get("user") and session.get("user") == username:
         # Grab game data for autocomplete function in navbar
-        navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+        gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
         # Find session user
         user = mongo.db.users.find_one({"username": session["user"]})
@@ -1531,7 +1540,7 @@ def profile_games(username):
         "profile-games_list.html", user=user, username=username,
         games_playing=games_playing, games_next=games_next,
         games_completed=games_completed, matches=matches,
-        navGameData=navGameData, rank=rank)
+        gameData=gameData, rank=rank)
 
 
 # =========================
@@ -1604,7 +1613,7 @@ def remove_game(game_id):
 @app.route("/profile/<username>/likes")
 def profile_likes(username):
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Find session user
     user = mongo.db.users.find_one({"username": session["user"]})
@@ -1625,7 +1634,7 @@ def profile_likes(username):
 
     return render_template(
         "profile-game_likes.html", user=user, games=games,
-        navGameData=navGameData, rank=rank)
+        gameData=gameData, rank=rank)
 
 
 # ======================
@@ -1637,7 +1646,8 @@ def profile_reviews(username):
     # Check if session user matches the user of the profile
     if session.get("user") and session.get("user") == username:
         # Grab game data for autocomplete function in navbar
-        navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+        gameData = gameData = mongo.db.all_pc_games.find(
+            {}).distinct("game_title")
 
         # Find user reviews
         user = mongo.db.users.find_one({"username": session["user"]})
@@ -1655,7 +1665,7 @@ def profile_reviews(username):
 
         return render_template(
             "profile-reviews.html", user=user, rank=rank,
-            user_reviews=user_reviews, navGameData=navGameData)
+            user_reviews=user_reviews, gameData=gameData)
     else:
         return redirect(url_for("profiles_reviews", user=username))
 
@@ -1677,7 +1687,7 @@ def profiles_template():
 @app.route("/profiles/<user>", methods=["GET"])
 def profiles(user):
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Find the user's game playlist
     user_games = mongo.db.user_games.find({"username": user})
@@ -1751,7 +1761,7 @@ def profiles(user):
         username=username, user_display_name=user_display_name,
         user_avatar=user_avatar, review_matches=review_matches,
         like_matches=like_matches, session_user_games=session_user_games,
-        navGameData=navGameData)
+        gameData=gameData)
 
 
 # ======================
@@ -1761,7 +1771,7 @@ def profiles(user):
 @app.route("/profiles/<user>/likes")
 def profiles_likes(user):
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Find user reviews
     user_reviews = mongo.db.user_reviews.find({"username": user})
@@ -1788,7 +1798,7 @@ def profiles_likes(user):
         "visit_profile-game_likes.html", user=user, rank=rank,
         username=username, user_display_name=user_display_name,
         user_avatar=user_avatar, user_liked_games=user_liked_games,
-        navGameData=navGameData)
+        gameData=gameData)
 
 
 # ========================
@@ -1798,7 +1808,7 @@ def profiles_likes(user):
 @app.route("/profiles/<user>/reviews")
 def profiles_reviews(user):
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Find user details
     user_data = mongo.db.users.find_one({"username": user})
@@ -1822,7 +1832,7 @@ def profiles_reviews(user):
         "visit_profile-reviews.html", user=user, rank=rank,
         username=username, user_display_name=user_display_name,
         user_avatar=user_avatar, user_reviews=user_reviews,
-        navGameData=navGameData)
+        gameData=gameData)
 
 
 # ================
@@ -1975,7 +1985,7 @@ def see_game_reviews(game_id):
 @app.route("/community-reviews/<genre>", methods=["GET", "POST"])
 def reviews(genre):
     # Grab game data for autocomplete function in navbar
-    navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+    gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
     # Grab review data for autocomplete function
     reviewData = mongo.db.user_reviews.find({}).distinct("game_title")
@@ -2140,7 +2150,7 @@ def reviews(genre):
         pagination=pagination, reviewSort1=reviewSort1,
         reviewSort2=reviewSort2, rand_game_1=rand_game_1,
         rand_game_2=rand_game_2, rand_game_3=rand_game_3,
-        reviewData=reviewData, navGameData=navGameData,
+        reviewData=reviewData, gameData=gameData,
         game_img=game_img, game_tags=game_tags)
 
 
@@ -2172,7 +2182,7 @@ def submit_review(game_id):
 def submit_review_page(game):
     if session.get("user"):
         # Grab game data for autocomplete function in navbar
-        navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+        gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
         # Get game title
         if game != "new":
@@ -2232,8 +2242,8 @@ def submit_review_page(game):
         gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
         return render_template(
-            "reviews-review_form.html", navGameData=navGameData,
-            gameData=gameData, game=game, game_title=game_title)
+            "reviews-review_form.html", gameData=gameData,
+            game=game, game_title=game_title)
 
     else:
         flash("Sign in or register an account with us to review games")
@@ -2268,7 +2278,7 @@ def edit_review_page(username, user_review):
         if session.get("user") == username:
 
             # Grab game data for autocomplete function in navbar
-            navGameData = mongo.db.all_pc_games.find({}).distinct("game_title")
+            gameData = mongo.db.all_pc_games.find({}).distinct("game_title")
 
             # Find game title in order to find review
             title = mongo.db.all_pc_games.find_one(
@@ -2315,7 +2325,7 @@ def edit_review_page(username, user_review):
 
             return render_template(
                 "reviews-edit_review.html", username=username, user_review=user_review,
-                review=review, navGameData=navGameData)
+                review=review, gameData=gameData)
 
         else:
             return redirect(url_for("home"))
