@@ -66,6 +66,9 @@
 							<!-- Game request title -->
 							<div class="col s12">
 								<h5>{{ request.game_request }}</h5>
+								{% if request.game_link in matches %}
+								<span>[Waiting in Queue]</span>
+								{% endif %}
 							</div>
 							<!-- User count -->
 							<div class="col s12">

@@ -320,7 +320,28 @@ def admin_user_requests():
 
             user_requests = mongo.db.game_requests.find()
 
-            # Remove games from queue that have been added to the games col
+            # Check if game is in the queue
+            game_requests = mongo.db.game_requests.find()
+            in_queue = mongo.db.game_queue.find()
+
+            request_links = []
+            queue_links = []   
+            matches = []
+
+            for i in list(game_requests):
+                    request_links.append(i["game_link"])
+
+            for i in list(in_queue):
+                queue_links.append(i["game_link"])
+
+            for i in request_links:
+                for x in queue_links:
+                    if i == x:
+                        matches.append(x)
+
+            print(matches)
+
+            # Remove games from user requests if added to the games col
             def remove_added_games():
                 games = mongo.db.game_requests.find()
                 existing_games = mongo.db.all_pc_games.find()
@@ -342,12 +363,13 @@ def admin_user_requests():
                         if i == x:
                             matches.append(x)
 
-                # Remove from game queue col
+                # Remove from game requests col
                 for link in matches:
                     game = mongo.db.game_requests.find_one({"game_link": link})
                     mongo.db.game_requests.remove({"_id": game["_id"]})
 
             remove_added_games()
+
 
             # Sort filter
 
@@ -388,7 +410,7 @@ def admin_user_requests():
             return render_template(
                 "admin-user_requests.html", user_requests=user_requests,
                 gameData=gameData, userRequestsSort1=request1,
-                userRequestsSort2=request2)
+                userRequestsSort2=request2, matches=matches)
 
         else:
             return redirect(url_for("home"))
