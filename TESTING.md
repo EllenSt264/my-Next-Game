@@ -70,6 +70,12 @@
 
     - [NoneType Error for Request A Game Form](#nonetype-error-for-request-a-game-form)
 
+    - [KeyError when Visiting A User's Profile](#keyerror-when-visiting-a-users-profile)
+
+    - [RenderItem TypeError for Autocomplete Search Bar](#renderitem-typeerror-for=autocomplete-search-bar)
+
+    - [Sort Filter Duplicates](#sort-filter-duplicates)
+
 
 -----
 
@@ -166,9 +172,16 @@ After cache control:
 
 3. I want to be able to find games easily.
 
+- Users have a vareity of ways in which they can browse the selection of games that are available to them.
+
+- Users can select a game genre, search for game by using the search bar, or visit a different page entirely, such as the Favourites page or their Profile Game List.
+
 ![Screenshot - Navbar](static/img/documentation/screenshot-navbar.png)
 
 ![Screenshot - Navbar](static/img/documentation/screenshot-navbar_genre.png)
+
+
+- In the navbar, users can select a game genre, using the Genre dropdown menu, to narrow the results when browsing or searching for a game.
 
 ![Screenshot - Secondary Navbar on Games page](static/img/documentation/screenshot-secondary_navbar-games.png)
 
@@ -179,14 +192,7 @@ After cache control:
 ![Screenshot - Secondary Navbar on Reviews page](static/img/documentation/screenshot-secondary_navbar-reviews-2.png)
 
 
-
-- Users have a vareity of ways in which they can browse the selection of games that are available to them.
-
-- In the navbar, users can select a game genre, using the Genre dropdown menu, to narrow the results when browsing or searching for a game.
-
 - Users have access to secondary navbar, available on all of the game pages (excluding the Favourites page) which allows them to narrow their search further. 
-
-- Users can select a game genre, search for game by using the search bar, or visit a different page entirely, such as the Favourites page or their Profile Game List.
 
 - Users can also browse all available games, if they are not doing so already, by clicking the 'all games' link.
 
@@ -847,7 +853,7 @@ if existing_request is not None:
 
 - When no session user was logged in, the session cookie `session['user]` produced a KeyError because it did not exist. Adding the following line of code fixed the issue:
 
-````
+```
 session_user = session.get("user")
 
     if session_user is not None:
@@ -856,3 +862,107 @@ session_user = session.get("user")
     else:
         session_user_games = None
 ```
+
+-----
+
+## RenderItem TypeError for Autocomplete Search Bar
+
+- For the pages where the autocomplete search bar was present, I was getting the following warning in the console:
+
+```
+JQuery.Deferred exception: Cannot set property '_renderItem' of undefined TypeError: Cannot set property '_renderItem' of undefined
+```
+
+```
+Uncaught TypeError: Cannot set property '_renderItem' of undefined
+```
+
+Separating the JS files used for adding functionality to the three autocomplete search bars (navbar, secondary navbar and submit review form) fixed the issue.
+
+
+-----
+
+
+## Sort Filter Duplicates
+
+When selecting either `bestsellers`, `recommended`, `awardwinners` (game pages), `positive` or `negative` (review pages) in the Sort Filter, it would produce a bug were random game results were duplicating when going to the next page.
+
+Often this was only one or two games that were duplicated each time. Nevertheless, the bug would have disrupted the user experience.
+
+Updating the game pages' code from:
+
+```
+elif navSelect1 == "favourite" and navSelect2 == "desc":
+        pagination_games.sort("favourite", pymongo.DESCENDING)
+
+elif navSelect1 == "favourite" and navSelect2 == "asc":
+        pagination_games.sort("favourite", pymongo.ASCENDING)
+```
+ 
+to:
+
+```
+elif navSelect1 == "favourite" and navSelect2 == "desc":
+    pagination_games.sort([
+        ("favourite", pymongo.DESCENDING),
+        ("likes", pymongo.DESCENDING),
+        ("game_title", pymongo.ASCENDING)
+    ])
+
+elif navSelect1 == "favourite" and navSelect2 == "asc":
+    pagination_games.sort([
+        ("favourite", pymongo.ASCENDING),
+        ("likes", pymongo.ASCENDING),
+        ("game_title", pymongo.DESCENDING)
+    ])
+```
+
+And the review pages' code from:
+
+```
+elif reviewSort1 == "positive" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("recommended", -1)
+
+elif reviewSort1 == "positive" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("recommended", 1)
+
+elif reviewSort1 == "negative" and reviewSort2 == "desc":
+        pagination_game_reviews.sort("recommended", 1)
+
+    elif reviewSort1 == "negative" and reviewSort2 == "asc":
+        pagination_game_reviews.sort("recommended", -1)
+```
+
+to:
+
+```
+elif reviewSort1 == "positive" and reviewSort2 == "desc":
+        pagination_game_reviews.sort([
+            ("recommended", pymongo.DESCENDING),
+            ("date_submitted", -1)
+        ])
+
+elif reviewSort1 == "positive" and reviewSort2 == "asc":
+    pagination_game_reviews.sort([
+        ("recommended", pymongo.ASCENDING),
+        ("date_submitted", 1)
+    ])
+
+# Sort by negative reviews
+elif reviewSort1 == "negative" and reviewSort2 == "desc":
+    pagination_game_reviews.sort([
+        ("recommended", pymongo.ASCENDING),
+        ("date_submitted", -1)
+    ])
+
+elif reviewSort1 == "negative" and reviewSort2 == "asc":
+    pagination_game_reviews.sort([
+        ("recommended", pymongo.DESCENDING),
+        ("date_submitted", 1)
+    ])
+```
+
+Fixed the issue.
+
+
+-----
