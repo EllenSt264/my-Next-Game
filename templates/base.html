@@ -92,7 +92,7 @@
                 <!-- Searchbar -->
                 <div class="nav-content hide-on-med-and-down" id="navSearchbar">
                     <form action="{{ url_for('get_nav_query') }}" method="POST">
-                        <input id="nav-search" name="nav-search" type="text" class="autocomplete"
+                        <input id="nav-search" name="nav-search" type="text" class=""
                             placeholder="Search for game title">
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </form>
@@ -189,7 +189,7 @@
     <script src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    <script async>
+    <script>
         var navGameData = {{ navGameData| tojson | safe}}
     </script>
     <!-- JQuery Autocomplete -->
