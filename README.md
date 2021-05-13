@@ -588,6 +588,8 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
 
     - The side nav and its links can be accessed on every profile page.
 
+- Every user has a Profile Ranks. The rank increments by 1 after every 7 reviews. This is intended to encourage users to submit reviews and interact with the site, but I didn't have enough time to work on this feature fully. This is something that could be improved on in the future.
+
 - Users will be directed to the other user's Profile playlist, where they can see what games they are currently playing, plan to play later and/or have completed.
 
 - Each game card includes the game title, game image, and a 'Links' and 'Read Reviews' button. Clicking on either the game title or image will direct users to any existing reviews for that game.
@@ -695,6 +697,8 @@ Below is a diagram illustrating the site's navigation, older mockups of the site
         - Edit Profile
 
     - The side nav and its links can be accessed on every profile page.
+
+- Every user has a Profile Ranks. The rank increments by 1 after every 7 reviews. This is intended to encourage users to submit reviews and interact with the site, but I didn't have enough time to work on this feature fully. This is something that could be improved on in the future.
 
 - When users click on the floating add button as described [here](#games-pages), the game will be added to their playlist of their profile.
 
@@ -1340,6 +1344,28 @@ game_results = mongo.db.all_pc_games.find({"$or": [{"action": True}, {"game_top_
 ```
 
 To conclude, the python file for scraping web data from the [Steam Store]() is something that, although works how I want it, is still in need of some cleaning and tweaking. The code is repeated quite significantly, which can definitely be improved upon in the future.
+
+
+-----
+
+
+## Features to Implement in the Future
+
+- Add a email verification service so users can safely reset their details via email if their account details get lost.
+
+- Improve on the registration security by introducing more requirements on the password and perhaps implementing a code verification process.
+
+- Add a search functionality for users to find friends and/or other registered users on the site.
+
+- Add a chat functionality to allow the platform to grow into an established community.
+
+- Add like functionality to reviews. So users can rate reviews.
+
+- Add more functionality to the Profile ranking.
+
+    - For now the Profile ranking only has visual aesethic, and even then the aesethic is not memorable. This could be improved upon.
+
+- Add functionality for a wider range of sites, rather than be limited to Steam for all of the game data.
 
 
 
